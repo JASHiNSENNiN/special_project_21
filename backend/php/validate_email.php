@@ -45,7 +45,7 @@ function checkAccType()
     $conn->close();
 
     if ($password) {
-        return true; //has at
+        return true; 
     } else {
         return false;
     }
