@@ -129,12 +129,14 @@ function generateJobCards($jobOffers)
 
                         <div class="search-container">
                             <button type="submit"><i class="fas fa-search"></i></button>
-                            <input class="globalInputSearch" type="text" placeholder="Work Immersion / Keyword">
+                            <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch" type="text"
+                                placeholder="Work Immersion / Keyword">
 
                         </div>
                         <div class="search-container" style="border-left: 1px solid grey">
                             <button type="submit"><i class="fas fa-map-marker-alt"></i></button>
-                            <input class="globalInputSearch" type="text" placeholder="Search location">
+                            <input id="InputSearch" name="InputSearch" class="globalInputSearch" type="text"
+                                placeholder="Search location">
 
                         </div>
 
