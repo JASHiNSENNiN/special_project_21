@@ -60,7 +60,7 @@ function generateJobCards($jobOffers)
                 </div>
                 
                 <div class="job-card-buttons">
-                    <button class="search-buttons card-buttons" id="btnApply">Details</button>
+                    <a href="org.php" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
                     <button class="search-buttons card-buttons-msg">Save</button>
                 </div>
             </div>
@@ -182,112 +182,6 @@ function generateJobCards($jobOffers)
 
     </div>
 
-    <!-- ----------------------modal job list ----------------------- -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="job-card">
-                <div class="job-card-header">
-
-
-                </div>
-                <div class="job-card-title">
-                    <h2><span>Work Immerion</span></h2>
-                </div>
-                <div class="job-detail-buttons">
-                    <button class="search-buttons detail-button">Full Time</button>
-                    <button class="search-buttons detail-button">Min. 1 Year</button>
-                    <button class="search-buttons detail-button">Senior Level</button>
-                </div>
-                <div class="loc-com">
-                    <h2>location</h2>
-                    <div class="job-card-title-location"><i class="fas fa-map-marker-alt"></i>Pasig</div>
-                </div>
-                <div clas="full-des">
-                    <h2>Full job description</h2>
-                </div>
-                <div class="job-card-subtitle">
-                    <h4>JOB DESCRIPTION</h4>
-                    <li>Properly document account information and input data in the appropriate systems.</li>
-                    <li>Lead and prepare a report for each investigation to creditors.</li>
-                    <li>Analytical and problem-solving skills to expedite these investigations.</li>
-                    <li>Collect daily and weekly data for required reports and submit them to the supervisors prior to
-                        deadlines.</li>
-                    <li>Use computer applications to locate and trace clients.</li>
-
-                    <h4>QUALIFICATION </h4>
-                    <li>College Students taking up Computer and Business courses with On the Job training requirements
-                        are also encouraged to join. (with allowance)</li>
-                    <li>Computer literate</li>
-                    <li>Knowledgeable in Microsoft Office tools</li>
-                    <li>Critical thinker /Tech Savvy</li>
-
-                    <h4>RESPONSIBILITIES</h4>
-                    <li>[List of specific responsibilities and tasks]</li>
-                    <li>[Another responsibility]</li>
-                    <li>[Additional responsibility]</li>
-
-
-
-                    <h4>BENEFITS</h4>
-                    <li>[List of any benefits offered, such as health insurance, retirement plans, etc.].</li>
-
-                    <h4>Consent from Parents or Guardians:</h4>
-                    <li>Since work immersion may involve practical work experience outside the school premises,
-                        consent from parents or guardians is usually required.</li>
-
-
-
-                </div>
-
-
-                <div class="job-card-buttons">
-                    <a href="login.php"> <button class="search-buttons card-buttons" id="btnApply">Apply
-                            Now</button></a>
-                    <a href="login.php"><button class="search-buttons card-buttons-msg">Messages</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- --------------------------------joblist modal js-------------------------=--- -->
-    <script>
-    // Modal functionality
-    document.addEventListener("DOMContentLoaded", function() {
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        var btn = document.getElementById("btnApply");
-
-        var span = document.getElementsByClassName("close")[0];
-
-        if (btn) {
-            btn.onclick = function() {
-                if (modal) {
-                    modal.style.display = "block";
-                }
-            };
-        }
-
-        if (span) {
-
-            span.onclick = function() {
-                if (modal) {
-                    modal.style.display = "none";
-                }
-            };
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        };
-    });
-    </script>
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>

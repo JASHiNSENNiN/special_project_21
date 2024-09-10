@@ -106,7 +106,7 @@
     .container {
         display: flex;
         flex-direction: column;
-        // max-width: 1400px;
+        max-width: 1400px;
         height: 100vh;
         margin: 0 auto;
         overflow: hidden;
@@ -358,14 +358,16 @@
         font-size: 13px;
         font-weight: 600;
         margin-top: 14px;
-        // &.card-buttons {
-        //    background-color: var(--inactive-color);
-        //   color: var(--body-color);
-        //   &:hover {
-        //    color: var(--button-color);
-        //    background-color: var(--active-color);
-        //   }
-        //  }
+
+        &.card-buttons {
+            background-color: var(--inactive-color);
+            color: var(--body-color);
+
+            &:hover {
+                color: var(--button-color);
+                background-color: var(--active-color);
+            }
+        }
     }
 
     .job-wrapper {
@@ -456,7 +458,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            animation: slideY .6s both //display: none;
+            animation: slideY .6s both;
+            display: none;
         }
 
         &-show {
@@ -479,6 +482,7 @@
                 margin-left: 6px;
             }
         }
+
     }
 
     .job-cards {
@@ -488,8 +492,8 @@
         grid-column-gap: 25px;
         grid-row-gap: 25px;
         animation: slideY .6s both;
+        display: none;
 
-        //display: none;
         @media screen and (max-width: 1212px) {
             grid-template-columns: repeat(2, 1fr);
         }
