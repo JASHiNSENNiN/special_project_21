@@ -49,7 +49,7 @@ function generateJobCards($jobOffers)
 
         echo '<div class="five columns">
                     <div class="job-manager-form wp-job-manager-bookmarks-form">
-                        <div><a href="#"
+                        <div><a href="login.php"
                                 class="small-dialog popup-with-zoom-anim bookmark-notice button dark bookmark-notice">Login
                                 to bookmark</a></div>
                     </div>
@@ -136,8 +136,7 @@ function generateJobCards($jobOffers)
 
                         <div class="job_application application">
 
-                            <a href="#" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply for
-                                job</a>
+                            <a href="login.php" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</a>
 
 
                         </div>
@@ -192,11 +191,10 @@ function generateJobCards($jobOffers)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Work Immersion Search | Workify</title>
+    <title>Work Immersion | Workify</title>
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
-    <link rel="stylesheet" type="text/scss" href="css/reboot.css">
+    <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
-    <link rel="stylesheet" type="text/css" href="css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
@@ -274,8 +272,8 @@ function generateJobCards($jobOffers)
                             <h3 class="f-title f_600 t_color f_size_18">Help</h3>
                             <ul class="list-unstyled f_list">
 
-                                <li><a href="#">Term &amp; conditions</a></li>
-                                <li><a href="#">Support Policy</a></li>
+                                <li><a href="term_and_Conditions.php">Term &amp; conditions</a></li>
+                                <li><a href="Support_policy.php">Support Policy</a></li>
                                 <li><a href="#">Privacy</a></li>
                             </ul>
                         </div>
