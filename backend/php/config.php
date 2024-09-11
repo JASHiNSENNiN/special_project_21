@@ -8,6 +8,7 @@ $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
 $database = $_ENV['MYSQL_DBNAME'];
 
+
 $conn = new mysqli($host, $username, $password, $database);
 
 
@@ -130,4 +131,26 @@ if (mysqli_multi_query($conn, $sql)) {
   //echo "Error creating tables: " . mysqli_error($conn) . "\n";
 }
 
+
 $conn->close();
+
+$key = $_ENV['ENCRYPTION_KEY'];
+
+function encrypt_url_parameter($data) {
+  global  $key;
+    $cipher = "aes-256-cbc";
+    $ivlen = openssl_cipher_iv_length($cipher);
+    $iv = openssl_random_pseudo_bytes($ivlen);
+    $encrypted_data = openssl_encrypt($data, $cipher, $key, OPENSSL_RAW_DATA, $iv);
+    return base64_encode($iv . $encrypted_data);
+}
+
+function decrypt_url_parameter($encrypted_data) {
+  global  $key;
+    $cipher = "aes-256-cbc";
+    $ivlen = openssl_cipher_iv_length($cipher);
+    $data = base64_decode($encrypted_data);
+    $iv = substr($data, 0, $ivlen);
+    $encrypted_data = substr($data, $ivlen);
+    return openssl_decrypt($encrypted_data, $cipher, $key, OPENSSL_RAW_DATA, $iv);
+}

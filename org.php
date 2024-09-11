@@ -9,45 +9,52 @@ $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
 $database = $_ENV['MYSQL_DBNAME'];
 
-$conn = new mysqli($host, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
-$sql = "SELECT * FROM job_offers";
-$result = $conn->query($sql);
+$jobId = decrypt_url_parameter($_GET['job_id']);
 
-$jobOffers = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $jobOffers[] = $row;
-    }
+if (!isset($jobId)) {
+    die("Missing job ID parameter in the URL.");
 }
+$sql = "SELECT * FROM job_offers WHERE id = :jobId";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':jobId', $jobId, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$job = $result[0];
 
-$conn->close();
-
-function generateJobCards($jobOffers)
+function generateJobCard()
 {
-    foreach ($jobOffers as $job) {
-        $strands = json_decode($job['strands']);
+    global $job;
+  $strands = json_decode($job['strands']);
+  $work_title = $job['work_title'];
+  $description = html_entity_decode($job['description']);
+  $description = nl2br($description);
 
-        $description = html_entity_decode($job['description']);
+  echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
+  echo '<div class="container">';
+  echo '<div class="eleven columns">';
 
-        $description = nl2br($description);
+  echo '<span class="job-category"><a href="#">Dancer</a></span>';
+  echo '<h1>' . htmlspecialchars($job['work_title']);
 
-        echo ' <div id="titlebar" class="single titlebar-boxed-company-info">
+  foreach ($strands as $strand) {
+    echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+  }
 
-            <div class="container">
-                <div class="eleven columns">
+  echo '</h1></div>';
 
-                    <span class="job-category"><a href="#">Dancer</a></span>
-                    <h1>' . htmlspecialchars($job['work_title']);
-        foreach ($strands as $strand) {
-            echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>
-                    </h1></div>';
-        }
+  echo '<div class="five columns">';
+  echo '<div class="job-manager-form wp-job-manager-bookmarks-form">';
+  echo '<div><a href="login.php" class="small-dialog popup-with-zoom-anim bookmark-notice button dark bookmark-notice">Login to bookmark</a></div>';
+  echo '</div></div></div></div>';
 
-        echo '<div class="five columns">
+  echo '<div class="five columns">
                     <div class="job-manager-form wp-job-manager-bookmarks-form">
                         <div><a href="login.php"
                                 class="small-dialog popup-with-zoom-anim bookmark-notice button dark bookmark-notice">Login
@@ -178,8 +185,8 @@ function generateJobCards($jobOffers)
             </div>
 
         </div>';
-    }
 }
+
 
 ?>
 
@@ -209,9 +216,9 @@ function generateJobCards($jobOffers)
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -236,7 +243,7 @@ function generateJobCards($jobOffers)
 
 
     <div class="content-sticky">
-        <?php generateJobCards($jobOffers); ?>
+        <?php generateJobCard(); ?>
 
 
     </div>
@@ -315,20 +322,20 @@ function generateJobCards($jobOffers)
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function () {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
     <script src="js/filter.js"> </script>
 

@@ -35,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: $destination");
         exit();
     } else {
-        echo "Invalid email or password.";
+        $destination = '/login.php?error="Login_Failed"';
+        header("Location: $destination");
     }
 
     $stmt->close();
