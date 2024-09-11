@@ -3,7 +3,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 };
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
+$student_id = $student_profile['id'];
 $firstName = $student_profile['first_name'];
 $middleName = $student_profile['middle_name'];
 $lastName = $student_profile['last_name'];
@@ -50,7 +52,7 @@ $profile_div = '<header class="nav-header">
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
-                    <a href="Profile.php"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My
+                    <a href="Profile.php?student_id=' . encrypt_url_parameter($student_id) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My
                         Profile</a>
                     <a href="#"> <i class="fas fa-comment-alt" style="font-size:24px;margin-right:10px;"></i>My
                         Reviews</a>

@@ -4,7 +4,22 @@ if (session_status() == PHP_SESSION_NONE) {
 };
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
+$currentUrl = $_SERVER['REQUEST_URI'];
+$urlParts = parse_url($currentUrl);
+if (isset($urlParts['query'])) {
+    parse_str($urlParts['query'], $queryParameters);
+    if (isset($queryParameters['student_id'])) {
+        $IdParam = $queryParameters['student_id'];
+    }
+} else {
+    echo "Query string parameter not found.";
+}
+
+$user_id = decrypt_url_parameter($IdParam);
+
+$student_profile = fetch_student_profile($user_id);
 $firstName = $student_profile['first_name'];
 $middleName = $student_profile['middle_name'];
 $lastName = $student_profile['last_name'];

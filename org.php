@@ -15,7 +15,18 @@ try {
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
-$jobId = decrypt_url_parameter($_GET['job_id']);
+
+$currentUrl = $_SERVER['REQUEST_URI'];
+$urlParts = parse_url($currentUrl);
+if (isset($urlParts['query'])) {
+    parse_str($urlParts['query'], $queryParameters);
+    if (isset($queryParameters['job_id'])) {
+        $jobIdParam = $queryParameters['job_id'];
+    }
+} else {
+    echo "Query string parameter not found.";
+}
+$jobId = decrypt_url_parameter($jobIdParam);
 
 if (!isset($jobId)) {
     die("Missing job ID parameter in the URL.");
