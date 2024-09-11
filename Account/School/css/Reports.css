@@ -86,7 +86,7 @@ hr {
 
 /* ----------------------------company review---------------- */
 
-button,
+/* button,
 .button {
   display: inline-block;
   padding: 16px 35px;
@@ -101,7 +101,7 @@ button,
   border-radius: 15px;
   transition: background 0.3s ease-in-out;
   font-weight: bold;
-}
+} */
 
 /* button:hover,
 .button:hover {
@@ -480,14 +480,6 @@ nav a:hover::after {
 
 /*--------header end---------- */
 
-.container2 {
-  padding-top: 50px;
-  display: block;
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
-  background-color: #fff;
-}
-
 /* ------table------- */
 
 .rwd-table {
@@ -601,6 +593,7 @@ h1 {
   color: #000000;
 }
 .container2 {
+  padding-top: 50px;
   display: block;
   text-align: center;
   font-family: "Open Sans", sans-serif;

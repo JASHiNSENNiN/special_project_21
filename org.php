@@ -93,7 +93,6 @@ function generateJobCard()
 
                             <span class="company-data__content--list-item _company_website"><a class="website" href="#"
                                     target="_blank" rel="nofollow">
-                                    <!-- <i class="fa fa-link"></i> -->
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         version="1.1" width="15.413" height="14" viewBox="0 0 256 256"
                                         xml:space="preserve">
@@ -113,26 +112,18 @@ function generateJobCard()
                                         </g>
                                     </svg>
                                     Location
-                                </a></span>
+                                </a>
+                                </span>
                             <span class="company-data__content--list-item _company_email">
                                 <a href="#" target="_blank"><i class="fa fa-envelope"></i>
                                     telimed@example.com</a>
                             </span>
                             <span class="company-data__content--list-item _company_x">
-                                <a href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.413" height="11"
-                                        viewBox="0 0 21.413 20.879">
-                                        <path id="_11053970_x_logo_twitter_new_brand_icon"
-                                            data-name="11053970_x_logo_twitter_new_brand_icon"
-                                            d="M13.131,9.63,20.718,1h-1.8L12.329,8.492,7.069,1H1L8.957,12.33,1,21.379H2.8l6.956-7.913,5.557,7.913h6.069Zm-2.463,2.8L9.86,11.3,3.446,2.326H6.208l5.178,7.245.8,1.129,6.73,9.417H16.158Z"
-                                            transform="translate(-0.447 -0.75)" fill="#777" stroke="#777"
-                                            stroke-width="0.5"></path>
-                                    </svg>
-                                    Share </a></span>
+                                <a href="#">  <i class="fa fa-link"></i> 
+                                   
+                                    Link </a></span>
 
-                            <span class="company-data__content--list-item _company_phone"><a href="#">
-                                    <i class="fa fa-facebook"></i>
-                                    Facebook </a></span>
+                            
 
 
                         </div>
