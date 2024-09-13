@@ -50,8 +50,10 @@ require_once 'show_profile.php';
         <h1>Student Population</h1>
         <div id="myChart2" class="Chart2"></div>
     </div>
+    <hr class="line_bottom">
 
     <div class="container2">
+        <h1 style="margin-bottom: 20px;">Student Information</h1>
         <table class="rwd-table">
             <tbody>
                 <tr>
@@ -163,7 +165,7 @@ require_once 'show_profile.php';
 
     <script>
     /* When the user clicks on the button, 
-                                                                                                                        toggle between hiding and showing the dropdown content */
+                                                                                                                                                                                    toggle between hiding and showing the dropdown content */
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
@@ -184,7 +186,7 @@ require_once 'show_profile.php';
     </script>
 
     <script>
-    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    const xValues = ["NIA", "Jollibee", "Mcdo", "Inasal", "Argentina"];
     const yValues = [55, 49, 44, 24, 15];
     const barColors = ["#7CF5FF", "#00CCDD", "#4F75FF", "#6439FF", "#4379F2"];
 
@@ -200,11 +202,12 @@ require_once 'show_profile.php';
         options: {
             legend: {
                 display: false
+
             },
             title: {
                 display: true,
-                text: "Result"
-
+                text: "Result",
+                'font-size': 100
             }
         }
     });
@@ -232,7 +235,10 @@ require_once 'show_profile.php';
         // Set Options
         const options = {
             title: 'Result',
-            is3D: true
+            is3D: true,
+            'width': 600,
+            'height': 300
+
         };
 
 

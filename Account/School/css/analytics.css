@@ -311,17 +311,22 @@
   margin-top: 50px;
   margin: 50px;
   margin-bottom: 0px;
+  /* background-color: rgb(60, 61, 55, 0.1); */
+  padding: 20px;
 }
 
 .Chart2 {
+  margin-top: 50px;
   width: 100%;
   max-width: 1000px;
   height: 500px;
   padding-top: 0px;
-  padding-bottom: 0px;
+  margin-bottom: 0;
+  font-weight: bold;
 }
 
 .Chart1 {
+  margin-top: 50px;
   width: 100%;
   max-width: 600px;
 }
