@@ -44,12 +44,20 @@ require_once 'show_profile.php';
     <hr class="line_bottom">
     </div>
 
-    <div class="Chart">
-        <h1>Company Ratings</h1>
-        <canvas id="myChart1" class="Chart1"></canvas>
-        <h1>Student Population</h1>
-        <div id="myChart2" class="Chart2"></div>
+    <div class="row">
+        <div class="column">
+            <h1 class="title">Top 5 Company</h1>
+            <canvas id="myChart1" class="Chart1"></canvas>
+        </div>
+        <div class="column">
+            <h1 class="title">Student Population</h1>
+            <div id="myChart2" class="Chart2"></div>
+        </div>
     </div>
+
+    <div class="Chart">
+    </div>
+
     <hr class="line_bottom">
 
     <div class="container2">
@@ -61,8 +69,8 @@ require_once 'show_profile.php';
                     <th>ID Picture</th>
                     <th>Student Name</th>
                     <th>Strand</th>
-                    <th>Ratings</th>
-                    <th>Action</th>
+                    <!-- <th>Ratings</th> -->
+                    <th>Result</th>
 
                 </tr>
                 <!-- <div class="dropdown2"> </div> -->
@@ -72,12 +80,14 @@ require_once 'show_profile.php';
                     </td>
                     <td data-th="Student Name">Joshua Rivera</td>
                     <td data-th="Strand">HUMSS</td>
-                    <td data-th="Ratings">100%</td>
-                    <td data-th="Action">
+                    <!-- <td data-th="Ratings">100%</td> -->
+                    <td data-th="Result">
 
-                        <button onclick="myFunction()" class="button-9" role="button">Result</button>
-                        <br>
-                        <button class="button-37" role="button">Archive</button>
+                        <div class="container3">
+                            <div class="circular-progress">
+                                <span class="progress-value"></span>
+                            </div>
+                        </div>
 
                     </td>
                 </tr>
@@ -87,7 +97,7 @@ require_once 'show_profile.php';
                     <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
                     <td data-th="Student Name">Dan Mamaid</td>
                     <td data-th="Strand">STEM</td>
-                    <td data-th="Ratings">99%</td>
+                    <!-- <td data-th="Ratings">99%</td> -->
                     <td data-th="Action">
                         <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
                         <button class="button-37" role="button">Archive</button>
@@ -163,27 +173,27 @@ require_once 'show_profile.php';
     }
     </script>
 
-    <script>
-    /* When the user clicks on the button, 
-                                                                                                                                                                                    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
+    <!-- <script>
+        /* When the user clicks on the button, 
+                                                                                                                                                                                                                                                            toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.button-9')) {
-            var dropdowns = document.getElementsByClassName("dropdown2-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.button-9')) {
+                var dropdowns = document.getElementsByClassName("dropdown2-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
                 }
             }
         }
-    }
-    </script>
+    </script> -->
 
     <script>
     const xValues = ["NIA", "Jollibee", "Mcdo", "Inasal", "Argentina"];
@@ -207,7 +217,9 @@ require_once 'show_profile.php';
             title: {
                 display: true,
                 text: "Result",
-                'font-size': 100
+                fontSize: 20,
+                color: 'black'
+
             }
         }
     });
@@ -223,12 +235,12 @@ require_once 'show_profile.php';
 
         // Set Data
         const data = google.visualization.arrayToDataTable([
-            ['Strand', 'Mhl'],
-            ['STEM', 54.8],
-            ['HUMSS', 48.6],
-            ['GAS', 44.4],
-            ['ABM', 23.9],
-            ['TECHVOC', 14.5]
+            ['Strand', 'none'],
+            ['STEM', 54],
+            ['HUMSS', 48],
+            ['GAS', 44],
+            ['ABM', 23],
+            ['TECHVOC', 14]
         ]);
 
 
@@ -236,8 +248,9 @@ require_once 'show_profile.php';
         const options = {
             title: 'Result',
             is3D: true,
-            'width': 600,
-            'height': 300
+            'width': 800,
+            'height': 400,
+            fontSize: 12
 
         };
 
@@ -247,6 +260,64 @@ require_once 'show_profile.php';
         chart.draw(data, options);
 
     }
+    </script>
+
+    <script>
+    let circularProgress =
+
+        document.querySelector('.circular-progress'),
+
+        progressValue =
+
+        document.querySelector('.progress-value');
+
+
+
+    let progressStartValue = 0,
+
+        progressEndValue = 50,
+
+        speed = 20;
+
+
+
+    let progress = setInterval(() => {
+
+        progressStartValue++;
+
+
+
+        progressValue.textContent =
+
+            `${progressStartValue}%`;
+
+
+
+        circularProgress.style.background =
+
+            `conic-gradient(#7d2ae8 ${progressStartValue
+
+                * 3.6}deg, #ededed 0deg)`;
+
+        //3.6deg * 100 = 360deg
+
+        //3.6deg * 90 = 324deg
+
+
+
+
+
+        if (progressStartValue == progressEndValue) {
+
+            clearInterval(progress);
+
+
+
+        }
+
+        console.log(progressStartValue);
+
+    }, speed);
     </script>
 
     <footer>

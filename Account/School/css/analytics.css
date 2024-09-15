@@ -306,27 +306,89 @@
   display: contents;
 }
 
-.Chart {
+/* .Chart {
   display: flex;
   margin-top: 50px;
   margin: 50px;
   margin-bottom: 0px;
-  /* background-color: rgb(60, 61, 55, 0.1); */
   padding: 20px;
-}
+} */
 
 .Chart2 {
-  margin-top: 50px;
+  margin-top: 30px;
   width: 100%;
   max-width: 1000px;
-  height: 500px;
-  padding-top: 0px;
-  margin-bottom: 0;
+  margin: auto;
+  height: 100%;
   font-weight: bold;
+  display: ruby;
 }
 
 .Chart1 {
-  margin-top: 50px;
+  margin-top: 40px;
   width: 100%;
   max-width: 600px;
+  margin: auto;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 480px;
+  margin: auto;
+  margin-bottom: 50px;
+  text-align: center;
+  align-items: center; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.title {
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.container3 {
+  display: flex;
+  /* width: 420px;
+  padding: 50px 0;
+  row-gap: 30px; */
+  margin: auto;
+  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circular-progress {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
+}
+
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.progress-value {
+  position: relative;
+  font-size: 40px;
+  font-weight: 600;
+  color: #7d2ae8;
 }
