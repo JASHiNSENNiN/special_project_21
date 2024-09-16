@@ -3,7 +3,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 };
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
 $currentUrl = $_SERVER['REQUEST_URI'];
@@ -12,13 +11,12 @@ if (isset($urlParts['query'])) {
     parse_str($urlParts['query'], $queryParameters);
     if (isset($queryParameters['student_id'])) {
         $IdParam = $queryParameters['student_id'];
-        $IdParam = str_replace(' ', '+', $IdParam);
     }
 } else {
     echo "Query string parameter not found.";
 }
 
-$user_id = decrypt_url_parameter($IdParam);
+$user_id = decrypt_url_parameter(base64_decode($IdParam));
 
 global $host;
 global $username;
