@@ -35,9 +35,9 @@ $sql = "SELECT * FROM job_offers WHERE id = :jobId";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':jobId', $jobId, PDO::PARAM_INT);
 $stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$job = $result[0];
+$job = $result;
 
 function generateJobCard()
 {

@@ -12,6 +12,7 @@ if (isset($urlParts['query'])) {
     parse_str($urlParts['query'], $queryParameters);
     if (isset($queryParameters['student_id'])) {
         $IdParam = $queryParameters['student_id'];
+        $IdParam = str_replace(' ', '+', $IdParam);
     }
 } else {
     echo "Query string parameter not found.";
@@ -19,7 +20,20 @@ if (isset($urlParts['query'])) {
 
 $user_id = decrypt_url_parameter($IdParam);
 
-$student_profile = fetch_student_profile($user_id);
+global $host;
+global $username;
+global $password;
+global $database;
+global $conn;
+
+
+$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+$sql = "SELECT * FROM student_profiles WHERE id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':user_id',$user_id);
+$stmt->execute();
+$student_profile = $stmt->fetch(PDO::FETCH_ASSOC);
+
 $firstName = $student_profile['first_name'];
 $middleName = $student_profile['middle_name'];
 $lastName = $student_profile['last_name'];
