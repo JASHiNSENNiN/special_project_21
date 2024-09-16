@@ -62,7 +62,7 @@ function generateJobCards($jobOffers)
                 </div>
                 
                 <div class="job-card-buttons">
-                    <a href="../../org.php?job_id=' . encrypt_url_parameter((string)$job['id']) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
+                    <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string)$job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
                     <button class="search-buttons card-buttons-msg">Save</button>
                 </div>
             </div>
