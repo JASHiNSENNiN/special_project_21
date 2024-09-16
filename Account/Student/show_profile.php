@@ -5,15 +5,15 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
-$student_id = $student_profile['id'];
-$firstName = $student_profile['first_name'];
-$middleName = $student_profile['middle_name'];
-$lastName = $student_profile['last_name'];
-$school = $student_profile['school'];
-$gradeLevel = $student_profile['grade_level'];
-$strand = strtoupper($student_profile['strand']);
-$stars = $student_profile['stars'];
-$currentWork = $student_profile['current_work'];
+$student_id = $_SESSION['id'];
+$firstName = $_SESSION['first_name'];
+$middleName = $_SESSION['middle_name'];
+$lastName = $_SESSION['last_name'];
+$school = $_SESSION['school'];
+$gradeLevel = $_SESSION['grade_level'];
+$strand = strtoupper($_SESSION['strand']);
+$stars = $_SESSION['stars'];
+$currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
 
 $profile_div = '<header class="nav-header">

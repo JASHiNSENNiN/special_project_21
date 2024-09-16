@@ -14,7 +14,6 @@ $host = "localhost";
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 $user_id = $_SESSION['user_id'];
 
 function fetch_user_profile($user_id)
