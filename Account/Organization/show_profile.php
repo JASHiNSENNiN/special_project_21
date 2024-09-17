@@ -9,7 +9,6 @@ $organizationName = $_SESSION['organization_name'];
 
 $email = $_SESSION['email'];
 $strandFocus = strtoupper($_SESSION['strand']);
-
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="#">

@@ -107,9 +107,6 @@ require_once 'show_profile.php';
 
                 </tr>
             </table>
-            <!-- <div class="button">
-                        <a href="#">See All</a>
-                    </div> -->
         </div>
 
     </div>

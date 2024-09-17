@@ -85,33 +85,11 @@ CREATE TABLE IF NOT EXISTS applicants (
 
 CREATE TABLE IF NOT EXISTS performance_evaluations (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  evaluation_name VARCHAR(255),
-  description TEXT,
-  start_date DATE,
-  end_date DATE,
-  location VARCHAR(255),
-  user_id INT(11),
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
-CREATE TABLE IF NOT EXISTS feedback_surveys (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
   survey_name VARCHAR(255),
   description TEXT,
-  start_date DATE,
-  end_date DATE,
+  date DATE,
   location VARCHAR(255),
-  user_id INT(11),
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
-CREATE TABLE IF NOT EXISTS risk_assessments (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  assessment_name VARCHAR(255),
-  description TEXT,
-  start_date DATE,
-  end_date DATE,
-  location VARCHAR(255),
+  rated_user_id INT(11),
   user_id INT(11),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
