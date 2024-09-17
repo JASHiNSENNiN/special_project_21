@@ -47,6 +47,11 @@ require_once 'show_profile.php';
 
 
     <br>
+
+
+
+
+
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <div class="container">
@@ -78,218 +83,221 @@ require_once 'show_profile.php';
 
     <div id="content_container">
         <div id="humss" class="content active">
+            <h1 style="margin-bottom: 50px; margin-top:50px">HUMSS</h1>
             <div class="container2">
-                <h1>HUMSS</h1>
                 <table class="rwd-table">
                     <tbody>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Company</th>
-                            <th>Status</th>
-                            <th>Start Date</th>
-                            <th>Start End</th>
+                            <th>ID Picture</th>
+                            <th>Student Name</th>
+                            <th>Result</th>
+                            <th>Action</th>
+
                         </tr>
                         <tr>
                             <td data-th="#">1</td>
-                            <td data-th="Name">Renata French</td>
-                            <td data-th="Company">NIA</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">12/30/2024</td>
+                            <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
+                            </td>
+                            <td data-th="Student Name">Joshua Rivera</td>
+                            <td data-th="Result">
+
+                                <div class="container3">
+                                    <div class="circular-progress">
+                                        <span class="progress-value"></span>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                         </tr>
+
                         <tr>
                             <td data-th="#">2</td>
-                            <td data-th="Name">Juelz Adkins</td>
-                            <td data-th="Company">PNP</td>
-                            <td data-th="Status">Pending</td>
-                            <td data-th="Start Date">0/0/2024</td>
-                            <td data-th="Start End">0/0/2024</td>
+                            <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
+                            <td data-th="Student Name">Dan Mamaid</td>
+                            <td data-th="Result">
+                                <div class="container3">
+                                    <div class="circular-progress">
+                                        <span class="progress-value"></span>
+                                    </div>
+                                </div>
+                                <!-- <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
+                        <button class="button-37" role="button">Archive</button> -->
+                            </td>
+                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                         </tr>
-                        <tr>
-                            <td data-th="#">3</td>
-                            <td data-th="Name">Navy Meza</td>
-                            <td data-th="Company">Landbank</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">12/30/2024</td>
-                        </tr>
-                        <tr>
-                            <td data-th="#">4</td>
-                            <td data-th="Name">Rylan Hammond</td>
-                            <td data-th="Company">Carmel</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/1/2024</td>
-                            <td data-th="Start End">12/10/2024</td>
-                        </tr>
+
                     </tbody>
+
                 </table>
-                <!-- <h3>Resize Me</h3> -->
             </div>
         </div>
 
         <div id="stem" class="content">
+            <h1 style="margin-bottom: 50px; margin-top:50px">STEM</h1>
             <div class="container2">
-                <h1>STEM</h1>
                 <table class="rwd-table">
                     <tbody>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Company</th>
-                            <th>Status</th>
-                            <th>Start Date</th>
-                            <th>Start End</th>
+                            <th>ID Picture</th>
+                            <th>Student Name</th>
+                            <th>Result</th>
+                            <th>Action</th>
+
                         </tr>
                         <tr>
                             <td data-th="#">1</td>
-                            <td data-th="Name">Della Morse</td>
-                            <td data-th="Company">BDO</td>
-                            <td data-th="Status">Pending</td>
-                            <td data-th="Start Date">0/0/2016</td>
-                            <td data-th="Start End">0/0/2016</td>
+                            <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
+                            </td>
+                            <td data-th="Student Name">Joshua Rivera</td>
+                            <td data-th="Result">
+
+                                <div class="container3">
+                                    <div class="circular-progress">
+                                        <span class="progress-value"></span>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                         </tr>
+
                         <tr>
                             <td data-th="#">2</td>
-                            <td data-th="Name">Jerry Fischer</td>
-                            <td data-th="Company">NIA</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2016</td>
-                            <td data-th="Start End">06/25/2016</td>
+                            <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
+                            <td data-th="Student Name">Dan Mamaid</td>
+                            <td data-th="Result">
+                                <div class="container3">
+                                    <div class="circular-progress">
+                                        <span class="progress-value"></span>
+                                    </div>
+                                </div>
+                                <!-- <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
+                        <button class="button-37" role="button">Archive</button> -->
+                            </td>
+                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                         </tr>
-                        <tr>
-                            <td data-th="#">3</td>
-                            <td data-th="Name">Gabriela Carlson</td>
-                            <td data-th="Company">Sr. Product Designer</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2016</td>
-                            <td data-th="Start End">06/25/2016</td>
-                        </tr>
-                        <tr>
-                            <td data-th="#">4</td>
-                            <td data-th="Name">Demetrius Pollard</td>
-                            <td data-th="Company">User Experience Designer</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2016</td>
-                            <td data-th="Start End">06/25/2016</td>
-                        </tr>
+
                     </tbody>
+
                 </table>
-                <!-- <h3>Resize Me</h3> -->
             </div>
         </div>
 
         <div id="gas" class="content">
+            <h1 style="margin-bottom: 50px; margin-top:50px">GAS</h1>
             <div class="container2">
-                <h1>GAS</h1>
                 <table class="rwd-table">
                     <tbody>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Company</th>
-                            <th>Status</th>
-                            <th>Start Date</th>
-                            <th>Start End</th>
+                            <th>ID Picture</th>
+                            <th>Student Name</th>
+                            <th>Result</th>
+                            <th>Action</th>
+
                         </tr>
                         <tr>
                             <td data-th="#">1</td>
-                            <td data-th="Name">Paxton Bennett</td>
-                            <td data-th="Company">Pico Bank</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">06/25/2024</td>
+                            <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
+                            </td>
+                            <td data-th="Student Name">Joshua Rivera</td>
+                            <td data-th="Result">
+
+                                <div class="container3">
+                                    <div class="circular-progress">
+                                        <span class="progress-value"></span>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                         </tr>
+
                         <tr>
                             <td data-th="#">2</td>
-                            <td data-th="Name">Maryam Hurst</td>
-                            <td data-th="Company">OLSCHO</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">06/25/2024</td>
+                            <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
+                            <td data-th="Student Name">Dan Mamaid</td>
+                            <td data-th="Result">
+                                <div class="container3">
+                                    <div class="circular-progress">
+                                        <span class="progress-value"></span>
+                                    </div>
+                                </div>
+                                <!-- <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
+                        <button class="button-37" role="button">Archive</button> -->
+                            </td>
+                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                         </tr>
-                        <tr>
-                            <td data-th="#">3</td>
-                            <td data-th="Name">Ali Lewis</td>
-                            <td data-th="Company">PNP</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">06/25/2024</td>
-                        </tr>
-                        <tr>
-                            <td data-th="#">4</td>
-                            <td data-th="Name">Municipal</td>
-                            <td data-th="Company">Product Designer</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">06/25/2024</td>
-                        </tr>
+
                     </tbody>
+
                 </table>
-                <!-- <h3>Resize Me</h3> -->
             </div>
         </div>
 
         <div id="techvoc" class="content">
+            <h1 style="margin-bottom: 50px; margin-top:50px">TECHVOC</h1>
             <div class="container2">
-                <h1>TECVOC</h1>
                 <table class="rwd-table">
                     <tbody>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Company</th>
-                            <th>Status</th>
-                            <th>Start Date</th>
-                            <th>Start End</th>
+                            <th>ID Picture</th>
+                            <th>Student Name</th>
+                            <th>Result</th>
+                            <th>Action</th>
+
                         </tr>
                         <tr>
                             <td data-th="#">1</td>
-                            <td data-th="Name">Jovanni Daniel</td>
-                            <td data-th="Company">Pico Bank</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">06/25/2024</td>
+                            <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
+                            </td>
+                            <td data-th="Student Name">Joshua Rivera</td>
+                            <td data-th="Result">
+
+                                <div class="container3">
+                                    <div class="circular-progress">
+                                        <span class="progress-value"></span>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                         </tr>
+
                         <tr>
                             <td data-th="#">2</td>
-                            <td data-th="Name">Ella Haynes</td>
-                            <td data-th="Company">Pico Bank</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">06/25/2024</td>
+                            <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
+                            <td data-th="Student Name">Dan Mamaid</td>
+                            <td data-th="Result">
+                                <div class="container3">
+                                    <div class="circular-progress">
+                                        <span class="progress-value"></span>
+                                    </div>
+                                </div>
+                                <!-- <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
+                        <button class="button-37" role="button">Archive</button> -->
+                            </td>
+                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                         </tr>
-                        <tr>
-                            <td data-th="#">3</td>
-                            <td data-th="Name">Dorian Buckley</td>
-                            <td data-th="Company">Pico Bank</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">06/25/2024</td>
-                        </tr>
-                        <tr>
-                            <td data-th="#">4</td>
-                            <td data-th="Name">Margot Todd</td>
-                            <td data-th="Company">Pico Bank</td>
-                            <td data-th="Status">Deployed</td>
-                            <td data-th="Start Date">12/25/2024</td>
-                            <td data-th="Start End">06/25/2024</td>
-                        </tr>
+
                     </tbody>
+
                 </table>
-                <!-- <h3>Resize Me</h3> -->
             </div>
         </div>
     </div>
 
-
     <script>
-    $(".box").click(function(e) {
-        e.preventDefault();
-        $(".content").removeClass("active");
-        var content_id = $(this).attr("id");
-        $(content_id).addClass("active");
-    });
+        $(".box").click(function(e) {
+            e.preventDefault();
+            $(".content").removeClass("active");
+            var content_id = $(this).attr("id");
+            $(content_id).addClass("active");
+        });
     </script>
     <br>
     <footer>
@@ -297,21 +305,65 @@ require_once 'show_profile.php';
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function() {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function() {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
+    </script>
+
+    <script>
+        let circularProgress =
+            document.querySelector('.circular-progress'),
+            progressValue =
+            document.querySelector('.progress-value');
+
+
+
+        let progressStartValue = 0,
+            progressEndValue = 80,
+            speed = 20;
+
+
+
+        let progress = setInterval(() => {
+
+            progressStartValue++;
+            progressValue.textContent =
+                `${progressStartValue}%`;
+            circularProgress.style.background =
+                `conic-gradient(#4379F2 ${progressStartValue
+                * 3.6}deg, #ededed 0deg)`;
+
+            //3.6deg * 100 = 360deg
+
+            //3.6deg * 90 = 324deg
+
+
+
+
+
+            if (progressStartValue == progressEndValue) {
+
+                clearInterval(progress);
+
+
+
+            }
+
+            console.log(progressStartValue);
+
+        }, speed);
     </script>
 
     <!-- <div class="sub-footer">

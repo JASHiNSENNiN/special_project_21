@@ -30,7 +30,7 @@ global $conn;
 $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
 $sql = "SELECT * FROM student_profiles WHERE id = :user_id";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':user_id',$user_id);
+$stmt->bindParam(':user_id', $user_id);
 $stmt->execute();
 $student_profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -104,7 +104,7 @@ $email = $_SESSION['email'];
             <div class="job"><?= $strand ?></div>
         </div>
 
-        <div class="sidenav-url">
+        <!-- <div class="sidenav-url">
             <div class="url">
                 <a href="#profile" class="active">Profile</a>
                 <hr align="center" />
@@ -113,7 +113,7 @@ $email = $_SESSION['email'];
                 <a href="Settings.php">Settings</a>
                 <hr align="center" />
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- End -->
 
@@ -169,6 +169,16 @@ $email = $_SESSION['email'];
                 </table>
             </div>
         </div>
+        <br>
+
+        <h2>IDENTITY</h2>
+        <div class="card">
+            <div class="card-body">
+
+
+            </div>
+        </div>
+
         <br>
 
         <h2>SOCIAL MEDIA</h2>
