@@ -365,3 +365,15 @@
   font-weight: 600;
   color: #7d2ae8;
 }
+
+.container4 {
+  margin: auto;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.Time {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
