@@ -15,6 +15,7 @@ require_once 'show_profile.php';
     <link rel="stylesheet" type="text/css" href="css/analytics.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -32,11 +33,9 @@ require_once 'show_profile.php';
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a href="Company.php">Work Immersion List</a>
-            <!-- <a href="#.php">Company</a> -->
             <a href="Student.php">Student</a>
             <a class="active" href="Dashboard.php">Analytics</a>
             <a href="Reports.php">Reports</a>
-            <!-- <a href="Details.php">Details</a> -->
 
 
         </nav>
@@ -55,12 +54,13 @@ require_once 'show_profile.php';
         </div>
     </div>
 
-    <div class="Chart">
+    <hr class="line_bottom">
+    <div class="container4">
+        <h1 class="Time">Student Timeline</h1>
+        <div id="timeline" style="height: 180px;"></div>
     </div>
 
-    <hr class="line_bottom">
-
-    <div class="container2">
+    <!-- <div class="container2">
         <h1 style="margin-bottom: 20px;">Student Information</h1>
         <table class="rwd-table">
             <tbody>
@@ -69,18 +69,16 @@ require_once 'show_profile.php';
                     <th>ID Picture</th>
                     <th>Student Name</th>
                     <th>Strand</th>
-                    <!-- <th>Ratings</th> -->
                     <th>Result</th>
+                    <th>Action</th>
 
                 </tr>
-                <!-- <div class="dropdown2"> </div> -->
                 <tr>
                     <td data-th="#">1</td>
                     <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
                     </td>
                     <td data-th="Student Name">Joshua Rivera</td>
                     <td data-th="Strand">HUMSS</td>
-                    <!-- <td data-th="Ratings">100%</td> -->
                     <td data-th="Result">
 
                         <div class="container3">
@@ -90,6 +88,7 @@ require_once 'show_profile.php';
                         </div>
 
                     </td>
+                    <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
                 </tr>
 
                 <tr>
@@ -98,30 +97,15 @@ require_once 'show_profile.php';
                     <td data-th="Student Name">Dan Mamaid</td>
                     <td data-th="Strand">STEM</td>
                     <td data-th="Result">
+                    </td>
+                    <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
+                </tr>
 
-                    </td>
-                </tr>
-                <!-- <tr>
-                    <td data-th="#">3</td>
-                    <td data-th="Company">BOX Pro West</td>
-                    <td data-th="Student Name">Ronald Diaz</td>
-                    <td data-th="Action"><button id="myBtn" class="button-9" role="button">View</button><br>
-                        <button class="button-37" role="button">Archive</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td data-th="#">4</td>
-                    <td data-th="Company">Pan Providers and Co.</td>
-                    <td data-th="Student Name">Raniel Cruz</td>
-                    <td data-th="Action"><button id="myBtn" class="button-9" role="button">View</button><br>
-                        <button class="button-37" role="button">Archive</button>
-                    </td>
-                </tr> -->
             </tbody>
 
         </table>
-        <!-- <h3>Resize Me</h3> -->
-    </div>
+    </div> -->
+
 
 
     <br>
@@ -170,28 +154,6 @@ require_once 'show_profile.php';
             }
         }
     </script>
-
-    <!-- <script>
-        /* When the user clicks on the button, 
-                                                                                                                                                                                                                                                            toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.button-9')) {
-                var dropdowns = document.getElementsByClassName("dropdown2-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    </script> -->
 
     <script>
         const xValues = ["NIA", "Jollibee", "Mcdo", "Inasal", "Argentina"];
@@ -273,7 +235,7 @@ require_once 'show_profile.php';
 
         let progressStartValue = 0,
 
-            progressEndValue = 85,
+            progressEndValue = 50,
 
             speed = 20;
 
@@ -293,7 +255,7 @@ require_once 'show_profile.php';
 
             circularProgress.style.background =
 
-                `conic-gradient(#4F75FF ${progressStartValue
+                `conic-gradient(#7d2ae8 ${progressStartValue
 
                 * 3.6}deg, #ededed 0deg)`;
 

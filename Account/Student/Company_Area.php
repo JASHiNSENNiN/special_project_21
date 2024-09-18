@@ -37,7 +37,6 @@ function generateJobCards($jobOffers)
         $description = html_entity_decode($job['description']);
 
         $description = nl2br($description);
-
         echo '
         <li>
             <div class="job-card">
@@ -63,7 +62,7 @@ function generateJobCards($jobOffers)
                 </div>
                 
                 <div class="job-card-buttons">
-                    <button class="search-buttons card-buttons" id="btnApply">Details</button>
+                    <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string)$job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
                     <button class="search-buttons card-buttons-msg">Save</button>
                 </div>
             </div>
@@ -119,28 +118,44 @@ require_once 'show_profile.php';
 
 
         <section>
-            <!-- <h2 class="sfa">Search, Find and Apply!</h2 -->
+            <!-- <h2 class="sfa">Search, Find and Apply!</h2> -->
             <div class="line-search">
                 <div class="searchwork">
                     <form action="#" method="get">
 
                         <div class="search-container">
                             <button type="submit"><i class="fas fa-search"></i></button>
-                            <input type="text" placeholder="Work Immersion / Keyword">
+                            <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch" type="text"
+                                placeholder="Work Immersion / Keyword">
 
                         </div>
-                        <div class="search-container">
+                        <div class="search-container" style="border-left: 1px solid grey">
                             <button type="submit"><i class="fas fa-map-marker-alt"></i></button>
-                            <input type="text" placeholder="Search location">
+                            <input id="InputSearch" name="InputSearch" class="globalInputSearch" type="text"
+                                placeholder="Search location">
 
                         </div>
 
-                        <input type="submit" value="Find Now" href="">
+                        <!-- <input class="sub-btn" type="submit" value="Find Now"> -->
+
                 </div>
                 </form>
             </div>
 
         </section>
+
+        <div class="tab-selection">
+
+
+            <nav style="position:relative; margin-left:auto; margin-right:auto;">
+                <a class="active" href="index.php">Work Immersion feed</a>
+                <a href="recent-search.php">Recent search</a>
+
+
+
+            </nav>
+        </div>
+        <hr class="line_bottom">
         <!-- ------------------------------------------------------Job list------------------------------>
         <div class="main-container">
 
@@ -160,108 +175,14 @@ require_once 'show_profile.php';
             </div>
         </div>
 
-        <!-- ----------------------modal job list ----------------------- -->
-        <div id="myModal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="job-card">
-                    <div class="job-card-header">
-                        <svg viewBox="0 -13 512 512" xmlns="http://www.w3.org/2000/svg"
-                            style="background-color:#2e2882">
-                            <g fill="#feb0a5">
-                                <path
-                                    d="M256 92.5l127.7 91.6L512 92 383.7 0 256 91.5 128.3 0 0 92l128.3 92zm0 0M256 275.9l-127.7-91.5L0 276.4l128.3 92L256 277l127.7 91.5 128.3-92-128.3-92zm0 0" />
-                                <path d="M127.7 394.1l128.4 92 128.3-92-128.3-92zm0 0" />
-                            </g>
-                            <path
-                                d="M512 92L383.7 0 256 91.5v1l127.7 91.6zm0 0M512 276.4l-128.3-92L256 275.9v1l127.7 91.5zm0 0M256 486.1l128.4-92-128.3-92zm0 0"
-                                fill="#feb0a5" />
-                        </svg>
-                        <div class="menu-dot"></div>
-                    </div>
-                    <div class="job-card-title">UI / UX Designer</div>
-                    <div class="job-card-subtitle">
-                        <h4>Job Summary:</h4>
-                        The User Experience Designer position exists to create compelling and digital user experience
-                        through excellent design...
-
-                        <h4>Responsibilities:</h4>
-                        <li>[List of specific responsibilities and tasks]</li>
-                        <li>[Another responsibility]</li>
-                        <li>[Additional responsibility]</li>
-
-                        <h4>Requirements:</h4>
-                        <li>College graduate.</li>
-                        <li>Comfortable with performance-based income</li>
-                        <li>Willing to be trained (training provided for free)</li>
-
-                        <h4>Benefits:</h4>
-                        <li>[List of any benefits offered, such as health insurance, retirement plans, etc.].</li>
-
-                        <h4>Consent from Parents or Guardians:</h4>
-                        <li>Since work immersion may involve practical work experience outside the school premises,
-                            consent from parents or guardians is usually required.</li>
-
-
-
-                    </div>
-
-                    <div class="job-detail-buttons">
-                        <button class="search-buttons detail-button">Full Time</button>
-                        <button class="search-buttons detail-button">Min. 1 Year</button>
-                        <button class="search-buttons detail-button">Senior Level</button>
-                    </div>
-                    <div class="job-card-buttons">
-                        <button class="search-buttons card-buttons" id="btnApply">Apply Now</button>
-                        <button class="search-buttons card-buttons-msg">Messages</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
-        <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
-    </footer>
-
-    <script>
-    document.getElementById("currentDate").innerHTML = new Date().getFullYear();
-    </script>
-    <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("btnApply");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-    </script>
+    <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
     window.onscroll = function() {
-        myFunction()
+        myFunction();
     };
 
     var header = document.getElementById("myHeader-sticky");
@@ -275,24 +196,8 @@ require_once 'show_profile.php';
         }
     }
     </script>
+    <script src="js/filter.js"> </script>
 
-    <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
-
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
-    </script>
-
-    <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
-
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
-    </script>
 
 </body>
 

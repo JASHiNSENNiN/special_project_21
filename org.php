@@ -21,12 +21,13 @@ $urlParts = parse_url($currentUrl);
 if (isset($urlParts['query'])) {
     parse_str($urlParts['query'], $queryParameters);
     if (isset($queryParameters['job_id'])) {
-        $jobIdParam = $queryParameters['job_id'];
+        $jobIdParam =  $queryParameters['job_id'];
+        
     }
 } else {
     echo "Query string parameter not found.";
 }
-$jobId = decrypt_url_parameter($jobIdParam);
+$jobId = decrypt_url_parameter(base64_decode($jobIdParam));
 
 if (!isset($jobId)) {
     die("Missing job ID parameter in the URL.");
@@ -35,9 +36,9 @@ $sql = "SELECT * FROM job_offers WHERE id = :jobId";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':jobId', $jobId, PDO::PARAM_INT);
 $stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$job = $result[0];
+$job = $result;
 
 function generateJobCard()
 {

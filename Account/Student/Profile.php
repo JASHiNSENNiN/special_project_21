@@ -3,7 +3,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 };
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
 $currentUrl = $_SERVER['REQUEST_URI'];
@@ -17,9 +16,22 @@ if (isset($urlParts['query'])) {
     echo "Query string parameter not found.";
 }
 
-$user_id = decrypt_url_parameter($IdParam);
+$user_id = decrypt_url_parameter(base64_decode($IdParam));
 
-$student_profile = fetch_student_profile($user_id);
+global $host;
+global $username;
+global $password;
+global $database;
+global $conn;
+
+
+$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+$sql = "SELECT * FROM student_profiles WHERE id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':user_id', $user_id);
+$stmt->execute();
+$student_profile = $stmt->fetch(PDO::FETCH_ASSOC);
+
 $firstName = $student_profile['first_name'];
 $middleName = $student_profile['middle_name'];
 $lastName = $student_profile['last_name'];
@@ -90,7 +102,7 @@ $email = $_SESSION['email'];
             <div class="job"><?= $strand ?></div>
         </div>
 
-        <div class="sidenav-url">
+        <!-- <div class="sidenav-url">
             <div class="url">
                 <a href="#profile" class="active">Profile</a>
                 <hr align="center" />
@@ -99,7 +111,7 @@ $email = $_SESSION['email'];
                 <a href="Settings.php">Settings</a>
                 <hr align="center" />
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- End -->
 
@@ -155,6 +167,16 @@ $email = $_SESSION['email'];
                 </table>
             </div>
         </div>
+        <br>
+
+        <h2>IDENTITY</h2>
+        <div class="card">
+            <div class="card-body">
+
+
+            </div>
+        </div>
+
         <br>
 
         <h2>SOCIAL MEDIA</h2>

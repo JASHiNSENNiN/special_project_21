@@ -1,6 +1,6 @@
 /* Import Font Dancing Script */
-@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
 
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
 * {
   margin: 0;
 }
@@ -12,6 +12,7 @@ body {
 }
 
 /* NavbarTop */
+
 .navbar-top {
   background-color: #fff;
   color: #333;
@@ -58,6 +59,7 @@ body {
 /* End */
 
 /* Sidenav */
+
 .sidenav {
   background-color: #fff;
   color: #333;
@@ -95,7 +97,7 @@ body {
   padding-top: 10px;
 }
 
-.url,
+/* .url,
 hr {
   text-align: center;
 }
@@ -121,11 +123,12 @@ hr {
   color: #000;
   margin-left: 14%;
   width: 65%;
-}
+} */
 
 /* End */
 
 /* Main */
+
 .main {
   margin-top: 2%;
   margin-left: 29%;
@@ -207,6 +210,7 @@ iframe {
   /* margin-left: 45%; */
   margin-bottom: 50px;
 }
+
 footer {
   background-color: #fff;
   color: #333;
