@@ -97,10 +97,8 @@ require_once 'show_profile.php';
                     <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
                     <td data-th="Student Name">Dan Mamaid</td>
                     <td data-th="Strand">STEM</td>
-                    <!-- <td data-th="Ratings">99%</td> -->
-                    <td data-th="Action">
-                        <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
-                        <button class="button-37" role="button">Archive</button>
+                    <td data-th="Result">
+
                     </td>
                 </tr>
                 <!-- <tr>
@@ -128,49 +126,49 @@ require_once 'show_profile.php';
 
     <br>
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function () {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
     <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
             modal.style.display = "none";
         }
-    }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 
     <!-- <script>
@@ -196,128 +194,128 @@ require_once 'show_profile.php';
     </script> -->
 
     <script>
-    const xValues = ["NIA", "Jollibee", "Mcdo", "Inasal", "Argentina"];
-    const yValues = [55, 49, 44, 24, 15];
-    const barColors = ["#7CF5FF", "#00CCDD", "#4F75FF", "#6439FF", "#4379F2"];
+        const xValues = ["NIA", "Jollibee", "Mcdo", "Inasal", "Argentina"];
+        const yValues = [55, 49, 44, 24, 15];
+        const barColors = ["#7CF5FF", "#00CCDD", "#4F75FF", "#6439FF", "#4379F2"];
 
-    new Chart("myChart1", {
-        type: "bar",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            legend: {
-                display: false
-
+        new Chart("myChart1", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
             },
-            title: {
-                display: true,
-                text: "Result",
-                fontSize: 20,
-                color: 'black'
+            options: {
+                legend: {
+                    display: false
 
+                },
+                title: {
+                    display: true,
+                    text: "Result",
+                    fontSize: 20,
+                    color: 'black'
+
+                }
             }
+        });
+    </script>
+
+    <script>
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            // Set Data
+            const data = google.visualization.arrayToDataTable([
+                ['Strand', 'none'],
+                ['STEM', 54],
+                ['HUMSS', 48],
+                ['GAS', 44],
+                ['ABM', 23],
+                ['TECHVOC', 14]
+            ]);
+
+
+            // Set Options
+            const options = {
+                title: 'Result',
+                is3D: true,
+                'width': 800,
+                'height': 400,
+                fontSize: 12
+
+            };
+
+
+            // Draw
+            const chart = new google.visualization.PieChart(document.getElementById('myChart2'));
+            chart.draw(data, options);
+
         }
-    });
     </script>
 
     <script>
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
-    google.charts.setOnLoadCallback(drawChart);
+        let circularProgress =
 
-    function drawChart() {
+            document.querySelector('.circular-progress'),
 
-        // Set Data
-        const data = google.visualization.arrayToDataTable([
-            ['Strand', 'none'],
-            ['STEM', 54],
-            ['HUMSS', 48],
-            ['GAS', 44],
-            ['ABM', 23],
-            ['TECHVOC', 14]
-        ]);
+            progressValue =
 
-
-        // Set Options
-        const options = {
-            title: 'Result',
-            is3D: true,
-            'width': 800,
-            'height': 400,
-            fontSize: 12
-
-        };
-
-
-        // Draw
-        const chart = new google.visualization.PieChart(document.getElementById('myChart2'));
-        chart.draw(data, options);
-
-    }
-    </script>
-
-    <script>
-    let circularProgress =
-
-        document.querySelector('.circular-progress'),
-
-        progressValue =
-
-        document.querySelector('.progress-value');
+                document.querySelector('.progress-value');
 
 
 
-    let progressStartValue = 0,
+        let progressStartValue = 0,
 
-        progressEndValue = 50,
+            progressEndValue = 85,
 
-        speed = 20;
-
-
-
-    let progress = setInterval(() => {
-
-        progressStartValue++;
+            speed = 20;
 
 
 
-        progressValue.textContent =
+        let progress = setInterval(() => {
 
-            `${progressStartValue}%`;
+            progressStartValue++;
 
 
 
-        circularProgress.style.background =
+            progressValue.textContent =
 
-            `conic-gradient(#7d2ae8 ${progressStartValue
+                `${progressStartValue}%`;
+
+
+
+            circularProgress.style.background =
+
+                `conic-gradient(#4F75FF ${progressStartValue
 
                 * 3.6}deg, #ededed 0deg)`;
 
-        //3.6deg * 100 = 360deg
+            //3.6deg * 100 = 360deg
 
-        //3.6deg * 90 = 324deg
-
-
+            //3.6deg * 90 = 324deg
 
 
 
-        if (progressStartValue == progressEndValue) {
-
-            clearInterval(progress);
 
 
+            if (progressStartValue == progressEndValue) {
 
-        }
+                clearInterval(progress);
 
-        console.log(progressStartValue);
 
-    }, speed);
+
+            }
+
+            console.log(progressStartValue);
+
+        }, speed);
     </script>
 
     <footer>

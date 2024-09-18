@@ -35,7 +35,7 @@ require_once 'show_profile.php';
             <a href="Student.php">Student</a>
             <a href="Dashboard.php">Analytics</a>
             <a class="active" href="Reports.php">Reports</a>
-            <a href="Details.php">Details</a>
+            <!-- <a href="Details.php">Details</a> -->
 
 
         </nav>
