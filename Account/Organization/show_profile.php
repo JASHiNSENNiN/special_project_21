@@ -73,10 +73,14 @@ $profile_div = '<header class="nav-header">
         <div class="name">' . $organizationName . '</div>
         <label class="strand" for="">' . $strandFocus . '</label>
 
-        <div class="Settings"><label for="input-file2" class="button-12" role="button"><span class="edit"><i
-                        class="fa fa-pencil"></i> Edit
-                    profile</span><span class="pen"><i class="fa fa-pencil"></i></span></label>
-            <input type="file" accept="image/jpeg, image/png, image/gif" id="input-file2" />
+        <div class="Settings">
+        <a href="edit_profile.php" style="text-decoration: none;">
+        <label for="input-file2" class="button-12" role="button">
+        <span class="edit">
+        <i class="fa fa-pencil"></i> Edit profile
+                        </span>
+                        <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
+           
         </div>
 
     </div>';
