@@ -1106,12 +1106,12 @@ svg g[show_data] {
   color: #cfd8dc;
 }
 
-.two {
+/* .two {
   background: linear-gradient(to right, #66bb6a 0%, transparent 0%);
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent;
   transition: 0.5s ease-in-out all;
-}
+} */
 
 .global > span {
   font-size: 90px;

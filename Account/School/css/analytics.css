@@ -176,14 +176,13 @@
   background-color: #405cf5;
   border-radius: 6px;
   border-width: 0;
-  box-shadow:
-    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0,
-    rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -195,9 +194,7 @@
   text-align: center;
   text-transform: none;
   transform: translateZ(0);
-  transition:
-    all 0.2s,
-    box-shadow 0.08s ease-in;
+  transition: all 0.2s, box-shadow 0.08s ease-in;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -214,10 +211,8 @@
 }
 
 .button-9:focus {
-  box-shadow:
-    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
-    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
 }
 
@@ -231,10 +226,7 @@
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family:
-    "Akzidenz Grotesk BQ Medium",
-    -apple-system,
-    BlinkMacSystemFont,
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
     sans-serif;
   font-size: 100%;
   font-weight: 400;
@@ -243,9 +235,7 @@
   padding: 10px 25px;
   text-align: center;
   transform: translateY(0);
-  transition:
-    transform 150ms,
-    box-shadow 150ms;
+  transition: transform 150ms, box-shadow 150ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -357,14 +347,14 @@
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background: conic-gradient(#4379f2 3.6deg, #ededed 0deg);
+  background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
 }
 
 .circular-progress::before {
   content: "";
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 210px;
+  height: 210px;
   background: #fff;
   border-radius: 50%;
 }
@@ -373,7 +363,7 @@
   position: relative;
   font-size: 40px;
   font-weight: 600;
-  color: #4379f2;
+  color: #7d2ae8;
 }
 
 .container4 {

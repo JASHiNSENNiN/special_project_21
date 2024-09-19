@@ -5,6 +5,7 @@
     <title>Progressive Form | Multi Steps Form</title>
     <link rel="stylesheet" type="text/css" href="test.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 </head>
 
 <body>
@@ -44,17 +45,40 @@
                 <h2>Work Performance</h2>
                 <form>
                     <div class="form_container">
-                        <div class="input_wrap">
-                            <label for="email">Email Address</label>
-                            <input type="text" name="Email Address" class="input" id="email">
-                        </div>
-                        <div class="input_wrap">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" class="input" id="password">
-                        </div>
-                        <div class="input_wrap">
-                            <label for="confirm_password">Confirm Password</label>
-                            <input type="password" name="confirm password" class="input" id="confirm_password">
+                        <div class="questioner">
+                            <h3>1. How well does the student produce high-quality and accurate work?</h3>
+                            <form>
+                                <div class="st">
+                                    <input type="radio" class="star-input" name="rating" id="star-1" value="1">
+                                    <label for="star-1" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="star-input" name="rating" id="star-2" value="2">
+                                    <label for="star-2" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="star-input" name="rating" id="star-3" value="3">
+                                    <label for="star-3" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="star-input" name="rating" id="star-4" value="4">
+                                    <label for="star-4" class="star"><i class="fas fa-star"></i></label>
+                                    <input type="radio" class="star-input" name="rating" id="star-5" value="5" checked>
+                                    <label for="star-5" class="star"><i class="fas fa-star"></i></label>
+                                    <!-- <button type="submit">Send</button> -->
+                                </div>
+
+                                <h3>2. How effectively does the student manage their time to complete tasks?</h3>
+                                <form>
+                                    <div class="st">
+                                        <input type="radio" class="star-input" name="rating" id="star-1" value="1">
+                                        <label for="star-1" class="star"><i class="fas fa-star"></i></label>
+                                        <input type="radio" class="star-input" name="rating" id="star-2" value="2">
+                                        <label for="star-2" class="star"><i class="fas fa-star"></i></label>
+                                        <input type="radio" class="star-input" name="rating" id="star-3" value="3">
+                                        <label for="star-3" class="star"><i class="fas fa-star"></i></label>
+                                        <input type="radio" class="star-input" name="rating" id="star-4" value="4">
+                                        <label for="star-4" class="star"><i class="fas fa-star"></i></label>
+                                        <input type="radio" class="star-input" name="rating" id="star-5" value="5"
+                                            checked>
+                                        <label for="star-5" class="star"><i class="fas fa-star"></i></label>
+                                        <!-- <button type="submit">Send</button> -->
+                                    </div>
+                                </form>
                         </div>
                     </div>
                 </form>
@@ -217,7 +241,7 @@
         var modal_wrapper = document.querySelector(".modal_wrapper");
         var shadow = document.querySelector(".shadow");
 
-        form_1_next_btn.addEventListener("click", function() {
+        form_1_next_btn.addEventListener("click", function () {
             form_1.style.display = "none";
             form_2.style.display = "block";
 
@@ -227,7 +251,7 @@
             form_2_progessbar.classList.add("active");
         });
 
-        form_2_back_btn.addEventListener("click", function() {
+        form_2_back_btn.addEventListener("click", function () {
             form_1.style.display = "block";
             form_2.style.display = "none";
 
@@ -237,7 +261,7 @@
             form_2_progessbar.classList.remove("active");
         });
 
-        form_2_next_btn.addEventListener("click", function() {
+        form_2_next_btn.addEventListener("click", function () {
             form_2.style.display = "none";
             form_3.style.display = "block";
 
@@ -247,7 +271,7 @@
             form_3_progessbar.classList.add("active");
         });
 
-        form_3_back_btn.addEventListener("click", function() {
+        form_3_back_btn.addEventListener("click", function () {
             form_2.style.display = "block";
             form_3.style.display = "none";
 
@@ -257,7 +281,7 @@
             form_3_progessbar.classList.remove("active");
         });
 
-        form_3_next_btn.addEventListener("click", function() {
+        form_3_next_btn.addEventListener("click", function () {
             form_3.style.display = "none";
             form_4.style.display = "block";
 
@@ -267,7 +291,7 @@
             form_4_progessbar.classList.add("active");
         });
 
-        form_4_back_btn.addEventListener("click", function() {
+        form_4_back_btn.addEventListener("click", function () {
             form_3.style.display = "block";
             form_4.style.display = "none";
 
@@ -277,7 +301,7 @@
             form_4_progessbar.classList.remove("active");
         });
 
-        form_4_next_btn.addEventListener("click", function() {
+        form_4_next_btn.addEventListener("click", function () {
             form_4.style.display = "none";
             form_5.style.display = "block";
 
@@ -287,7 +311,7 @@
             form_5_progessbar.classList.add("active");
         });
 
-        form_5_back_btn.addEventListener("click", function() {
+        form_5_back_btn.addEventListener("click", function () {
             form_4.style.display = "block";
             form_5.style.display = "none";
 
@@ -297,12 +321,22 @@
             form_5_progessbar.classList.remove("active");
         });
 
-        btn_done.addEventListener("click", function() {
+        btn_done.addEventListener("click", function () {
             modal_wrapper.classList.add("active");
         });
 
-        shadow.addEventListener("click", function() {
+        shadow.addEventListener("click", function () {
             modal_wrapper.classList.remove("active");
+        });
+    </script>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', event => {
+            const formData = new FormData(event.target);
+            const rating = formData.get('rating');
+            console.log(rating);
+            event.preventDefault();
         });
     </script>
 
