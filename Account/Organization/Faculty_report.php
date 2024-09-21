@@ -270,7 +270,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question11" value="4"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question1" value="5"><i
+                                    <label class="star empty"><input type="radio" name="question11" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
                                 <h3>2. How effectively does the student apply feedback to improve their performance?
@@ -359,71 +359,71 @@ require_once 'show_profile.php';
                                 <h3>1. How actively does the student participate in team activities and discussions?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question11" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question16" value="1"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question11" value="2"><i
+                                    <label class="star empty"><input type="radio" name="question16" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question11" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question16" value="3" checked><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question11" value="4"><i
+                                    <label class="star empty"><input type="radio" name="question16" value="4"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question1" value="5"><i
+                                    <label class="star empty"><input type="radio" name="question16" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
                                 <h3>2. How well does the student work with others to achieve common goals?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question12" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question17" value="1"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question12" value="2"><i
+                                    <label class="star empty"><input type="radio" name="question17" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question12" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question17" value="3" checked><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question12" value="4"><i
+                                    <label class="star empty"><input type="radio" name="question17" value="4"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question12" value="5"><i
+                                    <label class="star empty"><input type="radio" name="question17" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
                                 <h3>3. How effectively does the student handle conflicts within the team?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question13" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question18" value="1"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question13" value="2"><i
+                                    <label class="star empty"><input type="radio" name="question18" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question13" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question18" value="3" checked><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question13" value="4"><i
+                                    <label class="star empty"><input type="radio" name="question18" value="4"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question13" value="5"><i
+                                    <label class="star empty"><input type="radio" name="question18" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
                                 <h3>4. How supportive is the student towards their team members?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question14" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question19" value="1"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question14" value="2"><i
+                                    <label class="star empty"><input type="radio" name="question19" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question14" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question19" value="3" checked><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question14" value="4"><i
+                                    <label class="star empty"><input type="radio" name="question19" value="4"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question14" value="5"><i
+                                    <label class="star empty"><input type="radio" name="question19" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
                                 <h3>5. How valuable are the student's contributions to the team’s success?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question15" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question20" value="1"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question15" value="2"><i
+                                    <label class="star empty"><input type="radio" name="question20" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question15" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question20" value="3" checked><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question15" value="4"><i
+                                    <label class="star empty"><input type="radio" name="question20" value="4"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question15" value="5"><i
+                                    <label class="star empty"><input type="radio" name="question20" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
 
@@ -449,6 +449,85 @@ require_once 'show_profile.php';
             <div class="form_5 data_info" style="display: none;">
                 <h2>Attitude and Motivation</h2>
                 <div class="form_container">
+
+                    <div class="questioner">
+                        <form id="inputs4">
+                            <div class="st">
+                                <h3>1. How enthusiastic is the student about their tasks and responsibilities?
+                                </h3>
+                                <div class="sr">
+                                    <label class="star empty"><input type="radio" name="question21" value="1"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question21" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question21" value="3" checked><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question21" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question21" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>2. How driven is the student to achieve their goals and exceed expectations?
+                                </h3>
+                                <div class="sr">
+                                    <label class="star empty"><input type="radio" name="question22" value="1"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question22" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question22" value="3" checked><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question22" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question22" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>3. How well does the student handle stress and setbacks?
+                                </h3>
+                                <div class="sr">
+                                    <label class="star empty"><input type="radio" name="question23" value="1"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question23" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question23" value="3" checked><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question23" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question23" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>4. How committed is the student to completing their work and contributing to the
+                                    organization?
+                                </h3>
+                                <div class="sr">
+                                    <label class="star empty"><input type="radio" name="question24" value="1"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question24" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question24" value="3" checked><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question24" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question24" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>5. How motivated is the student to take initiative and pursue their own improvement?
+                                </h3>
+                                <div class="sr">
+                                    <label class="star empty"><input type="radio" name="question25" value="1"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question25" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question25" value="3" checked><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question25" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question25" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
                     <!-- <div class="input_wrap">
                             <label for="company">Current Company</label>
                             <input type="text" name="Current Company" class="input" id="company">
@@ -963,14 +1042,14 @@ require_once 'show_profile.php';
         // just for showing the values (not required only for testing)
         inputsForm.onsubmit = function () {
             console.log(
-                ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
+                ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
             );
             return false;
         }
     </script>
 
     <script>
-        var inputsForm = document.querySelector("#inputs2");
+        var inputsForm = document.querySelector("#inputs3");
         inputsForm.onchange = function (e) {
             if (e.target.type = "radio") {
                 var stars = document.querySelectorAll(`[name='${e.target.name}']`);
@@ -987,7 +1066,31 @@ require_once 'show_profile.php';
         // just for showing the values (not required only for testing)
         inputsForm.onsubmit = function () {
             console.log(
-                ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
+                ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
+            );
+            return false;
+        }
+    </script>
+
+    <script>
+        var inputsForm = document.querySelector("#inputs4");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
+                }
+            }
+        }
+
+        // just for showing the values (not required only for testing)
+        inputsForm.onsubmit = function () {
+            console.log(
+                ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
             );
             return false;
         }
