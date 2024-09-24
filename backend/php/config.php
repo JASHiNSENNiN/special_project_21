@@ -83,30 +83,73 @@ CREATE TABLE IF NOT EXISTS applicants (
   FOREIGN KEY (student_id) REFERENCES student_profiles(user_id)
 );
 
-CREATE TABLE IF NOT EXISTS performance_evaluations (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  survey_name VARCHAR(255),
-  description TEXT,
-  date DATE,
-  location VARCHAR(255),
-  rated_user_id INT(11),
-  user_id INT(11),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+CREATE TABLE IF NOT EXISTS Student_Evaluation (
+    evaluation_id INT PRIMARY KEY,
+    student_id INT,
+    quality_of_work INT CHECK (quality_of_work BETWEEN 0 AND 5),
+    productivity INT CHECK (productivity BETWEEN 0 AND 5),
+    problem_solving_skills INT CHECK (problem_solving_skills BETWEEN 0 AND 5),
+    attention_to_detail INT CHECK (attention_to_detail BETWEEN 0 AND 5),
+    initiative INT CHECK (initiative BETWEEN 0 AND 5),
+    punctuality INT CHECK (punctuality BETWEEN 0 AND 5),
+    appearance INT CHECK (appearance BETWEEN 0 AND 5),
+    communication_skills INT CHECK (communication_skills BETWEEN 0 AND 5),
+    respectfulness INT CHECK (respectfulness BETWEEN 0 AND 5),
+    adaptability INT CHECK (adaptability BETWEEN 0 AND 5),
+    willingness_to_learn INT CHECK (willingness_to_learn BETWEEN 0 AND 5),
+    application_of_feedback INT CHECK (application_of_feedback BETWEEN 0 AND 5),
+    self_improvement INT CHECK (self_improvement BETWEEN 0 AND 5),
+    skill_development INT CHECK (skill_development BETWEEN 0 AND 5),
+    knowledge_application INT CHECK (knowledge_application BETWEEN 0 AND 5),
+    team_participation INT CHECK (team_participation BETWEEN 0 AND 5),
+    cooperation INT CHECK (cooperation BETWEEN 0 AND 5),
+    conflict_resolution INT CHECK (conflict_resolution BETWEEN 0 AND 5),
+    supportiveness INT CHECK (supportiveness BETWEEN 0 AND 5),
+    contribution INT CHECK (contribution BETWEEN 0 AND 5),
+    enthusiasm INT CHECK (enthusiasm BETWEEN 0 AND 5),
+    drive INT CHECK (drive BETWEEN 0 AND 5),
+    resilience INT CHECK (resilience BETWEEN 0 AND 5),
+    commitment INT CHECK (commitment BETWEEN 0 AND 5),
+    self_motivation INT CHECK (self_motivation BETWEEN 0 AND 5),
+    FOREIGN KEY (student_id) REFERENCES student_profiles(id)
 );
 
-CREATE TABLE otp (
-    otp_id INT AUTO_INCREMENT,
-    email VARCHAR(255) NOT NULL,
-    otp_value VARCHAR(6) NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (otp_id)
+CREATE TABLE IF NOT EXISTS Organization_Evaluation (
+    evaluation_id INT PRIMARY KEY,
+    organization_id INT,
+    quality_of_experience INT CHECK (quality_of_experience BETWEEN 0 AND 5),
+    productivity_of_tasks INT CHECK (productivity_of_tasks BETWEEN 0 AND 5),
+    problem_solving_opportunities INT CHECK (problem_solving_opportunities BETWEEN 0 AND 5),
+    attention_to_detail_in_guidance INT CHECK (attention_to_detail_in_guidance BETWEEN 0 AND 5),
+    initiative_encouragement INT CHECK (initiative_encouragement BETWEEN 0 AND 5),
+    punctuality_expectations INT CHECK (punctuality_expectations BETWEEN 0 AND 5),
+    professional_appearance_standards INT CHECK (professional_appearance_standards BETWEEN 0 AND 5),
+    communication_training INT CHECK (communication_training BETWEEN 0 AND 5),
+    respectfulness_environment INT CHECK (respectfulness_environment BETWEEN 0 AND 5),
+    adaptability_challenges INT CHECK (adaptability_challenges BETWEEN 0 AND 5),
+    willingness_to_learn_encouragement INT CHECK (willingness_to_learn_encouragement BETWEEN 0 AND 5),
+    feedback_application_opportunities INT CHECK (feedback_application_opportunities BETWEEN 0 AND 5),
+    self_improvement_support INT CHECK (self_improvement_support BETWEEN 0 AND 5),
+    skill_development_assessment INT CHECK (skill_development_assessment BETWEEN 0 AND 5),
+    knowledge_application_in_practice INT CHECK (knowledge_application_in_practice BETWEEN 0 AND 5),
+    team_participation_opportunities INT CHECK (team_participation_opportunities BETWEEN 0 AND 5),
+    cooperation_among_peers INT CHECK (cooperation_among_peers BETWEEN 0 AND 5),
+    conflict_resolution_guidance INT CHECK (conflict_resolution_guidance BETWEEN 0 AND 5),
+    supportiveness_among_peers INT CHECK (supportiveness_among_peers BETWEEN 0 AND 5),
+    contribution_to_team_success INT CHECK (contribution_to_team_success BETWEEN 0 AND 5),
+    enthusiasm_for_tasks INT CHECK (enthusiasm_for_tasks BETWEEN 0 AND 5),
+    drive_to_achieve_goals INT CHECK (drive_to_achieve_goals BETWEEN 0 AND 5),
+    resilience_to_challenges INT CHECK (resilience_to_challenges BETWEEN 0 AND 5),
+    commitment_to_experience INT CHECK (commitment_to_experience BETWEEN 0 AND 5),
+    self_motivation_levels INT CHECK (self_motivation_levels BETWEEN 0 AND 5),
+    FOREIGN KEY (organization_id) REFERENCES partner_profiles(id)
 );
 ";
 
 if (mysqli_multi_query($conn, $sql)) {
   //echo "Tables created successfully or already exist\n";
 } else {
-  //echo "Error creating tables: " . mysqli_error($conn) . "\n";
+  echo "Error creating tables: " . mysqli_error($conn) . "\n";
 }
 
 
