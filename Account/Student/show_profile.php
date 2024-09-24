@@ -23,8 +23,7 @@ $profile_div = '<header class="nav-header">
             </a>
         </div>
         <nav class="by">
-            <a href=""><i class="fas fa-comment-alt" style="font-size:24px; margin-top:5px;"></i></a>
-
+           
             <div class="dropdowntf" style="float:right;">
                 <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
                         class="badge">2</span></a>
