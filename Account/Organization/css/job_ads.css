@@ -298,12 +298,15 @@ h3 {
   cursor: pointer;
   /* display: none; */
 }
+
 #check {
   display: none;
 }
+
 .cam {
   display: none;
 }
+
 .pen {
   display: none;
 }
@@ -379,6 +382,7 @@ nav .login-btn:hover {
   background-color: rgba(27, 188, 155, 0.3);
   font-weight: bold;
 }
+
 .by a:hover {
   color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.1); */
@@ -397,6 +401,7 @@ nav .login-btn:hover {
   transform-origin: bottom right;
   transition: transform 0.3s;
 }
+
 .by a::after {
   content: "";
   position: absolute;
@@ -479,6 +484,7 @@ nav .login-btn:hover {
   float: left;
   margin-top: -20px;
 }
+
 .dropdowntf-content img {
   display: block;
   width: 50px;
@@ -516,10 +522,12 @@ nav .login-btn:hover {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 .email {
   text-align: left;
   font-weight: bold;
 }
+
 .logout a {
   text-align: center;
 }
@@ -570,7 +578,6 @@ nav a:hover::after {
     padding-left: 20px !important;
     padding-bottom: 5px !important;
   }
-
   .logo img {
     width: 160px !important;
     /* Adjust the width as needed */
@@ -579,13 +586,11 @@ nav a:hover::after {
   .logoimg {
     width: 100% !important;
   }
-
   nav a {
     /* padding: 5px 10px !important; */
     margin: 0 10px !important;
     font-size: 14px !important;
   }
-
   .login-btn {
     /* width: 10% !important; */
     height: 10% !important;
@@ -614,19 +619,21 @@ nav a:hover::after {
 }
 
 /* ---end header--- */
+
 .button-9 {
   appearance: button;
   backface-visibility: hidden;
   background-color: #405cf5;
   border-radius: 6px;
   border-width: 0;
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0,
+    rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-    Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -638,7 +645,9 @@ nav a:hover::after {
   text-align: center;
   text-transform: none;
   transform: translateZ(0);
-  transition: all 0.2s, box-shadow 0.08s ease-in;
+  transition:
+    all 0.2s,
+    box-shadow 0.08s ease-in;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -651,12 +660,15 @@ nav a:hover::after {
 }
 
 .button-9:focus {
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
+    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
 }
 
 /* --edit-- */
+
 .button-13 {
   background-color: #fff;
   border: 1px solid #d5d9d9;
@@ -711,7 +723,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -722,16 +735,21 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
+
 .button-12:hover {
   background-color: #030303;
 }
 
 /* choose */
+
 /* The container */
+
 .con {
   /* display: block; */
   position: relative;
@@ -747,6 +765,7 @@ input {
 }
 
 /* Hide the browser's default checkbox */
+
 .con input {
   position: absolute;
   opacity: 0;
@@ -756,6 +775,7 @@ input {
 }
 
 /* Create a custom checkbox */
+
 .checkmark {
   position: absolute;
   top: 0;
@@ -766,16 +786,19 @@ input {
 }
 
 /* On mouse-over, add a grey background color */
+
 .con:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
+
 .con input:checked ~ .checkmark {
   background-color: #2196f3;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
+
 .checkmark:after {
   content: "";
   position: absolute;
@@ -783,11 +806,13 @@ input {
 }
 
 /* Show the checkmark when checked */
+
 .con input:checked ~ .checkmark:after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
+
 .con .checkmark:after {
   left: 9px;
   top: 5px;
@@ -810,6 +835,7 @@ input {
   color: white;
   /* display: none; */
 }
+
 .notification {
   /* background-color: #555; */
   /* color: white; */
@@ -818,4 +844,118 @@ input {
   position: relative;
   display: inline-block;
   border-radius: 2px;
+}
+
+/* Import Google Font - Poppins */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+.wrapper {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 25px 20px;
+}
+
+.wrapper :where(.title, li, li i, .details) {
+  display: flex;
+  align-items: center;
+}
+
+.title img {
+  max-width: 21px;
+}
+
+.title h2 {
+  font-size: 21px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.wrapper .content {
+  margin: 10px 0;
+}
+
+.content p {
+  font-size: 15px;
+}
+
+.content ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 7px;
+  margin: 12px 0;
+  border-radius: 5px;
+  border: 1px solid #a6a6a6;
+}
+
+.content ul li {
+  color: #333;
+  margin: 4px 3px;
+  list-style: none;
+  border-radius: 5px;
+  background: #f2f2f2;
+  padding: 5px 8px 5px 10px;
+  border: 1px solid #e3e1e1;
+}
+
+.content ul li i {
+  height: 20px;
+  width: 20px;
+  color: #808080;
+  margin-left: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #dfdfdf;
+  justify-content: center;
+}
+
+.content ul input {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.wrapper .details {
+  justify-content: space-between;
+}
+
+.details button {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 9px 15px;
+  border-radius: 5px;
+  background: #5372f0;
+  transition: background 0.3s ease;
+}
+
+.details button:hover {
+  background: #2c52ed;
+}
+
+.content button {
+  width: 50px;
+  outline: none;
+  border: 1px solid #5372f0;
+  background-color: #5372f0;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.content button:hover {
+  background-color: #2c52ed;
+  font-weight: 600;
+}
+
+.content input {
+  background: #fff;
+}
+
+.content input:hover {
+  background: #fff;
 }

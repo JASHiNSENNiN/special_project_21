@@ -38,7 +38,7 @@ require_once 'show_profile.php';
             <a href="Job_request.php">Job Request</a>
             <a class="active1" href="Faculty_report.php">Faculty Report</a>
             <a href="Question.php">Questions</a>
-            <a href="Details.php">Snapshot</a>
+            <a href="Details.php">Analytics</a>
 
 
         </nav>
