@@ -256,10 +256,6 @@ html {
   font-size: 100%;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Nunito", Arial, Helvetica, sans-serif;
   background: #fff;
