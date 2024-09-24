@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -62,7 +63,7 @@ function generateJobCards($jobOffers)
                 </div>
                 
                 <div class="job-card-buttons">
-                    <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string)$job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
+                    <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
                     <button class="search-buttons card-buttons-msg">Save</button>
                 </div>
             </div>
@@ -121,6 +122,7 @@ require_once 'show_profile.php';
             <!-- <h2 class="sfa">Search, Find and Apply!</h2> -->
             <div class="line-search">
                 <div class="searchwork">
+
                     <form action="#" method="get">
 
                         <div class="search-container">

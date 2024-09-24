@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
@@ -96,7 +97,7 @@ $email = $_SESSION['email'];
     <!-- Sidenav -->
     <div class="sidenav">
         <div class="profile">
-            <img src="image/me.jpg" alt="" width="100" height="100" />
+            <img src="image/default.png" alt="" width="100" height="100" />
 
             <div class="name"><?= $fullName; ?></div>
             <div class="job"><?= $strand ?></div>
