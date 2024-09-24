@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
@@ -31,7 +32,7 @@ $profile_div = '<header class="nav-header">
                     <label for="" class="notif">Notification</label>
                     <hr style="width: 100%;">
                     <div class="notifi-item">
-                        <img src="../Company/image/NIA.png" alt="img">
+                        <img src="../Organization/image/NIA.png" alt="img">
                         <div class="text">
                             <h4>NIA</h4>
                             <p>Welcome to NIA</p>
@@ -71,10 +72,7 @@ $profile_div = '<header class="nav-header">
     </header>
 
     <img class="logoimg" id="cover-pic" src="image/background.jpg" alt="" width="200" height="300">
-    <label for="input-file1" class="button-13" role="button"><span class="edit"><i class="fa fa-camera"></i>Edit cover
-            photo</span>
-        <span class="cam"><i class="fa fa-camera"></i></span></label>
-    <input type="file" accept="image/jpeg, image/png, image/gif" id="input-file1" />
+    
 
     <div class="profile">
         <img src="image/me.jpg" alt="">

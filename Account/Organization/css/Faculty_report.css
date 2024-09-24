@@ -939,13 +939,6 @@ input[type="file"] {
   font-family: "Open Sans", sans-serif;
 }
 
-/* body {
-  background: var(--primary);
-  color: var(--text-clr);
-  font-size: 16px;
-  position: relative;
-} */
-
 .wrapper {
   width: 70%;
   max-width: 100%;
