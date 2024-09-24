@@ -810,10 +810,16 @@ html {
 }
 
 .main-container {
+  margin: auto;
   display: flex;
   flex-grow: 1;
   padding-top: 30px;
   padding: 20px !important;
+}
+
+.tab-selection {
+  margin: auto;
+  display: flex;
 }
 
 .search-type {
