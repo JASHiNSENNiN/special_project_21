@@ -22,8 +22,6 @@ require_once 'show_profile.php';
 
     <!-- -------------font--------- -->
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
-
-
 </head>
 
 <body>
@@ -60,7 +58,7 @@ require_once 'show_profile.php';
                 <div class="container">
                     <h1>Post a Job ad</h1>
                     <p>Please fill in this form to create a job.</p>
-                    <hr>
+
 
                     <label for="worktitle"><b>Work Title</b></label>
                     <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle" required>
@@ -70,6 +68,7 @@ require_once 'show_profile.php';
                         <input type="checkbox" name="strand[]" value="stem">
                         <span class="checkmark"></span>
                     </label>
+
                     <label class="con">GAS
                         <input type="checkbox" name="strand[]" value="gas">
                         <span class="checkmark"></span>
@@ -83,29 +82,42 @@ require_once 'show_profile.php';
                         <span class="checkmark"></span>
                     </label>
 
+                    <div class="wrapper">
+                        <div class="title">
+
+                            <h2>Tags</h2>
+                        </div>
+                        <div class="content">
+                            <p>Press add a comma after each tag</p>
+                            <ul><input type="text" spellcheck="false" id="tag-input">
+                                <button>Add</button>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            <p><span>10</span> tags are remaining</p>
+
+                            <!-- <button>Remove All</button> -->
+                        </div>
+                    </div>
 
                     <h1>Job Description</h1>
-                    <hr>
+
                     <input type="hidden" name="description" id="description">
                     <div id="editor-container"></div>
-                    <hr>
+
 
                     <p>By creating job ads you agree to our <a href="#">Terms & Privacy</a>.</p>
                     <button class="button-9" role="button" type="submit">Submit</button>
                 </div>
             </form>
-
-            </form>
-            <!-- <div class="button">
-                        <a href="#">See All</a>
-                    </div> -->
         </div>
 
 
     </div>
 
+    <script src="css/job_ads.js"> </script>
 
-    <script src="css/doc.js"></script>
+    <script type="text/javascript" src="css/doc.js"></script>
 
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
@@ -113,21 +125,21 @@ require_once 'show_profile.php';
 
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function() {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function() {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
 
