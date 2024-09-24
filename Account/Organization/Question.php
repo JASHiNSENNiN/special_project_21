@@ -34,7 +34,7 @@ require_once 'show_profile.php';
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a href="Job_ads.php"> Job Ads</a>
             <a href="Job_request.php">Job Request</a>
-            <a href="Faculty_report.php">Faculty Report</a>
+            <a href="Faculty_report.php">Student Evaluation</a>
             <a class="active" href="Question.php">Questions</a>
             <a href="Details.php">Analytics</a>
 

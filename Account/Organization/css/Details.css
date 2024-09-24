@@ -5,14 +5,17 @@
 /* --------------------joblisting container ---------------------- */
 
 /* ----------------Slider---------------------*/
+
 .rating {
   background: var(--background-color);
-  font: 16px/1 Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font:
+    16px/1 Montserrat,
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(var(--rating-size), var(--rating-size))
-  );
+  grid-template-columns: repeat(auto-fill, minmax(var(--rating-size), var(--rating-size)));
   gap: var(--bar-size);
   justify-content: start;
   padding: var(--bar-size);
@@ -117,6 +120,7 @@ svg {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 img {
   vertical-align: middle;
 }
@@ -238,12 +242,15 @@ h3 {
   cursor: pointer;
   /* display: none; */
 }
+
 #check {
   display: none;
 }
+
 .cam {
   display: none;
 }
+
 .pen {
   display: none;
 }
@@ -303,6 +310,7 @@ nav a {
   font-weight: 500;
   cursor: pointer;
 }
+
 .fas i {
   margin: 0 10px;
 }
@@ -322,6 +330,7 @@ nav .login-btn:hover {
   background-color: rgba(27, 188, 155, 0.3);
   font-weight: bold;
 }
+
 .by a:hover {
   color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.1); */
@@ -340,6 +349,7 @@ nav .login-btn:hover {
   transform-origin: bottom right;
   transition: transform 0.3s;
 }
+
 .by a::after {
   content: "";
   position: absolute;
@@ -422,6 +432,7 @@ nav .login-btn:hover {
   float: left;
   margin-top: -20px;
 }
+
 .dropdowntf-content img {
   display: block;
   width: 50px;
@@ -459,10 +470,12 @@ nav .login-btn:hover {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 .email {
   text-align: left;
   font-weight: bold;
 }
+
 .logout a {
   text-align: center;
 }
@@ -565,6 +578,7 @@ nav a:hover::after {
 }
 
 /* ---Details--- */
+
 h1 {
   padding-top: 30px;
   margin: auto;
@@ -580,12 +594,14 @@ h1 {
   /* background: #f2f2f2; */
   padding: 16px;
 }
+
 .header_title {
   font-size: 18px;
   font-family: bogle;
   margin-bottom: 24px;
   position: absolute;
 }
+
 .api_card {
   width: 214px;
   height: auto;
@@ -596,11 +612,13 @@ h1 {
   margin-right: 12px;
   display: inline-block;
 }
+
 .section-wrap {
   display: inline-block;
   position: relative;
   flex-direction: column;
 }
+
 .api_card_half {
   width: 214px;
   height: auto;
@@ -611,15 +629,24 @@ h1 {
   margin: 0 12px 10px 0;
   position: relative;
 }
+
 p {
   margin: 0;
   padding: 0;
   font-family: bogle;
   font-size: 14px;
 }
+
 .api_title {
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   color: #2d2d2d;
   font-size: 0.75rem;
   font-weight: 700;
@@ -628,8 +655,15 @@ p {
 
 .api_details_one {
   color: #2d2d2d;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   line-height: 1.5;
   font-size: 0.75rem;
   font-weight: inherit;
@@ -638,8 +672,15 @@ p {
 .api_details_two {
   color: #595959;
   color: #767676;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   font-size: 0.75rem;
   font-weight: inherit;
   line-height: 1.5;
@@ -653,17 +694,20 @@ p {
   text-align: right;
   width: 100%;
 }
+
 .snapshot_title {
   width: 100%;
   position: absolute;
   font-family: bogle;
 }
+
 .snapshot_toggle {
   width: 100%;
   font-family: bogle;
   text-align: right;
   display: inline-block;
 }
+
 .manage_button {
   border: none;
   color: #0071ce;
@@ -680,8 +724,19 @@ p {
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
-  font-family: Graphik, -apple-system, system-ui, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    Graphik,
+    -apple-system,
+    system-ui,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
   font-size: 14px;
   line-height: 1.15;
   overflow: visible;
@@ -716,6 +771,7 @@ p {
 }
 
 /* --edit-- */
+
 .button-13 {
   background-color: #fff;
   border: 1px solid #d5d9d9;
@@ -769,7 +825,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -780,10 +837,13 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
+
 .button-12:hover {
   background-color: #000000;
 }
@@ -808,7 +868,6 @@ input {
   padding: 0 11px;
   padding-top: 10px;
   padding-bottom: 20px;
-
   text-align: center;
   text-decoration: none;
   text-overflow: ellipsis;
@@ -846,6 +905,7 @@ input {
   color: white;
   /* display: none; */
 }
+
 .notification {
   /* background-color: #555; */
   /* color: white; */
@@ -857,6 +917,7 @@ input {
 }
 
 /* -------------------------------reviews ------------------------ */
+
 #testimonials {
   display: flex;
   justify-content: center;
@@ -987,6 +1048,7 @@ input {
   color: #ffffff;
   background-color: #252525;
 }
+
 /* -------------------------------------------Rating overview------------------------------ */
 
 circle[animetion] {
@@ -1142,4 +1204,92 @@ svg g[show_data] {
   width: auto !important;
   margin-top: 26px;
   color: #595959;
+}
+
+.Chart2 {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  height: 100%;
+  font-weight: bold;
+  display: ruby;
+}
+
+.Chart1 {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Create two equal columns that floats next to each other */
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 480px;
+  margin: auto;
+  margin-bottom: 50px;
+  text-align: center;
+  align-items: center;
+  /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.title {
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.circular-progress {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
+}
+
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.progress-value {
+  position: relative;
+  font-size: 40px;
+  font-weight: 600;
+  color: #7d2ae8;
+}
+
+.container4 {
+  margin: auto;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.Time {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+#chart {
+  max-width: 650px;
+  margin: 35px auto;
 }
