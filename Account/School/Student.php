@@ -49,9 +49,6 @@ require_once 'show_profile.php';
     <br>
 
 
-
-
-
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <div class="container">
@@ -292,7 +289,7 @@ require_once 'show_profile.php';
     </div>
 
     <script>
-        $(".box").click(function(e) {
+        $(".box").click(function (e) {
             e.preventDefault();
             $(".content").removeClass("active");
             var content_id = $(this).attr("id");
@@ -308,7 +305,7 @@ require_once 'show_profile.php';
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
+        inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -317,7 +314,7 @@ require_once 'show_profile.php';
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
+        inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
@@ -326,7 +323,7 @@ require_once 'show_profile.php';
         let circularProgress =
             document.querySelector('.circular-progress'),
             progressValue =
-            document.querySelector('.progress-value');
+                document.querySelector('.progress-value');
 
 
 

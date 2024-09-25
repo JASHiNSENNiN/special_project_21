@@ -18,15 +18,8 @@
   font-family: "Open Sans", sans-serif;
 }
 
-/* body {
-  background: var(--primary);
-  color: var(--text-clr);
-  font-size: 16px;
-  position: relative;
-} */
-
 .wrapper {
-  width: 80%;
+  width: 70%;
   max-width: 100%;
   background: var(--white);
   margin: 50px auto 0;
@@ -113,7 +106,7 @@
   margin-bottom: 0;
 }
 
-.wrapper .form_wrap .input_wrap label {
+.wrapper .form_wrap .input_wrap {
   display: block;
   margin-bottom: 5px;
 }
@@ -244,25 +237,63 @@
   transform: translate(-50%, -50%);
 }
 
-.star-input {
-  display: none;
-}
-
-.star {
-  color: gold;
-  background-color: #25273d;
-  border-radius: 20px;
-  margin: 20px;
-}
-
-.star-input:checked + .star ~ .star {
-  color: white;
-}
-
 .questioner {
-  text-align: center;
+  text-align: left;
+  margin: 60px;
 }
 
 .st {
   margin: 20px;
+}
+.sr {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+[name^="question"] {
+  display: none;
+}
+.star {
+  font-size: 30px;
+  cursor: pointer;
+  margin: 20px;
+}
+.empty i {
+  color: #ccc;
+}
+.green i {
+  color: gold;
+}
+
+.StudentName {
+  margin: auto;
+}
+
+input[type="text"] {
+  /* padding: 15px;
+  margin: 10px 0 22px 0;
+  display: inline-block;
+  background: #f1f1f1;
+  border-radius: 10px; */
+  font-size: 16px;
+  border-radius: 6px;
+  line-height: 1.5;
+  padding: 20px 29px;
+  transition: box-shadow 100ms ease-in, border 100ms ease-in,
+    background-color 100ms ease-in;
+  border: 2px solid #dee1e2;
+  color: rgb(14, 14, 16);
+  background: #dee1e2;
+  display: block;
+  height: 36px;
+  text-decoration: none;
+  margin-bottom: 50px;
+}
+
+input[type="text"]:hover {
+  border-color: #ccc;
+}
+input {
+  display: block;
 }
