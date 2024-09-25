@@ -48,11 +48,9 @@ $profile_div = '<header class="nav-header">
                         Reviews</a>
                     <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Settings</a>
                     <hr>
-                    <div class="foot">&copy; 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer
-                        Society Students
-                    </div>
+                    
                     <hr>
-                    <a class="logout" href="' . '/backend/php/logout.php' . '"> Log out</a>
+                    <a class="logout" href="' . '/backend/php/logout.php' . '"> <i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>
                 </div>
             </div>
             <div class="css-1ld7x2h eu4oa1w0"></div>
@@ -62,10 +60,6 @@ $profile_div = '<header class="nav-header">
 
 
     <img class="logoimg" id="cover-pic" src="image/bg.png" alt="" height="300" width="200">
-    <label for="input-file1" class="button-13" role="button"><span class="edit"><i class="fa fa-camera"></i>Edit cover
-            photo</span>
-        <span class="cam"><i class="fa fa-camera"></i></span></label>
-    <input type="file" accept="image/jpeg, image/png, image/gif" id="input-file1" />
 
 
     <div class="profile">
