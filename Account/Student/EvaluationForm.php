@@ -3,7 +3,7 @@
 
 <head>
     <title>Evaluation Form</title>
-    <link rel="stylesheet" type="text/css" href="EvaluationForm.css">
+    <link rel="stylesheet" type="text/css" href="css/EvaluationForm.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 </head>
@@ -49,7 +49,7 @@
 
                         <form id="inputs">
                             <div class="st">
-                                <h3>1. How well does the student produce high-quality and accurate work?</h3>
+                                <h3>1. How would you rate the overall quality of your work immersion experience?</h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question1" value="1"><i
                                             class="fa fa-star"></i></label>
@@ -62,7 +62,7 @@
                                     <label class="star empty"><input type="radio" name="question1" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>2. How effectively does the student manage their time to complete tasks?</h3>
+                                <h3>2. How effectively were the tasks assigned to you managed during the immersion?</h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question2" value="1"><i
                                             class="fa fa-star"></i></label>
@@ -75,7 +75,8 @@
                                     <label class="star empty"><input type="radio" name="question2" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>3. How well does the student address and resolve challenges that arise? </h3>
+                                <h3>3. How well did the immersion provide opportunities for you to solve real
+                                    challenges? </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question3" value="1"><i
                                             class="fa fa-star"></i></label>
@@ -88,7 +89,7 @@
                                     <label class="star empty"><input type="radio" name="question3" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>4.How thorough is the student in ensuring work is free from errors?</h3>
+                                <h3>4. How thorough was the guidance you received in ensuring high-quality work?</h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question4" value="1"><i
                                             class="fa fa-star"></i></label>
@@ -101,7 +102,8 @@
                                     <label class="star empty"><input type="radio" name="question4" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>5. How proactive is the student in taking on additional tasks or responsibilities?
+                                <h3>5. How proactive did the immersion encourage you to take on additional tasks or
+                                    responsibilities?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question5" value="1"><i
@@ -131,7 +133,8 @@
                     <div class="questioner">
                         <form id="inputs1">
                             <div class="st">
-                                <h3>1. How consistent is the student with arriving on time and meeting deadlines?
+                                <h3>1. How well did the immersion program emphasize punctuality in arriving and meeting
+                                    deadlines?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question6" value="1"><i
@@ -145,7 +148,8 @@
                                     <label class="star empty"><input type="radio" name="question6" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>2. How does the student present themselves in terms of attire and grooming?</h3>
+                                <h3>2. How effectively did the immersion set standards for professional attire and
+                                    grooming?</h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question7" value="1"><i
                                             class="fa fa-star"></i></label>
@@ -158,7 +162,8 @@
                                     <label class="star empty"><input type="radio" name="question7" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>3. How effectively does the student communicate with peers and supervisors?
+                                <h3>3. How effective was the immersion in improving your communication skills with peers
+                                    and supervisors?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question8" value="1"><i
@@ -172,7 +177,8 @@
                                     <label class="star empty"><input type="radio" name="question8" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>4. How does the student demonstrate respect towards colleagues and supervisors?
+                                <h3>4. How well did the immersion foster a respectful environment among colleagues and
+                                    supervisors?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question9" value="1"><i
@@ -186,7 +192,8 @@
                                     <label class="star empty"><input type="radio" name="question9" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>5. How well does the student adjust to changes in the work environment or tasks?
+                                <h3>5. How well did the immersion prepare you to adjust to changes in the work
+                                    environment or tasks?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question0" value="1"><i
@@ -225,7 +232,8 @@
                     <div class="questioner">
                         <form id="inputs2">
                             <div class="st">
-                                <h3>1. How open is the student to acquiring new skills and knowledge?
+                                <h3>1. How open did the immersion make you feel about acquiring new skills and
+                                    knowledge?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question11" value="1"><i
@@ -239,7 +247,8 @@
                                     <label class="star empty"><input type="radio" name="question11" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>2. How effectively does the student apply feedback to improve their performance?
+                                <h3>2. How effectively did the immersion provide opportunities to apply feedback for
+                                    performance improvement?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question12" value="1"><i
@@ -253,7 +262,8 @@
                                     <label class="star empty"><input type="radio" name="question12" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>3. How actively does the student seek out opportunities for self-improvement?
+                                <h3>3. How actively did the immersion encourage you to seek opportunities for
+                                    self-improvement?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question13" value="1"><i
@@ -267,8 +277,8 @@
                                     <label class="star empty"><input type="radio" name="question13" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>4. How well does the student develop and enhance their skills over the course of the
-                                    immersion?
+                                <h3>4. How well did the immersion facilitate your skill development over the course of
+                                    the experience?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question14" value="1"><i
@@ -282,7 +292,8 @@
                                     <label class="star empty"><input type="radio" name="question14" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>5. How effectively does the student apply theoretical knowledge to practical tasks?
+                                <h3>5. How effectively did the immersion allow you to apply theoretical knowledge to
+                                    practical tasks?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question15" value="1"><i
@@ -322,7 +333,8 @@
                     <div class="questioner">
                         <form id="inputs3">
                             <div class="st">
-                                <h3>1. How actively does the student participate in team activities and discussions?
+                                <h3>1. How actively did the immersion encourage participation in team activities and
+                                    discussions?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question16" value="1"><i
@@ -336,7 +348,8 @@
                                     <label class="star empty"><input type="radio" name="question16" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>2. How well does the student work with others to achieve common goals?
+                                <h3>2. How well did the immersion foster cooperation among participants to achieve
+                                    common goals??
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question17" value="1"><i
@@ -350,7 +363,7 @@
                                     <label class="star empty"><input type="radio" name="question17" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>3. How effectively does the student handle conflicts within the team?
+                                <h3>3. How effectively did the immersion address conflict resolution within the team??
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question18" value="1"><i
@@ -364,7 +377,7 @@
                                     <label class="star empty"><input type="radio" name="question18" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>4. How supportive is the student towards their team members?
+                                <h3>4. How supportive was the environment created by the immersion towards team members?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question19" value="1"><i
@@ -378,7 +391,8 @@
                                     <label class="star empty"><input type="radio" name="question19" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>5. How valuable are the student's contributions to the team’s success?
+                                <h3>5. How valuable do you believe your contributions were to the team's success during
+                                    the immersion?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question20" value="1"><i
@@ -419,7 +433,8 @@
                     <div class="questioner">
                         <form id="inputs4">
                             <div class="st">
-                                <h3>1. How enthusiastic is the student about their tasks and responsibilities?
+                                <h3>1. How enthusiastic were you about your tasks and responsibilities throughout the
+                                    immersion?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question21" value="1"><i
@@ -433,7 +448,8 @@
                                     <label class="star empty"><input type="radio" name="question21" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>2. How driven is the student to achieve their goals and exceed expectations?
+                                <h3>2. How driven did you feel to achieve your goals and exceed expectations during the
+                                    immersion?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question22" value="1"><i
@@ -447,7 +463,7 @@
                                     <label class="star empty"><input type="radio" name="question22" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>3. How well does the student handle stress and setbacks?
+                                <h3>3. How well did you handle stress and setbacks experienced during the immersion?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question23" value="1"><i
@@ -461,8 +477,8 @@
                                     <label class="star empty"><input type="radio" name="question23" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>4. How committed is the student to completing their work and contributing to the
-                                    organization?
+                                <h3>4. How committed were you to completing your work and contributing to the
+                                    organization during the immersion?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question24" value="1"><i
@@ -476,7 +492,8 @@
                                     <label class="star empty"><input type="radio" name="question24" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-                                <h3>5. How motivated is the student to take initiative and pursue their own improvement?
+                                <h3>5. How motivated did you feel to take initiative and pursue your own improvement
+                                    throughout the immersion?
                                 </h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question25" value="1"><i
