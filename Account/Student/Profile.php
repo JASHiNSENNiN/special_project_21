@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
@@ -54,13 +53,21 @@ $email = $_SESSION['email'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <title>Student Dashboard</title>
 
-    <!-- Custom Css -->
-    <style>
 
-    </style>
 
     <!-- FontAwesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- ---------------------------script ---------------------- -->
+    <script type="text/javascript" src="css/eval_graph.js"></script>
+
+
+
 </head>
 
 <body>
@@ -122,6 +129,8 @@ $email = $_SESSION['email'];
         <div class="card">
             <div class="card-body">
 
+
+
                 <table>
                     <tbody>
                         <tr>
@@ -170,17 +179,26 @@ $email = $_SESSION['email'];
         </div>
         <br>
 
-        <h2>IDENTITY</h2>
+
+        <div class="column">
+
+            <h1 class="title">Student Population</h1>
+            <!-- <div id="myChart2" class="Chart2"></div> -->
+            <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+        </div>
+
+
+
+        <!-- <h2>Work Performance</h2>
         <div class="card">
             <div class="card-body">
 
 
+
             </div>
-        </div>
+        </div> -->
 
-        <br>
-
-        <h2>SOCIAL MEDIA</h2>
+        <!-- <h2>SOCIAL MEDIA</h2>
         <div class="card">
             <div class="card-body">
                 <i class="fa fa-pen fa-xs edit"></i>
@@ -215,8 +233,56 @@ $email = $_SESSION['email'];
                     </span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
+
+    <div class="wp-div-center">
+        <div class="wp-header">
+            <h2> Insights</h2>
+        </div>
+        <div class="dp-graph" id="dp_chart_div" style="width: 900px; height: 500px;"></div>
+    </div>
+
+
+    <div class="wp-div-center">
+        <div class="wp-header">
+            <h2> Insights</h2>
+        </div>
+
+        <div class="wp-graph" id="wp_top_x_div" style="width: 900px; height: 500px;"></div>
+    </div>
+
+    <div class="wp-div-center">
+        <div class="wp-header">
+            <!-- <h2> Insights</h2> -->
+        </div>
+
+        <div class="pro-graph" id="pro_top_x_div" style="width: 900px; height: 500px;"></div>
+    </div>
+    <div class="wp-div-center">
+        <div class="wp-header">
+            <!-- <h2> Insights</h2> -->
+        </div>
+
+        <div class="ld-graph" id="ld_top_x_div" style="width: 900px; height: 500px;"></div>
+    </div>
+    <div class="wp-div-center">
+        <div class="wp-header">
+            <!-- <h2> Insights</h2> -->
+        </div>
+
+        <div class="tc-graph" id="tc_top_x_div" style="width: 900px; height: 500px;"></div>
+    </div>
+    <div class="wp-div-center">
+        <div class="wp-header">
+            <!-- <h2> Insights</h2> -->
+        </div>
+
+        <div class="am-graph" id="am_top_x_div" style="width: 900px; height: 500px;"></div>
+    </div>
+
+
+
     <!-- End -->
     <footer>
         2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students

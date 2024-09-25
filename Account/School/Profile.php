@@ -13,13 +13,13 @@ require_once 'show_profile.php';
     <title>Company Dashboard</title>
     <link rel="shortcut icon" type="x-icon" href="image/W.png">
 
-    <!-- Custom Css -->
-    <style>
 
-    </style>
 
     <!-- FontAwesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+
+
+
 </head>
 
 <body>
@@ -123,6 +123,8 @@ require_once 'show_profile.php';
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1920.8544297966187!2d120.7673922211044!3d15.660484473847125!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33912cdb2318296d%3A0xe4e2117e97dfc92e!2sOur%20Lady%20of%20The%20Sacred%20Heart%20College!5e0!3m2!1sen!2sph!4v1716015242226!5m2!1sen!2sph"
             width="850" height="350" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
 
         <h2>SOCIAL MEDIA</h2>
         <div class="card">
