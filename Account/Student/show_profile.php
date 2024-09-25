@@ -56,13 +56,10 @@ $profile_div = '<header class="nav-header">
                         Profile</a>
                     <a href="#"> <i class="fas fa-comment-alt" style="font-size:24px;margin-right:10px;"></i>My
                         Reviews</a>
-                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Settings</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
                     <hr>
-                    <div class="foot">&copy; 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer
-                        Society Students
-                    </div>
                     <hr>
-                    <a class="logout" href="' . '/backend/php/logout.php' . '"> Log out</a>
+                    <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>
                 </div>
             </div>
             <div class="css-1ld7x2h eu4oa1w0"></div>
@@ -75,7 +72,7 @@ $profile_div = '<header class="nav-header">
     
 
     <div class="profile">
-        <img src="image/me.jpg" alt="">
+        <img src="image/default.png" alt="">
         <div class="name">' . $firstName . ' ' . $middleName . ' ' . $lastName . '</div>
         <label class="strand" for="">' . $strand . '</label>
 

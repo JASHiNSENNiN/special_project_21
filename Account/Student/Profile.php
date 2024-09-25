@@ -49,6 +49,7 @@ $email = $_SESSION['email'];
 
 <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="x-icon" href="image/W.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/Profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -70,25 +71,11 @@ $email = $_SESSION['email'];
             <h1>Profile</h1>
         </div>
 
-        <!-- Navbar -->
-        <ul>
-            <!-- <li>
-          <a href="#message">
-            <span class="icon-count">29</span>
-            <i class="fa fa-envelope fa-2x"></i>
-          </a>
-        </li>
         <li>
-          <a href="#notification">
-            <span class="icon-count">59</span>
-            <i class="fa fa-bell fa-2x"></i>
-          </a>
-        </li> -->
-            <li>
-                <a href="Company_Area.php">
-                    <i class="fa fa-sign-out-alt fa-2x"></i>
-                </a>
-            </li>
+            <a href="Company_Area.php">
+                <i class="fa fa-sign-out-alt fa-2x"></i>
+            </a>
+        </li>
         </ul>
         <!-- End -->
     </div>
@@ -103,16 +90,6 @@ $email = $_SESSION['email'];
             <div class="job"><?= $strand ?></div>
         </div>
 
-        <!-- <div class="sidenav-url">
-            <div class="url">
-                <a href="#profile" class="active">Profile</a>
-                <hr align="center" />
-            </div>
-            <div class="url">
-                <a href="Settings.php">Settings</a>
-                <hr align="center" />
-            </div>
-        </div> -->
     </div>
     <!-- End -->
 

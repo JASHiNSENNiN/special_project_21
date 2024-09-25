@@ -1031,9 +1031,9 @@ nav .login-btn:hover {
   outline: 0;
 }
 
-.fa {
+/* .fa {
   margin: 6px;
-}
+} */
 
 input[type="file"] {
   display: none;
@@ -1101,14 +1101,14 @@ input[type="radio"] {
   --back-btn-hover: #8b8c8c;
 }
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
   outline: none;
   font-family: "Open Sans", sans-serif;
-}
+} */
 
 .wrapper {
   width: 70%;
