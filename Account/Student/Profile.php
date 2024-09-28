@@ -145,6 +145,11 @@ $email = $_SESSION['email'];
                             <td>:</td>
                             <td>N/A</td>
                         </tr>
+                        <tr>
+                            <td><b>Guardians number</b></td>
+                            <td>:</td>
+                            <td>N/A</td>
+                        </tr>
                         <!-- <tr>
                             <td>Skill</td>
                             <td>:</td>
