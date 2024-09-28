@@ -204,9 +204,9 @@ a {
   text-decoration: none;
 }
 
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 /* h1,
 h2,
@@ -1031,16 +1031,16 @@ nav .login-btn:hover {
   outline: 0;
 }
 
-/* .fa {
+.fa {
   margin: 6px;
-} */
+}
 
-input[type="file"] {
+/* input[type="file"] {
   display: none;
 }
 input[type="radio"] {
   width: auto;
-}
+} */
 
 .button-12 {
   display: inline-block;

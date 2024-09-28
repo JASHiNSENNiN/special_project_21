@@ -104,7 +104,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question1" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question1" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question1" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question1" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -117,7 +117,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question2" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question2" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question2" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question2" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -130,7 +130,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question3" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question3" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question3" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question3" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -143,7 +143,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question4" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question4" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question4" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question4" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -157,7 +157,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question5" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question5" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question5" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question5" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -187,7 +187,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question6" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question6" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question6" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question6" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -200,7 +200,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question7" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question7" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question7" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question7" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -214,7 +214,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question8" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question8" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question8" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question8" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -228,7 +228,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question9" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question9" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question9" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question9" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -242,7 +242,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question0" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question0" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question0" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -281,7 +281,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question11" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question11" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question11" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question11" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -295,7 +295,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question12" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question12" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question12" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question12" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -309,7 +309,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question13" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question13" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question13" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question13" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -324,7 +324,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question14" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question14" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question14" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question14" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -338,7 +338,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question15" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question15" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question15" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question15" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -378,7 +378,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question16" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question16" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question16" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question16" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -392,7 +392,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question17" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question17" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question17" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question17" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -406,7 +406,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question18" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question18" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question18" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question18" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -420,7 +420,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question19" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question19" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question19" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question19" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -434,7 +434,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question20" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question20" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question20" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question20" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -475,7 +475,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question21" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question21" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question21" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question21" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -489,7 +489,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question22" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question22" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question22" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question22" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -503,7 +503,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question23" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question23" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question23" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question23" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -518,7 +518,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question24" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question24" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question24" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question24" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -532,7 +532,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question25" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question25" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question25" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question25" value="4"><i
                                             class="fa fa-star"></i></label>
