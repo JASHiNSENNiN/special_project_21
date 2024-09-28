@@ -94,6 +94,10 @@
                                     <label class="small mb-1" for="inputPhone">Phone number</label>
                                     <input class="form-control" id="inputPhone" name="phone" type="tel" autocomplete="off" placeholder="Enter your phone number">
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputAddress">Address</label>
+                                    <input class="form-control" id="inputAddress" name="Address" type="text" autocomplete="off" placeholder="Enter your address">
+                                </div>
                             </div>
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
@@ -109,7 +113,7 @@
 
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputGuardiaName">Guardians Name</label>
+                                    <label class="small mb-1" for="inputGuardiaName">Guardians name</label>
                                     <input class="form-control" id="inputGuardianName" name="Guardian_name" type="text" placeholder="Enter your guardians name">
                                 </div>
                                 <div class="col-md-6">
