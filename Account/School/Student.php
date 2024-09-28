@@ -2,6 +2,44 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php'; 
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+$dotenv->load();
+
+
+function get_students_by_strand($strand) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+    $conn = new mysqli($host, $username, $password, $database);
+    
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $query = "SELECT * FROM student_profiles WHERE strand = '$strand'";
+
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        $students = array();
+        while($row = $result->fetch_assoc()) {
+            $students[] = $row;
+        }
+    } else {
+        $students = array();
+    }
+
+    $conn->close();
+    return $students;
+}
+
+$humss_students = get_students_by_strand('humss');
+$stem_students = get_students_by_strand('stem');
+$abm_students = get_students_by_strand('abm');
+$gas_students = get_students_by_strand('gas');
+$tvl_students = get_students_by_strand('tvl');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,39 +130,25 @@ require_once 'show_profile.php';
                             <th>Action</th>
 
                         </tr>
-                        <tr>
-                            <td data-th="#">1</td>
-                            <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
-                            </td>
-                            <td data-th="Student Name">Joshua Rivera</td>
-                            <td data-th="Result">
-
-                                <div class="container3">
-                                    <div class="circular-progress">
-                                        <span class="progress-value"></span>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                        </tr>
-
-                        <tr>
-                            <td data-th="#">2</td>
-                            <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
-                            <td data-th="Student Name">Dan Mamaid</td>
-                            <td data-th="Result">
-                                <div class="container3">
-                                    <div class="circular-progress">
-                                        <span class="progress-value"></span>
-                                    </div>
-                                </div>
-                                <!-- <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
-                        <button class="button-37" role="button">Archive</button> -->
-                            </td>
-                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                        </tr>
-
+                        <?php
+                $count = 1;
+                foreach ($humss_students as $student) {
+                    echo "<tr>";
+                    echo "<td data-th='#'>" . $count . "</td>";
+                    echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                    echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                    echo "<td data-th='Result'>";
+                    echo "<div class='container3'>";
+                    echo "<div class='circular-progress'>";
+                    echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</td>";
+                    echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string)$student['id'])) . "'\">View Profile</button></td>";
+                    echo "</tr>";
+                    $count++;
+                }
+                ?>
                     </tbody>
 
                 </table>
@@ -144,38 +168,25 @@ require_once 'show_profile.php';
                             <th>Action</th>
 
                         </tr>
-                        <tr>
-                            <td data-th="#">1</td>
-                            <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
-                            </td>
-                            <td data-th="Student Name">Joshua Rivera</td>
-                            <td data-th="Result">
-
-                                <div class="container3">
-                                    <div class="circular-progress">
-                                        <span class="progress-value"></span>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                        </tr>
-
-                        <tr>
-                            <td data-th="#">2</td>
-                            <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
-                            <td data-th="Student Name">Dan Mamaid</td>
-                            <td data-th="Result">
-                                <div class="container3">
-                                    <div class="circular-progress">
-                                        <span class="progress-value"></span>
-                                    </div>
-                                </div>
-                                <!-- <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
-                        <button class="button-37" role="button">Archive</button> -->
-                            </td>
-                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                        </tr>
+                        <?php
+                $count = 1;
+                foreach ($stem_students as $student) {
+                    echo "<tr>";
+                    echo "<td data-th='#'>" . $count . "</td>";
+                    echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                    echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                    echo "<td data-th='Result'>";
+                    echo "<div class='container3'>";
+                    echo "<div class='circular-progress'>";
+                    echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</td>";
+                    echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string)$student['id'])) . "'\">View Profile</button></td>";
+                    echo "</tr>";
+                    $count++;
+                }
+                ?>
 
                     </tbody>
 
@@ -196,39 +207,25 @@ require_once 'show_profile.php';
                             <th>Action</th>
 
                         </tr>
-                        <tr>
-                            <td data-th="#">1</td>
-                            <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
-                            </td>
-                            <td data-th="Student Name">Joshua Rivera</td>
-                            <td data-th="Result">
-
-                                <div class="container3">
-                                    <div class="circular-progress">
-                                        <span class="progress-value"></span>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                        </tr>
-
-                        <tr>
-                            <td data-th="#">2</td>
-                            <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
-                            <td data-th="Student Name">Dan Mamaid</td>
-                            <td data-th="Result">
-                                <div class="container3">
-                                    <div class="circular-progress">
-                                        <span class="progress-value"></span>
-                                    </div>
-                                </div>
-                                <!-- <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
-                        <button class="button-37" role="button">Archive</button> -->
-                            </td>
-                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                        </tr>
-
+                        <?php
+                $count = 1;
+                foreach ($gas_students as $student) {
+                    echo "<tr>";
+                    echo "<td data-th='#'>" . $count . "</td>";
+                    echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                    echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                    echo "<td data-th='Result'>";
+                    echo "<div class='container3'>";
+                    echo "<div class='circular-progress'>";
+                    echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</td>";
+                    echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string)$student['id'])) . "'\">View Profile</button></td>";
+                    echo "</tr>";
+                    $count++;
+                }
+                ?>
                     </tbody>
 
                 </table>
@@ -248,38 +245,25 @@ require_once 'show_profile.php';
                             <th>Action</th>
 
                         </tr>
-                        <tr>
-                            <td data-th="#">1</td>
-                            <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
-                            </td>
-                            <td data-th="Student Name">Joshua Rivera</td>
-                            <td data-th="Result">
-
-                                <div class="container3">
-                                    <div class="circular-progress">
-                                        <span class="progress-value"></span>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                        </tr>
-
-                        <tr>
-                            <td data-th="#">2</td>
-                            <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
-                            <td data-th="Student Name">Dan Mamaid</td>
-                            <td data-th="Result">
-                                <div class="container3">
-                                    <div class="circular-progress">
-                                        <span class="progress-value"></span>
-                                    </div>
-                                </div>
-                                <!-- <button onclick="myFunction()" class="button-9" role="button">Result</button><br>
-                        <button class="button-37" role="button">Archive</button> -->
-                            </td>
-                            <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                        </tr>
+                        <?php
+                $count = 1;
+                foreach ($tvl_students as $student) {
+                    echo "<tr>";
+                    echo "<td data-th='#'>" . $count . "</td>";
+                    echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                    echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                    echo "<td data-th='Result'>";
+                    echo "<div class='container3'>";
+                    echo "<div class='circular-progress'>";
+                    echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</td>";
+                    echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string)$student['id'])) . "'\">View Profile</button></td>";
+                    echo "</tr>";
+                    $count++;
+                }
+                ?>
 
                     </tbody>
 
@@ -289,12 +273,12 @@ require_once 'show_profile.php';
     </div>
 
     <script>
-        $(".box").click(function (e) {
-            e.preventDefault();
-            $(".content").removeClass("active");
-            var content_id = $(this).attr("id");
-            $(content_id).addClass("active");
-        });
+    $(".box").click(function(e) {
+        e.preventDefault();
+        $(".content").removeClass("active");
+        var content_id = $(this).attr("id");
+        $(content_id).addClass("active");
+    });
     </script>
     <br>
     <footer>
@@ -302,65 +286,65 @@ require_once 'show_profile.php';
     </footer>
 
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
     <script>
-        let circularProgress =
-            document.querySelector('.circular-progress'),
-            progressValue =
-                document.querySelector('.progress-value');
+    let circularProgress =
+        document.querySelector('.circular-progress'),
+        progressValue =
+        document.querySelector('.progress-value');
 
 
 
-        let progressStartValue = 0,
-            progressEndValue = 80,
-            speed = 20;
+    let progressStartValue = 0,
+        progressEndValue = 80,
+        speed = 20;
 
 
 
-        let progress = setInterval(() => {
+    let progress = setInterval(() => {
 
-            progressStartValue++;
-            progressValue.textContent =
-                `${progressStartValue}%`;
-            circularProgress.style.background =
-                `conic-gradient(#4379F2 ${progressStartValue
+        progressStartValue++;
+        progressValue.textContent =
+            `${progressStartValue}%`;
+        circularProgress.style.background =
+            `conic-gradient(#4379F2 ${progressStartValue
                 * 3.6}deg, #ededed 0deg)`;
 
-            //3.6deg * 100 = 360deg
+        //3.6deg * 100 = 360deg
 
-            //3.6deg * 90 = 324deg
-
-
+        //3.6deg * 90 = 324deg
 
 
 
-            if (progressStartValue == progressEndValue) {
-
-                clearInterval(progress);
 
 
+        if (progressStartValue == progressEndValue) {
 
-            }
+            clearInterval(progress);
 
-            console.log(progressStartValue);
 
-        }, speed);
+
+        }
+
+        console.log(progressStartValue);
+
+    }, speed);
     </script>
 
     <!-- <div class="sub-footer">
