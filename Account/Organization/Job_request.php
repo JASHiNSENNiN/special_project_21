@@ -35,9 +35,9 @@ require_once 'show_profile.php';
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a href="Job_ads.php"> Job Ads</a>
             <a class="active" href="Job_request.php">Job Request</a>
-            <a href="Faculty_report.php">Faculty Report</a>
+            <a href="Faculty_report.php">Student Evaluation</a>
             <a href="Question.php">Questions</a>
-            <a href="Details.php">Snapshot</a>
+            <a href="Details.php">Analytics</a>
 
 
         </nav>
@@ -117,21 +117,21 @@ require_once 'show_profile.php';
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function() {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function() {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
 

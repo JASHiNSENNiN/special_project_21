@@ -1,62 +1,14 @@
-<?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-;
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-require_once 'show_profile.php';
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
-    <link rel="stylesheet" href="css/Narrative.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-
-    <!-- -------------font--------- -->
-    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
-
-
+    <title>Evaluation Form</title>
+    <link rel="stylesheet" type="text/css" href="css/EvaluationForm.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 </head>
 
 <body>
-
-    <?php echo $profile_div; ?>s
-    <br><br>
-    <hr>
-    <div class="logo">
-
-        <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a class="link" id="#area" href="Company_Area.php"> Company Area</a>
-            <a class="link" id="#review" href="Company_Review.php">Company review</a>
-            <a class="active1" id="#narrative" href="Narrative_Report.php">Narrative Report</a>
-            <!-- <a class="link" id="#contact">Contact</a> -->
-
-            <!-- <a href="aboutUs.php">About</a> -->
-
-        </nav>
-    </div>
-    <hr class="line_bottom">
-
-
-
-
-    <br>
-    <div class="titleEF">
-        <b>
-            <h1 class="sfa">Evaluation Form</h1>
-            <div class="box-topic"></div>
-        </b>
-    </div>
 
     <div class="wrapper">
         <div class="header1">
@@ -90,15 +42,14 @@ require_once 'show_profile.php';
         </div>
         <div class="form_wrap">
             <div class="form_1 data_info">
-                <h2>Work Performance <br>
-                    <input type="text" placeholder="Company Name">
-                </h2>
+                <h2>Work Performance</h2>
+                <input class="StudentName" type="text" readonly>
                 <div class="form_container">
                     <div class="questioner">
 
                         <form id="inputs">
                             <div class="st">
-                                <h3>1. How well does the student produce high-quality and accurate work?</h3>
+                                <h3>1. How would you rate the overall quality of your work immersion experience?</h3>
                                 <div class="sr">
                                     <label class="star empty"><input type="radio" name="question1" value="1"><i
                                             class="fa fa-star"></i></label>
@@ -610,554 +561,255 @@ require_once 'show_profile.php';
         </div>
     </div>
 
-    <!-- <form action="" method="POST" class="form">
-        <div class="sales-boxes">
-            <div class="recent-sales box">
-
-                <br>
-                <div class="mb-4">
-                    <label class="lb" for="studentid">Company name:</label><br>
-                    <input type="text" placeholder="Enter Company name" name="studentid" id="studentid" required>
-                </div>
-
-                <table class="tbl1">
-                    <tr>
-                        <td>5</td>
-                        <td>Outstanding</td>
-                        <td>Perform exceeds the required standard.</td>
-
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Very Satisfactory</td>
-                        <td>Performace fully met job requirements. Was able to perform what was expected
-                            of
-                            a person in his/her position.</td>
-
-
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Satisfactory</td>
-                        <td>Performance has met the required standard. Can perform duties with minimal
-                            supervision.</td>
-
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Fair</td>
-                        <td>Performace partially meet the required stantard. Less than satisfactory
-                            could be
-                            doind better.</td>
-
-
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Needs Improvement</td>
-                        <td>Performance does not meet the required standard. Major improvements needed.
-                        </td>
-                      
-
-                    </tr>
-                </table>
-                <br>
-                <form action="">
-                    <div class="container">
-                        <h1>Evaluation </h1>
-                        <p>Please fill in this evaluation form.</p>
-                        <hr class="hr1">
-
-                        <table>
-                            <tr>
-                                <th>#</th>
-                                <th>Questioner</th>
-                                <th>1</th>
-                                <th>2</th>
-                                <th>3</th>
-                                <th>4</th>
-                                <th>5</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Consistently works with others to accomplish goals and tasks. </td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Treats all team members in a respectful courteous manner.</td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Actively participates in activities and assigned tasks required.
-                                </td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Willing to work with team members to improve team collaboration on
-                                    continuous basis.</td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Considers the feedback and views of team members when completing an
-                                    assigned task. </td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Attendance and tardiness. </td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Is cooperative and dependable. </td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Accepts responsibility with initiative. </td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Show interest in work. </td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Grooms appropriately and carries self well. </td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-
-                            </tr>
-                        </table>
-                        <hr>
-                        <br>
-
-                        <h1>Feedback</h1>
-                        <div class="mb-4 small">
-                            Please provide your feedback in the form below
-                        </div>
-                        <form name="feedback_form" id="feedback_form" method="post">
-                            <label>How do you rate your overall experience?</label>
-                            <div class="mb-3 d-flex flex-row py-1">
-                                <div class="form-check mr-3">
-                                    <input class="form-check-input" type="radio" name="rating" id="rating_bad"
-                                        value="bad">
-                                    <label class="form-check-label" for="rating_bad">
-                                        Bad
-                                    </label>
-                                </div>
-
-                                <div class="form-check mx-3">
-                                    <input class="form-check-input" type="radio" name="rating" id="rating_good"
-                                        value="good">
-                                    <label class="form-check-label" for="rating_good">
-                                        Good
-                                    </label>
-                                </div>
-
-                                <div class="form-check mx-3">
-                                    <input class="form-check-input" type="radio" name="rating" id="rating_excellent"
-                                        value="excellent">
-                                    <label class="form-check-label" for="rating_excellent">
-                                        Excellent!
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" for="feedback_comments">Comments:</label><br>
-                                <textarea class="textarea" rows="10" name="comments" id="feedback_comments"></textarea>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label class="form-label" for="feedback_name">Your Name:</label><br>
-                                    <input type="text" required name="name" class="form-control" id="feedback_name"
-                                        placeholder="Name" />
-                                </div>
-
-                                <div class="col mb-4">
-                                    <label class="form-label" for="feedback_email">Email:</label><br>
-                                    <input type="email" name="email" required class="form-control" id="feedback_email"
-                                        placeholder="Your Email" />
-                                </div>
-                            </div><br>
-                            <button type="submit" class="Submit" onclick="openPopup();">Submit</button>
-                        </form>
-                     
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </form>
-
- -->
-
-
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
-        <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
-
-    </footer>
-
     <script>
-    $("input:checkbox").on('click', function() {
+        var form_1 = document.querySelector(".form_1");
+        var form_2 = document.querySelector(".form_2");
+        var form_3 = document.querySelector(".form_3");
+        var form_4 = document.querySelector(".form_4");
+        var form_5 = document.querySelector(".form_5");
 
-        var $box = $(this);
-        if ($box.is(":checked")) {
-            var group = "input:checkbox[name='" + $box.attr("name") + "']";
-            $(group).prop("checked", false);
-            $box.prop("checked", true);
-        } else {
-            $box.prop("checked", false);
-        }
-    });
-    </script>
+        var form_1_btns = document.querySelector(".form_1_btns");
+        var form_2_btns = document.querySelector(".form_2_btns");
+        var form_3_btns = document.querySelector(".form_3_btns");
+        var form_4_btns = document.querySelector(".form_4_btns");
+        var form_5_btns = document.querySelector(".form_5_btns");
 
-    <script>
-    let popup = document.getElementById("popup");
+        var form_1_next_btn = document.querySelector(".form_1_btns .btn_next");
+        var form_2_back_btn = document.querySelector(".form_2_btns .btn_back");
+        var form_2_next_btn = document.querySelector(".form_2_btns .btn_next");
+        var form_3_back_btn = document.querySelector(".form_3_btns .btn_back");
+        var form_3_next_btn = document.querySelector(".form_3_btns .btn_next");
+        var form_4_back_btn = document.querySelector(".form_4_btns .btn_back");
+        var form_4_next_btn = document.querySelector(".form_4_btns .btn_next");
+        var form_5_back_btn = document.querySelector(".form_5_btns .btn_back");
 
-    function openPopup() {
-        // popup.classList.add("open-popup");
-        Swal.fire({
-            title: "Successfully send!",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 2500
+        var form_2_progessbar = document.querySelector(".form_2_progessbar");
+        var form_3_progessbar = document.querySelector(".form_3_progessbar");
+        var form_4_progessbar = document.querySelector(".form_4_progessbar");
+        var form_5_progessbar = document.querySelector(".form_5_progessbar");
+
+        var btn_done = document.querySelector(".btn_done");
+        var modal_wrapper = document.querySelector(".modal_wrapper");
+        var shadow = document.querySelector(".shadow");
+
+        form_1_next_btn.addEventListener("click", function () {
+            form_1.style.display = "none";
+            form_2.style.display = "block";
+
+            form_1_btns.style.display = "none";
+            form_2_btns.style.display = "flex";
+
+            form_2_progessbar.classList.add("active");
         });
-    }
 
-    function closePopup() {
-        popup.classList.remove("open-popup");
-    }
-    </script>
+        form_2_back_btn.addEventListener("click", function () {
+            form_1.style.display = "block";
+            form_2.style.display = "none";
 
+            form_1_btns.style.display = "flex";
+            form_2_btns.style.display = "none";
 
-    <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+            form_2_progessbar.classList.remove("active");
+        });
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
-    </script>
+        form_2_next_btn.addEventListener("click", function () {
+            form_2.style.display = "none";
+            form_3.style.display = "block";
 
-    <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+            form_3_btns.style.display = "flex";
+            form_2_btns.style.display = "none";
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
-    </script>
+            form_3_progessbar.classList.add("active");
+        });
 
-    <script>
-    var form_1 = document.querySelector(".form_1");
-    var form_2 = document.querySelector(".form_2");
-    var form_3 = document.querySelector(".form_3");
-    var form_4 = document.querySelector(".form_4");
-    var form_5 = document.querySelector(".form_5");
+        form_3_back_btn.addEventListener("click", function () {
+            form_2.style.display = "block";
+            form_3.style.display = "none";
 
-    var form_1_btns = document.querySelector(".form_1_btns");
-    var form_2_btns = document.querySelector(".form_2_btns");
-    var form_3_btns = document.querySelector(".form_3_btns");
-    var form_4_btns = document.querySelector(".form_4_btns");
-    var form_5_btns = document.querySelector(".form_5_btns");
+            form_3_btns.style.display = "none";
+            form_2_btns.style.display = "flex";
 
-    var form_1_next_btn = document.querySelector(".form_1_btns .btn_next");
-    var form_2_back_btn = document.querySelector(".form_2_btns .btn_back");
-    var form_2_next_btn = document.querySelector(".form_2_btns .btn_next");
-    var form_3_back_btn = document.querySelector(".form_3_btns .btn_back");
-    var form_3_next_btn = document.querySelector(".form_3_btns .btn_next");
-    var form_4_back_btn = document.querySelector(".form_4_btns .btn_back");
-    var form_4_next_btn = document.querySelector(".form_4_btns .btn_next");
-    var form_5_back_btn = document.querySelector(".form_5_btns .btn_back");
+            form_3_progessbar.classList.remove("active");
+        });
 
-    var form_2_progessbar = document.querySelector(".form_2_progessbar");
-    var form_3_progessbar = document.querySelector(".form_3_progessbar");
-    var form_4_progessbar = document.querySelector(".form_4_progessbar");
-    var form_5_progessbar = document.querySelector(".form_5_progessbar");
+        form_3_next_btn.addEventListener("click", function () {
+            form_3.style.display = "none";
+            form_4.style.display = "block";
 
-    var btn_done = document.querySelector(".btn_done");
-    var modal_wrapper = document.querySelector(".modal_wrapper");
-    var shadow = document.querySelector(".shadow");
+            form_4_btns.style.display = "flex";
+            form_3_btns.style.display = "none";
 
-    form_1_next_btn.addEventListener("click", function() {
-        form_1.style.display = "none";
-        form_2.style.display = "block";
+            form_4_progessbar.classList.add("active");
+        });
 
-        form_1_btns.style.display = "none";
-        form_2_btns.style.display = "flex";
+        form_4_back_btn.addEventListener("click", function () {
+            form_3.style.display = "block";
+            form_4.style.display = "none";
 
-        form_2_progessbar.classList.add("active");
-    });
+            form_4_btns.style.display = "none";
+            form_3_btns.style.display = "flex";
 
-    form_2_back_btn.addEventListener("click", function() {
-        form_1.style.display = "block";
-        form_2.style.display = "none";
+            form_4_progessbar.classList.remove("active");
+        });
 
-        form_1_btns.style.display = "flex";
-        form_2_btns.style.display = "none";
+        form_4_next_btn.addEventListener("click", function () {
+            form_4.style.display = "none";
+            form_5.style.display = "block";
 
-        form_2_progessbar.classList.remove("active");
-    });
+            form_5_btns.style.display = "flex";
+            form_4_btns.style.display = "none";
 
-    form_2_next_btn.addEventListener("click", function() {
-        form_2.style.display = "none";
-        form_3.style.display = "block";
+            form_5_progessbar.classList.add("active");
+        });
 
-        form_3_btns.style.display = "flex";
-        form_2_btns.style.display = "none";
+        form_5_back_btn.addEventListener("click", function () {
+            form_4.style.display = "block";
+            form_5.style.display = "none";
 
-        form_3_progessbar.classList.add("active");
-    });
+            form_5_btns.style.display = "none";
+            form_4_btns.style.display = "flex";
 
-    form_3_back_btn.addEventListener("click", function() {
-        form_2.style.display = "block";
-        form_3.style.display = "none";
+            form_5_progessbar.classList.remove("active");
+        });
 
-        form_3_btns.style.display = "none";
-        form_2_btns.style.display = "flex";
+        btn_done.addEventListener("click", function () {
+            modal_wrapper.classList.add("active");
+        });
 
-        form_3_progessbar.classList.remove("active");
-    });
-
-    form_3_next_btn.addEventListener("click", function() {
-        form_3.style.display = "none";
-        form_4.style.display = "block";
-
-        form_4_btns.style.display = "flex";
-        form_3_btns.style.display = "none";
-
-        form_4_progessbar.classList.add("active");
-    });
-
-    form_4_back_btn.addEventListener("click", function() {
-        form_3.style.display = "block";
-        form_4.style.display = "none";
-
-        form_4_btns.style.display = "none";
-        form_3_btns.style.display = "flex";
-
-        form_4_progessbar.classList.remove("active");
-    });
-
-    form_4_next_btn.addEventListener("click", function() {
-        form_4.style.display = "none";
-        form_5.style.display = "block";
-
-        form_5_btns.style.display = "flex";
-        form_4_btns.style.display = "none";
-
-        form_5_progessbar.classList.add("active");
-    });
-
-    form_5_back_btn.addEventListener("click", function() {
-        form_4.style.display = "block";
-        form_5.style.display = "none";
-
-        form_5_btns.style.display = "none";
-        form_4_btns.style.display = "flex";
-
-        form_5_progessbar.classList.remove("active");
-    });
-
-    btn_done.addEventListener("click", function() {
-        modal_wrapper.classList.add("active");
-    });
-
-    shadow.addEventListener("click", function() {
-        modal_wrapper.classList.remove("active");
-    });
+        shadow.addEventListener("click", function () {
+            modal_wrapper.classList.remove("active");
+        });
     </script>
 
     <script>
-    const form = document.querySelector('form');
-    form.addEventListener('submit', event => {
-        const formData = new FormData(event.target);
-        const rating = formData.get('rating');
-        console.log(rating);
-        event.preventDefault();
-    });
+        const form = document.querySelector('form');
+        form.addEventListener('submit', event => {
+            const formData = new FormData(event.target);
+            const rating = formData.get('rating');
+            console.log(rating);
+            event.preventDefault();
+        });
     </script>
 
     <script>
-    var inputsForm = document.querySelector("#inputs");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    // just for showing the values (not required only for testing)
-    inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question1.value}\n ${this.question2.value}\n${this.question3.value}\n${this.question4.value}\n${this.question5.value}`
-        );
-        return false;
-    }
+        // just for showing the values (not required only for testing)
+        inputsForm.onsubmit = function () {
+            console.log(
+                ` ${this.question1.value}\n ${this.question2.value}\n${this.question3.value}\n${this.question4.value}\n${this.question5.value}`
+            );
+            return false;
+        }
     </script>
 
     <script>
-    var inputsForm = document.querySelector("#inputs1");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs1");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    // just for showing the values (not required only for testing)
-    inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
-        );
-        return false;
-    }
+        // just for showing the values (not required only for testing)
+        inputsForm.onsubmit = function () {
+            console.log(
+                ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
+            );
+            return false;
+        }
     </script>
 
     <script>
-    var inputsForm = document.querySelector("#inputs2");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs2");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    // just for showing the values (not required only for testing)
-    inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
-        );
-        return false;
-    }
+        // just for showing the values (not required only for testing)
+        inputsForm.onsubmit = function () {
+            console.log(
+                ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
+            );
+            return false;
+        }
     </script>
 
     <script>
-    var inputsForm = document.querySelector("#inputs3");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs3");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    // just for showing the values (not required only for testing)
-    inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
-        );
-        return false;
-    }
+        // just for showing the values (not required only for testing)
+        inputsForm.onsubmit = function () {
+            console.log(
+                ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
+            );
+            return false;
+        }
     </script>
 
     <script>
-    var inputsForm = document.querySelector("#inputs4");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs4");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    // just for showing the values (not required only for testing)
-    inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
-        );
-        return false;
-    }
+        // just for showing the values (not required only for testing)
+        inputsForm.onsubmit = function () {
+            console.log(
+                ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
+            );
+            return false;
+        }
     </script>
-
-
-
 
 </body>
 

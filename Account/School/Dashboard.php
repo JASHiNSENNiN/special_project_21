@@ -15,7 +15,7 @@ require_once 'show_profile.php';
     <link rel="stylesheet" type="text/css" href="css/analytics.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -54,57 +54,13 @@ require_once 'show_profile.php';
         </div>
     </div>
 
+
+
     <hr class="line_bottom">
     <div class="container4">
         <h1 class="Time">Student Timeline</h1>
         <div id="timeline" style="height: 180px;"></div>
     </div>
-
-    <!-- <div class="container2">
-        <h1 style="margin-bottom: 20px;">Student Information</h1>
-        <table class="rwd-table">
-            <tbody>
-                <tr>
-                    <th>#</th>
-                    <th>ID Picture</th>
-                    <th>Student Name</th>
-                    <th>Strand</th>
-                    <th>Result</th>
-                    <th>Action</th>
-
-                </tr>
-                <tr>
-                    <td data-th="#">1</td>
-                    <td data-th="ID Picture"><img class="idpic" src="image/me.jpg" alt="me">
-                    </td>
-                    <td data-th="Student Name">Joshua Rivera</td>
-                    <td data-th="Strand">HUMSS</td>
-                    <td data-th="Result">
-
-                        <div class="container3">
-                            <div class="circular-progress">
-                                <span class="progress-value"></span>
-                            </div>
-                        </div>
-
-                    </td>
-                    <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                </tr>
-
-                <tr>
-                    <td data-th="#">2</td>
-                    <td data-th="ID Picture"><img class="idpic" src="image/profile.jpg" alt="me"></td>
-                    <td data-th="Student Name">Dan Mamaid</td>
-                    <td data-th="Strand">STEM</td>
-                    <td data-th="Result">
-                    </td>
-                    <td data-th="Action"><button class="button-9" role="button">View Profile</button></td>
-                </tr>
-
-            </tbody>
-
-        </table>
-    </div> -->
 
 
 
@@ -304,9 +260,9 @@ require_once 'show_profile.php';
             id: 'End'
         });
         dataTable.addRows([
-            ['Joshua Rivera ', new Date(2024, 1, 30), new Date(2025, 1, 4)],
-            ['Dan Mamaid', new Date(2024, 1, 4), new Date(2025, 1, 4)],
-            ['Jefferson Dela cruz', new Date(2024, 1, 4), new Date(2025, 1, 4)]
+            ['Joshua Rivera ', new Date(2024, 1, 8), new Date(2024, 12, 8)],
+            ['Dan Mamaid', new Date(2024, 1, 8), new Date(2024, 13, 8)],
+            ['Jefferson Dela cruz', new Date(2024, 1, 8), new Date(2024, 14, 8)]
         ]);
 
         chart.draw(dataTable);

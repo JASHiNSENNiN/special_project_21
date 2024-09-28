@@ -219,3 +219,108 @@ footer {
   margin-top: 50px;
   bottom: 0;
 }
+
+.wp-div-center,
+.wp-header {
+  margin-top: 10px;
+  width: 80%;
+  /* adjust the width to your liking */
+  margin: 0 auto;
+  /* this will center the div horizontally */
+  padding: 20px;
+  /* add some padding to make the div more visible */
+}
+
+/* -----------------------------------wp_chart--------------------------------------------  */
+
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+#wp-student-chart {
+  max-width: 760px;
+  margin: 35px auto;
+  opacity: 0.9;
+}
+
+.arrow_box {
+  position: relative;
+  background: #555;
+  border: 2px solid #000000;
+}
+
+.arrow_box:after,
+.arrow_box:before {
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.arrow_box:after {
+  border-color: rgba(85, 85, 85, 0);
+  border-right-color: #555;
+  border-width: 10px;
+  margin-top: -10px;
+}
+
+.arrow_box:before {
+  border-color: rgba(0, 0, 0, 0);
+  border-right-color: #000000;
+  border-width: 13px;
+  margin-top: -13px;
+}
+
+#wp-student-chart .apexcharts-tooltip {
+  color: #fff;
+  transform: translateX(10px) translateY(10px);
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+#wp-student-chart .apexcharts-tooltip span {
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+.wp-graph,
+.pro-graph,
+.ld-graph,
+.tc-graph,
+.am-graph,
+.dp-graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* set the height to the full viewport height */
+  max-width: 800px;
+  /* set the max-width to your liking */
+  margin: 0 auto;
+  /* center the div horizontally */
+  padding: 20px;
+  /* add some padding to make the div more visible */
+}
+
+@media (max-width: 768px) {
+  .wp-graph,
+  .pro-graph,
+  .ld-graph,
+  .tc-graph,
+  .am-graph,
+  .dp-graph {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .wp-graph,
+  .pro-graph,
+  .ld-graph,
+  .tc-graph,
+  .am-graph,
+  .dp-graph {
+    max-width: 100%;
+  }
+}
