@@ -15,7 +15,6 @@ $profile_div = '<header class="nav-header">
 
 
         <nav class="by">
-            <a href=""><i class="fas fa-comment-alt" style="font-size:24px; margin-top:5px;"></i></a>
 
             <div class="dropdowntf" style="float:right;">
                 <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
@@ -24,14 +23,14 @@ $profile_div = '<header class="nav-header">
                     <label for="" class="notif">Notification</label>
                     <hr style="width: 100%;">
                     <div class="notifi-item">
-                        <img src="../Company/image/NIA.png" alt="img">
+                        <img src="../Organization/image/NIA.png" alt="img">
                         <div class="text">
                             <h4>NIA</h4>
                             <p>sent report for Revira, Joshua</p>
                         </div>
                     </div>
                     <div class="notifi-item">
-                        <img src="../Company/image/NIA.png" alt="img">
+                        <img src="../Organization/image/NIA.png" alt="img">
                         <div class="text">
                             <h4>NIA</h4>
                             <p>sent report for Diaz, Ronald</p>
@@ -64,10 +63,7 @@ $profile_div = '<header class="nav-header">
 
 
     <img class="logoimg" id="cover-pic" src="image/background.jpg" alt="" height="300" width="200">
-    <label for="input-file1" class="button-13" role="button"><span class="edit"><i class="fa fa-camera"></i>Edit cover
-            photo</span>
-        <span class="cam"><i class="fa fa-camera"></i></span></label>
-    <input type="file" accept="image/jpeg, image/png, image/gif" id="input-file1" />
+    
 
     <div class="profile">
         <img id="profile-pic" src="image/OLSHCO.png" alt="">

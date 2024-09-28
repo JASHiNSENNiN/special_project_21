@@ -63,17 +63,9 @@ function generateJobCard()
 
   echo '<div class="five columns">';
   echo '<div class="job-manager-form wp-job-manager-bookmarks-form">';
-  echo '<div><a href="login.php" class="small-dialog popup-with-zoom-anim bookmark-notice button dark bookmark-notice">Login to bookmark</a></div>';
   echo '</div></div></div></div>';
 
-  echo '<div class="five columns">
-                    <div class="job-manager-form wp-job-manager-bookmarks-form">
-                        <div><a href="login.php"
-                                class="small-dialog popup-with-zoom-anim bookmark-notice button dark bookmark-notice">Login
-                                to bookmark</a></div>
-                    </div>
-                </div>
-
+  echo '
             </div>
         </div>
 

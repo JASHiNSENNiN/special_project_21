@@ -289,6 +289,7 @@ input[type="text"] {
   height: 36px;
   text-decoration: none;
   margin-bottom: 50px;
+  width: 40%;
 }
 
 input[type="text"]:hover {
