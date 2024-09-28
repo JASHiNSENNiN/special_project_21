@@ -95,9 +95,15 @@
                                     <input class="form-control" id="inputPhone" name="phone" type="tel" autocomplete="off" placeholder="Enter your phone number">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputStrand">Strand</label>
-                                <input class="form-control" id="inputStrand" name="strand" type="text" placeholder="Enter your strand">
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputSchoolName">School name </label>
+                                    <input class="form-control" id="inputSchoolName" name="schoolname" type="text" placeholder="Enter your school name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputStrand">Strand</label>
+                                    <input class="form-control" id="inputStrand" name="strand" type="text" placeholder="Enter your strand">
+                                </div>
                             </div>
 
 
