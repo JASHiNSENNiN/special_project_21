@@ -133,22 +133,22 @@ $email = $_SESSION['email'];
                         <tr>
                             <td><b>Address</b></td>
                             <td>:</td>
-                            <td>Afan Salavador Street Guimba Nueva Ecija</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td><b>Contact Number</b></td>
                             <td>:</td>
-                            <td>0917-8830311</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td><b>Guardians</b></td>
                             <td>:</td>
-                            <td>N/A</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td><b>Guardians number</b></td>
                             <td>:</td>
-                            <td>N/A</td>
+                            <td></td>
                         </tr>
                         <!-- <tr>
                             <td>Skill</td>
