@@ -215,7 +215,7 @@ $email = $_SESSION['email'];
 
     <div class="wp-div-center">
         <div class="wp-header">
-            <h2> Insights</h2>
+            <h2> Daily Insight</h2>
         </div>
         <div class="dp-graph" id="dp_chart_div" style="width: 900px; height: 500px;"></div>
     </div>
@@ -223,7 +223,7 @@ $email = $_SESSION['email'];
 
     <div class="wp-div-center">
         <div class="wp-header">
-            <h2> Insights</h2>
+            <h2> Evaluation Insights</h2>
         </div>
 
         <div class="wp-graph" id="wp_top_x_div" style="width: 900px; height: 500px;"></div>

@@ -21,7 +21,7 @@ body {
 }
 
 .title {
-  font-family: "Dancing Script", cursive;
+  font-family: Arial;
   padding-top: 15px;
   position: absolute;
   left: 45%;
@@ -65,11 +65,11 @@ body {
   color: #333;
   /* border-bottom-right-radius: 25px; */
   height: auto;
-  left: 0;
+  left: 25px;
   overflow-x: hidden;
   padding-top: 20px;
   position: absolute;
-  top: 70px;
+  top: 183px;
   width: 250px;
 }
 

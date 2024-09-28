@@ -68,15 +68,23 @@
 
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputStudentName">Student name</label>
-                                    <input class="form-control" id="inputStudentName" name="student_name" type="text" autocomplete="off" placeholder="Enter your name">
+                                    <label class="small mb-1" for="inputFirstName">First name</label>
+                                    <input class="form-control" id="inputFirstName" name="first_name" type="text" autocomplete="off" placeholder="Enter your first name">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLocation">Location</label>
-                                    <input class="form-control" id="inputLocation" name="location" type text placeholder="Enter your location">
+                                    <label class="small mb-1" for="inputMiddleName">Middle name</label>
+                                    <input class="form-control" id="inputMiddleName" name="middle_name" type="text" autocomplete="off" placeholder="Enter your middle name">
                                 </div>
-                            </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputLastName">Last name</label>
+                                    <input class="form-control" id="inputLastName" name="Last_name" type="text" autocomplete="off" placeholder="Enter your last name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputSuffix">Suffix (Jr.)</label>
+                                    <input class="form-control" id="inputSuffix" name="suffix" type="text" autocomplete="off" placeholder="">
+                                </div>
 
+                            </div>
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputEmailAddress">Email address</label>
@@ -86,13 +94,29 @@
                                     <label class="small mb-1" for="inputPhone">Phone number</label>
                                     <input class="form-control" id="inputPhone" name="phone" type="tel" autocomplete="off" placeholder="Enter your phone number">
                                 </div>
-
                             </div>
-                            <div class="mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputStrand">Strand</label>
+                                <input class="form-control" id="inputStrand" name="strand" type="text" placeholder="Enter your strand">
+                            </div>
+
+
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputGuardiaName">Guardians Name</label>
+                                    <input class="form-control" id="inputGuardianName" name="Guardian_name" type="text" placeholder="Enter your guardians name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputGuardianPhoneNumber">Guradians phone number</label>
+                                    <input class="form-control" id="inputGuardianPhoneNumber" name="GuardianPhoneNumber" type="tel" autocomplete="off" placeholder="Enter your guardians phone number">
+                                </div>
+                            </div>
+
+                            <!-- <div class="mb-3">
                                 <label class="small mb-1" for="inputEmailAddress">Bio</label>
                                 <textarea name="message" placeholder="Enter your message"></textarea>
 
-                            </div>
+                            </div> -->
                             <button class="btn btn-primary" type="submit">Save changes</button>
                         </form>
                     </div>
