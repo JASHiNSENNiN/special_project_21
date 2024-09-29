@@ -33,27 +33,27 @@ require_once 'show_profile.php';
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
                     <div class="list-group list-group-flush account-settings-links">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list"
-                            href="#account-general">General</a>
+                        <!-- <a class="list-group-item list-group-item-action active" data-toggle="list"
+                            href="#account-general">General</a> -->
 
                         <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#account-change-password">Change password</a>
 
                         <!-- <a class="list-group-item list-group-item-action" data-toggle="
-l                           ist" href="#account-info">Info</a> -->
+l                           ist" href="#account-info">Info</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#account-social-links">Social links</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#account-connections">Connections</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#account-notifications">Notifications</a>
+                            href="#account-notifications">Notifications</a> -->
                     </div>
                 </div>
 
                 <div class="col-md-9">
                     <div class="tab-content">
-                        <div class="tab-pane fade active show" id="account-general">
-                            <!-- <div class="card-body media align-items-center">
+                        <!-- <div class="tab-pane fade active show" id="account-general"> -->
+                        <!-- <div class="card-body media align-items-center">
 
                                 <img src="image/NIA.png" alt="profile" id="profile-pic" class="d-block ui-w-80"
                                     style="border-radius:50%; height:150px;  width : 160px !important;">
@@ -69,7 +69,7 @@ l                           ist" href="#account-info">Info</a> -->
                                         of 800K</div>
                                 </div>
                             </div> -->
-                            <hr class="border-light m-0">
+                        <!-- <hr class="border-light m-0">
                             <div class="card-body">
 
                                 <div class="form-group">
@@ -89,8 +89,8 @@ l                           ist" href="#account-info">Info</a> -->
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="account-change-password">
+                        </div> -->
+                        <div class="tab-pane fade active show" id="account-change-password">
                             <div class="card-body pb-2">
                                 <div class="form-group">
                                     <label class="form-label">Email</label>
@@ -290,11 +290,11 @@ l                           ist" href="#account-info">Info</a> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    let profilePic = document.getElementById("profile-pic");
-    let inputfile = document.getElementById("input-file");
-    inputfile.onchange = function() {
-        profilePic.src = URL.createObjectURL(inputfile.files[0]);
-    }
+        let profilePic = document.getElementById("profile-pic");
+        let inputfile = document.getElementById("input-file");
+        inputfile.onchange = function() {
+            profilePic.src = URL.createObjectURL(inputfile.files[0]);
+        }
     </script>
 
 </body>

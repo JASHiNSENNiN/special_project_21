@@ -26,29 +26,29 @@ require_once 'show_profile.php';
                 <div class="row no-gutters row-bordered row-border-light">
                     <div class="col-md-3 pt-0">
                         <div class="list-group list-group-flush account-settings-links">
-                            <a class="list-group-item list-group-item-action active" data-toggle="list"
-                                href="#account-general">General</a>
+                            <!-- <a class="list-group-item list-group-item-action active" data-toggle="list"
+                                href="#account-general">General</a> -->
                             <a class="list-group-item list-group-item-action" data-toggle="list"
                                 href="#account-change-password">Change password</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list"
+                            <!-- <a class="list-group-item list-group-item-action" data-toggle="list"
                                 href="#account-info">Info</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
                                 href="#account-social-links">Social links</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
                                 href="#account-connections">Connections</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                                href="#account-notifications">Notifications</a>
+                                href="#account-notifications">Notifications</a> -->
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
-                            <div class="tab-pane fade active show" id="account-general">
+                            <!-- <div class="tab-pane fade active show" id="account-general">
                                 <hr class="border-light m-0" />
                                 <div class="card-body">
-                                    <!-- <div class="form-group">
-                                    <label class="form-label">Username</label>
-                                    <input type="text" class="form-control mb-1" >
-                                </div> -->
+                                    <div class="form-group">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" class="form-control mb-1">
+                                    </div>
                                     <div class="form-group">
                                         <label class="form-label">President</label>
                                         <input type="text" class="form-control" placeholder="" />
@@ -66,8 +66,8 @@ require_once 'show_profile.php';
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="account-change-password">
+                            </div> -->
+                            <div class="tab-pane fade active show" id="account-change-password">
                                 <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
