@@ -69,7 +69,7 @@ function generateJobCards($jobOffers)
         </li>';
     }
 }
-
+// <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
 ?>
@@ -103,9 +103,6 @@ require_once 'show_profile.php';
             <a class="active" id="#area" href="Company_area.php"> Company Area</a>
             <a class="link" id="#review" href="Company_Review.php">Company review</a>
             <a class="link" id="#narrative" href="Narrative_Report.php">Narrative Report</a>
-            <!-- <a class="link" id="#contact">Contact</a> -->
-
-            <!-- <a href="aboutUs.php">About</a> -->
 
         </nav>
     </div>
