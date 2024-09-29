@@ -925,6 +925,11 @@ html {
   flex-direction: column;
   flex-grow: 1;
   padding-left: 40px;
+  list-style-type: none;
+}
+
+.searched-jobs ul {
+  list-style-type: none;
 }
 
 @keyframes slideY {
@@ -1103,7 +1108,7 @@ html {
 }
 
 .job-card-subtitle ul li {
-  list-style-type: circle;
+  list-style-type: none;
 }
 
 .job-detail-buttons {

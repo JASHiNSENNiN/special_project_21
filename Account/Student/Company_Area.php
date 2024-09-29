@@ -86,6 +86,7 @@ require_once 'show_profile.php';
     <!-- <link rel="stylesheet" type="text/css" href="css/modal.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 </head>
 <style>
 
@@ -123,13 +124,13 @@ require_once 'show_profile.php';
 
                         <div class="search-container">
                             <button type="submit"><i class="fas fa-search"></i></button>
-                            <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch" type="text"
+                            <input id="globalInputSearchs" name="globalInputSearchs" class="globalInputSearchs" type="text"
                                 placeholder="Work Immersion / Keyword">
 
                         </div>
                         <div class="search-container" style="border-left: 1px solid grey">
                             <button type="submit"><i class="fas fa-map-marker-alt"></i></button>
-                            <input id="InputSearch" name="InputSearch" class="globalInputSearch" type="text"
+                            <input id="InputSearch" name="InputSearch" class="globalInputSearchs" type="text"
                                 placeholder="Search location">
 
                         </div>
@@ -160,7 +161,7 @@ require_once 'show_profile.php';
             <!-- -------------------------------------------------------job cards ------------------------------- -->
 
             <div class="searched-jobs">
-                <ul class="globalTargetList">
+                <ul class="globalTargetLists">
                     <div class="job-cards">
 
                         <?php generateJobCards($jobOffers); ?>
