@@ -79,8 +79,8 @@ $email = $_SESSION['email'];
         </div>
 
         <li>
-            <a href="Company_Area.php">
-                <i class="fa fa-sign-out-alt fa-2x"></i>
+            <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
+                <i class=" fa fa-sign-out-alt fa-2x"></i>
             </a>
         </li>
         </ul>

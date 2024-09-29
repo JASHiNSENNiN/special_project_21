@@ -90,9 +90,6 @@ require_once 'show_profile.php';
         </div>
         <div class="form_wrap">
             <div class="form_1 data_info">
-                <h2>Work Performance <br>
-                    <input type="text" placeholder="Company Name">
-                </h2>
                 <div class="form_container">
                     <div class="questioner">
 
@@ -100,7 +97,7 @@ require_once 'show_profile.php';
                             <div class="st">
                                 <h3>1. How well does the student produce high-quality and accurate work?</h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question1" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question1" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question1" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -113,7 +110,7 @@ require_once 'show_profile.php';
                                 </div>
                                 <h3>2. How effectively does the student manage their time to complete tasks?</h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question2" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question2" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question2" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -126,7 +123,7 @@ require_once 'show_profile.php';
                                 </div>
                                 <h3>3. How well does the student address and resolve challenges that arise? </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question3" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question3" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question3" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -139,7 +136,7 @@ require_once 'show_profile.php';
                                 </div>
                                 <h3>4.How thorough is the student in ensuring work is free from errors?</h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question4" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question4" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question4" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -153,7 +150,7 @@ require_once 'show_profile.php';
                                 <h3>5. How proactive is the student in taking on additional tasks or responsibilities?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question5" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question5" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question5" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -183,7 +180,7 @@ require_once 'show_profile.php';
                                 <h3>1. How consistent is the student with arriving on time and meeting deadlines?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question6" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question6" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question6" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -196,7 +193,7 @@ require_once 'show_profile.php';
                                 </div>
                                 <h3>2. How does the student present themselves in terms of attire and grooming?</h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question7" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question7" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question7" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -210,7 +207,7 @@ require_once 'show_profile.php';
                                 <h3>3. How effectively does the student communicate with peers and supervisors?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question8" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question8" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question8" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -224,7 +221,7 @@ require_once 'show_profile.php';
                                 <h3>4. How does the student demonstrate respect towards colleagues and supervisors?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question9" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question9" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question9" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -238,7 +235,7 @@ require_once 'show_profile.php';
                                 <h3>5. How well does the student adjust to changes in the work environment or tasks?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question0" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question0" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question0" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -277,7 +274,7 @@ require_once 'show_profile.php';
                                 <h3>1. How open is the student to acquiring new skills and knowledge?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question11" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question11" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question11" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -291,7 +288,7 @@ require_once 'show_profile.php';
                                 <h3>2. How effectively does the student apply feedback to improve their performance?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question12" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question12" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question12" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -305,7 +302,7 @@ require_once 'show_profile.php';
                                 <h3>3. How actively does the student seek out opportunities for self-improvement?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question13" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question13" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question13" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -320,7 +317,7 @@ require_once 'show_profile.php';
                                     immersion?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question14" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question14" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question14" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -334,7 +331,7 @@ require_once 'show_profile.php';
                                 <h3>5. How effectively does the student apply theoretical knowledge to practical tasks?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question15" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question15" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question15" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -374,7 +371,7 @@ require_once 'show_profile.php';
                                 <h3>1. How actively does the student participate in team activities and discussions?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question16" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question16" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question16" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -388,7 +385,7 @@ require_once 'show_profile.php';
                                 <h3>2. How well does the student work with others to achieve common goals?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question17" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question17" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question17" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -402,7 +399,7 @@ require_once 'show_profile.php';
                                 <h3>3. How effectively does the student handle conflicts within the team?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question18" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question18" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question18" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -416,7 +413,7 @@ require_once 'show_profile.php';
                                 <h3>4. How supportive is the student towards their team members?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question19" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question19" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question19" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -430,7 +427,7 @@ require_once 'show_profile.php';
                                 <h3>5. How valuable are the student's contributions to the team’s success?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question20" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question20" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question20" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -471,7 +468,7 @@ require_once 'show_profile.php';
                                 <h3>1. How enthusiastic is the student about their tasks and responsibilities?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question21" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question21" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question21" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -485,7 +482,7 @@ require_once 'show_profile.php';
                                 <h3>2. How driven is the student to achieve their goals and exceed expectations?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question22" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question22" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question22" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -499,7 +496,7 @@ require_once 'show_profile.php';
                                 <h3>3. How well does the student handle stress and setbacks?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question23" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question23" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question23" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -514,7 +511,7 @@ require_once 'show_profile.php';
                                     organization?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question24" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question24" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question24" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -528,7 +525,7 @@ require_once 'show_profile.php';
                                 <h3>5. How motivated is the student to take initiative and pursue their own improvement?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question25" value="1"><i
+                                    <label class="star empty"><input type="radio" name="question25" value="1" checked><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question25" value="2"><i
                                             class="fa fa-star"></i></label>
@@ -1017,8 +1014,69 @@ require_once 'show_profile.php';
         form_5_progessbar.classList.remove("active");
     });
 
+    var form1 = document.getElementById('inputs');
+    var form2 = document.getElementById('inputs1');
+    var form3 = document.getElementById('inputs2');
+    var form4 = document.getElementById('inputs3');
+    var form5 = document.getElementById('inputs4');
+
     btn_done.addEventListener("click", function() {
         modal_wrapper.classList.add("active");
+        const answers = [];
+
+        // Get the values from the radio buttons and push them to the array
+
+        for (let i = 1; i <= 5; i++) {
+            const radioButtons = form1.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
+        }
+
+        // Form 2
+        for (let i = 6; i <= 10; i++) {
+            const radioButtons = form2.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
+        }
+
+        // Form 3
+        for (let i = 11; i <= 15; i++) {
+            const radioButtons = form3.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
+        }
+
+        // Form 4
+        for (let i = 16; i <= 20; i++) {
+            const radioButtons = form3.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
+        }
+
+        // Form 5
+        for (let i = 21; i <= 25; i++) {
+            const radioButtons = form4.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
+        }
+
+        // Log the answers array to the console
+        console.log(answers);
     });
 
     shadow.addEventListener("click", function() {
@@ -1155,6 +1213,7 @@ require_once 'show_profile.php';
         return false;
     }
     </script>
+
 
 
 
