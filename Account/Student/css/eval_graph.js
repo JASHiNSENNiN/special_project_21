@@ -297,7 +297,7 @@ function drawBasicdp() {
       title: "Day",
     },
     vAxis: {
-      title: "Performance",
+      title: "Performance rate",
     },
   };
 

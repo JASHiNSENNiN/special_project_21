@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -70,7 +69,7 @@ function generateJobCards($jobOffers)
         </li>';
     }
 }
-
+// <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
 ?>
@@ -84,9 +83,10 @@ require_once 'show_profile.php';
     <link rel="shortcut icon" type="x-icon" href="image/W.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
-    <link rel="stylesheet" type="text/css" href="css/modal.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/modal.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 </head>
 <style>
 
@@ -104,9 +104,6 @@ require_once 'show_profile.php';
             <a class="active" id="#area" href="Company_area.php"> Company Area</a>
             <a class="link" id="#review" href="Company_Review.php">Company review</a>
             <a class="link" id="#narrative" href="Narrative_Report.php">Narrative Report</a>
-            <!-- <a class="link" id="#contact">Contact</a> -->
-
-            <!-- <a href="aboutUs.php">About</a> -->
 
         </nav>
     </div>
@@ -127,13 +124,13 @@ require_once 'show_profile.php';
 
                         <div class="search-container">
                             <button type="submit"><i class="fas fa-search"></i></button>
-                            <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch" type="text"
+                            <input id="globalInputSearchs" name="globalInputSearchs" class="globalInputSearchs" type="text"
                                 placeholder="Work Immersion / Keyword">
 
                         </div>
                         <div class="search-container" style="border-left: 1px solid grey">
                             <button type="submit"><i class="fas fa-map-marker-alt"></i></button>
-                            <input id="InputSearch" name="InputSearch" class="globalInputSearch" type="text"
+                            <input id="InputSearch" name="InputSearch" class="globalInputSearchs" type="text"
                                 placeholder="Search location">
 
                         </div>
@@ -164,7 +161,7 @@ require_once 'show_profile.php';
             <!-- -------------------------------------------------------job cards ------------------------------- -->
 
             <div class="searched-jobs">
-                <ul class="globalTargetList">
+                <ul class="globalTargetLists">
                     <div class="job-cards">
 
                         <?php generateJobCards($jobOffers); ?>
@@ -173,7 +170,7 @@ require_once 'show_profile.php';
                     </div>
                 </ul>
                 <!-- feedback -->
-                <div class="globalSearchResultNoFoundFeedback" aria-live="polite"> Search nothing found</div>
+                <div class="globalSearchResultNoFoundFeedbacks" aria-live="polite"> Search nothing found</div>
             </div>
         </div>
 
@@ -183,22 +180,23 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
-    <script src="js/filter.js"> </script>
+
+    <script src="css/filter.js"></script>
 
 
 </body>

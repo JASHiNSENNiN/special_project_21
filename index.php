@@ -59,7 +59,7 @@ function generateJobCards($jobOffers)
                 </div>
                 
                 <div class="job-card-buttons">
-                    <a href="org.php?job_id=' . base64_encode( encrypt_url_parameter((string)$job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
+                    <a href="org.php?job_id=' . base64_encode(encrypt_url_parameter((string)$job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
                     <button class="search-buttons card-buttons-msg">Save</button>
                 </div>
             </div>
@@ -78,6 +78,7 @@ function generateJobCards($jobOffers)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Work Immersion Search | Workify</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/QCGWrw4Y/W.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/modal.css">
@@ -91,9 +92,9 @@ function generateJobCards($jobOffers)
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -184,20 +185,20 @@ function generateJobCards($jobOffers)
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script src="js/filter.js"> </script>
 

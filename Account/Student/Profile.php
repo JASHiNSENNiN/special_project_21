@@ -79,8 +79,8 @@ $email = $_SESSION['email'];
         </div>
 
         <li>
-            <a href="Company_Area.php">
-                <i class="fa fa-sign-out-alt fa-2x"></i>
+            <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
+                <i class=" fa fa-sign-out-alt fa-2x"></i>
             </a>
         </li>
         </ul>
@@ -133,17 +133,22 @@ $email = $_SESSION['email'];
                         <tr>
                             <td><b>Address</b></td>
                             <td>:</td>
-                            <td>Afan Salavador Street Guimba Nueva Ecija</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td><b>Contact Number</b></td>
                             <td>:</td>
-                            <td>0917-8830311</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td><b>Guardians</b></td>
                             <td>:</td>
-                            <td>N/A</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><b>Guardians number</b></td>
+                            <td>:</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td><b>Guardians number</b></td>

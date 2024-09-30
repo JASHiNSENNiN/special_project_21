@@ -19,7 +19,8 @@
 }
 
 .wrapper {
-  width: 70%;
+  margin-bottom: 50px !important;
+  width: 50%;
   max-width: 100%;
   background: var(--white);
   margin: 50px auto 0;
@@ -245,6 +246,7 @@
 .st {
   margin: 20px;
 }
+
 .sr {
   text-align: center;
   margin-top: 20px;
@@ -254,14 +256,17 @@
 [name^="question"] {
   display: none;
 }
+
 .star {
   font-size: 30px;
   cursor: pointer;
   margin: 20px;
 }
+
 .empty i {
   color: #ccc;
 }
+
 .green i {
   color: gold;
 }
@@ -280,7 +285,9 @@ input[type="text"] {
   border-radius: 6px;
   line-height: 1.5;
   padding: 20px 29px;
-  transition: box-shadow 100ms ease-in, border 100ms ease-in,
+  transition:
+    box-shadow 100ms ease-in,
+    border 100ms ease-in,
     background-color 100ms ease-in;
   border: 2px solid #dee1e2;
   color: rgb(14, 14, 16);
@@ -295,6 +302,7 @@ input[type="text"] {
 input[type="text"]:hover {
   border-color: #ccc;
 }
+
 input {
   display: block;
 }
