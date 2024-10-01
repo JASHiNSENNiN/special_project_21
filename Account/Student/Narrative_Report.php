@@ -5,6 +5,27 @@ if (session_status() == PHP_SESSION_NONE) {
 ;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+
+// Check if the form has been submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Initialize an empty array to store the radio button data
+    $radioButtonData = [];
+
+    // Loop through the radio button questions
+    for ($i = 1; $i <= 25; $i++) {
+        // Get the value of the radio button
+        $radioButtonValue = $_POST["question$i"];
+
+        // Add the radio button value to the array
+        $radioButtonData["question$i"] = $radioButtonValue;
+    }
+
+    // Convert the array to JSON
+    $jsonRadioButtonData = json_encode($radioButtonData);
+
+    // Print the JSON data
+    echo $jsonRadioButtonData;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +58,7 @@ require_once 'show_profile.php';
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a class="link" id="#area" href="Company_Area.php"> Company Area</a>
-            <a class="link" id="#review" href="Company_Review.php">Company review</a>
+            <!-- <a class="link" id="#review" href="Company_Review.php">Company review</a> -->
             <a class="active1" id="#narrative" href="Narrative_Report.php">Narrative Report</a>
             <!-- <a class="link" id="#contact">Contact</a> -->
 
@@ -93,7 +114,7 @@ require_once 'show_profile.php';
                 <div class="form_container">
                     <div class="questioner">
 
-                        <form id="inputs">
+                        <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How well does the student produce high-quality and accurate work?</h3>
                                 <div class="sr">
@@ -175,7 +196,7 @@ require_once 'show_profile.php';
                 <h2>Professionalism</h2>
                 <div class="form_container">
                     <div class="questioner">
-                        <form id="inputs1">
+                        <form id="inputs1" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How consistent is the student with arriving on time and meeting deadlines?
                                 </h3>
@@ -235,15 +256,15 @@ require_once 'show_profile.php';
                                 <h3>5. How well does the student adjust to changes in the work environment or tasks?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question0" value="1" checked><i
+                                    <label class="star empty"><input type="radio" name="question10" value="1" checked><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="2"><i
+                                    <label class="star empty"><input type="radio" name="question10" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="3"><i
+                                    <label class="star empty"><input type="radio" name="question10" value="3"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="4"><i
+                                    <label class="star empty"><input type="radio" name="question10" value="4"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="5"><i
+                                    <label class="star empty"><input type="radio" name="question10" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
 
@@ -269,7 +290,7 @@ require_once 'show_profile.php';
                 <h2>Learning and Development</h2>
                 <div class="form_container">
                     <div class="questioner">
-                        <form id="inputs2">
+                        <form id="inputs2" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How open is the student to acquiring new skills and knowledge?
                                 </h3>
@@ -366,7 +387,7 @@ require_once 'show_profile.php';
                 <div class="form_container">
 
                     <div class="questioner">
-                        <form id="inputs3">
+                        <form id="inputs3" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How actively does the student participate in team activities and discussions?
                                 </h3>
@@ -463,7 +484,7 @@ require_once 'show_profile.php';
                 <div class="form_container">
 
                     <div class="questioner">
-                        <form id="inputs4">
+                        <form id="inputs4" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How enthusiastic is the student about their tasks and responsibilities?
                                 </h3>
@@ -783,11 +804,10 @@ require_once 'show_profile.php';
     var form5 = document.getElementById('inputs4');
 
     btn_done.addEventListener("click", function() {
-        modal_wrapper.classList.add("active");
+        // Get the radio button values
         const answers = [];
 
-        // Get the values from the radio buttons and push them to the array
-
+        // Form 1
         for (let i = 1; i <= 5; i++) {
             const radioButtons = form1.querySelectorAll(`[name="question${i}"]`);
             radioButtons.forEach((radioButton) => {
@@ -819,7 +839,7 @@ require_once 'show_profile.php';
 
         // Form 4
         for (let i = 16; i <= 20; i++) {
-            const radioButtons = form3.querySelectorAll(`[name="question${i}"]`);
+            const radioButtons = form4.querySelectorAll(`[name="question${i}"]`);
             radioButtons.forEach((radioButton) => {
                 if (radioButton.checked) {
                     answers.push(radioButton.value);
@@ -829,7 +849,7 @@ require_once 'show_profile.php';
 
         // Form 5
         for (let i = 21; i <= 25; i++) {
-            const radioButtons = form4.querySelectorAll(`[name="question${i}"]`);
+            const radioButtons = form5.querySelectorAll(`[name="question${i}"]`);
             radioButtons.forEach((radioButton) => {
                 if (radioButton.checked) {
                     answers.push(radioButton.value);
@@ -837,8 +857,23 @@ require_once 'show_profile.php';
             });
         }
 
-        // Log the answers array to the console
-        console.log(answers);
+        // Create a JSON object
+        const jsonData = {};
+        for (let i = 0; i < answers.length; i++) {
+            jsonData[`question${i + 1}`] = answers[i];
+        }
+        console.log(jsonData);
+        // Send the JSON data to the PHP script using AJAX
+        fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
     });
 
     shadow.addEventListener("click", function() {

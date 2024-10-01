@@ -32,7 +32,7 @@ require_once 'show_profile.php';
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a href="Company.php">Work Immersion List</a>
+            <!-- <a href="Company.php">Work Immersion List</a> -->
             <a href="Student.php">Student</a>
             <a class="active" href="Dashboard.php">Analytics</a>
             <a href="Reports.php">Reports</a>

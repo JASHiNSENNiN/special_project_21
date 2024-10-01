@@ -71,7 +71,7 @@ $tvl_students = get_students_by_strand('tvl');
     <hr>
     <div class="logo">
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a href="Company.php">Work Immersion List</a>
+            <!-- <a href="Company.php">Work Immersion List</a> -->
             <!-- <a href="#.php">Company</a> -->
             <a class="active1" href="Student.php">Student</a>
             <a href="Dashboard.php">Analytics</a>
