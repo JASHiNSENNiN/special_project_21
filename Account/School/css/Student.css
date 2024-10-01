@@ -747,9 +747,9 @@ h3:after {
   margin: 6px;
 }
 
-input {
+/* input {
   display: none;
-}
+} */
 
 .button-12 {
   display: inline-block;
@@ -893,4 +893,126 @@ input {
   font-size: 40px;
   font-weight: 600;
   color: #4379f2;
+}
+
+.addStudent button {
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* CSS */
+.button-66 {
+  background-color: #0a6bff;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset,
+    rgba(0, 44, 97, 0.1) 0 3px 6px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  /* display: inherit; */
+  font-family: "Space Grotesk", -apple-system, system-ui, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+  margin-top: 20px;
+  min-height: 56px;
+  min-width: 120px;
+  /* padding: 10px 15px; */
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  transition: all 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.button-66:hover {
+  background-color: #065dd8;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-66 {
+    padding: 16px 44px;
+    min-width: 150px;
+  }
+}
+
+input[type="text"] {
+  margin: auto;
+  display: flex;
+  width: 700px;
+  margin-top: 20px;
+  padding: 20px;
+  margin-left: 35px;
+  height: auto;
+  /* margin-right: 0px; */
+  border-radius: 20px;
+  border: 1px solid #172738;
+}
+
+/* .inputName {
+  justify-content: center;
+  align-items: center;
+} */
+
+.dropdown1 {
+  /* margin: auto;
+  display: flex;
+  width: 50%; */
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+.dropdown-input1 {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.dropdown-list1 {
+  position: absolute;
+  top: 100%;
+  left: 50;
+  right: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 550px;
+  overflow-y: auto;
+  background-color: white;
+  z-index: 1;
+  display: none;
+  text-decoration: none;
+
+  /* Initially hidden */
+}
+.dropdown-item1 {
+  padding: 10px;
+  cursor: pointer;
+}
+.dropdown-item1:hover {
+  background-color: #f0f0f0;
+  margin: auto;
+}
+
+.cent {
+  margin: auto;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.butts {
+  margin: auto;
+  display: flex;
+  width: 50%;
+  margin-right: 110px;
 }

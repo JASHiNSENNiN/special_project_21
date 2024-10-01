@@ -2,18 +2,19 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php'; 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
 
-function get_students_by_strand($strand) {
+function get_students_by_strand($strand)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
     $database = $_ENV['MYSQL_DBNAME'];
     $conn = new mysqli($host, $username, $password, $database);
-    
+
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -24,7 +25,7 @@ function get_students_by_strand($strand) {
 
     if ($result->num_rows > 0) {
         $students = array();
-        while($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             $students[] = $row;
         }
     } else {
@@ -116,12 +117,35 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
     </div>
 
+
+
     <div id="content_container">
         <div id="humss" class="content active">
+
+            <div class="cent">
+                <div class="dropdown1">
+                    <input type="text" id="searchInput" class="dropdown-input1" placeholder="Search for a student...">
+                    <div id="dropdownList1" class="dropdown-list1">
+                        <div class="dropdown-item1">John Doe</div>
+                        <div class="dropdown-item1">Jane Smith</div>
+                        <div class="dropdown-item1">Michael Johnson</div>
+                        <div class="dropdown-item1">Emily Davis</div>
+                        <div class="dropdown-item1">Chris Lee</div>
+                        <div class="dropdown-item1">Katie Brown</div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="butts">
+                <button class="button-66" id="addButton1" role="button"><i class='fas fa-user-plus'
+                        style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
+            </div>
+
             <h1 style="margin-bottom: 50px; margin-top:50px">HUMSS</h1>
             <div class="container2">
                 <table class="rwd-table">
-                    <tbody>
+                    <tbody id="studentTableBody1">
                         <tr>
                             <th>#</th>
                             <th>ID Picture</th>
@@ -131,24 +155,24 @@ $tvl_students = get_students_by_strand('tvl');
 
                         </tr>
                         <?php
-                $count = 1;
-                foreach ($humss_students as $student) {
-                    echo "<tr>";
-                    echo "<td data-th='#'>" . $count . "</td>";
-                    echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
-                    echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                    echo "<td data-th='Result'>";
-                    echo "<div class='container3'>";
-                    echo "<div class='circular-progress'>";
-                    echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</td>";
-                    echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string)$student['id'])) . "'\">View Profile</button></td>";
-                    echo "</tr>";
-                    $count++;
-                }
-                ?>
+                        $count = 1;
+                        foreach ($humss_students as $student) {
+                            echo "<tr>";
+                            echo "<td data-th='#'>" . $count . "</td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Result'>";
+                            echo "<div class='container3'>";
+                            echo "<div class='circular-progress'>";
+                            echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "</tr>";
+                            $count++;
+                        }
+                        ?>
                     </tbody>
 
                 </table>
@@ -156,6 +180,25 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
 
         <div id="stem" class="content">
+            <div class="cent">
+                <div class="dropdown1">
+                    <input type="text" id="searchInput" class="dropdown-input1" placeholder="Search for a student...">
+                    <div id="dropdownList1" class="dropdown-list1">
+                        <div class="dropdown-item1">John Doe</div>
+                        <div class="dropdown-item1">Jane Smith</div>
+                        <div class="dropdown-item1">Michael Johnson</div>
+                        <div class="dropdown-item1">Emily Davis</div>
+                        <div class="dropdown-item1">Chris Lee</div>
+                        <div class="dropdown-item1">Katie Brown</div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="butts">
+                <button class="button-66" id="addButton" role="button"><i class='fas fa-user-plus'
+                        style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
+            </div>
             <h1 style="margin-bottom: 50px; margin-top:50px">STEM</h1>
             <div class="container2">
                 <table class="rwd-table">
@@ -169,24 +212,24 @@ $tvl_students = get_students_by_strand('tvl');
 
                         </tr>
                         <?php
-                $count = 1;
-                foreach ($stem_students as $student) {
-                    echo "<tr>";
-                    echo "<td data-th='#'>" . $count . "</td>";
-                    echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
-                    echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                    echo "<td data-th='Result'>";
-                    echo "<div class='container3'>";
-                    echo "<div class='circular-progress'>";
-                    echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</td>";
-                    echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string)$student['id'])) . "'\">View Profile</button></td>";
-                    echo "</tr>";
-                    $count++;
-                }
-                ?>
+                        $count = 1;
+                        foreach ($stem_students as $student) {
+                            echo "<tr>";
+                            echo "<td data-th='#'>" . $count . "</td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Result'>";
+                            echo "<div class='container3'>";
+                            echo "<div class='circular-progress'>";
+                            echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "</tr>";
+                            $count++;
+                        }
+                        ?>
 
                     </tbody>
 
@@ -195,6 +238,26 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
 
         <div id="gas" class="content">
+
+            <div class="cent">
+                <div class="dropdown1">
+                    <input type="text" id="searchInput" class="dropdown-input1" placeholder="Search for a student...">
+                    <div id="dropdownList1" class="dropdown-list1">
+                        <div class="dropdown-item1">John Doe</div>
+                        <div class="dropdown-item1">Jane Smith</div>
+                        <div class="dropdown-item1">Michael Johnson</div>
+                        <div class="dropdown-item1">Emily Davis</div>
+                        <div class="dropdown-item1">Chris Lee</div>
+                        <div class="dropdown-item1">Katie Brown</div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="butts">
+                <button class="button-66" id="addButton" role="button"><i class='fas fa-user-plus'
+                        style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
+            </div>
             <h1 style="margin-bottom: 50px; margin-top:50px">GAS</h1>
             <div class="container2">
                 <table class="rwd-table">
@@ -208,24 +271,24 @@ $tvl_students = get_students_by_strand('tvl');
 
                         </tr>
                         <?php
-                $count = 1;
-                foreach ($gas_students as $student) {
-                    echo "<tr>";
-                    echo "<td data-th='#'>" . $count . "</td>";
-                    echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
-                    echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                    echo "<td data-th='Result'>";
-                    echo "<div class='container3'>";
-                    echo "<div class='circular-progress'>";
-                    echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</td>";
-                    echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string)$student['id'])) . "'\">View Profile</button></td>";
-                    echo "</tr>";
-                    $count++;
-                }
-                ?>
+                        $count = 1;
+                        foreach ($gas_students as $student) {
+                            echo "<tr>";
+                            echo "<td data-th='#'>" . $count . "</td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Result'>";
+                            echo "<div class='container3'>";
+                            echo "<div class='circular-progress'>";
+                            echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "</tr>";
+                            $count++;
+                        }
+                        ?>
                     </tbody>
 
                 </table>
@@ -233,6 +296,25 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
 
         <div id="techvoc" class="content">
+            <div class="cent">
+                <div class="dropdown1">
+                    <input type="text" id="searchInput" class="dropdown-input1" placeholder="Search for a student...">
+                    <div id="dropdownList1" class="dropdown-list1">
+                        <div class="dropdown-item1">John Doe</div>
+                        <div class="dropdown-item1">Jane Smith</div>
+                        <div class="dropdown-item1">Michael Johnson</div>
+                        <div class="dropdown-item1">Emily Davis</div>
+                        <div class="dropdown-item1">Chris Lee</div>
+                        <div class="dropdown-item1">Katie Brown</div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="butts">
+                <button class="button-66" id="addButton" role="button"><i class='fas fa-user-plus'
+                        style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
+            </div>
             <h1 style="margin-bottom: 50px; margin-top:50px">TECHVOC</h1>
             <div class="container2">
                 <table class="rwd-table">
@@ -246,24 +328,24 @@ $tvl_students = get_students_by_strand('tvl');
 
                         </tr>
                         <?php
-                $count = 1;
-                foreach ($tvl_students as $student) {
-                    echo "<tr>";
-                    echo "<td data-th='#'>" . $count . "</td>";
-                    echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
-                    echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                    echo "<td data-th='Result'>";
-                    echo "<div class='container3'>";
-                    echo "<div class='circular-progress'>";
-                    echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</td>";
-                    echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string)$student['id'])) . "'\">View Profile</button></td>";
-                    echo "</tr>";
-                    $count++;
-                }
-                ?>
+                        $count = 1;
+                        foreach ($tvl_students as $student) {
+                            echo "<tr>";
+                            echo "<td data-th='#'>" . $count . "</td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Result'>";
+                            echo "<div class='container3'>";
+                            echo "<div class='circular-progress'>";
+                            echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "</tr>";
+                            $count++;
+                        }
+                        ?>
 
                     </tbody>
 
@@ -346,6 +428,95 @@ $tvl_students = get_students_by_strand('tvl');
 
     }, speed);
     </script>
+
+    <!-- <script>
+    document.getElementById('addButton').addEventListener('click', function() {
+        const input = document.getElementById('itemInput');
+        const newItemText = input.value.trim();
+
+        if (newItemText) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.textContent = newItemText;
+            row.appendChild(cell);
+            document.getElementById('itemTableBody').appendChild(row);
+            input.value = ''; // Clear the input
+        } else {
+            alert('Please enter a valid item.');
+        }
+    });
+
+    // Optional: Allow pressing Enter to add items
+    document.getElementById('itemInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.getElementById('addButton').click();
+        }
+    });
+    </script> -->
+
+    <script>
+    const searchInput = document.getElementById('searchInput');
+    const dropdownList = document.getElementById('dropdownList1');
+    const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
+    let selectedStudent = '';
+
+    // Filter dropdown items based on search input
+    searchInput.addEventListener('input', function() {
+        const filter = searchInput.value.toLowerCase();
+        let hasMatches = false;
+
+        dropdownList.style.display = 'block'; // Show the dropdown list
+
+        for (let i = 0; i < dropdownItems.length; i++) {
+            const itemText = dropdownItems[i].textContent.toLowerCase();
+            if (itemText.includes(filter)) {
+                dropdownItems[i].style.display = 'block';
+                hasMatches = true;
+            } else {
+                dropdownItems[i].style.display = 'none';
+            }
+        }
+
+        if (!hasMatches) {
+            dropdownList.style.display = 'none'; // Hide if no matches
+        }
+    });
+
+    // Select student on item click
+    for (let i = 0; i < dropdownItems.length; i++) {
+        dropdownItems[i].addEventListener('click', function() {
+            selectedStudent = this.textContent; // Store the selected student
+            searchInput.value = selectedStudent; // Set input value
+            dropdownList.style.display = 'none'; // Hide dropdown
+        });
+    }
+
+    // Add student to table
+    document.getElementById('addButton1').addEventListener('click', function() {
+        if (selectedStudent) {
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+
+            nameCell.textContent = selectedStudent;
+            row.appendChild(nameCell);
+            document.getElementById('studentTableBody1').appendChild(row);
+
+            // Clear input and reset selected student
+            searchInput.value = '';
+            selectedStudent = '';
+        } else {
+            alert('Please select a student.');
+        }
+    });
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.matches('.dropdown-input1')) {
+            dropdownList.style.display = 'none';
+        }
+    });
+    </script>
+
 
     <!-- <div class="sub-footer">
         2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
