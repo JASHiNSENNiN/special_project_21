@@ -18,9 +18,9 @@ $company_Name = "National Irrigation Administration Careers and
     <link rel="stylesheet" type="text/css" href="css/Details.css">
 
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -28,49 +28,7 @@ $company_Name = "National Irrigation Administration Careers and
     <!-- -------------font--------- -->
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
 
-    <script type="text/javascript">
-        google.charts.load("current", {
-            packages: ["corechart"]
-        });
-        google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Work', 11],
-                ['Eat', 2],
-                ['Commute', 2],
-                ['Watch TV', 2],
-                ['Sleep', 7]
-            ]);
-
-            var options = {
-                title: 'My Daily Activities',
-                is3D: true,
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-            chart.draw(data, options);
-        }
-    </script>
-    <script>
-        var options = {
-            chart: {
-                type: 'bar'
-            },
-            series: [{
-                name: 'sales',
-                data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
-            }],
-            xaxis: {
-                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-            }
-        }
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-        chart.render();
-    </script>
 
 </head>
 
@@ -94,14 +52,36 @@ $company_Name = "National Irrigation Administration Careers and
     </div>
     <hr class="line_bottom">
     <div class="bgc">
+        <div class="container-data-box">
+            <div class="data-box">
+
+                <p>20</p>
+                <label>Total of Student</label>
+            </div>
+
+            <div class="data-box">
+
+                <p>10</p>
+                <label>Total of Deployment</label>
+            </div>
+
+            <div class="data-box">
+
+                <p>34</p>
+                <label>Total of Request Applicant</label>
+            </div>
+        </div>
 
         <div class="row">
 
             <div class="column">
                 <h1 class="title">Student Population</h1>
-                <!-- <div id="myChart2" class="Chart2"></div> -->
-                <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+
+
+
             </div>
+
+
         </div>
 
         <hr class="line_bottom">
