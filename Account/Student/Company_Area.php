@@ -62,7 +62,7 @@ function generateJobCards($jobOffers)
                 </div>
                 
                 <div class="job-card-buttons">
-                    <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
+                    <a href="org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '"><button class="search-buttons card-buttons">Details</button></a>
                     <button class="search-buttons card-buttons-msg">Save</button>
                 </div>
             </div>
@@ -102,7 +102,7 @@ require_once 'show_profile.php';
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a class="active" id="#area" href="Company_area.php"> Company Area</a>
-            <a class="link" id="#review" href="Company_Review.php">Company review</a>
+            <!-- <a class="link" id="#review" href="Company_Review.php">Company review</a> -->
             <a class="link" id="#narrative" href="Narrative_Report.php">Narrative Report</a>
 
         </nav>
@@ -124,8 +124,8 @@ require_once 'show_profile.php';
 
                         <div class="search-container">
                             <button type="submit"><i class="fas fa-search"></i></button>
-                            <input id="globalInputSearchs" name="globalInputSearchs" class="globalInputSearchs" type="text"
-                                placeholder="Work Immersion / Keyword">
+                            <input id="globalInputSearchs" name="globalInputSearchs" class="globalInputSearchs"
+                                type="text" placeholder="Work Immersion / Keyword">
 
                         </div>
                         <div class="search-container" style="border-left: 1px solid grey">
@@ -147,8 +147,8 @@ require_once 'show_profile.php';
 
 
             <nav style="position:relative; margin-left:auto; margin-right:auto;">
-                <a class="active" href="index.php">Work Immersion feed</a>
-                <a href="recent-search.php">Recent search</a>
+                <!-- <a class="active" href="index.php">Work Immersion feed</a>
+                <a href="recent-search.php">Recent search</a> -->
 
 
 
@@ -180,20 +180,20 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
 
     <script src="css/filter.js"></script>

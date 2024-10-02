@@ -1,4 +1,37 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+$dotenv->load();
+$email = $_POST['register_email'];
+if (email_exists($email)) {
+    header('Location: ../../register.php?error=invalidEmail');
+    exit;
+}
+function email_exists($email) {
+
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "SELECT 1 FROM users WHERE email = '$email'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false; 
+    }
+
+    mysqli_close($conn);
+}
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 };

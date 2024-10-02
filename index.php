@@ -92,9 +92,9 @@ function generateJobCards($jobOffers)
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -104,9 +104,9 @@ function generateJobCards($jobOffers)
                 <img src="img/logov3.jpg" alt="Logo">
             </a>
             <nav class="dash-middle">
-                <a class="active-header" href="index.php">Home</a>
+                <!-- <a class="active-header" href="index.php">Home</a>
                 <a href="job_list.php">Company review</a>
-                <a href="contact.php">Contact</a>
+                <a href="contact.php">Contact</a> -->
             </nav>
         </div>
         <nav>
@@ -153,7 +153,7 @@ function generateJobCards($jobOffers)
 
             <nav style="position:relative; margin-left:auto; margin-right:auto;">
                 <a class="active" href="index.php">Work Immersion feed</a>
-                <a href="recent-search.php">Recent search</a>
+                <!-- <a href="recent-search.php">Recent search</a> -->
 
 
 
@@ -185,20 +185,20 @@ function generateJobCards($jobOffers)
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
     <script src="js/filter.js"> </script>
 

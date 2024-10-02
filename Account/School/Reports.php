@@ -28,16 +28,13 @@ require_once 'show_profile.php';
     <br><br>
     <hr>
     <div class="logo">
-
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a href="Company.php">Work Immersion List</a>
+            <!-- <a href="Company.php">Work Immersion List</a> -->
             <!-- <a href="#.php">Company</a> -->
             <a href="Student.php">Student</a>
             <a href="Dashboard.php">Analytics</a>
             <a class="active" href="Reports.php">Reports</a>
             <!-- <a href="Details.php">Details</a> -->
-
-
         </nav>
     </div>
     <hr class="line_bottom">
@@ -106,7 +103,7 @@ require_once 'show_profile.php';
     <br>
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
     </footer>
 
     <script>

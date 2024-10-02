@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +13,6 @@
     ?>
     <link rel="stylesheet" type="text/css" href="/css/header.css">
     <link rel="stylesheet" type="text/css" href="/css/loginform.css">
-    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
     function onSubmit(token) {
         if (validateRegisterForm()) {

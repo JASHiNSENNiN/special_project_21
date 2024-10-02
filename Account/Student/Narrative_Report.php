@@ -5,6 +5,27 @@ if (session_status() == PHP_SESSION_NONE) {
 ;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+
+// Check if the form has been submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Initialize an empty array to store the radio button data
+    $radioButtonData = [];
+
+    // Loop through the radio button questions
+    for ($i = 1; $i <= 25; $i++) {
+        // Get the value of the radio button
+        $radioButtonValue = $_POST["question$i"];
+
+        // Add the radio button value to the array
+        $radioButtonData["question$i"] = $radioButtonValue;
+    }
+
+    // Convert the array to JSON
+    $jsonRadioButtonData = json_encode($radioButtonData);
+
+    // Print the JSON data
+    echo $jsonRadioButtonData;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,14 +51,14 @@ require_once 'show_profile.php';
 
 <body>
 
-    <?php echo $profile_div; ?>s
+    <?php echo $profile_div; ?>
     <br><br>
     <hr>
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a class="link" id="#area" href="Company_Area.php"> Company Area</a>
-            <a class="link" id="#review" href="Company_Review.php">Company review</a>
+            <!-- <a class="link" id="#review" href="Company_Review.php">Company review</a> -->
             <a class="active1" id="#narrative" href="Narrative_Report.php">Narrative Report</a>
             <!-- <a class="link" id="#contact">Contact</a> -->
 
@@ -93,7 +114,7 @@ require_once 'show_profile.php';
                 <div class="form_container">
                     <div class="questioner">
 
-                        <form id="inputs">
+                        <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How well does the student produce high-quality and accurate work?</h3>
                                 <div class="sr">
@@ -101,7 +122,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question1" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question1" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question1" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question1" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -114,7 +135,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question2" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question2" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question2" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question2" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -127,7 +148,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question3" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question3" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question3" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question3" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -140,7 +161,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question4" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question4" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question4" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question4" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -154,7 +175,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question5" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question5" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question5" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question5" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -175,7 +196,7 @@ require_once 'show_profile.php';
                 <h2>Professionalism</h2>
                 <div class="form_container">
                     <div class="questioner">
-                        <form id="inputs1">
+                        <form id="inputs1" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How consistent is the student with arriving on time and meeting deadlines?
                                 </h3>
@@ -184,7 +205,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question6" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question6" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question6" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question6" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -197,7 +218,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question7" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question7" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question7" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question7" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -211,7 +232,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question8" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question8" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question8" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question8" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -225,7 +246,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question9" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question9" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question9" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question9" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -235,15 +256,15 @@ require_once 'show_profile.php';
                                 <h3>5. How well does the student adjust to changes in the work environment or tasks?
                                 </h3>
                                 <div class="sr">
-                                    <label class="star empty"><input type="radio" name="question0" value="1" checked><i
+                                    <label class="star empty"><input type="radio" name="question10" value="1" checked><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="2"><i
+                                    <label class="star empty"><input type="radio" name="question10" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question10" value="3"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="4"><i
+                                    <label class="star empty"><input type="radio" name="question10" value="4"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question0" value="5"><i
+                                    <label class="star empty"><input type="radio" name="question10" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
 
@@ -269,7 +290,7 @@ require_once 'show_profile.php';
                 <h2>Learning and Development</h2>
                 <div class="form_container">
                     <div class="questioner">
-                        <form id="inputs2">
+                        <form id="inputs2" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How open is the student to acquiring new skills and knowledge?
                                 </h3>
@@ -278,7 +299,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question11" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question11" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question11" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question11" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -292,7 +313,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question12" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question12" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question12" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question12" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -306,7 +327,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question13" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question13" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question13" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question13" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -321,7 +342,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question14" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question14" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question14" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question14" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -335,7 +356,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question15" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question15" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question15" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question15" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -366,7 +387,7 @@ require_once 'show_profile.php';
                 <div class="form_container">
 
                     <div class="questioner">
-                        <form id="inputs3">
+                        <form id="inputs3" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How actively does the student participate in team activities and discussions?
                                 </h3>
@@ -375,7 +396,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question16" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question16" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question16" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question16" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -389,7 +410,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question17" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question17" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question17" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question17" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -403,7 +424,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question18" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question18" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question18" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question18" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -417,7 +438,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question19" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question19" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question19" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question19" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -431,7 +452,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question20" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question20" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question20" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question20" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -463,7 +484,7 @@ require_once 'show_profile.php';
                 <div class="form_container">
 
                     <div class="questioner">
-                        <form id="inputs4">
+                        <form id="inputs4" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="st">
                                 <h3>1. How enthusiastic is the student about their tasks and responsibilities?
                                 </h3>
@@ -472,7 +493,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question21" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question21" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question21" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question21" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -486,7 +507,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question22" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question22" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question22" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question22" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -500,7 +521,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question23" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question23" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question23" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question23" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -515,7 +536,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question24" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question24" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question24" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question24" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -529,7 +550,7 @@ require_once 'show_profile.php';
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question25" value="2"><i
                                             class="fa fa-star"></i></label>
-                                    <label class="star empty"><input type="radio" name="question25" value="3" checked><i
+                                    <label class="star empty"><input type="radio" name="question25" value="3"><i
                                             class="fa fa-star"></i></label>
                                     <label class="star empty"><input type="radio" name="question25" value="4"><i
                                             class="fa fa-star"></i></label>
@@ -607,248 +628,10 @@ require_once 'show_profile.php';
         </div>
     </div>
 
-    <!-- <form action="" method="POST" class="form">
-        <div class="sales-boxes">
-            <div class="recent-sales box">
-
-                <br>
-                <div class="mb-4">
-                    <label class="lb" for="studentid">Company name:</label><br>
-                    <input type="text" placeholder="Enter Company name" name="studentid" id="studentid" required>
-                </div>
-
-                <table class="tbl1">
-                    <tr>
-                        <td>5</td>
-                        <td>Outstanding</td>
-                        <td>Perform exceeds the required standard.</td>
-
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Very Satisfactory</td>
-                        <td>Performace fully met job requirements. Was able to perform what was expected
-                            of
-                            a person in his/her position.</td>
-
-
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Satisfactory</td>
-                        <td>Performance has met the required standard. Can perform duties with minimal
-                            supervision.</td>
-
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Fair</td>
-                        <td>Performace partially meet the required stantard. Less than satisfactory
-                            could be
-                            doind better.</td>
-
-
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Needs Improvement</td>
-                        <td>Performance does not meet the required standard. Major improvements needed.
-                        </td>
-                      
-
-                    </tr>
-                </table>
-                <br>
-                <form action="">
-                    <div class="container">
-                        <h1>Evaluation </h1>
-                        <p>Please fill in this evaluation form.</p>
-                        <hr class="hr1">
-
-                        <table>
-                            <tr>
-                                <th>#</th>
-                                <th>Questioner</th>
-                                <th>1</th>
-                                <th>2</th>
-                                <th>3</th>
-                                <th>4</th>
-                                <th>5</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Consistently works with others to accomplish goals and tasks. </td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-                                <td><input type="checkbox" name="fooby[1][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Treats all team members in a respectful courteous manner.</td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-                                <td><input type="checkbox" name="fooby[2][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Actively participates in activities and assigned tasks required.
-                                </td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-                                <td><input type="checkbox" name="fooby[3][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Willing to work with team members to improve team collaboration on
-                                    continuous basis.</td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-                                <td><input type="checkbox" name="fooby[4][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Considers the feedback and views of team members when completing an
-                                    assigned task. </td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-                                <td><input type="checkbox" name="fooby[5][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Attendance and tardiness. </td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-                                <td><input type="checkbox" name="fooby[6][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Is cooperative and dependable. </td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-                                <td><input type="checkbox" name="fooby[7][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Accepts responsibility with initiative. </td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-                                <td><input type="checkbox" name="fooby[8][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Show interest in work. </td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-                                <td><input type="checkbox" name="fooby[9][]"></td>
-
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Grooms appropriately and carries self well. </td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-                                <td><input type="checkbox" name="fooby[10][]"></td>
-
-                            </tr>
-                        </table>
-                        <hr>
-                        <br>
-
-                        <h1>Feedback</h1>
-                        <div class="mb-4 small">
-                            Please provide your feedback in the form below
-                        </div>
-                        <form name="feedback_form" id="feedback_form" method="post">
-                            <label>How do you rate your overall experience?</label>
-                            <div class="mb-3 d-flex flex-row py-1">
-                                <div class="form-check mr-3">
-                                    <input class="form-check-input" type="radio" name="rating" id="rating_bad"
-                                        value="bad">
-                                    <label class="form-check-label" for="rating_bad">
-                                        Bad
-                                    </label>
-                                </div>
-
-                                <div class="form-check mx-3">
-                                    <input class="form-check-input" type="radio" name="rating" id="rating_good"
-                                        value="good">
-                                    <label class="form-check-label" for="rating_good">
-                                        Good
-                                    </label>
-                                </div>
-
-                                <div class="form-check mx-3">
-                                    <input class="form-check-input" type="radio" name="rating" id="rating_excellent"
-                                        value="excellent">
-                                    <label class="form-check-label" for="rating_excellent">
-                                        Excellent!
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" for="feedback_comments">Comments:</label><br>
-                                <textarea class="textarea" rows="10" name="comments" id="feedback_comments"></textarea>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label class="form-label" for="feedback_name">Your Name:</label><br>
-                                    <input type="text" required name="name" class="form-control" id="feedback_name"
-                                        placeholder="Name" />
-                                </div>
-
-                                <div class="col mb-4">
-                                    <label class="form-label" for="feedback_email">Email:</label><br>
-                                    <input type="email" name="email" required class="form-control" id="feedback_email"
-                                        placeholder="Your Email" />
-                                </div>
-                            </div><br>
-                            <button type="submit" class="Submit" onclick="openPopup();">Submit</button>
-                        </form>
-                     
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </form>
-
- -->
 
 
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
-        <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>
 
@@ -1021,11 +804,10 @@ require_once 'show_profile.php';
     var form5 = document.getElementById('inputs4');
 
     btn_done.addEventListener("click", function() {
-        modal_wrapper.classList.add("active");
+        // Get the radio button values
         const answers = [];
 
-        // Get the values from the radio buttons and push them to the array
-
+        // Form 1
         for (let i = 1; i <= 5; i++) {
             const radioButtons = form1.querySelectorAll(`[name="question${i}"]`);
             radioButtons.forEach((radioButton) => {
@@ -1057,7 +839,7 @@ require_once 'show_profile.php';
 
         // Form 4
         for (let i = 16; i <= 20; i++) {
-            const radioButtons = form3.querySelectorAll(`[name="question${i}"]`);
+            const radioButtons = form4.querySelectorAll(`[name="question${i}"]`);
             radioButtons.forEach((radioButton) => {
                 if (radioButton.checked) {
                     answers.push(radioButton.value);
@@ -1067,7 +849,7 @@ require_once 'show_profile.php';
 
         // Form 5
         for (let i = 21; i <= 25; i++) {
-            const radioButtons = form4.querySelectorAll(`[name="question${i}"]`);
+            const radioButtons = form5.querySelectorAll(`[name="question${i}"]`);
             radioButtons.forEach((radioButton) => {
                 if (radioButton.checked) {
                     answers.push(radioButton.value);
@@ -1075,8 +857,23 @@ require_once 'show_profile.php';
             });
         }
 
-        // Log the answers array to the console
-        console.log(answers);
+        // Create a JSON object
+        const jsonData = {};
+        for (let i = 0; i < answers.length; i++) {
+            jsonData[`question${i + 1}`] = answers[i];
+        }
+        console.log(jsonData);
+        // Send the JSON data to the PHP script using AJAX
+        fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
     });
 
     shadow.addEventListener("click", function() {

@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . '/backend/php/config.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
@@ -212,27 +211,28 @@ function generateJobCard()
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
     <header id="myHeader-sticky">
         <div class="logo">
-            <a href="index.php">
-                <img src="img/logov3.jpg" alt="Logo">
+            <a href="Company_Area.php">
+                <img src="../../img/logov3.jpg" alt="Logo">
             </a>
             <nav class="dash-middle">
-                <a class="active-header" href="index.php">Home</a>
+                <!-- <a class="active-header" href="index.php">Home</a>
                 <a href="job_list.php">Company review</a>
-                <a href="contact.php">Contact</a>
+                <a href="contact.php">Contact</a> -->
             </nav>
         </div>
         <nav class="nav-log">
-            <a class="login-btn" href="login.php" style="margin-left: 20px;">Sign in</a>
+            <!-- <a class="login-btn" href="login.php" style="margin-left: 20px;">Sign in</a> -->
             <div class="css-1ld7x2h eu4oa1w0"></div>
-            <a class="com-btn" href="post_work_Immersion.php">Post Work Immersion</a>
+            <a class="com-btn" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"
+                onclick="window.location.href = document.referrer;"> Back</a>
         </nav>
 
     </header>
@@ -250,8 +250,8 @@ function generateJobCard()
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
-                        <a href="index.php">
-                            <img src="img/logov3.jpg" alt="Logo">
+                        <a href="Company_Area.php">
+                            <img src="../../img/logov3.jpg" alt="Logo">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -318,20 +318,20 @@ function generateJobCard()
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
     <script src="js/filter.js"> </script>
 
