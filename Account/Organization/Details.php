@@ -23,11 +23,15 @@ $company_Name = "National Irrigation Administration Careers and
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>d
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
     <!-- -------------font--------- -->
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
+
 
 
 </head>
@@ -52,14 +56,36 @@ $company_Name = "National Irrigation Administration Careers and
     </div>
     <hr class="line_bottom">
     <div class="bgc">
+        <div class="container-data-box">
+            <div class="data-box">
+
+                <p>20</p>
+                <label>Total of Student</label>
+            </div>
+
+            <div class="data-box">
+
+                <p>10</p>
+                <label>Total of Deployment</label>
+            </div>
+
+            <div class="data-box">
+
+                <p>34</p>
+                <label>Total of Request Applicant</label>
+            </div>
+        </div>
 
         <div class="row">
 
             <div class="column">
                 <h1 class="title">Student Population</h1>
-                <!-- <div id="myChart2" class="Chart2"></div> -->
-                <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+
+
+
             </div>
+
+
         </div>
 
         <hr class="line_bottom">
@@ -268,7 +294,7 @@ $company_Name = "National Irrigation Administration Careers and
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
+        inputFile1.onchange = function() {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -277,7 +303,7 @@ $company_Name = "National Irrigation Administration Careers and
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
+        inputFile2.onchange = function() {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
@@ -291,7 +317,7 @@ $company_Name = "National Irrigation Administration Careers and
 
             progressValue =
 
-                document.querySelector('.progress-value');
+            document.querySelector('.progress-value');
 
 
 

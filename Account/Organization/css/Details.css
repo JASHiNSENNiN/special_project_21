@@ -1293,3 +1293,29 @@ svg g[show_data] {
   max-width: 650px;
   margin: 35px auto;
 }
+
+.container-data-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.data-box {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+}
+
+.data-box p {
+  font-size: 40px;
+  font-family: "Poppins";
+}
+
+.data-box label {
+  margin-top: 0;
+  font-size: 13px;
+}

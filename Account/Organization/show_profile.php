@@ -6,7 +6,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 
 $organizationName = $_SESSION['organization_name'];
-
 $email = $_SESSION['email'];
 $strandFocus = strtoupper($_SESSION['strand']);
 $profile_div = '<header class="nav-header">
