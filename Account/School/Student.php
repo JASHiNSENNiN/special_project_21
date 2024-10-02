@@ -117,31 +117,49 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
     </div>
 
+    <div class="butts">
+        <button class="button-66" id="modal-btn" role="button"><i class='fas fa-user-plus'
+                style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
+    </div>
 
+    <div id="my-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h1 class="AddStudent">Add Student</h1>
+            </div>
+            <div class="modal-body">
+                <div class="container4">
+
+
+                    <form class="formSub" action="/submit" method="post">
+                        <label class="StudentLabel" for="student">Choose a student:</label>
+                        <select class="StudentSelect" id="student" name="student" required>
+                            <option value="" disabled selected>Select a student</option>
+                            <option value="john_doe">John Doe</option>
+                            <option value="jane_smith">Jane Smith</option>
+                            <option value="sam_brown">Sam Brown</option>
+                            <option value="lisa_white">Lisa White</option>
+                            <option value="mike_green">Mike Green</option>
+                        </select>
+                        <label class="StudentLabel" for="student">Choose a Strand:</label>
+                        <select class="StudentSelect" id="student" name="student" required>
+                            <option value="" disabled selected>Select a student</option>
+                            <option value="HUMSS">HUMSS</option>
+                            <option value="STEM">STEM</option>
+                            <option value="GAS">GAS</option>
+                            <option value="TECHVOC">TECHVOC</option>
+                        </select>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="content_container">
         <div id="humss" class="content active">
-
-            <div class="cent">
-                <div class="dropdown1">
-                    <input type="text" id="searchInput" class="dropdown-input1" placeholder="Search for a student...">
-                    <div id="dropdownList1" class="dropdown-list1">
-                        <div class="dropdown-item1">John Doe</div>
-                        <div class="dropdown-item1">Jane Smith</div>
-                        <div class="dropdown-item1">Michael Johnson</div>
-                        <div class="dropdown-item1">Emily Davis</div>
-                        <div class="dropdown-item1">Chris Lee</div>
-                        <div class="dropdown-item1">Katie Brown</div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="butts">
-                <button class="button-66" id="addButton1" role="button"><i class='fas fa-user-plus'
-                        style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
-            </div>
-
             <h1 style="margin-bottom: 50px; margin-top:50px">HUMSS</h1>
             <div class="container2">
                 <table class="rwd-table">
@@ -179,26 +197,9 @@ $tvl_students = get_students_by_strand('tvl');
             </div>
         </div>
 
+
+
         <div id="stem" class="content">
-            <div class="cent">
-                <div class="dropdown1">
-                    <input type="text" id="searchInput" class="dropdown-input1" placeholder="Search for a student...">
-                    <div id="dropdownList1" class="dropdown-list1">
-                        <div class="dropdown-item1">John Doe</div>
-                        <div class="dropdown-item1">Jane Smith</div>
-                        <div class="dropdown-item1">Michael Johnson</div>
-                        <div class="dropdown-item1">Emily Davis</div>
-                        <div class="dropdown-item1">Chris Lee</div>
-                        <div class="dropdown-item1">Katie Brown</div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="butts">
-                <button class="button-66" id="addButton" role="button"><i class='fas fa-user-plus'
-                        style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
-            </div>
             <h1 style="margin-bottom: 50px; margin-top:50px">STEM</h1>
             <div class="container2">
                 <table class="rwd-table">
@@ -238,26 +239,6 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
 
         <div id="gas" class="content">
-
-            <div class="cent">
-                <div class="dropdown1">
-                    <input type="text" id="searchInput" class="dropdown-input1" placeholder="Search for a student...">
-                    <div id="dropdownList1" class="dropdown-list1">
-                        <div class="dropdown-item1">John Doe</div>
-                        <div class="dropdown-item1">Jane Smith</div>
-                        <div class="dropdown-item1">Michael Johnson</div>
-                        <div class="dropdown-item1">Emily Davis</div>
-                        <div class="dropdown-item1">Chris Lee</div>
-                        <div class="dropdown-item1">Katie Brown</div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="butts">
-                <button class="button-66" id="addButton" role="button"><i class='fas fa-user-plus'
-                        style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
-            </div>
             <h1 style="margin-bottom: 50px; margin-top:50px">GAS</h1>
             <div class="container2">
                 <table class="rwd-table">
@@ -296,25 +277,6 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
 
         <div id="techvoc" class="content">
-            <div class="cent">
-                <div class="dropdown1">
-                    <input type="text" id="searchInput" class="dropdown-input1" placeholder="Search for a student...">
-                    <div id="dropdownList1" class="dropdown-list1">
-                        <div class="dropdown-item1">John Doe</div>
-                        <div class="dropdown-item1">Jane Smith</div>
-                        <div class="dropdown-item1">Michael Johnson</div>
-                        <div class="dropdown-item1">Emily Davis</div>
-                        <div class="dropdown-item1">Chris Lee</div>
-                        <div class="dropdown-item1">Katie Brown</div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="butts">
-                <button class="button-66" id="addButton" role="button"><i class='fas fa-user-plus'
-                        style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
-            </div>
             <h1 style="margin-bottom: 50px; margin-top:50px">TECHVOC</h1>
             <div class="container2">
                 <table class="rwd-table">
@@ -429,31 +391,6 @@ $tvl_students = get_students_by_strand('tvl');
         }, speed);
     </script>
 
-    <!-- <script>
-    document.getElementById('addButton').addEventListener('click', function() {
-        const input = document.getElementById('itemInput');
-        const newItemText = input.value.trim();
-
-        if (newItemText) {
-            const row = document.createElement('tr');
-            const cell = document.createElement('td');
-            cell.textContent = newItemText;
-            row.appendChild(cell);
-            document.getElementById('itemTableBody').appendChild(row);
-            input.value = ''; // Clear the input
-        } else {
-            alert('Please enter a valid item.');
-        }
-    });
-
-    // Optional: Allow pressing Enter to add items
-    document.getElementById('itemInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            document.getElementById('addButton').click();
-        }
-    });
-    </script> -->
-
     <script>
         const searchInput = document.getElementById('searchInput');
         const dropdownList = document.getElementById('dropdownList1');
@@ -517,10 +454,35 @@ $tvl_students = get_students_by_strand('tvl');
         });
     </script>
 
+    <script type="text/javascript">
+        // Get DOM Elements
+        const modal = document.querySelector('#my-modal');
+        const modalBtn = document.querySelector('#modal-btn');
+        const closeBtn = document.querySelector('.close');
 
-    <!-- <div class="sub-footer">
-        2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
-    </div> -->
+        // Events
+        modalBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
+
+        // Open
+        function openModal() {
+            modal.style.display = 'block';
+        }
+
+        // Close
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close If Outside Click
+        function outsideClick(e) {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+
 
 
 </body>
