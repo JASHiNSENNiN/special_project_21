@@ -6,26 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in| Workify</title>
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="shortcut icon" type="x-icon" href="Account/School/image/W.png">
     <link rel="stylesheet" href="/css/loginform.css">
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
-        function onRegisterSubmit(token) {
-            document.getElementById("login_form").submit();
-        }
+    function onRegisterSubmit(token) {
+        document.getElementById("login_form").submit();
+    }
     </script>
     <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-    };
+    }
+    ;
     ?>
 </head>
 
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
@@ -45,16 +47,28 @@
                 <!-- --------------------------------Line OR--------------------------->
                 <form id="loginForm" method="POST" action="/backend/php/account_login.php">
 
-                    <label class="css-ddheu4"> Email address <span aria-hidden="true" class="css-ers2ar es2vvo71">&nbsp;*</span> </label>
-                    <input autocomplete="email" type="text" placeholder="" id="login-email" name="login_email" required>
+                    <label class="css-ddheu4"> Email address <span aria-hidden="true"
+                            class="css-ers2ar es2vvo71">&nbsp;*</span> </label>
+                    <input class="email" autocomplete="email" type="text" placeholder="" id="login-email"
+                        name="login_email" required>
 
-                    <label class="css-ddheu4"> Password <span aria-hidden="true" class="css-ers2ar es2vvo71">&nbsp;*</span>
+                    <label class="css-ddheu4"> Password <span aria-hidden="true"
+                            class="css-ers2ar es2vvo71">&nbsp;*</span>
                     </label>
-                    <input autocomplete="current-password" type="password" placeholder="" id="login-password" name="login_password" required>
+                    <input class="pass" autocomplete="current-password" type="password" placeholder=""
+                        id="login-password" name="login_password" required>
+                    <br>
+                    <div class="chek">
+                        <input type="checkbox" onclick="myFunction()">
+                    </div>
+                    <p class="show">Show Password</p>
                     <button type="submit" class="btn-login" style="height: 40px; font-size: 15px">
                         <span class="hover-underline-animation"> Continue </span>
-                        <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16" fill="#fff">
-                            <path id="Path_10" data-name="Path 10" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)"></path>
+                        <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10"
+                            viewBox="0 0 46 16" fill="#fff">
+                            <path id="Path_10" data-name="Path 10"
+                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                transform="translate(30)"></path>
                         </svg>
                     </button>
 
@@ -84,6 +98,17 @@
         </div>
 
     </div>
+
+    <script>
+    function myFunction() {
+        var x = document.getElementById("login-password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    </script>
     <footer>
         <p>&copy; 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer Society Students</p>
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
