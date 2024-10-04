@@ -24,28 +24,7 @@ $profile_div = '<header class="nav-header">
         </div>
         <nav class="by">
            
-            <div class="dropdowntf" style="float:right;">
-                <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
-                        class="badge">2</span></a>
-                <div class="dropdowntf-content" id="box">
-                    <label for="" class="notif">Notification</label>
-                    <hr style="width: 100%;">
-                    <div class="notifi-item">
-                        <img src="../Organization/image/NIA.png" alt="img">
-                        <div class="text">
-                            <h4>NIA</h4>
-                            <p>Welcome to NIA</p>
-                        </div>
-                    </div>
-                    <div class="notifi-item">
-                        <img src="../School/image/OLSHCO.png" alt="img">
-                        <div class="text">
-                            <h4>OLSHCO</h4>
-                            <p>Report to the Office</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
             <div class="dropdown" style="float:right;">
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
@@ -84,3 +63,25 @@ $profile_div = '<header class="nav-header">
                         <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
         </div>
     </div>';
+//  <div class="dropdowntf" style="float:right;">
+//                 <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
+//                         class="badge">2</span></a>
+//                 <div class="dropdowntf-content" id="box">
+//                     <label for="" class="notif">Notification</label>
+//                     <hr style="width: 100%;">
+//                     <div class="notifi-item">
+//                         <img src="../Organization/image/NIA.png" alt="img">
+//                         <div class="text">
+//                             <h4>NIA</h4>
+//                             <p>Welcome to NIA</p>
+//                         </div>
+//                     </div>
+//                     <div class="notifi-item">
+//                         <img src="../School/image/OLSHCO.png" alt="img">
+//                         <div class="text">
+//                             <h4>OLSHCO</h4>
+//                             <p>Report to the Office</p>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
