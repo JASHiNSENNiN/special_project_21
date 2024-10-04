@@ -14,7 +14,8 @@ function drawStuffam() {
 
   var options = {
     title: "Attitude and Motivation",
-    width: 900,
+    height: 400,
+    width: 700,
     legend: { position: "none" },
     chart: {
       title: "Attitude and Motivation",
@@ -29,7 +30,7 @@ function drawStuffam() {
     bar: { groupWidth: "90%" },
   };
 
-  var chart = new google.charts.Bar(document.getElementById("am_top_x_div"));
+  var chart = new google.charts.Bar(document.getElementById("am-top-x-div"));
   chart.draw(data, options);
 }
 
@@ -49,7 +50,8 @@ function drawStufftc() {
 
   var options = {
     title: "Team work and Collaboration",
-    width: 900,
+    height: 400,
+    width: 700,
     legend: { position: "none" },
     chart: {
       title: "Team work and Collaboration",
@@ -64,7 +66,7 @@ function drawStufftc() {
     bar: { groupWidth: "90%" },
   };
 
-  var chart = new google.charts.Bar(document.getElementById("tc_top_x_div"));
+  var chart = new google.charts.Bar(document.getElementById("tc-top-x-div"));
   chart.draw(data, options);
 }
 
@@ -84,7 +86,8 @@ function drawStuffld() {
 
   var options = {
     title: "Learning and Development",
-    width: 900,
+    height: 400,
+    width: 700,
     legend: { position: "none" },
     chart: {
       title: "Learning and Development",
@@ -99,7 +102,7 @@ function drawStuffld() {
     bar: { groupWidth: "90%" },
   };
 
-  var chart = new google.charts.Bar(document.getElementById("ld_top_x_div"));
+  var chart = new google.charts.Bar(document.getElementById("ld-top-x-div"));
   chart.draw(data, options);
 }
 ///////////////////////////////////////////////Professionalism CHART///////////////////////////////////////
@@ -118,7 +121,8 @@ function drawStuffprof() {
 
   var options = {
     title: "Professionalism",
-    width: 900,
+    height: 400,
+    width: 700,
     legend: { position: "none" },
     chart: {
       title: "Professionalism",
@@ -133,7 +137,7 @@ function drawStuffprof() {
     bar: { groupWidth: "90%" },
   };
 
-  var chart = new google.charts.Bar(document.getElementById("pro_top_x_div"));
+  var chart = new google.charts.Bar(document.getElementById("pro-top-x-div"));
   chart.draw(data, options);
 }
 ///////////////////////////////////////////////WORK PERFORMANCE CHART///////////////////////////////////////
@@ -154,13 +158,14 @@ function drawStuff() {
 
   var options = {
     title: "Work performance",
-    width: 900,
+    height: 400,
+    width: 700,
     legend: {
       position: "none",
     },
     chart: {
-      title: "Work performance ",
-      subtitle: "Student performance from the work immersion",
+      title: "Work Performance",
+      subtitle: "Student work performance from the work immersion",
     },
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
@@ -176,7 +181,7 @@ function drawStuff() {
     },
   };
 
-  var chart = new google.charts.Bar(document.getElementById("wp_top_x_div"));
+  var chart = new google.charts.Bar(document.getElementById("wp-top-x-div"));
   chart.draw(data, options);
 }
 
@@ -199,6 +204,8 @@ function drawChart() {
 
   var options = {
     title: "Total Work Performance",
+    height: 250,
+    width: 500,
     is3D: true,
   };
 
@@ -291,8 +298,8 @@ function drawBasicdp() {
 
   var options = {
     title: "Daily Performance",
-    height: 500,
-    width: 1050,
+    height: 250,
+    width: 500,
     hAxis: {
       title: "Day",
     },
