@@ -16,7 +16,7 @@ body {
 .navbar-top {
   background-color: #fff;
   color: #333;
-  box-shadow: 0px 4px 8px 0px grey;
+  box-shadow: 0px 0px 5px 1px grey;
   height: 70px;
 }
 
@@ -89,7 +89,7 @@ li {
 
 .profile img {
   border-radius: 50%;
-  box-shadow: 0px 0px 5px 1px grey;
+  /* box-shadow: 0px 0px 5px 1px grey; */
   object-fit: cover;
   height: 50%;
   width: 50%;
@@ -554,4 +554,10 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .light-style .account-settings-links .list-group-item {
   padding: 0.85rem 1.5rem;
   border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1117.5px !important;
+  }
 }
