@@ -10,24 +10,23 @@
     <link rel="stylesheet" href="/css/loginform.css">
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
-    function onRegisterSubmit(token) {
-        document.getElementById("login_form").submit();
-    }
+        function onRegisterSubmit(token) {
+            document.getElementById("login_form").submit();
+        }
     </script>
     <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-    }
-    ;
+    };
     ?>
 </head>
 
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
@@ -58,6 +57,7 @@
                     <input class="pass" autocomplete="current-password" type="password" placeholder=""
                         id="login-password" name="login_password" required>
                     <br>
+
                     <div class="chek">
                         <input type="checkbox" onclick="myFunction()">
                     </div>
@@ -100,17 +100,17 @@
     </div>
 
     <script>
-    function myFunction() {
-        var x = document.getElementById("login-password");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
+        function myFunction() {
+            var x = document.getElementById("login-password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
-    }
     </script>
     <footer>
-        <p>&copy; 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer Society Students</p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>
