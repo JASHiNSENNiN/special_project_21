@@ -41,7 +41,7 @@ $profile_div = '<header class="nav-header">
     
 
     <div class="profile">
-        <img id="profile-pic" src="image/Dr.Ramon.jpg" alt="">
+        <img id="profile-pic" src="image/Dr.Ramon.png" alt="">
         <div class="name">' . $schoolName . '</div>
         <label class="strand" for="">OLSHCO</label>
 
