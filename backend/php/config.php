@@ -31,7 +31,9 @@ CREATE TABLE IF NOT EXISTS users (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   email VARCHAR(255) UNIQUE,
   password VARCHAR(255),
-  account_type ENUM('student', 'school', 'organization')
+  account_type ENUM('student', 'school', 'organization'),
+  profile_image VARCHAR(255),
+  cover_image VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS school_profiles (
@@ -77,9 +79,11 @@ CREATE TABLE IF NOT EXISTS job_offers (
 
 CREATE TABLE IF NOT EXISTS applicants (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  partner_id INT(11),
+  job_id INT(11),
   student_id INT(11),
-  FOREIGN KEY (partner_id) REFERENCES partner_profiles(user_id),
+  status ENUM('applied', 'cancelled', 'accepted', 'rejected'),
+  UNIQUE KEY (job_id, student_id),
+  FOREIGN KEY (job_id) REFERENCES job_offers(id),
   FOREIGN KEY (student_id) REFERENCES student_profiles(user_id)
 );
 

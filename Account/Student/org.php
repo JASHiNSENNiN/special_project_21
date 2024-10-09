@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -39,14 +40,100 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $job = $result;
 
+function UserIsApplied($jobId) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = mysqli_connect($host, $username, $password, $database);
+
+$workId = $jobId;
+
+$userId = $_SESSION['user_id'];
+
+$sql = "SELECT * FROM applicants WHERE job_id = ? AND student_id = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "ii", $workId, $userId);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+
+if (mysqli_num_rows($result) > 0) {
+    return true;
+} else {
+    return false;
+}
+}
+
+
+function deleteUserApplication($jobId) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("DELETE FROM applicants WHERE job_id = ? AND student_id = ?");
+    $stmt->bind_param("ii", $jobId, $_SESSION['user_id']);
+    $result = $stmt->execute();
+    if ($result && $stmt->affected_rows > 0) {
+        echo "Application deleted successfully.";
+    } else {
+        echo "No application found to delete or an error occurred.";
+    }
+    $stmt->close();
+    $conn->close();
+}
+
+if (isset($_POST['action'])) {
+    if ($_POST['action'] === 'apply_application') {
+        $host = "localhost";
+        $username = $_ENV['MYSQL_USERNAME'];
+        $password = $_ENV['MYSQL_PASSWORD'];
+        $database = $_ENV['MYSQL_DBNAME'];
+
+        $conn = new mysqli($host, $username, $password, $database);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $jobId = $_POST['job_id'];
+        $userId = $_SESSION['user_id'];
+
+        $sql = "INSERT INTO applicants (job_id, student_id) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $jobId, $userId);
+        $stmt->execute();
+
+        if (!$stmt) {
+            die("Query failed: " . $conn->error);
+        }
+
+        header("Location: Company_Area.php");
+        exit;
+    } elseif ($_POST['action'] === 'cancel_application') {
+        
+        deleteUserApplication($_POST['job_id']);
+
+        header("Location: Company_Area.php");
+        exit;
+    }
+}
+
 function generateJobCard()
 {
     global $job;
+    global $jobId;
     $strands = json_decode($job['strands']);
     $work_title = $job['work_title'];
     $description = html_entity_decode($job['description']);
     $description = nl2br($description);
-
+    $hasApplied = UserIsApplied($jobId);
+    
     echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
     echo '<div class="container">';
     echo '<div class="eleven columns">';
@@ -132,13 +219,22 @@ function generateJobCard()
                         </div>
 
 
-                    </div>
-                    <div class="company-info-apply-btn">
-
-                        <div class="job_application application">
-
-                            <a href="login.php" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</a>
-
+                    </div>';
+                    echo '
+                        <div class="company-info-apply-btn">
+                            <div class="job_application application">
+                                <form method="post">
+                                    <input type="hidden" name="job_id" value="' . $jobId . '">';
+                                    
+                                    if ($hasApplied === true) {
+                                        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Cancel Application</button>
+                                        <input type="hidden" name="action" value="cancel_application">';
+                                    } else {
+                                        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button>
+                                        <input type="hidden" name="action" value="apply_application">';
+                                    }
+                                    
+                        echo '</form>
 
                         </div>
                     </div>

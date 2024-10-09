@@ -85,7 +85,7 @@ require_once 'show_profile.php';
                     <div class="wrapper">
                         <div class="title">
 
-                            <h2>Tags</h2>
+                            <!-- <h2>Tags</h2>
                         </div>
                         <div class="content">
                             <p>Press add a comma after each tag</p>
@@ -94,7 +94,7 @@ require_once 'show_profile.php';
                             </ul>
                         </div>
                         <div class="details">
-                            <p><span>10</span> tags are remaining</p>
+                            <p><span>10</span> tags are remaining</p> -->
 
                             <!-- <button>Remove All</button> -->
                         </div>
@@ -125,21 +125,21 @@ require_once 'show_profile.php';
 
 
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
 

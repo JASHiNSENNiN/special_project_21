@@ -71,6 +71,18 @@ function fetch_partner_profile($user_id)
 $user_profile = fetch_user_profile( $user_id);
 $_SESSION['email'] = $user_profile['email'];
 $_SESSION['account_type'] = $user_profile['account_type'];
+$profile_image = 'image/default.png';
+if ($user_profile && $user_profile['profile_image'])
+{
+    $profile_image_path = 'uploads/' . $user_profile['profile_image'];
+    if (file_exists($profile_image_path))
+    {
+        $_SESSION['profile_image'] = $profile_image_path;
+    }else{
+         $_SESSION['profile_image'] = "image/default.png";
+    }
+}
+
 
 if ($user_profile['account_type'] === 'student') {
     $student_profile = fetch_student_profile($user_id);

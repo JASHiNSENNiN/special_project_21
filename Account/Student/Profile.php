@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 };
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
+(Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
 
 $currentUrl = $_SERVER['REQUEST_URI'];
 $urlParts = parse_url($currentUrl);
@@ -32,6 +33,13 @@ $stmt->bindParam(':user_id', $user_id);
 $stmt->execute();
 $student_profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+$sql = "SELECT * FROM users WHERE id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':user_id', $user_id);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 $firstName = $student_profile['first_name'];
 $middleName = $student_profile['middle_name'];
 $lastName = $student_profile['last_name'];
@@ -41,7 +49,8 @@ $gradeLevel = $student_profile['grade_level'];
 $strand = strtoupper($student_profile['strand']);
 $stars = $student_profile['stars'];
 $currentWork = $student_profile['current_work'];
-$email = $_SESSION['email'];
+$email = $user['email'];
+$profile_image = "uploads/". $user['profile_image'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +62,8 @@ $email = $_SESSION['email'];
     <link rel="stylesheet" type="text/css" href="css/Profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Student Dashboard</title>
 
 
@@ -162,7 +172,7 @@ $email = $_SESSION['email'];
             <div class="container-grap-left">
 
                 <div class="profile">
-                    <img src="image/default.png" alt="" width="100" height="100" />
+                    <img src="<?php echo $profile_image ?>" alt="" width="100" height="100" />
 
                     <div class="name"><?= $fullName; ?></div>
                     <div class="job"><?= $strand ?></div>
@@ -276,30 +286,21 @@ $email = $_SESSION['email'];
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
     <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
-        <h4 class="font-weight-bold py-3 mb-4" style="background-color:#f1f1f1;  padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
+        <h4 class="font-weight-bold py-3 mb-4"
+            style="background-color:#f1f1f1;  padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
         <div class="card-graph overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
                     <div class="list-group list-group-flush account-settings-links">
-                        <a
-                            class="list-group-item list-group-item-action active"
-                            data-toggle="list"
+                        <a class="list-group-item list-group-item-action active" data-toggle="list"
                             href="#wp-top-x-div-sel">Work Performance</a>
-                        <a
-                            class="list-group-item list-group-item-action"
-                            data-toggle="list"
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#pro-top-x-div-sel">Professionalism</a>
-                        <a
-                            class="list-group-item list-group-item-action"
-                            data-toggle="list"
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#ld-top-x-div-sel">Learning and Development</a>
-                        <a
-                            class="list-group-item list-group-item-action"
-                            data-toggle="list"
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#tc-top-x-div-sel">Team Work and Collaboration</a>
-                        <a
-                            class="list-group-item list-group-item-action"
-                            data-toggle="list"
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#am-top-x-div-sel">Attitude and Motivation</a>
 
                     </div>
@@ -336,9 +337,7 @@ $email = $_SESSION['email'];
             <button type="button" class="btn btn-default">Cancel</button>
         </div> -->
     </div>
-    <script
-        data-cfasync="false"
-        src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript"></script>
