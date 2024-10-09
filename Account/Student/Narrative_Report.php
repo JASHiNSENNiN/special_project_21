@@ -56,15 +56,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <hr>
     <div class="logo">
 
-        <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
+        <!-- <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a class="link" id="#area" href="Company_Area.php"> Company Area</a>
-            <!-- <a class="link" id="#review" href="Company_Review.php">Company review</a> -->
+            <a class="link" id="#review" href="Company_Review.php">Company review</a>
             <a class="active1" id="#narrative" href="Narrative_Report.php">Narrative Report</a>
-            <!-- <a class="link" id="#contact">Contact</a> -->
+            <a class="link" id="#contact">Contact</a>
 
-            <!-- <a href="aboutUs.php">About</a> -->
+            <a href="aboutUs.php">About</a>
 
-        </nav>
+        </nav> -->
     </div>
     <hr class="line_bottom">
 
