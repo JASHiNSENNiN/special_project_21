@@ -44,7 +44,7 @@ require_once 'show_profile.php';
           </a>
         </li> -->
             <li>
-                <a href="Details.php">
+                <a href="Student.php">
                     <i class="fa fa-sign-out-alt fa-2x"></i>
                 </a>
             </li>
@@ -56,13 +56,13 @@ require_once 'show_profile.php';
     <!-- Sidenav -->
     <div class="sidenav">
         <div class="profile">
-            <img src="image/OLSHCO.png" alt="" width="100" height="100" />
+            <img src="image/Dr.Ramon.png" alt="" width="100" height="100" />
 
-            <div class="name">Our Lady Of Sacred Heart College of Guimba Inc.</div>
-            <div class="job">OLSHCO</div>
+            <div class="name">Dr. Ramon De Santos National High School</div>
+            <!-- <div class="job">OLSHCO</div> -->
         </div>
 
-        <div class="sidenav-url">
+        <!-- <div class="sidenav-url">
             <div class="url">
                 <a href="#profile" class="active">Profile</a>
                 <hr align="center" />
@@ -71,7 +71,7 @@ require_once 'show_profile.php';
                 <a href="Settings.php">Settings</a>
                 <hr align="center" />
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- End -->
 
@@ -86,17 +86,17 @@ require_once 'show_profile.php';
                         <tr>
                             <td>School</td>
                             <td>:</td>
-                            <td>Our Lady Of Sacred Heart College of Guimba Inc.</td>
+                            <td>Dr. Ramon De Santos National High School</td>
                         </tr>
                         <tr>
                             <td>Email</td>
                             <td>:</td>
-                            <td>olshco47@yahoo.com</td>
+                            <td>school@yahoo.com</td>
                         </tr>
                         <tr>
                             <td>Address</td>
                             <td>:</td>
-                            <td>Afan Salavador Street Guimba Nueva Ecija</td>
+                            <td>Brgy. San Antonio, Cuyapo, Philippines</td>
                         </tr>
                         <tr>
                             <td>Contact Number</td>
@@ -119,9 +119,14 @@ require_once 'show_profile.php';
         </div>
         <br>
         <h2>Map</h2>
-        <iframe
+        <!-- <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1920.8544297966187!2d120.7673922211044!3d15.660484473847125!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33912cdb2318296d%3A0xe4e2117e97dfc92e!2sOur%20Lady%20of%20The%20Sacred%20Heart%20College!5e0!3m2!1sen!2sph!4v1716015242226!5m2!1sen!2sph"
             width="850" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4180.818006163703!2d120.70824703813983!3d15.714406648857958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391320a99919993%3A0x9be48d66ed4cad27!2sDr%20Ramon%20De%20Santos%20National%20High%20School!5e1!3m2!1sen!2sph!4v1728567463175!5m2!1sen!2sph"
+            width="780" height="350" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 
@@ -165,7 +170,7 @@ require_once 'show_profile.php';
     </div>
     <!-- End -->
     <footer>
-        2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
+        2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School
     </footer>
 </body>
 

@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
@@ -47,11 +48,11 @@ $profile_div = '<header class="nav-header">
 
     </header>
 
-    <img class="logoimg" id="cover-pic" src="image/background.jpg" alt="" width="200" height="300">
+    <img class="logoimg" id="cover-pic" src="image/DramonBG.png" alt="" width="200" height="300">
     
 
     <div class="profile">
-        <img src="'. $profile_image .'" alt="">
+        <img src="' . $profile_image . 'image/default.png" alt="">
         <div class="name">' . $firstName . ' ' . $middleName . ' ' . $lastName . '</div>
         <label class="strand" for="">' . $strand . '</label>
 

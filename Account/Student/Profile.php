@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
@@ -50,7 +51,7 @@ $strand = strtoupper($student_profile['strand']);
 $stars = $student_profile['stars'];
 $currentWork = $student_profile['current_work'];
 $email = $user['email'];
-$profile_image = "uploads/". $user['profile_image'];
+$profile_image = "uploads/" . $user['profile_image'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
