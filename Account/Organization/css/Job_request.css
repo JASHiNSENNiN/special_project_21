@@ -427,6 +427,106 @@ div .search-box .bx-search {
   text-align: center;
 }
 
+.rwd-table {
+  margin: auto;
+  min-width: 300px;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.rwd-table tr:first-child {
+  border-top: none;
+  background: #428bca;
+  color: #fff;
+}
+
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f5f9fc;
+}
+
+.rwd-table tr:nth-child(odd):not(:first-child) {
+  background-color: #ebf3f9;
+}
+
+.rwd-table th {
+  display: none;
+}
+
+.rwd-table td {
+  display: block;
+}
+
+.rwd-table td:first-child {
+  margin-top: 0.5em;
+}
+
+.rwd-table td:last-child {
+  margin-bottom: 0.5em;
+}
+
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+  color: #000;
+}
+
+.rwd-table th,
+.rwd-table td {
+  text-align: center;
+}
+
+.rwd-table {
+  color: #333;
+  border-radius: 0.4em;
+  overflow: hidden;
+  width: 75%;
+}
+
+.rwd-table tr {
+  border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+  padding: 0.5em 1em;
+}
+
+@media screen and (max-width: 601px) {
+  .rwd-table tr:nth-child(2) {
+    border-top: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .rwd-table tr:hover:not(:first-child) {
+    background-color: #d8e7f3;
+  }
+  .rwd-table td:before {
+    display: none;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    display: table-cell;
+    padding: 0.25em 0.5em;
+  }
+  .rwd-table th:first-child,
+  .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child,
+  .rwd-table td:last-child {
+    padding-right: 0;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    padding: 1em !important;
+  }
+}
+
 /* ---header--- */
 
 body {
@@ -535,8 +635,8 @@ nav .login-btn:hover {
 }
 
 .active {
-  color: #000000;
-  background-color: rgba(27, 188, 155, 0.3);
+  color: #fff;
+  background-color: rgba(52, 121, 40, 0.9);
   font-weight: bold;
 }
 
@@ -546,7 +646,7 @@ nav .login-btn:hover {
   font-weight: bold;
 }
 .by a:hover {
-  color: #1bbc9b;
+  color: #347928;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -556,7 +656,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -568,7 +668,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);

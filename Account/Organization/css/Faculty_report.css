@@ -402,7 +402,7 @@ div .search-box .bx-search {
   width: 100%;
 }
 
-#tbl td,
+/* #tbl td,
 #tbl th {
   border: 1px solid #ddd;
   padding: 8px;
@@ -423,7 +423,7 @@ div .search-box .bx-search {
   background-color: #41c9e2;
   color: white;
   text-align: center;
-}
+} */
 
 .column {
   float: left;
@@ -536,8 +536,8 @@ nav .login-btn:hover {
 }
 
 .active1 {
-  color: #000000;
-  background-color: rgba(27, 188, 155, 0.3);
+  color: #fff;
+  background-color: rgba(52, 121, 40, 0.9);
   font-weight: bold;
 }
 
@@ -547,7 +547,7 @@ nav .login-btn:hover {
   font-weight: bold;
 }
 .by a:hover {
-  color: #1bbc9b;
+  color: #347928;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -557,7 +557,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -569,7 +569,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);

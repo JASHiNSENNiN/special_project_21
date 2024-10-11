@@ -239,7 +239,7 @@ require_once 'show_profile.php';
             </div>
             <div class="text-right mt-3">
                 <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-                <a href="Details.php"><button type="button" class="btn btn-default">Cancel</button></a>
+                <a href="Student.php"><button type="button" class="btn btn-default">Cancel</button></a>
             </div>
         </div>
     </div>

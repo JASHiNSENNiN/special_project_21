@@ -30,6 +30,22 @@ require_once 'show_profile.php';
     <hr>
     <div class="logo">
 
+        <!-- <div class="dropdowntf" style="float:right;">
+            <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
+                    class="badge">1</span></a>
+            <div class="dropdowntf-content" id="box">
+                <label for="" class="notif">Notification</label>
+                <hr style="width: 100%;">
+                <div class="notifi-item">
+                    <img src="../Student/image/me.jpg" alt="img">
+                    <div class="text">
+                        <h4>Miguel Von Natividad</h4>
+                        <p>Sent Request</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a class="active" href="Job_ads.php"> Job Ads</a>
             <a href="Job_request.php">Job Request</a>

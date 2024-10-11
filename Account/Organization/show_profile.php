@@ -11,28 +11,14 @@ $strandFocus = strtoupper($_SESSION['strand']);
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="#">
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/header.png" alt="Logo">
             </a>
         </div>
 
         <nav class="by">
             
 
-            <div class="dropdowntf" style="float:right;">
-                <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
-                        class="badge">1</span></a>
-                <div class="dropdowntf-content" id="box">
-                    <label for="" class="notif">Notification</label>
-                    <hr style="width: 100%;">
-                    <div class="notifi-item">
-                        <img src="../Student/image/me.jpg" alt="img">
-                        <div class="text">
-                            <h4>Miguel Von Natividad</h4>
-                            <p>Sent Request</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
             <div class="dropdown" style="float:right;">
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
@@ -42,10 +28,10 @@ $profile_div = '<header class="nav-header">
     $_SESSION['user_id'] . '</div>
                     <a href="Profile.php"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My
                         Profile</a>
-                    <a href=""><i class="fas fa-bookmark" style="font-size:24px; margin-right:10px;"></i> My Jobs</a>
+                    <a href=""><i class="fas fa-bookmark" style="font-size:24px; margin-right:10px; "></i> My Jobs</a>
                     <a href="#"> <i class="fas fa-comment-alt" style="font-size:24px;margin-right:10px;"></i>My
                         Reviews</a>
-                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Settings</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;"></i> Settings</a>
                     <hr>
                     
                     <hr>

@@ -21,7 +21,7 @@ $profile_image = $_SESSION['profile_image'];
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="image/index.php">
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/header.png" alt="Logo">
             </a>
         </div>
         <nav class="by">

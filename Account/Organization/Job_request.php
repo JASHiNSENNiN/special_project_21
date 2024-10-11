@@ -37,7 +37,8 @@ if (isset($_POST['remove_applicant'])) {
     removeApplicant($applicant_id);
 }
 
-function removeApplicant($applicant_id) {
+function removeApplicant($applicant_id)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -64,7 +65,8 @@ if (isset($_POST['accept_applicant'])) {
     acceptApplicant($applicant_id);
 }
 
-function acceptApplicant($applicant_id) {
+function acceptApplicant($applicant_id)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -152,9 +154,9 @@ function acceptApplicant($applicant_id) {
             <!-- <div class="title">Popularity Company </div> -->
             <!-- <div class="title">Student List <div class="icon"><i class="bx bx-user-plus"></i> </div> </div> -->
 
-            <table id="tbl">
+            <table id="tbl" class="rwd-table">
                 <tr>
-                    <th>id</th>
+                    <th>ID</th>
                     <!-- <th>Student ID</th> -->
                     <th>Name</th>
                     <th>Strand</th>
@@ -162,34 +164,34 @@ function acceptApplicant($applicant_id) {
                     <th>Action</th>
                 </tr>
                 <?php foreach ($applicants as $job_id => $applicant_list) { ?>
-                <?php foreach ($applicant_list as $applicant) { ?>
-                <?php
-                    $student_id = $applicant['student_id'];
-                    $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
-                    $result = mysqli_query($conn, $sql);
-                    $student_row = mysqli_fetch_assoc($result);
-                    ?>
-                <tr>
-                    <td><?= $applicant['id'] ?></td>
-                    <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
-                    <td><?= $student_row['strand'] ?></td>
-                    <td><?= $student_row['school'] ?></td>
-                    <td>
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                            <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
-                            <?php if ($applicant['status'] == 'accepted') { ?>
-                            <button type="submit" class="button-4" name="remove_applicant">Remove</button>
-                            <?php } else { ?>
-                            <button type="submit" class="button-9" name="accept_applicant">Accept</button>
-                            <?php } ?>
-                        </form>
-                        <a
-                            href="../Student/Profile.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
-                            <button type="button" class="button-4">Details</button>
-                        </a>
-                    </td>
-                </tr>
-                <?php } ?>
+                    <?php foreach ($applicant_list as $applicant) { ?>
+                        <?php
+                        $student_id = $applicant['student_id'];
+                        $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
+                        $result = mysqli_query($conn, $sql);
+                        $student_row = mysqli_fetch_assoc($result);
+                        ?>
+                        <tr>
+                            <td><?= $applicant['id'] ?></td>
+                            <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
+                            <td><?= $student_row['strand'] ?></td>
+                            <td><?= $student_row['school'] ?></td>
+                            <td>
+                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                    <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
+                                    <?php if ($applicant['status'] == 'accepted') { ?>
+                                        <button type="submit" class="button-4" name="remove_applicant">Remove</button>
+                                    <?php } else { ?>
+                                        <button type="submit" class="button-9" name="accept_applicant">Accept</button>
+                                    <?php } ?>
+                                </form>
+                                <a
+                                    href="../Student/Profile.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
+                                    <button type="button" class="button-4">Details</button>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 <?php } ?>
             </table>
         </div>
@@ -202,21 +204,21 @@ function acceptApplicant($applicant_id) {
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function () {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
 
