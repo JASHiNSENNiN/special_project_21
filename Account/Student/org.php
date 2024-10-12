@@ -22,7 +22,7 @@ $urlParts = parse_url($currentUrl);
 if (isset($urlParts['query'])) {
     parse_str($urlParts['query'], $queryParameters);
     if (isset($queryParameters['job_id'])) {
-        $jobIdParam =  $queryParameters['job_id'];
+        $jobIdParam = $queryParameters['job_id'];
     }
 } else {
     echo "Query string parameter not found.";
@@ -40,7 +40,8 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $job = $result;
 
-function UserIsApplied($jobId) {
+function UserIsApplied($jobId)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -48,25 +49,26 @@ function UserIsApplied($jobId) {
 
     $conn = mysqli_connect($host, $username, $password, $database);
 
-$workId = $jobId;
+    $workId = $jobId;
 
-$userId = $_SESSION['user_id'];
+    $userId = $_SESSION['user_id'];
 
-$sql = "SELECT * FROM applicants WHERE job_id = ? AND student_id = ?";
-$stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "ii", $workId, $userId);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+    $sql = "SELECT * FROM applicants WHERE job_id = ? AND student_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ii", $workId, $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-if (mysqli_num_rows($result) > 0) {
-    return true;
-} else {
-    return false;
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
-}
 
 
-function deleteUserApplication($jobId) {
+function deleteUserApplication($jobId)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -116,7 +118,7 @@ if (isset($_POST['action'])) {
         header("Location: Company_Area.php");
         exit;
     } elseif ($_POST['action'] === 'cancel_application') {
-        
+
         deleteUserApplication($_POST['job_id']);
 
         header("Location: Company_Area.php");
@@ -133,7 +135,7 @@ function generateJobCard()
     $description = html_entity_decode($job['description']);
     $description = nl2br($description);
     $hasApplied = UserIsApplied($jobId);
-    
+
     echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
     echo '<div class="container">';
     echo '<div class="eleven columns">';
@@ -220,21 +222,21 @@ function generateJobCard()
 
 
                     </div>';
-                    echo '
+    echo '
                         <div class="company-info-apply-btn">
                             <div class="job_application application">
                                 <form method="post">
                                     <input type="hidden" name="job_id" value="' . $jobId . '">';
-                                    
-                                    if ($hasApplied === true) {
-                                        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Cancel Application</button>
+
+    if ($hasApplied === true) {
+        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Cancel Application</button>
                                         <input type="hidden" name="action" value="cancel_application">';
-                                    } else {
-                                        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button>
+    } else {
+        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button>
                                         <input type="hidden" name="action" value="apply_application">';
-                                    }
-                                    
-                        echo '</form>
+    }
+
+    echo '</form>
 
                         </div>
                     </div>
@@ -289,7 +291,7 @@ function generateJobCard()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Work Immersion | Workify</title>
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/QCGWrw4Y/W.png">
+    <link rel="shortcut icon" type="x-icon" href="image/Dr.Ramon.png">
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -307,16 +309,16 @@ function generateJobCard()
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="../../img/logov3.jpg" alt="Logo">
+                <img src="../../img/header.png" alt="Logo">
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a>
@@ -414,20 +416,20 @@ function generateJobCard()
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function () {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script src="js/filter.js"> </script>
 

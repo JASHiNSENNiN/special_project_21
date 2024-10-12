@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in| Workify</title>
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="shortcut icon" type="x-icon" href="Account/School/image/W.png">
+    <link rel="shortcut icon" type="x-icon" href="Account/School/image/Dr.Ramon.png">
     <link rel="stylesheet" href="/css/loginform.css">
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
@@ -17,7 +17,8 @@
     <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-    };
+    }
+    ;
     ?>
 </head>
 

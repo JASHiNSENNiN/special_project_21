@@ -540,7 +540,7 @@ hr {
   margin: auto;
   width: 75%;
 }
-
+/* 
 button,
 .button {
   display: inline-block;
@@ -556,7 +556,7 @@ button:hover,
 .button:hover {
   background: #b4b4b8;
   color: #fff;
-}
+} */
 
 .active {
   color: #000000;
@@ -609,6 +609,7 @@ button:hover,
   --time-button: #fc5757;
   --level-button: #5052d5;
   --button-color: #fff;
+  --button: rgb(52, 121, 40, 0.8);
 }
 
 .dark-mode {
@@ -846,7 +847,7 @@ html {
 .search-buttons {
   border: none;
   color: var(--button-color);
-  background-color: var(--active-color);
+  background-color: var(--button);
   padding: 8px 10px;
   border-radius: 6px;
   font-size: 13px;

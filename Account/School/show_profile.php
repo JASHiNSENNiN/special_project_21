@@ -46,6 +46,7 @@ $profile_div = '<header class="nav-header">
         <div class="Settings">
         <a href="edit_profile.php" style="text-decoration: none;">
         <label for="input-file2" class="button-12" role="button">
+        
         <span class="edit">
         <i class="fa fa-pencil"></i> Edit profile
                         </span>

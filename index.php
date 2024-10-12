@@ -59,7 +59,7 @@ function generateJobCards($jobOffers)
                 </div>
                 
                 <div class="job-card-buttons">
-                    <a href="org.php?job_id=' . base64_encode(encrypt_url_parameter((string)$job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
+                    <a href="org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
                     <button class="search-buttons card-buttons-msg">Save</button>
                 </div>
             </div>
@@ -78,7 +78,7 @@ function generateJobCards($jobOffers)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Work Immersion Search | Workify</title>
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/QCGWrw4Y/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/modal.css">
@@ -101,12 +101,12 @@ function generateJobCards($jobOffers)
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
-                <img src="img/logov3.jpg" alt="Logo">
+                <img src="img/header.png" alt="Logo">
             </a>
             <nav class="dash-middle">
-                <!-- <a class="active-header" href="index.php">Home</a>
+                <a class="active-header" href="index.php">Home</a>
                 <a href="job_list.php">Company review</a>
-                <a href="contact.php">Contact</a> -->
+                <a href="contact.php">Contact</a>
             </nav>
         </div>
         <nav>
