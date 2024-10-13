@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
@@ -18,6 +17,7 @@
 }
 
 /* ----------------Slider---------------------*/
+
 * {
   margin: 0;
   padding: 0;
@@ -146,6 +146,7 @@ h3 {
   align-items: center;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
+
 .checkbtn {
   font-size: 30px;
   color: #000;
@@ -155,12 +156,15 @@ h3 {
   cursor: pointer;
   /* display: none; */
 }
+
 #check {
   display: none;
 }
+
 .cam {
   display: none;
 }
+
 .pen {
   display: none;
 }
@@ -232,12 +236,13 @@ nav a:hover {
 }
 
 .bt a:hover {
-  color: #000000;
-  background-color: rgba(27, 188, 155, 0.3);
+  color: #fff;
+  background-color: rgba(27, 121, 40, 0.9);
   font-weight: bold;
 }
+
 .by a:hover {
-  color: #1bbc9b;
+  color: #347928;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -247,13 +252,14 @@ nav a:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s;
 }
+
 .by a::after {
   content: "";
   position: absolute;
@@ -336,6 +342,7 @@ nav a:hover {
   float: left;
   margin-top: -20px;
 }
+
 .dropdowntf-content img {
   display: block;
   width: 50px;
@@ -368,11 +375,13 @@ nav a:hover {
   margin-bottom: 20px;
   color: #000000;
 }
+
 .email {
   text-align: left;
   font-weight: bold;
   color: #000000;
 }
+
 .logout a {
   text-align: center;
 }
@@ -423,19 +432,16 @@ nav a:hover::after {
     padding-left: 20px !important;
     padding-bottom: 5px !important;
   }
-
   .logo img {
     width: 160px !important;
     /* Adjust the width as needed */
     margin-right: 15px !important;
   }
-
   nav a {
     /* padding: 5px 10px !important; */
     margin: 0 10px !important;
     font-size: 14px !important;
   }
-
   .login-btn {
     /* width: 10% !important; */
     height: 10% !important;
@@ -466,6 +472,7 @@ nav a:hover::after {
 /* ---End Header--- */
 
 /* --edit-- */
+
 .button-13 {
   background-color: #fff;
   border: 1px solid #d5d9d9;
@@ -519,7 +526,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -530,10 +538,13 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
+
 .button-12:hover {
   background-color: #030303;
 }
@@ -548,6 +559,7 @@ input {
   color: white;
   /* display: none; */
 }
+
 .notification {
   /* background-color: #555; */
   /* color: white; */

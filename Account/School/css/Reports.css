@@ -170,12 +170,15 @@ h3 {
   cursor: pointer;
   /* display: none; */
 }
+
 #check {
   display: none;
 }
+
 .cam {
   display: none;
 }
+
 .pen {
   display: none;
 }
@@ -248,12 +251,13 @@ nav a:hover {
 }
 
 .bt a:hover {
-  color: #000000;
-  background-color: rgba(27, 188, 155, 0.3);
+  color: #fff;
+  background-color: rgba(27, 121, 40, 0.9);
   font-weight: bold;
 }
+
 .by a:hover {
-  color: #1bbc9b;
+  color: #347928;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -263,19 +267,20 @@ nav a:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s;
 }
+
 .by a::after {
   content: "";
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -310,6 +315,7 @@ nav a:hover {
   /* width: 40%; */
   text-align: left;
 }
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
@@ -351,6 +357,7 @@ nav a:hover {
   float: left;
   margin-top: -20px;
 }
+
 .dropdowntf-content img {
   display: block;
   width: 50px;
@@ -368,6 +375,7 @@ nav a:hover {
   color: rgba(0, 0, 0, 0.8);
   font-size: 12px;
 }
+
 .notifi-item {
   display: flex;
   border-bottom: 1px solid #eee;
@@ -376,16 +384,19 @@ nav a:hover {
   cursor: pointer;
   text-align: left;
 }
+
 .foot {
   margin-top: 20px;
   margin-bottom: 20px;
   color: #000;
 }
+
 .email {
   text-align: left;
   font-weight: bold;
   color: #000;
 }
+
 .logout a {
   text-align: center;
 }
@@ -592,12 +603,14 @@ h1 {
   font-size: 2.4em;
   color: #000000;
 }
+
 .container2 {
   padding-top: 50px;
   display: block;
   text-align: center;
   font-family: "Open Sans", sans-serif;
 }
+
 h3 {
   display: inline-block;
   position: relative;
@@ -692,7 +705,10 @@ h3:after {
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
+  font-family:
+    "Akzidenz Grotesk BQ Medium",
+    -apple-system,
+    BlinkMacSystemFont,
     sans-serif;
   font-size: 100%;
   font-weight: 400;
@@ -701,7 +717,9 @@ h3:after {
   padding: 10px 25px;
   text-align: center;
   transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
+  transition:
+    transform 150ms,
+    box-shadow 150ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -752,19 +770,21 @@ h3:after {
   background: linear-gradient(#53afff, #5fcdff);
   color: #fff;
 } */
+
 .button-9 {
   appearance: button;
   backface-visibility: hidden;
   background-color: #405cf5;
   border-radius: 6px;
   border-width: 0;
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0,
+    rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-    Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -776,7 +796,9 @@ h3:after {
   text-align: center;
   text-transform: none;
   transform: translateZ(0);
-  transition: all 0.2s, box-shadow 0.08s ease-in;
+  transition:
+    all 0.2s,
+    box-shadow 0.08s ease-in;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -792,11 +814,15 @@ h3:after {
 }
 
 .button-9:focus {
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
+    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
 }
+
 /* --edit-- */
+
 .button-13 {
   background-color: #fff;
   border: 1px solid #d5d9d9;
@@ -850,7 +876,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -861,29 +888,44 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
+
 .button-12:hover {
   background-color: #030303;
 }
+
 /* ---Modal--- */
+
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 
 /* Modal Content */
+
 .modal-content {
   background-color: #fefefe;
   margin: auto;
@@ -893,6 +935,7 @@ input {
 }
 
 /* The Close Button */
+
 .close {
   color: #aaaaaa;
   float: right;
@@ -906,6 +949,7 @@ input {
   text-decoration: none;
   cursor: pointer;
 }
+
 /* ---EndModal--- */
 
 .notification .badge {
@@ -918,6 +962,7 @@ input {
   color: white;
   /* display: none; */
 }
+
 .notification {
   /* background-color: #555; */
   /* color: white; */
