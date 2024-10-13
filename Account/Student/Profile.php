@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
@@ -58,7 +57,7 @@ $profile_image = "uploads/" . $user['profile_image'];
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/Profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -66,6 +65,7 @@ $profile_image = "uploads/" . $user['profile_image'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Student Dashboard</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
 
 
 
@@ -198,7 +198,7 @@ $profile_image = "uploads/" . $user['profile_image'];
                                 <td><?= $fullName ?></td>
                             </tr>
                             <tr>
-                                <td><b>Strand</b>:</td>
+                                <td><b>Strand</b></td>
                                 <td>:</td>
                                 <td><?= $strand; ?></td>
                             </tr>
@@ -212,7 +212,7 @@ $profile_image = "uploads/" . $user['profile_image'];
                                 <td>:</td>
                                 <td><?= $email ?></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td><b>Address</b></td>
                                 <td>:</td>
                                 <td></td>
@@ -236,7 +236,7 @@ $profile_image = "uploads/" . $user['profile_image'];
                                 <td><b>Guardians number</b></td>
                                 <td>:</td>
                                 <td>N/A</td>
-                            </tr>
+                            </tr> -->
                             <!-- <tr>
                             <td>Skill</td>
                             <td>:</td>

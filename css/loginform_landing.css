@@ -176,7 +176,7 @@ main {
 }
 
 .colm-form .form-container input:focus {
-  border-color: #1bbc9b;
+  border-color: #016435;
   box-shadow: 0 0 0 2px #e7f3ff;
 }
 
@@ -198,7 +198,7 @@ main {
 
 .colm-form .form-container a {
   display: block;
-  color: #1bbc9b;
+  color: #016435;
   font-size: 14px;
   text-decoration: none;
   padding: 10px 0 20px;
@@ -258,7 +258,7 @@ main {
 .btn-new,
 .btn-login {
   --primary-color: #111;
-  --hovered-color: #14977d;
+  --hovered-color: #016435;
   position: relative;
   display: flex;
   font-weight: 600;
@@ -418,7 +418,7 @@ main {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 100%;
 }
 
 /* --------------------------------------------footer--------------------------------------------- */

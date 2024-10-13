@@ -93,17 +93,18 @@ if (isset($_SESSION['email'])) {
 
 <head>
     <script>
-    window.onload = function() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/backend/php/ajax/checkAccType.php', true);
-        xhr.send();
-    };
+        window.onload = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/backend/php/ajax/checkAccType.php', true);
+            xhr.send();
+        };
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
     <title>Set Up Account</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" type="text/css" href="../css/header_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/loginform_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/get_start_log.css">
@@ -120,9 +121,9 @@ if (isset($_SESSION['email'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
@@ -141,7 +142,7 @@ if (isset($_SESSION['email'])) {
             <div class="row">
                 <div id="register-form" class="colm-form">
                     <!-- ---------------------------------Logo ---------------------- -->
-                    <img class="logo-login" src="../img/logo-login.svg" alt="Logo">
+                    <img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo">
 
                     <div class="form-container">
                         <form id="setupForm" action="/backend/php/setup_account.php" method="POST"
@@ -195,7 +196,8 @@ if (isset($_SESSION['email'])) {
                                 <a style="text-decoration: none" href="login.php">
                                     <button class="btn-login" id="switch-to-login">
 
-                                        <p>Back</p>
+                                        <p>
+                                            Back</p>
                                     </button></a>
                                 <button class="btn-new" type="submit" onclick="showLoginForm()">
                                     <p>Submit</p>
@@ -221,34 +223,34 @@ if (isset($_SESSION['email'])) {
     </div>
 </body>
 <script>
-function toggleFields() {
-    var accountType = document.getElementById("account-type").value;
-    var studentFields = document.getElementById("student-fields");
-    var schoolFields = document.getElementById("school-fields");
-    var partnerFields = document.getElementById("partner-fields");
-    var registerForm = document.getElementById("register-form");
+    function toggleFields() {
+        var accountType = document.getElementById("account-type").value;
+        var studentFields = document.getElementById("student-fields");
+        var schoolFields = document.getElementById("school-fields");
+        var partnerFields = document.getElementById("partner-fields");
+        var registerForm = document.getElementById("register-form");
 
-    if (accountType === "student") {
-        registerForm.style.paddingTop = "25%";
-        studentFields.style.display = "block";
-        schoolFields.style.display = "none";
-        partnerFields.style.display = "none";
-    } else if (accountType === "school") {
-        registerForm.style.paddingTop = "10%";
-        studentFields.style.display = "none";
-        schoolFields.style.display = "block";
-        partnerFields.style.display = "none";
-    } else if (accountType === "organization") {
-        registerForm.style.paddingTop = "10%";
-        studentFields.style.display = "none";
-        schoolFields.style.display = "none";
-        partnerFields.style.display = "block";
-    } else {
-        studentFields.style.display = "none";
-        schoolFields.style.display = "none";
-        partnerFields.style.display = "none";
+        if (accountType === "student") {
+            registerForm.style.paddingTop = "25%";
+            studentFields.style.display = "block";
+            schoolFields.style.display = "none";
+            partnerFields.style.display = "none";
+        } else if (accountType === "school") {
+            registerForm.style.paddingTop = "10%";
+            studentFields.style.display = "none";
+            schoolFields.style.display = "block";
+            partnerFields.style.display = "none";
+        } else if (accountType === "organization") {
+            registerForm.style.paddingTop = "10%";
+            studentFields.style.display = "none";
+            schoolFields.style.display = "none";
+            partnerFields.style.display = "block";
+        } else {
+            studentFields.style.display = "none";
+            schoolFields.style.display = "none";
+            partnerFields.style.display = "none";
+        }
     }
-}
 </script>
 
 </html>

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in| Workify</title>
+    <title>Log in | DRDSNHS</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="shortcut icon" type="x-icon" href="Account/School/image/Dr.Ramon.png">
     <link rel="stylesheet" href="/css/loginform.css">
@@ -17,8 +18,7 @@
     <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-    }
-    ;
+    };
     ?>
 </head>
 
@@ -31,17 +31,24 @@
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
+
     <div class="row">
 
 
         <div id="login-form" class="colm-form">
 
+            <a href="index.php"> <img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo"></a>
             <!-- ---------------------------------Logo ---------------------- -->
-            <a href="index.php"> <img class="logo-login" src="../img/logo-login.svg" alt="Logo"></a>
+
 
             <div class="form-container">
 
 
+                <!-- <div class="dd-privacy-allow css-e1gwqt e15p7aqh1"><span class="css-8u2krs esbq1260">
+                        <span role="separator" aria-orientation="horizontal"></span></span>
+
+                </div>
+ -->
 
 
                 <!-- --------------------------------Line OR--------------------------->

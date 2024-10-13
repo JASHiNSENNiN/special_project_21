@@ -6,8 +6,9 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #f0f2f5;
+  background-color: #ffe77d;
   color: #1c1e21;
+  /* background-image: url("../img/bg-dr-ramon.svg"); */
 }
 
 main {
@@ -173,12 +174,12 @@ main {
 }
 
 .colm-form .form-container input:focus {
-  border-color: #1bbc9b;
+  border-color: #016435;
   box-shadow: 0 0 0 2px #e7f3ff;
 }
 
 .colm-form .form-container .btn-login {
-  background-color: #1bbc9b;
+  background-color: #016435;
   border: none;
   border-radius: 6px;
   font-size: 20px;
@@ -189,12 +190,12 @@ main {
 }
 
 .colm-form .form-container .btn-login:hover {
-  background-color: #0e745f;
+  background-color: #044e2c;
 }
 
 .colm-form .form-container a {
   display: block;
-  color: #1bbc9b;
+  color: #016435;
   font-size: 14px;
   text-decoration: none;
   padding: 10px 0 20px;
@@ -206,7 +207,7 @@ main {
 }
 
 .colm-form .form-container .btn-new {
-  background-color: #14977d;
+  background-color: #016435;
   border: none;
   border-radius: 6px;
   font-size: 17px;
@@ -220,7 +221,7 @@ main {
 }
 
 .colm-form .form-container .btn-new:hover {
-  background-color: #0e745f;
+  background-color: #044e2c;
 }
 
 .colm-form p {
@@ -292,7 +293,7 @@ main {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 100%;
   margin-top: 100px;
 }
 
@@ -300,8 +301,8 @@ main {
 
 footer {
   position: fixed;
-  background-color: #f0f2f5;
-  color: #333;
+  background-color: #016435;
+  color: #fff;
   padding: 20px;
   text-align: center;
   bottom: 0;

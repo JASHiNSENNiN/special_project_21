@@ -7,33 +7,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in</title>
+    <title>Log in | DRDSNHS</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <?php
     session_start();
     ?>
     <link rel="stylesheet" type="text/css" href="/css/header.css">
     <link rel="stylesheet" type="text/css" href="/css/loginform.css">
     <script>
-    function onSubmit(token) {
-        if (validateRegisterForm()) {
-            document.getElementById("registerForm").submit();
+        function onSubmit(token) {
+            if (validateRegisterForm()) {
+                document.getElementById("registerForm").submit();
+            }
         }
-    }
     </script>
 </head>
 
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
     <div class="row">
         <div id="register-form" class="colm-form">
-            <a href="index.php"><img class="logo-login" src="../img/logo-login.svg" alt="Logo"></a>
+            <a href="index.php"><img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo"></a>
 
             <div class="form-container">
 
