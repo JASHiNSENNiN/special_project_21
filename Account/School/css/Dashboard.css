@@ -27,7 +27,7 @@
 
 .active {
   color: #000000;
-  background-color: rgba(27, 188, 155, 0.3);
+  background-color: rgba(27, 121, 40, 0.575);
   font-weight: bold;
 }
 
@@ -283,7 +283,7 @@ nav a:hover {
   display: none;
   position: absolute;
   right: 0;
-  background-color: rgba(249, 249, 249, 0.8);
+  background-color: rgb(249, 249, 249);
   min-width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
