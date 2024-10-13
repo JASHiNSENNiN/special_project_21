@@ -104,8 +104,8 @@ function generateJobCards($jobOffers)
                 <img src="img/DrRamonLOGO.svg" alt="Logo">
             </a>
             <nav class="dash-middle">
-                <a class="active-header" href="index.php">Home</a>
-                <!-- <a href="job_list.php">Company review</a>
+                <!-- <a class="active-header" href="index.php">Home</a>
+                <a href="job_list.php">Company review</a>
                 <a href="contact.php">Contact</a> -->
             </nav>
         </div>
