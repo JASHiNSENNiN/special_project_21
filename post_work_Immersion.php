@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Work Immersion | Workify</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" type="text/css" href="./css/post_wi.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/footer.css"> -->
 </head>
@@ -17,7 +18,7 @@
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="post_work_immersion.php">
-                <img src="./img/companylogo.jpg" alt="Logo">
+                <img src="./img/drpartnerlog.svg" alt="Logo">
             </a>
             <nav>
                 <a href="post_work_immersion.php">Post Work Immersion</a>
@@ -38,17 +39,23 @@
     </header>
     <div class="content-sticky">
         <section class="section-yj7db7">
-            <h1 class="sfa">Let's Workify Your Work Life</h1>
-            <div class="searchwork">
-                <form action="login.php" method="get">
-                    <!-- <input type="text" name="keywords" placeholder="Immerssion  / Keywords / Company">
+            <div class="sfa-column">
+                <h1 class="sfa">Let's Workify Your Work Life</h1>
+                <div class="searchwork">
+                    <form action="login.php" method="get">
+                        <!-- <input type="text" name="keywords" placeholder="Immerssion  / Keywords / Company">
                 <input type="text" name="location" placeholder="Location"> -->
-                    <input type="submit" value="Post a Work Immersion!">
+                        <input type="submit" value="Post a Work Immersion!">
 
-                </form>
+                    </form>
+                </div>
             </div>
+            <!-- <div class="imglogo"> -->
+            <img class="partner-logo" src="../img/partnerorgpagev1.svg" alt="logo" style="width:66%;">
+            <!-- </div> -->
 
         </section>
+
 
 
         <section class="section-yj6db6">
