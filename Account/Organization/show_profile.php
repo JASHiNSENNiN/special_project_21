@@ -18,14 +18,12 @@ $profile_div = '<header class="nav-header">
         <nav class="by">
             
 
-           
 
             <div class="dropdown" style="float:right;">
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
-                    <div>' .
-    $_SESSION['user_id'] . '</div>
+                    
                     <a href="Profile.php"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My
                         Profile</a>
                     <a href=""><i class="fas fa-bookmark" style="font-size:24px; margin-right:10px; "></i> My Jobs</a>
@@ -59,7 +57,6 @@ $profile_div = '<header class="nav-header">
         <i class="fa fa-pencil"></i> Edit profile
                         </span>
                         <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
-           
         </div>
 
     </div>';

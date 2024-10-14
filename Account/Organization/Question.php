@@ -306,7 +306,7 @@ require_once 'show_profile.php';
 
     <br>
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
     </footer>
 
 

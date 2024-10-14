@@ -6,19 +6,21 @@
 
 /* ----------------Slider---------------------*/
 
-.rating {
+/* .rating {
   background: var(--background-color);
-  font: 16px/1 Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font:
+    16px/1 Montserrat,
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(var(--rating-size), var(--rating-size))
-  );
+  grid-template-columns: repeat(auto-fill, minmax(var(--rating-size), var(--rating-size)));
   gap: var(--bar-size);
   justify-content: start;
   padding: var(--bar-size);
   margin-left: 100px;
-}
+} */
 
 /* ----- The actual thing ----- */
 
@@ -37,7 +39,7 @@
 
 /* Rating item */
 
-.rating {
+/* .rating {
   margin-top: 10px;
   position: relative;
   display: flex;
@@ -49,14 +51,14 @@
   color: var(--rating-color-default);
   width: var(--rating-size);
   height: var(--rating-size);
-  /* Basic style for the text */
+
   font-size: calc(var(--rating-size) / 3);
   line-height: 1;
-}
+} */
 
 /* Rating circle content */
 
-.rating span {
+/* .rating span {
   position: relative;
   display: flex;
   font-weight: bold;
@@ -69,7 +71,7 @@
   align-self: center;
 }
 
-/* Bar mask, creates an inner circle with the same color as thee background */
+
 
 .rating::after {
   content: "";
@@ -80,7 +82,7 @@
   z-index: 1;
 }
 
-/* Bar background */
+
 
 .rating::before {
   content: "";
@@ -91,7 +93,6 @@
   z-index: -1;
 }
 
-/* Classes to give different colors to ratings, based on their score */
 
 .rating.good {
   background: var(--rating-color-good);
@@ -110,7 +111,7 @@
 
 svg {
   width: 14px;
-}
+} */
 
 * {
   margin: 0;
@@ -210,6 +211,7 @@ footer {
   padding: 20px;
   text-align: center;
   bottom: 0;
+  font-family: Arial;
 }
 
 h1,
@@ -371,7 +373,7 @@ nav .login-btn:hover {
   display: none;
   position: absolute;
   right: 0;
-  background-color: rgba(249, 249, 249, 0.8);
+  background-color: rgb(249, 249, 249);
   min-width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -631,13 +633,18 @@ h1 {
 p {
   margin: 0;
   padding: 0;
-  font-family: bogle;
-  font-size: 14px;
 }
 
 .api_title {
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   color: #2d2d2d;
   font-size: 0.75rem;
   font-weight: 700;
@@ -646,8 +653,15 @@ p {
 
 .api_details_one {
   color: #2d2d2d;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   line-height: 1.5;
   font-size: 0.75rem;
   font-weight: inherit;
@@ -656,8 +670,15 @@ p {
 .api_details_two {
   color: #595959;
   color: #767676;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   font-size: 0.75rem;
   font-weight: inherit;
   line-height: 1.5;
@@ -701,8 +722,19 @@ p {
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
-  font-family: Graphik, -apple-system, system-ui, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    Graphik,
+    -apple-system,
+    system-ui,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
   font-size: 14px;
   line-height: 1.15;
   overflow: visible;
@@ -791,7 +823,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -802,8 +835,10 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 
@@ -1169,6 +1204,7 @@ svg g[show_data] {
   color: #595959;
 }
 
+/* 
 .Chart2 {
   margin-top: 30px;
   width: 100%;
@@ -1184,7 +1220,7 @@ svg g[show_data] {
   width: 100%;
   max-width: 600px;
   margin: auto;
-}
+} */
 
 /* Create two equal columns that floats next to each other */
 
@@ -1192,25 +1228,25 @@ svg g[show_data] {
   float: left;
   width: 50%;
   padding: 10px;
-  height: 480px;
+  height: auto;
   margin: auto;
   margin-bottom: 50px;
   text-align: center;
   align-items: center;
+  border: 1px solid grey;
   /* Should be removed. Only for demonstration */
 }
 
 /* Clear floats after the columns */
 
-.row:after {
+/* .row:after {
   content: "";
   display: table;
   clear: both;
-}
+} */
 
 .title {
   margin-bottom: 20px;
-  margin-top: 40px;
 }
 
 .circular-progress {
@@ -1281,4 +1317,33 @@ svg g[show_data] {
 .data-box label {
   margin-top: 0;
   font-size: 13px;
+}
+
+/* /////////////////////////////////////////////////////COMPANY GRAPH////////////////////////////////// */
+
+.dp-graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  /* set the height to the full viewport height */
+  max-width: 800px;
+  /* set the max-width to your liking */
+  margin: 0 auto;
+  /* center the div horizontally */
+  padding: 20px;
+  /* add some padding to make the div more visible */
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .dp-graph {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dp-graph {
+    max-width: 100%;
+  }
 }

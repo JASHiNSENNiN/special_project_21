@@ -12,7 +12,7 @@ require_once 'show_profile.php';
     <link rel="stylesheet" type="text/css" href="css/Profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <title>Organization Dashboard</title>
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
 
     <!-- Custom Css -->
     <style>
@@ -164,7 +164,7 @@ require_once 'show_profile.php';
     </div>
     <!-- End -->
     <footer>
-        2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
+        2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School
     </footer>
 </body>
 
