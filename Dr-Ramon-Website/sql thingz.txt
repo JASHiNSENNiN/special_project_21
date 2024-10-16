@@ -1,0 +1,64 @@
+CREATE TABLE users (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  email VARCHAR(255) UNIQUE,
+  password VARCHAR(255),
+  account_type ENUM('student', 'school', 'partner')
+);
+
+CREATE TABLE student_profiles (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  first_name VARCHAR(255),
+  middle_name VARCHAR(255),
+  last_name VARCHAR(255),
+  grade_level ENUM('11', '12'),
+  strand ENUM('stem', 'humss', 'abm', 'gas', 'tvl'),
+  user_id INT(11),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE school_profiles (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  school_name VARCHAR(255),
+  user_id INT(11),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE partner_profiles (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  organization_name VARCHAR(255),
+  user_id INT(11),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE performance_evaluations (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  evaluation_name VARCHAR(255),
+  description TEXT,
+  start_date DATE,
+  end_date DATE,
+  location VARCHAR(255),
+  user_id INT(11),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE feedback_surveys (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  survey_name VARCHAR(255),
+  description TEXT,
+  start_date DATE,
+  end_date DATE,
+  location VARCHAR(255),
+  user_id INT(11),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE risk_assessments (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  assessment_name VARCHAR(255),
+  description TEXT,
+  start_date DATE,
+  end_date DATE,
+  location VARCHAR(255),
+  user_id INT(11),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);

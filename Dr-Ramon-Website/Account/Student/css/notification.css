@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.nav-header {
+  background-color: #fff;
+  color: #000000;
+  padding-top: 5px;
+  /* padding-right: 20px; */
+  padding-left: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+nav {
+  text-align: center;
+  display: flex;
+  margin-right: 180px;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  position: relative;
+  transition: background-color 0.3s;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+nav .login-btn:hover {
+  color: #172738;
+}
+
+.bt a:hover {
+  color: #000000;
+  background-color: rgba(27, 188, 155, 0.3);
+  font-weight: bold;
+}
+.by a:hover {
+  color: #1bbc9b;
+  /* background-color: rgba(27, 188, 155, 0.1); */
+  font-weight: bold;
+}
+
+.bt a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #1bbc9b;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+}
+.by a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #1bbc9b;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: rgba(249, 249, 249, 0.8);
+  min-width: 400px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-top: 10px;
+  padding: 30px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  margin-right: auto;
+  /* width: 40%; */
+  text-align: left;
+}
+.foot {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.email {
+  text-align: left;
+  font-weight: bold;
+}
+.logout a {
+  text-align: center;
+}
+
+/* .dropdown-content a:hover {
+  background-color: #f1f1f1;
+} */
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 220px;
+  /* Adjust the width as needed */
+  /* height: 50px; Adjust the height as needed */
+  margin-right: 30px;
+}
+@media only screen and (max-width: 1085px) {
+  .header {
+    padding-left: 20px !important;
+    padding-bottom: 5px !important;
+  }
+
+  .logo img {
+    width: 160px !important;
+    /* Adjust the width as needed */
+    margin-right: 15px !important;
+  }
+
+  nav a {
+    /* padding: 5px 10px !important; */
+    margin: 0 10px !important;
+    font-size: 14px !important;
+  }
+
+  .login-btn {
+    /* width: 10% !important; */
+    height: 10% !important;
+    padding: 10px !important;
+  }
+  .logoimg {
+    width: 100% !important;
+  }
+  .css-1ld7x2h {
+    margin: 5px 0 0 !important;
+  }
+  nav {
+    margin: 0;
+  }
+}
+
+.css-1ld7x2h {
+  background-color: #d4d2d0;
+  margin: 0.75rem 0 0;
+}
+
+.css-1ld7x2h {
+  box-sizing: border-box;
+  height: 1.5rem;
+  min-width: 0;
+  width: 0.0625rem;
+}
+footer {
+  position: fixed;
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.bgpic {
+  background-image: url("image/notification.jpg");
+  height: 600px;
+  width: 600px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  /* color: white; */
+}
