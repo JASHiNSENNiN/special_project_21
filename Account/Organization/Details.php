@@ -12,7 +12,8 @@ require_once 'show_profile.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Dashboard</title>
-    <link rel="icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
 
     <link rel="stylesheet" type="text/css" href="css/Details.css">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -38,7 +39,7 @@ require_once 'show_profile.php';
             <a href="Job_ads.php"> Job Ads</a>
             <a href="Job_request.php">Job Request</a>
             <a href="Faculty_report.php">Student Evaluation</a>
-            <a href="Question.php">Questions</a>
+            <!-- <a href="Question.php">Questions</a> -->
             <a class="active" href="Details.php">Analytics</a>
 
 
