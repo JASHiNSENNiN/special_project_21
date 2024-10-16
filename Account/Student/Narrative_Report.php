@@ -1,31 +1,9 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
-
-// Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Initialize an empty array to store the radio button data
-    $radioButtonData = [];
-
-    // Loop through the radio button questions
-    for ($i = 1; $i <= 25; $i++) {
-        // Get the value of the radio button
-        $radioButtonValue = $_POST["question$i"];
-
-        // Add the radio button value to the array
-        $radioButtonData["question$i"] = $radioButtonValue;
-    }
-
-    // Convert the array to JSON
-    $jsonRadioButtonData = json_encode($radioButtonData);
-
-    // Print the JSON data
-    echo $jsonRadioButtonData;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -880,16 +858,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             jsonData[`question${i + 1}`] = answers[i];
         }
         console.log(jsonData);
+        console.log('<?php echo $_SERVER['PHP_SELF']; ?>');
         // Send the JSON data to the PHP script using AJAX
-        fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
+        const url = '../../backend/php/add_student_report.php';
+        fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(jsonData)
             })
-            .then(response => response.json())
-            .then(data => console.log(data))
+            .then(response => response.text())
+            .then(data => {
+                if (JSON.parse(data).status === 'success') {
+                    window.location.reload();
+                }
+                try {
+                    const jsonData = JSON.parse(data);
+                    console.log(jsonData);
+                } catch (e) {
+                    console.error('Parsing error:', e);
+                }
+            })
             .catch(error => console.error('Error:', error));
     });
 
@@ -922,14 +912,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-
-    // just for showing the values (not required only for testing)
-    inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question1.value}\n ${this.question2.value}\n${this.question3.value}\n${this.question4.value}\n${this.question5.value}`
-        );
-        return false;
-    }
     </script>
 
     <script>
@@ -947,7 +929,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // just for showing the values (not required only for testing)
     inputsForm.onsubmit = function() {
         console.log(
             ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
