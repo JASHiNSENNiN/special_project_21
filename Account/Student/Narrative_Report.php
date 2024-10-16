@@ -670,7 +670,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     let popup = document.getElementById("popup");
 
     function openPopup() {
-        // popup.classList.add("open-popup");
+
         Swal.fire({
             title: "Successfully send!",
             icon: "success",

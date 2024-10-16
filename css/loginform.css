@@ -6,7 +6,9 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #ffe77d;
+  /* ////////DR RAMON COLOR //// */
+  /* background-color: #ffe77d; */
+  background-color: #fff;
   color: #1c1e21;
   /* background-image: url("../img/bg-dr-ramon.svg"); */
 }
@@ -174,12 +176,19 @@ main {
 }
 
 .colm-form .form-container input:focus {
-  border-color: #016435;
+  border-color: #1bbc9b;
   box-shadow: 0 0 0 2px #e7f3ff;
 }
 
+/* //////////DR RAMON COLOR //////// */
+
+/* .colm-form .form-container input:focus {
+  border-color: #016435;
+  box-shadow: 0 0 0 2px #e7f3ff;
+} */
+
 .colm-form .form-container .btn-login {
-  background-color: #016435;
+  background-color: #16a387;
   border: none;
   border-radius: 6px;
   font-size: 20px;
@@ -189,25 +198,62 @@ main {
   transition: background-color 0.3s ease;
 }
 
+/* //////////DR RAMON COLOR //////// */
+
+/* .colm-form .form-container .btn-login {
+  background-color: #016435;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  padding: 0 16px;
+  
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+} */
+
 .colm-form .form-container .btn-login:hover {
-  background-color: #044e2c;
+  background-color: #12836c;
 }
 
-.colm-form .form-container a {
+/* //////////DR RAMON COLOR //////// */
+
+/* .colm-form .form-container .btn-login:hover {
+  background-color: #044e2c;
+} */
+
+/* .colm-form .form-container a {
   display: block;
   color: #016435;
   font-size: 14px;
   text-decoration: none;
   padding: 10px 0 20px;
-  /* border-bottom: 1px solid #dadde1; */
+} */
+
+.colm-form .form-container a {
+  display: block;
+  color: #12836c;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 0 20px;
 }
+
+/* //////////DR RAMON COLOR //////// */
+
+/* .colm-form .form-container a {
+  display: block;
+  color: #016435;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 0 20px;
+} */
 
 .colm-form .form-container a:hover {
   text-decoration: underline;
 }
 
 .colm-form .form-container .btn-new {
-  background-color: #016435;
+  background-color: #16a387;
   border: none;
   border-radius: 6px;
   font-size: 17px;
@@ -221,8 +267,29 @@ main {
 }
 
 .colm-form .form-container .btn-new:hover {
-  background-color: #044e2c;
+  background-color: #12836c;
 }
+
+/* //////////DR RAMON COLOR //////// */
+
+/* .colm-form .form-container .btn-new {
+  background-color: #016435;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  line-height: 48px;
+  padding: 0 16px;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+
+.colm-form .form-container .btn-new:hover {
+  background-color: #044e2c;
+} */
 
 .colm-form p {
   font-size: 14px;
@@ -301,6 +368,19 @@ main {
 
 footer {
   position: fixed;
+  /* background-color: #172738; */
+  color: #172738;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* ////////DR RAMON COLOR //////// */
+
+/* footer {
+  position: fixed;
   background-color: #016435;
   color: #fff;
   padding: 20px;
@@ -308,7 +388,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-}
+} */
 
 .chek {
   width: 10%;

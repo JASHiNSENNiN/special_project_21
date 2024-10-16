@@ -1237,6 +1237,19 @@ svg g[show_data] {
   /* Should be removed. Only for demonstration */
 }
 
+.column-1 {
+  float: left;
+  width: 80%;
+  padding: 10px;
+  height: auto;
+  margin: auto;
+  margin-bottom: 50px;
+  text-align: center;
+  align-items: center;
+  border: 1px solid grey;
+  /* Should be removed. Only for demonstration */
+}
+
 /* Clear floats after the columns */
 
 /* .row:after {
@@ -1245,8 +1258,17 @@ svg g[show_data] {
   clear: both;
 } */
 
+.row-analytics {
+  justify-content: space-between;
+  display: flex;
+  gap: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
 .title {
   margin-bottom: 20px;
+  text-align: left;
 }
 
 .circular-progress {
@@ -1325,25 +1347,34 @@ svg g[show_data] {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
-  /* set the height to the full viewport height */
   max-width: 800px;
-  /* set the max-width to your liking */
   margin: 0 auto;
-  /* center the div horizontally */
   padding: 20px;
-  /* add some padding to make the div more visible */
+  position: relative;
+}
+
+.dp-graph-strand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
   position: relative;
 }
 
 @media (max-width: 768px) {
-  .dp-graph {
+  .dp-graph,
+  .dp-graph-strand,
+  .column-1 {
     max-width: 90%;
   }
 }
 
 @media (max-width: 480px) {
-  .dp-graph {
+  .dp-graph,
+  .dp-graph-strand,
+  .column-1 {
     max-width: 100%;
   }
 }
