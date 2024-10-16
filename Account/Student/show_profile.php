@@ -51,7 +51,7 @@ $profile_div = '<header class="nav-header">
     
 
     <div class="profile">
-        <img src="' . $profile_image . 'image/default.png" alt="">
+        <img src="' . $profile_image . '" alt="profile picture">
         <div class="name">' . $firstName . ' ' . $middleName . ' ' . $lastName . '</div>
         <label class="strand" for="">' . $strand . '</label>
 

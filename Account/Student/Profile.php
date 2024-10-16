@@ -50,7 +50,7 @@ $strand = strtoupper($student_profile['strand']);
 $stars = $student_profile['stars'];
 $currentWork = $student_profile['current_work'];
 $email = $user['email'];
-$profile_image = "uploads/" . $user['profile_image'];
+$profile_image = $user['profile_image'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
