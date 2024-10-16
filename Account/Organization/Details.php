@@ -13,16 +13,13 @@ require_once 'show_profile.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Dashboard</title>
     <link rel="icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <link rel="stylesheet" type="text/css" href="css/Details.css">
 
+    <link rel="stylesheet" type="text/css" href="css/Details.css">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    -------------font---------
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
 
     <script src="./css/analytics.js"></script>
@@ -74,17 +71,18 @@ require_once 'show_profile.php';
         </div>
 
 
-        <div class="row">
+        <div class="row-analytics">
 
-            <div class="column">
-                <h2 class="title">Company Performance</h2>
-                <div class="dp-graph" id="com_chart_div"></div>
+            <div class="column-1">
+                <h3 class="title">Company Performance</h3>
+                <div class="dp-graph" id="com_chart_div">
+                </div>
 
 
             </div>
             <div class="column">
-                <h2 class="title">Total Strand Workspace</h2>
-                <div class="dp-graph" id="piechart_3d"></div>
+                <h3 class="title">Total Strand Workspace</h3>
+                <div class="dp-graph-strand" id="piechart_3d"></div>
 
 
 
@@ -110,7 +108,7 @@ require_once 'show_profile.php';
         let inputFile1 = document.getElementById("input-file1");
 
         inputFile1.onchange = function() {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0])
         };
     </script>
 
@@ -119,7 +117,7 @@ require_once 'show_profile.php';
         let inputFile2 = document.getElementById("input-file2");
 
         inputFile2.onchange = function() {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0])
         };
     </script>
 

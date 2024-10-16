@@ -84,8 +84,9 @@ function drawBasiccom() {
 
   var options = {
     title: "Daily Performance",
-    height: 250,
-    width: 500,
+    height: 200,
+    responsive: true,
+
     hAxis: {
       title: "Day",
     },
@@ -114,8 +115,8 @@ function drawChart() {
 
   var options = {
     title: "Population",
-    height: 250,
-    width: 500,
+    onResize: null,
+    responsive: true,
     is3D: true,
   };
 
