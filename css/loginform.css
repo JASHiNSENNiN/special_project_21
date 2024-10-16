@@ -356,13 +356,34 @@ main {
   }
 }
 
+.bottom-login {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+.bottom-login p {
+  padding: 10px 0 20px;
+}
+
 .logo-login {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+/* ///////DR RAMON CSS/// */
+
+/* .logo-login {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   margin-top: 100px;
-}
+} */
 
 /* --------------------------------------------footer--------------------------------------------- */
 

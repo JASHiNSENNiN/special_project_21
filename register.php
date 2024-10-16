@@ -56,10 +56,15 @@
                         <span role="separator" aria-orientation="horizontal"></span></span>
 
                 </div>
-                <a href="login.php"><button class="btn-new" id="switch-to-login">
+                <div class="bottom-login">
+                    <p>Already have account? </p>
+                    <a href="login.php">Login Now
+                        <!-- <button class="btn-new" id="switch-to-login">
                         Log in to Existing Account
-                    </button>
-                </a>
+                    </button> -->
+                    </a>
+                </div>
+
 
 
             </div>
