@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS Student_Evaluation (
 );
 
 CREATE TABLE IF NOT EXISTS Organization_Evaluation (
-    evaluation_id INT PRIMARY KEY,
+    evaluation_id INT PRIMARY KEY AUTO_INCREMENT,
     organization_id INT,
     quality_of_experience INT CHECK (quality_of_experience BETWEEN 0 AND 5),
     productivity_of_tasks INT CHECK (productivity_of_tasks BETWEEN 0 AND 5),
