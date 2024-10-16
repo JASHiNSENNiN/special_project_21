@@ -201,7 +201,7 @@ nav a {
 }
 
 nav .login-btn:hover {
-    color: #000;
+    color: #fff;
 }
 
 nav a:hover {
@@ -488,9 +488,9 @@ nav a:hover::after {
 /* --------------------------------------Footer ----------------------- */
 
 .sub-footer {
-    background: #02a157;
+    background: #fff;
     text-align: center;
     font-size: 14px;
-    color: white;
+    color: #172738;
     padding: 10px 0px;
 }
