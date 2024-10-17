@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: $destination");
         exit();
     } else {
-        $destination = '/login.php?error="Login_Failed"';
+        $destination = '/login.php?error=Login_Failed';
         header("Location: $destination");
     }
 

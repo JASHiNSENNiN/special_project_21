@@ -17,20 +17,20 @@
     <link rel="stylesheet" type="text/css" href="/css/header.css">
     <link rel="stylesheet" type="text/css" href="/css/loginform.css">
     <script>
-        function onSubmit(token) {
-            if (validateRegisterForm()) {
-                document.getElementById("registerForm").submit();
-            }
+    function onSubmit(token) {
+        if (validateRegisterForm()) {
+            document.getElementById("registerForm").submit();
         }
+    }
     </script>
 </head>
 
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
@@ -71,7 +71,7 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer Society Students</p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>

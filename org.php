@@ -52,7 +52,7 @@ function generateJobCard()
   echo '<div class="container">';
   echo '<div class="eleven columns">';
 
-  echo '<span class="job-category"><a href="#">Dancer</a></span>';
+  echo '<span class="job-category"><a href="#">Position title</a></span>';
   echo '<h1>' . htmlspecialchars($job['work_title']);
 
   foreach ($strands as $strand) {
@@ -151,33 +151,13 @@ function generateJobCard()
                 <div class="padding-right">
                     <div class="single_job_listing">
                         ' . $description . '
-                        <p class="job_tags">Tagged as: <a href="#" rel="tag">dancer</a></p>
+                        
 
                     </div>
                 </div>
 
             </div>
-            <div class="five columns">
-                <div class="widget">
-                    <h4>Job Overview</h4>
-                    <div class="job-overview">
-
-
-                    </div>
-
-                </div>
-                <div class="widget">
-                    <h4>Job Location</h4>
-                    <div class="job-overview">
-
-
-                    </div>
-
-                </div>
-
-
-
-            </div>
+            
 
         </div>';
 }
@@ -224,8 +204,8 @@ function generateJobCard()
             </a>
             <nav class="dash-middle">
                 <a class="active-header" href="index.php">Home</a>
-                <a href="job_list.php">Company review</a>
-                <a href="contact.php">Contact</a>
+                <!-- <a href="job_list.php">Company review</a>
+                <a href="contact.php">Contact</a> -->
             </nav>
         </div>
         <nav class="nav-log">

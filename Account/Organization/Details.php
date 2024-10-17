@@ -54,7 +54,7 @@ function getStudentCounts($partner_user_id)
         $counts['approved_students'] = $result_approved->fetch_assoc()['approved'];
 
         // Count pending students for these job IDs
-        $sql_pending = "SELECT COUNT(DISTINCT student_id) as pending FROM applicants WHERE job_id IN ($job_ids_placeholder) AND status = 'applied'";
+        $sql_pending = "SELECT COUNT(DISTINCT student_id) as pending FROM applicants WHERE job_id IN ($job_ids_placeholder) AND NOT status = 'accepted'";
         $stmt_pending = $conn->prepare($sql_pending);
         $stmt_pending->bind_param(str_repeat('i', count($job_ids)), ...$job_ids);
         $stmt_pending->execute();
@@ -77,7 +77,6 @@ $studentCounts = getStudentCounts($_SESSION['user_id']);
     <title>Company Dashboard</title>
     <!-- <link rel="icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
-
     <link rel="stylesheet" type="text/css" href="css/Details.css">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

@@ -110,12 +110,15 @@ fetch("../../../backend/php/get_student_strand_num.php?chart_data=true")
     return response.text(); // Change to text to see raw response
   })
   .then((data) => {
-    console.log(data); // Log the raw response
+    console.log("Strand numbers: ", data); // Log the raw response
     try {
       const jsonData = JSON.parse(data); // Attempt to parse JSON
       var chartData = [["Strand", "Count"]]; // Initialize with header row
       for (var strand in jsonData) {
-        chartData.push([strand, jsonData[strand]]);
+        chartData.push([
+          strand.charAt(0).toUpperCase() + strand.slice(1),
+          jsonData[strand],
+        ]);
       }
       drawChart(chartData);
     } catch (error) {
@@ -126,23 +129,12 @@ fetch("../../../backend/php/get_student_strand_num.php?chart_data=true")
 
 // Draw the chart function
 function drawChart(chartData) {
-  var jsonData = { stem: 1, humss: 0, abm: 0, gas: 0, tvl: 0 };
-
-  // Convert JSON to array format for Google Charts
-  var chartData = [["Task", "Hours per Day"]]; // Initialize with header
-
-  // Map through the JSON object to add data to the array
-  Object.keys(jsonData).forEach(function (strand) {
-    var formattedStrand = strand.charAt(0).toUpperCase() + strand.slice(1); // Capitalize first letter
-    chartData.push([formattedStrand, jsonData[strand]]);
-  });
-
   // Create the DataTable
   var data = google.visualization.arrayToDataTable(chartData);
 
   // Example: Drawing the chart (you can customize options)
   var options = {
-    title: "Population",
+    title: "Strand Distribution",
     is3D: true,
     responsive: true,
   };
