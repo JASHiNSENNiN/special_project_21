@@ -16,7 +16,7 @@ $strand = strtoupper($_SESSION['strand']);
 $stars = $_SESSION['stars'];
 $currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
-$profile_image = $_SESSION['profile_image'];
+$profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
 $profile_div = '<header class="nav-header">
         <div class="logo">
@@ -25,8 +25,7 @@ $profile_div = '<header class="nav-header">
             </a>
         </div>
         <nav class="by">
-           
-           
+
 
             <div class="dropdown" style="float:right;">
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
@@ -52,6 +51,9 @@ $profile_div = '<header class="nav-header">
     
 
     <div class="profile">
+    <script>
+    console.log("'. $profile_image .'");
+    </script>
         <img src="' . $profile_image . '" alt="profile picture">
         <div class="name">' . $firstName . ' ' . $middleName . ' ' . $lastName . '</div>
         <label class="strand" for="">' . $strand . '</label>

@@ -65,19 +65,21 @@ function fetch_partner_profile($user_id)
     $stmt = $conn->prepare("SELECT * FROM partner_profiles WHERE user_id = ?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
-    return $stmt->get_result()->fetch_assoc();
+    return $stmt->get_result()->fetch_assoc(); 
 }
 
 $user_profile = fetch_user_profile($user_id);
 $_SESSION['email'] = $user_profile['email'];
 $_SESSION['account_type'] = $user_profile['account_type'];
 $profile_image = '../Account/Student/image/default.png';
+$_SESSION['profile_image'] = "../../Account/Student/image/default.png";
 $profile_image_path = './uploads/' . $user_profile['profile_image'];
 if (file_exists($profile_image_path)) {
     $_SESSION['profile_image'] = $profile_image_path;
 } else {
-    $_SESSION['profile_image'] = "../Account/Student/image/default.png";
+    $_SESSION['profile_image'] = "../../Account/Student/image/default.png";
 }
+$_SESSION['profile_image'] =  ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
 
 

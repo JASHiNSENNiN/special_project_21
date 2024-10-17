@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(255) UNIQUE,
   password VARCHAR(255),
   account_type ENUM('student', 'school', 'organization'),
-  profile_image VARCHAR(255),
+  profile_image VARCHAR(255) DEFAULT 'default.png',
   cover_image VARCHAR(255)
 );
 

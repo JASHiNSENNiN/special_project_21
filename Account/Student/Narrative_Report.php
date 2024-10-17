@@ -873,6 +873,7 @@ require_once 'show_profile.php';
             .then(data => {
                 if (JSON.parse(data).status === 'success') {
                     window.location.reload();
+                    openPopup();
                 }
                 try {
                     const jsonData = JSON.parse(data);
