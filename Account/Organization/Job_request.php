@@ -130,7 +130,7 @@ function acceptApplicant($applicant_id)
             <a href="Job_ads.php"> Job Ads</a>
             <a class="active" href="Job_request.php">Job Request</a>
             <a href="Faculty_report.php">Student Evaluation</a>
-            <a href="Question.php">Questions</a>
+            <!-- <a href="Question.php">Questions</a> -->
             <a href="Details.php">Analytics</a>
 
 
