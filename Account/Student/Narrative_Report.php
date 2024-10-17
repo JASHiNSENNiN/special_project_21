@@ -620,7 +620,7 @@ require_once 'show_profile.php';
             <span class="modal_icon">
                 <ion-icon name="checkmark-sharp"></ion-icon>
             </span>
-            <p>You have successfully completed the process.</p>
+            <p>You have successfully completed the Evaluation.</p>
         </div>
     </div>
 
@@ -873,7 +873,6 @@ require_once 'show_profile.php';
             .then(data => {
                 if (JSON.parse(data).status === 'success') {
                     window.location.reload();
-                    openPopup();
                 }
                 try {
                     const jsonData = JSON.parse(data);
