@@ -22,7 +22,6 @@ if (isset($urlParts['query'])) {
     parse_str($urlParts['query'], $queryParameters);
     if (isset($queryParameters['job_id'])) {
         $jobIdParam =  $queryParameters['job_id'];
-        
     }
 } else {
     echo "Query string parameter not found.";
@@ -43,29 +42,29 @@ $job = $result;
 function generateJobCard()
 {
     global $job;
-  $strands = json_decode($job['strands']);
-  $work_title = $job['work_title'];
-  $description = html_entity_decode($job['description']);
-  $description = nl2br($description);
+    $strands = json_decode($job['strands']);
+    $work_title = $job['work_title'];
+    $description = html_entity_decode($job['description']);
+    $description = nl2br($description);
 
-  echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
-  echo '<div class="container">';
-  echo '<div class="eleven columns">';
+    echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
+    echo '<div class="container">';
+    echo '<div class="eleven columns">';
 
-  echo '<span class="job-category"><a href="#">Position title</a></span>';
-  echo '<h1>' . htmlspecialchars($job['work_title']);
+    echo '<span class="job-category"><a href="#">Position title</a></span>';
+    echo '<h1>' . htmlspecialchars($job['work_title']);
 
-  foreach ($strands as $strand) {
-    echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
-  }
+    foreach ($strands as $strand) {
+        echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+    }
 
-  echo '</h1></div>';
+    echo '</h1></div>';
 
-  echo '<div class="five columns">';
-  echo '<div class="job-manager-form wp-job-manager-bookmarks-form">';
-  echo '</div></div></div></div>';
+    echo '<div class="five columns">';
+    echo '<div class="job-manager-form wp-job-manager-bookmarks-form">';
+    echo '</div></div></div></div>';
 
-  echo '
+    echo '
             </div>
         </div>
 
@@ -86,7 +85,7 @@ function generateJobCard()
                     <div class="content">
                         <h4>
                             <a href="#"> <strong>' . htmlspecialchars($job['organization_name']) .
-            '</strong>
+        '</strong>
                             </a>
                             <p class="company-data__content--list-item">Improving Lives Together</p>
                         </h4>
@@ -174,6 +173,7 @@ function generateJobCard()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Work Immersion | Workify</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -191,9 +191,9 @@ function generateJobCard()
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -297,20 +297,20 @@ function generateJobCard()
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script src="js/filter.js"> </script>
 

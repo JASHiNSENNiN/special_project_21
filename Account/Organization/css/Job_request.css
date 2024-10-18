@@ -109,16 +109,17 @@ hr {
 .button-9 {
   appearance: button;
   backface-visibility: hidden;
-  background-color: #405cf5;
+  background-color: #22b959;
   border-radius: 6px;
   border-width: 0;
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0,
+    rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-    Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -130,38 +131,45 @@ hr {
   text-align: center;
   text-transform: none;
   transform: translateZ(0);
-  transition: all 0.2s, box-shadow 0.08s ease-in;
+  transition:
+    all 0.2s,
+    box-shadow 0.08s ease-in;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   /* width: 100%; */
 }
 
+.button-9:hover {
+  background-color: #25a052;
+}
+
 .button-9:disabled {
   cursor: default;
 }
 
-.button-9:focus {
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+/* .button-9:focus {
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
+    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
-}
+} */
 
 .button-4 {
   appearance: none;
-  background-color: #fafbfc;
-  border: 1px solid rgba(27, 31, 35, 1.15);
+  color: #fff;
+  background-color: rgb(252, 70, 100);
+  border: none;
   border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+  box-shadow:
+    rgba(27, 31, 35, 0.04) 0 1px 0,
     rgba(255, 255, 255, 0.25) 0 1px 0 inset;
   box-sizing: border-box;
-  color: #24292e;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
   font-size: 14px;
-  font-weight: 500;
   line-height: 20px;
   list-style: none;
   padding: 12px 30px;
@@ -173,10 +181,12 @@ hr {
   vertical-align: middle;
   white-space: nowrap;
   word-wrap: break-word;
+  margin-top: 10px;
 }
 
 .button-4:hover {
-  background-color: #f3f4f6;
+  color: #fff;
+  background-color: rgb(202, 60, 84);
   text-decoration: none;
   transition-duration: 0.1s;
 }
@@ -232,7 +242,7 @@ footer {
   margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid grey;
 }
 
 .sales-boxes .sales-details {
@@ -414,9 +424,9 @@ div .search-box .bx-search {
   background-color: #f2f2f2;
 }
 
-#tbl tr:hover {
+/* #tbl tr:hover {
   background-color: #ddd;
-}
+} */
 
 #tbl th {
   padding-top: 12px;
@@ -945,7 +955,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -956,8 +967,10 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 

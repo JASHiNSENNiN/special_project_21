@@ -87,10 +87,10 @@ a {
     text-align: center;
 }
 
-a.button {
+.button {
     font-weight: 500;
     font-size: 14px;
-    background-color: #26ae61;
+    background-color: #08203a;
     text-transform: none;
     border-radius: 4px;
     cursor: pointer;
@@ -149,7 +149,13 @@ a.button {
 .company-info-apply-btn .job_application.application a:hover {
     text-decoration: none;
     color: #fff;
-    background-color: #08203a;
+    background-color: #26ae61;
+}
+
+.button:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #26ae61;
 }
 
 .padding-right {
