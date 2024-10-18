@@ -17,14 +17,15 @@ if ($conn->connect_error) {
 }
 
 // Function to get applicants for the organization
-function getApplicants($conn, $org_id) {
+function getApplicants($conn, $org_id)
+{
     $applicants = [];
     $sql = "SELECT a.id, a.student_id, s.first_name, s.last_name, s.strand, s.school, u.profile_image 
             FROM applicants a 
             JOIN student_profiles s ON a.student_id = s.user_id 
             JOIN users u ON s.user_id = u.id 
             WHERE a.job_id IN (SELECT id FROM job_offers WHERE partner_id = ?)";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $org_id);
     $stmt->execute();
@@ -84,10 +85,10 @@ $applicants = getApplicants($conn, $org_id);
                     <th>Result</th>
                     <th>Action</th>
                 </tr>
-                <?php foreach ($applicants as $index => $applicant) { 
-                    
-                    $profile_image =  '../Student/uploads/' . $applicant['profile_image']
-                    ?>
+                <?php foreach ($applicants as $index => $applicant) {
+
+                    $profile_image = '../Student/uploads/' . $applicant['profile_image']
+                        ?>
                 <tr>
                     <td data-th="#"><?= $index + 1 ?></td>
                     <td data-th="ID Picture">
@@ -108,6 +109,7 @@ $applicants = getApplicants($conn, $org_id);
                             href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
                             <button class="button-9" role="button">Evaluate</button>
                         </a>
+                        <!-- <button class="button-37" role="button">View Profile</button> -->
                         </ td>
                 </tr>
                 <?php } ?>
