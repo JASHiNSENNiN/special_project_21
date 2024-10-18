@@ -122,8 +122,10 @@ require_once 'show_profile.php';
                     <input type="hidden" name="description" id="description">
                     <div id="editor-container"></div>
 
-
-                    <p>By creating job ads you agree to our <a href="#">Terms & Privacy</a>.</p>
+                    <div class="container__nav">
+                        <small>By clicking 'Check box' you are agreeing to our <a href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
+                        <input type="checkbox" id="agree" name="agree" value="agree" required>
+                    </div>
                     <button class="button-9" role="button" type="submit">Submit</button>
                 </div>
             </form>

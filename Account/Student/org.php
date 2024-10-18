@@ -232,7 +232,7 @@ function generateJobCard()
         echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Cancel Application</button>
                                         <input type="hidden" name="action" value="cancel_application">';
     } else {
-        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button>
+        echo '<a><button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button></a>
                                         <input type="hidden" name="action" value="apply_application">';
     }
 
@@ -291,7 +291,8 @@ function generateJobCard()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Work Immersion | Workify</title>
-    <link rel="shortcut icon" type="x-icon" href="image/Dr.Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/Dr.Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -318,7 +319,8 @@ function generateJobCard()
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="../../img/header.png" alt="Logo">
+                <!-- <img src="../../img/header.png" alt="Logo"> -->
+                <img src="../../img/logov3.jpg" alt="Logo">
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a>
@@ -349,7 +351,8 @@ function generateJobCard()
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <a href="Company_Area.php">
-                            <img src="../../img/logov3.jpg" alt="Logo">
+                            <!-- <img src="../../img/logov3.jpg" alt="Logo"> -->
+
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -416,7 +419,7 @@ function generateJobCard()
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function () {
+        window.onscroll = function() {
             myFunction();
         };
 
