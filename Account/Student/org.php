@@ -232,7 +232,7 @@ function generateJobCard()
         echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Cancel Application</button>
                                         <input type="hidden" name="action" value="cancel_application">';
     } else {
-        echo '<a><button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button></a>
+        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button>
                                         <input type="hidden" name="action" value="apply_application">';
     }
 
