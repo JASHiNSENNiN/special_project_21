@@ -1,7 +1,53 @@
 <?php
-session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+};
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
+(Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
+
+$currentUrl = $_SERVER['REQUEST_URI'];
+$urlParts = parse_url($currentUrl);
+if (isset($urlParts['query'])) {
+    parse_str($urlParts['query'], $queryParameters);
+    if (isset($queryParameters['organization_id'])) {
+        $IdParam = $queryParameters['organization_id'];
+    }
+} else {
+    echo "Query string parameter not found.";
+}
+
+$user_id = decrypt_url_parameter(base64_decode($IdParam));
+
+global $host;
+global $username;
+global $password;
+global $database;
+global $conn;
+
+
+$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+$sql = "SELECT * FROM partner_profiles WHERE id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':user_id', $user_id);
+$stmt->execute();
+$partner_profile = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+$sql = "SELECT * FROM users WHERE id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':user_id', $user_id);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$oraganization_name = $partner_profile['oraganization_name'];
+$strand = strtoupper($partner_profile['strand']);
+$stars = $partner_profile['stars'];
+$email = $user['email'];
+$profile_image = "uploads/" . $user['profile_image'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,19 +55,19 @@ require_once 'show_profile.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Profile</title>
     <link rel="stylesheet" type="text/css" href="css/Profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <title>Organization Dashboard</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
 
-    <!-- Custom Css -->
-    <style>
 
-    </style>
 
     <!-- FontAwesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+
+
+
 </head>
 
 <body>
@@ -30,24 +76,11 @@ require_once 'show_profile.php';
         <div class="title">
             <h1>Profile</h1>
         </div>
-
-        <!-- Navbar -->
         <ul>
-            <!-- <li>
-          <a href="#message">
-            <span class="icon-count">29</span>
-            <i class="fa fa-envelope fa-2x"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#notification">
-            <span class="icon-count">59</span>
-            <i class="fa fa-bell fa-2x"></i>
-          </a>
-        </li> -->
+
             <li>
-                <a href="Details.php">
-                    <i class="fa fa-sign-out-alt fa-2x"></i>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
+                    <i class=" fa fa-sign-out-alt fa-2x"></i>
                 </a>
             </li>
         </ul>
@@ -58,13 +91,13 @@ require_once 'show_profile.php';
     <!-- Sidenav -->
     <div class="sidenav">
         <div class="profile">
-            <img src="image/NIA.png" alt="" width="100" height="100" />
+            <img src=<?php echo $profile_image ?> alt="" width="100" height="100" />
 
-            <div class="name">National Irrigation Administration</div>
-            <div class="job">NIA - Guimba</div>
+            <div class="name"><?= $oraganization_name; ?></div>
+            <div class="job"><?= $strand ?></div>
         </div>
 
-        <div class="sidenav-url">
+        <!-- <div class="sidenav-url">
             <div class="url">
                 <a href="#profile" class="active">Profile</a>
                 <hr align="center" />
@@ -73,7 +106,7 @@ require_once 'show_profile.php';
                 <a href="Settings.php">Settings</a>
                 <hr align="center" />
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- End -->
 
@@ -86,29 +119,29 @@ require_once 'show_profile.php';
                 <table>
                     <tbody>
                         <tr>
-                            <td>Name</td>
+                            <td>Organization</td>
                             <td>:</td>
-                            <td>National Irrigation Administration</td>
+                            <td><?= $oraganization_name; ?></td>
                         </tr>
                         <tr>
                             <td>Email</td>
                             <td>:</td>
-                            <td>upriis.division6@nia.gov.ph</td>
+                            <td><?= $email; ?></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>Address</td>
                             <td>:</td>
-                            <td>Guimba, Nueva Ecija</td>
-                        </tr>
-                        <tr>
-                            <td>Telephone #</td>
+                            <td>Brgy. San Antonio, Cuyapo, Philippines</td>
+                        </tr> -->
+                        <!-- <tr>
+                            <td>Contact Number</td>
                             <td>:</td>
-                            <td>+63 44 335-0542</td>
-                        </tr>
+                            <td> (044) 611-0026; 0917-8830311</td>
+                        </tr> -->
                         <tr>
-                            <td>Acting Division Manager</td>
+                            <td>Presindent</td>
                             <td>:</td>
-                            <td>ENGR. ROBERT Q. MATIAS</td>
+                            <td>Most Rev. Ruberto C. Mallari, D.D.</td>
                         </tr>
                         <!-- <tr>
                             <td>Skill</td>
@@ -121,10 +154,17 @@ require_once 'show_profile.php';
         </div>
         <br>
         <h2>Map</h2>
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5755.381035967767!2d120.76801963737383!3d15.68455601125408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33912df7beb03b0f%3A0xacb7e05e7490868d!2sNIA-UPRIIS%20Division%206!5e0!3m2!1sen!2sph!4v1716003778463!5m2!1sen!2sph"
+        <!-- <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1920.8544297966187!2d120.7673922211044!3d15.660484473847125!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33912cdb2318296d%3A0xe4e2117e97dfc92e!2sOur%20Lady%20of%20The%20Sacred%20Heart%20College!5e0!3m2!1sen!2sph!4v1716015242226!5m2!1sen!2sph"
             width="850" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4180.818006163703!2d120.70824703813983!3d15.714406648857958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391320a99919993%3A0x9be48d66ed4cad27!2sDr%20Ramon%20De%20Santos%20National%20High%20School!5e1!3m2!1sen!2sph!4v1728567463175!5m2!1sen!2sph"
+            width="780" height="350" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
 
         <h2>SOCIAL MEDIA</h2>
         <div class="card">
