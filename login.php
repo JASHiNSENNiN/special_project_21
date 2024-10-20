@@ -46,7 +46,8 @@
     <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-    };
+    }
+    ;
     ?>
 </head>
 
@@ -99,6 +100,7 @@
                         <input type="checkbox" onclick="myFunction()">
                     </div>
                     <p class="show">Show Password</p>
+
                     <button type="submit" class="btn-login" style="height: 40px; font-size: 15px">
                         <span class="hover-underline-animation"> Continue </span>
                         <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10"

@@ -49,6 +49,12 @@
                     <input type="password" placeholder="Confirm Password" id="confirm-password"
                         name="register_confirm_password" required>
 
+                    <div class="chek">
+                        <input type="checkbox" onclick="myFunction()">
+                    </div>
+                    <p class="show">Show Password</p>
+
+
                     <button id="register-button" class="btn-new" data-action="submit">Register</button>
                 </form>
 
@@ -75,6 +81,17 @@
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>
+
+    <script>
+    function myFunction() {
+        var x = document.getElementById("confirm-password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    </script>
 </body>
 
 </html>
