@@ -406,15 +406,17 @@ div .search-box .bx-search {
   width: 100%;
 }
 
+#tbl tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 /* #tbl td,
 #tbl th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#tbl tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+
 
 #tbl tr:hover {
   background-color: #ddd;
@@ -1108,7 +1110,10 @@ input[type="file"] {
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
+  font-family:
+    "Akzidenz Grotesk BQ Medium",
+    -apple-system,
+    BlinkMacSystemFont,
     sans-serif;
   font-size: 100%;
   font-weight: 400;
@@ -1117,7 +1122,9 @@ input[type="file"] {
   padding: 10px 25px;
   text-align: center;
   transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
+  transition:
+    transform 150ms,
+    box-shadow 150ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;

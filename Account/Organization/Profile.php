@@ -139,9 +139,14 @@ $profile_image = "uploads/" . $user['profile_image'];
                             <td> (044) 611-0026; 0917-8830311</td>
                         </tr> -->
                         <tr>
-                            <td>Presindent</td>
+                            <td>Location</td>
                             <td>:</td>
-                            <td>Most Rev. Ruberto C. Mallari, D.D.</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>President</td>
+                            <td>:</td>
+                            <td></td>
                         </tr>
                         <!-- <tr>
                             <td>Skill</td>
