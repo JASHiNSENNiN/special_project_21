@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> Term & conditions| Workify</title>
+    <title> Term & Privacy | Workify</title>
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <!-- <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <link rel="stylesheet" type="text/scss" href="css/reboot.css">
