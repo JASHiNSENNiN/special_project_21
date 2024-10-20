@@ -159,7 +159,7 @@ hr {
 .button-4 {
   appearance: none;
   color: #fff;
-  background-color: rgb(252, 70, 100);
+  background-color: rgb(66, 122, 168);
   border: none;
   border-radius: 6px;
   box-shadow:
@@ -186,7 +186,7 @@ hr {
 
 .button-4:hover {
   color: #fff;
-  background-color: rgb(202, 60, 84);
+  background-color: rgb(56, 103, 141);
   text-decoration: none;
   transition-duration: 0.1s;
 }
