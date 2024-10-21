@@ -14,34 +14,34 @@
     <script src="backend/js/register.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const error = urlParams.get("error"); // Get the "error" parameter
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get("error"); // Get the "error" parameter
 
-        if (error === "invalidEmail") {
-            // If the error is "invalidEmail", set a custom validity message
-            const emailField = document.getElementById("login-email");
-            emailField.setCustomValidity("The email address is already taken.");
-            emailField.reportValidity();
-        } else if (error === "Login_Failed") {
-            // If the error is "Login_Failed", set a custom validity message for both fields
-            const emailField = document.getElementById("login-email");
-            const passwordField = document.getElementById("login-password");
-            emailField.setCustomValidity("Invalid email or password.");
-            passwordField.setCustomValidity("Invalid email or password.");
-            emailField.reportValidity();
-            passwordField.reportValidity();
-        } else {
-            // Clear custom validity if no error or other error
-            document.getElementById("login-email").setCustomValidity('');
-            document.getElementById("login-password").setCustomValidity('');
+            if (error === "invalidEmail") {
+                // If the error is "invalidEmail", set a custom validity message
+                const emailField = document.getElementById("login-email");
+                emailField.setCustomValidity("The email address is already taken.");
+                emailField.reportValidity();
+            } else if (error === "Login_Failed") {
+                // If the error is "Login_Failed", set a custom validity message for both fields
+                const emailField = document.getElementById("login-email");
+                const passwordField = document.getElementById("login-password");
+                emailField.setCustomValidity("Invalid email or password.");
+                passwordField.setCustomValidity("Invalid email or password.");
+                emailField.reportValidity();
+                passwordField.reportValidity();
+            } else {
+                // Clear custom validity if no error or other error
+                document.getElementById("login-email").setCustomValidity('');
+                document.getElementById("login-password").setCustomValidity('');
+            }
+        };
+
+
+        function onRegisterSubmit(token) {
+            document.getElementById("login_form").submit();
         }
-    };
-
-
-    function onRegisterSubmit(token) {
-        document.getElementById("login_form").submit();
-    }
     </script>
     <?php
     if (session_status() == PHP_SESSION_NONE) {
@@ -54,9 +54,9 @@
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
@@ -139,14 +139,14 @@
     </div>
 
     <script>
-    function myFunction() {
-        var x = document.getElementById("login-password");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
+        function myFunction() {
+            var x = document.getElementById("login-password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
-    }
     </script>
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
