@@ -214,6 +214,15 @@ window.onload = function () {
   if (error === "Login_Failed") {
     const loginEmailField = document.getElementById("login-email");
     const loginPasswordField = document.getElementById("login-password");
+
+    // Redirect on click
+    loginEmailField.addEventListener("click", function () {
+      window.location.href = "login.php"; // Redirect to login.php
+    });
+    loginPasswordField.addEventListener("click", function () {
+      window.location.href = "login.php"; // Redirect to login.php
+    });
+
     if (loginEmailField && loginPasswordField) {
       loginEmailField.setCustomValidity("Invalid Email or Password");
       loginPasswordField.setCustomValidity("Invalid Email or Password");
