@@ -248,6 +248,29 @@ nav .login-btn:hover {
 }
 
 nav a:hover {
+  color: rgb(24, 97, 59, 0.7);
+}
+
+.active-header {
+  color: rgb(24, 97, 59, 0.9);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(24, 97, 59, 0.7);
+  bottom: -17px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+}
+
+/* //////////////////////// Workify css////////////////// */
+
+/* nav a:hover {
   color: rgb(27, 188, 155, 0.7);
 }
 
@@ -266,7 +289,7 @@ nav a::after {
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s;
-}
+} */
 
 nav a:hover::after {
   transform: scaleX(1);
@@ -295,7 +318,7 @@ nav a:hover::after {
   padding: 0.9rem 1.8rem;
   font-size: 14px;
   color: #172738;
-  border: 1px solid rgb(27, 188, 155);
+  border: 1px solid rgb(24, 97, 59);
   cursor: pointer;
   position: relative;
   background-color: transparent;
@@ -313,7 +336,7 @@ nav a:hover::after {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(27, 188, 155, 0.7);
+  background-color: rgb(24, 97, 59, 0.7);
   transform: translateX(-100%);
   transition: all 0.3s;
   z-index: -1;

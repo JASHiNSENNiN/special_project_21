@@ -291,8 +291,8 @@ function generateJobCard()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Work Immersion | Workify</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="image/Dr.Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="image/Dr.Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
