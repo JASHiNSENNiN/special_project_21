@@ -21,7 +21,7 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/header.png" alt="Logo">
             </a>
         </div>
         <nav class="by">
@@ -52,7 +52,7 @@ $profile_div = '<header class="nav-header">
 
     <div class="profile">
     <script>
-    console.log("'. $profile_image .'");
+    console.log("' . $profile_image . '");
     </script>
         <img src="' . $profile_image . '" alt="profile picture">
         <div class="name">' . $firstName . ' ' . $middleName . ' ' . $lastName . '</div>

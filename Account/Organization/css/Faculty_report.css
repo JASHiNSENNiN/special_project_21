@@ -197,9 +197,7 @@ footer {
   margin-bottom: 50px;
   border-radius: 12px;
   /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); */
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .sales-boxes .sales-details {
@@ -304,9 +302,7 @@ input[type="date"] {
   border-radius: 6px;
   line-height: 1.5;
   padding: 20px 29px;
-  transition:
-    box-shadow 100ms ease-in,
-    border 100ms ease-in,
+  transition: box-shadow 100ms ease-in, border 100ms ease-in,
     background-color 100ms ease-in;
   border: 2px solid #dee1e2;
   color: rgb(14, 14, 16);
@@ -547,8 +543,8 @@ nav .login-btn:hover {
 
 .active1 {
   color: #fff;
-  /* background-color: rgba(52, 121, 40, 0.9); */
-  background-color: rgba(27, 188, 155, 0.9);
+  background-color: rgba(52, 121, 40, 0.9);
+  /* background-color: rgba(27, 188, 155, 0.9); */
   font-weight: bold;
 }
 
@@ -559,7 +555,8 @@ nav .login-btn:hover {
 }
 
 .by a:hover {
-  color: #1bbc9b;
+  color: #347928;
+  /* color: #1bbc9b; */
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -569,7 +566,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -582,7 +579,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -804,14 +801,13 @@ nav a:hover::after {
   background-color: #405cf5;
   border-radius: 6px;
   border-width: 0;
-  box-shadow:
-    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0,
-    rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -823,9 +819,7 @@ nav a:hover::after {
   text-align: center;
   text-transform: none;
   transform: translateZ(0);
-  transition:
-    all 0.2s,
-    box-shadow 0.08s ease-in;
+  transition: all 0.2s, box-shadow 0.08s ease-in;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -840,10 +834,8 @@ nav a:hover::after {
 }
 
 .button-9:focus {
-  box-shadow:
-    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
-    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
 }
 
@@ -902,8 +894,7 @@ input[type="file"] {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow:
-    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -914,10 +905,8 @@ input[type="file"] {
 }
 
 .button-12:focus {
-  box-shadow:
-    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 
@@ -1110,10 +1099,7 @@ input[type="file"] {
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family:
-    "Akzidenz Grotesk BQ Medium",
-    -apple-system,
-    BlinkMacSystemFont,
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
     sans-serif;
   font-size: 100%;
   font-weight: 400;
@@ -1122,9 +1108,7 @@ input[type="file"] {
   padding: 10px 25px;
   text-align: center;
   transform: translateY(0);
-  transition:
-    transform 150ms,
-    box-shadow 150ms;
+  transition: transform 150ms, box-shadow 150ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
