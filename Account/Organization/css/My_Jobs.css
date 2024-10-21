@@ -1151,7 +1151,7 @@ html {
 }
 
 .job-card-subtitle ul li {
-  list-style-type: circle;
+  list-style-type: none;
 }
 
 .job-card-title-location .fas {
