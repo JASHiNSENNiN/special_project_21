@@ -31,8 +31,6 @@ if ($result) {
     }
 }
 
-$conn->close(); 
-
 function generateJobCards($jobOffers)
 {
     if (empty($jobOffers)) {
@@ -66,15 +64,51 @@ function generateJobCards($jobOffers)
                     <div>' . $description . '</div>
                 </div>
                 
-                <div class="job-card-buttons">
-                    <a href="update_job.php?id=' . htmlspecialchars($job['id']) . '" target="_blank"><button class="search-buttons card-buttons">Update</button></a>
-                    <a href="delete_job.php?id=' . htmlspecialchars($job['id']) . '" target="_blank"><button class="search-buttons card-buttons">Delete</button></a>
+                <div class="job-card-buttons">';
+
+        // Edit button
+        echo '<a href="edit_job.php?id=' . htmlspecialchars($job['id']) . '"><button class="search-buttons card-buttons">Edit</button></a>';
+        
+        // Conditionally display archive/unarchive buttons based on job status
+        if ($job['is_archived']) {
+            echo '<a href="?action=unarchive&id=' . htmlspecialchars($job['id']) . '" onclick="return confirm(\'Are you sure you want to unarchive this job?\');"><button class="search-buttons card-buttons">Unarchive</button></a>';
+        } else {
+            echo '<a href="?action=archive&id=' . htmlspecialchars($job['id']) . '" onclick="return confirm(\'Are you sure you want to archive this job?\');"><button class="search-buttons card-buttons">Archive</button></a>';
+        }
+
+        echo '
                 </div>
             </div>
         </li>';
     }
 }
 
+function archiveJob($id) {
+    global $conn; 
+
+    $sql = $conn->prepare("UPDATE job_offers SET is_archived = TRUE WHERE id = ?");
+    $sql->bind_param("i", $id);
+    return $sql->execute();
+}
+
+function unarchiveJob($id) {
+    global $conn; 
+
+    $sql = $conn->prepare("UPDATE job_offers SET is_archived = FALSE WHERE id = ?");
+    $sql->bind_param("i", $id);
+    return $sql->execute();
+}
+
+if (isset($_GET['action']) && isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+    if ($_GET['action'] === 'archive') {
+        archiveJob($id);
+    } elseif ($_GET['action'] === 'unarchive') {
+        unarchiveJob($id);
+    }
+    header("Location: " . $_SERVER['PHP_SELF']); 
+    exit();
+}
 
 ?>
 <!DOCTYPE html>

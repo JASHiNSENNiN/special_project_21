@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS job_offers (
   description TEXT NOT NULL,
   partner_id INT(11) NOT NULL,
   organization_name VARCHAR(255),
+  is_archived BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (partner_id) REFERENCES partner_profiles(user_id)
 );
 
