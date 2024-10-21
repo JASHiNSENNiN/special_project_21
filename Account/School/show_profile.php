@@ -9,7 +9,7 @@ $email = $_SESSION['email'];
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="#">
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/header.png" alt="Logo">
             </a>
         </div>
 
@@ -26,7 +26,7 @@ $profile_div = '<header class="nav-header">
                     <a href="#"> <i class="fa fa-archive" style="font-size:24px; Margin-right:10px"></i>Archive</a>
                     <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Settings</a>
                     <hr>
-                    <<a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px"></i> Log out</a>
+                    <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px"></i> Log out</a>
                 </div>
             </div>
             <div class="css-1ld7x2h eu4oa1w0"></div>

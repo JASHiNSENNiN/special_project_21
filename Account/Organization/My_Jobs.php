@@ -74,7 +74,8 @@ function generateJobCards($jobOffers)
 
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/My_Jobs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -85,9 +86,9 @@ function generateJobCards($jobOffers)
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -95,7 +96,7 @@ function generateJobCards($jobOffers)
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="../../img/logov3.jpg" alt="Logo">
+                <img src="../../img/header.png" alt="Logo">
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a>
@@ -160,9 +161,9 @@ function generateJobCards($jobOffers)
     </div>
 
     <script>
-        function myFunction() {
-            confirm("Are you Sure?");
-        }
+    function myFunction() {
+        confirm("Are you Sure?");
+    }
     </script>
 
 </body>
