@@ -299,7 +299,6 @@ $tvl_students = get_students_by_strand('tvl');
                         }
                         ?>
                     </tbody>
-
                 </table>
             </div>
         </div>
