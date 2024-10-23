@@ -36,7 +36,7 @@ $profile_div = '<header class="nav-header">
                         Weather Update</a>
                     <a href="#"> <i class="fas fa-comment-alt" style="font-size:24px;margin-right:10px;"></i>My
                         Reviews</a>
-                    <a href="edit_profile.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
                     <hr>
                     <hr>
                     <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>

@@ -5,6 +5,7 @@
 /* --------------------joblisting container ---------------------- */
 
 /* ----------------Slider---------------------*/
+
 * {
   margin: 0;
   padding: 0;
@@ -29,6 +30,7 @@ img {
   display: block;
   border-radius: 10px;
 }
+
 .Settings {
   margin-left: 76%;
   margin-right: auto;
@@ -46,13 +48,15 @@ img {
   margin-top: -90px;
   border: 5px solid #fff;
 }
+
 .name {
   margin-top: 1%;
-  margin-left: 21%;
+  margin-left: 25%;
   font-size: 1.25rem;
   /* size: 10px; */
   font-family: sans-serif;
 }
+
 .strand {
   margin-top: 1%;
   margin-left: 21%;
@@ -131,12 +135,15 @@ h3 {
   cursor: pointer;
   /* display: none; */
 }
+
 #check {
   display: none;
 }
+
 .cam {
   display: none;
 }
+
 .pen {
   display: none;
 }
@@ -212,6 +219,7 @@ nav a:hover {
   background-color: rgba(27, 188, 155, 0.3);
   font-weight: bold;
 }
+
 .by a:hover {
   color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.1); */
@@ -230,6 +238,7 @@ nav a:hover {
   transform-origin: bottom right;
   transition: transform 0.3s;
 }
+
 .by a::after {
   content: "";
   position: absolute;
@@ -312,6 +321,7 @@ nav a:hover {
   float: left;
   margin-top: -20px;
 }
+
 .dropdowntf-content img {
   display: block;
   width: 50px;
@@ -344,11 +354,13 @@ nav a:hover {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 .email {
   color: #000000;
   text-align: left;
   font-weight: bold;
 }
+
 .logout a {
   text-align: center;
 }
@@ -446,6 +458,7 @@ nav a:hover::after {
 }
 
 /* --edit-- */
+
 .button-13 {
   background-color: #fff;
   border: 1px solid #d5d9d9;
@@ -499,7 +512,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -510,10 +524,13 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
+
 .button-12:hover {
   background-color: #030303;
 }
@@ -528,6 +545,7 @@ input {
   color: white;
   /* display: none; */
 }
+
 .notification {
   /* background-color: #555; */
   /* color: white; */

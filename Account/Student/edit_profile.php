@@ -148,7 +148,7 @@ if (isset($_SESSION['user_id'])) {
     <title>Edit Profile</title>
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
-    <link rel="stylesheet" type="text/css" href="css/org_style.css">
+    <link rel="stylesheet" type="text/css" href="css/edit_profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
 </head>
@@ -156,95 +156,101 @@ if (isset($_SESSION['user_id'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
-    <header id="myHeader-sticky">
-        <div class="logo">
-            <a href="Company_Area.php">
-                <img src="../../img/header.png" alt="Logo">
-            </a>
-            <nav class="dash-middle">
-                <!-- <a class="active-header" href="index.php">Home</a>
-                <a href="job_list.php">Company review</a>
-                <a href="contact.php">Contact</a> -->
-            </nav>
-        </div>
-        <nav class="nav-log">
-            <!-- <a class="login-btn" href="login.php" style="margin-left: 20px;">Sign in</a> -->
-            <div class="css-1ld7x2h eu4oa1w0"></div>
-            <a class="com-btn" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"
-                onclick="window.location.href = document.referrer;"> Back</a>
-        </nav>
 
-    </header>
     <?php if (!isset($_SESSION['user_id'])): ?>
-    <div class="container mt-5">
-        <div class="alert alert-danger">Please log in to access this page.</div>
-    </div>
+        <div class="container mt-5">
+            <div class="alert alert-danger">Please log in to access this page.</div>
+        </div>
     <?php else: ?>
-    <div class="container-xl px-4 mt-4">
+        <div class="container-xl px-4 mt-4">
 
-        <div class="row">
-            <div class="col-xl-4">
-                <div class="card mb-4 mb-xl-0">
-                    <div class="card-header">Profile Picture</div>
-                    <div class="card-body text-center">
-                        <img class="img-account-profile rounded-circle mb-2" id="profile-image"
-                            src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
-                            alt="Profile" style="width: 200px; height: 200px; object-fit: cover;">
-                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                        <form id="profile-image-form">
-                            <input type="file" id="image-upload" name="profile_image" accept="image/*"
-                                style="display: none;">
-                            <label for="image-upload" class="btn btn-primary">Upload new image</label>
-                        </form>
+            <nav class="nav nav-borders">
+                <a class="nav-link active ms-0" href="#">Edit Profile</a>
+
+            </nav>
+
+            <div class="row row1">
+                <div class="col-xl-4">
+
+                    <div class="card mb-4 mb-5 mb-xl-0">
+                        <div class="card-header">Cover Picture </div>
+
+                        <div class="card-body text-center">
+
+                            <img class="img-account-cover  mb-2" id="profile-image-cover"
+                                src="https://i.postimg.cc/c454Lh9J/bg.png" alt>
+
+                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                            <form id="image-upload-form">
+                                <input type="file" id="image-upload-cover" style="display: none;">
+                                <label for="image-upload" class="btn btn-primary">Upload new image</label>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-8">
-                <div class="card mb-4">
-                    <div class="card-header">Account Details</div>
-                    <div class="card-body">
-                        <form id="edit-profile-form">
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputFirstName">First name</label>
-                                    <input class="form-control" id="inputFirstName" name="first_name" type="text"
-                                        value="<?php echo htmlspecialchars($profile_data['first_name'] ?? ''); ?>"
-                                        required>
+                <div class="col-xl-4">
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Profile Picture</div>
+                        <div class="card-body text-center">
+                            <img class="img-account-profile rounded-circle mb-2" id="profile-image"
+                                src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
+                                alt="Profile" style="width: 200px; height: 200px; object-fit: cover;">
+                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                            <form id="profile-image-form">
+                                <input type="file" id="image-upload" name="profile_image" accept="image/*"
+                                    style="display: none;">
+                                <label for="image-upload" class="btn btn-primary">Upload new image</label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="card mb-4">
+                        <div class="card-header">Account Details</div>
+                        <div class="card-body">
+                            <form id="edit-profile-form">
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputFirstName">First name</label>
+                                        <input class="form-control" id="inputFirstName" name="first_name" type="text"
+                                            value="<?php echo htmlspecialchars($profile_data['first_name'] ?? ''); ?>"
+                                            required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputMiddleName">Middle name</label>
+                                        <input class="form-control" id="inputMiddleName" name="middle_name" type="text"
+                                            value="<?php echo htmlspecialchars($profile_data['middle_name'] ?? ''); ?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLastName">Last name</label>
+                                        <input class="form-control" id="inputLastName" name="last_name" type="text"
+                                            value="<?php echo htmlspecialchars($profile_data['last_name'] ?? ''); ?>"
+                                            required>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputMiddleName">Middle name</label>
-                                    <input class="form-control" id="inputMiddleName" name="middle_name" type="text"
-                                        value="<?php echo htmlspecialchars($profile_data['middle_name'] ?? ''); ?>">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLastName">Last name</label>
-                                    <input class="form-control" id="inputLastName" name="last_name" type="text"
-                                        value="<?php echo htmlspecialchars($profile_data['last_name'] ?? ''); ?>"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-6">
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
 
-                                    <div class="container4">
-                                        <form class="form-control" action="/submit" method="post">
-                                            <label class="small mb-1" for="inputSchool">School name</label>
-                                            <select class="form-control" id="student" name="student"
-                                                <?php echo htmlspecialchars($profile_data['school'] ?? ''); ?> required>
-                                                <option value="" disabled selected>Select a School</option>
-                                                <option value="OLSHCO">OLSHCO</option>
-                                                <option value="National">Dr Ramon</option>
-                                                <option value="CATMAN">CATMAN</option>
-                                                <option value="WCC">WCC</option>
-                                                <option value="CRT">CRT</option>
-                                            </select>
-                                            <!-- <label class="StudentLabel" for="student">Choose a Strand:</label>
+                                        <div class="container4">
+                                            <form class="form-control" action="/submit" method="post">
+                                                <label class="small mb-1" for="inputSchool">School name</label>
+                                                <select class="form-control" id="student" name="student"
+                                                    <?php echo htmlspecialchars($profile_data['school'] ?? ''); ?> required>
+                                                    <option value="" disabled selected>Select a School</option>
+                                                    <option value="OLSHCO">OLSHCO</option>
+                                                    <option value="National">Dr Ramon</option>
+                                                    <option value="CATMAN">CATMAN</option>
+                                                    <option value="WCC">WCC</option>
+                                                    <option value="CRT">CRT</option>
+                                                </select>
+                                                <!-- <label class="StudentLabel" for="student">Choose a Strand:</label>
                         <select class="StudentSelect" id="student" name="student" required>
                             <option value="" disabled selected>Select a student</option>
                             <option value="HUMSS">HUMSS</option>
@@ -253,157 +259,157 @@ if (isset($_SESSION['user_id'])) {
                             <option value="TECHVOC">TECHVOC</option>
                         </select> -->
 
-                                            <!-- <button type="submit" class="submit-btn"><i class='fas fa-user-plus'
+                                                <!-- <button type="submit" class="submit-btn"><i class='fas fa-user-plus'
                                                     style='margin-right:10px;'></i>Add
                                                 Student</button> -->
-                                        </form>
-                                    </div>
+                                            </form>
+                                        </div>
 
-                                    <!-- <input class="form-control" id="inputSchool" name="school" type="text"
+                                        <!-- <input class="form-control" id="inputSchool" name="school" type="text"
                                         value="<?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>" required> -->
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputStrand">Strand</label>
-                                    <select class="form-control" id="inputStrand" name="strand" required>
-                                        <?php
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputStrand">Strand</label>
+                                        <select class="form-control" id="inputStrand" name="strand" required>
+                                            <?php
                                             $strands = ['stem' => 'STEM', 'humss' => 'HUMSS', 'abm' => 'ABM', 'gas' => 'GAS', 'tvl' => 'TVL'];
                                             foreach ($strands as $value => $label) {
                                                 $selected = ($profile_data['strand'] ?? '') === $value ? 'selected' : '';
                                                 echo "<option value=\"$value\" $selected>$label</option>";
                                             }
                                             ?>
-                                    </select>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <button class="btn btn-primary" type="submit">Save changes</button>
-                        </form>
+                                <button class="btn btn-primary" type="submit">Save changes</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-    const searchInput = document.getElementById('searchInput');
-    const dropdownList = document.getElementById('dropdownList1');
-    const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
-    let selectedStudent = '';
+        <script>
+            const searchInput = document.getElementById('searchInput');
+            const dropdownList = document.getElementById('dropdownList1');
+            const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
+            let selectedStudent = '';
 
-    // Filter dropdown items based on search input
-    searchInput.addEventListener('input', function() {
-        const filter = searchInput.value.toLowerCase();
-        let hasMatches = false;
+            // Filter dropdown items based on search input
+            searchInput.addEventListener('input', function() {
+                const filter = searchInput.value.toLowerCase();
+                let hasMatches = false;
 
-        dropdownList.style.display = 'block'; // Show the dropdown list
+                dropdownList.style.display = 'block'; // Show the dropdown list
 
-        for (let i = 0; i < dropdownItems.length; i++) {
-            const itemText = dropdownItems[i].textContent.toLowerCase();
-            if (itemText.includes(filter)) {
-                dropdownItems[i].style.display = 'block';
-                hasMatches = true;
-            } else {
-                dropdownItems[i].style.display = 'none';
-            }
-        }
-
-        if (!hasMatches) {
-            dropdownList.style.display = 'none'; // Hide if no matches
-        }
-    });
-
-    // Select student on item click
-    for (let i = 0; i < dropdownItems.length; i++) {
-        dropdownItems[i].addEventListener('click', function() {
-            selectedStudent = this.textContent; // Store the selected student
-            searchInput.value = selectedStudent; // Set input value
-            dropdownList.style.display = 'none'; // Hide dropdown
-        });
-    }
-
-    // Add student to table
-    document.getElementById('addButton1').addEventListener('click', function() {
-        if (selectedStudent) {
-            const row = document.createElement('tr');
-            const nameCell = document.createElement('td');
-
-            nameCell.textContent = selectedStudent;
-            row.appendChild(nameCell);
-            document.getElementById('studentTableBody1').appendChild(row);
-
-            // Clear input and reset selected student
-            searchInput.value = '';
-            selectedStudent = '';
-        } else {
-            alert('Please select a student.');
-        }
-    });
-
-    // Hide dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.matches('.dropdown-input1')) {
-            dropdownList.style.display = 'none';
-        }
-    });
-    </script>
-
-    <script>
-    // Handle profile image preview and upload
-    document.getElementById('image-upload').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('profile-image').src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-
-            // Upload image immediately when selected
-            const formData = new FormData();
-            formData.append('profile_image', file);
-
-            fetch(window.location.href, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Profile image updated successfully');
+                for (let i = 0; i < dropdownItems.length; i++) {
+                    const itemText = dropdownItems[i].textContent.toLowerCase();
+                    if (itemText.includes(filter)) {
+                        dropdownItems[i].style.display = 'block';
+                        hasMatches = true;
                     } else {
-                        alert(data.message || 'Error updating profile image');
+                        dropdownItems[i].style.display = 'none';
                     }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error updating profile image');
-                });
-        }
-    });
-
-    // Handle form submission
-    document.getElementById('edit-profile-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const formData = new FormData(this);
-
-        fetch(window.location.href, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Profile updated successfully');
-                } else {
-                    alert(data.message || 'Error updating profile');
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error updating profile');
+
+                if (!hasMatches) {
+                    dropdownList.style.display = 'none'; // Hide if no matches
+                }
             });
-    });
-    </script>
+
+            // Select student on item click
+            for (let i = 0; i < dropdownItems.length; i++) {
+                dropdownItems[i].addEventListener('click', function() {
+                    selectedStudent = this.textContent; // Store the selected student
+                    searchInput.value = selectedStudent; // Set input value
+                    dropdownList.style.display = 'none'; // Hide dropdown
+                });
+            }
+
+            // Add student to table
+            document.getElementById('addButton1').addEventListener('click', function() {
+                if (selectedStudent) {
+                    const row = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+
+                    nameCell.textContent = selectedStudent;
+                    row.appendChild(nameCell);
+                    document.getElementById('studentTableBody1').appendChild(row);
+
+                    // Clear input and reset selected student
+                    searchInput.value = '';
+                    selectedStudent = '';
+                } else {
+                    alert('Please select a student.');
+                }
+            });
+
+            // Hide dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.matches('.dropdown-input1')) {
+                    dropdownList.style.display = 'none';
+                }
+            });
+        </script>
+
+        <script>
+            // Handle profile image preview and upload
+            document.getElementById('image-upload').addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('profile-image').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+
+                    // Upload image immediately when selected
+                    const formData = new FormData();
+                    formData.append('profile_image', file);
+
+                    fetch(window.location.href, {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Profile image updated successfully');
+                            } else {
+                                alert(data.message || 'Error updating profile image');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Error updating profile image');
+                        });
+                }
+            });
+
+            // Handle form submission
+            document.getElementById('edit-profile-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+
+                fetch(window.location.href, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Profile updated successfully');
+                        } else {
+                            alert(data.message || 'Error updating profile');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error updating profile');
+                    });
+            });
+        </script>
     <?php endif; ?>
 </body>
 

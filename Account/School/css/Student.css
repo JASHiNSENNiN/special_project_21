@@ -53,7 +53,7 @@ img {
 
 .name {
   margin-top: 1%;
-  margin-left: 21%;
+  margin-left: 25%;
   font-size: 1.25rem;
   /* size: 10px; */
   font-family: sans-serif;
@@ -762,7 +762,8 @@ h3:after {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -772,8 +773,10 @@ h3:after {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 
@@ -822,8 +825,10 @@ h3:after {
 }
 
 .button-9:focus {
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
+    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
 }
 
@@ -833,13 +838,14 @@ h3:after {
   background-color: #405cf5;
   border-radius: 6px;
   border-width: 0;
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0,
+    rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-    Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -851,7 +857,9 @@ h3:after {
   text-align: center;
   text-transform: none;
   transform: translateZ(0);
-  transition: all 0.2s, box-shadow 0.08s ease-in;
+  transition:
+    all 0.2s,
+    box-shadow 0.08s ease-in;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -910,14 +918,24 @@ h3:after {
   background-color: #0a6bff;
   border-radius: 4px;
   border: 0;
-  box-shadow: rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset,
+  box-shadow:
+    rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset,
     rgba(0, 44, 97, 0.1) 0 3px 6px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   /* display: inherit; */
-  font-family: "Space Grotesk", -apple-system, system-ui, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  font-family:
+    "Space Grotesk",
+    -apple-system,
+    system-ui,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
     "Segoe UI Symbol";
   font-size: 15px;
   font-weight: 700;

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" href="css/archive.css">
     <title>Archive</title>
 </head>
@@ -78,7 +79,7 @@
     </div>
 
     <script>
-        $('.expander').click(function (e) {
+        $('.expander').click(function(e) {
             e.preventDefault();
             $(this)
                 .parent()

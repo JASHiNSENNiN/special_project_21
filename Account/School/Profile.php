@@ -105,7 +105,7 @@ require_once 'show_profile.php';
                             <td> (044) 611-0026; 0917-8830311</td>
                         </tr>
                         <tr>
-                            <td>Presindent</td>
+                            <td>President</td>
                             <td>:</td>
                             <td>Most Rev. Ruberto C. Mallari, D.D.</td>
                         </tr>
