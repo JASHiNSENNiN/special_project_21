@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS applicants (
 );
 
 CREATE TABLE IF NOT EXISTS Student_Evaluation (
-    evaluation_id INT PRIMARY KEY,
+    evaluation_id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
     quality_of_work INT CHECK (quality_of_work BETWEEN 0 AND 5),
     productivity INT CHECK (productivity BETWEEN 0 AND 5),
