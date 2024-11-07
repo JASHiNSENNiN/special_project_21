@@ -76,15 +76,15 @@ require_once 'show_profile.php';
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Current password</label>
-                                        <input type="password" class="form-control" />
+                                        <input type="password" class="form-control" placeholder="Current password" />
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">New password</label>
-                                        <input type="password" class="form-control" />
+                                        <input type="password" class="form-control" placeholder="New password" />
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Repeat new password</label>
-                                        <input type="password" class="form-control" />
+                                        <input type="password" class="form-control" placeholder="Repeat new password" />
                                     </div>
                                 </div>
                             </div>
