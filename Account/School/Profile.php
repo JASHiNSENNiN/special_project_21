@@ -87,27 +87,27 @@ require_once 'show_profile.php';
                         <tr>
                             <td>School</td>
                             <td>:</td>
-                            <td>Dr. Ramon De Santos National High School</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Email</td>
                             <td>:</td>
-                            <td>school@yahoo.com</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Address</td>
                             <td>:</td>
-                            <td>Brgy. San Antonio, Cuyapo, Philippines</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Contact Number</td>
                             <td>:</td>
-                            <td> (044) 611-0026; 0917-8830311</td>
+                            <td> </td>
                         </tr>
                         <tr>
                             <td>President</td>
                             <td>:</td>
-                            <td>Most Rev. Ruberto C. Mallari, D.D.</td>
+                            <td></td>
                         </tr>
                         <!-- <tr>
                             <td>Skill</td>
@@ -132,7 +132,7 @@ require_once 'show_profile.php';
 
 
 
-        <h2>SOCIAL MEDIA</h2>
+        <!-- <h2>SOCIAL MEDIA</h2>
         <div class="card">
             <div class="card-body">
                 <i class="fa fa-pen fa-xs edit"></i>
@@ -167,7 +167,7 @@ require_once 'show_profile.php';
                     </span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- End -->
     <footer>
