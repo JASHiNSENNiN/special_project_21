@@ -68,6 +68,7 @@ function fetch_partner_profile($user_id)
     return $stmt->get_result()->fetch_assoc(); 
 }
 
+
 $user_profile = fetch_user_profile($user_id);
 $_SESSION['email'] = $user_profile['email'];
 $_SESSION['account_type'] = $user_profile['account_type'];

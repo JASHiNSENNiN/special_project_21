@@ -97,16 +97,7 @@ $profile_image = "uploads/" . $user['profile_image'];
             <div class="job"><?= $strand ?></div>
         </div>
 
-        <!-- <div class="sidenav-url">
-            <div class="url">
-                <a href="#profile" class="active">Profile</a>
-                <hr align="center" />
-            </div>
-            <div class="url">
-                <a href="Settings.php">Settings</a>
-                <hr align="center" />
-            </div>
-        </div> -->
+        
     </div>
     <!-- End -->
 
