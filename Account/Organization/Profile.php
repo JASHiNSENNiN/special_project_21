@@ -3,7 +3,8 @@ require_once 'show_profile.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
@@ -27,27 +28,101 @@ global $password;
 global $database;
 global $conn;
 
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-$sql = "SELECT * FROM partner_profiles WHERE id = :user_id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':user_id', $user_id);
-$stmt->execute();
-$partner_profile = $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM partner_profiles WHERE id = :user_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $partner_profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-$sql = "SELECT * FROM users WHERE id = :user_id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':user_id', $user_id);
-$stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM users WHERE id = :user_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$oraganization_name = $partner_profile['oraganization_name'];
-$strand = strtoupper($partner_profile['strand']);
-$stars = $partner_profile['stars'];
-$email = $user['email'];
-$profile_image = "uploads/" . $user['profile_image'];
+    $organization_name = $partner_profile['oraganization_name'];
+    $strand = strtoupper($partner_profile['strand']);
+    $stars = $partner_profile['stars'];
+    $email = $user['email'];
+    $profile_image = "uploads/" . $user['profile_image'];
 
+    $sql = "SELECT 
+                AVG(quality_of_experience) AS avg_quality_of_experience,
+                AVG(productivity_of_tasks) AS avg_productivity_of_tasks,
+                AVG(problem_solving_opportunities) AS avg_problem_solving_opportunities,
+                AVG(attention_to_detail_in_guidance) AS avg_attention_to_detail_in_guidance,
+                AVG(initiative_encouragement) AS avg_initiative_encouragement,
+                AVG(punctuality_expectations) AS avg_punctuality_expectations,
+                AVG(professional_appearance_standards) AS avg_professional_appearance_standards,
+                AVG(communication_training) AS avg_communication_training,
+                AVG(respectfulness_environment) AS avg_respectfulness_environment,
+                AVG(adaptability_challenges) AS avg_adaptability_challenges,
+                AVG(willingness_to_learn_encouragement) AS avg_willingness_to_learn_encouragement,
+                AVG(feedback_application_opportunities) AS avg_feedback_application_opportunities,
+                AVG(self_improvement_support) AS avg_self_improvement_support,
+                AVG(skill_development_assessment) AS avg_skill_development_assessment,
+                AVG(knowledge_application_in_practice) AS avg_knowledge_application_in_practice,
+                AVG(team_participation_opportunities) AS avg_team_participation_opportunities,
+                AVG(cooperation_among_peers) AS avg_cooperation_among_peers,
+                AVG(conflict_resolution_guidance) AS avg_conflict_resolution_guidance,
+                AVG(supportiveness_among_peers) AS avg_supportiveness_among_peers,
+                AVG(contribution_to_team_success) AS avg_contribution_to_team_success,
+                AVG(enthusiasm_for_tasks) AS avg_enthusiasm_for_tasks,
+                AVG(drive_to_achieve_goals) AS avg_drive_to_achieve_goals,
+                AVG(resilience_to_challenges) AS avg_resilience_to_challenges,
+                AVG(commitment_to_experience) AS avg_commitment_to_experience,
+                AVG(self_motivation_levels) AS avg_self_motivation_levels
+            FROM Organization_Evaluation
+            WHERE organization_id = :user_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $averages = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $avgQualityOfExperience = $averages['avg_quality_of_experience'] ?? null;
+    $avgProductivityOfTasks = $averages['avg_productivity_of_tasks'] ?? null;
+    $avgProblemSolvingOpportunities = $averages['avg_problem_solving_opportunities'] ?? null;
+    $avgAttentionToDetailInGuidance = $averages['avg_attention_to_detail_in_guidance'] ?? null;
+    $avgInitiativeEncouragement = $averages['avg_initiative_encouragement'] ?? null;
+    $avgPunctualityExpectations = $averages['avg_punctuality_expectations'] ?? null;
+    $avgProfessionalAppearanceStandards = $averages['avg_professional_appearance_standards'] ?? null;
+    $avgCommunicationTraining = $averages['avg_communication_training'] ?? null;
+    $avgRespectfulnessEnvironment = $averages['avg_respectfulness_environment'] ?? null;
+    $avgAdaptabilityChallenges = $averages['avg_adaptability_challenges'] ?? null;
+    $avgWillingnessToLearnEncouragement = $averages['avg_willingness_to_learn_encouragement'] ?? null;
+    $avgFeedbackApplicationOpportunities = $averages['avg_feedback_application_opportunities'] ?? null;
+    $avgSelfImprovementSupport = $averages['avg_self_improvement_support'] ?? null;
+    $avgSkillDevelopmentAssessment = $averages['avg_skill_development_assessment'] ?? null;
+    $avgKnowledgeApplicationInPractice = $averages['avg_knowledge_application_in_practice'] ?? null;
+    $avgTeamParticipationOpportunities = $averages['avg_team_participation_opportunities'] ?? null;
+    $avgCooperationAmongPeers = $averages['avg_cooperation_among_peers'] ?? null;
+    $avgConflictResolutionGuidance = $averages['avg_conflict_resolution_guidance'] ?? null;
+    $avgSupportivenessAmongPeers = $averages['avg_supportiveness_among_peers'] ?? null;
+    $avgContributionToTeamSuccess = $averages['avg_contribution_to_team_success'] ?? null;
+    $avgEnthusiasmForTasks = $averages['avg_enthusiasm_for_tasks'] ?? null;
+    $avgDriveToAchieveGoals = $averages['avg_drive_to_achieve_goals'] ?? null;
+    $avgResilienceToChallenges = $averages['avg_resilience_to_challenges'] ?? null;
+    $avgCommitmentToExperience = $averages['avg_commitment_to_experience'] ?? null;
+    $avgSelfMotivationLevels = $averages['avg_self_motivation_levels'] ?? null;
+
+    // // ganito lagay nyo sa frontend 
+    // echo "<h3>Average Organization Evaluation Scores</h3>";
+    // echo "Average Quality of Experience: " . ($avgQualityOfExperience !== null ? round($avgQualityOfExperience, 2) : 'N/A') . "<br>";
+    // echo "Average Productivity of Tasks: " . ($avgProductivityOfTasks !== null ? round($avgProductivityOfTasks, 2) : 'N/A') . "<br>";
+    // echo "Average Problem Solving Opportunities: " . ($avgProblemSolvingOpportunities !== null ? round($avgProblemSolvingOpportunities, 2) : 'N/A') . "<br>";
+    // echo "Average Attention to Detail in Guidance: " . ($avgAttentionToDetailInGuidance !== null ? round($avgAttentionToDetailInGuidance, 2) : 'N/A') . "<br>";
+    // echo "Average Initiative Encouragement: " . ($avgInitiativeEncouragement !== null ? round($avgInitiativeEncouragement, 2) : 'N/A') . "<br>";
+    // echo "Average Punctuality Expectations: " . ($avgPunctualityExpectations !== null ? round($avgPunctualityExpectations, 2) : 'N/A') . "<br>";
+    // // Add additional output lines for other averages as necessary...
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +172,7 @@ $profile_image = "uploads/" . $user['profile_image'];
             <div class="job"><?= $strand ?></div>
         </div>
 
-        
+
     </div>
     <!-- End -->
 
