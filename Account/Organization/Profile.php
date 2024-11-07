@@ -171,7 +171,7 @@ $profile_image = "uploads/" . $user['profile_image'];
 
 
 
-        <h2>SOCIAL MEDIA</h2>
+        <!-- <h2>SOCIAL MEDIA</h2>
         <div class="card">
             <div class="card-body">
                 <i class="fa fa-pen fa-xs edit"></i>
@@ -206,7 +206,7 @@ $profile_image = "uploads/" . $user['profile_image'];
                     </span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- End -->
     <footer>
