@@ -194,7 +194,7 @@ $tvl_students = get_students_by_strand('tvl');
                     <tbody id="studentTableBody1">
                         <tr>
                             <th>#</th>
-                            <th>ID Picture</th>
+                            <!-- <th>ID Picture</th> -->
                             <th>Student Name</th>
                             <th>Result</th>
                             <th>Action</th>
@@ -205,7 +205,7 @@ $tvl_students = get_students_by_strand('tvl');
                         foreach ($humss_students as $student) {
                             echo "<tr>";
                             echo "<td data-th='#'>" . $count . "</td>";
-                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            // echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Result'>";
                             echo "<div class='container3'>";

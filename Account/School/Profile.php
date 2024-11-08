@@ -87,22 +87,22 @@ require_once 'show_profile.php';
                         <tr>
                             <td>School</td>
                             <td>:</td>
-                            <td></td>
+                            <td>Dr. Ramon De Santos National High School</td>
                         </tr>
                         <tr>
                             <td>Email</td>
                             <td>:</td>
-                            <td></td>
+                            <td>SchoolAccMain@gmail.com</td>
                         </tr>
                         <tr>
                             <td>Address</td>
                             <td>:</td>
-                            <td></td>
+                            <td>Nueva Ecija-Pangasinan Road 3117 Guimba Central Luzon · 66</td>
                         </tr>
                         <tr>
                             <td>Contact Number</td>
                             <td>:</td>
-                            <td> </td>
+                            <td>000-000-000</td>
                         </tr>
                         <tr>
                             <td>President</td>
