@@ -124,7 +124,7 @@ try {
     // echo "Average Communication Skills: " . ($avgCommunicationSkills !== null ? round($avgCommunicationSkills, 2) : 'N/A') . "<br>";
     // echo "Average Respectfulness: " . ($avgRespectfulness !== null ? round($avgRespectfulness, 2) : 'N/A') . "<br>";
     // echo "Average Adaptability: " . ($avgAdaptability !== null ? round($avgAdaptability, 2) : 'N/A') . "<br>";
-    
+
 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
@@ -166,7 +166,7 @@ try {
     <!-- Navbar top -->
     <div class="navbar-top">
         <div class="title">
-            <h1>Profile</h1>
+            <h1 style="color:#ffff; font-weight: bold">Profile</h1>
         </div>
         <ul>
             <li>
@@ -202,19 +202,19 @@ try {
                     <div class="job"><?= $strand ?></div>
 
                     <!-- ================================== -->
-                    <?php 
+                    <?php
                     //nilagay ko for debugging idelete nyo na lang to
                     echo "<h3>Average Evaluation Scores</h3>";
-    echo "Average Quality of Work: " . ($avgQualityOfWork !== null ? round($avgQualityOfWork, 2) : 'N/A') . "<br>";
-    echo "Average Productivity: " . ($avgProductivity !== null ? round($avgProductivity, 2) : 'N/A') . "<br>";
-    echo "Average Problem Solving Skills: " . ($avgProblemSolvingSkills !== null ? round($avgProblemSolvingSkills, 2) : 'N/A') . "<br>";
-    echo "Average Attention to Detail: " . ($avgAttentionToDetail !== null ? round($avgAttentionToDetail, 2) : 'N/A') . "<br>";
-    echo "Average Initiative: " . ($avgInitiative !== null ? round($avgInitiative, 2) : 'N/A') . "<br>";
-    echo "Average Punctuality: " . ($avgPunctuality !== null ? round($avgPunctuality, 2) : 'N/A') . "<br>";
-    echo "Average Appearance: " . ($avgAppearance !== null ? round($avgAppearance, 2) : 'N/A') . "<br>";
-    echo "Average Communication Skills: " . ($avgCommunicationSkills !== null ? round($avgCommunicationSkills, 2) : 'N/A') . "<br>";
-    echo "Average Respectfulness: " . ($avgRespectfulness !== null ? round($avgRespectfulness, 2) : 'N/A') . "<br>";
-    echo "Average Adaptability: " . ($avgAdaptability !== null ? round($avgAdaptability, 2) : 'N/A') . "<br>";
+                    echo "Average Quality of Work: " . ($avgQualityOfWork !== null ? round($avgQualityOfWork, 2) : 'N/A') . "<br>";
+                    echo "Average Productivity: " . ($avgProductivity !== null ? round($avgProductivity, 2) : 'N/A') . "<br>";
+                    echo "Average Problem Solving Skills: " . ($avgProblemSolvingSkills !== null ? round($avgProblemSolvingSkills, 2) : 'N/A') . "<br>";
+                    echo "Average Attention to Detail: " . ($avgAttentionToDetail !== null ? round($avgAttentionToDetail, 2) : 'N/A') . "<br>";
+                    echo "Average Initiative: " . ($avgInitiative !== null ? round($avgInitiative, 2) : 'N/A') . "<br>";
+                    echo "Average Punctuality: " . ($avgPunctuality !== null ? round($avgPunctuality, 2) : 'N/A') . "<br>";
+                    echo "Average Appearance: " . ($avgAppearance !== null ? round($avgAppearance, 2) : 'N/A') . "<br>";
+                    echo "Average Communication Skills: " . ($avgCommunicationSkills !== null ? round($avgCommunicationSkills, 2) : 'N/A') . "<br>";
+                    echo "Average Respectfulness: " . ($avgRespectfulness !== null ? round($avgRespectfulness, 2) : 'N/A') . "<br>";
+                    echo "Average Adaptability: " . ($avgAdaptability !== null ? round($avgAdaptability, 2) : 'N/A') . "<br>";
 
                     ?>
                     <!-- ================================== -->
@@ -233,31 +233,56 @@ try {
 
                 <div class="card-body">
 
-                    <table>
+                    <table class="personal-details-table">
                         <tbody>
                             <tr>
-                                <td><b>Name</b></td>
-                                <td>:</td>
-                                <td><?= $fullName ?></td>
+                            <tr>
+                                <td><b>First Name</b></td>
+                                <td><b>Middle Name</b></td>
+                                <td><b>Last Name</b></td>
                             </tr>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $firstName ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $middleName ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $lastName ?>" readonly></td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+
+
+                    <table class="personal-details-ss-table">
+                        <tbody>
+                            <tr class="tr-stard-school">
                             <tr>
                                 <td><b>Strand</b></td>
-                                <td>:</td>
-                                <td><?= $strand; ?></td>
-                            </tr>
-                            <tr>
                                 <td><b>School</b></td>
-                                <td>:</td>
-                                <td><?= $school ?></td>
                             </tr>
+                            <td><input type="text" class="form-control mb-1 strand" autocomplete="off" value="<?= $strand ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1 school" autocomplete="off" value="<?= $school ?>" readonly></td>
+                            </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="personal-details-e-table">
+                        <tbody>
+
+                            <tr>
                             <tr>
                                 <td><b>Email</b></td>
-                                <td>:</td>
-                                <td><?= $email ?></td>
+                            </tr>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $email ?>" readonly></td>
                             </tr>
 
                         </tbody>
                     </table>
+
+
+
                 </div>
             </div>
         </div>
@@ -290,7 +315,7 @@ try {
 
     <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
         <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#f1f1f1;  padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
+            style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
         <div class="card-graph overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
