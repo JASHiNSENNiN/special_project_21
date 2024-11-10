@@ -50,8 +50,8 @@ $tvl_students = get_students_by_strand('tvl');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Dashboard</title>
 
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/Student.css">
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
@@ -194,7 +194,7 @@ $tvl_students = get_students_by_strand('tvl');
                     <tbody id="studentTableBody1">
                         <tr>
                             <th>#</th>
-                            <th>ID Picture</th>
+                            <!-- <th>ID Picture</th> -->
                             <th>Student Name</th>
                             <th>Result</th>
                             <th>Action</th>
@@ -205,7 +205,7 @@ $tvl_students = get_students_by_strand('tvl');
                         foreach ($humss_students as $student) {
                             echo "<tr>";
                             echo "<td data-th='#'>" . $count . "</td>";
-                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            // echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Result'>";
                             echo "<div class='container3'>";
@@ -299,7 +299,6 @@ $tvl_students = get_students_by_strand('tvl');
                         }
                         ?>
                     </tbody>
-
                 </table>
             </div>
         </div>
@@ -345,7 +344,7 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
-        $(".box").click(function (e) {
+        $(".box").click(function(e) {
             e.preventDefault();
             $(".content").removeClass("active");
             var content_id = $(this).attr("id");
@@ -361,7 +360,7 @@ $tvl_students = get_students_by_strand('tvl');
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
+        inputFile1.onchange = function() {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -370,7 +369,7 @@ $tvl_students = get_students_by_strand('tvl');
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
+        inputFile2.onchange = function() {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
@@ -379,7 +378,7 @@ $tvl_students = get_students_by_strand('tvl');
         let circularProgress =
             document.querySelector('.circular-progress'),
             progressValue =
-                document.querySelector('.progress-value');
+            document.querySelector('.progress-value');
 
 
 
@@ -426,7 +425,7 @@ $tvl_students = get_students_by_strand('tvl');
         let selectedStudent = '';
 
         // Filter dropdown items based on search input
-        searchInput.addEventListener('input', function () {
+        searchInput.addEventListener('input', function() {
             const filter = searchInput.value.toLowerCase();
             let hasMatches = false;
 
@@ -449,7 +448,7 @@ $tvl_students = get_students_by_strand('tvl');
 
         // Select student on item click
         for (let i = 0; i < dropdownItems.length; i++) {
-            dropdownItems[i].addEventListener('click', function () {
+            dropdownItems[i].addEventListener('click', function() {
                 selectedStudent = this.textContent; // Store the selected student
                 searchInput.value = selectedStudent; // Set input value
                 dropdownList.style.display = 'none'; // Hide dropdown
@@ -457,7 +456,7 @@ $tvl_students = get_students_by_strand('tvl');
         }
 
         // Add student to table
-        document.getElementById('addButton1').addEventListener('click', function () {
+        document.getElementById('addButton1').addEventListener('click', function() {
             if (selectedStudent) {
                 const row = document.createElement('tr');
                 const nameCell = document.createElement('td');
@@ -475,7 +474,7 @@ $tvl_students = get_students_by_strand('tvl');
         });
 
         // Hide dropdown when clicking outside
-        document.addEventListener('click', function (event) {
+        document.addEventListener('click', function(event) {
             if (!event.target.matches('.dropdown-input1')) {
                 dropdownList.style.display = 'none';
             }

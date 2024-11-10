@@ -1169,6 +1169,18 @@ html {
   color: var(--subtitle-color);
 }
 
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
 @keyframes slide {
   0% {
     opacity: 0;
@@ -1617,7 +1629,12 @@ html {
   margin-top: 8px;
   font-weight: 400 !important;
   color: #6f6f6f;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
   box-sizing: initial;
   font-size: 0.75rem;
 }
@@ -1717,6 +1734,11 @@ body {
 .new_footer_area .footer_bottom {
   padding-top: 5px;
   padding-bottom: 50px;
+}
+
+.row1 {
+  width: 100% !important;
+  display: flow !important;
 }
 
 .footer_bottom {

@@ -12,8 +12,9 @@ require_once 'show_profile.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/Settings.php">
-    <title>School Dashboard</title>
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <title>Settings</title>
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
@@ -82,15 +83,15 @@ require_once 'show_profile.php';
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Current password</label>
-                                        <input type="password" class="form-control" />
+                                        <input type="password" class="form-control" placeholder="Current password" />
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">New password</label>
-                                        <input type="password" class="form-control" />
+                                        <input type="password" class="form-control" placeholder="New password" />
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Repeat new password</label>
-                                        <input type="password" class="form-control" />
+                                        <input type="password" class="form-control" placeholder="Repeat new password" />
                                     </div>
                                 </div>
                             </div>

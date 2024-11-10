@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
@@ -25,32 +26,109 @@ global $password;
 global $database;
 global $conn;
 
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-$sql = "SELECT * FROM student_profiles WHERE id = :user_id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':user_id', $user_id);
-$stmt->execute();
-$student_profile = $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM student_profiles WHERE id = :user_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $student_profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-$sql = "SELECT * FROM users WHERE id = :user_id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':user_id', $user_id);
-$stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM users WHERE id = :user_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$firstName = $student_profile['first_name'];
-$middleName = $student_profile['middle_name'];
-$lastName = $student_profile['last_name'];
-$fullName = $firstName . ' ' . $middleName . ' ' . $lastName;
-$school = $student_profile['school'];
-$gradeLevel = $student_profile['grade_level'];
-$strand = strtoupper($student_profile['strand']);
-$stars = $student_profile['stars'];
-$currentWork = $student_profile['current_work'];
-$email = $user['email'];
-$profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
+    $firstName = $student_profile['first_name'];
+    $middleName = $student_profile['middle_name'];
+    $lastName = $student_profile['last_name'];
+    $fullName = trim($firstName . ' ' . $middleName . ' ' . $lastName);
+    $school = $student_profile['school'];
+    $gradeLevel = $student_profile['grade_level'];
+    $strand = strtoupper($student_profile['strand']);
+    $stars = $student_profile['stars'];
+    $currentWork = $student_profile['current_work'];
+    $email = $user['email'];
+    $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
+
+    $sql = "SELECT 
+                AVG(quality_of_work) AS avg_quality_of_work,
+                AVG(productivity) AS avg_productivity,
+                AVG(problem_solving_skills) AS avg_problem_solving_skills,
+                AVG(attention_to_detail) AS avg_attention_to_detail,
+                AVG(initiative) AS avg_initiative,
+                AVG(punctuality) AS avg_punctuality,
+                AVG(appearance) AS avg_appearance,
+                AVG(communication_skills) AS avg_communication_skills,
+                AVG(respectfulness) AS avg_respectfulness,
+                AVG(adaptability) AS avg_adaptability,
+                AVG(willingness_to_learn) AS avg_willingness_to_learn,
+                AVG(application_of_feedback) AS avg_application_of_feedback,
+                AVG(self_improvement) AS avg_self_improvement,
+                AVG(skill_development) AS avg_skill_development,
+                AVG(knowledge_application) AS avg_knowledge_application,
+                AVG(team_participation) AS avg_team_participation,
+                AVG(cooperation) AS avg_cooperation,
+                AVG(conflict_resolution) AS avg_conflict_resolution,
+                AVG(supportiveness) AS avg_supportiveness,
+                AVG(contribution) AS avg_contribution,
+                AVG(enthusiasm) AS avg_enthusiasm,
+                AVG(drive) AS avg_drive,
+                AVG(resilience) AS avg_resilience,
+                AVG(commitment) AS avg_commitment,
+                AVG(self_motivation) AS avg_self_motivation
+            FROM Student_Evaluation";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $averages = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $avgQualityOfWork = $averages['avg_quality_of_work'] ?? null;
+    $avgProductivity = $averages['avg_productivity'] ?? null;
+    $avgProblemSolvingSkills = $averages['avg_problem_solving_skills'] ?? null;
+    $avgAttentionToDetail = $averages['avg_attention_to_detail'] ?? null;
+    $avgInitiative = $averages['avg_initiative'] ?? null;
+    $avgPunctuality = $averages['avg_punctuality'] ?? null;
+    $avgAppearance = $averages['avg_appearance'] ?? null;
+    $avgCommunicationSkills = $averages['avg_communication_skills'] ?? null;
+    $avgRespectfulness = $averages['avg_respectfulness'] ?? null;
+    $avgAdaptability = $averages['avg_adaptability'] ?? null;
+    $avgWillingnessToLearn = $averages['avg_willingness_to_learn'] ?? null;
+    $avgApplicationOfFeedback = $averages['avg_application_of_feedback'] ?? null;
+    $avgSelfImprovement = $averages['avg_self_improvement'] ?? null;
+    $avgSkillDevelopment = $averages['avg_skill_development'] ?? null;
+    $avgKnowledgeApplication = $averages['avg_knowledge_application'] ?? null;
+    $avgTeamParticipation = $averages['avg_team_participation'] ?? null;
+    $avgCooperation = $averages['avg_cooperation'] ?? null;
+    $avgConflictResolution = $averages['avg_conflict_resolution'] ?? null;
+    $avgSupportiveness = $averages['avg_supportiveness'] ?? null;
+    $avgContribution = $averages['avg_contribution'] ?? null;
+    $avgEnthusiasm = $averages['avg_enthusiasm'] ?? null;
+    $avgDrive = $averages['avg_drive'] ?? null;
+    $avgResilience = $averages['avg_resilience'] ?? null;
+    $avgCommitment = $averages['avg_commitment'] ?? null;
+    $avgSelfMotivation = $averages['avg_self_motivation'] ?? null;
+
+    // // Output the averages EXAMPLE
+    // echo "<h3>Average Evaluation Scores</h3>";
+    // echo "Average Quality of Work: " . ($avgQualityOfWork !== null ? round($avgQualityOfWork, 2) : 'N/A') . "<br>";
+    // echo "Average Productivity: " . ($avgProductivity !== null ? round($avgProductivity, 2) : 'N/A') . "<br>";
+    // echo "Average Problem Solving Skills: " . ($avgProblemSolvingSkills !== null ? round($avgProblemSolvingSkills, 2) : 'N/A') . "<br>";
+    // echo "Average Attention to Detail: " . ($avgAttentionToDetail !== null ? round($avgAttentionToDetail, 2) : 'N/A') . "<br>";
+    // echo "Average Initiative: " . ($avgInitiative !== null ? round($avgInitiative, 2) : 'N/A') . "<br>";
+    // echo "Average Punctuality: " . ($avgPunctuality !== null ? round($avgPunctuality, 2) : 'N/A') . "<br>";
+    // echo "Average Appearance: " . ($avgAppearance !== null ? round($avgAppearance, 2) : 'N/A') . "<br>";
+    // echo "Average Communication Skills: " . ($avgCommunicationSkills !== null ? round($avgCommunicationSkills, 2) : 'N/A') . "<br>";
+    // echo "Average Respectfulness: " . ($avgRespectfulness !== null ? round($avgRespectfulness, 2) : 'N/A') . "<br>";
+    // echo "Average Adaptability: " . ($avgAdaptability !== null ? round($avgAdaptability, 2) : 'N/A') . "<br>";
+
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +166,7 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
     <!-- Navbar top -->
     <div class="navbar-top">
         <div class="title">
-            <h1>Profile</h1>
+            <h1 style="color:#ffff; font-weight: bold">Profile</h1>
         </div>
         <ul>
             <li>
@@ -109,62 +187,7 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
         <br>
 
 
-        <!-- <div class="column">
 
-            <h1 class="title">Student Population</h1>
-            <div id="myChart2" class="Chart2"></div>
-            <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-        </div> -->
-
-
-
-
-
-        <!-- <h2>Work Performance</h2>
-        <div class="card">
-            <div class="card-body">
-
-
-
-            </div>
-        </div> -->
-
-        <!-- <h2>SOCIAL MEDIA</h2>
-        <div class="card">
-            <div class="card-body">
-                <i class="fa fa-pen fa-xs edit"></i>
-                <div class="social-media">
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-invision fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-            </div>
-        </div> -->
     </div>
 
     <div class="row-graph-profile">
@@ -177,6 +200,26 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
 
                     <div class="name"><?= $fullName; ?></div>
                     <div class="job"><?= $strand ?></div>
+
+                    <!-- ================================== -->
+                    <?php
+                    //nilagay ko for debugging idelete nyo na lang to
+                    echo "<h3>Average Evaluation Scores</h3>";
+                    echo "Average Quality of Work: " . ($avgQualityOfWork !== null ? round($avgQualityOfWork, 2) : 'N/A') . "<br>";
+                    echo "Average Productivity: " . ($avgProductivity !== null ? round($avgProductivity, 2) : 'N/A') . "<br>";
+                    echo "Average Problem Solving Skills: " . ($avgProblemSolvingSkills !== null ? round($avgProblemSolvingSkills, 2) : 'N/A') . "<br>";
+                    echo "Average Attention to Detail: " . ($avgAttentionToDetail !== null ? round($avgAttentionToDetail, 2) : 'N/A') . "<br>";
+                    echo "Average Initiative: " . ($avgInitiative !== null ? round($avgInitiative, 2) : 'N/A') . "<br>";
+                    echo "Average Punctuality: " . ($avgPunctuality !== null ? round($avgPunctuality, 2) : 'N/A') . "<br>";
+                    echo "Average Appearance: " . ($avgAppearance !== null ? round($avgAppearance, 2) : 'N/A') . "<br>";
+                    echo "Average Communication Skills: " . ($avgCommunicationSkills !== null ? round($avgCommunicationSkills, 2) : 'N/A') . "<br>";
+                    echo "Average Respectfulness: " . ($avgRespectfulness !== null ? round($avgRespectfulness, 2) : 'N/A') . "<br>";
+                    echo "Average Adaptability: " . ($avgAdaptability !== null ? round($avgAdaptability, 2) : 'N/A') . "<br>";
+
+                    ?>
+                    <!-- ================================== -->
+
+
                 </div>
 
 
@@ -190,78 +233,62 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
 
                 <div class="card-body">
 
-                    <table>
+                    <table class="personal-details-table">
                         <tbody>
                             <tr>
-                                <td><b>Name</b></td>
-                                <td>:</td>
-                                <td><?= $fullName ?></td>
-                            </tr>
                             <tr>
-                                <td><b>Strand</b></td>
-                                <td>:</td>
-                                <td><?= $strand; ?></td>
+                                <td><b>First Name</b></td>
+                                <td><b>Middle Name</b></td>
+                                <td><b>Last Name</b></td>
                             </tr>
-                            <tr>
-                                <td><b>School</b></td>
-                                <td>:</td>
-                                <td><?= $school ?></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $firstName ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $middleName ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $lastName ?>" readonly></td>
                             </tr>
-                            <tr>
-                                <td><b>Email</b></td>
-                                <td>:</td>
-                                <td><?= $email ?></td>
-                            </tr>
-                            <!-- <tr>
-                                <td><b>Address</b></td>
-                                <td>:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td><b>Contact Number</b></td>
-                                <td>:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td><b>Guardians</b></td>
-                                <td>:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td><b>Guardians number</b></td>
-                                <td>:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td><b>Guardians number</b></td>
-                                <td>:</td>
-                                <td>N/A</td>
-                            </tr> -->
-                            <!-- <tr>
-                            <td>Skill</td>
-                            <td>:</td>
-                            <td>PHP, HTML, CSS, Java</td>
-                        </tr> -->
+
+
+
                         </tbody>
                     </table>
+
+
+                    <table class="personal-details-ss-table">
+                        <tbody>
+                            <tr class="tr-stard-school">
+                            <tr>
+                                <td><b>Strand</b></td>
+                                <td><b>School</b></td>
+                            </tr>
+                            <td><input type="text" class="form-control mb-1 strand" autocomplete="off" value="<?= $strand ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1 school" autocomplete="off" value="<?= $school ?>" readonly></td>
+                            </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="personal-details-e-table">
+                        <tbody>
+
+                            <tr>
+                            <tr>
+                                <td><b>Email</b></td>
+                            </tr>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $email ?>" readonly></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+
                 </div>
             </div>
         </div>
 
     </div>
-    <!-- <div class="wp-div-center">
-        <div class="wp-header">
-            <h2> Daily Insight</h2>
-        </div>
-        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-    </div> -->
 
-    <!-- <div class="wp-div-center">
-        <div class="wp-header">
-            <h2> Daily Insight</h2>
-        </div>
-        <div class="dp-graph" id="dp_chart_div" style="width: 900px; height: 500px;"></div>
-    </div> -->
 
     <!-- -----------------------------------column graph ------------------------- -->
 
@@ -288,7 +315,7 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
 
     <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
         <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#f1f1f1;  padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
+            style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
         <div class="card-graph overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
@@ -345,28 +372,7 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
 
-    <!--  ------------work performance---------->
-    <!-- <div class="wp-div-center">
-    
-        <div class="wp-graph" id="wp_top_x_div" style="width: 900px; height: 500px;"></div>
-    </div>
 
-    <div class="wp-div-center">
-
-        <div class="pro-graph" id="pro_top_x_div" style="width: 900px; height: 500px;"></div>
-    </div>
-    <div class="wp-div-center">
-        
-        <div class="ld-graph" id="ld_top_x_div" style="width: 900px; height: 500px;"></div>
-    </div>
-    <div class="wp-div-center">
-
-        <div class="tc-graph" id="tc_top_x_div" style="width: 900px; height: 500px;"></div>
-    </div>
-    <div class="wp-div-center">
-
-        <div class="am-graph" id="am_top_x_div" style="width: 900px; height: 500px;"></div>
-    </div> -->
 
 
 

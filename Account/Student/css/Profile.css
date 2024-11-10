@@ -7,6 +7,7 @@
 
 body {
   background-color: #e8f5ff;
+  /* background-color: #e6fff2 !important; */
   font-family: Arial;
   /* overflow: hidden; */
 }
@@ -14,10 +15,33 @@ body {
 /* NavbarTop */
 
 .navbar-top {
-  background-color: #fff;
+  background-color: #18613b;
   color: #333;
   box-shadow: 0px 0px 5px 1px grey;
   height: 70px;
+}
+
+.fa {
+  color: #fff;
+}
+
+.personal-details-table {
+  width: auto !important;
+}
+
+.tr-stard-school td {
+  width: 100% !important;
+}
+
+.personal-details-ss-table,
+.personal-details-e-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.strand,
+.school {
+  width: 100% !important;
 }
 
 .title {

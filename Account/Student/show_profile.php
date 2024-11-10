@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
@@ -33,9 +32,11 @@ $profile_div = '<header class="nav-header">
                     <div class="email">' . $email . '</div>
                     <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My
                         Profile</a>
+                        <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i>
+                        Weather Update</a>
                     <a href="#"> <i class="fas fa-comment-alt" style="font-size:24px;margin-right:10px;"></i>My
                         Reviews</a>
-                    <a href="edit_profile.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
                     <hr>
                     <hr>
                     <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>

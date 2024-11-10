@@ -11,8 +11,8 @@ require_once 'show_profile.php';
     <title>School Profile</title>
     <link rel="stylesheet" type="text/css" href="css/Profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
 
 
 
@@ -92,22 +92,22 @@ require_once 'show_profile.php';
                         <tr>
                             <td>Email</td>
                             <td>:</td>
-                            <td>school@yahoo.com</td>
+                            <td>SchoolAccMain@gmail.com</td>
                         </tr>
                         <tr>
                             <td>Address</td>
                             <td>:</td>
-                            <td>Brgy. San Antonio, Cuyapo, Philippines</td>
+                            <td>Nueva Ecija-Pangasinan Road 3117 Guimba Central Luzon · 66</td>
                         </tr>
                         <tr>
                             <td>Contact Number</td>
                             <td>:</td>
-                            <td> (044) 611-0026; 0917-8830311</td>
+                            <td>000-000-000</td>
                         </tr>
                         <tr>
-                            <td>Presindent</td>
+                            <td>President</td>
                             <td>:</td>
-                            <td>Most Rev. Ruberto C. Mallari, D.D.</td>
+                            <td></td>
                         </tr>
                         <!-- <tr>
                             <td>Skill</td>
@@ -132,7 +132,7 @@ require_once 'show_profile.php';
 
 
 
-        <h2>SOCIAL MEDIA</h2>
+        <!-- <h2>SOCIAL MEDIA</h2>
         <div class="card">
             <div class="card-body">
                 <i class="fa fa-pen fa-xs edit"></i>
@@ -167,7 +167,7 @@ require_once 'show_profile.php';
                     </span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- End -->
     <footer>

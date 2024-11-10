@@ -10,7 +10,8 @@ require_once 'show_profile.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization Dashboard</title>
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/Settings.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -94,7 +95,7 @@ l                           ist" href="#account-info">Info</a>
                             <div class="card-body pb-2">
                                 <div class="form-group">
                                     <label class="form-label">Email</label>
-                                    <input type="text" class="form-control mb-1" placeholder="sample@gmail.com">
+                                    <input type="text" class="form-control mb-1" placeholder="@gmail.com">
                                     <!-- <div class="alert alert-warning mt-3">
                                         Your email is not confirmed. Please check your inbox.<br>
                                         <a href="javascript:void(0)">Resend confirmation</a>
@@ -292,7 +293,7 @@ l                           ist" href="#account-info">Info</a>
     <script>
         let profilePic = document.getElementById("profile-pic");
         let inputfile = document.getElementById("input-file");
-        inputfile.onchange = function () {
+        inputfile.onchange = function() {
             profilePic.src = URL.createObjectURL(inputfile.files[0]);
         }
     </script>
