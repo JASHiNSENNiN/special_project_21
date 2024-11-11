@@ -422,30 +422,6 @@ footer {
   clear: both;
 }
 
-/* For tablet screens (768px and above) */
-@media screen and (max-width: 1024px) {
-  .row-graph-profile {
-    margin-left: 100px;
-    margin-right: 100px;
-  }
-}
-
-/* For mobile screens (below 768px) */
-@media screen and (max-width: 768px) {
-  .row-graph-profile {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-}
-
-/* For small mobile screens (below 480px) */
-@media screen and (max-width: 480px) {
-  .row-graph-profile {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-}
-
 .column-graph-profile {
   float: left;
   width: auto;
