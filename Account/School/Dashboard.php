@@ -58,8 +58,8 @@ require_once 'show_profile.php';
 
     <hr class="line_bottom">
     <div class="container4">
-        <h1 class="Time">Student Timeline</h1>
-        <div id="timeline" style="height: 180px;"></div>
+        <h1 class="Time">Student Ranking</h1>
+        <div id="curve_chart" style="height: auto;"></div>
     </div>
 
 
@@ -69,7 +69,7 @@ require_once 'show_profile.php';
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
+        inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -78,7 +78,7 @@ require_once 'show_profile.php';
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
+        inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
@@ -94,17 +94,17 @@ require_once 'show_profile.php';
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal 
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
@@ -185,7 +185,7 @@ require_once 'show_profile.php';
 
             progressValue =
 
-            document.querySelector('.progress-value');
+                document.querySelector('.progress-value');
 
 
 
@@ -236,7 +236,37 @@ require_once 'show_profile.php';
         }, speed);
     </script>
 
-    <script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Day', 'Joshua Rivera', 'Ronald Olipas'],
+                ['1', 50, 60],
+                ['2', 20, 10],
+                ['3', 40, 25],
+                ['4', 30, 45]
+            ]);
+
+            var options = {
+                // title: 'Company Performance',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <!-- <script>
         google.charts.load('current', {
             'packages': ['timeline']
         });
@@ -267,7 +297,7 @@ require_once 'show_profile.php';
 
             chart.draw(dataTable);
         }
-    </script>
+    </script> -->
 
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
