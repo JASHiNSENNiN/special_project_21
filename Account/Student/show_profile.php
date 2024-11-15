@@ -36,7 +36,7 @@ $profile_div = '<header class="nav-header">
                         Weather Update</a>
                     <a href="#"> <i class="fas fa-comment-alt" style="font-size:24px;margin-right:10px;"></i>My
                         Reviews</a>
-                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings & privacy</a>
                     <hr>
                     <hr>
                     <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>
@@ -59,17 +59,19 @@ $profile_div = '<header class="nav-header">
         <div class="name">' . $firstName . ' ' . $middleName . ' ' . $lastName . '</div>
         <label class="strand" for="">' . $strand . '</label>
 
-         <div class="Settings">
-        <a href="edit_profile.php" style="text-decoration: none;">
-        <label for="input-file2" class="button-12" role="button">
-        
-        <span class="edit">
-        <i class="fa fa-pencil"></i> Edit profile
-                        </span>
-                        <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
-        </div>
+         
         
     </div>';
+
+    // <div class="Settings">
+    //     <a href="edit_profile.php" style="text-decoration: none;">
+    //     <label for="input-file2" class="button-12" role="button">
+        
+    //     <span class="edit">
+    //     <i class="fa fa-pencil"></i> Edit profile
+    //                     </span>
+    //                     <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
+    //     </div>
 //  <div class="dropdowntf" style="float:right;">
 //                 <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
 //                         class="badge">2</span></a>

@@ -289,6 +289,9 @@ if (isset($_SESSION['user_id'])) {
             </div>
         </div>
 
+
+
+        <!-- /////////////////////////////////////////////Java script////////////////////////////////////////// -->
         <script>
             const searchInput = document.getElementById('searchInput');
             const dropdownList = document.getElementById('dropdownList1');
