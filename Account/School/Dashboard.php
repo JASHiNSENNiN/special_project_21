@@ -33,9 +33,9 @@ require_once 'show_profile.php';
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <!-- <a href="Company.php">Work Immersion List</a> -->
-            <a href="Student.php">Student</a>
-            <a class="active" href="Dashboard.php">Analytics</a>
-            <a href="Reports.php">Reports</a>
+            <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
+            <a class="active" href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a href="Reports.php"><i class="fa fa-file-text-o"></i>Reports</a>
 
 
         </nav>

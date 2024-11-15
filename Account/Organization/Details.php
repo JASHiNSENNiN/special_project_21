@@ -98,11 +98,11 @@ $studentCounts = getStudentCounts($_SESSION['user_id']);
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a href="Job_ads.php"> Job Ads</a>
-            <a href="Job_request.php">Job Request</a>
-            <a href="Faculty_report.php">Student Evaluation</a>
+            <a href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
+            <a href="Job_request.php"><i class="fa fa-user-plus"></i>Job Request</a>
+            <a href="Faculty_report.php"><i class='fas fa-tasks'></i>Student Evaluation</a>
             <!-- <a href="Question.php">Questions</a> -->
-            <a class="active" href="Details.php">Analytics</a>
+            <a class="active" href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
 
 
         </nav>
