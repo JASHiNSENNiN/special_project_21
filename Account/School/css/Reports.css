@@ -852,7 +852,8 @@ h3:after {
   outline: 0;
 }
 
-.fa {
+.fa,
+.fas {
   margin: 6px;
 }
 

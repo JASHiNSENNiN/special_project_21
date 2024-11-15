@@ -41,7 +41,7 @@ $profile_div = '<header class="nav-header">
             </div>
 
             <div class="dropdown" style="float:right;">
-                <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
+                <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:10px;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
                     

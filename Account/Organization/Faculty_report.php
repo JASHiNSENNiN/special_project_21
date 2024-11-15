@@ -66,10 +66,10 @@ $applicants = getApplicants($conn, $org_id);
     <hr>
     <div class="logo">
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a href="Job_ads.php"> Job Ads</a>
-            <a href="Job_request.php">Job Request</a>
-            <a class="active1" href="Faculty_report.php">Student Evaluation</a>
-            <a href="Details.php">Analytics</a>
+            <a href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
+            <a href="Job_request.php"><i class="fa fa-user-plus"></i>Job Request</a>
+            <a class="active1" href="Faculty_report.php"><i class='fas fa-tasks'></i>Student Evaluation</a>
+            <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
         </nav>
     </div>
     <hr class="line_bottom">
@@ -90,29 +90,29 @@ $applicants = getApplicants($conn, $org_id);
 
                     $profile_image = '../Student/uploads/' . $applicant['profile_image']
                         ?>
-                <tr>
-                    <td data-th="#"><?= $index + 1 ?></td>
-                    <td data-th="ID Picture">
-                        <img class="idpic"
-                            src="<?= !empty($applicant['profile_image']) ? $profile_image : '../Student/image/Default.png' ?>"
-                            alt="Profile Picture">
-                    </td>
-                    <td data-th="Student Name"><?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
-                    <td data-th="Result">
-                        <div class="container3">
-                            <div class="circular-progress">
-                                <span class="progress-value"></span>
+                    <tr>
+                        <td data-th="#"><?= $index + 1 ?></td>
+                        <td data-th="ID Picture">
+                            <img class="idpic"
+                                src="<?= !empty($applicant['profile_image']) ? $profile_image : '../Student/image/Default.png' ?>"
+                                alt="Profile Picture">
+                        </td>
+                        <td data-th="Student Name"><?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
+                        <td data-th="Result">
+                            <div class="container3">
+                                <div class="circular-progress">
+                                    <span class="progress-value"></span>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-th="Action">
-                        <a
-                            href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
-                            <button class="button-9" role="button">Evaluate</button>
-                        </a>
-                        <!-- <button class="button-37" role="button">View Profile</button> -->
-                        </ td>
-                </tr>
+                        </td>
+                        <td data-th="Action">
+                            <a
+                                href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
+                                <button class="button-9" role="button">Evaluate</button>
+                            </a>
+                            <!-- <button class="button-37" role="button">View Profile</button> -->
+                            </ td>
+                    </tr>
                 <?php } ?>
             </tbody>
         </table>

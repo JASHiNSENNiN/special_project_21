@@ -939,6 +939,9 @@ nav a:hover::after {
 .fa {
   margin: 6px;
 }
+.fas {
+  margin: 6px;
+}
 
 input {
   display: none;
