@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 }
 
 $sql = $conn->prepare("SELECT * FROM job_offers WHERE partner_id = ?");
-$sql->bind_param("i", $_SESSION['user_id']); 
+$sql->bind_param("i", $_SESSION['user_id']);
 $sql->execute();
 $result = $sql->get_result();
 
@@ -40,7 +40,7 @@ function generateJobCards($jobOffers)
 
     foreach ($jobOffers as $job) {
         $strands = json_decode($job['strands']);
-        $description = nl2br(html_entity_decode($job['description'])); 
+        $description = nl2br(html_entity_decode($job['description']));
 
         echo '
         <li>
@@ -68,7 +68,7 @@ function generateJobCards($jobOffers)
 
         // Edit button
         echo '<a href="edit_job.php?id=' . htmlspecialchars($job['id']) . '"><button class="search-buttons card-buttons">Edit</button></a>';
-        
+
         // Conditionally display archive/unarchive buttons based on job status
         if ($job['is_archived']) {
             echo '<a href="?action=unarchive&id=' . htmlspecialchars($job['id']) . '" onclick="return confirm(\'Are you sure you want to unarchive this job?\');"><button class="search-buttons card-buttons">Unarchive</button></a>';
@@ -83,16 +83,18 @@ function generateJobCards($jobOffers)
     }
 }
 
-function archiveJob($id) {
-    global $conn; 
+function archiveJob($id)
+{
+    global $conn;
 
     $sql = $conn->prepare("UPDATE job_offers SET is_archived = TRUE WHERE id = ?");
     $sql->bind_param("i", $id);
     return $sql->execute();
 }
 
-function unarchiveJob($id) {
-    global $conn; 
+function unarchiveJob($id)
+{
+    global $conn;
 
     $sql = $conn->prepare("UPDATE job_offers SET is_archived = FALSE WHERE id = ?");
     $sql->bind_param("i", $id);
@@ -106,7 +108,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     } elseif ($_GET['action'] === 'unarchive') {
         unarchiveJob($id);
     }
-    header("Location: " . $_SERVER['PHP_SELF']); 
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 
@@ -128,9 +130,9 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -138,7 +140,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="<?= $home ?>">
-                <img src="../../img/logov3.jpg" alt="Logo">
+                <!-- <img src="../../img/logov3.jpg" alt="Logo"> -->
+                <img src="image/drdsnhs.svg" alt="Logo">
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a>
@@ -189,7 +192,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         </div> -->
 
         <div class="searched-jobs">
-            <ul class="globalTargetList">
+            <ul class="globalTargetList" style="list-style-type: none;">
                 <div class="job-cards">
 
                     <?php generateJobCards($jobOffers); ?>
@@ -203,9 +206,9 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     </div>
 
     <script>
-    function myFunction() {
-        confirm("Are you Sure?");
-    }
+        function myFunction() {
+            confirm("Are you Sure?");
+        }
     </script>
 
 </body>

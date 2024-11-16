@@ -14,17 +14,23 @@ body {
 /* NavbarTop */
 
 .navbar-top {
-  background-color: #fff;
+  background-color: #18613b;
   color: #333;
   box-shadow: 0px 0px 5px 1px grey;
   height: 70px;
 }
 
-.title {
+.title h1 {
   font-family: Arial;
   padding-top: 15px;
   position: absolute;
+  font-weight: 700 !important;
+  color: #fff;
   left: 45%;
+}
+
+.fa {
+  color: #fff;
 }
 
 .navbar-top ul {
@@ -147,18 +153,23 @@ hr {
 
 .main .card {
   background-color: #fff;
-  border-radius: 18px;
+  border-radius: 5px;
   /* box-shadow: 1px 1px 8px 0 grey; */
   height: auto;
   margin-bottom: 20px;
-  padding: 20px 0 20px 50px;
+  padding: 20px 50px 20px 50px;
 }
 
 .main .card table {
   border: none;
   font-size: 16px;
-  height: 270px;
-  width: 80%;
+  /* height: 270px; */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.personal-details-ss-table tr {
+  margin-bottom: 10px;
 }
 
 .edit {
@@ -219,4 +230,75 @@ footer {
   text-align: center;
   margin-top: 50px;
   bottom: 0;
+}
+
+.row-graph-profile {
+  margin-left: 20;
+  margin-right: 150px;
+  margin-bottom: 50px;
+}
+
+/* Clear floats after the columns */
+
+.row-graph-profile:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column-graph-profile {
+  float: left;
+  width: auto;
+  padding: 10px;
+  height: auto;
+  position: relative;
+  top: 55px;
+  /* Should be removed. Only for demonstration */
+}
+
+@media screen and (max-width: 600px) {
+  .column-graph-profile {
+    width: 100%;
+  }
+}
+
+.column-graph-profile-right {
+  float: left;
+  width: 64.8%;
+  padding: 10px;
+  height: auto;
+  position: relative;
+  /* Should be removed. Only for demonstration */
+}
+
+@media screen and (max-width: 600px) {
+  .column-graph-profile-right {
+    width: 100%;
+  }
+}
+
+.container-grap-left {
+  border: none;
+  background-color: #fff;
+  column-count: 1;
+  column-gap: 40px;
+  padding: 20px;
+  border-radius: 5px;
+  height: auto;
+  width: 371px;
+}
+
+.container-grap-right {
+  border: solid grey 1px;
+  background-color: #fff;
+  column-count: 1;
+  column-gap: 40px;
+  padding: 20px;
+  border-radius: 5px;
+  height: auto;
+}
+
+.personal-details-ss-table {
+  width: 100%;
+  margin-top: 20px;
 }

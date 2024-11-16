@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $user_id = $_SESSION['user_id'];
-
+    $email = $user['email'];
     // Handle image upload
     if (isset($_FILES['profile_image'])) {
         $file = $_FILES['profile_image'];
@@ -358,7 +358,7 @@ if (isset($_SESSION['user_id'])) {
                                     <div class="card-body pb-2">
                                         <div class="form-group">
                                             <label class="form-label">Email</label>
-                                            <input type="text" class="form-control mb-1" autocomplete="off" placeholder="@gmail.com" />
+                                            <input type="text" class="form-control mb-1" autocomplete="off" value="<?php echo $email ?>" readonly />
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Current password</label>

@@ -28,6 +28,7 @@
             <div class="current-weather">
                 <iframe width="100%" height="450" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=5&overlay=wind&product=ecmwf&level=surface&lat=11.824&lon=120.762&detailLat=15.662&detailLon=120.766&detail=true&pressure=true" frameborder="0"></iframe>
             </div>
+
             <div class="days-forecast">
                 <div class="container">
                     <div class="elements">
@@ -456,6 +457,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <!-- <h2>5-Day Forecast</h2>
                 <ul class="weather-cards">
                     <li class="card">

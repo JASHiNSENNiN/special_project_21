@@ -83,7 +83,6 @@
                                         placeholder="Enter your location">
                                 </div>
                             </div>
-
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputEmailAddress">Email address</label>
@@ -111,14 +110,14 @@
     </div>
     <script>
         // Function profile selected image
-        document.getElementById('image-upload').addEventListener('change', function (event) {
+        document.getElementById('image-upload').addEventListener('change', function(event) {
             const selectedImage = event.target.files[0];
             const profileImage = document.getElementById('profile-image');
 
             if (selectedImage) {
                 const reader = new FileReader();
 
-                reader.onload = function () {
+                reader.onload = function() {
                     profileImage.src = reader.result;
                 };
 
@@ -126,14 +125,14 @@
             }
         });
 
-        document.getElementById('image-upload-cover').addEventListener('change', function (event) {
+        document.getElementById('image-upload-cover').addEventListener('change', function(event) {
             const selectedImage = event.target.files[0];
             const profileImage = document.getElementById('profile-image-cover');
 
             if (selectedImage) {
                 const reader = new FileReader();
 
-                reader.onload = function () {
+                reader.onload = function() {
                     profileImage.src = reader.result;
                 };
 
