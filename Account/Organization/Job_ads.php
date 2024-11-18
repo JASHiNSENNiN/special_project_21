@@ -82,38 +82,27 @@ require_once 'show_profile.php';
 
                     <label for=""><b>Choose a Strand:</b></label><br>
                     <label class="con">STEM
-                        <input type="checkbox" name="strand[]" value="stem">
+                        <input type="checkbox" name="strand[]" value="STEM">
                         <span class="checkmark"></span>
                     </label>
 
                     <label class="con">GAS
-                        <input type="checkbox" name="strand[]" value="gas">
+                        <input type="checkbox" name="strand[]" value="GAS">
                         <span class="checkmark"></span>
                     </label>
                     <label class="con">HUMSS
-                        <input type="checkbox" name="strand[]" value="humss">
+                        <input type="checkbox" name="strand[]" value="HUMSS">
                         <span class="checkmark"></span>
                     </label>
                     <label class="con">TECHVOC
-                        <input type="checkbox" name="strand[]" value="tvl">
+                        <input type="checkbox" name="strand[]" value="TVL">
                         <span class="checkmark"></span>
                     </label>
 
                     <div class="wrapper">
                         <div class="title">
 
-                            <!-- <h2>Tags</h2>
-                        </div>
-                        <div class="content">
-                            <p>Press add a comma after each tag</p>
-                            <ul><input type="text" spellcheck="false" id="tag-input">
-                                <button>Add</button>
-                            </ul>
-                        </div>
-                        <div class="details">
-                            <p><span>10</span> tags are remaining</p> -->
 
-                            <!-- <button>Remove All</button> -->
                         </div>
                     </div>
 
