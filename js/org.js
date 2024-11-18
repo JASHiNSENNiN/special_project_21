@@ -1,5 +1,7 @@
 ///////////////////////////////////////////////attitude and motivation CHART///////////////////////////////////////
-google.charts.load("current", { packages: ["bar"] });
+google.charts.load("current", {
+  packages: ["bar"],
+});
 google.charts.setOnLoadCallback(drawStuffam);
 
 function drawStuffam() {
@@ -12,11 +14,13 @@ function drawStuffam() {
     ["Very poor", 1],
   ]);
 
-  var options = { 
+  var options = {
     title: "Attitude and Motivation",
     height: 400,
     width: 700,
-    legend: { position: "none" },
+    legend: {
+      position: "none",
+    },
     chart: {
       title: "Attitude and Motivation",
       subtitle: "Student attitude and motivation from the work immersion",
@@ -24,10 +28,15 @@ function drawStuffam() {
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
       x: {
-        0: { side: "top", label: "Performance" }, // Top x-axis.
+        0: {
+          side: "top",
+          label: "Performance",
+        }, // Top x-axis.
       },
     },
-    bar: { groupWidth: "90%" },
+    bar: {
+      groupWidth: "90%",
+    },
   };
 
   var chart = new google.charts.Bar(document.getElementById("am-top-x-div"));
@@ -35,7 +44,9 @@ function drawStuffam() {
 }
 
 //////////////////////////////////////////////Team work and Collaboration CHART///////////////////////////////////////
-google.charts.load("current", { packages: ["bar"] });
+google.charts.load("current", {
+  packages: ["bar"],
+});
 google.charts.setOnLoadCallback(drawStufftc);
 
 function drawStufftc() {
@@ -52,7 +63,9 @@ function drawStufftc() {
     title: "Team work and Collaboration",
     height: 400,
     width: 700,
-    legend: { position: "none" },
+    legend: {
+      position: "none",
+    },
     chart: {
       title: "Team work and Collaboration",
       subtitle: "Student team work and collaboration from the work immersion",
@@ -60,10 +73,15 @@ function drawStufftc() {
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
       x: {
-        0: { side: "top", label: "Performance" }, // Top x-axis.
+        0: {
+          side: "top",
+          label: "Performance",
+        }, // Top x-axis.
       },
     },
-    bar: { groupWidth: "90%" },
+    bar: {
+      groupWidth: "90%",
+    },
   };
 
   var chart = new google.charts.Bar(document.getElementById("tc-top-x-div"));
@@ -71,7 +89,9 @@ function drawStufftc() {
 }
 
 ///////////////////////////////////////////////Learning and Development CHART///////////////////////////////////////
-google.charts.load("current", { packages: ["bar"] });
+google.charts.load("current", {
+  packages: ["bar"],
+});
 google.charts.setOnLoadCallback(drawStuffld);
 
 function drawStuffld() {
@@ -88,7 +108,9 @@ function drawStuffld() {
     title: "Learning and Development",
     height: 400,
     width: 700,
-    legend: { position: "none" },
+    legend: {
+      position: "none",
+    },
     chart: {
       title: "Learning and Development",
       subtitle: "Student learning and development from the work immersion",
@@ -96,17 +118,24 @@ function drawStuffld() {
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
       x: {
-        0: { side: "top", label: "Performance" }, // Top x-axis.
+        0: {
+          side: "top",
+          label: "Performance",
+        }, // Top x-axis.
       },
     },
-    bar: { groupWidth: "90%" },
+    bar: {
+      groupWidth: "90%",
+    },
   };
 
   var chart = new google.charts.Bar(document.getElementById("ld-top-x-div"));
   chart.draw(data, options);
 }
 ///////////////////////////////////////////////Professionalism CHART///////////////////////////////////////
-google.charts.load("current", { packages: ["bar"] });
+google.charts.load("current", {
+  packages: ["bar"],
+});
 google.charts.setOnLoadCallback(drawStuffprof);
 
 function drawStuffprof() {
@@ -123,7 +152,9 @@ function drawStuffprof() {
     title: "Professionalism",
     height: 400,
     width: 700,
-    legend: { position: "none" },
+    legend: {
+      position: "none",
+    },
     chart: {
       title: "Professionalism",
       subtitle: "Student professionalism from the work immersion",
@@ -131,16 +162,21 @@ function drawStuffprof() {
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
       x: {
-        0: { side: "top", label: "Performance" }, // Top x-axis.
+        0: {
+          side: "top",
+          label: "Performance",
+        }, // Top x-axis.
       },
     },
-    bar: { groupWidth: "90%" },
+    bar: {
+      groupWidth: "90%",
+    },
   };
 
   var chart = new google.charts.Bar(document.getElementById("pro-top-x-div"));
   chart.draw(data, options);
 }
-///////////////////////////////////////////////WORK PERFORMANCE CHART///////////////////////////////////////
+///////////////////////////////////////////////Work Immerssion Experience CHART///////////////////////////////////////
 google.charts.load("current", {
   packages: ["bar"],
 });
@@ -157,15 +193,15 @@ function drawStuff() {
   ]);
 
   var options = {
-    title: "Work performance",
+    title: "Work Immerssion Experience",
     height: 400,
     width: 700,
     legend: {
       position: "none",
     },
     chart: {
-      title: "Work Performance",
-      subtitle: "Student work performance from the work immersion",
+      title: "Work Immerssion Experience",
+      subtitle: "Student experience from the work immersion",
     },
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
@@ -188,129 +224,3 @@ function drawStuff() {
 google.charts.load("current", {
   packages: ["corechart"],
 });
-
-// ///////////////////////////////////PIE CART ////////////////////////////////////////
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-    ["Task", "Hours per Day"],
-    ["Work Performance", 11],
-    ["Professionalism", 2],
-    ["Learning and Development", 2],
-    ["Team work and Collaboration", 2],
-    ["Attitude and Motivation", 7],
-  ]);
-
-  var options = {
-    title: "Total Work Performance",
-    height: 250,
-    width: 500,
-    is3D: true,
-  };
-
-  var chart = new google.visualization.PieChart(
-    document.getElementById("piechart_3d")
-  );
-  chart.draw(data, options);
-}
-// ///////////////////////////////////DAILY PERFORMACE CART ////////////////////////////////////////
-google.charts.load("current", { packages: ["corechart", "line"] });
-google.charts.setOnLoadCallback(drawBasicdp);
-
-function drawBasicdp() {
-  var dp_data = new google.visualization.DataTable();
-  dp_data.addColumn("number", "X");
-  dp_data.addColumn("number", "Rating");
-
-  dp_data.addRows([
-    [0, 0],
-    [1, 10],
-    [2, 23],
-    [3, 17],
-    [4, 18],
-    [5, 9],
-    [6, 11],
-    [7, 27],
-    [8, 33],
-    [9, 40],
-    [10, 32],
-    [11, 35],
-    [12, 30],
-    [13, 40],
-    [14, 42],
-    [15, 47],
-    [16, 44],
-    [17, 48],
-    [18, 52],
-    [19, 54],
-    [20, 42],
-    [21, 55],
-    [22, 56],
-    [23, 57],
-    [24, 60],
-    [25, 50],
-    [26, 52],
-    [27, 51],
-    [28, 49],
-    [29, 53],
-    [30, 55],
-    [31, 60],
-    [32, 61],
-    [33, 59],
-    [34, 62],
-    [35, 65],
-    [36, 62],
-    [37, 58],
-    [38, 55],
-    [39, 61],
-    [40, 64],
-    [41, 65],
-    [42, 63],
-    [43, 66],
-    [44, 67],
-    [45, 69],
-    [46, 69],
-    [47, 70],
-    [48, 72],
-    [49, 68],
-    [50, 66],
-    [51, 65],
-    [52, 67],
-    [53, 70],
-    [54, 71],
-    [55, 72],
-    [56, 73],
-    [57, 75],
-    [58, 70],
-    [59, 68],
-    [60, 64],
-    [61, 60],
-    [62, 65],
-    [63, 67],
-    [64, 68],
-    [65, 69],
-    [66, 70],
-    [67, 72],
-    [68, 75],
-    [69, 80],
-  ]);
-
-  var options = {
-    title: "Daily Performance",
-    height: 250,
-    width: 500,
-    hAxis: {
-      title: "Day",
-    },
-    vAxis: {
-      title: "Performance rate",
-    },
-  };
-
-  var dp_chart = new google.visualization.LineChart(
-    document.getElementById("dp_chart_div")
-  );
-
-  dp_chart.draw(dp_data, options);
-}
