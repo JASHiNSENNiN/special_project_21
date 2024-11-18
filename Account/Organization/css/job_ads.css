@@ -144,6 +144,7 @@ footer {
   margin-bottom: 50px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  border: solid 1px;
 }
 
 .sales-boxes .sales-details {
@@ -651,7 +652,6 @@ nav a:hover::after {
   -webkit-user-select: none;
   touch-action: manipulation;
   font-weight: bold;
-  /* width: 100%; */
 }
 
 .button-9:disabled {
@@ -920,7 +920,7 @@ input {
   justify-content: space-between;
 }
 
-.details button {
+/* .details button {
   border: none;
   outline: none;
   color: #fff;
@@ -934,9 +934,9 @@ input {
 
 .details button:hover {
   background: #2c52ed;
-}
+} */
 
-.content button {
+/* .content button {
   width: 50px;
   outline: none;
   border: 1px solid #5372f0;
@@ -948,7 +948,7 @@ input {
 .content button:hover {
   background-color: #2c52ed;
   font-weight: 600;
-}
+} */
 
 .content input {
   background: #fff;
@@ -987,4 +987,102 @@ input {
 .container__nav > small {
   color: #777;
   margin-right: 5px;
+}
+
+/* ------------MODAL----------- */
+
+/* .bod {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+} */
+.containerModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal {
+  width: auto;
+  height: 0;
+  background: #fff;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  overflow: hidden;
+  transition: 1s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal--open {
+  overflow: visible;
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__icon {
+  position: absolute;
+  background: #15bc74;
+  border-radius: 50%;
+  color: #fff;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px #fff solid;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -32px;
+}
+
+.modal__title {
+  font-weight: 300;
+  color: #333;
+  text-align: center;
+  margin-top: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
+}
+
+.modal__text {
+  font-weight: 300;
+  color: #696969;
+  text-align: center;
+  margin-top: 40px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.modal__countdown {
+  color: #696969;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.ti {
+  margin-left: -45px;
+  margin-right: -45px;
+  text-align: center;
+  background-color: rgb(71, 102, 59, 0.5);
+  padding-top: 5px;
+}
+
+.box {
+  margin-top: 20px;
 }

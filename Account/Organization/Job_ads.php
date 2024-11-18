@@ -62,6 +62,8 @@ require_once 'show_profile.php';
 
     <br>
 
+
+
     <div class="sales-boxes">
         <div class="recent-sales box">
             <b>
@@ -73,56 +75,69 @@ require_once 'show_profile.php';
 
             <form method="post" action="/backend/php/add_job.php">
                 <div class="container">
-                    <h1>Post a Job ad</h1>
-                    <p>Please fill in this form to create a job.</p>
+
+                    <h1 class="ti">POST A JOB AD</h1>
+                    <p class="ti">Please fill in this form to create a job.</p>
 
 
-                    <label for="worktitle"><b>Work Title</b></label>
-                    <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle" required>
 
-                    <label for=""><b>Choose a Strand:</b></label><br>
-                    <label class="con">STEM
-                        <input type="checkbox" name="strand[]" value="STEM">
-                        <span class="checkmark"></span>
-                    </label>
+                    <div class="box">
+                        <label for="worktitle"><b>Work Title</b></label>
+                        <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle" required>
 
-                    <label class="con">GAS
-                        <input type="checkbox" name="strand[]" value="GAS">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="con">HUMSS
-                        <input type="checkbox" name="strand[]" value="HUMSS">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="con">TECHVOC
-                        <input type="checkbox" name="strand[]" value="TVL">
-                        <span class="checkmark"></span>
-                    </label>
+                        <label for=""><b>Choose a Strand:</b></label><br>
+                        <label class="con">STEM
+                            <input type="checkbox" name="strand[]" value="STEM">
+                            <span class="checkmark"></span>
+                        </label>
 
-                    <div class="wrapper">
-                        <div class="title">
+                        <label class="con">GAS
+                            <input type="checkbox" name="strand[]" value="GAS">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="con">HUMSS
+                            <input type="checkbox" name="strand[]" value="HUMSS">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="con">TECHVOC
+                            <input type="checkbox" name="strand[]" value="TVL">
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <div class="wrapper">
+                            <div class="title">
 
 
+                            </div>
                         </div>
+
+                        <h1>Job Description</h1>
+
+                        <input type="hidden" name="description" id="description">
+                        <div id="editor-container"></div>
+
+                        <div class="container__nav">
+                            <small>By clicking 'Check box' you are agreeing to our <a
+                                    href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
+                            <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
+                        </div>
+                        <button class="button-9" id="show-modal" role="button" type="submit">Submit</button>
                     </div>
-
-                    <h1>Job Description</h1>
-
-                    <input type="hidden" name="description" id="description">
-                    <div id="editor-container"></div>
-
-                    <div class="container__nav">
-                        <small>By clicking 'Check box' you are agreeing to our <a
-                                href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
-                        <input type="checkbox" id="agree" name="agree" value="agree" required>
-                    </div>
-                    <button class="button-9" role="button" type="submit">Submit</button>
                 </div>
             </form>
         </div>
-
-
     </div>
+
+    <div id="containerModal">
+        <div id="success-modal" class="modal">
+            <div class="modal__icon">✓</div>
+            <h3 class="modal__title">Successfully posted ads.</h3>
+            <p class="modal__countdown">
+                Disappearing in <span id="countdown">5</span> seconds...
+            </p>
+        </div>
+    </div>
+
 
     <script src="css/job_ads.js"> </script>
 
@@ -131,6 +146,53 @@ require_once 'show_profile.php';
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const contain = document.getElementById("containerModal");
+            const button = document.getElementById("show-modal");
+            const modal = document.getElementById("success-modal");
+            const countdownElement = document.getElementById("countdown");
+            const inputField = document.getElementById("worktitle"); // Input field
+            const checkbox = document.getElementById("agree"); // Checkbox
+
+            button.addEventListener("click", () => {
+                // Validate the input field and checkbox
+                if (inputField.value.trim() === "") {
+                    alert("Please fill out text cannot be empty!"); // Alert for empty input
+                    return; // Exit the function
+                }
+
+                if (!checkbox.checked) {
+                    alert("You must agree to the terms!"); // Alert for unchecked checkbox
+                    return; // Exit the function
+                }
+
+                // Open the modal
+                modal.classList.add("modal--open");
+                contain.classList.add("containerModal");
+
+                // Countdown logic
+                let seconds = 5;
+                countdownElement.textContent = seconds;
+
+                const countdownInterval = setInterval(() => {
+                    seconds--;
+                    countdownElement.textContent = seconds;
+
+                    // When the countdown reaches 0, hide the modal
+                    if (seconds <= 0) {
+                        clearInterval(countdownInterval);
+                        modal.classList.remove("modal--open");
+                        contain.classList.remove("containerModal");
+                    }
+                }, 1000);
+            });
+        });
+    </script>
+
+
+
 
 
     <script>
@@ -150,6 +212,7 @@ require_once 'show_profile.php';
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
+
 
 
 </body>

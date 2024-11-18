@@ -441,7 +441,7 @@ html {
   border-radius: 0 8px 8px 0;
   color: var(--button-color);
   cursor: pointer;
-  margin-left: auto;
+  /* margin-left: auto; */
 }
 
 .search.item {
@@ -505,6 +505,7 @@ html {
   font-size: 13px;
   font-weight: 600;
   margin-top: 14px;
+  margin-left: 10px;
 }
 
 .job-wrapper {
@@ -577,7 +578,6 @@ html {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding-left: 40px;
 }
 
 @keyframes slideY {
@@ -1255,6 +1255,7 @@ ul {
   margin: -20px;
   margin-top: -70px;
   text-align: center;
+  font-weight: 300;
 }
 
 .container1 {

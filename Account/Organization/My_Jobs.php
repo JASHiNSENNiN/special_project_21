@@ -67,7 +67,7 @@ function generateJobCards($jobOffers)
                 <div class="job-card-buttons">';
 
         // Edit button
-        echo '<a href="edit_job.php?id=' . htmlspecialchars($job['id']) . '"><button class="search-buttons card-buttons">Edit</button></a>';
+        echo '<a href="#.php?id=' . htmlspecialchars($job['id']) . '"><button class="search-buttons card-buttons" id="myBtn" >Edit</button></a>';
 
         // Conditionally display archive/unarchive buttons based on job status
         if ($job['is_archived']) {
@@ -219,39 +219,6 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     </header>
 
     <div class="container">
-        <!-- <div class="row">
-            <div class="col">
-                <div class="containerbox">
-
-                    <div class="job-card">
-                        <div class="job-card-header">
-                            <div class="menu-dot"></div>
-                        </div>
-                        <div class="job-card-title">UI / UX Designer</div>
-                        <div class="job-card-subtitle">
-                            The User Experience Designer position exists to create compelling and digital user
-                            experience through excellent design...
-                        </div>
-                        <div class="job-detail-buttons">
-                            <button class="search-buttons detail-button">Full Time</button>
-                            <button class="search-buttons detail-button">Min. 1 Year</button>
-                            <button class="search-buttons detail-button">Senior Level</button>
-                        </div>
-                        <div class="job-card-buttons">
-                            <button class="button-10" role="button">Update</button>
-                            <button class="button-3" onclick="myFunction()" role="button">Delete</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col order-5">
-                Second in DOM, with a larger order
-            </div>
-            <div class="col order-1">
-                Third in DOM, with an order of 1
-            </div>
-        </div> -->
 
         <div class="searched-jobs">
             <ul class="globalTargetList" style="list-style-type: none;">
@@ -267,8 +234,6 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             <!-- <div class="globalSearchResultNoFoundFeedback" aria-live="polite"> Search nothing found</div> -->
         </div>
     </div>
-
-
 
     <script>
         // Get the modal
