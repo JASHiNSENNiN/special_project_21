@@ -1,18 +1,49 @@
+//do not delete this
+// var data = new google.visualization.arrayToDataTable([
+//   ["Category", "Performance"],
+//1   ["Quality of Work", averages.avgQualityOfWork],
+//2   ["Productivity", averages.avgProductivity],
+//3   ["Problem Solving Skills", averages.avgProblemSolvingSkills],
+//4   ["Attention to Detail", averages.avgAttentionToDetail],
+//5   ["Initiative", averages.avgInitiative],
+//6   ["Punctuality", averages.avgPunctuality],
+//7   ["Appearance", averages.avgAppearance],
+//8   ["Communication Skills", averages.avgCommunicationSkills],
+//9   ["Respectfulness", averages.avgRespectfulness],
+//10   ["Adaptability", averages.avgAdaptability],
+//11  ["Willingness to Learn", averages.avgWillingnessToLearn],
+//12   ["Application of Feedback", averages.avgApplicationOfFeedback],
+//13   ["Self Improvement", averages.avgSelfImprovement],
+//14   ["Skill Development", averages.avgSkillDevelopment],
+//15   ["Knowledge Application", averages.avgKnowledgeApplication],
+//16   ["Team Participation", averages.avgTeamParticipation],
+//17   ["Cooperation", averages.avgCooperation],
+//18   ["Conflict Resolution", averages.avgConflictResolution],
+//19   ["Supportiveness", averages.avgSupportiveness],
+//20   ["Contribution", averages.avgContribution],
+//21   ["Enthusiasm", averages.avgEnthusiasm],
+//22   ["Drive", averages.avgDrive],
+//23   ["Resilience", averages.avgResilience],
+//24   ["Commitment", averages.avgCommitment],
+//25   ["Self Motivation", averages.avgSelfMotivation],
+// ]);
+//do not delete this
+
 ///////////////////////////////////////////////attitude and motivation CHART///////////////////////////////////////
 google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStuffam);
 
 function drawStuffam() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
-    ["Excellent", 25],
-    ["Good", 23],
-    ["Average", 30],
-    ["Poor", 15],
-    ["Very poor", 1],
+    ["Category", "Performance"],
+    ["Enthusiasm", averages.avgEnthusiasm],
+    ["Drive", averages.avgDrive],
+    ["Resilience", averages.avgResilience],
+    ["Commitment", averages.avgCommitment],
+    ["Self Motivation", averages.avgSelfMotivation],
   ]);
 
-  var options = { 
+  var options = {
     title: "Attitude and Motivation",
     height: 400,
     width: 700,
@@ -21,10 +52,10 @@ function drawStuffam() {
       title: "Attitude and Motivation",
       subtitle: "Student attitude and motivation from the work immersion",
     },
-    bars: "horizontal", // Required for Material Bar Charts.
+    bars: "horizontal",
     axes: {
       x: {
-        0: { side: "top", label: "Performance" }, // Top x-axis.
+        0: { side: "top", label: "Performance" },
       },
     },
     bar: { groupWidth: "90%" },
@@ -40,12 +71,12 @@ google.charts.setOnLoadCallback(drawStufftc);
 
 function drawStufftc() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
-    ["Excellent", 35],
-    ["Good", 20],
-    ["Average", 10],
-    ["Poor", 15],
-    ["Very poor", 5],
+    ["Category", "Performance"],
+    ["Team Participation", averages.avgTeamParticipation],
+    ["Cooperation", averages.avgCooperation],
+    ["Conflict Resolution", averages.avgConflictResolution],
+    ["Supportiveness", averages.avgSupportiveness],
+    ["Contribution", averages.avgContribution],
   ]);
 
   var options = {
@@ -76,12 +107,12 @@ google.charts.setOnLoadCallback(drawStuffld);
 
 function drawStuffld() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
-    ["Excellent", 27],
-    ["Good", 30],
-    ["Average", 20],
-    ["Poor", 2],
-    ["Very poor", 1],
+    ["Category", "Performance"],
+    ["Willingness to Learn", averages.avgWillingnessToLearn],
+    ["Application of Feedback", averages.avgApplicationOfFeedback],
+    ["Self Improvement", averages.avgSelfImprovement],
+    ["Skill Development", averages.avgSkillDevelopment],
+    ["Knowledge Application", averages.avgKnowledgeApplication],
   ]);
 
   var options = {
@@ -111,12 +142,12 @@ google.charts.setOnLoadCallback(drawStuffprof);
 
 function drawStuffprof() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
-    ["Excellent", 40],
-    ["Good", 35],
-    ["Average", 20],
-    ["Poor", 0],
-    ["Very poor", 0],
+    ["Category", "Performance"],
+    ["Punctuality", averages.avgPunctuality],
+    ["Appearance", averages.avgAppearance],
+    ["Communication Skills", averages.avgCommunicationSkills],
+    ["Respectfulness", averages.avgRespectfulness],
+    ["Adaptability", averages.avgAdaptability],
   ]);
 
   var options = {
@@ -148,12 +179,12 @@ google.charts.setOnLoadCallback(drawStuff);
 
 function drawStuff() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
-    ["Excellent", 40],
-    ["Good", 20],
-    ["Average", 0],
-    ["Poor", 0],
-    ["Very poor", 0],
+    ["Category", "Performance"],
+    ["Quality of Work", averages.avgQualityOfWork],
+    ["Productivity", averages.avgProductivity],
+    ["Problem Solving Skills", averages.avgProblemSolvingSkills],
+    ["Attention to Detail", averages.avgAttentionToDetail],
+    ["Initiative", averages.avgInitiative],
   ]);
 
   var options = {

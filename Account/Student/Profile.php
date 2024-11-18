@@ -112,20 +112,6 @@ try {
     $avgCommitment = $averages['avg_commitment'] ?? null;
     $avgSelfMotivation = $averages['avg_self_motivation'] ?? null;
 
-    // // Output the averages EXAMPLE
-    // echo "<h3>Average Evaluation Scores</h3>";
-    // echo "Average Quality of Work: " . ($avgQualityOfWork !== null ? round($avgQualityOfWork, 2) : 'N/A') . "<br>";
-    // echo "Average Productivity: " . ($avgProductivity !== null ? round($avgProductivity, 2) : 'N/A') . "<br>";
-    // echo "Average Problem Solving Skills: " . ($avgProblemSolvingSkills !== null ? round($avgProblemSolvingSkills, 2) : 'N/A') . "<br>";
-    // echo "Average Attention to Detail: " . ($avgAttentionToDetail !== null ? round($avgAttentionToDetail, 2) : 'N/A') . "<br>";
-    // echo "Average Initiative: " . ($avgInitiative !== null ? round($avgInitiative, 2) : 'N/A') . "<br>";
-    // echo "Average Punctuality: " . ($avgPunctuality !== null ? round($avgPunctuality, 2) : 'N/A') . "<br>";
-    // echo "Average Appearance: " . ($avgAppearance !== null ? round($avgAppearance, 2) : 'N/A') . "<br>";
-    // echo "Average Communication Skills: " . ($avgCommunicationSkills !== null ? round($avgCommunicationSkills, 2) : 'N/A') . "<br>";
-    // echo "Average Respectfulness: " . ($avgRespectfulness !== null ? round($avgRespectfulness, 2) : 'N/A') . "<br>";
-    // echo "Average Adaptability: " . ($avgAdaptability !== null ? round($avgAdaptability, 2) : 'N/A') . "<br>";
-
-
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -156,6 +142,35 @@ try {
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
     <!-- ---------------------------script ---------------------- -->
+    <script type="text/javascript">
+    const averages = {
+        avgQualityOfWork: <?= json_encode($avgQualityOfWork) ?>,
+        avgProductivity: <?= json_encode($avgProductivity) ?>,
+        avgProblemSolvingSkills: <?= json_encode($avgProblemSolvingSkills) ?>,
+        avgAttentionToDetail: <?= json_encode($avgAttentionToDetail) ?>,
+        avgInitiative: <?= json_encode($avgInitiative) ?>,
+        avgPunctuality: <?= json_encode($avgPunctuality) ?>,
+        avgAppearance: <?= json_encode($avgAppearance) ?>,
+        avgCommunicationSkills: <?= json_encode($avgCommunicationSkills) ?>,
+        avgRespectfulness: <?= json_encode($avgRespectfulness) ?>,
+        avgAdaptability: <?= json_encode($avgAdaptability) ?>,
+        avgWillingnessToLearn: <?= json_encode($avgWillingnessToLearn) ?>,
+        avgApplicationOfFeedback: <?= json_encode($avgApplicationOfFeedback) ?>,
+        avgSelfImprovement: <?= json_encode($avgSelfImprovement) ?>,
+        avgSkillDevelopment: <?= json_encode($avgSkillDevelopment) ?>,
+        avgKnowledgeApplication: <?= json_encode($avgKnowledgeApplication) ?>,
+        avgTeamParticipation: <?= json_encode($avgTeamParticipation) ?>,
+        avgCooperation: <?= json_encode($avgCooperation) ?>,
+        avgConflictResolution: <?= json_encode($avgConflictResolution) ?>,
+        avgSupportiveness: <?= json_encode($avgSupportiveness) ?>,
+        avgContribution: <?= json_encode($avgContribution) ?>,
+        avgEnthusiasm: <?= json_encode($avgEnthusiasm) ?>,
+        avgDrive: <?= json_encode($avgDrive) ?>,
+        avgResilience: <?= json_encode($avgResilience) ?>,
+        avgCommitment: <?= json_encode($avgCommitment) ?>,
+        avgSelfMotivation: <?= json_encode($avgSelfMotivation) ?>
+    };
+    </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
 
@@ -199,24 +214,6 @@ try {
                     <div class="name"><?= $fullName; ?></div>
                     <div class="job"><?= $strand ?></div>
 
-                    <!-- ================================== -->
-                    <?php
-                    //nilagay ko for debugging idelete nyo na lang to
-                    echo "<h3>Average Evaluation Scores</h3>";
-                    echo "Average Quality of Work: " . ($avgQualityOfWork !== null ? round($avgQualityOfWork, 2) : 'N/A') . "<br>";
-                    echo "Average Productivity: " . ($avgProductivity !== null ? round($avgProductivity, 2) : 'N/A') . "<br>";
-                    echo "Average Problem Solving Skills: " . ($avgProblemSolvingSkills !== null ? round($avgProblemSolvingSkills, 2) : 'N/A') . "<br>";
-                    echo "Average Attention to Detail: " . ($avgAttentionToDetail !== null ? round($avgAttentionToDetail, 2) : 'N/A') . "<br>";
-                    echo "Average Initiative: " . ($avgInitiative !== null ? round($avgInitiative, 2) : 'N/A') . "<br>";
-                    echo "Average Punctuality: " . ($avgPunctuality !== null ? round($avgPunctuality, 2) : 'N/A') . "<br>";
-                    echo "Average Appearance: " . ($avgAppearance !== null ? round($avgAppearance, 2) : 'N/A') . "<br>";
-                    echo "Average Communication Skills: " . ($avgCommunicationSkills !== null ? round($avgCommunicationSkills, 2) : 'N/A') . "<br>";
-                    echo "Average Respectfulness: " . ($avgRespectfulness !== null ? round($avgRespectfulness, 2) : 'N/A') . "<br>";
-                    echo "Average Adaptability: " . ($avgAdaptability !== null ? round($avgAdaptability, 2) : 'N/A') . "<br>";
-
-                    ?>
-                    <!-- ================================== -->
-
 
                 </div>
 
@@ -239,9 +236,12 @@ try {
                                 <td><b>Middle Name</b></td>
                                 <td><b>Last Name</b></td>
                             </tr>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $firstName ?>" readonly></td>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $middleName ?>" readonly></td>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $lastName ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off"
+                                    value="<?= $firstName ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off"
+                                    value="<?= $middleName ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $lastName ?>"
+                                    readonly></td>
                             </tr>
 
 
@@ -257,8 +257,10 @@ try {
                                 <td><b>Strand</b></td>
                                 <td><b>School</b></td>
                             </tr>
-                            <td><input type="text" class="form-control mb-1 strand" autocomplete="off" value="<?= $strand ?>" readonly></td>
-                            <td><input type="text" class="form-control mb-1 school" autocomplete="off" value="<?= $school ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1 strand" autocomplete="off"
+                                    value="<?= $strand ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1 school" autocomplete="off"
+                                    value="<?= $school ?>" readonly></td>
                             </tr>
 
 
@@ -273,7 +275,8 @@ try {
                             <tr>
                                 <td><b>Email</b></td>
                             </tr>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $email ?>" readonly></td>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $email ?>"
+                                    readonly></td>
                             </tr>
 
                         </tbody>
@@ -313,7 +316,8 @@ try {
 
     <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
         <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
+            style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;">Evaluation Insight
+        </h4>
         <div class="card-graph overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
