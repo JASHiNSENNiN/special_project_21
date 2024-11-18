@@ -13,7 +13,7 @@ body {
 }
 
 h1 {
-    background: rgba(83, 114, 240, 0.719);
+    background: rgba(75, 153, 96, 0.795);
     font-size: 1.75rem;
     text-align: center;
     padding: 18px 0;
@@ -96,7 +96,7 @@ h1 {
 
 .weather-data .current-weather {
     color: #fff;
-    background: rgba(83, 114, 240, 0.719);
+    background: rgba(75, 153, 96, 0.767);
     border-radius: 5px;
     padding: 20px 20px 20px 20px;
     display: flex;
