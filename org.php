@@ -134,9 +134,145 @@ function generateJobCard()
                 </div>
 
             </div>
-            
 
-        </div>';
+
+            <div class="eleven columns ">
+                <div class="padding-right">
+                    <div class="single_job_listing">
+                        <div class="container-rating">
+  <div class="inner-rating">
+    <div class="rating">
+      <span class="rating-num">4.0</span>
+      <div class="rating-stars">
+        <span><i class="active icon-star"></i></span>
+        <span><i class="active icon-star"></i></span>
+        <span><i class="active icon-star"></i></span>
+        <span><i class="active icon-star"></i></span>
+        <span><i class="icon-star"></i></span>
+      </div>
+      <div class="rating-users">
+        <i class="icon-user"></i> 100 total student
+      </div>
+    </div>
+    
+    <div class="histo">
+      <div class="five histo-rate">
+        <span class="histo-star">
+          <i class="active icon-star"></i> 5           </span>
+        <span class="bar-block">
+          <span id="bar-five" class="bar">
+            <span>566,784</span>&nbsp;
+          </span> 
+        </span>
+      </div>
+      
+      <div class="four histo-rate">
+        <span class="histo-star">
+          <i class="active icon-star"></i> 4           </span>
+        <span class="bar-block">
+          <span id="bar-four" class="bar">
+            <span>171,298</span>&nbsp;
+          </span> 
+        </span>
+      </div> 
+      
+      <div class="three histo-rate">
+        <span class="histo-star">
+          <i class="active icon-star"></i> 3           </span>
+        <span class="bar-block">
+          <span id="bar-three" class="bar">
+            <span>94,940</span>&nbsp;
+          </span> 
+        </span>
+      </div>
+      
+      <div class="two histo-rate">
+        <span class="histo-star">
+          <i class="active icon-star"></i> 2           </span>
+        <span class="bar-block">
+          <span id="bar-two" class="bar">
+            <span>44,525</span>&nbsp;
+          </span> 
+        </span>
+      </div>
+      
+      <div class="one histo-rate">
+        <span class="histo-star">
+          <i class="active icon-star"></i> 1           </span>
+        <span class="bar-block">
+          <span id="bar-one" class="bar">
+            <span>136,457</span>&nbsp;
+          </span> 
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+                        
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+             <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
+        <h4 class="font-weight-bold py-3 mb-4"
+            style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;margin: 0px !important; ">Job Evaluation Insight</h4>
+        <div class="card-graph overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-toggle="list"
+                            href="#wp-top-x-div-sel">Work Immerssion Experience</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#pro-top-x-div-sel">Professionalism</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#ld-top-x-div-sel">Learning and Development</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#tc-top-x-div-sel">Team Work and Collaboration</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#am-top-x-div-sel">Attitude and Motivation</a>
+
+                    </div>
+                </div> 
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="wp-top-x-div-sel">
+                            <div class="wp-graph" id="wp-top-x-div" style="width: 900px; height: 500px;"></div>
+                        </div>
+
+                        <div class="tab-pane fade active show" id="pro-top-x-div-sel">
+                            <div class="pro-graph" id="pro-top-x-div" style="width: 900px; height: 500px;"></div>
+                        </div>
+
+                        <div class="tab-pane fade active show" id="ld-top-x-div-sel">
+                            <div class="ld-graph" id="ld-top-x-div" style="width: 900px; height: 500px;"></div>
+                        </div>
+
+                        <div class="tab-pane fade active show" id="tc-top-x-div-sel">
+                            <div class="tc-graph" id="tc-top-x-div" style="width: 900px; height: 500px;"></div>
+                        </div>
+
+                        <div class="tab-pane fade active show" id="am-top-x-div-sel">
+                            <div class="am-graph" id="am-top-x-div" style="width: 900px; height: 500px;"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+
+
+
+       
+        
+        ';
 }
 
 
@@ -150,8 +286,10 @@ function generateJobCard()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Work Immersion | Workify</title>
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <title>Work Immersion | Workify</title> -->
+    <title>Work Immersion | DRDSNHS</title>
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -161,10 +299,20 @@ function generateJobCard()
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-</head>
-<style>
+    <!-- ---------------------------------------evaluation script ------------------------------------------- -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-</style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+</head>
+
+<script type="text/javascript" src="js/org.js"></script>
+
 
 <body>
     <noscript>
@@ -178,7 +326,8 @@ function generateJobCard()
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
-                <img src="img/logov3.jpg" alt="Logo">
+                <!-- <img src="img/logov3.jpg" alt="Logo"> -->
+                <img src="img/DrRamonLOGO.svg" alt="Logo">
             </a>
             <nav class="dash-middle">
                 <a class="active-header" href="index.php">Home</a>
@@ -231,10 +380,11 @@ function generateJobCard()
     <footer class="new_footer_area bg_color">
         <div class="new_footer_top">
             <div class="container">
-                <div class="row">
+                <div class="row" style=" gap: 120px !important;">
                     <div class="col-lg-3 col-md-6">
                         <a href="index.php">
-                            <img src="img/logov3.jpg" alt="Logo">
+                            <!-- <img src="img/logov3.jpg" alt="Logo"> -->
+                            <img src="img/DrRamonLOGO.svg" alt="Logo">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -316,6 +466,38 @@ function generateJobCard()
             }
         }
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.bar span').hide();
+            $('#bar-five').animate({
+                width: '85%'
+            }, 1000);
+            $('#bar-four').animate({
+                width: '35%'
+            }, 1000);
+            $('#bar-three').animate({
+                width: '20%'
+            }, 1000);
+            $('#bar-two').animate({
+                width: '17%'
+            }, 1000);
+            $('#bar-one').animate({
+                width: '30%'
+            }, 1000);
+
+            setTimeout(function() {
+                $('.bar span').fadeIn('slow');
+            }, 1000);
+
+        });
+    </script>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
     <script src="js/filter.js"> </script>
 
 

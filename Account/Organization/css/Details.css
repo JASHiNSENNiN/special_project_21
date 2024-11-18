@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400);
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 /* -------------Text container-----------*/
 
@@ -154,21 +156,21 @@ img {
 
 .name {
   margin-top: 1%;
-  margin-left: 21%;
+  margin-left: 22%;
   font-size: 1.25rem;
   /* size: 10px; */
   font-family: sans-serif;
 }
 
 .strand {
-  margin-top: 1%;
-  margin-left: 21%;
+  /* margin-top: 1%; */
+  margin-left: 22%;
   font-size: 1.25rem;
   color: #777;
 }
 
 hr {
-  margin: auto;
+  margin: auto !important;
   width: 75%;
 }
 
@@ -638,8 +640,15 @@ p {
 }
 
 .api_title {
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   color: #2d2d2d;
   font-size: 0.75rem;
   font-weight: 700;
@@ -648,8 +657,15 @@ p {
 
 .api_details_one {
   color: #2d2d2d;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   line-height: 1.5;
   font-size: 0.75rem;
   font-weight: inherit;
@@ -658,8 +674,15 @@ p {
 .api_details_two {
   color: #595959;
   color: #767676;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, Liberation Sans,
-    Roboto, Noto, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    Liberation Sans,
+    Roboto,
+    Noto,
+    sans-serif;
   font-size: 0.75rem;
   font-weight: inherit;
   line-height: 1.5;
@@ -703,8 +726,19 @@ p {
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
-  font-family: Graphik, -apple-system, system-ui, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    Graphik,
+    -apple-system,
+    system-ui,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
   font-size: 14px;
   line-height: 1.15;
   overflow: visible;
@@ -781,9 +815,9 @@ p {
   margin: 6px;
 }
 
-input {
+/* input {
   display: none;
-}
+} */
 
 .button-12 {
   display: inline-block;
@@ -794,7 +828,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -805,8 +840,10 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 
@@ -1345,4 +1382,84 @@ svg g[show_data] {
   .column-1 {
     max-width: 100%;
   }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f8ce0b;
+}
+
+/* .input-search-bar-job-title {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 200px;
+} */
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 190px;
+}
+
+.input-search-bar-job-title {
+  /* width: 100%; */
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #0d0c22;
+  transition: 0.3s ease;
+}
+
+.input-search-bar-job-title::placeholder {
+  color: #9e9ea7;
+}
+
+.input-search-bar-job-title:focus,
+input:hover {
+  outline: none;
+  border-color: rgba(0, 48, 73, 0.4);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgb(0 48 73 / 10%);
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: #9e9ea7;
+  width: 1rem;
+  height: 1rem;
 }

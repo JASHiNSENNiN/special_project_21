@@ -358,11 +358,10 @@ try {
                 </div>
             </div>
         </div>
-        <!-- <div class="text-right mt-3">
-            <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-            <button type="button" class="btn btn-default">Cancel</button>
-        </div> -->
     </div>
+
+
+
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>

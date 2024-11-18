@@ -211,7 +211,7 @@ require_once 'show_profile.php';
                                                                 <div class="col-md-6">
 
                                                                     <div class="container4">
-                                                                        <label class="small mb-1" for="inputSchool">School name</label>
+                                                                        <label class="small mb-1" for="inputSchool">Organization name</label>
                                                                         <input class="form-control" id="inputSchoolName" name="SchoolName" type="text"
                                                                             value=""
                                                                             required>

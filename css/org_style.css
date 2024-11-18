@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400);
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -419,6 +421,7 @@ span.full-time {
   width: 1200px;
   margin: 0 auto;
   padding: 0;
+  margin-bottom: 20px;
 }
 
 @media only screen and (min-width: 960px) and (max-width: 1289px) {
@@ -577,19 +580,16 @@ nav a {
   font-weight: 500;
 }
 
-nav .login-btn:hover {
+/* ----------------------------workify css--------------------- */
+
+/* nav .login-btn:hover {
   color: #172738;
 }
 
 nav a:hover {
-  color: #1bbc9b;
+  color: #1bbc9b; 
   text-decoration: none !important;
 }
-
-/* 
-.active-header {
-  color: #1bbc9b;
-} */
 
 nav a::after {
   content: "";
@@ -597,6 +597,33 @@ nav a::after {
   width: 100%;
   height: 2px;
   background-color: #1bbc9b;
+  bottom: -17px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+} */
+
+/* ------------------------------drdsnhs css ---------------------------- */
+
+nav .login-btn:hover {
+  color: #fff;
+}
+
+nav a:hover {
+  color: rgb(24, 97, 59, 0.7);
+}
+
+.active-header {
+  color: rgb(24, 97, 59, 0.9);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(24, 97, 59, 0.7);
   bottom: -17px;
   left: 0;
   transform: scaleX(0);
@@ -631,7 +658,8 @@ nav a:hover::after {
   padding: 0.9rem 1.8rem;
   font-size: 14px;
   color: #172738;
-  border: 1px solid rgb(23, 39, 56);
+  border: 1px solid rgb(24, 97, 59);
+  /* border: 1px solid rgb(23, 39, 56); */
   cursor: pointer;
   position: relative;
   background-color: transparent;
@@ -649,7 +677,8 @@ nav a:hover::after {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(37, 216, 180);
+  background-color: rgb(24, 97, 59, 0.7);
+  /* background-color: rgb(37, 216, 180); */
   transform: translateX(-100%);
   transition: all 0.3s;
   z-index: -1;
@@ -1948,3 +1977,225 @@ h6 {
 }
 
 /*************footer End*****************/
+
+/* ----------------------------------------rating graph ----------------------------------------- */
+
+.container-rating {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  background-color: #efefef;
+  padding: 4px;
+}
+
+.inner-rating {
+  padding: 1em;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.rating {
+  float: left;
+  width: 45%;
+  margin-right: 5%;
+  text-align: center;
+}
+
+.rating-num {
+  color: #333333;
+  font-size: 72px;
+  font-weight: 100;
+  line-height: 1em;
+}
+
+.rating-stars {
+  font-size: 20px;
+  color: #e3e3e3;
+  margin-bottom: 0.5em;
+}
+
+.rating-stars .active {
+  color: #737373;
+}
+
+.rating-users {
+  font-size: 14px;
+}
+
+.histo {
+  float: left;
+  width: 50%;
+  font-size: 13px;
+}
+
+.histo-star {
+  float: left;
+  padding: 3px;
+}
+
+.histo-rate {
+  width: 100%;
+  display: block;
+  clear: both;
+}
+
+.bar-block {
+  margin-left: 5px;
+  color: black;
+  display: block;
+  float: left;
+  width: 75%;
+  position: relative;
+}
+
+.bar {
+  padding: 4px;
+  display: block;
+}
+
+#bar-five {
+  width: 0;
+  background-color: #18613b;
+}
+
+#bar-four {
+  width: 0;
+  background-color: #4b9960;
+}
+
+#bar-three {
+  width: 0;
+  background-color: #ffd230;
+}
+
+#bar-two {
+  width: 0;
+  background-color: #ffa500;
+}
+
+#bar-one {
+  width: 0;
+  background-color: #ff0000;
+}
+
+/* -------------------------------------------graph evaluation ------------------------ */
+
+.tab-pane {
+  margin-top: 20px !important;
+}
+
+.ui-w-80 {
+  width: 80px !important;
+  height: auto;
+}
+
+.btn-default {
+  border-color: rgba(24, 28, 33, 0.1);
+  background: rgba(0, 0, 0, 0);
+  color: #4e5155;
+}
+
+label.btn {
+  margin-bottom: 0;
+}
+
+.btn-outline-primary {
+  border-color: #26b4ff;
+  background: transparent;
+  color: #26b4ff;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.text-light {
+  color: #babbbc !important;
+}
+
+.card-graph {
+  background-clip: padding-box;
+  box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+}
+
+.row-bordered {
+  overflow: hidden;
+}
+
+.account-settings-fileinput {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.container-org {
+  /* margin-left: 150px !important; */
+  /* margin-right: 150px !important; */
+  width: 100% !important;
+  /* border: solid grey 1px; */
+}
+
+.container-org h4 {
+  margin-bottom: 0px !important;
+}
+
+.account-settings-links .list-group-item.active {
+  font-weight: bold !important;
+}
+
+html:not(.dark-style) .account-settings-links .list-group-item.active {
+  background: transparent !important;
+}
+
+.account-settings-multiselect ~ .select2-container {
+  width: 100% !important;
+}
+
+.light-style .account-settings-links .list-group-item {
+  padding: 0.85rem 1.5rem;
+  border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+.light-style .account-settings-links .list-group-item.active {
+  color: #4e5155 !important;
+}
+
+.material-style .account-settings-links .list-group-item {
+  padding: 0.85rem 1.5rem;
+  border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+.material-style .account-settings-links .list-group-item.active {
+  color: #4e5155 !important;
+}
+
+.dark-style .account-settings-links .list-group-item {
+  padding: 0.85rem 1.5rem;
+  border-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+.dark-style .account-settings-links .list-group-item.active {
+  color: #fff !important;
+}
+
+.light-style .account-settings-links .list-group-item.active {
+  color: #4e5155 !important;
+}
+
+.light-style .account-settings-links .list-group-item {
+  padding: 0.85rem 1.5rem;
+  border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+/* @media (min-width: 1200px) {
+  .container {
+    max-width: 1117.5px !important;
+  }
+} */

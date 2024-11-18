@@ -82,8 +82,11 @@ $studentCounts = getStudentCounts($_SESSION['user_id']);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
+
 
     <script src="./css/analytics.js"></script>
 
@@ -156,6 +159,77 @@ $studentCounts = getStudentCounts($_SESSION['user_id']);
 
         <!-- <hr class="line_bottom"> -->
 
+        <div class="container mt-5">
+            <div class="form-group">
+                <!-- <select id="product-select" class="form-control custom-select">
+                    <option value="0" disabled selected>Select Product</option>
+                    <option value="sony">Sony 4K TV</option>
+                    <option value="samsung">Samsung 4K TV</option>
+                    <option value="vizio">Vizio 4K TV</option>
+                    <option value="panasonic">Panasonic 4K TV</option>
+                    <option value="phillips">Phillips 4K TV</option>
+                </select> -->
+                <!-- <input type="text" class="input-search-bar-job-title" id="searchInput" placeholder="Search job title..." /> -->
+                <div class="group">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                        <g>
+                            <path
+                                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                        </g>
+                    </svg>
+                    <input class="input-search-bar-job-title" id="searchInput" type="text" placeholder="Search job title" />
+                </div>
+            </div>
+
+
+            <table class="table table-striped" id="job-title">
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="job_title">
+                        <td>IT Specialist</td>
+                        <td>
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                            <span class="number-rating"></span>
+                            <div class="rating-users">
+                                <i class="icon-user"></i> 100 total student
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="job_title_1">
+                        <td>Software Developer inter</td>
+                        <td>
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                            <span class="number-rating"></span>
+                            <div class="rating-users">
+                                <i class="icon-user"></i>50 total student
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="job_title_2">
+                        <td>Frontend Developer Intern</td>
+                        <td>
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                            <span class="number-rating"></span>
+                            <div class="rating-users">
+                                <i class="icon-user"></i>30 total student
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
 
     </div>
 
@@ -165,12 +239,75 @@ $studentCounts = getStudentCounts($_SESSION['user_id']);
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
     </footer>
+    <script>
+        // Initial Ratings
+        const ratings = {
+            job_title: 4.7,
+            job_title_1: 3.4,
+            job_title_2: 2.3,
+
+        }
+
+        // Total Stars
+        const starsTotal = 5;
+
+        // Run getRatings when DOM loads
+        document.addEventListener('DOMContentLoaded', getRatings);
+
+        // Form Elements
+        const productSelect = document.getElementById('product-select');
+        const ratingControl = document.getElementById('rating-control');
+
+        // Init product
+        let product;
+
+        // Product select change
+        productSelect.addEventListener('change', (e) => {
+            product = e.target.value;
+            // Enable rating control
+            ratingControl.disabled = false;
+            ratingControl.value = ratings[product];
+        });
+
+        // Rating control change
+        ratingControl.addEventListener('blur', (e) => {
+            const rating = e.target.value;
+
+            // Make sure 5 or under
+            if (rating > 5) {
+                alert('Please rate 1 - 5');
+                return;
+            }
+
+            // Change rating
+            ratings[product] = rating;
+
+            getRatings();
+        });
+
+        // Get ratings
+        function getRatings() {
+            for (let rating in ratings) {
+                // Get percentage
+                const starPercentage = (ratings[rating] / starsTotal) * 100;
+
+                // Round to nearest 10
+                const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+                // Set width of stars-inner to percentage
+                document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+
+                // Add number rating
+                document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
+            }
+        }
+    </script>
 
     <script>
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
+        inputFile1.onchange = function() {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0])
         };
     </script>
@@ -179,12 +316,34 @@ $studentCounts = getStudentCounts($_SESSION['user_id']);
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
+        inputFile2.onchange = function() {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0])
         };
     </script>
 
 
+    <script>
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                filterTable();
+            }
+        });
+
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('job-title');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td')[0]; // Search in the first column
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    tr[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+                }
+            }
+        }
+    </script>
     <!-- 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
