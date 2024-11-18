@@ -266,13 +266,7 @@ function generateJobCard()
         </div>
     </div>
 
-        </div>
-
-
-
-       
-        
-        ';
+        </div>';
 }
 
 
