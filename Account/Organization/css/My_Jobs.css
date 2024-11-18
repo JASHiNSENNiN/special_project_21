@@ -144,16 +144,15 @@ nav a:hover::after {
   margin-top: 20px;
   padding: 10px;
   /* border: 3px solid black; */
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px; */
-}
+/* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px;
+} */
 
 .containerbox {
   width: 300px;
   height: auto;
   /* border: 1px solid black; */
   border-radius: 20px;
-  box-shadow:
-    rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 20px;
 }
@@ -171,8 +170,7 @@ nav a:hover::after {
   color: #fff;
   background: linear-gradient(180deg, #4b91f7 0%, #367af6 100%);
   background-origin: border-box;
-  box-shadow:
-    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
     inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
   user-select: none;
   -webkit-user-select: none;
@@ -181,8 +179,7 @@ nav a:hover::after {
 }
 
 .button-10:focus {
-  box-shadow:
-    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
     0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
     0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
@@ -200,7 +197,8 @@ nav a:hover::after {
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -1150,12 +1148,7 @@ html {
   margin-top: 8px;
   font-weight: 400 !important;
   color: #6f6f6f;
-  font-family:
-    Noto Sans,
-    Helvetica Neue,
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
   box-sizing: initial;
   font-size: 0.75rem;
 }
