@@ -142,11 +142,11 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
-        <div class="modal-content" style="width:50%; margin-top:-70px;">
+        <div class="modal-content" style="width:50%; margin-top:-60px; border-radius:20px;">
             <span class="close">&times;</span>
             <div class="gra">
-                <h1>EDIT JOB ADS</h1>
-                <p>Please fill in this form to update your job.</p>
+                <h1 style="color:#fff;">EDIT JOB ADS</h1>
+                <p style="color:#fff;">Please fill in this form to update your job.</p>
             </div>
             <form method="post" action="/backend/php/add_job.php">
 

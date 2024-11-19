@@ -1249,11 +1249,13 @@ ul {
 }
 
 .gra {
-  background-color: #a6aebf;
+  background-color: rgb(31, 69, 41);
   margin: -20px;
   margin-top: -70px;
   text-align: center;
   font-weight: 300;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .container1 {
