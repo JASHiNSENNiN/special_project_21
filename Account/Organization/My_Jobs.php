@@ -218,7 +218,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         </nav>
     </header>
 
-    <div class="container">
+    <div class="container" style="margin-left:-20px;">
 
         <div class="searched-jobs">
             <ul class="globalTargetList" style="list-style-type: none;">
