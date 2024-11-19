@@ -991,15 +991,7 @@ input {
 
 /* ------------MODAL----------- */
 
-/* .bod {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #333;
-} */
-.containerModal {
+.contain {
   position: fixed;
   top: 0;
   left: 0;
@@ -1007,7 +999,25 @@ input {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  visibility: visible;
+  overflow: visible;
 }
+
+/* .modal {
+  width: auto;
+  height: 0;
+  background: #fff;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  overflow: hidden;
+  transition: 1s;
+  opacity: 0;
+  visibility: hidden;
+} */
 
 .modal {
   width: auto;
@@ -1023,6 +1033,7 @@ input {
   transition: 1s;
   opacity: 0;
   visibility: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.19), 0 6px 20px rgba(0, 0, 0, 0.19); /* Add shadow */
 }
 
 .modal--open {

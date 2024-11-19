@@ -121,22 +121,23 @@ require_once 'show_profile.php';
                                     href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
                             <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
                         </div>
-                        <button class="button-9" id="show-modal" role="button" type="submit">Submit</button>
+                        <button class="button-9" id="show-modal" role="button" type="submit1">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="containerModal">
-        <div id="success-modal" class="modal">
-            <div class="modal__icon">✓</div>
-            <h3 class="modal__title">Successfully posted ads.</h3>
-            <p class="modal__countdown">
-                Disappearing in <span id="countdown">5</span> seconds...
-            </p>
-        </div>
+    <!-- <div id="containerModal" class="contain"> -->
+    <div id="success-modal" class="modal">
+        <div class="modal__icon">✓</div>
+        <h3 class="modal__title">Successfully posted ads.</h3>
+        <p class="modal__countdown">
+
+            Disappearing in <span id="countdown">5</span> seconds...
+        </p>
     </div>
+    <!-- </div> -->
 
 
     <script src="css/job_ads.js"> </script>
@@ -147,30 +148,62 @@ require_once 'show_profile.php';
         <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
     </footer>
 
+    <!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const button = document.getElementById("show-modal");
+        const modal = document.getElementById("success-modal");
+        const countdownElement = document.getElementById("countdown");
+        const inputField = document.getElementById("worktitle"); 
+        const checkbox = document.getElementById("agree"); 
+
+        button.addEventListener("click", () => {
+           
+            if (inputField.value.trim() === "") {
+                alert("Please fill out text cannot be empty!"); 
+                return; 
+            }
+
+            if (!checkbox.checked) {
+                alert("You must agree to the terms!"); 
+                return; 
+            }
+
+           
+            modal.style.display = "flex"; 
+            modal.classList.add("modal--open");
+
+            
+            let seconds = 5;
+            countdownElement.textContent = seconds;
+
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    modal.classList.remove("modal--open"); 
+                    setTimeout(() => {
+                        modal.style.display = "none"; 
+                    }, 500); 
+                }
+            }, 1000);
+        });
+    });
+    </script> -->
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const contain = document.getElementById("containerModal");
             const button = document.getElementById("show-modal");
             const modal = document.getElementById("success-modal");
             const countdownElement = document.getElementById("countdown");
-            const inputField = document.getElementById("worktitle"); // Input field
-            const checkbox = document.getElementById("agree"); // Checkbox
+
+
 
             button.addEventListener("click", () => {
-                // Validate the input field and checkbox
-                if (inputField.value.trim() === "") {
-                    alert("Please fill out text cannot be empty!"); // Alert for empty input
-                    return; // Exit the function
-                }
-
-                if (!checkbox.checked) {
-                    alert("You must agree to the terms!"); // Alert for unchecked checkbox
-                    return; // Exit the function
-                }
-
                 // Open the modal
                 modal.classList.add("modal--open");
-                contain.classList.add("containerModal");
 
                 // Countdown logic
                 let seconds = 5;
@@ -184,14 +217,11 @@ require_once 'show_profile.php';
                     if (seconds <= 0) {
                         clearInterval(countdownInterval);
                         modal.classList.remove("modal--open");
-                        contain.classList.remove("containerModal");
                     }
                 }, 1000);
             });
         });
     </script>
-
-
 
 
 
