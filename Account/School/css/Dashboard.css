@@ -57,10 +57,11 @@ img {
 
 .name {
   margin-top: 1%;
-  margin-left: 25%;
+  margin-left: 22%;
   font-size: 1.25rem;
   /* size: 10px; */
-  font-family: sans-serif;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
 
 .strand {

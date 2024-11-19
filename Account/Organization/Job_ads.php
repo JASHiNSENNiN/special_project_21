@@ -121,7 +121,7 @@ require_once 'show_profile.php';
                                     href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
                             <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
                         </div>
-                        <button class="button-9" id="show-modal" role="button" type="submit1">Submit</button>
+                        <button class="button-9" id="show-modal" role="button" type="submit">Submit</button>
                     </div>
                 </div>
             </form>
@@ -133,7 +133,7 @@ require_once 'show_profile.php';
         <div class="modal__icon">✓</div>
         <h3 class="modal__title">Successfully posted ads.</h3>
         <p class="modal__countdown">
-
+            <!-- <button class="button-0" role="button" type="submit">Submit</button><br><br> -->
             Disappearing in <span id="countdown">5</span> seconds...
         </p>
     </div>
