@@ -19,6 +19,9 @@ require_once 'show_profile.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <!-- Include the Data Labels plugin -->
     <!-- -------------font--------- -->
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
 
@@ -43,6 +46,13 @@ require_once 'show_profile.php';
     <hr class="line_bottom">
     </div>
 
+    <div class="box-container">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+        <div class="box">Box 4</div>
+    </div>
+
     <div class="row">
         <div class="column">
             <h1 class="title">Top 5 Company</h1>
@@ -51,6 +61,10 @@ require_once 'show_profile.php';
         <div class="column">
             <h1 class="title">Student Population</h1>
             <div id="myChart2" class="Chart2"></div>
+        </div>
+        <div class="column">
+            <h1 class="title">Company Ranking</h1>
+            <canvas id="myHorizontalBarChart"></canvas>
         </div>
     </div>
 
@@ -112,6 +126,83 @@ require_once 'show_profile.php';
     </script>
 
     <script>
+        // JSON object for the chart data and configuration
+        const chartData = {
+            "data": {
+                "labels": ['January', 'February', 'March', 'April', 'May', 'June'], // X-axis labels
+                "datasets": [{
+                    "label": "Sales Data",
+                    "data": [50, 100, 75, 150, 200, 250], // Y-axis values
+                    "backgroundColor": 'rgb(31, 69, 41,0.8)', // Bar color
+                    "borderColor": 'rgb(31, 69, 41,0.5)', // Border color
+                    "borderWidth": 1
+                }]
+            },
+            "config": {
+                "type": "bar",
+                "options": {
+                    "responsive": true,
+                    "indexAxis": "y", // Make it a horizontal bar chart
+                    "scales": {
+                        "x": {
+                            "beginAtZero": true, // Ensure the x-axis starts at zero
+                            "title": {
+                                "display": true,
+                                "text": "Sales"
+                            }
+                        },
+                        "y": {
+                            "title": {
+                                "display": true,
+                                "text": "Months"
+                            }
+                        }
+                    },
+                    "plugins": {
+                        "datalabels": {
+                            "align": 'center', // Position data labels inside the bar, centered
+                            "anchor": 'center', // Anchor the text inside the bar
+                            "formatter": (value, context) => {
+                                // Calculate the percentage for each bar
+                                const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                                const percentage = ((value / total) * 100).toFixed(
+                                    1); // Calculate percentage with 1 decimal
+                                const label = context.chart.data.labels[context
+                                    .dataIndex]; // Get the label (month name)
+                                return `${label}: ${percentage}%`; // Return both name and percentage
+                            },
+                            "color": 'white', // Text color for labels
+                            "font": {
+                                "weight": 'bold',
+                                "size": 14
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Sort the data by sales in descending order
+        const sortedData = chartData.data.datasets[0].data
+            .map((value, index) => ({
+                value,
+                label: chartData.data.labels[index]
+            })) // Combine sales data with labels
+            .sort((a, b) => b.value - a.value); // Sort by sales in descending order
+
+        // Update the chart data with sorted values
+        chartData.data.labels = sortedData.map(item => item.label); // Sorted month labels
+        chartData.data.datasets[0].data = sortedData.map(item => item.value); // Sorted sales data
+
+        // Render the chart using the updated sorted data
+        const ctx = document.getElementById('myHorizontalBarChart').getContext('2d');
+        new Chart(ctx, {
+            type: chartData.config.type,
+            data: chartData.data,
+            options: chartData.config.options
+        });
+    </script>
+    <!-- <script>
         const xValues = ["NIA", "Jollibee", "Mcdo", "Inasal", "Argentina"];
         const yValues = [55, 49, 44, 24, 15];
         const barColors = ["#7CF5FF", "#00CCDD", "#4F75FF", "#6439FF", "#4379F2"];
@@ -139,7 +230,7 @@ require_once 'show_profile.php';
                 }
             }
         });
-    </script>
+    </script> -->
 
     <script>
         google.charts.load('current', {
