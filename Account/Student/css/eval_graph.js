@@ -222,17 +222,54 @@ google.charts.load("current", {
 
 // ///////////////////////////////////PIE CART ////////////////////////////////////////
 google.charts.setOnLoadCallback(drawChart);
+var totalWorkPerformance =
+  Number(averages.avgQualityOfWork || 0) +
+  Number(averages.avgProductivity || 0) +
+  Number(averages.avgProblemSolvingSkills || 0);
+
+var totalProfessionalism =
+  Number(averages.avgPunctuality || 0) +
+  Number(averages.avgAppearance || 0) +
+  Number(averages.avgCommunicationSkills || 0) +
+  Number(averages.avgRespectfulness || 0);
+
+var totalLearningAndDevelopment =
+  Number(averages.avgWillingnessToLearn || 0) +
+  Number(averages.avgApplicationOfFeedback || 0) +
+  Number(averages.avgSelfImprovement || 0) +
+  Number(averages.avgSkillDevelopment || 0) +
+  Number(averages.avgKnowledgeApplication || 0);
+
+var totalTeamWorkAndCollaboration =
+  Number(averages.avgTeamParticipation || 0) +
+  Number(averages.avgCooperation || 0) +
+  Number(averages.avgConflictResolution || 0) +
+  Number(averages.avgSupportiveness || 0);
+
+var totalAttitudeAndMotivation =
+  Number(averages.avgEnthusiasm || 0) +
+  Number(averages.avgDrive || 0) +
+  Number(averages.avgResilience || 0) +
+  Number(averages.avgCommitment || 0) +
+  Number(averages.avgSelfMotivation || 0);
 
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
-    ["Task", "Hours per Day"],
-    ["Work Performance", 11],
-    ["Professionalism", 2],
-    ["Learning and Development", 2],
-    ["Team work and Collaboration", 2],
-    ["Attitude and Motivation", 7],
+    ["Category", "Score"],
+    ["Work Performance", totalWorkPerformance],
+    ["Professionalism", totalProfessionalism],
+    ["Learning and Development", totalLearningAndDevelopment],
+    ["Team Work and Collaboration", totalTeamWorkAndCollaboration],
+    ["Attitude and Motivation", totalAttitudeAndMotivation],
   ]);
-
+  console.log("Total Work Performance:", totalWorkPerformance);
+  console.log("Total Professionalism:", totalProfessionalism);
+  console.log("Total Learning and Development:", totalLearningAndDevelopment);
+  console.log(
+    "Total Team Work and Collaboration:",
+    totalTeamWorkAndCollaboration
+  );
+  console.log("Total Attitude and Motivation:", totalAttitudeAndMotivation);
   var options = {
     title: "Total Work Performance",
     height: 250,
