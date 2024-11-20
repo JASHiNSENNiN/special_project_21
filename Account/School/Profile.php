@@ -27,7 +27,7 @@ require_once 'show_profile.php';
     <!-- Navbar top -->
     <div class="navbar-top">
         <div class="title">
-            <h1>Profile</h1>
+            <h1 style="font-weight: 700; color:#fff;">Profile</h1>
         </div>
 
         <!-- Navbar -->
@@ -59,7 +59,7 @@ require_once 'show_profile.php';
         <div class="profile">
             <img src="image/Dr.Ramon.png" alt="" width="100" height="100" />
 
-            <div class="name">Dr. Ramon De Santos National High School</div>
+            <!-- <div class="name">Dr. Ramon De Santos National High School</div> -->
             <!-- <div class="job">OLSHCO</div> -->
         </div>
 
@@ -82,33 +82,45 @@ require_once 'show_profile.php';
         <div class="card">
             <div class="card-body">
 
-                <table>
+                <table class="personal-details-table">
                     <tbody>
                         <tr>
-                            <td>School</td>
-                            <td>:</td>
-                            <td>Dr. Ramon De Santos National High School</td>
+                        <tr>
+                            <td><b>School name</b></td>
+                        </tr>
+                        <!-- <td>School</td> -->
+
+                        <td><input type="text" class="form-control mb-1" autocomplete="off"
+                                value="Dr. Ramon De Santos National High School" readonly></td>
+                        <!-- <td>Dr. Ramon De Santos National High School</td> -->
                         </tr>
                         <tr>
-                            <td>Email</td>
-                            <td>:</td>
-                            <td>SchoolAccMain@gmail.com</td>
+
+                        <tr>
+                            <td><b>Email</b></td>
+
+                        </tr>
+                        <td><input type="text" class="form-control mb-1" autocomplete="off"
+                                value="SchoolAccMain@gmail.com" readonly></td>
+
                         </tr>
                         <tr>
-                            <td>Address</td>
-                            <td>:</td>
-                            <td>Nueva Ecija-Pangasinan Road 3117 Guimba Central Luzon · 66</td>
+                        <tr>
+                            <td><b>Address</b></td>
+                        </tr>
+                        <td><input type="text" class="form-control mb-1" autocomplete="off"
+                                value="Nueva Ecija-Pangasinan Road 3117 Guimba Central Luzon · 66" readonly></td>
+
                         </tr>
                         <tr>
-                            <td>Contact Number</td>
-                            <td>:</td>
-                            <td>000-000-000</td>
+
+                            <td><b>Contact Number</b></td>
                         </tr>
-                        <tr>
-                            <td>President</td>
-                            <td>:</td>
-                            <td></td>
+                        <td><input type="text" class="form-control mb-1" autocomplete="off"
+                                value="0975-321-7975" readonly></td>
+
                         </tr>
+
                         <!-- <tr>
                             <td>Skill</td>
                             <td>:</td>

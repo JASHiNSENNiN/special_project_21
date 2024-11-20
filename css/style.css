@@ -196,7 +196,8 @@ input::placeholder {
 }
 
 header {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #016435;
   color: #fff;
   padding-top: 5px;
   padding-right: 20px;
@@ -232,7 +233,8 @@ nav {
 }
 
 nav a {
-  color: #555;
+  /* color: #555; */
+  color: #fff;
   text-decoration: none;
   padding: 10px 20px;
   margin: 0 10px;
@@ -248,11 +250,13 @@ nav .login-btn:hover {
 }
 
 nav a:hover {
-  color: rgb(24, 97, 59, 0.7);
+  /* color: rgb(24, 97, 59, 0.7); */
+  color: rgb(243, 206, 82, 0.7);
 }
 
 .active-header {
   color: rgb(24, 97, 59, 0.9);
+  /* color: rgb(243, 206, 82, 0.9); */
 }
 
 nav a::after {
@@ -260,7 +264,8 @@ nav a::after {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: rgb(24, 97, 59, 0.7);
+  /* background-color: rgb(24, 97, 59, 0.7); */
+  background-color: rgb(243, 206, 82, 0.7);
   bottom: -17px;
   left: 0;
   transform: scaleX(0);
@@ -317,8 +322,10 @@ nav a:hover::after {
   display: inline-block;
   padding: 0.9rem 1.8rem;
   font-size: 14px;
-  color: #172738;
-  border: 1px solid rgb(24, 97, 59);
+  /* color: #172738; */
+  color: #fff;
+  /* border: 1px solid rgb(24, 97, 59); */
+  border: 1px solid rgb(243, 206, 82);
   cursor: pointer;
   position: relative;
   background-color: transparent;
@@ -336,7 +343,8 @@ nav a:hover::after {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(24, 97, 59, 0.7);
+  /* background-color: rgb(24, 97, 59, 0.7); */
+  background-color: rgb(243, 206, 82, 0.7);
   transform: translateX(-100%);
   transition: all 0.3s;
   z-index: -1;
@@ -1311,7 +1319,12 @@ html {
   margin-top: 8px;
   font-weight: 400 !important;
   color: #6f6f6f;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
   box-sizing: initial;
   font-size: 0.75rem;
 }

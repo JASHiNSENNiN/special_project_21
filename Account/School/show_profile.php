@@ -67,13 +67,15 @@ $profile_div = '<header class="nav-header">
         <div class="name">' . $schoolName . '</div>
 
 
-        <div class="Settings">
-        <a href="edit_profile.php" style="text-decoration: none;">
-        <label for="input-file2" class="button-12" role="button">
         
-        <span class="edit">
-        <i class="fa fa-pencil"></i> Edit profile
-                        </span>
-                        <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
-        </div>
     </div>';
+
+    // <div class="Settings">
+    //     <a href="edit_profile.php" style="text-decoration: none;">
+    //     <label for="input-file2" class="button-12" role="button">
+        
+    //     <span class="edit">
+    //     <i class="fa fa-pencil"></i> Edit profile
+    //                     </span>
+    //                     <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
+    //     </div>

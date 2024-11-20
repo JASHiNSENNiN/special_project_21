@@ -14,7 +14,7 @@ body {
 /* NavbarTop */
 
 .navbar-top {
-  background-color: #fff;
+  background-color: #18613b;
   color: #333;
   box-shadow: 0px 0px 5px 1px grey;
   height: 70px;
@@ -26,6 +26,14 @@ body {
   position: absolute;
   left: 45%;
 }
+
+.fa {
+  color: #fff;
+}
+
+/* .personal-details-table {
+  width: auto !important;
+} */
 
 .navbar-top ul {
   float: right;
@@ -152,14 +160,14 @@ hr {
   /* box-shadow: 0px 0px 5px 1px grey; */
   height: auto;
   margin-bottom: 20px;
-  padding: 20px 0 20px 50px;
+  padding: 20px 50px 20px 50px;
 }
 
 .main .card table {
   border: none;
   font-size: 16px;
-  height: 270px;
-  width: 80%;
+  /* height: 270px; */
+  width: 100%;
 }
 
 .edit {
