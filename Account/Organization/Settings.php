@@ -119,7 +119,7 @@ require_once 'show_profile.php';
                                     <!-- <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label class="form-label">Bio</label>
-                                        <textarea class="form-control" rows="5"></textarea>
+                                        <textarea class="form-control" rows="5"></textarea> 
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Country</label>
@@ -141,12 +141,6 @@ require_once 'show_profile.php';
                                     </div>
                                 </div> -->
                                     <div class="container-xl px-4 mt-4">
-
-                                        <!-- <nav class="nav nav-borders">
-                                        <a class="nav-link active ms-0" href="#">Edit Profile</a>
-
-                                    </nav> -->
-
                                         <div class="row row1">
                                             <div class="col-xl-4">
 
