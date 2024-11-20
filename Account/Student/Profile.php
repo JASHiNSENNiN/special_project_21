@@ -20,17 +20,16 @@ if (isset($urlParts['query'])) {
 
 $user_id = decrypt_url_parameter(base64_decode($IdParam));
 
-global $host;
-global $username;
-global $password;
-global $database;
-global $conn;
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT * FROM student_profiles WHERE id = :user_id";
+    $sql = "SELECT * FROM student_profiles WHERE user_id = :user_id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':user_id', $user_id);
     $stmt->execute();
@@ -42,6 +41,17 @@ try {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    $currentWorkId = $student_profile['current_work'];
+    if ($currentWorkId) {
+        $sql = "SELECT work_title FROM job_offers WHERE id = :job_offer_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':job_offer_id', $currentWorkId);
+        $stmt->execute();
+        $job_offer = $stmt->fetch(PDO::FETCH_ASSOC);
+    } else {
+        $job_offer = null;
+    }
+    $currentWork = $job_offer ? $job_offer['work_title'] : 'No current work';
     $firstName = $student_profile['first_name'];
     $middleName = $student_profile['middle_name'];
     $lastName = $student_profile['last_name'];
@@ -50,7 +60,6 @@ try {
     $gradeLevel = $student_profile['grade_level'];
     $strand = strtoupper($student_profile['strand']);
     $stars = $student_profile['stars'];
-    $currentWork = $student_profile['current_work'];
     $email = $user['email'];
     $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
@@ -142,33 +151,33 @@ try {
 
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-        const averages = {
-            avgQualityOfWork: <?= json_encode($avgQualityOfWork) ?>,
-            avgProductivity: <?= json_encode($avgProductivity) ?>,
-            avgProblemSolvingSkills: <?= json_encode($avgProblemSolvingSkills) ?>,
-            avgAttentionToDetail: <?= json_encode($avgAttentionToDetail) ?>,
-            avgInitiative: <?= json_encode($avgInitiative) ?>,
-            avgPunctuality: <?= json_encode($avgPunctuality) ?>,
-            avgAppearance: <?= json_encode($avgAppearance) ?>,
-            avgCommunicationSkills: <?= json_encode($avgCommunicationSkills) ?>,
-            avgRespectfulness: <?= json_encode($avgRespectfulness) ?>,
-            avgAdaptability: <?= json_encode($avgAdaptability) ?>,
-            avgWillingnessToLearn: <?= json_encode($avgWillingnessToLearn) ?>,
-            avgApplicationOfFeedback: <?= json_encode($avgApplicationOfFeedback) ?>,
-            avgSelfImprovement: <?= json_encode($avgSelfImprovement) ?>,
-            avgSkillDevelopment: <?= json_encode($avgSkillDevelopment) ?>,
-            avgKnowledgeApplication: <?= json_encode($avgKnowledgeApplication) ?>,
-            avgTeamParticipation: <?= json_encode($avgTeamParticipation) ?>,
-            avgCooperation: <?= json_encode($avgCooperation) ?>,
-            avgConflictResolution: <?= json_encode($avgConflictResolution) ?>,
-            avgSupportiveness: <?= json_encode($avgSupportiveness) ?>,
-            avgContribution: <?= json_encode($avgContribution) ?>,
-            avgEnthusiasm: <?= json_encode($avgEnthusiasm) ?>,
-            avgDrive: <?= json_encode($avgDrive) ?>,
-            avgResilience: <?= json_encode($avgResilience) ?>,
-            avgCommitment: <?= json_encode($avgCommitment) ?>,
-            avgSelfMotivation: <?= json_encode($avgSelfMotivation) ?>
-        };
+    const averages = {
+        avgQualityOfWork: <?= json_encode($avgQualityOfWork) ?>,
+        avgProductivity: <?= json_encode($avgProductivity) ?>,
+        avgProblemSolvingSkills: <?= json_encode($avgProblemSolvingSkills) ?>,
+        avgAttentionToDetail: <?= json_encode($avgAttentionToDetail) ?>,
+        avgInitiative: <?= json_encode($avgInitiative) ?>,
+        avgPunctuality: <?= json_encode($avgPunctuality) ?>,
+        avgAppearance: <?= json_encode($avgAppearance) ?>,
+        avgCommunicationSkills: <?= json_encode($avgCommunicationSkills) ?>,
+        avgRespectfulness: <?= json_encode($avgRespectfulness) ?>,
+        avgAdaptability: <?= json_encode($avgAdaptability) ?>,
+        avgWillingnessToLearn: <?= json_encode($avgWillingnessToLearn) ?>,
+        avgApplicationOfFeedback: <?= json_encode($avgApplicationOfFeedback) ?>,
+        avgSelfImprovement: <?= json_encode($avgSelfImprovement) ?>,
+        avgSkillDevelopment: <?= json_encode($avgSkillDevelopment) ?>,
+        avgKnowledgeApplication: <?= json_encode($avgKnowledgeApplication) ?>,
+        avgTeamParticipation: <?= json_encode($avgTeamParticipation) ?>,
+        avgCooperation: <?= json_encode($avgCooperation) ?>,
+        avgConflictResolution: <?= json_encode($avgConflictResolution) ?>,
+        avgSupportiveness: <?= json_encode($avgSupportiveness) ?>,
+        avgContribution: <?= json_encode($avgContribution) ?>,
+        avgEnthusiasm: <?= json_encode($avgEnthusiasm) ?>,
+        avgDrive: <?= json_encode($avgDrive) ?>,
+        avgResilience: <?= json_encode($avgResilience) ?>,
+        avgCommitment: <?= json_encode($avgCommitment) ?>,
+        avgSelfMotivation: <?= json_encode($avgSelfMotivation) ?>
+    };
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
@@ -184,7 +193,7 @@ try {
         </div>
         <ul>
             <li>
-                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
+                <a href="./" onclick="window.location.href = document.referrer;">
                     <i class=" fa fa-sign-out-alt fa-2x"></i>
                 </a>
             </li>
@@ -279,8 +288,18 @@ try {
                             </tr>
 
                         </tbody>
-                    </table>
+                        <tbody>
 
+                            <tr>
+                            <tr>
+                                <td><b>Work Immersion</b></td>
+                            </tr>
+                            <td><input type="text" class="form-control mb-1" autocomplete="off"
+                                    value="<?= $currentWork ?>" readonly></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
 
 
                 </div>

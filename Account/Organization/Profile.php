@@ -44,11 +44,10 @@ try {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $organization_name = $partner_profile['oraganization_name'];
+    $organizationName = $partner_profile['organization_name'];
     $strand = strtoupper($partner_profile['strand']);
-    $stars = $partner_profile['stars'];
     $email = $user['email'];
-    $profile_image = "uploads/" . $user['profile_image'];
+    $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
     $sql = "SELECT 
                 AVG(quality_of_experience) AS avg_quality_of_experience,
@@ -196,8 +195,11 @@ try {
 
                             </tr>
                             <tr>
-                                <td><input type="text" class="form-control mb-1" autocomplete="off" value="" readonly></td>
-                                <td><input type="text" class="form-control mb-1" style="margin-left:10px;" autocomplete="off" value="" readonly></td>
+                                <td><input type="text" class="form-control mb-1" autocomplete="off"
+                                        value="<?= $organizationName ?>" readonly>
+                                </td>
+                                <td><input type=" text" class="form-control mb-1" style="margin-left:10px;"
+                                        autocomplete="off" value="<?= $strand ?>" readonly></td>
                             </tr>
                         </tbody>
                     </table>
@@ -207,11 +209,13 @@ try {
                             <tr class="tr-stard-school">
                             <tr>
                                 <td><b>Email</b></td>
-                                <td><b style="margin-left: 10px;">Contact number</b></td>
+                                <!-- <td><b style="margin-left: 10px;">Contact number</b></td> -->
 
                             </tr>
-                            <td><input type="text" class="form-control mb-1 strand" autocomplete="off" value="" readonly></td>
-                            <td><input type="text" class="form-control mb-1 strand" style="margin-left:10px;" autocomplete="off" value="" readonly></td>
+                            <td><input type="text" class="form-control mb-1 strand" autocomplete="off"
+                                    value="<?= $email ?>" readonly></td>
+                            <!-- <td><input type="text" class="form-control mb-1 strand" style="margin-left:10px;"
+                                    autocomplete="off" value="" readonly></td> -->
                             </tr>
 
 

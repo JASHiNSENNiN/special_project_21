@@ -1,49 +1,37 @@
 // ///////////////////////////////////COMPANY PERFORMACE CART ////////////////////////////////////////
-google.charts.load("current", {
-  packages: ["corechart", "line"],
-});
+google.charts.load("current", { packages: ["corechart", "line"] });
 google.charts.setOnLoadCallback(drawBasiccom);
 
 function drawBasiccom() {
   var com_data = new google.visualization.DataTable();
-  com_data.addColumn("number", "X");
-  com_data.addColumn("number", "Rating");
+  com_data.addColumn("date", "Date"); // Change this from "number" to "date"
+  com_data.addColumn("number", "Average Rating");
 
-  com_data.addRows([
-    [0, 0],
-    [1, 10],
-    [2, 23],
-    [3, 17],
-    [4, 18],
-    [5, 9],
-    [6, 11],
-    [7, 27],
-    [8, 33],
-    [9, 40],
-    [10, 32],
-    [11, 35],
-    [12, 30],
-    [13, 40],
-    [14, 42],
-  ]);
+  // Convert timestamp (in milliseconds) to Date objects and add rows
+  dailyPerformance.forEach(function (row) {
+    var date = new Date(row[0]); // Convert the timestamp to a Date object
+    var avgRating = row[1];
+    com_data.addRow([date, avgRating]); // Add the date and the average rating
+  });
 
   var options = {
     title: "Daily Performance",
     height: 200,
     responsive: true,
-
     hAxis: {
-      title: "Day",
+      title: "Date",
+      format: "M/d/yy",
     },
     vAxis: {
-      title: "Performance rate",
+      title: "Average Rating",
+      minValue: 0,
+      maxValue: 5,
     },
   };
 
   var com_chart = new google.visualization.LineChart(
     document.getElementById("com_chart_div")
   );
-
   com_chart.draw(com_data, options);
 }
 // ///////////////////////////////////total strands PIE CART ////////////////////////////////////////

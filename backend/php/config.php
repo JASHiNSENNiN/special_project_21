@@ -18,9 +18,9 @@ if (!$conn) {
 
 $sql = "CREATE DATABASE IF NOT EXISTS $database";
 if (mysqli_query($conn, $sql)) {
-  //echo "Database created successfully or already exists\n";
+  
 } else {
-  //echo "Error creating database: " . mysqli_error($conn) . "\n";
+  
 }
 
 
@@ -116,12 +116,14 @@ CREATE TABLE IF NOT EXISTS Student_Evaluation (
     resilience INT CHECK (resilience BETWEEN 0 AND 5),
     commitment INT CHECK (commitment BETWEEN 0 AND 5),
     self_motivation INT CHECK (self_motivation BETWEEN 0 AND 5),
-    FOREIGN KEY (student_id) REFERENCES student_profiles(id)
+    evaluation_date DATE DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES student_profiles(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Organization_Evaluation (
     evaluation_id INT PRIMARY KEY AUTO_INCREMENT,
     organization_id INT,
+    job_id INT,
     quality_of_experience INT CHECK (quality_of_experience BETWEEN 0 AND 5),
     productivity_of_tasks INT CHECK (productivity_of_tasks BETWEEN 0 AND 5),
     problem_solving_opportunities INT CHECK (problem_solving_opportunities BETWEEN 0 AND 5),
@@ -147,7 +149,9 @@ CREATE TABLE IF NOT EXISTS Organization_Evaluation (
     resilience_to_challenges INT CHECK (resilience_to_challenges BETWEEN 0 AND 5),
     commitment_to_experience INT CHECK (commitment_to_experience BETWEEN 0 AND 5),
     self_motivation_levels INT CHECK (self_motivation_levels BETWEEN 0 AND 5),
-    FOREIGN KEY (organization_id) REFERENCES partner_profiles(id)
+    evaluation_date DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (organization_id) REFERENCES partner_profiles(id),
+    FOREIGN KEY (job_id) REFERENCES job_offers(id)
 );
 ";
 

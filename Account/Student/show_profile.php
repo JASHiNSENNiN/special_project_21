@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
-$student_id = $_SESSION['id'];
+$student_id = $_SESSION['user_id'];
 $firstName = $_SESSION['first_name'];
 $middleName = $_SESSION['middle_name'];
 $lastName = $_SESSION['last_name'];
