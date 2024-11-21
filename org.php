@@ -51,12 +51,12 @@ function generateJobCard()
     echo '<div class="container">';
     echo '<div class="eleven columns">';
 
-    echo '<span class="job-category"><a href="#">Position title</a></span>';
-    echo '<h1>' . htmlspecialchars($job['work_title']);
-
-    foreach ($strands as $strand) {
-        echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
-    }
+    echo '<span class="job-category"><a href="#">Oraganization</a></span>';
+    echo '<h1>' .  htmlspecialchars($job['organization_name']);
+    echo '<hr>';
+    // foreach ($strands as $strand) {
+    //     echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+    // }
 
     echo '</h1></div>';
 
@@ -76,38 +76,20 @@ function generateJobCard()
             <div class="company-info-boxed">
                 <div class="company-info left-company-logo">
 
-                    <div class="company-info-boxed-logo">
-                        <a href="#"> <img width="150" height="150" class="company_logo"
-                                src="https://workscout.in/wp-content/uploads/job-manager-uploads/company_logo/2021/11/company-logo-06-150x150.png"
-                                alt=""> </a>
-                    </div>
 
                     <div class="content">
                         <h4>
-                            <a href="#"> <strong>' . htmlspecialchars($job['organization_name']) .
+                            <a href="#"> <strong>' . htmlspecialchars($job['work_title']) .
         '</strong>
                             </a>
-                            <p class="company-data__content--list-item">Improving Lives Together</p>
-                        </h4>
+                           
+                        </h4>';
 
-                        <div class="company-info-boxed-links">
+    foreach ($strands as $strand) {
+        echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+    }
 
-
-
-                            
-                            <span class="company-data__content--list-item _company_email">
-                                <a href="#" target="_blank"><i class="fa fa-envelope"></i>
-                                    telimed@example.com</a>
-                            </span>
-                            <span class="company-data__content--list-item _company_x">
-                                <a href="#">  <i class="fa fa-link"></i> 
-                                   
-                                    Link </a></span>
-
-                            
-
-
-                        </div>
+    echo '                  
 
 
                     </div>
@@ -311,9 +293,9 @@ function generateJobCard()
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -446,45 +428,45 @@ function generateJobCard()
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.bar span').hide();
-        $('#bar-five').animate({
-            width: '85%'
-        }, 1000);
-        $('#bar-four').animate({
-            width: '35%'
-        }, 1000);
-        $('#bar-three').animate({
-            width: '20%'
-        }, 1000);
-        $('#bar-two').animate({
-            width: '17%'
-        }, 1000);
-        $('#bar-one').animate({
-            width: '30%'
-        }, 1000);
+        $(document).ready(function() {
+            $('.bar span').hide();
+            $('#bar-five').animate({
+                width: '85%'
+            }, 1000);
+            $('#bar-four').animate({
+                width: '35%'
+            }, 1000);
+            $('#bar-three').animate({
+                width: '20%'
+            }, 1000);
+            $('#bar-two').animate({
+                width: '17%'
+            }, 1000);
+            $('#bar-one').animate({
+                width: '30%'
+            }, 1000);
 
-        setTimeout(function() {
-            $('.bar span').fadeIn('slow');
-        }, 1000);
+            setTimeout(function() {
+                $('.bar span').fadeIn('slow');
+            }, 1000);
 
-    });
+        });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
