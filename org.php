@@ -431,8 +431,9 @@ function generateJobCard()
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-sm-7">
-                        <p class="mb-0 f_400">© 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer
-                            Society Students</p>
+                        <!-- <p class="mb-0 f_400">© 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer
+                            Society Students</p> -->
+                        <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p>
                     </div>
                     <!-- <div class="col-lg-6 col-sm-5 text-right">
                         <p>Made with <i class="icon_heart"></i> in <a href="#" target="_blank">JPCS</a></p>
