@@ -270,7 +270,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         </nav>
     </header>
 
-    <div class="container" style="margin-left:-20px; width:auto;">
+    <div class="container" id="container_modal" style=" width:auto;">
 
         <div class="searched-jobs">
             <ul class="globalTargetList" style="list-style-type: none;">
@@ -358,9 +358,9 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         }
 
         // Close modal when clicking outside of it
-        window.onclick = function (event) {
+        window.onclick = function(event) {
             var modalBtns = document.querySelectorAll('.modal');
-            modalBtns.forEach(function (modal) {
+            modalBtns.forEach(function(modal) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
@@ -370,7 +370,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
     <script>
         // Initialize Quill editor for each modal dynamically
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             <?php foreach ($jobOffers as $job): ?>
                 var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
                     theme: 'snow'
@@ -381,7 +381,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
                 // When submitting the form, save the content from the editor
                 var form = document.querySelector("#myModal_<?php echo $job['id']; ?> form");
-                form.addEventListener("submit", function () {
+                form.addEventListener("submit", function() {
                     document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
                         .innerHTML;
                 });
