@@ -55,7 +55,7 @@ require_once 'show_profile.php';
 
     <div class="row">
         <div class="column">
-            <h1 class="title">Top 5 Company</h1>
+            <h1 class="title">Top Student</h1>
             <canvas id="myChart1" class="Chart1"></canvas>
         </div>
         <div class="column">
@@ -63,7 +63,7 @@ require_once 'show_profile.php';
             <div id="myChart2" class="Chart2"></div>
         </div>
         <div class="column">
-            <h1 class="title">Company Ranking</h1>
+            <h1 class="title">Job list</h1>
             <canvas id="myHorizontalBarChart"></canvas>
         </div>
     </div>
@@ -129,12 +129,12 @@ require_once 'show_profile.php';
         // JSON object for the chart data and configuration
         const chartData = {
             "data": {
-                "labels": ['January', 'February', 'March', 'April', 'May', 'June'], // X-axis labels
+                "labels": ['Jollibee', 'Mcdo', 'Inasal', 'BDO', 'Lamart', 'PNP'], // X-axis labels
                 "datasets": [{
-                    "label": "Sales Data",
+                    "label": "Data",
                     "data": [50, 100, 75, 150, 200, 250], // Y-axis values
                     "backgroundColor": 'rgb(31, 69, 41,0.8)', // Bar color
-                    "borderColor": 'rgb(31, 69, 41,0.5)', // Border color
+                    "borderColor": 'rgb(31, 69, 41,)', // Border color
                     "borderWidth": 1
                 }]
             },
@@ -148,7 +148,7 @@ require_once 'show_profile.php';
                             "beginAtZero": true, // Ensure the x-axis starts at zero
                             "title": {
                                 "display": true,
-                                "text": "Sales"
+                                "text": "Data"
                             }
                         },
                         "y": {
@@ -202,8 +202,8 @@ require_once 'show_profile.php';
             options: chartData.config.options
         });
     </script>
-    <!-- <script>
-        const xValues = ["NIA", "Jollibee", "Mcdo", "Inasal", "Argentina"];
+    <script>
+        const xValues = ["Joshua Olipas", "Ronald Dagdag", "Dan Dela cruz", "John Ric Revira", "Raniel Santos"];
         const yValues = [55, 49, 44, 24, 15];
         const barColors = ["#7CF5FF", "#00CCDD", "#4F75FF", "#6439FF", "#4379F2"];
 
@@ -230,7 +230,7 @@ require_once 'show_profile.php';
                 }
             }
         });
-    </script> -->
+    </script>
 
     <script>
         google.charts.load('current', {
