@@ -134,6 +134,7 @@ hr {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  font-weight: 500;
   /* width: 100%; */
 }
 
@@ -166,10 +167,10 @@ hr {
   display: inline-block;
   font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
     Ubuntu, sans-serif;
-  font-size: 14px;
+  font-size: 100%;
   line-height: 20px;
   list-style: none;
-  padding: 12px 30px;
+  padding: 12px 25px;
   position: relative;
   transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   user-select: none;
@@ -179,6 +180,7 @@ hr {
   white-space: nowrap;
   word-wrap: break-word;
   margin-top: 10px;
+  font-weight: 500;
 }
 
 .button-4:hover {

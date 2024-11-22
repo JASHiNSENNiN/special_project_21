@@ -176,8 +176,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/My_Jobs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -254,8 +254,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="<?= $home ?>">
-                <!-- <img src="../../img/logov3.jpg" alt="Logo"> -->
-                <img src="image/drdsnhs.svg" alt="Logo">
+                <img src="../../img/logov3.jpg" alt="Logo">
+                <!-- <img src="image/drdsnhs.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a>
@@ -358,9 +358,9 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         }
 
         // Close modal when clicking outside of it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             var modalBtns = document.querySelectorAll('.modal');
-            modalBtns.forEach(function(modal) {
+            modalBtns.forEach(function (modal) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
@@ -370,7 +370,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
     <script>
         // Initialize Quill editor for each modal dynamically
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             <?php foreach ($jobOffers as $job): ?>
                 var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
                     theme: 'snow'
@@ -381,7 +381,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
                 // When submitting the form, save the content from the editor
                 var form = document.querySelector("#myModal_<?php echo $job['id']; ?> form");
-                form.addEventListener("submit", function() {
+                form.addEventListener("submit", function () {
                     document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
                         .innerHTML;
                 });
