@@ -11,7 +11,6 @@ body {
     list-style: none;
 }
 
-
 /* .line_bottom {
   width: 100% !important;
   height: 1px;
@@ -28,9 +27,7 @@ body {
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
 }
 
-
 /* ---------------------------------------------company-info-box----------------------------------- */
-
 
 /* .company-info-box {
   display: flex;
@@ -288,18 +285,14 @@ body .job-overview {
     }
 }
 
-
 /* ---------------------------------------------end company-info-box--------------------------------- */
-
 
 /* .active {
   color: #000000;
   font-weight: bold;
 } */
 
-
 /* -----------------------------section----------------------------------------- */
-
 
 /* section {
   max-width: 800px;
@@ -311,7 +304,6 @@ body .job-overview {
   padding-left: 1rem;
   padding-right: 1rem;
 } */
-
 
 /* .line-search {
   border: 1px solid rgb(0, 0, 0);
@@ -457,9 +449,7 @@ span.full-time {
     }
 }
 
-
 /* -----------------------------end section ------------------------------------ */
-
 
 /* Icon styles */
 
@@ -473,7 +463,6 @@ h2,
 h3 {
     color: #333;
 }
-
 
 /* .sfa {
     color: #172738;
@@ -512,7 +501,6 @@ input {
     outline: none;
     transition: 200ms ease-in;
 }
-
 
 /* 
 input:focus {
@@ -601,48 +589,45 @@ nav a {
     font-weight: 500;
 }
 
-
 /* ----------------------------workify css--------------------- */
 
-
-/* nav .login-btn:hover {
-  color: #172738;
+nav .login-btn:hover {
+    color: #172738;
 }
 
 nav a:hover {
-  color: #1bbc9b; 
-  text-decoration: none !important;
+    color: #1bbc9b;
+    text-decoration: none !important;
 }
 
 nav a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: #1bbc9b;
-  bottom: -17px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform 0.3s;
-} */
-
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #1bbc9b;
+    bottom: -17px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s;
+}
 
 /* ------------------------------drdsnhs css ---------------------------- */
 
-nav .login-btn:hover {
+/* nav .login-btn:hover {
     color: #fff;
 }
 
 nav a:hover {
     color: rgb(24, 97, 59, 0.7);
-}
+} */
 
 .active-header {
-    color: rgb(24, 97, 59, 0.9);
+    color: rgb(27, 188, 155);
 }
 
-nav a::after {
+/* nav a::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -653,13 +638,12 @@ nav a::after {
     transform: scaleX(0);
     transform-origin: bottom right;
     transition: transform 0.3s;
-}
+} */
 
 nav a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-
 
 /* .login-btn {
             background-color: #1bbc9b;
@@ -683,8 +667,8 @@ nav a:hover::after {
     padding: 0.9rem 1.8rem;
     font-size: 14px;
     color: #172738;
-    border: 1px solid rgb(24, 97, 59);
-    /* border: 1px solid rgb(23, 39, 56); */
+    /* border: 1px solid rgb(24, 97, 59); */
+    border: 1px solid rgb(23, 39, 56);
     cursor: pointer;
     position: relative;
     background-color: transparent;
@@ -702,8 +686,8 @@ nav a:hover::after {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(24, 97, 59, 0.7);
-    /* background-color: rgb(37, 216, 180); */
+    /* background-color: rgb(24, 97, 59, 0.7); */
+    background-color: rgb(37, 216, 180);
     transform: translateX(-100%);
     transition: all 0.3s;
     z-index: -1;
@@ -718,7 +702,6 @@ nav a:hover::after {
 .login-btn:hover {
     font-weight: 700;
 }
-
 
 /* .css-1ld7x2h {
     box-sizing: border-box;
@@ -765,7 +748,6 @@ nav a:hover::after {
     text-align: center;
 }
 
-
 /* -------------------------line button----------------------------- */
 
 .css-1ld7x2h {
@@ -779,7 +761,6 @@ nav a:hover::after {
     min-width: 0;
     width: 0.0625rem;
 }
-
 
 /* ------------------------Job List----------------------- */
 
@@ -1063,7 +1044,7 @@ html {
         align-items: center;
         cursor: pointer;
     }
-    &+& {
+    & + & {
         margin-top: 10px;
     }
 }
@@ -1082,7 +1063,7 @@ html {
     display: none;
 }
 
-.job-style+label:before {
+.job-style + label:before {
     content: "";
     margin-right: 10px;
     width: 16px;
@@ -1092,7 +1073,7 @@ html {
     cursor: pointer;
 }
 
-.job-style:checked+label:before {
+.job-style:checked + label:before {
     background-color: var(--active-color);
     border-color: var(--active-color);
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3e%3cpath d='M20 6L9 17l-5-5'/%3e%3c/svg%3e");
@@ -1101,7 +1082,7 @@ html {
     background-repeat: no-repeat;
 }
 
-.job-style:checked+label+span {
+.job-style:checked + label + span {
     background-color: var(--active-light-color);
     color: var(--active-color);
 }
@@ -1241,7 +1222,7 @@ html {
         height: 100%;
         flex-shrink: 0;
     }
-    &-card+&-card {
+    &-card + &-card {
         margin-top: 20px;
     }
     &-buttons {
@@ -1364,7 +1345,7 @@ html {
         color: var(--subtitle-color);
         border-radius: 8px;
         padding: 6px;
-        &+svg {
+        & + svg {
             margin-left: 12px;
         }
     }
@@ -1448,7 +1429,7 @@ html {
     }
     &-contents {
         height: 66px;
-        &+& {
+        & + & {
             border-left: 1px solid var(--border-color);
             padding-left: 16px;
         }
@@ -1469,7 +1450,7 @@ html {
         font-size: 13px;
         position: relative;
         display: flex;
-        &+& {
+        & + & {
             margin-top: 20px;
         }
         &:before {
@@ -1514,11 +1495,11 @@ html {
     .explain-contents {
         width: 50%;
     }
-    .explain-contents+.explain-contents {
+    .explain-contents + .explain-contents {
         padding: 0;
         border: 0;
     }
-    .explain-contents:nth-child(2)~.explain-contents {
+    .explain-contents:nth-child(2) ~ .explain-contents {
         margin-top: 16px;
         border-top: 1px solid var(--border-color);
     }
@@ -1611,7 +1592,7 @@ html {
         width: 100%;
         margin: 0;
     }
-    .explain-contents:nth-child(2)~.explain-contents {
+    .explain-contents:nth-child(2) ~ .explain-contents {
         margin: 0;
         border: 0;
     }
@@ -1670,7 +1651,12 @@ html {
     margin-top: 8px;
     font-weight: 400 !important;
     color: #6f6f6f;
-    font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family:
+        Noto Sans,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
     box-sizing: initial;
     font-size: 0.75rem;
 }
@@ -1683,7 +1669,6 @@ html {
     color: rgb(118, 118, 118);
     margin: 8px;
 }
-
 
 /* -------------------------------recent Search --------------- */
 
@@ -1723,7 +1708,6 @@ html {
     cursor: not-allowed;
 }
 
-
 /* --------------------------------------Header Sticky--------------------------- */
 
 .stickyhead {
@@ -1733,10 +1717,9 @@ html {
     z-index: 99;
 }
 
-.stickyhead+.content-sticky {
+.stickyhead + .content-sticky {
     padding-top: 102px;
 }
-
 
 /* ---------------------------------search not found-------------------------------- */
 
@@ -1902,7 +1885,7 @@ button:focus {
     color: white;
 }
 
-.new_footer_top .f_social_icon a+a {
+.new_footer_top .f_social_icon a + a {
     margin-left: 4px;
 }
 
@@ -1935,13 +1918,15 @@ h6 {
 .new_footer_top .footer_bg {
     position: absolute;
     bottom: 0;
-    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82yw0R7LgACQ2IhZaTY0hhmGi0gYp_Ynb49CVzfmXtYHUVKgXXpWvJ_oYT8cB4vzsnJLe3iCwuzj-w6PeYq_JaHmy_CoGoa6nw0FBo-2xLdOPvsLTh_fmYH2xhkaZ-OGQ/s16000/footer_bg.png") no-repeat scroll center 0;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82yw0R7LgACQ2IhZaTY0hhmGi0gYp_Ynb49CVzfmXtYHUVKgXXpWvJ_oYT8cB4vzsnJLe3iCwuzj-w6PeYq_JaHmy_CoGoa6nw0FBo-2xLdOPvsLTh_fmYH2xhkaZ-OGQ/s16000/footer_bg.png")
+        no-repeat scroll center 0;
     width: 100%;
     height: 266px;
 }
 
 .new_footer_top .footer_bg .footer_bg_one {
-    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia0PYPxwT5ifToyP3SNZeQWfJEWrUENYA5IXM6sN5vLwAKvaJS1pQVu8mOFFUa_ET4JuHNTFAxKURFerJYHDUWXLXl1vDofYXuij45JZelYOjEFoCOn7E6Vxu0fwV7ACPzArcno1rYuVxGB7JY6G7__e4_KZW4lTYIaHSLVaVLzklZBLZnQw047oq5-Q/s16000/volks.gif") no-repeat center center;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia0PYPxwT5ifToyP3SNZeQWfJEWrUENYA5IXM6sN5vLwAKvaJS1pQVu8mOFFUa_ET4JuHNTFAxKURFerJYHDUWXLXl1vDofYXuij45JZelYOjEFoCOn7E6Vxu0fwV7ACPzArcno1rYuVxGB7JY6G7__e4_KZW4lTYIaHSLVaVLzklZBLZnQw047oq5-Q/s16000/volks.gif")
+        no-repeat center center;
     width: 330px;
     height: 105px;
     background-size: 100%;
@@ -1953,7 +1938,8 @@ h6 {
 }
 
 .new_footer_top .footer_bg .footer_bg_two {
-    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif") no-repeat center center;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif")
+        no-repeat center center;
     width: 88px;
     height: 100px;
     background-size: 100%;
@@ -1999,9 +1985,7 @@ h6 {
     }
 }
 
-
 /*************footer End*****************/
-
 
 /* ----------------------------------------rating graph ----------------------------------------- */
 
@@ -2108,7 +2092,6 @@ h6 {
     background-color: #ff0000;
 }
 
-
 /* -------------------------------------------graph evaluation ------------------------ */
 
 .tab-pane {
@@ -2180,7 +2163,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     background: transparent !important;
 }
 
-.account-settings-multiselect~.select2-container {
+.account-settings-multiselect ~ .select2-container {
     width: 100% !important;
 }
 
@@ -2223,7 +2206,6 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .job-category a {
     margin-bottom: 30px !important;
 }
-
 
 /* @media (min-width: 1200px) {
   .container {

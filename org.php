@@ -264,8 +264,8 @@ function generateJobCard()
 
     <!-- <title>Work Immersion | Workify</title> -->
     <title>Work Immersion | DRDSNHS</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -302,8 +302,8 @@ function generateJobCard()
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
-                <!-- <img src="img/logov3.jpg" alt="Logo"> -->
-                <img src="img/DrRamonLOGO.svg" alt="Logo">
+                <img src="img/logov3.jpg" alt="Logo">
+                <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">
                 <a class="active-header" href="index.php">Home</a>
@@ -359,8 +359,8 @@ function generateJobCard()
                 <div class="row" style=" gap: 120px !important;">
                     <div class="col-lg-3 col-md-6">
                         <a href="index.php">
-                            <!-- <img src="img/logov3.jpg" alt="Logo"> -->
-                            <img src="img/DrRamonLOGO.svg" alt="Logo">
+                            <img src="img/logov3.jpg" alt="Logo">
+                            <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -413,9 +413,9 @@ function generateJobCard()
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-sm-7">
-                        <!-- <p class="mb-0 f_400">© 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer
-                            Society Students</p> -->
-                        <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p>
+                        <p class="mb-0 f_400">© 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer
+                            Society Students</p>
+                        <!-- <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p> -->
                     </div>
                     <!-- <div class="col-lg-6 col-sm-5 text-right">
                         <p>Made with <i class="icon_heart"></i> in <a href="#" target="_blank">JPCS</a></p>
