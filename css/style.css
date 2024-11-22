@@ -677,6 +677,7 @@ html {
   font-size: 13px;
   font-weight: 600;
   margin-top: 14px;
+  margin-left: 5px;
 }
 
 .job-wrapper {
@@ -1319,12 +1320,7 @@ html {
   margin-top: 8px;
   font-weight: 400 !important;
   color: #6f6f6f;
-  font-family:
-    Noto Sans,
-    Helvetica Neue,
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
   box-sizing: initial;
   font-size: 0.75rem;
 }
