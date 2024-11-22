@@ -145,7 +145,7 @@ require_once 'show_profile.php';
     <script type="text/javascript" src="css/doc.js"></script>
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Workify </p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer </p>
     </footer>
 
     <!-- <script>

@@ -59,11 +59,11 @@ $profile_div = '<header class="nav-header">
     </header>
 
 
-    <img class="logoimg" id="cover-pic" src="image/bgDrRamon.jpg" alt="" height="300" width="200">
+    <img class="logoimg" id="cover-pic" src="image/schoolBackground.png" alt="" height="300" width="200">
     
 
     <div class="profile">
-        <img id="profile-pic" src="image/Dr.Ramon.png" alt="">
+        <img id="profile-pic" src="image/schoolProfile.jpg" alt="">
         <div class="name">' . $schoolName . '</div>
 
 
