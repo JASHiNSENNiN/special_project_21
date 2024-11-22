@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
@@ -20,7 +21,7 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="image/header.png" alt="Logo">
+                <img src="image/logov3.jpg" alt="Logo">
             </a>
         </div>
         <nav class="by">
@@ -63,15 +64,15 @@ $profile_div = '<header class="nav-header">
         
     </div>';
 
-    // <div class="Settings">
-    //     <a href="edit_profile.php" style="text-decoration: none;">
-    //     <label for="input-file2" class="button-12" role="button">
-        
-    //     <span class="edit">
-    //     <i class="fa fa-pencil"></i> Edit profile
-    //                     </span>
-    //                     <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
-    //     </div>
+// <div class="Settings">
+//     <a href="edit_profile.php" style="text-decoration: none;">
+//     <label for="input-file2" class="button-12" role="button">
+
+//     <span class="edit">
+//     <i class="fa fa-pencil"></i> Edit profile
+//                     </span>
+//                     <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
+//     </div>
 //  <div class="dropdowntf" style="float:right;">
 //                 <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
 //                         class="badge">2</span></a>

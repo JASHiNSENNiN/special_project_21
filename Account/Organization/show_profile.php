@@ -13,7 +13,7 @@ $strandFocus = strtoupper($_SESSION['strand']);
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="#">
-                 <img src="image/header.png" alt="Logo">
+                 <img src="image/logov3.jpg" alt="Logo">
             </a>
         </div>
 
@@ -24,7 +24,7 @@ $profile_div = '<header class="nav-header">
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
                     
-                    <a href="Profile.php?organization_id=' . base64_encode(encrypt_url_parameter($organizationId )) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My
+                    <a href="Profile.php?organization_id=' . base64_encode(encrypt_url_parameter($organizationId)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My
                         Profile</a>
                     <a href="My_Jobs.php"><i class="fas fa-bookmark" style="font-size:24px; margin-right:10px; "></i> My Jobs</a>
                     <a href="#"> <i class="fas fa-comment-alt" style="font-size:24px;margin-right:10px;"></i>My
@@ -55,11 +55,11 @@ $profile_div = '<header class="nav-header">
         
     </div>';
 
-    // <div class="Settings">
-    //     <a href="edit_profile.php" style="text-decoration: none;">
-    //     <label for="input-file2" class="button-12" role="button">
-    //     <span class="edit">
-    //     <i class="fa fa-pencil"></i> Edit profile
-    //                     </span>
-    //                     <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
-    //     </div>
+// <div class="Settings">
+//     <a href="edit_profile.php" style="text-decoration: none;">
+//     <label for="input-file2" class="button-12" role="button">
+//     <span class="edit">
+//     <i class="fa fa-pencil"></i> Edit profile
+//                     </span>
+//                     <span class="pen"><i class="fa fa-pencil"></i></span></label></a>
+//     </div>

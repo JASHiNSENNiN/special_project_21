@@ -271,8 +271,8 @@ nav .login-btn:hover {
 
 .active {
   color: #fff;
-  background-color: rgba(52, 121, 40, 0.9);
-  /* background-color: rgba(27, 188, 155, 0.3); */
+  /* background-color: rgba(52, 121, 40, 0.9); */
+  background-color: rgba(27, 188, 155, 0.3);
   font-weight: bold;
 }
 
@@ -284,8 +284,8 @@ nav .login-btn:hover {
 
 /* rgba(52, 121, 40, 0.9) */
 .by a:hover {
-  /* color: #199c81; */
-  color: #347928;
+  color: #199c81;
+  /* color: #347928; */
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -295,7 +295,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #347928;
+  background-color: #199c81;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -308,7 +308,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #347928;
+  background-color: #199c81;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -857,6 +857,7 @@ html {
   font-size: 13px;
   font-weight: 600;
   margin-top: 14px;
+  margin-left: 5px;
 }
 
 .job-wrapper {
@@ -1020,6 +1021,7 @@ html {
   transition: 0.2s;
   overflow: hidden;
   position: relative;
+  border: solid 1px;
 }
 
 /* .job-card {
