@@ -7,10 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | DRDSNHS</title>
+    <title>Register | Workify</title>
     <!-- <title>Register | Workify</title> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <?php
     session_start();
     ?>
@@ -36,8 +36,8 @@
     </noscript>
     <div class="row">
         <div id="register-form" class="colm-form">
-            <!-- <a href="index.php"><img class="logo-login" src="../img/WORKIFYTEXTLOGO.svg" alt="Logo"></a> -->
-            <a href="index.php"><img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo"></a>
+            <a href="index.php"><img class="logo-login" src="../img/WORKIFYTEXTLOGO.svg" alt="Logo"></a>
+            <!-- <a href="index.php"><img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo"></a> -->
 
             <div class="form-container">
 
@@ -78,7 +78,8 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer
+            Society Students</p>
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>
