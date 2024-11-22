@@ -46,13 +46,16 @@ require_once 'show_profile.php';
     </div>
     <hr class="line_bottom">
     </div>
+    <h1 class="title">Total of Student Deployment</h1>
 
     <div class="box-container">
+
         <div class="box">Box 1</div>
         <div class="box">Box 2</div>
         <div class="box">Box 3</div>
         <div class="box">Box 4</div>
     </div>
+
 
     <div class="row">
         <div class="column">
@@ -64,8 +67,12 @@ require_once 'show_profile.php';
             <div id="myChart2" class="Chart2"></div>
         </div>
         <div class="column">
-            <h1 class="title">Job list</h1>
+            <h1 class="title">Top 6 Company</h1>
             <canvas id="myHorizontalBarChart"></canvas>
+        </div>
+        <div class="column">
+            <h1 class="title">Company list</h1><br>
+            <div id="table_div"></div>
         </div>
     </div>
 
@@ -81,282 +88,323 @@ require_once 'show_profile.php';
 
     <br>
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
     <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
+    // Get the modal
+    var modal = document.getElementById("myModal");
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+    }
     </script>
 
     <script>
-        // JSON object for the chart data and configuration
-        const chartData = {
-            "data": {
-                "labels": ['Jollibee', 'Mcdo', 'Inasal', 'BDO', 'Lamart', 'PNP'], // X-axis labels
-                "datasets": [{
-                    "label": "Data",
-                    "data": [50, 100, 75, 150, 200, 250], // Y-axis values
-                    "backgroundColor": 'rgb(31, 69, 41,0.8)', // Bar color
-                    "borderColor": 'rgb(31, 69, 41,)', // Border color
-                    "borderWidth": 1
-                }]
-            },
-            "config": {
-                "type": "bar",
-                "options": {
-                    "responsive": true,
-                    "indexAxis": "y", // Make it a horizontal bar chart
-                    "scales": {
-                        "x": {
-                            "beginAtZero": true, // Ensure the x-axis starts at zero
-                            "title": {
-                                "display": true,
-                                "text": "Data"
-                            }
-                        },
-                        "y": {
-                            "title": {
-                                "display": true,
-                                "text": "Months"
-                            }
+    // JSON object for the chart data and configuration
+    const chartData = {
+        "data": {
+            "labels": ['Jollibee', 'Mcdo', 'Inasal', 'BDO', 'Lamart', 'PNP'], // X-axis labels
+            "datasets": [{
+                "label": "Data",
+                "data": [50, 100, 75, 150, 200, 250], // Y-axis values
+                "backgroundColor": 'rgb(31, 69, 41,0.8)', // Bar color
+                "borderColor": 'rgb(31, 69, 41,)', // Border color
+                "borderWidth": 1
+            }]
+        },
+        "config": {
+            "type": "bar",
+            "options": {
+                "responsive": true,
+                "indexAxis": "y", // Make it a horizontal bar chart
+                "scales": {
+                    "x": {
+                        "beginAtZero": true, // Ensure the x-axis starts at zero
+                        "title": {
+                            "display": true,
+                            "text": "Data"
                         }
                     },
-                    "plugins": {
-                        "datalabels": {
-                            "align": 'center', // Position data labels inside the bar, centered
-                            "anchor": 'center', // Anchor the text inside the bar
-                            "formatter": (value, context) => {
-                                // Calculate the percentage for each bar
-                                const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
-                                const percentage = ((value / total) * 100).toFixed(
-                                    1); // Calculate percentage with 1 decimal
-                                const label = context.chart.data.labels[context
-                                    .dataIndex]; // Get the label (month name)
-                                return `${label}: ${percentage}%`; // Return both name and percentage
-                            },
-                            "color": 'white', // Text color for labels
-                            "font": {
-                                "weight": 'bold',
-                                "size": 14
-                            }
+                    "y": {
+                        "title": {
+                            "display": true,
+                            "text": "Months"
+                        }
+                    }
+                },
+                "plugins": {
+                    "datalabels": {
+                        "align": 'center', // Position data labels inside the bar, centered
+                        "anchor": 'center', // Anchor the text inside the bar
+                        "formatter": (value, context) => {
+                            // Calculate the percentage for each bar
+                            const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                            const percentage = ((value / total) * 100).toFixed(
+                                1); // Calculate percentage with 1 decimal
+                            const label = context.chart.data.labels[context
+                                .dataIndex]; // Get the label (month name)
+                            return `${label}: ${percentage}%`; // Return both name and percentage
+                        },
+                        "color": 'white', // Text color for labels
+                        "font": {
+                            "weight": 'bold',
+                            "size": 14
                         }
                     }
                 }
             }
+        }
+    };
+
+    // Sort the data by sales in descending order
+    const sortedData = chartData.data.datasets[0].data
+        .map((value, index) => ({
+            value,
+            label: chartData.data.labels[index]
+        })) // Combine sales data with labels
+        .sort((a, b) => b.value - a.value); // Sort by sales in descending order
+
+    // Update the chart data with sorted values
+    chartData.data.labels = sortedData.map(item => item.label); // Sorted month labels
+    chartData.data.datasets[0].data = sortedData.map(item => item.value); // Sorted sales data
+
+    // Render the chart using the updated sorted data
+    const ctx = document.getElementById('myHorizontalBarChart').getContext('2d');
+    new Chart(ctx, {
+        type: chartData.config.type,
+        data: chartData.data,
+        options: chartData.config.options
+    });
+    </script>
+    <script>
+    const xValues = ["Joshua Olipas", "Ronald Dagdag", "Dan Dela cruz", "John Ric Revira", "Raniel Santos"];
+    const yValues = [55, 49, 44, 24, 15];
+    const barColors = ["#7CF5FF", "#00CCDD", "#4F75FF", "#6439FF", "#4379F2"];
+
+    new Chart("myChart1", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+
+            },
+            title: {
+                display: true,
+                text: "Result",
+                fontSize: 20,
+                color: 'black'
+
+            }
+        }
+    });
+    </script>
+
+    <script>
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        // Set Data
+        const data = google.visualization.arrayToDataTable([
+            ['Strand', 'none'],
+            ['STEM', 54],
+            ['HUMSS', 48],
+            ['GAS', 44],
+            ['ABM', 23],
+            ['TECHVOC', 14]
+        ]);
+
+
+        // Set Options
+        const options = {
+            title: 'Result',
+            is3D: true,
+            'width': 800,
+            'height': 400,
+            fontSize: 12
+
         };
 
-        // Sort the data by sales in descending order
-        const sortedData = chartData.data.datasets[0].data
-            .map((value, index) => ({
-                value,
-                label: chartData.data.labels[index]
-            })) // Combine sales data with labels
-            .sort((a, b) => b.value - a.value); // Sort by sales in descending order
 
-        // Update the chart data with sorted values
-        chartData.data.labels = sortedData.map(item => item.label); // Sorted month labels
-        chartData.data.datasets[0].data = sortedData.map(item => item.value); // Sorted sales data
+        // Draw
+        const chart = new google.visualization.PieChart(document.getElementById('myChart2'));
+        chart.draw(data, options);
 
-        // Render the chart using the updated sorted data
-        const ctx = document.getElementById('myHorizontalBarChart').getContext('2d');
-        new Chart(ctx, {
-            type: chartData.config.type,
-            data: chartData.data,
-            options: chartData.config.options
-        });
-    </script>
-    <script>
-        const xValues = ["Joshua Olipas", "Ronald Dagdag", "Dan Dela cruz", "John Ric Revira", "Raniel Santos"];
-        const yValues = [55, 49, 44, 24, 15];
-        const barColors = ["#7CF5FF", "#00CCDD", "#4F75FF", "#6439FF", "#4379F2"];
-
-        new Chart("myChart1", {
-            type: "bar",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
-
-                },
-                title: {
-                    display: true,
-                    text: "Result",
-                    fontSize: 20,
-                    color: 'black'
-
-                }
-            }
-        });
+    }
     </script>
 
     <script>
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
+    let circularProgress =
 
-        function drawChart() {
+        document.querySelector('.circular-progress'),
 
-            // Set Data
-            const data = google.visualization.arrayToDataTable([
-                ['Strand', 'none'],
-                ['STEM', 54],
-                ['HUMSS', 48],
-                ['GAS', 44],
-                ['ABM', 23],
-                ['TECHVOC', 14]
-            ]);
+        progressValue =
 
-
-            // Set Options
-            const options = {
-                title: 'Result',
-                is3D: true,
-                'width': 800,
-                'height': 400,
-                fontSize: 12
-
-            };
-
-
-            // Draw
-            const chart = new google.visualization.PieChart(document.getElementById('myChart2'));
-            chart.draw(data, options);
-
-        }
-    </script>
-
-    <script>
-        let circularProgress =
-
-            document.querySelector('.circular-progress'),
-
-            progressValue =
-
-                document.querySelector('.progress-value');
+        document.querySelector('.progress-value');
 
 
 
-        let progressStartValue = 0,
+    let progressStartValue = 0,
 
-            progressEndValue = 50,
+        progressEndValue = 50,
 
-            speed = 20;
-
-
-
-        let progress = setInterval(() => {
-
-            progressStartValue++;
+        speed = 20;
 
 
 
-            progressValue.textContent =
+    let progress = setInterval(() => {
 
-                `${progressStartValue}%`;
+        progressStartValue++;
 
 
 
-            circularProgress.style.background =
+        progressValue.textContent =
 
-                `conic-gradient(#7d2ae8 ${progressStartValue
+            `${progressStartValue}%`;
+
+
+
+        circularProgress.style.background =
+
+            `conic-gradient(#7d2ae8 ${progressStartValue
 
                 * 3.6}deg, #ededed 0deg)`;
 
-            //3.6deg * 100 = 360deg
+        //3.6deg * 100 = 360deg
 
-            //3.6deg * 90 = 324deg
-
-
+        //3.6deg * 90 = 324deg
 
 
 
-            if (progressStartValue == progressEndValue) {
-
-                clearInterval(progress);
 
 
+        if (progressStartValue == progressEndValue) {
 
-            }
+            clearInterval(progress);
 
-            console.log(progressStartValue);
 
-        }, speed);
+
+        }
+
+        console.log(progressStartValue);
+
+    }, speed);
     </script>
 
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Day', 'Joshua Rivera', 'Ronald Olipas'],
+            ['1', 50, 60],
+            ['2', 20, 10],
+            ['3', 40, 25],
+            ['4', 30, 45]
+        ]);
+
+        var options = {
+            // title: 'Company Performance',
+            curveType: 'function',
+            legend: {
+                position: 'bottom'
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+    }
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['table']
+    });
+    google.charts.setOnLoadCallback(drawTable);
+
+    function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Company Name');
+        data.addColumn('number', 'Ratings');
+        data.addColumn('boolean', 'Full Time Employee');
+        data.addRows([
+            ['Mike', {
+                v: 10000,
+                f: '$10,000'
+            }, true],
+            ['Jim', {
+                v: 8000,
+                f: '$8,000'
+            }, false],
+            ['Alice', {
+                v: 12500,
+                f: '$12,500'
+            }, true],
+            ['Bob', {
+                v: 7000,
+                f: '$7,000'
+            }, true]
+        ]);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(data, {
+            showRowNumber: true,
+            width: '100%',
+            height: '100%'
         });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Day', 'Joshua Rivera', 'Ronald Olipas'],
-                ['1', 50, 60],
-                ['2', 20, 10],
-                ['3', 40, 25],
-                ['4', 30, 45]
-            ]);
-
-            var options = {
-                // title: 'Company Performance',
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-            chart.draw(data, options);
-        }
+    }
     </script>
     <!-- <script>
         google.charts.load('current', {

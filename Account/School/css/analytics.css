@@ -401,7 +401,7 @@ canvas {
   justify-content: center;
   align-items: center;
   /*            background-color: #4CAF50;*/
-  color: white;
+  color: #000;
   border-radius: 10px;
   font-size: 18px;
   /*            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
