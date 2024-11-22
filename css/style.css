@@ -1406,3 +1406,36 @@ html {
   background: #f6f7f9;
   border-radius: 5px;
 }
+
+/* Responsive styles for larger devices */
+
+@media only screen and (min-width: 600px) {
+  header {
+    flex-direction: row;
+    /* Align items horizontally */
+    justify-content: space-between;
+  }
+  nav {
+    flex-direction: row;
+    /* Align nav items horizontally */
+  }
+  nav a {
+    padding: 10px 20px;
+    /* Increase padding for larger screens */
+  }
+  .job-cards {
+    grid-template-columns: repeat(2, 1fr);
+    /* Two columns on medium screens */
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .job-cards {
+    grid-template-columns: repeat(3, 1fr);
+    /* Three columns on larger screens */
+  }
+  .search-container {
+    padding: 10px 20px;
+    /* Increase padding for larger screens */
+  }
+}
