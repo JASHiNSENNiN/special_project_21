@@ -51,7 +51,7 @@ function generateJobCard()
     echo '<div class="container">';
     echo '<div class="eleven columns">';
 
-    echo '<span class="job-category"><a href="#">Oraganization</a></span>';
+    echo '<span class="job-category"><a href="#">Organization</a></span>';
     echo '<h1>' .  htmlspecialchars($job['organization_name']);
     echo '<hr>';
     // foreach ($strands as $strand) {

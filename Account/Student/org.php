@@ -140,12 +140,10 @@ function generateJobCard()
     echo '<div class="container">';
     echo '<div class="eleven columns">';
 
-    echo '<span class="job-category"><a href="#">Work position</a></span>';
-    echo '<h1>' . htmlspecialchars($job['work_title']);
+    echo '<span class="job-category"><a href="#">Organization</a></span>';
+    echo '<h1>' . htmlspecialchars($job['organization_name']);
+    echo '<hr>';
 
-    foreach ($strands as $strand) {
-        echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
-    }
 
     echo '</h1></div>';
 
@@ -165,41 +163,21 @@ function generateJobCard()
             <div class="company-info-boxed">
                 <div class="company-info left-company-logo">
 
-                    <div class="company-info-boxed-logo">
-                        <a href="#"> <img width="150" height="150" class="company_logo"
-                                src="https://workscout.in/wp-content/uploads/job-manager-uploads/company_logo/2021/11/company-logo-06-150x150.png"
-                                alt=""> </a>
-                    </div>
-
+                    
                     <div class="content">
                         <h4>
-                            <a href="#"> <strong>' . htmlspecialchars($job['organization_name']) .
+                            <a href="#"> <strong>' . htmlspecialchars($job['work_title'])  .
         '</strong>
                             </a>
-                            <p class="company-data__content--list-item">Improving Lives Together</p>
-                        </h4>
-
-                        <div class="company-info-boxed-links">
-
-
-
                             
-                            <span class="company-data__content--list-item _company_email">
-                                <a href="#" target="_blank"><i class="fa fa-envelope"></i>
-                                    telimed@example.com</a>
-                            </span>
-                            <span class="company-data__content--list-item _company_x">
-                                <a href="#">  <i class="fa fa-link"></i> 
-                                   
-                                    Link </a></span>
+                        </h4>';
 
-                            
+    foreach ($strands as $strand) {
+        echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+    }
 
 
-                        </div>
-
-
-                    </div>';
+    echo '                 </div>';
     echo '
                         <div class="company-info-apply-btn">
                             <div class="job_application application">
@@ -248,8 +226,8 @@ function generateJobCard()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Work Immersion | Workify</title>
-    <link rel="shortcut icon" type="x-icon" href="image/Dr.Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/Dr.Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -276,8 +254,8 @@ function generateJobCard()
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="../../img/header.png" alt="Logo">
-                <!-- <img src="../../img/logov3.jpg" alt="Logo"> -->
+                <!-- <img src="../../img/header.png" alt="Logo"> -->
+                <img src="../../img/logov3.jpg" alt="Logo">
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a>
@@ -305,11 +283,11 @@ function generateJobCard()
     <footer class="new_footer_area bg_color">
         <div class="new_footer_top">
             <div class="container">
-                <div class="row">
+                <div class="row" style=" gap: 120px !important;">
                     <div class="col-lg-3 col-md-6">
                         <a href="Company_Area.php">
-                            <!-- <img src="../../img/logov3.jpg" alt="Logo"> -->
-                            <img src="../../img/header.png" alt="Logo">
+                            <img src="../../img/logov3.jpg" alt="Logo">
+                            <!-- <img src="../../img/header.png" alt="Logo"> -->
 
                         </a>
                     </div>
@@ -340,7 +318,7 @@ function generateJobCard()
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <!-- <div class="col-lg-3 col-md-6">
                         <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s"
                             style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
                             <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
@@ -351,7 +329,7 @@ function generateJobCard()
                                 <a href="#" class="fab fa-pinterest"></a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="footer_bg">
