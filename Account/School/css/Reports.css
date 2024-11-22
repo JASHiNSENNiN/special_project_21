@@ -799,6 +799,7 @@ h3:after {
   -webkit-user-select: none;
   touch-action: manipulation;
   width: 50%;
+  font-weight: 700;
 }
 
 .button-9:disabled {

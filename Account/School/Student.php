@@ -353,7 +353,8 @@ $tvl_students = get_students_by_strand('tvl');
     </script>
     <br>
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
     </footer>
 
     <script>

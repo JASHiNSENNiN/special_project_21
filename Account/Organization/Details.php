@@ -66,12 +66,13 @@ function getStudentCounts($partner_user_id)
     return $counts;
 }
 
-function getDailyPerformanceData() {
+function getDailyPerformanceData()
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
     $database = $_ENV['MYSQL_DBNAME'];
-    
+
     $conn = new mysqli($host, $username, $password, $database);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -122,15 +123,16 @@ function getDailyPerformanceData() {
 
     $conn->close();
 
-    return json_encode($dataPoints); 
+    return json_encode($dataPoints);
 }
 
-function getJobOffers($partner_user_id) {
+function getJobOffers($partner_user_id)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
     $database = $_ENV['MYSQL_DBNAME'];
-    
+
     $conn = new mysqli($host, $username, $password, $database);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -173,7 +175,7 @@ function getJobOffers($partner_user_id) {
         WHERE job_offers.partner_id = ? 
         GROUP BY job_offers.id
     ";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $partner_user_id);
     $stmt->execute();
@@ -192,7 +194,7 @@ $studentCounts = getStudentCounts($_SESSION['user_id']);
 $jobOffers = getJobOffers($_SESSION['user_id']);
 ?>
 <script>
-var dailyPerformance = <?php echo $dailyPerformance; ?>;
+    var dailyPerformance = <?php echo $dailyPerformance; ?>;
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -296,31 +298,31 @@ var dailyPerformance = <?php echo $dailyPerformance; ?>;
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($jobOffers)) : ?>
-                    <?php foreach ($jobOffers as $job) : ?>
-                    <tr class="job_title">
-                        <td><?php echo htmlspecialchars($job['work_title']); ?></td>
-                        <td>
-                            <div class="stars-outer">
-                                <div class="stars-inner"
-                                    style="width: <?php echo (isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0) / 5 * 100; ?>%;">
-                                </div>
-                            </div>
-                            <span
-                                class="number-rating"><?php echo number_format(isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0, 1); ?></span>
-                        </td>
-                        <td><?php echo (int)$job['total_students']; ?> total students</td>
-                    </tr>
-                    <script>
-                    // Add the average rating for this job offer
-                    ratings['job_title_<?php echo $job['id']; ?>'] =
-                        <?php echo isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0; ?>;
-                    </script>
-                    <?php endforeach; ?>
-                    <?php else : ?>
-                    <tr>
-                        <td colspan="3">No job offers available.</td>
-                    </tr>
+                    <?php if (!empty($jobOffers)): ?>
+                        <?php foreach ($jobOffers as $job): ?>
+                            <tr class="job_title">
+                                <td><?php echo htmlspecialchars($job['work_title']); ?></td>
+                                <td>
+                                    <div class="stars-outer">
+                                        <div class="stars-inner"
+                                            style="width: <?php echo (isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0) / 5 * 100; ?>%;">
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="number-rating"><?php echo number_format(isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0, 1); ?></span>
+                                </td>
+                                <td><?php echo (int) $job['total_students']; ?> total students</td>
+                            </tr>
+                            <script>
+                                // Add the average rating for this job offer
+                                ratings['job_title_<?php echo $job['id']; ?>'] =
+                                    <?php echo isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0; ?>;
+                            </script>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="3">No job offers available.</td>
+                        </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
@@ -332,79 +334,80 @@ var dailyPerformance = <?php echo $dailyPerformance; ?>;
     <br>
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
     </footer>
     <script>
-    // Total Stars
-    const starsTotal = 5;
+        // Total Stars
+        const starsTotal = 5;
 
-    // Get ratings
-    function getRatings() {
-        const jobTitles = document.querySelectorAll('.job_title'); // Get all job titles
+        // Get ratings
+        function getRatings() {
+            const jobTitles = document.querySelectorAll('.job_title'); // Get all job titles
 
-        jobTitles.forEach((job) => {
-            const ratingElement = job.querySelector('.number-rating');
+            jobTitles.forEach((job) => {
+                const ratingElement = job.querySelector('.number-rating');
 
-            if (ratingElement) {
-                const ratingValue = parseFloat(ratingElement.innerHTML);
-                // Get percentage
-                const starPercentage = (ratingValue / starsTotal) * 100;
+                if (ratingElement) {
+                    const ratingValue = parseFloat(ratingElement.innerHTML);
+                    // Get percentage
+                    const starPercentage = (ratingValue / starsTotal) * 100;
 
-                // Round to nearest 10
-                const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-                const starsInnerElement = job.querySelector('.stars-inner');
+                    // Round to nearest 10
+                    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+                    const starsInnerElement = job.querySelector('.stars-inner');
 
-                if (starsInnerElement) {
-                    starsInnerElement.style.width = starPercentageRounded;
+                    if (starsInnerElement) {
+                        starsInnerElement.style.width = starPercentageRounded;
+                    }
                 }
+            });
+        }
+
+        // Run getRatings when DOM loads
+        document.addEventListener('DOMContentLoaded', getRatings);
+    </script>
+
+    <script>
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
+
+        inputFile1.onchange = function () {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0])
+        };
+    </script>
+
+    <script>
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
+
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0])
+        };
+    </script>
+
+
+    <script>
+        document.getElementById('searchInput').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                filterTable();
             }
         });
-    }
 
-    // Run getRatings when DOM loads
-    document.addEventListener('DOMContentLoaded', getRatings);
-    </script>
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('job-title');
+            const tr = table.getElementsByTagName('tr');
 
-    <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
-
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0])
-    };
-    </script>
-
-    <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
-
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0])
-    };
-    </script>
-
-
-    <script>
-    document.getElementById('searchInput').addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            filterTable();
-        }
-    });
-
-    function filterTable() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const table = document.getElementById('job-title');
-        const tr = table.getElementsByTagName('tr');
-
-        for (let i = 1; i < tr.length; i++) {
-            const td = tr[i].getElementsByTagName('td')[0]; // Search in the first column
-            if (td) {
-                const txtValue = td.textContent || td.innerText;
-                tr[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td')[0]; // Search in the first column
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    tr[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+                }
             }
         }
-    }
     </script>
     <!-- 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
