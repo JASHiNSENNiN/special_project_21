@@ -17,17 +17,20 @@ if ($conn->connect_error) {
 }
 
 // Function to get applicants for the organization
-function getApplicants($conn, $org_id)
+function getApplicants($conn, $currentOrgId)
 {
     $applicants = [];
+    
     $sql = "SELECT a.id, a.student_id, s.first_name, s.last_name, s.strand, s.school, u.profile_image 
             FROM applicants a 
             JOIN student_profiles s ON a.student_id = s.user_id 
             JOIN users u ON s.user_id = u.id 
-            WHERE a.job_id IN (SELECT id FROM job_offers WHERE partner_id = ?)";
+            WHERE s.current_work IN (
+                SELECT id FROM job_offers WHERE partner_id = ?
+            )";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $org_id);
+    $stmt->bind_param("i", $currentOrgId);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -90,29 +93,29 @@ $applicants = getApplicants($conn, $org_id);
 
                     $profile_image = '../Student/uploads/' . $applicant['profile_image']
                         ?>
-                    <tr>
-                        <td data-th="#"><?= $index + 1 ?></td>
-                        <td data-th="ID Picture">
-                            <img class="idpic"
-                                src="<?= !empty($applicant['profile_image']) ? $profile_image : '../Student/image/Default.png' ?>"
-                                alt="Profile Picture">
-                        </td>
-                        <td data-th="Student Name"><?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
-                        <td data-th="Result">
-                            <div class="container3">
-                                <div class="circular-progress">
-                                    <span class="progress-value"></span>
-                                </div>
+                <tr>
+                    <td data-th="#"><?= $index + 1 ?></td>
+                    <td data-th="ID Picture">
+                        <img class="idpic"
+                            src="<?= !empty($applicant['profile_image']) ? $profile_image : '../Student/image/Default.png' ?>"
+                            alt="Profile Picture">
+                    </td>
+                    <td data-th="Student Name"><?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
+                    <td data-th="Result">
+                        <div class="container3">
+                            <div class="circular-progress">
+                                <span class="progress-value"></span>
                             </div>
-                        </td>
-                        <td data-th="Action">
-                            <a
-                                href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
-                                <button class="button-9" role="button">Evaluate</button>
-                            </a>
-                            <!-- <button class="button-37" role="button">View Profile</button> -->
-                            </ td>
-                    </tr>
+                        </div>
+                    </td>
+                    <td data-th="Action">
+                        <a
+                            href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
+                            <button class="button-9" role="button">Evaluate</button>
+                        </a>
+                        <!-- <button class="button-37" role="button">View Profile</button> -->
+                        </ td>
+                </tr>
                 <?php } ?>
             </tbody>
         </table>
