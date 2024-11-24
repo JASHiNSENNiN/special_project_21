@@ -229,12 +229,13 @@ try {
             </div>
         </div>
 
-        <h2>Personal details </h2>
-        <div class="column-graph-profile-right" style="background-color:#fff;">
 
+        <div class="column-graph-profile-right" style="background-color:#fff;">
+            <h2>Personal details </h2>
             <div class="container-grap-right">
 
                 <div class="card-body">
+
 
                     <table class="personal-details-table">
                         <tbody>
