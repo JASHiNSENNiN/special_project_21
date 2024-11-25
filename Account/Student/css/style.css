@@ -75,7 +75,7 @@ section {
   align-items: center;
   background-color: #fff;
   /*   border-radius: 10px; */
-  padding: 5px 10px;
+  padding: 0px 10px;
   width: 100%;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
@@ -283,6 +283,7 @@ nav .login-btn:hover {
 }
 
 /* rgba(52, 121, 40, 0.9) */
+
 .by a:hover {
   color: #199c81;
   /* color: #347928; */
@@ -509,7 +510,11 @@ nav a:hover::after {
   margin-right: auto;
   width: 76%;
   display: block;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .Settings {
@@ -601,7 +606,7 @@ button:hover,
   --theme-bg-color: #fafafb;
   --body-font: "Poppins", sans-serif;
   --body-color: #2f2f33;
-  --active-color: #0162ff;
+  --active-color: #172738;
   --active-light-color: #e1ebfb;
   --header-bg-color: #fff;
   --search-border-color: #efefef;
@@ -1178,7 +1183,8 @@ html {
 
 .menu-dot {
   background-color: var(--placeholder-color);
-  box-shadow: -6px 0 0 0 var(--placeholder-color),
+  box-shadow:
+    -6px 0 0 0 var(--placeholder-color),
     6px 0 0 0 var(--placeholder-color);
   width: 4px;
   height: 4px;
@@ -1637,7 +1643,8 @@ input[type="file"] {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -1648,8 +1655,10 @@ input[type="file"] {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 

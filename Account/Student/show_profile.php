@@ -35,8 +35,7 @@ $profile_div = '<header class="nav-header">
                         Profile</a>
                         <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i>
                         Weather Update</a>
-                    <a href="#"> <i class="fas fa-comment-alt" style="font-size:24px;margin-right:10px;"></i>My
-                        Reviews</a>
+                   
                     <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings & privacy</a>
                     <hr>
                     <hr>
@@ -49,7 +48,7 @@ $profile_div = '<header class="nav-header">
 
     </header>
 
-    <img class="logoimg" id="cover-pic" src="image/DramonBG.png" alt="" width="200" height="300">
+    <img class="logoimg" id="cover-pic" src="image/logov3.jpg" alt="" width="200" height="300">
     
 
     <div class="profile">

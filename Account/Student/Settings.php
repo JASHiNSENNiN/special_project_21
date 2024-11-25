@@ -149,10 +149,10 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/Settings.php">
+    <link rel="stylesheet" href="css/Settings.css">
     <title>Settings</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
@@ -160,131 +160,6 @@ if (isset($_SESSION['user_id'])) {
 
 </head>
 
-<style>
-    .container-xl {
-        margin: auto;
-        /* width: 50% !important; */
-        padding: 10px;
-        display: flex !important;
-        flex-wrap: wrap !important;
-    }
-
-    .nav-borders .nav-link.active {
-        color: #0061f2;
-        border-bottom-color: #0061f2;
-    }
-
-    .nav-borders .nav-link {
-        color: #69707a;
-        border-bottom-width: 0.125rem;
-        border-bottom-style: solid;
-        border-bottom-color: transparent;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
-
-    .row1 {
-        width: 100% !important;
-        display: flow !important;
-    }
-
-    .img-account-profile {
-        height: 10rem;
-    }
-
-    .img-account-cover {
-        width: 100% !important;
-        height: 200px !important;
-        object-fit: cover !important;
-        vertical-align: middle !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-
-    .rounded-circle {
-        border-radius: 50% !important;
-        width: 10rem;
-        height: 10rem;
-    }
-
-    .form-control {
-        display: block;
-        width: 100%;
-        padding: -0.125rem 1.125rem;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1;
-        color: #69707a;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #c5ccd6;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 0.35rem;
-        transition:
-            border-color 0.15s ease-in-out,
-            box-shadow 0.15s ease-in-out;
-    }
-
-    .col-xl-4,
-    .col-xl-8 {
-        width: 100% !important;
-        margin-top: 20px !important;
-    }
-
-    .mb-5 {
-        margin-top: 0.5rem !important;
-        margin-bottom: 2rem !important;
-    }
-
-    .container {
-        width: 70% !important;
-    }
-
-    .list-group-item {
-        margin-left: 10px !important;
-    }
-
-    .form-group {
-        margin-right: 20px !important;
-        margin-left: 20px !important;
-    }
-
-    .list-group-item.active {
-        z-index: 2 !important;
-        color: #fff !important;
-        background-color: #18613b !important;
-        border-color: #18613b !important;
-    }
-
-    .list-group-item:hover {
-        color: #fff !important;
-        background-color: #104d2d !important;
-        border-color: #104d2d !important;
-    }
-
-    .btn-primary {
-        color: #fff !important;
-        background-color: #18613b !important;
-        border-color: #18613b !important;
-
-    }
-
-    .btn-primary:hover {
-        color: #fff !important;
-        background-color: #104d2d !important;
-        border-color: #104d2d !important;
-    }
-
-    .mt-3 {
-        margin-bottom: 35px !important;
-    }
-</style>
 
 <body>
     <noscript>

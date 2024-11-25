@@ -286,9 +286,15 @@ $profile_image = "uploads/" . $user['profile_image'];
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
-    <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
-        <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#f1f1f1;  padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
+    <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px; max-height: 560px;">
+        <div class="header-title">
+            <h4 class="font-weight-bold py-3 mb-4"
+                style=" color:#fff; padding-left: 10px; padding-right: 10px;">Evaluation Insight
+            </h4>
+            <a id="refreshButton">
+                <i style="font-size:24px; cursor:pointer;" class="fa">&#xf021;</i>
+            </a>
+        </div>
         <div class="card-graph overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
@@ -312,19 +318,19 @@ $profile_image = "uploads/" . $user['profile_image'];
                             <div class="wp-graph" id="wp-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
-                        <div class="tab-pane fade active show" id="pro-top-x-div-sel">
+                        <div class="tab-pane fade active " id="pro-top-x-div-sel">
                             <div class="pro-graph" id="pro-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
-                        <div class="tab-pane fade active show" id="ld-top-x-div-sel">
+                        <div class="tab-pane fade active " id="ld-top-x-div-sel">
                             <div class="ld-graph" id="ld-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
-                        <div class="tab-pane fade active show" id="tc-top-x-div-sel">
+                        <div class="tab-pane fade active " id="tc-top-x-div-sel">
                             <div class="tc-graph" id="tc-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
-                        <div class="tab-pane fade active show" id="am-top-x-div-sel">
+                        <div class="tab-pane fade active " id="am-top-x-div-sel">
                             <div class="am-graph" id="am-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
