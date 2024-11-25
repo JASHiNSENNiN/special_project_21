@@ -271,7 +271,42 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
   display: flow !important;
 }
 
-/* .img-account-cover {
+.container-xl {
+  margin: auto;
+  /* width: 50% !important; */
+  padding: 10px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.nav-borders .nav-link.active {
+  color: #0061f2;
+  border-bottom-color: #0061f2;
+}
+
+.nav-borders .nav-link {
+  color: #69707a;
+  border-bottom-width: 0.125rem;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.row1 {
+  width: 100% !important;
+  display: flow !important;
+}
+
+.img-account-profile {
+  height: 10rem;
+}
+
+.img-account-cover {
   width: 100% !important;
   height: 200px !important;
   object-fit: cover !important;
@@ -280,7 +315,9 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
   margin-right: auto !important;
 }
 
-.img-account-profile {
+.rounded-circle {
+  border-radius: 50% !important;
+  width: 10rem;
   height: 10rem;
 }
 
@@ -331,46 +368,28 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .list-group-item.active {
   z-index: 2 !important;
   color: #fff !important;
-  background-color: #18613b !important;
-  border-color: #18613b !important;
+  background-color: #172738 !important;
+  border-color: #172738 !important;
 }
 
 .list-group-item:hover {
   color: #fff !important;
-  background-color: #104d2d !important;
-  border-color: #104d2d !important;
+  background-color: #172738 !important;
+  border-color: #172738 !important;
 }
 
 .btn-primary {
   color: #fff !important;
-  background-color: #18613b !important;
-  border-color: #18613b !important;
+  background-color: #172738 !important;
+  border-color: #172738 !important;
 }
 
 .btn-primary:hover {
   color: #fff !important;
-  background-color: #104d2d !important;
-  border-color: #104d2d !important;
+  background-color: #132130 !important;
+  border-color: #132130 !important;
 }
 
 .mt-3 {
   margin-bottom: 35px !important;
 }
-
-.nav-borders .nav-link.active {
-  color: #0061f2;
-  border-bottom-color: #0061f2;
-}
-
-.nav-borders .nav-link {
-  color: #69707a;
-  border-bottom-width: 0.125rem;
-  border-bottom-style: solid;
-  border-bottom-color: transparent;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 1rem;
-  margin-right: 1rem;
-} */
