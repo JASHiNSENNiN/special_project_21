@@ -151,33 +151,33 @@ try {
 
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-        const averages = {
-            avgQualityOfWork: <?= json_encode($avgQualityOfWork) ?>,
-            avgProductivity: <?= json_encode($avgProductivity) ?>,
-            avgProblemSolvingSkills: <?= json_encode($avgProblemSolvingSkills) ?>,
-            avgAttentionToDetail: <?= json_encode($avgAttentionToDetail) ?>,
-            avgInitiative: <?= json_encode($avgInitiative) ?>,
-            avgPunctuality: <?= json_encode($avgPunctuality) ?>,
-            avgAppearance: <?= json_encode($avgAppearance) ?>,
-            avgCommunicationSkills: <?= json_encode($avgCommunicationSkills) ?>,
-            avgRespectfulness: <?= json_encode($avgRespectfulness) ?>,
-            avgAdaptability: <?= json_encode($avgAdaptability) ?>,
-            avgWillingnessToLearn: <?= json_encode($avgWillingnessToLearn) ?>,
-            avgApplicationOfFeedback: <?= json_encode($avgApplicationOfFeedback) ?>,
-            avgSelfImprovement: <?= json_encode($avgSelfImprovement) ?>,
-            avgSkillDevelopment: <?= json_encode($avgSkillDevelopment) ?>,
-            avgKnowledgeApplication: <?= json_encode($avgKnowledgeApplication) ?>,
-            avgTeamParticipation: <?= json_encode($avgTeamParticipation) ?>,
-            avgCooperation: <?= json_encode($avgCooperation) ?>,
-            avgConflictResolution: <?= json_encode($avgConflictResolution) ?>,
-            avgSupportiveness: <?= json_encode($avgSupportiveness) ?>,
-            avgContribution: <?= json_encode($avgContribution) ?>,
-            avgEnthusiasm: <?= json_encode($avgEnthusiasm) ?>,
-            avgDrive: <?= json_encode($avgDrive) ?>,
-            avgResilience: <?= json_encode($avgResilience) ?>,
-            avgCommitment: <?= json_encode($avgCommitment) ?>,
-            avgSelfMotivation: <?= json_encode($avgSelfMotivation) ?>
-        };
+    const averages = {
+        avgQualityOfWork: <?= json_encode($avgQualityOfWork) ?>,
+        avgProductivity: <?= json_encode($avgProductivity) ?>,
+        avgProblemSolvingSkills: <?= json_encode($avgProblemSolvingSkills) ?>,
+        avgAttentionToDetail: <?= json_encode($avgAttentionToDetail) ?>,
+        avgInitiative: <?= json_encode($avgInitiative) ?>,
+        avgPunctuality: <?= json_encode($avgPunctuality) ?>,
+        avgAppearance: <?= json_encode($avgAppearance) ?>,
+        avgCommunicationSkills: <?= json_encode($avgCommunicationSkills) ?>,
+        avgRespectfulness: <?= json_encode($avgRespectfulness) ?>,
+        avgAdaptability: <?= json_encode($avgAdaptability) ?>,
+        avgWillingnessToLearn: <?= json_encode($avgWillingnessToLearn) ?>,
+        avgApplicationOfFeedback: <?= json_encode($avgApplicationOfFeedback) ?>,
+        avgSelfImprovement: <?= json_encode($avgSelfImprovement) ?>,
+        avgSkillDevelopment: <?= json_encode($avgSkillDevelopment) ?>,
+        avgKnowledgeApplication: <?= json_encode($avgKnowledgeApplication) ?>,
+        avgTeamParticipation: <?= json_encode($avgTeamParticipation) ?>,
+        avgCooperation: <?= json_encode($avgCooperation) ?>,
+        avgConflictResolution: <?= json_encode($avgConflictResolution) ?>,
+        avgSupportiveness: <?= json_encode($avgSupportiveness) ?>,
+        avgContribution: <?= json_encode($avgContribution) ?>,
+        avgEnthusiasm: <?= json_encode($avgEnthusiasm) ?>,
+        avgDrive: <?= json_encode($avgDrive) ?>,
+        avgResilience: <?= json_encode($avgResilience) ?>,
+        avgCommitment: <?= json_encode($avgCommitment) ?>,
+        avgSelfMotivation: <?= json_encode($avgSelfMotivation) ?>
+    };
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
@@ -193,7 +193,7 @@ try {
         </div>
         <ul>
             <li>
-                <a href="./" onclick="window.location.href = document.referrer;">
+                <a href="../../Account/<?= $_SESSION['account_type']; ?>">
                     <i class=" fa fa-sign-out-alt fa-2x"></i>
                 </a>
             </li>
@@ -333,7 +333,8 @@ try {
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
-    <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px; max-height: 520px;">
+    <div class="container light-style flex-grow-1 container-p-y"
+        style="padding-left: 0px; padding-right: 0px; max-height: 520px;">
         <h4 class="font-weight-bold py-3 mb-4"
             style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;">Evaluation Insight
         </h4>

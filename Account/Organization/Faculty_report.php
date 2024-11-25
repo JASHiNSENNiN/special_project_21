@@ -90,9 +90,21 @@ $applicants = getApplicants($conn, $org_id);
                     <th>Action</th>
                 </tr>
                 <?php foreach ($applicants as $index => $applicant) {
+    $profile_image = '../Student/uploads/' . $applicant['profile_image'];
 
-                    $profile_image = '../Student/uploads/' . $applicant['profile_image']
-                        ?>
+    // Check if the applicant has already evaluated today
+    $sql = "SELECT COUNT(*) as eval_count FROM Student_Evaluation 
+            WHERE student_id = :student_id AND evaluation_date = CURDATE()";
+$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $applicant['student_id'], PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $has_evaluation_today = $result['eval_count'] > 0;
+?>
                 <tr>
                     <td data-th="#"><?= $index + 1 ?></td>
                     <td data-th="ID Picture">
@@ -111,10 +123,40 @@ $applicants = getApplicants($conn, $org_id);
                     <td data-th="Action">
                         <a
                             href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
+                            <?php if ($has_evaluation_today): ?>
+                            <button type="button" class="btn_next" disabled>
+                                <span class="time-remaining" id="timer-<?= $index ?>">Timer Starting...</span>
+                            </button>
+                            <script>
+                            function startCountdown(index) {
+                                const now = new Date();
+                                const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+                                let countdown = Math.floor((midnight - now) / 1000);
+                                const countdownElement = document.getElementById("timer-" + index);
+
+                                function updateCountdown() {
+                                    let hours = Math.floor(countdown / 3600);
+                                    let minutes = Math.floor((countdown % 3600) / 60);
+                                    let seconds = countdown % 60;
+                                    countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                                    countdown--;
+
+                                    if (countdown < 0) {
+                                        location.reload();
+                                    }
+                                }
+
+                                setInterval(updateCountdown, 1000);
+                            }
+
+                            // Start the countdown for the current applicant
+                            startCountdown(<?= $index ?>);
+                            </script>
+                            <?php else: ?>
                             <button class="button-9" role="button">Evaluate</button>
+                            <?php endif; ?>
                         </a>
-                        <!-- <button class="button-37" role="button">View Profile</button> -->
-                        </ td>
+                    </td>
                 </tr>
                 <?php } ?>
             </tbody>
