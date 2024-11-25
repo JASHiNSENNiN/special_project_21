@@ -1434,8 +1434,4 @@ html {
     grid-template-columns: repeat(3, 1fr);
     /* Three columns on larger screens */
   }
-  .search-container {
-    padding: 10px 20px;
-    /* Increase padding for larger screens */
-  }
 }
