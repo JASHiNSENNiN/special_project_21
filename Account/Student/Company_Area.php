@@ -99,7 +99,7 @@ require_once 'show_profile.php';
     <?php echo $profile_div; ?>
 
     <br><br>
-    <!-- <hr> -->
+
     <div class="logo">
 
         <!-- <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">

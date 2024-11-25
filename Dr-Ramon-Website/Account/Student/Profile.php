@@ -287,8 +287,14 @@ $profile_image = "uploads/" . $user['profile_image'];
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
     <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px; max-height: 560px;">
-        <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#f1f1f1;  padding-left: 10px; padding-right: 10px;">Evaluation Insight</h4>
+        <div class="header-title">
+            <h4 class="font-weight-bold py-3 mb-4"
+                style=" color:#fff; padding-left: 10px; padding-right: 10px;">Evaluation Insight
+            </h4>
+            <a id="refreshButton">
+                <i style="font-size:24px; cursor:pointer;" class="fa">&#xf021;</i>
+            </a>
+        </div>
         <div class="card-graph overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">

@@ -586,3 +586,14 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     max-width: 1117.5px !important;
   }
 }
+
+.header-title {
+  background-color: #172738;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 30px;
+}
