@@ -965,3 +965,29 @@ input {
   display: inline-block;
   border-radius: 2px;
 }
+
+/* Style the button */
+/* .expander-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.expander-btn:hover {
+  background-color: #45a049;
+} */
+
+/* Initially hide the expanded content */
+.expander-content {
+  /* display: none; */
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
