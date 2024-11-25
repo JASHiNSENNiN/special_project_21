@@ -333,7 +333,7 @@ try {
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
-    <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px; max-height: 520px;">
+    <div class="container light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px; max-height: 560px;">
         <h4 class="font-weight-bold py-3 mb-4"
             style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;">Evaluation Insight
         </h4>
