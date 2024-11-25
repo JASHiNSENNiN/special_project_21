@@ -99,7 +99,7 @@ require_once 'show_profile.php';
     <?php echo $profile_div; ?>
 
     <br><br>
-    <hr>
+    <!-- <hr> -->
     <div class="logo">
 
         <!-- <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
@@ -182,24 +182,25 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function () {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        ©2024 Your Website. All rights reserved. | Junior Philippines Computer
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>

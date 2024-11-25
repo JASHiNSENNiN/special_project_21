@@ -66,7 +66,7 @@ require_once 'show_profile.php';
                 <tr id="expander-row-1" style="display:none;">
                     <td colspan="4">
                         <div class="expander-content">
-                            <p>This is the expanded content! It can be any HTML element, like text, images, etc.</p>
+                            <div id="curve_chart" style="height: auto; width:100%;"></div>
                         </div>
                     </td>
                 </tr>
@@ -112,21 +112,21 @@ require_once 'show_profile.php';
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function () {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
     <!-- <script>
@@ -158,16 +158,47 @@ require_once 'show_profile.php';
     </script> -->
 
     <script>
-    // Toggle the display of the expanded content row
-    function toggleExpand(rowId) {
-        var expanderRow = document.getElementById('expander-row-' + rowId);
-        // Check the current display status and toggle it
-        if (expanderRow.style.display === "none" || expanderRow.style.display === "") {
-            expanderRow.style.display = "table-row";
-        } else {
-            expanderRow.style.display = "none";
+        // Toggle the display of the expanded content row
+        function toggleExpand(rowId) {
+            var expanderRow = document.getElementById('expander-row-' + rowId);
+            // Check the current display status and toggle it
+            if (expanderRow.style.display === "none" || expanderRow.style.display === "") {
+                expanderRow.style.display = "table-row";
+            } else {
+                expanderRow.style.display = "none";
+            }
         }
-    }
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Category', 'Joshua Rivera'],
+                ['1', 50],
+                ['2', 20],
+                ['3', 40],
+                ['4', 30],
+                ['5', 30]
+            ]);
+
+            var options = {
+                // title: 'Company Performance',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
     </script>
     <!-- <script>
     function toggleExpand() {
