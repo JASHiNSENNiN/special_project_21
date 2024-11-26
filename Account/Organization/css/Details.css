@@ -323,8 +323,8 @@ nav .login-btn:hover {
 
 .active {
   color: #fff;
-  /* background-color: rgba(52, 121, 40, 0.9); */
-  background-color: rgba(27, 188, 155, 0.9);
+  background-color: rgba(52, 121, 40, 0.9);
+  /* background-color: rgba(27, 188, 155, 0.9); */
   font-weight: bold;
 }
 
@@ -335,8 +335,8 @@ nav .login-btn:hover {
 }
 
 .by a:hover {
-  /* color: #347928; */
-  color: #1bbc9b;
+  color: #347928;
+  /* color: #1bbc9b; */
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -346,7 +346,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -359,7 +359,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);

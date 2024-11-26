@@ -285,8 +285,8 @@ nav .login-btn:hover {
 /* rgba(52, 121, 40, 0.9) */
 
 .by a:hover {
-  color: #199c81;
-  /* color: #347928; */
+  /* color: #199c81; */
+  color: #347928;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -296,7 +296,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #199c81;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -309,7 +309,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #199c81;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -1183,8 +1183,7 @@ html {
 
 .menu-dot {
   background-color: var(--placeholder-color);
-  box-shadow:
-    -6px 0 0 0 var(--placeholder-color),
+  box-shadow: -6px 0 0 0 var(--placeholder-color),
     6px 0 0 0 var(--placeholder-color);
   width: 4px;
   height: 4px;
@@ -1643,8 +1642,7 @@ input[type="file"] {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow:
-    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -1655,10 +1653,8 @@ input[type="file"] {
 }
 
 .button-12:focus {
-  box-shadow:
-    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 

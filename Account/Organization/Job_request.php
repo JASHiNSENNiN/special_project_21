@@ -118,8 +118,8 @@ function acceptApplicant($applicant_id)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization Dashboard</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/Job_request.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -175,37 +175,37 @@ function acceptApplicant($applicant_id)
                     <th>Action</th>
                 </tr>
                 <?php foreach ($applicants as $job_id => $applicant_list) { ?>
-                <?php foreach ($applicant_list as $applicant) { ?>
-                <?php
-                    $student_id = $applicant['student_id'];
-                    $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
-                    $student_row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+                    <?php foreach ($applicant_list as $applicant) { ?>
+                        <?php
+                        $student_id = $applicant['student_id'];
+                        $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
+                        $student_row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-                    $job_title_query = "SELECT work_title FROM job_offers WHERE id = '{$applicant['job_id']}'";
-                    $job_row = mysqli_fetch_assoc(mysqli_query($conn, $job_title_query));
-                    $job_title = $job_row['work_title'] ?? 'N/A'; // Use 'N/A' if no job title found
-                    ?>
-                <tr>
-                    <td><?= $applicant['id'] ?></td>
-                    <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
-                    <td><?= $student_row['strand'] ?></td>
-                    <td><?= $job_title ?></td>
-                    <td>
-                        <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
-                            <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
-                            <?php if ($applicant['status'] === 'accepted') { ?>
-                            <button type="submit" class="button-4" name="remove_applicant">Remove</button>
-                            <?php } else { ?>
-                            <button type="submit" class="button-9" name="accept_applicant">Accept</button>
-                            <?php } ?>
-                        </form>
-                        <a
-                            href="../Student/Profile.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
-                            <button type="button" class="button-4">Details</button>
-                        </a>
-                    </td>
-                </tr>
-                <?php } ?>
+                        $job_title_query = "SELECT work_title FROM job_offers WHERE id = '{$applicant['job_id']}'";
+                        $job_row = mysqli_fetch_assoc(mysqli_query($conn, $job_title_query));
+                        $job_title = $job_row['work_title'] ?? 'N/A'; // Use 'N/A' if no job title found
+                        ?>
+                        <tr>
+                            <td><?= $applicant['id'] ?></td>
+                            <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
+                            <td><?= $student_row['strand'] ?></td>
+                            <td><?= $job_title ?></td>
+                            <td>
+                                <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
+                                    <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
+                                    <?php if ($applicant['status'] === 'accepted') { ?>
+                                        <button type="submit" class="button-4" name="remove_applicant">Remove</button>
+                                    <?php } else { ?>
+                                        <button type="submit" class="button-9" name="accept_applicant">Accept</button>
+                                    <?php } ?>
+                                </form>
+                                <a
+                                    href="../Student/Profile.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
+                                    <button type="button" class="button-4">Details</button>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 <?php } ?>
             </table>
         </div>
@@ -213,52 +213,52 @@ function acceptApplicant($applicant_id)
 
     <!-- JavaScript for table search -->
     <script>
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        var searchValue = this.value.toLowerCase();
-        var rows = document.querySelectorAll('#tbl tr:not(:first-child)');
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            var searchValue = this.value.toLowerCase();
+            var rows = document.querySelectorAll('#tbl tr:not(:first-child)');
 
-        rows.forEach(function(row) {
-            var cells = row.getElementsByTagName('td');
-            var found = false;
+            rows.forEach(function (row) {
+                var cells = row.getElementsByTagName('td');
+                var found = false;
 
-            for (var i = 0; i < cells.length - 1; i++) {
-                if (cells[i].textContent.toLowerCase().indexOf(searchValue) > -1) {
-                    found = true;
-                    break;
+                for (var i = 0; i < cells.length - 1; i++) {
+                    if (cells[i].textContent.toLowerCase().indexOf(searchValue) > -1) {
+                        found = true;
+                        break;
+                    }
                 }
-            }
 
-            if (found) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+                if (found) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
         });
-    });
     </script>
 
 
     <footer>
-        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
-        <!-- <p>&copy;2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        <!-- <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p> -->
+        <p>&copy;2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function () {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
 
