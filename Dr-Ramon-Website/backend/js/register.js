@@ -197,7 +197,7 @@ window.onload = function () {
   const urlParams = new URLSearchParams(window.location.search);
   const error = urlParams.get("error");
 
-  if (error === "invalidEmail") {
+  if (error === "alreadyTaken") {
     document
       .getElementById("email")
       .setCustomValidity("The email address was already taken");
