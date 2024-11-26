@@ -113,13 +113,13 @@ nav .login-btn:hover {
 }
 
 nav a:hover {
-  color: #1bbc9b;
-  /* color: #ffe77d; */
+  /* color: #1bbc9b; */
+  color: #347928;
   text-decoration: none !important;
 }
 
 .active-header {
-  color: #1bbc9b;
+  color: #347928;
 }
 
 nav a::after {
@@ -127,7 +127,7 @@ nav a::after {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1bbc9b;
+  background-color: #347928;
   bottom: -17px;
   left: 0;
   transform: scaleX(0);
