@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/backend/php/config.php';
+require_once $_SERVER['DOCUMENT_ROOT']. '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
@@ -275,9 +275,9 @@ if (isset($_SESSION['account_type'])) {
     <!-- <title>Work Immersion | DRDSNHS</title> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="stylesheet" type="text/css" href="css/org_style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
@@ -296,7 +296,7 @@ if (isset($_SESSION['account_type'])) {
 
 </head>
 
-<script type="text/javascript" src="js/org.js"></script>
+<script type="text/javascript" src="../../js/org.js"></script>
 
 
 <body>
@@ -311,7 +311,7 @@ if (isset($_SESSION['account_type'])) {
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
-                <img src="img/logov3.jpg" alt="Logo">
+                <img src="../../img/logov3.jpg" alt="Logo">
                 <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">
@@ -323,7 +323,7 @@ if (isset($_SESSION['account_type'])) {
         <nav class="nav-log">
 
             <div class="css-1ld7x2h eu4oa1w0"></div>
-            <a class="com-btn" href="./">Back</a>
+            <a class="com-btn" href="Details.php">Back</a>
         </nav>
 
     </header>
@@ -368,7 +368,7 @@ if (isset($_SESSION['account_type'])) {
                 <div class="row" style=" gap: 120px !important;">
                     <div class="col-lg-3 col-md-6">
                         <a href="index.php">
-                            <img src="img/logov3.jpg" alt="Logo">
+                            <img src="../../img/logov3.jpg" alt="Logo">
                             <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
                         </a>
                     </div>

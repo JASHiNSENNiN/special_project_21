@@ -249,19 +249,19 @@ var dailyPerformance = <?php echo $dailyPerformance; ?>;
             <div class="data-box">
 
                 <p><?php echo $studentCounts['total_students']; ?></p>
-                <label>Total of Student</label>
+                <label>Students</label>
             </div>
 
             <div class="data-box">
 
                 <p><?php echo $studentCounts['approved_students']; ?></p>
-                <label>Total of Deployment</label>
+                <label>Deployments</label>
             </div>
 
             <div class="data-box">
 
                 <p><?php echo $studentCounts['pending_students'] ?></p>
-                <label>Total of Request Applicant</label>
+                <label>Applicant Requests</label>
             </div>
         </div>
 
@@ -278,9 +278,6 @@ var dailyPerformance = <?php echo $dailyPerformance; ?>;
             <div class="column">
                 <h3 class="title">Total Strand Workspace</h3>
                 <div class="dp-graph-strand" id="piechart_3d"></div>
-
-
-
             </div>
 
 
@@ -308,7 +305,9 @@ var dailyPerformance = <?php echo $dailyPerformance; ?>;
                     <?php if (!empty($jobOffers)): ?>
                     <?php foreach ($jobOffers as $job): ?>
                     <tr class="job_title">
-                        <td><?php echo htmlspecialchars($job['work_title']); ?></td>
+                        <td><a
+                                href="org.php?job_id=' + <?php echo base64_encode(encrypt_url_parameter((string) $job['id'])); ?> "><?php echo htmlspecialchars($job['work_title']); ?></a>
+                        </td>
                         <td>
                             <div class="stars-outer">
                                 <div class="stars-inner"
@@ -318,7 +317,7 @@ var dailyPerformance = <?php echo $dailyPerformance; ?>;
                             <span
                                 class="number-rating"><?php echo number_format(isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0, 1); ?></span>
                         </td>
-                        <td><?php echo (int) $job['total_students']; ?> total students</td>
+                        <td><?php echo (int) $job['total_students']; ?></td>
                     </tr>
                     <script>
                     // Add the average rating for this job offer

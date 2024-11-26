@@ -156,26 +156,22 @@ function acceptApplicant($applicant_id)
 
     <div class="sales-boxes">
         <div class="recent-sales box">
-
             <b>
                 <div class="box-topic">Job Request</div>
             </b>
             <div class="search-box">
-                <input type="text" placeholder="Search...">
+                <input type="text" id="searchInput" placeholder="Search...">
                 <i class='bx bx-search'></i>
             </div>
 
             <br>
-            <!-- <div class="title">Popularity Company </div> -->
-            <!-- <div class="title">Student List <div class="icon"><i class="bx bx-user-plus"></i> </div> </div> -->
 
             <table id="tbl" class="rwd-table">
                 <tr>
                     <th>ID</th>
-                    <!-- <th>Student ID</th> -->
                     <th>Name</th>
                     <th>Strand</th>
-                    <th>School</th>
+                    <th>Job Name</th>
                     <th>Action</th>
                 </tr>
                 <?php foreach ($applicants as $job_id => $applicant_list) { ?>
@@ -183,19 +179,22 @@ function acceptApplicant($applicant_id)
                         <?php
                         $student_id = $applicant['student_id'];
                         $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
-                        $result = mysqli_query($conn, $sql);
-                        $student_row = mysqli_fetch_assoc($result);
+                        $student_row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+                        $job_title_query = "SELECT work_title FROM job_offers WHERE id = '{$applicant['job_id']}'";
+                        $job_row = mysqli_fetch_assoc(mysqli_query($conn, $job_title_query));
+                        $job_title = $job_row['work_title'] ?? 'N/A'; // Use 'N/A' if no job title found
                         ?>
                         <tr>
                             <td><?= $applicant['id'] ?></td>
                             <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
                             <td><?= $student_row['strand'] ?></td>
-                            <td><?= $student_row['school'] ?></td>
+                            <td><?= $job_title ?></td>
                             <td>
-                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
                                     <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
-                                    <?php if ($applicant['status'] == 'accepted') { ?>
-                                        <button type="submit" class="button-5" name="remove_applicant">Remove</button>
+                                    <?php if ($applicant['status'] === 'accepted') { ?>
+                                        <button type="submit" class="button-4" name="remove_applicant">Remove</button>
                                     <?php } else { ?>
                                         <button type="submit" class="button-9" name="accept_applicant">Accept</button>
                                     <?php } ?>
@@ -210,8 +209,33 @@ function acceptApplicant($applicant_id)
                 <?php } ?>
             </table>
         </div>
-
     </div>
+
+    <!-- JavaScript for table search -->
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            var searchValue = this.value.toLowerCase();
+            var rows = document.querySelectorAll('#tbl tr:not(:first-child)');
+
+            rows.forEach(function (row) {
+                var cells = row.getElementsByTagName('td');
+                var found = false;
+
+                for (var i = 0; i < cells.length - 1; i++) {
+                    if (cells[i].textContent.toLowerCase().indexOf(searchValue) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
 
 
     <footer>
