@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Work Immersion | Workify</title>
-    <!-- <title>Organization | DRDSNHS</title> -->
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <title>Post Work Immersion | Workify</title> -->
+    <title>Organization | DRDSNHS</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="stylesheet" type="text/css" href="./css/post_wi.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/footer.css"> -->
 </head>
@@ -20,8 +20,8 @@
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="post_work_immersion.php">
-                <!-- <img src="./img/drpartnerlog.svg" alt="Logo"> -->
-                <img src="./img/companylogo.jpg" alt="Logo">
+                <img src="./img/drpartnerlog.svg" alt="Logo">
+                <!-- <img src="./img/companylogo.jpg" alt="Logo"> -->
             </a>
             <nav>
                 <a href="post_work_immersion.php">Post Work Immersion</a>
@@ -54,8 +54,8 @@
                 </div>
             </div>
             <!-- <div class="imglogo"> -->
-            <!-- <img class="partner-logo" src="../img/partnerorgpagev1.svg" alt="logo" style="width:66%;"> -->
-            <img class="partner-logo" src="../img/bg-dr-workify.svg" alt="logo" style="width:66%;">
+            <img class="partner-logo" src="../img/partnerorgpagev1.svg" alt="logo" style="width:66%;">
+            <!-- <img class="partner-logo" src="../img/bg-dr-workify.svg" alt="logo" style="width:66%;"> -->
             <!-- </div> -->
 
         </section>

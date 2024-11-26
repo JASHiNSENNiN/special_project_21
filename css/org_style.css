@@ -591,12 +591,12 @@ nav a {
 
 /* ----------------------------workify css--------------------- */
 
-nav .login-btn:hover {
+/* nav .login-btn:hover {
     color: #172738;
 }
 
 nav a:hover {
-    color: #1bbc9b;
+    color: #f3ce52;
     text-decoration: none !important;
 }
 
@@ -605,23 +605,23 @@ nav a::after {
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #1bbc9b;
+    background-color: #f3ce52;
     bottom: -17px;
     left: 0;
     transform: scaleX(0);
     transform-origin: bottom right;
     transition: transform 0.3s;
-}
+} */
 
 /* ------------------------------drdsnhs css ---------------------------- */
 
-/* nav .login-btn:hover {
+nav .login-btn:hover {
     color: #fff;
 }
 
 nav a:hover {
     color: rgb(24, 97, 59, 0.7);
-} */
+}
 
 .active-header {
     color: rgb(27, 188, 155);

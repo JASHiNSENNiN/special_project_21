@@ -225,19 +225,19 @@ function generateJobCard()
                             <div class="wp-graph" id="wp-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
-                        <div class="tab-pane fade active show" id="pro-top-x-div-sel">
+                        <div class="tab-pane fade active " id="pro-top-x-div-sel">
                             <div class="pro-graph" id="pro-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
-                        <div class="tab-pane fade active show" id="ld-top-x-div-sel">
+                        <div class="tab-pane fade active " id="ld-top-x-div-sel">
                             <div class="ld-graph" id="ld-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
-                        <div class="tab-pane fade active show" id="tc-top-x-div-sel">
+                        <div class="tab-pane fade active " id="tc-top-x-div-sel">
                             <div class="tc-graph" id="tc-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
-                        <div class="tab-pane fade active show" id="am-top-x-div-sel">
+                        <div class="tab-pane fade active " id="am-top-x-div-sel">
                             <div class="am-graph" id="am-top-x-div" style="width: 900px; height: 500px;"></div>
                         </div>
 
@@ -253,12 +253,12 @@ function generateJobCard()
 
 
 if (isset($_SESSION['account_type'])) {
-    
+
     $account_type = $_SESSION['account_type'];
-    
+
     $link = "/Account/$account_type";
 } else {
-    
+
     $link = "./";
 }
 ?>
@@ -271,10 +271,10 @@ if (isset($_SESSION['account_type'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Work Immersion | Workify</title>
-    <!-- <title>Work Immersion | DRDSNHS</title> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <!-- <title>Work Immersion | Workify</title> -->
+    <title>Work Immersion | DRDSNHS</title>
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -302,17 +302,17 @@ if (isset($_SESSION['account_type'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
-                <img src="img/logov3.jpg" alt="Logo">
-                <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                <!-- <img src="img/logov3.jpg" alt="Logo">   -->
+                <img src="img/DrRamonLOGO.svg" alt="Logo">
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a> -->
@@ -437,45 +437,45 @@ if (isset($_SESSION['account_type'])) {
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.bar span').hide();
-        $('#bar-five').animate({
-            width: '85%'
-        }, 1000);
-        $('#bar-four').animate({
-            width: '35%'
-        }, 1000);
-        $('#bar-three').animate({
-            width: '20%'
-        }, 1000);
-        $('#bar-two').animate({
-            width: '17%'
-        }, 1000);
-        $('#bar-one').animate({
-            width: '30%'
-        }, 1000);
+        $(document).ready(function() {
+            $('.bar span').hide();
+            $('#bar-five').animate({
+                width: '85%'
+            }, 1000);
+            $('#bar-four').animate({
+                width: '35%'
+            }, 1000);
+            $('#bar-three').animate({
+                width: '20%'
+            }, 1000);
+            $('#bar-two').animate({
+                width: '17%'
+            }, 1000);
+            $('#bar-one').animate({
+                width: '30%'
+            }, 1000);
 
-        setTimeout(function() {
-            $('.bar span').fadeIn('slow');
-        }, 1000);
+            setTimeout(function() {
+                $('.bar span').fadeIn('slow');
+            }, 1000);
 
-    });
+        });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
