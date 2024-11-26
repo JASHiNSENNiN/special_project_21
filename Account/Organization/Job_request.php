@@ -194,7 +194,7 @@ function acceptApplicant($applicant_id)
                                 <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
                                     <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
                                     <?php if ($applicant['status'] === 'accepted') { ?>
-                                        <button type="submit" class="button-4" name="remove_applicant">Remove</button>
+                                        <button type="submit" class="button-5" name="remove_applicant">Remove</button>
                                     <?php } else { ?>
                                         <button type="submit" class="button-9" name="accept_applicant">Accept</button>
                                     <?php } ?>
