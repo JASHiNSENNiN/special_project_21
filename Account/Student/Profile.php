@@ -61,7 +61,13 @@ try {
     $strand = strtoupper($student_profile['strand']);
     $stars = $student_profile['stars'];
     $email = $user['email'];
-    $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
+    $profile_image_path = './uploads/' . $user['profile_image'];
+    if (file_exists($profile_image_path)) {
+        $get_profile_image = $profile_image_path;
+    } else {
+        $get_profile_image = "/image/default.png";
+    }
+    $profile_image = ($get_profile_image === './uploads/') ? './image/default.png' : $get_profile_image;
 
     $sql = "SELECT 
                 AVG(quality_of_work) AS avg_quality_of_work,

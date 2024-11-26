@@ -35,6 +35,7 @@ function drawBasiccom() {
   com_chart.draw(com_data, options);
 }
 // ///////////////////////////////////total strands PIE CART ////////////////////////////////////////
+google.charts.load("current", { packages: ["corechart"] });
 google.charts.setOnLoadCallback(drawChart);
 
 // Make API call to retrieve chart data
