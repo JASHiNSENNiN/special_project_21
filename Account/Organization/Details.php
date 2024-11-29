@@ -203,8 +203,8 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Dashboard</title>
-    <link rel="icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <!-- <link rel="icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <link rel="stylesheet" type="text/css" href="css/Details.css">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -340,8 +340,8 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
     <br>
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
-        <!-- <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p> -->
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
     </footer>
     <script>
         // Total Stars
