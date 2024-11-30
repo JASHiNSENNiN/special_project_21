@@ -581,3 +581,35 @@ input {
   justify-content: center;
   align-items: center;
 }
+
+/* #curve_chart {
+  margin: auto;
+  width: 100%;
+} */
+
+#curve_chart {
+  margin: auto;
+  width: 100%;
+  max-width: 100%; /* Ensure it doesn't exceed container width */
+  height: auto; /* Make sure the height adjusts based on the content */
+}
+
+@media screen and (max-width: 1200px) {
+  #curve_chart {
+    width: 90%; /* Reduce the chart width for medium screens */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #curve_chart {
+    width: 100%; /* Full width on smaller screens */
+    height: auto; /* Maintain responsive height */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #curve_chart {
+    width: 100%; /* Ensure it takes full width on very small screens */
+    height: 300px; /* You can set a fixed height or adjust according to content */
+  }
+}

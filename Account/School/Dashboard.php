@@ -345,28 +345,32 @@ require_once 'show_profile.php';
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Day', 'Joshua Rivera', 'Ronald Olipas'],
-                ['1', 50, 60],
-                ['2', 20, 10],
-                ['3', 40, 25],
-                ['4', 30, 45],
-                ['5', 30, 45]
-            ]);
-
-            var options = {
-                // title: 'Company Performance',
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
+            // JSON data object
+            var chartData = {
+                "data": [
+                    ["Day", "Joshua Rivera", "Ronald Olipas"],
+                    ["1", 50, 60],
+                    ["2", 20, 10],
+                    ["3", 40, 25],
+                    ["4", 30, 45],
+                    ["5", 30, 45]
+                ],
+                "options": {
+                    "curveType": "function",
+                    "legend": {
+                        "position": "bottom"
+                    }
                 }
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            var data = google.visualization.arrayToDataTable(chartData.data);
+            var options = chartData.options;
 
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
             chart.draw(data, options);
         }
     </script>
+
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
