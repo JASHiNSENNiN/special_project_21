@@ -116,11 +116,11 @@ h3 {
     font-size: 80px;
 } */
 
-form {
+/* form {
   display: flex;
   justify-content: center;
-  /* margin-top: 20px; */
-}
+ 
+} */
 
 input[type="text"] {
   width: 70%;
@@ -277,8 +277,10 @@ nav .login-btn:hover {
 }
 
 .bt a:hover {
-  color: #fff;
-  background-color: rgb(37, 216, 180);
+  color: #000;
+  /* background-color: rgb(37, 216, 180); */
+  background-color: rgba(27, 188, 155, 0.1);
+
   font-weight: bold;
 }
 
@@ -287,7 +289,7 @@ nav .login-btn:hover {
 .by a:hover {
   color: #199c81;
   /* color: #347928; */
-  /* background-color: rgba(27, 188, 155, 0.1); */
+  background-color: rgba(27, 188, 155, 0.1);
   font-weight: bold;
 }
 
@@ -1683,15 +1685,87 @@ input[type="file"] {
   border-radius: 2px;
 }
 
-/* ---------------------------------search not found-------------------------------- */
+/* ---------------------------------Uploadfile-------------------------------- */
+.container {
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #fcfcfc;
+}
 
-.globalSearchResultNoFoundFeedbacks {
-  font-size: 30px;
-  padding: 20px;
-  color: #91a1bb;
-  text-align: center;
-  font-family: inherit;
-  background: #f6f7f9;
+.card {
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  width: 600px;
+  height: auto;
+  background-color: #ffffff;
+  padding: 10px 30px 40px;
+}
+
+.card h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.drop_box {
+  margin: 10px 0;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 3px dotted #a3a3a3;
   border-radius: 5px;
-  display: none;
+}
+
+.drop_box h4 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2e2e2e;
+}
+
+.drop_box p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #a3a3a3;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #005af0;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #005af0;
+  padding: 10px 20px;
+  border: none;
+  outline: 1px solid #010101;
+}
+.form input {
+  margin: 10px 0;
+  width: 100%;
+  background-color: #e2e2e2;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+.file-list {
+  margin-top: 20px;
+  list-style: none;
+}
+
+.file-list li {
+  margin-bottom: 10px;
 }
