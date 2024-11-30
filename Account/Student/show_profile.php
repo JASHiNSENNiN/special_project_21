@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
@@ -21,7 +20,7 @@ $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/defaul
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="image/header.png" alt="Logo">
+                <img src="image/logov3.jpg" alt="Logo">
             </a>
         </div>
         <nav class="by">

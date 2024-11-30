@@ -161,6 +161,7 @@ if (isset($_SESSION['email'])) {
                                 <option value="organization">Partner Organization</option>
                             </select>
                             <div id="student-fields" style="display: none;">
+                                <input value="" type="text" placeholder="School Name" id="school-name" name="school-name">
                                 <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn">
                                 <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
                                 <input value="" type="text" placeholder="Middle Name" id="middle-name"
