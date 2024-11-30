@@ -41,7 +41,6 @@ body {
 }
 
 .company-info-boxed .company-info {
-    margin: 0 10px;
     padding: 30px 35px;
     border: none;
     border-radius: 5px;
@@ -591,12 +590,12 @@ nav a {
 
 /* ----------------------------workify css--------------------- */
 
-/* nav .login-btn:hover {
+nav .login-btn:hover {
     color: #172738;
 }
 
 nav a:hover {
-    color: #f3ce52;
+    color: rgb(27, 188, 155);
     text-decoration: none !important;
 }
 
@@ -605,17 +604,19 @@ nav a::after {
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #f3ce52;
+    background-color: rgb(27, 188, 155);
     bottom: -17px;
     left: 0;
     transform: scaleX(0);
     transform-origin: bottom right;
     transition: transform 0.3s;
-} */
+}
+
+/* //////////////////////END ///////////////////////////////////////*/
 
 /* ------------------------------drdsnhs css ---------------------------- */
 
-nav .login-btn:hover {
+/* nav .login-btn:hover {
     color: #fff;
 }
 
@@ -627,7 +628,7 @@ nav a:hover {
     color: rgb(27, 188, 155);
 }
 
-/* nav a::after {
+nav a::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -639,6 +640,8 @@ nav a:hover {
     transform-origin: bottom right;
     transition: transform 0.3s;
 } */
+
+/* //////////////////////END ///////////////////////////////////////*/
 
 nav a:hover::after {
     transform: scaleX(1);
@@ -1748,14 +1751,14 @@ body {
 }
 
 .new_footer_top {
-    padding: 120px 0px 270px;
+    padding: 50px 0px 300px;
     position: relative;
     overflow-x: hidden;
 }
 
 .new_footer_area .footer_bottom {
     padding-top: 5px;
-    padding-bottom: 50px;
+    /* padding-bottom: 50px; */
 }
 
 .footer_bottom {
@@ -1763,7 +1766,7 @@ body {
     font-weight: 300;
     line-height: 20px;
     color: #7f88a6;
-    padding: 27px 0px;
+    /* padding: 27px 0px; */
 }
 
 .new_footer_top .company_widget p {
@@ -1954,9 +1957,9 @@ h6 {
     transform: translateY(63%);
 }
 
-.col-lg-6 p {
+/* .col-lg-6 p {
     transform: translateX(63%);
-}
+} */
 
 @-moz-keyframes myfirst {
     0% {
@@ -2134,6 +2137,10 @@ label.btn {
 
 .row-bordered {
     overflow: hidden;
+}
+
+.row {
+    justify-content: center !important;
 }
 
 .account-settings-fileinput {

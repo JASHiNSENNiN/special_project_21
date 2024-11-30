@@ -7,8 +7,8 @@
 body {
   font-family: "Poppins", sans-serif;
   /* ////////DR RAMON COLOR //// */
-  background-color: #ffe77d;
-  /* background-color: #f2f2f2; */
+  /* background-color: #ffe77d; */
+  background-color: #f2f2f2;
   color: #1c1e21;
 }
 
@@ -174,19 +174,18 @@ main {
   border-radius: 0.5rem;
 }
 
-/* .colm-form .form-container input:focus {
-  border-color: #1bbc9b;
-  box-shadow: 0 0 0 2px #e7f3ff;
-} */
+.colm-form .form-container a:hover {
+  text-decoration: underline;
+}
 
-/* //////////DR RAMON COLOR //////// */
+/* /////////////////////////WORKIFY CSS //////////////// */
 
 .colm-form .form-container input:focus {
-  border-color: #016435;
+  border-color: #1bbc9b;
   box-shadow: 0 0 0 2px #e7f3ff;
 }
 
-/* .colm-form .form-container .btn-login {
+.colm-form .form-container .btn-login {
   background-color: #16a387;
   border: none;
   border-radius: 6px;
@@ -195,62 +194,21 @@ main {
   color: #ffffff;
   font-weight: 700;
   transition: background-color 0.3s ease;
-} */
-
-/* //////////DR RAMON COLOR //////// */
-
-.colm-form .form-container .btn-login {
-  background-color: #016435;
-  border: none;
-  border-radius: 6px;
-  font-size: 20px;
-  padding: 0 16px;
-  color: #ffffff;
-  font-weight: 700;
-  transition: background-color 0.3s ease;
 }
 
-/* .colm-form .form-container .btn-login:hover {
-  background-color: #12836c;
-} */
-
-/* //////////DR RAMON COLOR //////// */
-
 .colm-form .form-container .btn-login:hover {
-  background-color: #044e2c;
+  background-color: #12836c;
 }
 
 .colm-form .form-container a {
-  display: block;
-  color: #016435;
-  font-size: 14px;
-  text-decoration: none;
-  padding: 10px 0 20px;
-}
-
-/* .colm-form .form-container a {
   display: block;
   color: #12836c;
   font-size: 14px;
   text-decoration: none;
   padding: 10px 0 20px;
-} */
-
-/* //////////DR RAMON COLOR //////// */
-
-/* .colm-form .form-container a {
-  display: block;
-  color: #016435;
-  font-size: 14px;
-  text-decoration: none;
-  padding: 10px 0 20px;
-} */
-
-.colm-form .form-container a:hover {
-  text-decoration: underline;
 }
 
-/* .colm-form .form-container .btn-new {
+.colm-form .form-container .btn-new {
   background-color: #16a387;
   border: none;
   border-radius: 6px;
@@ -266,11 +224,41 @@ main {
 
 .colm-form .form-container .btn-new:hover {
   background-color: #12836c;
-} */
+}
+
+/* /////////////////////////////END ///////////////////// */
 
 /* //////////DR RAMON COLOR //////// */
 
-.colm-form .form-container .btn-new {
+/* .colm-form .form-container input:focus {
+  border-color: #016435;
+  box-shadow: 0 0 0 2px #e7f3ff;
+} */
+
+/* .colm-form .form-container .btn-login {
+  background-color: #016435;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  padding: 0 16px;
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+} */
+
+/* .colm-form .form-container .btn-login:hover {
+  background-color: #044e2c;
+} */
+
+/* .colm-form .form-container a {
+  display: block;
+  color: #016435;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 0 20px;
+} */
+
+/* .colm-form .form-container .btn-new {
   background-color: #016435;
   border: none;
   border-radius: 6px;
@@ -286,7 +274,9 @@ main {
 
 .colm-form .form-container .btn-new:hover {
   background-color: #044e2c;
-}
+} */
+
+/* //////////////////////END/////////////////////// */
 
 .colm-form p {
   font-size: 14px;
@@ -363,28 +353,27 @@ main {
   padding: 10px 0 20px;
 }
 
-/* .logo-login {
+.logo-login {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 60%;
   margin-top: 100px;
   margin-bottom: 20px;
-} */
+}
 
 /* ///////DR RAMON CSS/// */
 
-.logo-login {
+/* .logo-login {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   margin-top: 100px;
-}
+} */
 
 /* --------------------------------------------footer--------------------------------------------- */
 
-/* 
 footer {
   position: fixed;
   color: #172738;
@@ -393,11 +382,11 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-} */
+}
 
 /* ////////DR RAMON COLOR //////// */
 
-footer {
+/* footer {
   position: fixed;
   background-color: #016435;
   color: #fff;
@@ -406,7 +395,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-}
+} */
 
 .chek {
   width: 10%;

@@ -201,7 +201,7 @@ function generateJobCard()
 
              <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
         <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;margin: 0px !important; ">Job Evaluation Insight</h4>
+            style="background-color:#172738; color:#fff; padding-left: 10px; padding-right: 10px;margin: 0px !important; ">Job Evaluation Insight</h4>
         <div class="card-graph overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
@@ -271,10 +271,10 @@ if (isset($_SESSION['account_type'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <title>Work Immersion | Workify</title> -->
-    <title>Work Immersion | DRDSNHS</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <title>Work Immersion | Workify</title>
+    <!-- <title>Work Immersion | DRDSNHS</title> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -311,8 +311,8 @@ if (isset($_SESSION['account_type'])) {
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
-                <!-- <img src="img/logov3.jpg" alt="Logo">   -->
-                <img src="img/DrRamonLOGO.svg" alt="Logo">
+                <img src="img/logov3.jpg" alt="Logo">
+                <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a> -->
@@ -366,13 +366,17 @@ if (isset($_SESSION['account_type'])) {
         <div class="new_footer_top">
             <div class="container">
                 <div class="row" style=" gap: 120px !important;">
-                    <div class="col-lg-3 col-md-6">
+                    <a href="index.php">
+                        <img src="img/logov3.jpg" alt="Logo">
+                        <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                    </a>
+                    <!-- <div class="col-lg-3 col-md-6">
                         <a href="index.php">
                             <img src="img/logov3.jpg" alt="Logo">
-                            <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                            <img src="img/DrRamonLOGO.svg" alt="Logo">
                         </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-6">
                         <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s"
                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
                             <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
@@ -398,7 +402,7 @@ if (isset($_SESSION['account_type'])) {
                                 <li><a href="#">Privacy</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="col-lg-3 col-md-6">
                         <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s"
                             style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">

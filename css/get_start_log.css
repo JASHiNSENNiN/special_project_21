@@ -39,23 +39,29 @@ body {
     font-weight: 400;
 } */
 
-/* .overlay-2 {
-    z-index: 0;
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background: #1bbc9b;
-} */
-
-/* ///DR RAMON COLOR ////// */
+/* //////////////////////WORKIFY CSSS/////////////////////////// */
 
 .overlay-2 {
     z-index: 0;
     position: absolute;
     width: 100%;
     height: 100vh;
-    background: #f3ce52;
+    background: #1bbc9b;
 }
+
+/* //////////////////////END/////////////////////////// */
+
+/* ///DR RAMON COLOR ////// */
+
+/* .overlay-2 {
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: #f3ce52;
+} */
+
+/* //////////////////////END/////////////////////////// */
 
 .overlay {
     z-index: 1;
@@ -63,8 +69,8 @@ body {
     width: 100%;
     height: 100vh;
     background: #101010;
-    /* background-image: url("../img/landing-bg.svg"); */
-    background-image: url("../img/bg-dr-ramon.svg");
+    background-image: url("../img/landing-bg.svg");
+    /* background-image: url("../img/bg-dr-ramon.svg"); */
     background-repeat: no-repeat;
     background-size: cover;
 }

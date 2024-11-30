@@ -36,19 +36,25 @@ h3 {
     color: #333;
 }
 
-/* .sfa {
+/* ////////////////WORKIFY CSS/////////////// */
+
+.sfa {
     color: #172738;
+    font-size: 3.5rem;
+    font-weight: 400;
+}
+
+/* /////////////////////////END//////////////// */
+
+/* /////////DR RAMON COLOR /////// */
+
+/* .sfa {
+    color: #016435;
     font-size: 3.5rem;
     font-weight: 400;
 } */
 
-/* /////////DR RAMON COLOR /////// */
-
-.sfa {
-    color: #016435;
-    font-size: 3.5rem;
-    font-weight: 400;
-}
+/* /////////////////////////END//////////////// */
 
 form {
     display: flex;
@@ -65,7 +71,9 @@ input[type="text"] {
     /* border-radius: 4px; */
 }
 
-/* input[type="submit"] {
+/* //////////////////////////WORKIFY/////////////////////// */
+
+input[type="submit"] {
     background-color: #172738;
     color: #fff;
     padding: 10px 15px;
@@ -79,11 +87,13 @@ input[type="submit"]:hover {
     background-color: #fff;
     color: #000;
     border: 1px solid #172738;
-} */
+}
+
+/* /////////////////////////END ///////////////////// */
 
 /* /////////DR RAMON COLOR .////// */
 
-input[type="submit"] {
+/* input[type="submit"] {
     background-color: #016435;
     color: #fff;
     padding: 10px 15px;
@@ -97,7 +107,9 @@ input[type="submit"]:hover {
     background-color: #fff;
     color: #000;
     border: 1px solid #016435;
-}
+} */
+
+/* ///////////////////////END ///////////////////// */
 
 input {
     border: 2px solid hsl(236, 92%, 66%);
@@ -138,8 +150,26 @@ input::placeholder {
     border-radius: 8px;
 }
 
-/* header {
+/* ////////////WORKIFY COLOR /////////// */
+
+header {
     background-color: #08203a;
+    color: #fff;
+    padding-right: 20px;
+    padding-left: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ///////////////////END///////////////////// */
+
+/* ////////////DR RAMON COLOR /////////// */
+
+/* header {
+    background-color: #016435;
     color: #fff;
     padding-right: 20px;
     padding-left: 50px;
@@ -150,19 +180,7 @@ input::placeholder {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 } */
 
-/* ////////////DR RAMON COLOR /////////// */
-
-header {
-    background-color: #016435;
-    color: #fff;
-    padding-right: 20px;
-    padding-left: 50px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-}
+/* ///////////////////END///////////////////// */
 
 .logo {
     display: flex;
@@ -199,7 +217,8 @@ nav a {
     font-weight: 500;
 }
 
-/* 
+/* ///////////////////////////WORKIFY CSS////////////////////////// */
+
 nav .login-btn:hover {
     color: #fff;
 }
@@ -219,11 +238,13 @@ nav a::after {
     transform: scaleX(0);
     transform-origin: bottom right;
     transition: transform 0.3s;
-} */
+}
+
+/* //////////////////////////END/////////////////////// */
 
 /* //////DR RAMON COLOR //////// */
 
-nav .login-btn:hover {
+/* nav .login-btn:hover {
     color: #016435;
 }
 
@@ -247,7 +268,9 @@ nav a::after {
 nav a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
-}
+} */
+
+/* //////////////////////////END/////////////////////// */
 
 /* .login-btn {
             background-color: #1bbc9b;
@@ -282,7 +305,8 @@ nav a:hover::after {
     font-family: inherit;
 }
 
-/* 
+/* ////////////////////////////WORKIFY CSS//////////////////////////// */
+
 .login-btn::before {
     content: "";
     position: absolute;
@@ -295,11 +319,13 @@ nav a:hover::after {
     transition: all 0.3s;
     z-index: -1;
     color: #fff;
-} */
+}
+
+/* ///////////////////////////////END /////////////////////////////// */
 
 /* -----------------------DRDSNHS CSS ---------------------------------- */
 
-.login-btn::before {
+/* .login-btn::before {
     content: "";
     position: absolute;
     left: 0;
@@ -311,7 +337,9 @@ nav a:hover::after {
     transition: all 0.3s;
     z-index: -1;
     color: #fff;
-}
+} */
+
+/* ////////////////////////////END ///////////////////////////////////// */
 
 .login-btn:hover::before {
     transform: translateX(0);

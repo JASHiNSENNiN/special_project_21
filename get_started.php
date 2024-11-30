@@ -104,8 +104,8 @@ if (isset($_SESSION['email'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
     <title>Set Up Account</title>
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <link rel="stylesheet" type="text/css" href="../css/header_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/loginform_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/get_start_log.css">
@@ -143,9 +143,9 @@ if (isset($_SESSION['email'])) {
             <div class="row">
                 <div id="register-form" class="colm-form">
                     <!-- ---------------------------------Logo ---------------------- -->
-                    <img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo">
+                    <!-- <img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo"> -->
 
-                    <!-- <img class="logo-login" src="../img/WORKIFYTEXTLOGO.svg" alt="Logo"> -->
+                    <img class="logo-login" src="../img/WORKIFYTEXTLOGO.svg" alt="Logo">
 
                     <div class="form-container">
                         <form id="setupForm" action="/backend/php/setup_account.php" method="POST"
@@ -161,6 +161,7 @@ if (isset($_SESSION['email'])) {
                                 <option value="organization">Partner Organization</option>
                             </select>
                             <div id="student-fields" style="display: none;">
+                                <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn">
                                 <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
                                 <input value="" type="text" placeholder="Middle Name" id="middle-name"
                                     name="middle-name">

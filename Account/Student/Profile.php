@@ -157,33 +157,33 @@ try {
 
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-    const averages = {
-        avgQualityOfWork: <?= json_encode($avgQualityOfWork) ?>,
-        avgProductivity: <?= json_encode($avgProductivity) ?>,
-        avgProblemSolvingSkills: <?= json_encode($avgProblemSolvingSkills) ?>,
-        avgAttentionToDetail: <?= json_encode($avgAttentionToDetail) ?>,
-        avgInitiative: <?= json_encode($avgInitiative) ?>,
-        avgPunctuality: <?= json_encode($avgPunctuality) ?>,
-        avgAppearance: <?= json_encode($avgAppearance) ?>,
-        avgCommunicationSkills: <?= json_encode($avgCommunicationSkills) ?>,
-        avgRespectfulness: <?= json_encode($avgRespectfulness) ?>,
-        avgAdaptability: <?= json_encode($avgAdaptability) ?>,
-        avgWillingnessToLearn: <?= json_encode($avgWillingnessToLearn) ?>,
-        avgApplicationOfFeedback: <?= json_encode($avgApplicationOfFeedback) ?>,
-        avgSelfImprovement: <?= json_encode($avgSelfImprovement) ?>,
-        avgSkillDevelopment: <?= json_encode($avgSkillDevelopment) ?>,
-        avgKnowledgeApplication: <?= json_encode($avgKnowledgeApplication) ?>,
-        avgTeamParticipation: <?= json_encode($avgTeamParticipation) ?>,
-        avgCooperation: <?= json_encode($avgCooperation) ?>,
-        avgConflictResolution: <?= json_encode($avgConflictResolution) ?>,
-        avgSupportiveness: <?= json_encode($avgSupportiveness) ?>,
-        avgContribution: <?= json_encode($avgContribution) ?>,
-        avgEnthusiasm: <?= json_encode($avgEnthusiasm) ?>,
-        avgDrive: <?= json_encode($avgDrive) ?>,
-        avgResilience: <?= json_encode($avgResilience) ?>,
-        avgCommitment: <?= json_encode($avgCommitment) ?>,
-        avgSelfMotivation: <?= json_encode($avgSelfMotivation) ?>
-    };
+        const averages = {
+            avgQualityOfWork: <?= json_encode($avgQualityOfWork) ?>,
+            avgProductivity: <?= json_encode($avgProductivity) ?>,
+            avgProblemSolvingSkills: <?= json_encode($avgProblemSolvingSkills) ?>,
+            avgAttentionToDetail: <?= json_encode($avgAttentionToDetail) ?>,
+            avgInitiative: <?= json_encode($avgInitiative) ?>,
+            avgPunctuality: <?= json_encode($avgPunctuality) ?>,
+            avgAppearance: <?= json_encode($avgAppearance) ?>,
+            avgCommunicationSkills: <?= json_encode($avgCommunicationSkills) ?>,
+            avgRespectfulness: <?= json_encode($avgRespectfulness) ?>,
+            avgAdaptability: <?= json_encode($avgAdaptability) ?>,
+            avgWillingnessToLearn: <?= json_encode($avgWillingnessToLearn) ?>,
+            avgApplicationOfFeedback: <?= json_encode($avgApplicationOfFeedback) ?>,
+            avgSelfImprovement: <?= json_encode($avgSelfImprovement) ?>,
+            avgSkillDevelopment: <?= json_encode($avgSkillDevelopment) ?>,
+            avgKnowledgeApplication: <?= json_encode($avgKnowledgeApplication) ?>,
+            avgTeamParticipation: <?= json_encode($avgTeamParticipation) ?>,
+            avgCooperation: <?= json_encode($avgCooperation) ?>,
+            avgConflictResolution: <?= json_encode($avgConflictResolution) ?>,
+            avgSupportiveness: <?= json_encode($avgSupportiveness) ?>,
+            avgContribution: <?= json_encode($avgContribution) ?>,
+            avgEnthusiasm: <?= json_encode($avgEnthusiasm) ?>,
+            avgDrive: <?= json_encode($avgDrive) ?>,
+            avgResilience: <?= json_encode($avgResilience) ?>,
+            avgCommitment: <?= json_encode($avgCommitment) ?>,
+            avgSelfMotivation: <?= json_encode($avgSelfMotivation) ?>
+        };
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
@@ -288,8 +288,11 @@ try {
 
                             <tr>
                             <tr>
+                                <td><b>LRN</b></td>
                                 <td><b>Email</b></td>
                             </tr>
+                            <td><input type="number" class="form-control mb-1" autocomplete="off" value=""
+                                    readonly></td>
                             <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $email ?>"
                                     readonly></td>
                             </tr>
@@ -405,9 +408,9 @@ try {
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-    document.getElementById('refreshButton').addEventListener('click', function() {
-        location.reload("card-graph");
-    });
+        document.getElementById('refreshButton').addEventListener('click', function() {
+            location.reload("card-graph");
+        });
     </script>
 
 
