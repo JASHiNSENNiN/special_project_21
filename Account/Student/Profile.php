@@ -324,26 +324,29 @@ try {
     <div class="row-graph">
 
         <h2>Daily Insight</h2>
+        <div class="contaier-graph">
+            <div class="column-graph" style="background-color:#fff;">
+                <div class="container-grap">
+                    <div class="dp-graph" id="dp_chart_div"></div>
+                </div>
+            </div>
 
-        <div class="column-graph" style="background-color:#fff;">
-            <div class="container-grap">
-                <div class="dp-graph" id="dp_chart_div"></div>
+
+            <div class="column-graph" style="background-color:#fff;">
+                <div class="container-grap">
+                    <div class="dp-graph" id="piechart_3d"></div>
+                </div>
             </div>
         </div>
 
 
-        <div class="column-graph" style="background-color:#fff;">
-            <div class="container-grap">
-                <div class="dp-graph" id="piechart_3d"></div>
-            </div>
-        </div>
 
     </div>
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
     <div class="container light-style flex-grow-1 container-p-y"
-        style="padding-left: 0px; padding-right: 0px; max-height: 560px;">
+        style="padding-left: 0px; padding-right: 0px; max-height: 463px;">
         <div class="header-title">
             <h4 class="font-weight-bold py-3 mb-4" style=" color:#fff; padding-left: 10px; padding-right: 10px;">
                 Evaluation Insight
@@ -373,23 +376,23 @@ try {
                 <div class="col-md-9">
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="wp-top-x-div-sel">
-                            <div class="wp-graph" id="wp-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active" id="pro-top-x-div-sel">
-                            <div class="pro-graph" id="pro-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active" id="ld-top-x-div-sel">
-                            <div class="ld-graph" id="ld-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active " id="tc-top-x-div-sel">
-                            <div class="tc-graph" id="tc-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active" id="am-top-x-div-sel">
-                            <div class="am-graph" id="am-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
 

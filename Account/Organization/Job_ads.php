@@ -121,7 +121,7 @@ require_once 'show_profile.php';
                                     href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
                             <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
                         </div>
-                        <button class="button-9" id="show-modal" role="button" type="submit">Submit</button>
+                        <button class="button-9" id="show-modal" role="button" type="submit" autofocus>Submit</button>
                     </div>
                 </div>
             </form>
@@ -230,7 +230,7 @@ require_once 'show_profile.php';
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
+        inputFile1.onchange = function() {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -239,7 +239,7 @@ require_once 'show_profile.php';
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
+        inputFile2.onchange = function() {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>

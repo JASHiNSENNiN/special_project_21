@@ -252,7 +252,7 @@ footer {
   color: #333;
   padding: 20px;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 25px;
   bottom: 0;
 }
 
@@ -334,10 +334,9 @@ footer {
   max-width: 800px;
   /* set the max-width to your liking */
   margin: 0 auto;
-  /* center the div horizontally */
-  padding: 20px;
   /* add some padding to make the div more visible */
   position: relative;
+  padding: 20px;
 }
 
 @media (max-width: 768px) {
@@ -372,13 +371,26 @@ footer {
   padding: 10px;
   height: auto;
   position: relative;
-  /* Should be removed. Only for demonstration */
+}
+
+@media (max-width: 768px) {
+  .column-graph {
+    flex: 0 0 100%;
+    /* Take full width */
+  }
 }
 
 .row-graph {
   margin-left: 150px;
   margin-right: 150px;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1300px) {
+  .row-graph {
+    margin-left: 150px;
+    margin-right: 50px;
+  }
 }
 
 /* Clear floats after the columns */
@@ -402,7 +414,7 @@ footer {
   background-color: #fff;
   column-count: 1;
   column-gap: 40px;
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 5px;
   height: 50%;
 }
@@ -413,6 +425,16 @@ footer {
   margin-left: 150px;
   margin-right: 150px;
   margin-bottom: 50px;
+}
+
+@media (max-width: 1300px) {
+  .row-graph-profile {
+    margin-left: 150px;
+    margin-right: 50px;
+  }
+  .container-grap-left {
+    width: auto !important;
+  }
 }
 
 /* Clear floats after the columns */

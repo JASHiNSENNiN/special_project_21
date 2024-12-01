@@ -16,8 +16,8 @@ function drawStuffam() {
 
   var options = {
     title: "Attitude and Motivation",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: {
       position: "none",
     },
@@ -43,6 +43,10 @@ function drawStuffam() {
   chart.draw(data, options);
 }
 
+window.addEventListener("resize", function () {
+  drawStuffam();
+});
+
 //////////////////////////////////////////////Team work and Collaboration CHART///////////////////////////////////////
 google.charts.load("current", {
   packages: ["bar"],
@@ -61,8 +65,8 @@ function drawStufftc() {
 
   var options = {
     title: "Team work and Collaboration",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: {
       position: "none",
     },
@@ -87,6 +91,9 @@ function drawStufftc() {
   var chart = new google.charts.Bar(document.getElementById("tc-top-x-div"));
   chart.draw(data, options);
 }
+window.addEventListener("resize", function () {
+  drawStufftc();
+});
 
 ///////////////////////////////////////////////Learning and Development CHART///////////////////////////////////////
 google.charts.load("current", {
@@ -106,8 +113,8 @@ function drawStuffld() {
 
   var options = {
     title: "Learning and Development",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: {
       position: "none",
     },
@@ -132,6 +139,9 @@ function drawStuffld() {
   var chart = new google.charts.Bar(document.getElementById("ld-top-x-div"));
   chart.draw(data, options);
 }
+window.addEventListener("resize", function () {
+  drawStuffld();
+});
 ///////////////////////////////////////////////Professionalism CHART///////////////////////////////////////
 google.charts.load("current", {
   packages: ["bar"],
@@ -150,8 +160,8 @@ function drawStuffprof() {
 
   var options = {
     title: "Professionalism",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: {
       position: "none",
     },
@@ -176,6 +186,10 @@ function drawStuffprof() {
   var chart = new google.charts.Bar(document.getElementById("pro-top-x-div"));
   chart.draw(data, options);
 }
+
+window.addEventListener("resize", function () {
+  drawStuffprof();
+});
 ///////////////////////////////////////////////Work Immerssion Experience CHART///////////////////////////////////////
 google.charts.load("current", {
   packages: ["bar"],
@@ -194,8 +208,8 @@ function drawStuff() {
 
   var options = {
     title: "Work Immerssion Experience",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: {
       position: "none",
     },
@@ -221,6 +235,10 @@ function drawStuff() {
   chart.draw(data, options);
 }
 
-google.charts.load("current", {
-  packages: ["corechart"],
+// google.charts.load("current", {
+//   packages: ["corechart"],
+// });
+
+window.addEventListener("resize", function () {
+  drawStuff();
 });

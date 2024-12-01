@@ -45,8 +45,8 @@ function drawStuffam() {
 
   var options = {
     title: "Attitude and Motivation",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: { position: "none" },
     chart: {
       title: "Attitude and Motivation",
@@ -64,7 +64,9 @@ function drawStuffam() {
   var chart = new google.charts.Bar(document.getElementById("am-top-x-div"));
   chart.draw(data, options);
 }
-
+window.addEventListener("resize", function () {
+  drawStufftc();
+});
 //////////////////////////////////////////////Team work and Collaboration CHART///////////////////////////////////////
 google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStufftc);
@@ -81,8 +83,8 @@ function drawStufftc() {
 
   var options = {
     title: "Team work and Collaboration",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: { position: "none" },
     chart: {
       title: "Team work and Collaboration",
@@ -100,7 +102,9 @@ function drawStufftc() {
   var chart = new google.charts.Bar(document.getElementById("tc-top-x-div"));
   chart.draw(data, options);
 }
-
+window.addEventListener("resize", function () {
+  drawStufftc();
+});
 ///////////////////////////////////////////////Learning and Development CHART///////////////////////////////////////
 google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStuffld);
@@ -108,26 +112,26 @@ google.charts.setOnLoadCallback(drawStuffld);
 function drawStuffld() {
   var data = new google.visualization.arrayToDataTable([
     ["Category", "Performance"],
-    ["Willingness to Learn", averages.avgWillingnessToLearn],
-    ["Application of Feedback", averages.avgApplicationOfFeedback],
-    ["Self Improvement", averages.avgSelfImprovement],
-    ["Skill Development", averages.avgSkillDevelopment],
-    ["Knowledge Application", averages.avgKnowledgeApplication],
+    ["Willingness to Learn", averages.avgWillingnessToLearn || 0],
+    ["Application of Feedback", averages.avgApplicationOfFeedback || 0],
+    ["Self Improvement", averages.avgSelfImprovement || 0],
+    ["Skill Development", averages.avgSkillDevelopment || 0],
+    ["Knowledge Application", averages.avgKnowledgeApplication || 0],
   ]);
 
   var options = {
     title: "Learning and Development",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: { position: "none" },
     chart: {
       title: "Learning and Development",
       subtitle: "Student learning and development from the work immersion",
     },
-    bars: "horizontal", // Required for Material Bar Charts.
+    bars: "horizontal",
     axes: {
       x: {
-        0: { side: "top", label: "Performance" }, // Top x-axis.
+        0: { side: "top", label: "Performance" },
       },
     },
     bar: { groupWidth: "90%" },
@@ -136,6 +140,11 @@ function drawStuffld() {
   var chart = new google.charts.Bar(document.getElementById("ld-top-x-div"));
   chart.draw(data, options);
 }
+
+// Redraw chart on window resize
+window.addEventListener("resize", function () {
+  drawStuffld();
+});
 ///////////////////////////////////////////////Professionalism CHART///////////////////////////////////////
 google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStuffprof);
@@ -143,26 +152,26 @@ google.charts.setOnLoadCallback(drawStuffprof);
 function drawStuffprof() {
   var data = new google.visualization.arrayToDataTable([
     ["Category", "Performance"],
-    ["Punctuality", averages.avgPunctuality],
-    ["Appearance", averages.avgAppearance],
-    ["Communication Skills", averages.avgCommunicationSkills],
-    ["Respectfulness", averages.avgRespectfulness],
-    ["Adaptability", averages.avgAdaptability],
+    ["Punctuality", averages.avgPunctuality || 0],
+    ["Appearance", averages.avgAppearance || 0],
+    ["Communication Skills", averages.avgCommunicationSkills || 0],
+    ["Respectfulness", averages.avgRespectfulness || 0],
+    ["Adaptability", averages.avgAdaptability || 0],
   ]);
 
   var options = {
     title: "Professionalism",
-    height: 400,
-    width: 700,
+    height: "100%",
+    width: "100%",
     legend: { position: "none" },
     chart: {
       title: "Professionalism",
       subtitle: "Student professionalism from the work immersion",
     },
-    bars: "horizontal", // Required for Material Bar Charts.
+    bars: "horizontal",
     axes: {
       x: {
-        0: { side: "top", label: "Performance" }, // Top x-axis.
+        0: { side: "top", label: "Performance" },
       },
     },
     bar: { groupWidth: "90%" },
@@ -171,6 +180,11 @@ function drawStuffprof() {
   var chart = new google.charts.Bar(document.getElementById("pro-top-x-div"));
   chart.draw(data, options);
 }
+
+// Redraw chart on window resize
+window.addEventListener("resize", function () {
+  drawStuffprof();
+});
 ///////////////////////////////////////////////WORK PERFORMANCE CHART///////////////////////////////////////
 google.charts.load("current", {
   packages: ["bar"],
@@ -180,17 +194,17 @@ google.charts.setOnLoadCallback(drawStuff);
 function drawStuff() {
   var data = new google.visualization.arrayToDataTable([
     ["Category", "Performance"],
-    ["Quality of Work", averages.avgQualityOfWork],
-    ["Productivity", averages.avgProductivity],
-    ["Problem Solving Skills", averages.avgProblemSolvingSkills],
-    ["Attention to Detail", averages.avgAttentionToDetail],
-    ["Initiative", averages.avgInitiative],
+    ["Quality of Work", averages.avgQualityOfWork || 0],
+    ["Productivity", averages.avgProductivity || 0],
+    ["Problem Solving Skills", averages.avgProblemSolvingSkills || 0],
+    ["Attention to Detail", averages.avgAttentionToDetail || 0],
+    ["Initiative", averages.avgInitiative || 0],
   ]);
 
   var options = {
     title: "Work performance",
-    height: 400,
-    width: 700,
+    height: "100%", // Set height to 100%
+    width: "100%", // Set width to 100%
     legend: {
       position: "none",
     },
@@ -216,8 +230,9 @@ function drawStuff() {
   chart.draw(data, options);
 }
 
-google.charts.load("current", {
-  packages: ["corechart"],
+// Redraw chart on window resize
+window.addEventListener("resize", function () {
+  drawStuff();
 });
 
 // ///////////////////////////////////PIE CART ////////////////////////////////////////
@@ -272,8 +287,8 @@ function drawChart() {
   console.log("Total Attitude and Motivation:", totalAttitudeAndMotivation);
   var options = {
     title: "Total Work Performance",
-    height: 250,
-    width: 500,
+    height: "100%",
+    width: "100%",
     is3D: true,
   };
 
@@ -281,6 +296,11 @@ function drawChart() {
     document.getElementById("piechart_3d")
   );
   chart.draw(data, options);
+  window.addEventListener("resize", function () {
+    if (chart) {
+      drawChart();
+    }
+  });
 }
 // ///////////////////////////////////DAILY PERFORMACE CART ////////////////////////////////////////
 google.charts.load("current", { packages: ["corechart", "line"] });
@@ -366,8 +386,8 @@ function drawBasicdp() {
 
   var options = {
     title: "Daily Performance",
-    height: 250,
-    width: 500,
+    height: "100%",
+    width: "100%",
     hAxis: {
       title: "Day",
     },
@@ -382,3 +402,6 @@ function drawBasicdp() {
 
   dp_chart.draw(dp_data, options);
 }
+window.addEventListener("resize", function () {
+  drawBasicdp();
+});

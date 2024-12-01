@@ -201,7 +201,7 @@ function generateJobCard()
 
              <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
         <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#18613b; color:#fff; padding-left: 10px; padding-right: 10px;margin: 0px !important; ">Job Evaluation Insight</h4>
+            style="background-color:#172738; color:#fff; padding-left: 10px; padding-right: 10px;margin: 0px !important; ">Job Evaluation Insight</h4>
         <div class="card-graph overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
@@ -222,23 +222,23 @@ function generateJobCard()
                 <div class="col-md-9">
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="wp-top-x-div-sel">
-                            <div class="wp-graph" id="wp-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active " id="pro-top-x-div-sel">
-                            <div class="pro-graph" id="pro-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active " id="ld-top-x-div-sel">
-                            <div class="ld-graph" id="ld-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active " id="tc-top-x-div-sel">
-                            <div class="tc-graph" id="tc-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active " id="am-top-x-div-sel">
-                            <div class="am-graph" id="am-top-x-div" style="width: 900px; height: 500px;"></div>
+                            <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
 
