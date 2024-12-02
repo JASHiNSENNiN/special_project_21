@@ -30,82 +30,82 @@
 //do not delete this
 
 ///////////////////////////////////////////////attitude and motivation CHART///////////////////////////////////////
-google.charts.load("current", { packages: ["bar"] });
-google.charts.setOnLoadCallback(drawStuffam);
+// google.charts.load("current", { packages: ["bar"] });
+// google.charts.setOnLoadCallback(drawStuffam);
 
-function drawStuffam() {
-  var data = new google.visualization.arrayToDataTable([
-    ["Category", "Performance"],
-    ["Enthusiasm", averages.avgEnthusiasm],
-    ["Drive", averages.avgDrive],
-    ["Resilience", averages.avgResilience],
-    ["Commitment", averages.avgCommitment],
-    ["Self Motivation", averages.avgSelfMotivation],
-  ]);
+// function drawStuffam() {
+//   var data = new google.visualization.arrayToDataTable([
+//     ["Category", "Performance"],
+//     ["Enthusiasm", averages.avgEnthusiasm],
+//     ["Drive", averages.avgDrive],
+//     ["Resilience", averages.avgResilience],
+//     ["Commitment", averages.avgCommitment],
+//     ["Self Motivation", averages.avgSelfMotivation],
+//   ]);
 
-  var options = {
-    title: "Attitude and Motivation",
-    height: "100%",
-    width: "100%",
-    legend: { position: "none" },
-    chart: {
-      title: "Attitude and Motivation",
-      subtitle: "Student attitude and motivation from the work immersion",
-    },
-    bars: "horizontal",
-    axes: {
-      x: {
-        0: { side: "top", label: "Performance" },
-      },
-    },
-    bar: { groupWidth: "90%" },
-  };
+//   var options = {
+//     title: "Attitude and Motivation",
+//     height: "100%",
+//     width: "100%",
+//     legend: { position: "none" },
+//     chart: {
+//       title: "Attitude and Motivation",
+//       subtitle: "Student attitude and motivation from the work immersion",
+//     },
+//     bars: "horizontal",
+//     axes: {
+//       x: {
+//         0: { side: "top", label: "Performance" },
+//       },
+//     },
+//     bar: { groupWidth: "90%" },
+//   };
 
-  var chart = new google.charts.Bar(document.getElementById("am-top-x-div"));
-  chart.draw(data, options);
-}
-window.addEventListener("resize", function () {
-  drawStufftc();
-});
+//   var chart = new google.charts.Bar(document.getElementById("am-top-x-div"));
+//   chart.draw(data, options);
+// }
+// window.addEventListener("resize", function () {
+//   drawStufftc();
+// });
 //////////////////////////////////////////////Team work and Collaboration CHART///////////////////////////////////////
-google.charts.load("current", { packages: ["bar"] });
-google.charts.setOnLoadCallback(drawStufftc);
+// google.charts.load("current", { packages: ["bar"] });
+// google.charts.setOnLoadCallback(drawStufftc);
 
-function drawStufftc() {
-  var data = new google.visualization.arrayToDataTable([
-    ["Category", "Performance"],
-    ["Team Participation", averages.avgTeamParticipation],
-    ["Cooperation", averages.avgCooperation],
-    ["Conflict Resolution", averages.avgConflictResolution],
-    ["Supportiveness", averages.avgSupportiveness],
-    ["Contribution", averages.avgContribution],
-  ]);
+// function drawStufftc() {
+//   var data = new google.visualization.arrayToDataTable([
+//     ["Category", "Performance"],
+//     ["Team Participation", averages.avgTeamParticipation],
+//     ["Cooperation", averages.avgCooperation],
+//     ["Conflict Resolution", averages.avgConflictResolution],
+//     ["Supportiveness", averages.avgSupportiveness],
+//     ["Contribution", averages.avgContribution],
+//   ]);
 
-  var options = {
-    title: "Team work and Collaboration",
-    height: "100%",
-    width: "100%",
-    legend: { position: "none" },
-    chart: {
-      title: "Team work and Collaboration",
-      subtitle: "Student team work and collaboration from the work immersion",
-    },
-    bars: "horizontal", // Required for Material Bar Charts.
-    axes: {
-      x: {
-        0: { side: "top", label: "Performance" }, // Top x-axis.
-      },
-    },
-    bar: { groupWidth: "90%" },
-  };
+//   var options = {
+//     title: "Team work and Collaboration",
+//     height: "100%",
+//     width: "100%",
+//     legend: { position: "none" },
+//     chart: {
+//       title: "Team work and Collaboration",
+//       subtitle: "Student team work and collaboration from the work immersion",
+//     },
+//     bars: "horizontal",
+//     axes: {
+//       x: {
+//         0: { side: "top", label: "Performance" },
+//       },
+//     },
+//     bar: { groupWidth: "90%" },
+//   };
 
-  var chart = new google.charts.Bar(document.getElementById("tc-top-x-div"));
-  chart.draw(data, options);
-}
-window.addEventListener("resize", function () {
-  drawStufftc();
-});
-///////////////////////////////////////////////Learning and Development CHART///////////////////////////////////////
+//   var chart = new google.charts.Bar(document.getElementById("tc-top-x-div"));
+//   chart.draw(data, options);
+// }
+// window.addEventListener("resize", function () {
+//   drawStufftc();
+// });
+///////////////////////////////////////////////Social Skills CHART///////////////////////////////////////
 google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStuffld);
 
@@ -120,13 +120,13 @@ function drawStuffld() {
   ]);
 
   var options = {
-    title: "Learning and Development",
+    title: "Social skills",
     height: "100%",
     width: "100%",
     legend: { position: "none" },
     chart: {
-      title: "Learning and Development",
-      subtitle: "Student learning and development from the work immersion",
+      title: "Social skills",
+      subtitle: "Student social skills from the work immersion",
     },
     bars: "horizontal",
     axes: {
@@ -145,7 +145,7 @@ function drawStuffld() {
 window.addEventListener("resize", function () {
   drawStuffld();
 });
-///////////////////////////////////////////////Professionalism CHART///////////////////////////////////////
+///////////////////////////////////////////////WORK SKILLS CHART///////////////////////////////////////
 google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStuffprof);
 
@@ -160,13 +160,13 @@ function drawStuffprof() {
   ]);
 
   var options = {
-    title: "Professionalism",
+    title: "Work skills",
     height: "100%",
     width: "100%",
     legend: { position: "none" },
     chart: {
-      title: "Professionalism",
-      subtitle: "Student professionalism from the work immersion",
+      title: "Work skills",
+      subtitle: "Student work skills from the work immersion",
     },
     bars: "horizontal",
     axes: {
@@ -185,7 +185,7 @@ function drawStuffprof() {
 window.addEventListener("resize", function () {
   drawStuffprof();
 });
-///////////////////////////////////////////////WORK PERFORMANCE CHART///////////////////////////////////////
+///////////////////////////////////////////////WORK HABITS CHART///////////////////////////////////////
 google.charts.load("current", {
   packages: ["bar"],
 });
@@ -202,15 +202,15 @@ function drawStuff() {
   ]);
 
   var options = {
-    title: "Work performance",
+    title: "Work habits",
     height: "100%", // Set height to 100%
     width: "100%", // Set width to 100%
     legend: {
       position: "none",
     },
     chart: {
-      title: "Work Performance",
-      subtitle: "Student work performance from the work immersion",
+      title: "Work habits",
+      subtitle: "Student work habits from the work immersion",
     },
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
@@ -327,61 +327,6 @@ function drawBasicdp() {
     [12, 30],
     [13, 40],
     [14, 42],
-    [15, 47],
-    [16, 44],
-    [17, 48],
-    [18, 52],
-    [19, 54],
-    [20, 42],
-    [21, 55],
-    [22, 56],
-    [23, 57],
-    [24, 60],
-    [25, 50],
-    [26, 52],
-    [27, 51],
-    [28, 49],
-    [29, 53],
-    [30, 55],
-    [31, 60],
-    [32, 61],
-    [33, 59],
-    [34, 62],
-    [35, 65],
-    [36, 62],
-    [37, 58],
-    [38, 55],
-    [39, 61],
-    [40, 64],
-    [41, 65],
-    [42, 63],
-    [43, 66],
-    [44, 67],
-    [45, 69],
-    [46, 69],
-    [47, 70],
-    [48, 72],
-    [49, 68],
-    [50, 66],
-    [51, 65],
-    [52, 67],
-    [53, 70],
-    [54, 71],
-    [55, 72],
-    [56, 73],
-    [57, 75],
-    [58, 70],
-    [59, 68],
-    [60, 64],
-    [61, 60],
-    [62, 65],
-    [63, 67],
-    [64, 68],
-    [65, 69],
-    [66, 70],
-    [67, 72],
-    [68, 75],
-    [69, 80],
   ]);
 
   var options = {
