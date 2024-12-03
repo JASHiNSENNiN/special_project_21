@@ -248,6 +248,9 @@ try {
                     <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
                     <br>
 
+                    <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info">09723207876</span>
+                    <br>
+
                     <a style=" text-decoration: none; display:contents ;" href="Settings.php">
                         <button class="edit-button">
                             <svg class="edit-svgIcon" viewBox="0 0 512 512">
@@ -336,13 +339,47 @@ try {
 
     <div class="row-graph">
 
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+                    <h2 class="title-resume">Daily Insight</h2>
+                    <span class="description-resume">The line chart analyzes student daily performance in work immersion, and the pie chart displays the distribution of performance levels.</span>
+
+
+                    <div class="container-grap">
+                        <div class="dp-graph" id="piechart_3d"></div>
+                    </div>
+
+
+
+                    <div class="container-grap">
+                        <div class="dp-graph" id="dp_chart_div"></div>
+
+                    </div>
+
+                </article>
+                <article class="app-content__widget app-content__widget--secondary">
+                    widget - secondary
+                    <hr>
+                </article>
+                <article class="app-content__widget app-content__widget--tertiary">
+                    widget - tertiary
+                    <hr>
+                </article>
+            </main>
+        </div>
+
+
+
+
+        <!-- 
         <h2>Daily Insight</h2>
         <div class="contaier-graph">
             <div class="column-graph" style="background-color:#fff;">
                 <div class="container-grap">
                     <div class="dp-graph" id="dp_chart_div"></div>
 
-                    <!-- <div id="subtitle" style="text-align: center; font-size: 16px; margin-top: -20px;">The line graph depicts the daily performance of a work immersion student, showing fluctuations in task completion rates and productivity over the course of a day.</div> -->
                 </div>
             </div>
 
@@ -352,7 +389,7 @@ try {
                     <div class="dp-graph" id="piechart_3d"></div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 

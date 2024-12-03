@@ -416,7 +416,9 @@ footer {
   column-gap: 40px;
   /* padding: 20px; */
   border-radius: 5px;
-  height: 50%;
+  height: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .container-grap p {
@@ -493,7 +495,7 @@ footer {
 }
 
 .container-grap-right {
-  background-image: url("/img/profile-bg.jpg");
+  background-image: url("/img/profile-bg.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -870,17 +872,18 @@ img {
   color: #ffffff;
 } */
 
-.logout .logout {
+.logout {
   color: red !important;
 }
 
-.logout:hover {
-  background-color: rgba(255, 0, 0, 0.144);
+.logout :hover {
+  background-color: rgba(255, 0, 0, 0.144) !important;
+  text-decoration-line: none !important;
 }
 
-a:hover {
+/* a:hover {
   text-decoration-line: none;
-}
+} */
 
 /* From Uiverse.io by aaronross1 */
 
@@ -946,4 +949,94 @@ a:hover {
   opacity: 1;
   transform: translateY(0px);
   transition-duration: 0.3s;
+}
+
+html {
+  box-sizing: inherit;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.dashboard-body {
+  position: relative;
+  background: #ddd;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0rem 1fr;
+  grid-template-areas: "nav main";
+}
+
+@media (max-width: 950px) {
+  .dashboard-body {
+    grid-template-areas: "main main";
+  }
+}
+
+.dashboard__main {
+  grid-area: main;
+}
+
+.app-content {
+  /* padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem; */
+  display: grid;
+  grid-gap: 2.5rem;
+  grid-template-columns: 2fr 1.2fr;
+  grid-template-rows: 1fr 1.5fr;
+  grid-template-areas: "widget-p widget-s" "widget-p widget-t";
+  background-color: #fff;
+}
+
+@media (max-width: 950px) {
+  .app-content {
+    overflow-y: scroll;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 200px;
+    grid-template-areas: "widget-p widget-p" "widget-s widget-t";
+  }
+}
+
+@media (max-width: 600px) {
+  .app-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 250px 250px;
+    grid-template-areas: "widget-p" "widget-s" "widget-t";
+  }
+}
+
+.app-content__widget {
+  /* background: #2ecc40; */
+  border-radius: 0.5rem;
+}
+
+.app-content__widget--primary {
+  /* background: #39cccc; */
+  grid-area: widget-p;
+  padding: 20px;
+}
+
+.app-content__widget--secondary {
+  grid-area: widget-s;
+}
+
+.app-content__widget--tertiary {
+  grid-area: widget-t;
+}
+
+/* ///////////////////////////////RESUME CSS/////////////////////////////////////// */
+
+.title-resume {
+  font-size: 24px;
+  color: #2e3849;
+}
+
+.description-resume {
+  color: #5a6881;
+  font-size: 16px;
+  font-weight: 400;
 }

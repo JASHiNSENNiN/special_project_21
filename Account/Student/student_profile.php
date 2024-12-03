@@ -1,6 +1,6 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 };
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
@@ -58,10 +58,11 @@ $profile_div = '<header class="nav-header">
         <a href="Settings.php"> Settings & privacy</a>
       </div>
       <hr>
-      <div class="submenu-item logout">
-        <a  href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>
+      <a class="logout"  href="' . '/backend/php/logout.php' . '">
+      <div class="submenu-item ">
+        <i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out
       
-      </div>
+      </div></a>
     
      
     </div>

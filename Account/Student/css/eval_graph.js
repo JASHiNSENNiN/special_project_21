@@ -237,54 +237,51 @@ window.addEventListener("resize", function () {
 
 // ///////////////////////////////////PIE CART ////////////////////////////////////////
 google.charts.setOnLoadCallback(drawChart);
-var totalWorkPerformance =
+var totalWorkHabits =
   Number(averages.avgQualityOfWork || 0) +
   Number(averages.avgProductivity || 0) +
   Number(averages.avgProblemSolvingSkills || 0);
 
-var totalProfessionalism =
+var totalWorkSkills =
   Number(averages.avgPunctuality || 0) +
   Number(averages.avgAppearance || 0) +
   Number(averages.avgCommunicationSkills || 0) +
   Number(averages.avgRespectfulness || 0);
 
-var totalLearningAndDevelopment =
+var totalSocialSkills =
   Number(averages.avgWillingnessToLearn || 0) +
   Number(averages.avgApplicationOfFeedback || 0) +
   Number(averages.avgSelfImprovement || 0) +
   Number(averages.avgSkillDevelopment || 0) +
   Number(averages.avgKnowledgeApplication || 0);
 
-var totalTeamWorkAndCollaboration =
-  Number(averages.avgTeamParticipation || 0) +
-  Number(averages.avgCooperation || 0) +
-  Number(averages.avgConflictResolution || 0) +
-  Number(averages.avgSupportiveness || 0);
+// var totalTeamWorkAndCollaboration =
+//   Number(averages.avgTeamParticipation || 0) +
+//   Number(averages.avgCooperation || 0) +
+//   Number(averages.avgConflictResolution || 0) +
+//   Number(averages.avgSupportiveness || 0);
 
-var totalAttitudeAndMotivation =
-  Number(averages.avgEnthusiasm || 0) +
-  Number(averages.avgDrive || 0) +
-  Number(averages.avgResilience || 0) +
-  Number(averages.avgCommitment || 0) +
-  Number(averages.avgSelfMotivation || 0);
+// var totalAttitudeAndMotivation =
+//   Number(averages.avgEnthusiasm || 0) +
+//   Number(averages.avgDrive || 0) +
+//   Number(averages.avgResilience || 0) +
+//   Number(averages.avgCommitment || 0) +
+//   Number(averages.avgSelfMotivation || 0);
 
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ["Category", "Score"],
-    ["Work Performance", totalWorkPerformance],
-    ["Professionalism", totalProfessionalism],
-    ["Learning and Development", totalLearningAndDevelopment],
-    ["Team Work and Collaboration", totalTeamWorkAndCollaboration],
-    ["Attitude and Motivation", totalAttitudeAndMotivation],
+    ["Work Habits", totalWorkHabits],
+    ["Work Skills ", totalWorkSkills],
+    ["Social Skils", totalSocialSkills],
+    // ["Team Work and Collaboration", totalTeamWorkAndCollaboration],
+    // ["Attitude and Motivation", totalAttitudeAndMotivation],
   ]);
-  console.log("Total Work Performance:", totalWorkPerformance);
-  console.log("Total Professionalism:", totalProfessionalism);
-  console.log("Total Learning and Development:", totalLearningAndDevelopment);
-  console.log(
-    "Total Team Work and Collaboration:",
-    totalTeamWorkAndCollaboration
-  );
-  console.log("Total Attitude and Motivation:", totalAttitudeAndMotivation);
+  console.log("Total Work Habits:", totalWorkHabits);
+  console.log("Total Work Skills:", totalWorkSkills);
+  console.log("Total Social Skils:", totalSocialSkills);
+  // console.log("Total Team Work and Collaboration:",totalTeamWorkAndCollaboration);
+  // console.log("Total Attitude and Motivation:", totalAttitudeAndMotivation);
   var options = {
     title: "Total Work Performance",
     height: "100%",
