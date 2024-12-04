@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
 
@@ -93,7 +94,7 @@ if (isset($_SESSION['email'])) {
 
 <head>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/backend/php/ajax/checkAccType.php', true);
             xhr.send();
@@ -113,6 +114,7 @@ if (isset($_SESSION['email'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
     <script src="/backend/js/register.js"></script>
     <script src="/js/get_start_log.js"></script>
+
 
     <link
         href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,700,700i,800,800i,900,900i"
@@ -160,8 +162,10 @@ if (isset($_SESSION['email'])) {
                                 <option value="school">School</option>
                                 <option value="organization">Partner Organization</option>
                             </select>
+
                             <div id="student-fields" style="display: none;">
-                                <input value="" type="text" placeholder="School Name" id="school-name" name="school-name">
+                                <input value="" type="text" placeholder="School Name" id="school-name"
+                                    name="school-name">
                                 <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn">
                                 <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
                                 <input value="" type="text" placeholder="Middle Name" id="middle-name"
@@ -174,12 +178,34 @@ if (isset($_SESSION['email'])) {
                                 </select>
                                 <select name="strand" id="strand">
                                     <option value="" selected disabled hidden class="null-type">Strand:</option>
-                                    <option value="stem">STEM</option>
-                                    <option value="humss">HUMSS</option>
-                                    <option value="abm">ABM</option>
-                                    <option value="gas">GAS</option>
-                                    <option value="tvl">TVL</option>
+                                    <option value="STEM">STEM</option>
+                                    <option value="HUMSS">HUMSS</option>
+                                    <option value="ABM">ABM</option>
+                                    <option value="GAS">GAS</option>
+                                    <option value="TVL">TVL</option>
                                 </select>
+                                <br>
+                                <hr>
+                                <div class="container1">
+                                    <div class="card">
+                                        <h3>Upload Files</h3>
+                                        <div class="drop_box">
+                                            <header>
+                                                <h4>Select Files here</h4>
+                                            </header>
+                                            <p>Upload the following requirements: Resume, Application
+                                                Letter,
+                                                Barangay, Police, Mayor's Clearance, Medical
+                                                Certificate, Job Interview, Insurance Policy, Parent's Consent</red>
+                                            </p>
+                                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                                            <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="fileID"
+                                                multiple>
+                                            <button class="btn">Choose Files</button>
+                                        </div>
+                                        <ul class="file-list"></ul>
+                                    </div>
+                                </div>
                             </div>
                             <div id="school-fields" style="display: none;">
                                 <input value="" type="text" placeholder="School Name" id="school-name"
@@ -190,11 +216,11 @@ if (isset($_SESSION['email'])) {
                                     name="organization-name">
                                 <select name="strand-focus" id="strand-focus">
                                     <option value="" selected disabled hidden class="null-type">Strand:</option>
-                                    <option value="stem">STEM</option>
-                                    <option value="humss">HUMSS</option>
-                                    <option value="abm">ABM</option>
-                                    <option value="gas">GAS</option>
-                                    <option value="tvl">TVL</option>
+                                    <option value="STEM">STEM</option>
+                                    <option value="HUMSS">HUMSS</option>
+                                    <option value="ABM">ABM</option>
+                                    <option value="GAS">GAS</option>
+                                    <option value="TVL">TVL</option>
                                 </select>
                             </div>
                             <nav>
@@ -255,6 +281,58 @@ if (isset($_SESSION['email'])) {
             schoolFields.style.display = "none";
             partnerFields.style.display = "none";
         }
+    }
+</script>
+<script type="text/javascript">
+    const dropArea = document.querySelector(".drop_box"),
+        button = dropArea.querySelector("button"),
+        dragText = dropArea.querySelector("header"),
+        input = dropArea.querySelector("input");
+    let files = [];
+
+    button.onclick = () => {
+        input.click();
+    };
+
+    input.addEventListener("change", function (e) {
+        files = e.target.files; // Get the selected files
+        const fileListElement = document.querySelector(".file-list");
+        fileListElement.innerHTML = ''; // Clear the previous file list
+
+        // Display each selected file
+        Array.from(files).forEach(file => {
+            let fileItem = document.createElement('li');
+            fileItem.innerHTML = `
+      <h4>${file.name}</h4>
+      <form action="" method="post">
+        <div class="form">
+          <input type="email" placeholder="Enter email to upload file" required>
+          <button type="button" class="btn" onclick="uploadFile('${file.name}')">Upload</button>
+        </div>
+      </form>
+    `;
+            fileListElement.appendChild(fileItem);
+        });
+    });
+
+    // Simulate the upload process and display a success message
+    function uploadFile(fileName) {
+        const fileListElement = document.querySelector(".file-list");
+
+        // Find the list item of the file being uploaded
+        const fileItem = Array.from(fileListElement.children).find(item => item.querySelector('h4').textContent ===
+            fileName);
+
+        // Add a success message below the file item
+        const successMessage = document.createElement('p');
+        successMessage.classList.add('file-uploaded');
+        successMessage.textContent = `${fileName} uploaded successfully!`;
+        fileItem.appendChild(successMessage);
+
+        // Disable the upload button to prevent multiple submissions
+        const uploadButton = fileItem.querySelector('button');
+        uploadButton.disabled = true;
+        uploadButton.textContent = "Uploaded";
     }
 </script>
 

@@ -1687,7 +1687,7 @@ input[type="file"] {
 
 /* ---------------------------------Uploadfile-------------------------------- */
 .container {
-  height: 100vh;
+  height: 70vh;
   width: 100%;
   align-items: center;
   display: flex;
