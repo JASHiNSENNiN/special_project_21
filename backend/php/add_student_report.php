@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $work_id = $_SESSION['current_work'];
 
         $stmt = $conn->prepare("INSERT INTO Organization_Evaluation (
-            organization_id, job_id, quality_of_experience, productivity_of_tasks, 
+            organization_id, evaluator_id, job_id, quality_of_experience, productivity_of_tasks, 
             problem_solving_opportunities, attention_to_detail_in_guidance, 
             initiative_encouragement, punctuality_expectations, 
             professional_appearance_standards, communication_training, 
@@ -78,10 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             supportiveness_among_peers, contribution_to_team_success, 
             enthusiasm_for_tasks, drive_to_achieve_goals, 
             resilience_to_challenges, commitment_to_experience, 
-            self_motivation_levels) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            self_motivation_levels) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $stmt->bind_param("iisssssssssssssssssssssssss", 
-            $partner_profile_id, $work_id, $quality_of_experience, $productivity_of_tasks, 
+        $stmt->bind_param("iiisssssssssssssssssssssssss", 
+            $partner_profile_id,  $_SESSION['user_id'], $work_id, $quality_of_experience, $productivity_of_tasks, 
             $problem_solving_opportunities, $attention_to_detail_in_guidance, 
             $initiative_encouragement, $punctuality_expectations, 
             $professional_appearance_standards, $communication_training, 
