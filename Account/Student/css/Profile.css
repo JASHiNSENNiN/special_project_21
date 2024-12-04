@@ -1028,8 +1028,6 @@ body {
   grid-area: widget-t;
 }
 
-/* ///////////////////////////////RESUME CSS/////////////////////////////////////// */
-
 .title-resume {
   font-size: 24px;
   color: #2e3849;
@@ -1039,4 +1037,11 @@ body {
   color: #5a6881;
   font-size: 16px;
   font-weight: 400;
+}
+
+.eval-graph {
+  border: solid gray 1px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

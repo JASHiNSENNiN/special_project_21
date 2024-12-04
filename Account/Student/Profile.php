@@ -357,6 +357,17 @@ try {
                         <div class="dp-graph" id="dp_chart_div"></div>
 
                     </div>
+                    <br>
+                    <br>
+
+                    <!-- <h2 class="title-resume">Evaluation</h2>
+                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits, skills, and social skills during immersion.</span>
+                    <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
+                    <div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
+                    <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div> -->
+
+
+
 
                 </article>
                 <article class="app-content__widget app-content__widget--secondary">
@@ -370,6 +381,33 @@ try {
             </main>
         </div>
 
+
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+
+                    <h2 class="title-resume">Evaluation Insight</h2>
+                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits, skills, and social skills during immersion.</span>
+                    <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
+                    <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
+                    <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
+
+
+
+
+                </article>
+                <article class="app-content__widget app-content__widget--secondary">
+                    <!-- widget - secondary
+                    <hr> -->
+                </article>
+                <article class="app-content__widget app-content__widget--tertiary">
+                    <!-- widget - tertiary
+                    <hr> -->
+                </article>
+            </main>
+        </div>
 
 
 
@@ -397,7 +435,7 @@ try {
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
-    <div class="container light-style flex-grow-1 container-p-y"
+    <!-- <div class="container light-style flex-grow-1 container-p-y"
         style="padding-left: 0px; padding-right: 0px; max-height: 463px;">
         <div class="header-title">
             <h4 class="font-weight-bold py-3 mb-4" style=" color:#fff; padding-left: 10px; padding-right: 10px;">
@@ -418,10 +456,10 @@ try {
                             href="#pro-top-x-div-sel">Work skills</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#ld-top-x-div-sel">Social skills</a>
-                        <!-- <a class="list-group-item list-group-item-action" data-toggle="list"
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#tc-top-x-div-sel">Team Work and Collaboration</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#am-top-x-div-sel">Attitude and Motivation</a> -->
+                            href="#am-top-x-div-sel">Attitude and Motivation</a>
 
                     </div>
                 </div>
@@ -440,20 +478,20 @@ try {
                             <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
-                        <!-- <div class="tab-pane fade active " id="tc-top-x-div-sel">
+                        <div class="tab-pane fade active " id="tc-top-x-div-sel">
                             <div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 400px;"></div>
                         </div>
 
                         <div class="tab-pane fade active" id="am-top-x-div-sel">
                             <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div> -->
+                        </div>
 
 
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
