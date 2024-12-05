@@ -159,7 +159,7 @@ function getDailyPerformance($student_id, $pdo) {
 $dailyPerformance = getDailyPerformance($user_id, $pdo);
 $profile_div = '<header class="nav-header">
         <div class="logo">
-            <a href="Company_Area.php"> 
+            <a href="../'. $_SESSION['account_type'] . '"> 
                 <img src="image/logov3.jpg" alt="Logo">
             </a>
            
@@ -172,7 +172,7 @@ $profile_div = '<header class="nav-header">
   <div class="item">
     
     
-    <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
+    <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../'. $_SESSION['account_type'] . '"> Home </a>
      
     </div>
   </div>
