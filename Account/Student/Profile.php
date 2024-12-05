@@ -5,7 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
-require_once 'student_profile.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
 
 $currentUrl = $_SERVER['REQUEST_URI'];
@@ -53,83 +52,137 @@ try {
         $job_offer = null;
     }
     $currentWork = $job_offer ? $job_offer['work_title'] : 'No current work';
+
+    // Student profile data
     $firstName = $student_profile['first_name'];
     $middleName = $student_profile['middle_name'];
     $lastName = $student_profile['last_name'];
-    $fullName = trim($firstName . ' ' . $middleName . ' ' . $lastName);
+    $fullName = trim("$firstName $middleName $lastName");
     $school = $student_profile['school'];
     $gradeLevel = $student_profile['grade_level'];
     $strand = strtoupper($student_profile['strand']);
     $stars = $student_profile['stars'];
     $email = $user['email'];
     $profile_image_path = './uploads/' . $user['profile_image'];
-    if (file_exists($profile_image_path)) {
-        $get_profile_image = $profile_image_path;
-    } else {
-        $get_profile_image = "/image/default.png";
-    }
+
+    $get_profile_image = file_exists($profile_image_path) ? $profile_image_path : './image/default.png';
     $profile_image = ($get_profile_image === './uploads/') ? './image/default.png' : $get_profile_image;
 
+    // Fetch averages from Student_Evaluation based on new fields
     $sql = "SELECT 
-                AVG(quality_of_work) AS avg_quality_of_work,
-                AVG(productivity) AS avg_productivity,
-                AVG(problem_solving_skills) AS avg_problem_solving_skills,
-                AVG(attention_to_detail) AS avg_attention_to_detail,
-                AVG(initiative) AS avg_initiative,
-                AVG(punctuality) AS avg_punctuality,
-                AVG(appearance) AS avg_appearance,
-                AVG(communication_skills) AS avg_communication_skills,
-                AVG(respectfulness) AS avg_respectfulness,
-                AVG(adaptability) AS avg_adaptability,
-                AVG(willingness_to_learn) AS avg_willingness_to_learn,
-                AVG(application_of_feedback) AS avg_application_of_feedback,
-                AVG(self_improvement) AS avg_self_improvement,
-                AVG(skill_development) AS avg_skill_development,
-                AVG(knowledge_application) AS avg_knowledge_application,
-                AVG(team_participation) AS avg_team_participation,
-                AVG(cooperation) AS avg_cooperation,
-                AVG(conflict_resolution) AS avg_conflict_resolution,
-                AVG(supportiveness) AS avg_supportiveness,
-                AVG(contribution) AS avg_contribution,
-                AVG(enthusiasm) AS avg_enthusiasm,
-                AVG(drive) AS avg_drive,
-                AVG(resilience) AS avg_resilience,
-                AVG(commitment) AS avg_commitment,
-                AVG(self_motivation) AS avg_self_motivation
-            FROM Student_Evaluation";
+                AVG(punctual) AS avg_punctual,
+                AVG(reports_regularly) AS avg_reports_regularly,
+                AVG(performs_tasks_independently) AS avg_performs_tasks_independently,
+                AVG(self_discipline) AS avg_self_discipline,
+                AVG(dedication_commitment) AS avg_dedication_commitment,
+                AVG(ability_to_operate_machines) AS avg_ability_to_operate_machines,
+                AVG(handles_details) AS avg_handles_details,
+                AVG(shows_flexibility) AS avg_shows_flexibility,
+                AVG(thoroughness_attention_to_detail) AS avg_thoroughness_attention_to_detail,
+                AVG(understands_task_linkages) AS avg_understands_task_linkages,
+                AVG(offers_suggestions) AS avg_offers_suggestions,
+                AVG(tact_in_dealing_with_people) AS avg_tact_in_dealing_with_people,
+                AVG(respect_and_courtesy) AS avg_respect_and_courtesy,
+                AVG(helps_others) AS avg_helps_others,
+                AVG(learns_from_co_workers) AS avg_learns_from_co_workers,
+                AVG(shows_gratitude) AS avg_shows_gratitude,
+                AVG(poise_and_self_confidence) AS avg_poise_and_self_confidence,
+                AVG(emotional_maturity) AS avg_emotional_maturity
+            FROM Student_Evaluation WHERE student_id = :student_id";
 
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $user_id); 
     $stmt->execute();
     $averages = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $avgQualityOfWork = $averages['avg_quality_of_work'] ?? null;
-    $avgProductivity = $averages['avg_productivity'] ?? null;
-    $avgProblemSolvingSkills = $averages['avg_problem_solving_skills'] ?? null;
-    $avgAttentionToDetail = $averages['avg_attention_to_detail'] ?? null;
-    $avgInitiative = $averages['avg_initiative'] ?? null;
-    $avgPunctuality = $averages['avg_punctuality'] ?? null;
-    $avgAppearance = $averages['avg_appearance'] ?? null;
-    $avgCommunicationSkills = $averages['avg_communication_skills'] ?? null;
-    $avgRespectfulness = $averages['avg_respectfulness'] ?? null;
-    $avgAdaptability = $averages['avg_adaptability'] ?? null;
-    $avgWillingnessToLearn = $averages['avg_willingness_to_learn'] ?? null;
-    $avgApplicationOfFeedback = $averages['avg_application_of_feedback'] ?? null;
-    $avgSelfImprovement = $averages['avg_self_improvement'] ?? null;
-    $avgSkillDevelopment = $averages['avg_skill_development'] ?? null;
-    $avgKnowledgeApplication = $averages['avg_knowledge_application'] ?? null;
-    $avgTeamParticipation = $averages['avg_team_participation'] ?? null;
-    $avgCooperation = $averages['avg_cooperation'] ?? null;
-    $avgConflictResolution = $averages['avg_conflict_resolution'] ?? null;
-    $avgSupportiveness = $averages['avg_supportiveness'] ?? null;
-    $avgContribution = $averages['avg_contribution'] ?? null;
-    $avgEnthusiasm = $averages['avg_enthusiasm'] ?? null;
-    $avgDrive = $averages['avg_drive'] ?? null;
-    $avgResilience = $averages['avg_resilience'] ?? null;
-    $avgCommitment = $averages['avg_commitment'] ?? null;
-    $avgSelfMotivation = $averages['avg_self_motivation'] ?? null;
+    // Retrieve average values
+    $avgPunctual = $averages['avg_punctual'] ?? null;
+    $avgReportsRegularly = $averages['avg_reports_regularly'] ?? null;
+    $avgPerformsTasksIndependently = $averages['avg_performs_tasks_independently'] ?? null;
+    $avgSelfDiscipline = $averages['avg_self_discipline'] ?? null;
+    $avgDedicationCommitment = $averages['avg_dedication_commitment'] ?? null;
+    $avgAbilityToOperateMachines = $averages['avg_ability_to_operate_machines'] ?? null;
+    $avgHandlesDetails = $averages['avg_handles_details'] ?? null;
+    $avgShowsFlexibility = $averages['avg_shows_flexibility'] ?? null;
+    $avgThoroughnessAttentionToDetail = $averages['avg_thoroughness_attention_to_detail'] ?? null;
+    $avgUnderstandsTaskLinkages = $averages['avg_understands_task_linkages'] ?? null;
+    $avgOffersSuggestions = $averages['avg_offers_suggestions'] ?? null;
+    $avgTactInDealingWithPeople = $averages['avg_tact_in_dealing_with_people'] ?? null;
+    $avgRespectAndCourtesy = $averages['avg_respect_and_courtesy'] ?? null;
+    $avgHelpsOthers = $averages['avg_helps_others'] ?? null;
+    $avgLearnsFromCoWorkers = $averages['avg_learns_from_co_workers'] ?? null;
+    $avgShowsGratitude = $averages['avg_shows_gratitude'] ?? null;
+    $avgPoiseAndSelfConfidence = $averages['avg_poise_and_self_confidence'] ?? null;
+    $avgEmotionalMaturity = $averages['avg_emotional_maturity'] ?? null;
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
+
+function getDailyPerformance($student_id, $pdo) {
+    $sql = "SELECT 
+                DATE(evaluation_date) as evaluation_date, 
+                AVG(punctual) AS avg_punctual,
+                AVG(reports_regularly) AS avg_reports,
+                AVG(performs_tasks_independently) AS avg_independent_tasks,
+                AVG(self_discipline) AS avg_self_discipline,
+                AVG(dedication_commitment) AS avg_commitment
+            FROM Student_Evaluation 
+            WHERE student_id = :student_id 
+            GROUP BY DATE(evaluation_date)
+            ORDER BY DATE(evaluation_date) ASC";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id);
+    $stmt->execute();
+    
+    $dailyPerformance = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Prepare the data for JavaScript
+    $formattedData = [];
+    foreach ($dailyPerformance as $row) {
+        $date = (string)$row['evaluation_date']; // Convert to string for JS
+        $averageScore = (
+            ($row['avg_punctual'] +
+             $row['avg_reports'] +
+             $row['avg_independent_tasks'] +
+             $row['avg_self_discipline'] +
+             $row['avg_commitment']) / 5 ) ?? 0; // Calculate overall average score across categories 
+
+        $formattedData[] = [
+            'date' => $date,
+            'score' => round($averageScore, 2) // Round to 2 decimal places
+        ];
+    }
+    
+    return json_encode($formattedData);
+}
+$dailyPerformance = getDailyPerformance($user_id, $pdo);
+$profile_div = '<header class="nav-header">
+        <div class="logo">
+            <a href="Company_Area.php"> 
+                <img src="image/logov3.jpg" alt="Logo">
+            </a>
+           
+            
+        </div>
+        <nav class="by">
+
+ 
+ <div class="menu">
+  <div class="item">
+    
+    
+    <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
+     
+    </div>
+  </div>
+</div>
+        
+        </nav>
+
+    </header>
+
+    ';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -158,33 +211,29 @@ try {
 
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-        const averages = {
-            avgQualityOfWork: <?= json_encode($avgQualityOfWork) ?>,
-            avgProductivity: <?= json_encode($avgProductivity) ?>,
-            avgProblemSolvingSkills: <?= json_encode($avgProblemSolvingSkills) ?>,
-            avgAttentionToDetail: <?= json_encode($avgAttentionToDetail) ?>,
-            avgInitiative: <?= json_encode($avgInitiative) ?>,
-            avgPunctuality: <?= json_encode($avgPunctuality) ?>,
-            avgAppearance: <?= json_encode($avgAppearance) ?>,
-            avgCommunicationSkills: <?= json_encode($avgCommunicationSkills) ?>,
-            avgRespectfulness: <?= json_encode($avgRespectfulness) ?>,
-            avgAdaptability: <?= json_encode($avgAdaptability) ?>,
-            avgWillingnessToLearn: <?= json_encode($avgWillingnessToLearn) ?>,
-            avgApplicationOfFeedback: <?= json_encode($avgApplicationOfFeedback) ?>,
-            avgSelfImprovement: <?= json_encode($avgSelfImprovement) ?>,
-            avgSkillDevelopment: <?= json_encode($avgSkillDevelopment) ?>,
-            avgKnowledgeApplication: <?= json_encode($avgKnowledgeApplication) ?>,
-            avgTeamParticipation: <?= json_encode($avgTeamParticipation) ?>,
-            avgCooperation: <?= json_encode($avgCooperation) ?>,
-            avgConflictResolution: <?= json_encode($avgConflictResolution) ?>,
-            avgSupportiveness: <?= json_encode($avgSupportiveness) ?>,
-            avgContribution: <?= json_encode($avgContribution) ?>,
-            avgEnthusiasm: <?= json_encode($avgEnthusiasm) ?>,
-            avgDrive: <?= json_encode($avgDrive) ?>,
-            avgResilience: <?= json_encode($avgResilience) ?>,
-            avgCommitment: <?= json_encode($avgCommitment) ?>,
-            avgSelfMotivation: <?= json_encode($avgSelfMotivation) ?>
-        };
+    const averages = {
+        avgPunctual: <?= json_encode($avgPunctual) ?>,
+        avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
+        avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
+        avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
+        avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
+        avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
+        avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
+        avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
+        avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
+        avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
+        avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
+        avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
+        avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
+        avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
+        avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
+        avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
+        avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
+        avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+
+    };
+    const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
+    console.log(dailyPerformance);
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
@@ -243,7 +292,8 @@ try {
                     <span class="LRN">LRN: 20181234</span>
                     <br>
 
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="other-info"><?= $strand ?></span>
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i><span
+                        class="other-info"><?= $strand ?></span>
                     <br>
                     <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
                     <br>
@@ -254,7 +304,9 @@ try {
                     <a style=" text-decoration: none; display:contents ;" href="Settings.php">
                         <button class="edit-button">
                             <svg class="edit-svgIcon" viewBox="0 0 512 512">
-                                <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                <path
+                                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                                </path>
                             </svg>
                         </button>
                     </a>
@@ -344,7 +396,8 @@ try {
             <main class="dashboard__main app-content">
                 <article class="app-content__widget app-content__widget--primary">
                     <h2 class="title-resume">Daily Insight</h2>
-                    <span class="description-resume">The line chart analyzes student daily performance in work immersion, and the pie chart displays the distribution of performance levels.</span>
+                    <span class="description-resume">The line chart analyzes student daily performance in work
+                        immersion, and the pie chart displays the distribution of performance levels.</span>
 
 
                     <div class="container-grap">
@@ -389,7 +442,8 @@ try {
 
 
                     <h2 class="title-resume">Evaluation Insight</h2>
-                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits, skills, and social skills during immersion.</span>
+                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
+                        skills, and social skills during immersion.</span>
                     <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
                     <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
                     <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
@@ -502,9 +556,9 @@ try {
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
-            location.reload("card-graph");
-        });
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        location.reload("card-graph");
+    });
     </script>
 
 

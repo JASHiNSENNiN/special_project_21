@@ -64,7 +64,9 @@ function validateSetupForm() {
   const gradeLevel = document.getElementById("grade-level").value;
   const strand = document.getElementById("strand").value;
   const strandFocus = document.getElementById("strand-focus").value;
+  const lrn = document.getElementById("input-lrn").value;
 
+  const lrnInput = document.getElementById("input-lrn");
   const accountTypeInput = document.getElementById("account-type");
   const schoolNameInput = document.getElementById("school-name");
   const organizationNameInput = document.getElementById("organization-name");
@@ -85,6 +87,7 @@ function validateSetupForm() {
     gradeLevelInput,
     strandInput,
     strandFocusInput,
+    lrnInput,
   ];
 
   allInputs.forEach((input) => {
@@ -129,6 +132,12 @@ function validateSetupForm() {
         lastNameInput.reportValidity();
       }
 
+      return false;
+    }
+    const lrnRegex = /^\d{12}$/;
+    if (!lrnRegex.test(lrn)) {
+      lrnInput.setCustomValidity("LRN must be a 12-digit number");
+      lrnInput.reportValidity();
       return false;
     }
     if (gradeLevel === "") {
@@ -192,6 +201,7 @@ function validateSetupForm() {
 
   return true;
 }
+
 window.onload = function () {
   const urlParams = new URLSearchParams(window.location.search);
   const error = urlParams.get("error");

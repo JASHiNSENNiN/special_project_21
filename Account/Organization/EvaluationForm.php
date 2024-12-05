@@ -430,6 +430,7 @@ $has_evaluation_today = $result['eval_count'] > 0;
     </div>
 
     <script>
+    console.log("id: <?php  echo decrypt_url_parameter(base64_decode($IdParam)); ?>");
     <?php if ($has_evaluation_today): ?>
 
     const now = new Date();
