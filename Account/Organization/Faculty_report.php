@@ -21,13 +21,22 @@ function getApplicants($conn, $currentOrgId)
 {
     $applicants = [];
     
-    $sql = "SELECT a.id, a.student_id, s.first_name, s.last_name, s.strand, s.school, u.profile_image 
-            FROM applicants a 
-            JOIN student_profiles s ON a.student_id = s.user_id 
-            JOIN users u ON s.user_id = u.id 
-            WHERE s.current_work IN (
-                SELECT id FROM job_offers WHERE partner_id = ?
-            )";
+    // Updated SQL query
+    $sql = "SELECT 
+                s.user_id AS student_id, 
+                s.first_name, 
+                s.last_name, 
+                s.strand, 
+                s.school, 
+                u.profile_image 
+            FROM 
+                student_profiles s 
+            JOIN 
+                users u ON s.user_id = u.id 
+            WHERE 
+                s.current_work IN (
+                    SELECT id FROM job_offers WHERE partner_id = ?
+                )";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $currentOrgId);
