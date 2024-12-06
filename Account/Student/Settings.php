@@ -3,7 +3,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 };
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-require_once 'show_profile.php';
+// require_once 'show_profile.php';
+require_once 'student_profile.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
@@ -141,6 +142,7 @@ if (isset($_SESSION['user_id'])) {
     $result = $stmt->get_result();
     $profile_data = $result->fetch_assoc();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -175,6 +177,7 @@ if (isset($_SESSION['user_id'])) {
             <div class="alert alert-danger">Please log in to access this page.</div>
         </div>
     <?php else: ?>
+        <?php echo $profile_divv; ?>
         <div class="home-content">
             <div class="container light-style flex-grow-1 container-p-y">
                 <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>

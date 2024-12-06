@@ -68,9 +68,9 @@ body {
   float: left;
 }
 
-li {
+/* li {
   list-style: none;
-}
+} */
 
 .navbar-top ul li a {
   color: #333;
@@ -868,10 +868,6 @@ img {
   transform-origin: right;
 }
 
-/* .submenu .submenu-link:hover {
-  color: #ffffff;
-} */
-
 .logout {
   color: red !important;
 }
@@ -881,11 +877,43 @@ img {
   text-decoration-line: none !important;
 }
 
-/* a:hover {
-  text-decoration-line: none;
-} */
+.active-text-profile {
+  font-weight: 600;
+  background-color: #cccbc93a;
+}
 
-/* From Uiverse.io by aaronross1 */
+/* ///////////////////////////////////////////end //////////////////////////////////// */
+
+/* ///////////////////////////////////////Strong profile///////////////////////////// */
+
+@import "compass/css3";
+.progress {
+  width: 100%;
+  height: 50px;
+}
+
+.progress-wrap {
+  background: #1bbc9b;
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.progress-wrap .progress-bar {
+  background: #ddd;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+/* //////////////////////////////////////////END ////////////////////////////////// */
+
+/*//////////////////////////////////////////upload csss//////////////////////////// */
+
+/* //////////////////////////////end///////////////////////////////////////////////// */
 
 .edit-button {
   margin-top: 25px;

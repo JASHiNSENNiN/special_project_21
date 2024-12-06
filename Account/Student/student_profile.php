@@ -17,7 +17,8 @@ $currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
 $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
-$profile_div = '<header class="nav-header">
+
+$profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php"> 
                 <img src="image/logov3.jpg" alt="Logo">
@@ -42,7 +43,7 @@ $profile_div = '<header class="nav-header">
       </svg>
     </a>
     <div class="submenu">
-      <div class="submenu-item">
+      <div class="submenu-item active-text-profile">
          <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"> My
                         Profile</a>
       </div>
@@ -54,7 +55,7 @@ $profile_div = '<header class="nav-header">
         <a href="Upload.php">
                         FIle Upload</a>
       </div>
-      <div class="submenu-item">
+      <div class="submenu-item active-text-setting">
         <a href="Settings.php"> Settings & privacy</a>
       </div>
       <hr>

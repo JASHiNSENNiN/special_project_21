@@ -5,6 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
+
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
 
 $currentUrl = $_SERVER['REQUEST_URI'];
@@ -91,7 +92,7 @@ try {
             FROM Student_Evaluation WHERE student_id = :student_id";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':student_id', $user_id); 
+    $stmt->bindParam(':student_id', $user_id);
     $stmt->execute();
     $averages = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -118,7 +119,8 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-function getDailyPerformance($student_id, $pdo) {
+function getDailyPerformance($student_id, $pdo)
+{
     $sql = "SELECT 
                 DATE(evaluation_date) as evaluation_date, 
                 AVG(punctual) AS avg_punctual,
@@ -134,56 +136,59 @@ function getDailyPerformance($student_id, $pdo) {
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':student_id', $student_id);
     $stmt->execute();
-    
+
     $dailyPerformance = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     // Prepare the data for JavaScript
     $formattedData = [];
     foreach ($dailyPerformance as $row) {
         $date = (string)$row['evaluation_date']; // Convert to string for JS
         $averageScore = (
             ($row['avg_punctual'] +
-             $row['avg_reports'] +
-             $row['avg_independent_tasks'] +
-             $row['avg_self_discipline'] +
-             $row['avg_commitment']) / 5 ) ?? 0; // Calculate overall average score across categories 
+                $row['avg_reports'] +
+                $row['avg_independent_tasks'] +
+                $row['avg_self_discipline'] +
+                $row['avg_commitment']) / 5) ?? 0; // Calculate overall average score across categories 
 
         $formattedData[] = [
             'date' => $date,
             'score' => round($averageScore, 2) // Round to 2 decimal places
         ];
     }
-    
+
     return json_encode($formattedData);
 }
 $dailyPerformance = getDailyPerformance($user_id, $pdo);
-$profile_div = '<header class="nav-header">
-        <div class="logo">
-            <a href="../'. $_SESSION['account_type'] . '"> 
-                <img src="image/logov3.jpg" alt="Logo">
-            </a>
-           
-            
-        </div>
-        <nav class="by">
+// $profile_div = '<header class="nav-header">
+//         <div class="logo">
+//             <a href="../' . $_SESSION['account_type'] . '"> 
+//                 <img src="image/logov3.jpg" alt="Logo">
+//             </a>
+//            <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
 
- 
- <div class="menu">
-  <div class="item">
-    
-    
-    <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../'. $_SESSION['account_type'] . '"> Home </a>
-     
-    </div>
-  </div>
-</div>
-        
-        </nav>
+//         </div>
+//         <nav class="by">
 
-    </header>
 
-    ';
+//  <div class="menu">
+//   <div class="item">
+
+
+//     <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../' . $_SESSION['account_type'] . '"> Home </a>
+
+//     </div>
+//   </div>
+// </div>
+
+//         </nav>
+
+//     </header>
+
+//     ';
+// 
+require_once 'student_profile.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -195,10 +200,13 @@ $profile_div = '<header class="nav-header">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+
     <title>Student Dashboard</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
-
 
 
     <!-- FontAwesome 5 -->
@@ -209,79 +217,51 @@ $profile_div = '<header class="nav-header">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
+
+
+    <script> </script>
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-    const averages = {
-        avgPunctual: <?= json_encode($avgPunctual) ?>,
-        avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
-        avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
-        avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
-        avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
-        avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
-        avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
-        avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
-        avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
-        avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
-        avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
-        avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
-        avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
-        avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
-        avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
-        avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
-        avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
-        avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+        const averages = {
+            avgPunctual: <?= json_encode($avgPunctual) ?>,
+            avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
+            avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
+            avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
+            avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
+            avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
+            avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
+            avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
+            avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
+            avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
+            avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
+            avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
+            avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
+            avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
+            avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
+            avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
+            avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
+            avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
 
-    };
-    const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
-    console.log(dailyPerformance);
+        };
+        const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
+        console.log(dailyPerformance);
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
+    <style>
 
+    </style>
+    <script>
+
+    </script>
 
 </head>
 
 <body>
-    <!-- Navbar top -->
-    <?php echo $profile_div; ?>
-
-    <!-- <div class="navbar-top">
-        <div class="title">
-            <h1 style="color:#ffff; font-weight: bold">Profile</h1>
-        </div>
-        <ul>
-            <li>
-                <a href="../../Account/<?= $_SESSION['account_type']; ?>">
-                    <i class=" fa fa-sign-out-alt fa-2x"></i>
-                </a>
-            </li>
-        </ul>
-    </div> -->
-    <!-- End -->
-
-
-
-
+    <!-- nasa student_profile.php yung code nito-->
+    <?php echo $profile_divv; ?>
 
     <div class="row-graph-profile">
-
-        <!-- <div class="column-graph-profile" style="background-color:#fff;">
-            <div class="container-grap-left">
-
-                <div class="profile">
-                    <img src="<?php echo $profile_image ?>" alt="" width="100" height="100" />
-
-                    <div class="name"><?= $fullName; ?></div>
-                    <div class="job"><?= $strand ?></div>
-
-
-                </div>
-
-
-            </div>
-        </div> -->
-
-
         <div class="column-graph-profile-right">
 
             <div class="container-grap-right">
@@ -311,75 +291,6 @@ $profile_div = '<header class="nav-header">
                         </button>
                     </a>
 
-                    <!-- <table class="personal-details-table">
-                        <tbody>
-                            <tr>
-                            <tr>
-                                <td><b>First Name</b></td>
-                                <td><b>Middle Name</b></td>
-                                <td><b>Last Name</b></td>
-                            </tr>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off"
-                                    value="<?= $firstName ?>" readonly></td>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off"
-                                    value="<?= $middleName ?>" readonly></td>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $lastName ?>"
-                                    readonly></td>
-                            </tr>
-
-
-
-                        </tbody>
-                    </table>
-
-
-                    <table class="personal-details-ss-table">
-                        <tbody>
-                            <tr class="tr-stard-school">
-                            <tr>
-                                <td><b>Strand</b></td>
-                                <td><b>School</b></td>
-                            </tr>
-                            <td><input type="text" class="form-control mb-1 strand" autocomplete="off"
-                                    value="<?= $strand ?>" readonly></td>
-                            <td><input type="text" class="form-control mb-1 school" autocomplete="off"
-                                    value="<?= $school ?>" readonly></td>
-                            </tr>
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="personal-details-e-table">
-                        <tbody>
-
-                            <tr>
-                            <tr>
-                                <td><b>LRN</b></td>
-                                <td><b>Email</b></td>
-                            </tr>
-                            <td><input type="number" class="form-control mb-1" autocomplete="off" value=""
-                                    readonly></td>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off" value="<?= $email ?>"
-                                    readonly></td>
-                            </tr>
-
-                        </tbody>
-                        <tbody>
-
-                            <tr>
-                            <tr>
-                                <td><b>Work Immersion</b></td>
-                            </tr>
-                            <td><input type="text" class="form-control mb-1" autocomplete="off"
-                                    value="<?= $currentWork ?>" readonly></td>
-                            </tr>
-
-                        </tbody>
-                    </table> -->
-
-
                 </div>
             </div>
         </div>
@@ -390,10 +301,43 @@ $profile_div = '<header class="nav-header">
     <!-- -----------------------------------column graph ------------------------- -->
 
     <div class="row-graph">
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+
+                <article class="app-content__widget app-content__widget--primary">
+                    <h2 class="title-resume">Resume</h2>
+                    <span class="description-resume">Please upload your resume to apply and gain access to the work immersion program. </span>
+
+
+
+                    <br>
+                    <br>
+
+                </article>
+                <article class="app-content__widget app-content__widget--secondary">
+
+
+                    <h1 class="title-resume">Profile Strength</h1>
+
+                    <div class="progress-wrap progress" data-progress-percent="50">
+                        <div class="progress-bar progress"></div>
+                    </div>
+
+                    <hr>
+                </article>
+                <article class="app-content__widget app-content__widget--tertiary">
+                    widget - tertiary
+                    <hr>
+                </article>
+            </main>
+        </div>
+
 
         <div class="dashboard-body">
 
             <main class="dashboard__main app-content">
+
                 <article class="app-content__widget app-content__widget--primary">
                     <h2 class="title-resume">Daily Insight</h2>
                     <span class="description-resume">The line chart analyzes student daily performance in work
@@ -413,24 +357,9 @@ $profile_div = '<header class="nav-header">
                     <br>
                     <br>
 
-                    <!-- <h2 class="title-resume">Evaluation</h2>
-                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits, skills, and social skills during immersion.</span>
-                    <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-                    <div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-                    <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div> -->
-
-
-
-
                 </article>
-                <article class="app-content__widget app-content__widget--secondary">
-                    widget - secondary
-                    <hr>
-                </article>
-                <article class="app-content__widget app-content__widget--tertiary">
-                    widget - tertiary
-                    <hr>
-                </article>
+
+
             </main>
         </div>
 
@@ -556,9 +485,9 @@ $profile_div = '<header class="nav-header">
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-    document.getElementById('refreshButton').addEventListener('click', function() {
-        location.reload("card-graph");
-    });
+        document.getElementById('refreshButton').addEventListener('click', function() {
+            location.reload("card-graph");
+        });
     </script>
 
 
