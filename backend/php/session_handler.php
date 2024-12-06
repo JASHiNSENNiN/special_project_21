@@ -65,7 +65,7 @@ function fetch_partner_profile($user_id)
     $stmt = $conn->prepare("SELECT * FROM partner_profiles WHERE user_id = ?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
-    return $stmt->get_result()->fetch_assoc(); 
+    return $stmt->get_result()->fetch_assoc();
 }
 
 
@@ -80,7 +80,7 @@ if (file_exists($profile_image_path)) {
 } else {
     $_SESSION['profile_image'] = "../../Account/Student/image/default.png";
 }
-$_SESSION['profile_image'] =  ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
+$_SESSION['profile_image'] = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
 
 
@@ -102,7 +102,7 @@ if ($user_profile['account_type'] === 'student') {
 } elseif ($user_profile['account_type'] === 'organization') {
     $partner_profile = fetch_partner_profile($user_id);
     $_SESSION['organization_name'] = $partner_profile['organization_name'];
-    $_SESSION['stars'] = $partner_profile['stars'];
+    // $_SESSION['stars'] = $partner_profile['stars'];
     $_SESSION['strand'] = $partner_profile['strand'];
 }
 
