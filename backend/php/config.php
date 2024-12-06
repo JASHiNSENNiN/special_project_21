@@ -152,6 +152,16 @@ CREATE TABLE IF NOT EXISTS Organization_Evaluation (
     FOREIGN KEY (organization_id) REFERENCES partner_profiles(id),
     FOREIGN KEY (job_id) REFERENCES job_offers(id)
 );
+
+CREATE TABLE IF NOT EXISTS uploaded_documents (
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    user_id INT(11),
+    document_name ENUM('resume', 'application_letter', 'parents_consent', 'barangay_clearance', 
+                        'mayors_permit', 'police_clearance', 'medical_certificate', 'insurance_policy'),
+    document_url VARCHAR(255),
+    upload_date DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
 ";
 
 if (mysqli_multi_query($conn, $sql)) {
