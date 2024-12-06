@@ -193,6 +193,7 @@ body {
   border: none;
   outline: none;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -202,6 +203,28 @@ body {
   padding: 10px 20px;
   border: none;
   outline: 1px solid #010101;
+  cursor: pointer;
+}
+
+.btnImage {
+  text-decoration: none;
+  background-color: #005af0;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btnImage:hover {
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #005af0;
+  padding: 10px 20px;
+  border: none;
+  outline: 1px solid #010101;
+  cursor: pointer;
 }
 
 .form input {
@@ -226,4 +249,27 @@ body {
 .file-uploaded {
   color: green;
   font-weight: bold;
+}
+
+.image-preview {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.image-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.remove-btn {
+  background-color: rgb(255, 5, 5);
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
