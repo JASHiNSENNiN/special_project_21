@@ -254,7 +254,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="<?= $home ?>">
-                <img src="../../img/header.png" alt="Logo">
+                <img src="../../img/logov3.jpg" alt="Logo">
                 <!-- <img src="image/drdsnhs.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">

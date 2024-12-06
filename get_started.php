@@ -166,7 +166,8 @@ if (isset($_SESSION['email'])) {
                             <div id="student-fields" style="display: none;">
                                 <input value="" type="text" placeholder="School Name" id="school-name"
                                     name="school-name">
-                                <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn">
+                                <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn"
+                                    oninput="validateLRN()">
                                 <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
                                 <input value="" type="text" placeholder="Middle Name" id="middle-name"
                                     name="middle-name">
@@ -188,22 +189,28 @@ if (isset($_SESSION['email'])) {
                                 <hr>
                                 <div class="container1">
                                     <div class="card">
-                                        <h3>Upload Files</h3>
+                                        <h3>Upload Documents</h3>
+
                                         <div class="drop_box">
                                             <header>
-                                                <h4>Select Files here</h4>
+                                                <h4>Select Document Files</h4>
                                             </header>
-                                            <p>Upload the following requirements: Resume, Application
-                                                Letter,
-                                                Barangay, Police, Mayor's Clearance, Medical
-                                                Certificate, Job Interview, Insurance Policy, Parent's Consent</red>
+                                            <p>Upload the following requirements: <u><b>Resume, Application
+                                                        Letter,
+                                                        Barangay, Police, Mayor's Clearance, Medical
+                                                        Certificate, Job Interview, Insurance Policy, Parent's
+                                                        Consent</b></u>
                                             </p>
-                                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                                            <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="fileID"
-                                                multiple>
-                                            <button class="btn">Choose Files</button>
+                                            <input class="fileimage" type="file" hidden accept=".doc,.docx,.pdf,.txt"
+                                                id="documentID" multiple>
+                                            <div class="btn" onclick="document.getElementById('documentID').click();">
+                                                Choose Files</div>
                                         </div>
+
                                         <ul class="file-list"></ul>
+                                        <!-- Upload Button for Documents -->
+                                        <!-- <button onclick="uploadDocuments(); uploadImages();" class="btn">Upload
+                                            Documents</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -222,15 +229,43 @@ if (isset($_SESSION['email'])) {
                                     <option value="GAS">GAS</option>
                                     <option value="TVL">TVL</option>
                                 </select>
+                                <br>
+                                <hr>
+                                <!-- Image Upload Section -->
+                                <div class="container1">
+                                    <div class="card">
+                                        <h3>Upload Images</h3>
+
+                                        <div class="drop_box">
+                                            <header>
+                                                <h4>Select Image Files</h4>
+                                            </header>
+                                            <p>Upload the following requirements: <center><u>Business Permit</u>
+                                                    <br><b>Back and Front</b>
+                                                </center>
+                                            </p>
+                                            <p>Files Supported: PNG, JPG</p>
+                                            <input class="fileimage" type="file" hidden accept=".png,.jpg" id="imageID"
+                                                multiple>
+                                            <div class="btnImage" onclick="document.getElementById('imageID').click();">
+                                                Choose Files</div>
+                                        </div>
+
+                                        <!-- Image Preview Section -->
+                                        <div class="image-preview"></div>
+                                        <!-- Upload Button for Images -->
+                                        <!-- <button onclick="uploadDocuments(); uploadImages();" class="btn">Upload
+                                            Images</button> -->
+                                    </div>
+                                </div>
                             </div>
                             <nav>
                                 <a style="text-decoration: none" href="login.php">
                                     <button class="btn-login" id="switch-to-login">
 
-                                        <p>
-                                            Back</p>
+                                        <p>Back</p>
                                     </button></a>
-                                <button class="btn-new" type="submit" onclick="showLoginForm()">
+                                <button class="btn-new" type="submit" onclick="uploadDocuments(); uploadImages();">
                                     <p>Submit</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                         <path
@@ -253,6 +288,7 @@ if (isset($_SESSION['email'])) {
     </footer> -->
     </div>
 </body>
+
 <script>
     function toggleFields() {
         var accountType = document.getElementById("account-type").value;
@@ -283,57 +319,272 @@ if (isset($_SESSION['email'])) {
         }
     }
 </script>
+
+<!-- <script type="text/javascript">
+const dropArea = document.querySelector(".drop_box"),
+    button = dropArea.querySelector(".btn"),
+    input = dropArea.querySelector("input");
+
+let files = [];
+
+button.onclick = () => {
+    input.click();
+};
+
+input.addEventListener("change", function(e) {
+    files = e.target.files; // Get the selected files
+    const fileListElement = document.querySelector(".file-list");
+    fileListElement.innerHTML = ''; // Clear the previous file list
+
+    // Display each selected file
+    Array.from(files).forEach((file, index) => {
+        let fileItem = document.createElement('li');
+        fileItem.innerHTML = ` 
+                <h4>${file.name}</h4>
+                <button class="remove-btn" onclick="removeFile(${index})">Remove</button>
+            `;
+        fileListElement.appendChild(fileItem);
+    });
+});
+
+// Function to remove a file from the list
+function removeFile(index) {
+    // Remove the file from the array
+    files = Array.from(files).filter((_, i) => i !== index);
+
+    // Update the UI
+    const fileListElement = document.querySelector(".file-list");
+    fileListElement.innerHTML = ''; // Clear the list
+
+    // Re-render the file list after removal
+    Array.from(files).forEach((file, index) => {
+        let fileItem = document.createElement('li');
+        fileItem.innerHTML = ` 
+                <h4>${file.name}</h4>
+                <button class="remove-btn" onclick="removeFile(${index})">Remove</button>
+            `;
+        fileListElement.appendChild(fileItem);
+    });
+}
+
+// Function to upload all files
+function uploadFiles() {
+    const emailInput = document.querySelector('input[type="email"]');
+    const email = emailInput ? emailInput.value : null;
+
+    if (!email) {
+        alert('Please enter an email address.');
+        return;
+    }
+
+    // Create a FormData object for sending the files
+    const formData = new FormData();
+    Array.from(files).forEach(file => {
+        formData.append('files', file); // Append each file
+    });
+    formData.append('email', email); // Append the email
+
+    // Send the files using fetch
+    fetch('YOUR_SERVER_URL_HERE', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const fileListElement = document.querySelector(".file-list");
+
+            // Add a success message after uploading all files
+            const successMessage = document.createElement('p');
+            successMessage.classList.add('file-uploaded');
+            successMessage.textContent = `All files uploaded successfully!`;
+            fileListElement.appendChild(successMessage);
+        })
+        .catch(error => {
+            alert('File upload failed. Please try again.');
+            console.error('Error uploading files:', error);
+        });
+}
+</script>
+
+
 <script type="text/javascript">
-    const dropArea = document.querySelector(".drop_box"),
-        button = dropArea.querySelector("button"),
-        dragText = dropArea.querySelector("header"),
-        input = dropArea.querySelector("input");
-    let files = [];
+const imageInput = document.querySelector("#fileID");
+let images = [];
 
-    button.onclick = () => {
-        input.click();
-    };
+imageInput.addEventListener("change", function(e) {
+    images = e.target.files; // Get the selected images
+    const imagePreviewContainer = document.querySelector(".image-preview");
+    imagePreviewContainer.innerHTML = ''; // Clear the previous image previews
 
-    input.addEventListener("change", function (e) {
-        files = e.target.files; // Get the selected files
-        const fileListElement = document.querySelector(".file-list");
-        fileListElement.innerHTML = ''; // Clear the previous file list
+    // Display previews for each selected image
+    Array.from(images).forEach((image, index) => {
+        let imgPreview = document.createElement('div');
+        imgPreview.innerHTML = `
+            <img src="${URL.createObjectURL(image)}" alt="${image.name}">
+            <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
+        `;
+        imagePreviewContainer.appendChild(imgPreview);
+    });
+});
 
-        // Display each selected file
-        Array.from(files).forEach(file => {
+// Function to remove an image from the preview list
+function removeImage(index) {
+    images = Array.from(images).filter((_, i) => i !== index);
+    const imagePreviewContainer = document.querySelector(".image-preview");
+    imagePreviewContainer.innerHTML = ''; // Clear the list
+
+    // Re-render the image previews after removal
+    Array.from(images).forEach((image, index) => {
+        let imgPreview = document.createElement('div');
+        imgPreview.innerHTML = `
+            <img src="${URL.createObjectURL(image)}" alt="${image.name}">
+            <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
+        `;
+        imagePreviewContainer.appendChild(imgPreview);
+    });
+}
+
+// Function to upload images
+function uploadImages() {
+    const formData = new FormData();
+    Array.from(images).forEach(image => {
+        formData.append('images', image); // Append each image
+    });
+
+    fetch('YOUR_SERVER_URL_HERE', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const imagePreviewContainer = document.querySelector(".image-preview");
+            const successMessage = document.createElement('p');
+            successMessage.classList.add('file-uploaded');
+            successMessage.textContent = `All images uploaded successfully!`;
+            imagePreviewContainer.appendChild(successMessage);
+        })
+        .catch(error => {
+            alert('Image upload failed. Please try again.');
+            console.error('Error uploading images:', error);
+        });
+}
+</script> -->
+
+<script type="text/javascript">
+    // Handling Document File Upload
+    const documentInput = document.querySelector("#documentID");
+    let documentFiles = [];
+    const documentFileList = document.querySelector(".file-list");
+
+    documentInput.addEventListener("change", function (e) {
+        documentFiles = e.target.files;
+        documentFileList.innerHTML = ''; // Clear previous files
+
+        Array.from(documentFiles).forEach((file, index) => {
             let fileItem = document.createElement('li');
             fileItem.innerHTML = `
-      <h4>${file.name}</h4>
-      <form action="" method="post">
-        <div class="form">
-          <input type="email" placeholder="Enter email to upload file" required>
-          <button type="button" class="btn" onclick="uploadFile('${file.name}')">Upload</button>
-        </div>
-      </form>
-    `;
-            fileListElement.appendChild(fileItem);
+                <h4>${file.name}</h4>
+                <button class="remove-btn" onclick="removeDocumentFile(${index})">Remove</button>
+            `;
+            documentFileList.appendChild(fileItem);
         });
     });
 
-    // Simulate the upload process and display a success message
-    function uploadFile(fileName) {
-        const fileListElement = document.querySelector(".file-list");
+    function removeDocumentFile(index) {
+        documentFiles = Array.from(documentFiles).filter((_, i) => i !== index);
+        documentFileList.innerHTML = '';
+        Array.from(documentFiles).forEach((file, index) => {
+            let fileItem = document.createElement('li');
+            fileItem.innerHTML = `
+                <h4>${file.name}</h4>
+                <button class="remove-btn" onclick="removeDocumentFile(${index})">Remove</button>
+            `;
+            documentFileList.appendChild(fileItem);
+        });
+    }
 
-        // Find the list item of the file being uploaded
-        const fileItem = Array.from(fileListElement.children).find(item => item.querySelector('h4').textContent ===
-            fileName);
+    // Function to upload documents
+    function uploadDocuments() {
+        const formData = new FormData();
+        Array.from(documentFiles).forEach(file => {
+            formData.append('documents', file);
+        });
 
-        // Add a success message below the file item
-        const successMessage = document.createElement('p');
-        successMessage.classList.add('file-uploaded');
-        successMessage.textContent = `${fileName} uploaded successfully!`;
-        fileItem.appendChild(successMessage);
+        fetch('YOUR_SERVER_URL_HERE', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert('Documents uploaded successfully!');
+            })
+        // .catch(error => {
+        //     alert('Document upload failed. Please try again.');
+        //     console.error('Error uploading documents:', error);
+        // });
+    }
 
-        // Disable the upload button to prevent multiple submissions
-        const uploadButton = fileItem.querySelector('button');
-        uploadButton.disabled = true;
-        uploadButton.textContent = "Uploaded";
+    // Handling Image File Upload
+    const imageInput = document.querySelector("#imageID");
+    let imageFiles = [];
+    const imagePreviewContainer = document.querySelector(".image-preview");
+
+    imageInput.addEventListener("change", function (e) {
+        imageFiles = e.target.files;
+        imagePreviewContainer.innerHTML = ''; // Clear previous image previews
+
+        Array.from(imageFiles).forEach((image, index) => {
+            let imgPreview = document.createElement('div');
+            imgPreview.innerHTML = `
+                <img src="${URL.createObjectURL(image)}" alt="${image.name}">
+                <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
+            `;
+            imagePreviewContainer.appendChild(imgPreview);
+        });
+    });
+
+    function removeImage(index) {
+        imageFiles = Array.from(imageFiles).filter((_, i) => i !== index);
+        imagePreviewContainer.innerHTML = '';
+        Array.from(imageFiles).forEach((image, index) => {
+            let imgPreview = document.createElement('div');
+            imgPreview.innerHTML = `
+                <img src="${URL.createObjectURL(image)}" alt="${image.name}">
+                <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
+            `;
+            imagePreviewContainer.appendChild(imgPreview);
+        });
+    }
+
+    // Function to upload images
+    function uploadImages() {
+        const formData = new FormData();
+        Array.from(imageFiles).forEach(image => {
+            formData.append('images', image);
+        });
+
+        fetch('YOUR_SERVER_URL_HERE', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert('Images uploaded successfully!');
+            })
+        // .catch(error => {
+        //     alert('Image upload failed. Please try again.');
+        //     console.error('Error uploading images:', error);
+        // });
     }
 </script>
+<script>
+    // Function to allow only numbers (no special characters)
+    function validateLRN() {
+        const input = document.getElementById('input-lrn');
+        // Remove any non-numeric characters (except for the "-" sign, if needed)
+        input.value = input.value.replace(/[^0-9]/g, '');
+    }
+</script>
+
 
 </html>
