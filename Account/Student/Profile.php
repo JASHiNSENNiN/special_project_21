@@ -142,13 +142,13 @@ function getDailyPerformance($student_id, $pdo)
     // Prepare the data for JavaScript
     $formattedData = [];
     foreach ($dailyPerformance as $row) {
-        $date = (string)$row['evaluation_date']; // Convert to string for JS
+        $date = (string)$row['evaluation_date']; 
         $averageScore = (
             ($row['avg_punctual'] +
                 $row['avg_reports'] +
                 $row['avg_independent_tasks'] +
                 $row['avg_self_discipline'] +
-                $row['avg_commitment']) / 5) ?? 0; // Calculate overall average score across categories 
+                $row['avg_commitment']) / 5) ?? 0; 
 
         $formattedData[] = [
             'date' => $date,
@@ -159,34 +159,27 @@ function getDailyPerformance($student_id, $pdo)
     return json_encode($formattedData);
 }
 $dailyPerformance = getDailyPerformance($user_id, $pdo);
-// $profile_div = '<header class="nav-header">
-//         <div class="logo">
-//             <a href="../' . $_SESSION['account_type'] . '"> 
-//                 <img src="image/logov3.jpg" alt="Logo">
-//             </a>
-//            <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
 
-//         </div>
-//         <nav class="by">
+$profile_divv = '<header class="nav-header">
+        <div class="logo">
+            <a href="../../Account/'. $_SESSION['account_type'] .'"> 
+                <img src="image/logov3.jpg" alt="Logo">
+            </a>
+           
+            
+        </div>
+        <nav class="by">
 
+ 
+ <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/'. $_SESSION['account_type'] .'"> Back </a>
+  
+</div>
+        
+        </nav>
 
-//  <div class="menu">
-//   <div class="item">
+    </header>
 
-
-//     <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../' . $_SESSION['account_type'] . '"> Home </a>
-
-//     </div>
-//   </div>
-// </div>
-
-//         </nav>
-
-//     </header>
-
-//     ';
-// 
-require_once 'student_profile.php';
+    ';
 ?>
 
 <!DOCTYPE html>
