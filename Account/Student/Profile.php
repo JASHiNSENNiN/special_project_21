@@ -315,7 +315,9 @@ require_once 'student_profile.php';
                     <form class="txt-Personal-summary">
                         <div>
                             <textarea class="form-control" rows="10" placeholder=""></textarea>
+                            <span class="description-resume subtitle-resume">Stay safe. Don’t include sensitive personal information such as identity documents, health, race, religion or financial data. </span>
                         </div>
+
                         <button class="btn-save">Save Summary</button>
                     </form>
 

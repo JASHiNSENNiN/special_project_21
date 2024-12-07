@@ -970,7 +970,7 @@ img {
 }
 
 .btn-save {
-  margin-top: 20px;
+  margin-top: 10px;
   font-weight: 700;
   background-color: #fff;
   cursor: pointer;
@@ -1026,6 +1026,7 @@ img {
     sans-serif;
   min-height: 254px;
   max-height: 254px;
+  margin-bottom: 20px;
 }
 
 /* //////////////////////////////end///////////////////////////////////////////////// */
@@ -1172,6 +1173,10 @@ img {
   color: #5a6881;
   font-size: 16px;
   font-weight: 400;
+}
+
+span .subtitle-resume {
+  margin-top: 20px;
 }
 
 .eval-graph {
