@@ -164,8 +164,7 @@ if (isset($_SESSION['email'])) {
                             </select>
 
                             <div id="student-fields" style="display: none;">
-                                <input value="" type="text" placeholder="School Name" id="school-name"
-                                    name="school-name">
+                                <input value="" type="text" placeholder="School Name" id="NameSchool" name="NameSchool">
                                 <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn"
                                     oninput="validateLRN()">
                                 <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
@@ -213,10 +212,44 @@ if (isset($_SESSION['email'])) {
                                             Documents</button> -->
                                     </div>
                                 </div>
+                                <nav>
+                                    <a style="text-decoration: none" href="login.php">
+                                        <button class="btn-login" id="switch-to-login">
+
+                                            <p>Back</p>
+                                        </button></a>
+                                    <button class="btn-new" type="submit" onclick="uploadDocuments()">
+                                        <p>Submit</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                            <path
+                                                d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
+                                                data-name="3-Arrow Right" />
+                                        </svg>
+                                    </button>
+
+
+                                </nav>
                             </div>
                             <div id="school-fields" style="display: none;">
                                 <input value="" type="text" placeholder="School Name" id="school-name"
                                     name="school-name">
+                                <nav>
+                                    <a style="text-decoration: none" href="login.php">
+                                        <button class="btn-login" id="switch-to-login">
+
+                                            <p>Back</p>
+                                        </button></a>
+                                    <button class="btn-new" type="submit" onclick="">
+                                        <p>Submit</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                            <path
+                                                d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
+                                                data-name="3-Arrow Right" />
+                                        </svg>
+                                    </button>
+
+
+                                </nav>
                             </div>
                             <div id="partner-fields" style="display: none;">
                                 <input value="" type="text" placeholder="Organization Name" id="organization-name"
@@ -258,27 +291,45 @@ if (isset($_SESSION['email'])) {
                                             Images</button> -->
                                     </div>
                                 </div>
+                                <nav>
+                                    <a style="text-decoration: none" href="login.php">
+                                        <button class="btn-login" id="switch-to-login">
+
+                                            <p>Back</p>
+                                        </button></a>
+                                    <button class="btn-new" type="submit" onclick="uploadImages()">
+                                        <p>Submit</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                            <path
+                                                d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
+                                                data-name="3-Arrow Right" />
+                                        </svg>
+                                    </button>
+
+
+                                </nav>
                             </div>
-                            <nav>
-                                <a style="text-decoration: none" href="login.php">
-                                    <button class="btn-login" id="switch-to-login">
 
-                                        <p>Back</p>
-                                    </button></a>
-                                <button class="btn-new" type="submit" onclick="uploadDocuments(); uploadImages();">
-                                    <p>Submit</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                                        <path
-                                            d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
-                                            data-name="3-Arrow Right" />
-                                    </svg>
-                                </button>
-
-
-                            </nav>
                         </form>
 
                     </div>
+                    <nav>
+                        <a style="text-decoration: none" href="login.php">
+                            <button class="btn-login" id="switch-to-login">
+
+                                <p style="color:white;">Back</p>
+                            </button></a>
+                        <button class="btn-new" type="submit" onclick="uploadImages()">
+                            <p style="color:white;">Submit</p>
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32">
+                                <path
+                                    d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
+                                    data-name="3-Arrow Right" />
+                            </svg> -->
+                        </button>
+
+
+                    </nav>
                 </div>
             </div>
 
