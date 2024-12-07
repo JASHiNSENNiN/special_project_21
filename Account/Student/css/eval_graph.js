@@ -338,28 +338,40 @@ window.addEventListener("resize", function () {
 });
 ////////////////////////////// Profile strength ///////////////////////////////////
 
-// on page load...
-moveProgressBar();
-// on browser resize...
-$(window).resize(function () {
-  moveProgressBar();
+(function ($) {
+  $.fn.progress = function () {
+    var percent = this.data("percent");
+    this.css("width", percent + "%");
+  };
+})(jQuery);
+
+$(document).ready(function () {
+  $(".bar-one .bar").progress();
 });
 
-// SIGNATURE PROGRESS
-function moveProgressBar() {
-  console.log("moveProgressBar");
-  var getPercent = $(".progress-wrap").data("progress-percent") / 100;
-  var getProgressWrapWidth = $(".progress-wrap").width();
-  var progressTotal = getPercent * getProgressWrapWidth;
-  var animationLength = 2500;
+let slideIndex = 0;
+showSlides();
 
-  // on page load, animate percentage bar to data percentage length
-  // .stop() used to prevent animation queueing
-  $(".progress-bar").stop().animate(
-    {
-      left: progressTotal,
-    },
-    animationLength
-  );
+function showSlides() {
+  let slides = document.getElementsByClassName("mySlides");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = "block";
 }
+
+function nextSlide() {
+  let slides = document.getElementsByClassName("mySlides");
+  slides[slideIndex - 1].style.display = "none";
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = "block";
+}
+
 // //////////////////////////////////////upload file js/////////////////////////////////

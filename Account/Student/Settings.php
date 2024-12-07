@@ -178,6 +178,9 @@ if (isset($_SESSION['user_id'])) {
         </div>
     <?php else: ?>
         <?php echo $profile_divv; ?>
+
+
+
         <div class="home-content">
             <div class="container light-style flex-grow-1 container-p-y">
                 <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
