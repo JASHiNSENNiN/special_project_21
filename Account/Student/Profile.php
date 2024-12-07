@@ -62,7 +62,7 @@ try {
     $school = $student_profile['school'];
     $gradeLevel = $student_profile['grade_level'];
     $strand = strtoupper($student_profile['strand']);
-    $stars = $student_profile['stars'];
+    $school = $student_profile['school'];
     $email = $user['email'];
     $profile_image_path = './uploads/' . $user['profile_image'];
 
@@ -230,29 +230,29 @@ require_once 'student_profile.php';
 
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-        const averages = {
-            avgPunctual: <?= json_encode($avgPunctual) ?>,
-            avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
-            avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
-            avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
-            avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
-            avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
-            avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
-            avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
-            avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
-            avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
-            avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
-            avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
-            avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
-            avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
-            avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
-            avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
-            avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
-            avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+    const averages = {
+        avgPunctual: <?= json_encode($avgPunctual) ?>,
+        avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
+        avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
+        avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
+        avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
+        avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
+        avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
+        avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
+        avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
+        avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
+        avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
+        avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
+        avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
+        avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
+        avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
+        avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
+        avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
+        avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
 
-        };
-        const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
-        console.log(dailyPerformance);
+    };
+    const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
+    console.log(dailyPerformance);
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
@@ -284,7 +284,7 @@ require_once 'student_profile.php';
                     <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
                     <br>
 
-                    <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info">09723207876</span>
+                    <i class="fa fa-house" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
                     <br>
 
                     <a style=" text-decoration: none; display:contents ;" href="Settings.php">
@@ -314,11 +314,14 @@ require_once 'student_profile.php';
                 <article class="app-content__widget app-content__widget--primary">
 
                     <h2 class="title-resume">Personal Summary</h2>
-                    <span class="description-resume">Introduce yourself and explain your goals and interest in work immersion. </span>
+                    <span class="description-resume">Introduce yourself and explain your goals and interest in work
+                        immersion. </span>
                     <form class="txt-Personal-summary">
                         <div>
                             <textarea class="form-control" rows="10" placeholder=""></textarea>
-                            <span class="description-resume subtitle-resume">Stay safe. Don’t include sensitive personal information such as identity documents, health, race, religion or financial data. </span>
+                            <span class="description-resume subtitle-resume">Stay safe. Don’t include sensitive personal
+                                information such as identity documents, health, race, religion or financial data.
+                            </span>
                         </div>
 
                         <button class="btn-save">Save Summary</button>
@@ -373,7 +376,9 @@ require_once 'student_profile.php';
                 <article class="app-content__widget app-content__widget--primary">
                     <hr>
                     <h2 class="title-resume">Application Documents</h2>
-                    <span class="description-resume">Please upload the required documents for your work immersion application: resume, application letter, barangay clearance, police clearance, mayor's clearance, and medical certificate. </span>
+                    <span class="description-resume">Please upload the required documents for your work immersion
+                        application: resume, application letter, barangay clearance, police clearance, mayor's
+                        clearance, and medical certificate. </span>
                     <div id="content-cover">
                         <form action="" method="post">
                             <table class="table" id="sortableTable-docu">
@@ -550,9 +555,9 @@ require_once 'student_profile.php';
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
-            location.reload("card-graph");
-        });
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        location.reload("card-graph");
+    });
     </script>
 
 
