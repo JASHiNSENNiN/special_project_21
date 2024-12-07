@@ -189,55 +189,12 @@ hr {
   border: solid grey 1px;
 }
 
-.main .card table {
+/* .main .card table {
   border: none;
   font-size: 16px;
   height: 270px;
   width: 80%;
-}
-
-.edit {
-  position: absolute;
-  color: #e7e7e8;
-  right: 14%;
-}
-
-.social-media {
-  text-align: center;
-  width: 90%;
-}
-
-.social-media span {
-  margin: 0 10px;
-}
-
-.fa-facebook:hover {
-  color: #4267b3 !important;
-}
-
-.fa-twitter:hover {
-  color: #1da1f2 !important;
-}
-
-.fa-instagram:hover {
-  color: #ce2b94 !important;
-}
-
-.fa-invision:hover {
-  color: #f83263 !important;
-}
-
-.fa-github:hover {
-  color: #161414 !important;
-}
-
-.fa-whatsapp:hover {
-  color: #25d366 !important;
-}
-
-.fa-snapchat:hover {
-  color: #fffb01 !important;
-}
+} */
 
 /* End */
 
@@ -887,7 +844,7 @@ img {
 /* ///////////////////////////////////////Strong profile///////////////////////////// */
 
 .card-strong-profile {
-  --main-color: #000;
+  --main-color: #172738;
   --bg-color: #fff;
   font-family:
     system-ui,
@@ -923,7 +880,7 @@ img {
 
 .card__progress progress {
   width: 100%;
-  height: 4px;
+  height: 20px;
   border-radius: 100px;
 }
 
@@ -1007,10 +964,6 @@ img {
   background-color: #17273811;
 }
 
-/* //////////////////////////////////////////END ////////////////////////////////// */
-
-/*//////////////////////////////////////////upload csss//////////////////////////// */
-
 .form-control {
   font-family:
     system-ui,
@@ -1027,6 +980,64 @@ img {
   min-height: 254px;
   max-height: 254px;
   margin-bottom: 20px;
+}
+
+/* //////////////////////////////////////////END ////////////////////////////////// */
+
+/*//////////////////////////////////////////upload csss//////////////////////////// */
+
+#content-cover {
+  background: white;
+  padding: 40px;
+  position: relative;
+  border: 2px solid #172738;
+  margin-top: 20px;
+  /*   width:50%; */
+  width: auto;
+}
+
+.successfully-saved {
+  display: none;
+  color: #1b7c18;
+  border-radius: 5px;
+  border: 2px solid #1b7c18;
+  padding: 0.5em 0.75em;
+  background: #d6f8dd;
+  width: 50%;
+  margin-top: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.btn-primary {
+  margin-top: 20px;
+  color: #fff;
+}
+
+table .th-name,
+table .th-size,
+table .th-date {
+  cursor: pointer;
+}
+
+.btn-delete {
+  cursor: pointer;
+  color: #fff !important;
+  margin-left: 20px;
+}
+
+.btn-primary:disabled {
+  color: #2e3849 !important;
+  background-color: #fff !important;
+  /* border-color: #007bff; */
+  font-weight: 700;
+  border: 2px solid #172738 !important;
+}
+
+.btn-primary:hover {
+  background-color: #17273811;
 }
 
 /* //////////////////////////////end///////////////////////////////////////////////// */
@@ -1165,7 +1176,7 @@ img {
 }
 
 .title-resume {
-  font-size: 24px;
+  font-size: 28px;
   color: #2e3849;
 }
 

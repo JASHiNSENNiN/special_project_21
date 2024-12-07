@@ -202,8 +202,6 @@ require_once 'student_profile.php';
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-
-
     <title>Student Dashboard</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
@@ -213,6 +211,14 @@ require_once 'student_profile.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
 
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -222,8 +228,6 @@ require_once 'student_profile.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
-    <script> </script>
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
         const averages = {
@@ -255,9 +259,7 @@ require_once 'student_profile.php';
     <style>
 
     </style>
-    <script>
 
-    </script>
 
 </head>
 
@@ -310,6 +312,7 @@ require_once 'student_profile.php';
             <main class="dashboard__main app-content">
 
                 <article class="app-content__widget app-content__widget--primary">
+
                     <h2 class="title-resume">Personal Summary</h2>
                     <span class="description-resume">Introduce yourself and explain your goals and interest in work immersion. </span>
                     <form class="txt-Personal-summary">
@@ -319,9 +322,12 @@ require_once 'student_profile.php';
                         </div>
 
                         <button class="btn-save">Save Summary</button>
+
                     </form>
 
+
                 </article>
+
                 <article class="app-content__widget app-content__widget--secondary">
 
                     <div class="card-strong-profile">
@@ -353,6 +359,7 @@ require_once 'student_profile.php';
                         </div>
                     </div>
                     <button class="next" onclick="nextSlide()">Next tip &#8594;</button>
+
                 </article>
 
 
@@ -364,34 +371,63 @@ require_once 'student_profile.php';
             <main class="dashboard__main app-content">
 
                 <article class="app-content__widget app-content__widget--primary">
-                    <h2 class="title-resume">Cover Letter</h2>
-                    <span class="description-resume">Upload your cover letter for the work immersion application here. </span>
+                    <hr>
+                    <h2 class="title-resume">Application Documents</h2>
+                    <span class="description-resume">Please upload the required documents for your work immersion application: resume, application letter, barangay clearance, police clearance, mayor's clearance, and medical certificate. </span>
+                    <div id="content-cover">
+                        <form action="" method="post">
+                            <table class="table" id="sortableTable-docu">
+                                <thead>
+                                    <tr>
+                                        <th class="th-name">Document Type</th>
+                                        <th class="th-name">File Name</th>
+
+                                        <th class="th-date">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <div class="one_col file-upload">
+                                <label for="documentType">Document Type:</label>
+                                <select id="documentType" name="documentType">
+                                    <option value="">--Select--</option>
+                                    <option value="Resume">Resume</option>
+                                    <option value="Application-letter ">Application letter </option>
+                                    <option value="Barangay">Barangay</option>
+                                    <option value="Police-Clearance ">Police Clearance </option>
+                                    <option value="Mayors-Clearance ">Mayor's Clearance </option>
+                                    <option value="Medical-Certificate">Medical Certificate</option>
+                                </select>
+                                <div id="file">
+                                    <ul id="image-list">
+                                    </ul>
+                                </div>
+                                <input type="file" class="file" name="images" id="uploadFile" multiple />
+                                <span class="error"></span>
+                            </div>
+                            <button class="btn btn-add btn-primary" disabled="disabled">Add New</button>
+                        </form>
+                        <span class="successfully-saved">
+                            <i class="fa fa-thumbs-up"></i> Saved!
+                        </span>
+                    </div>
+
+
 
                 </article>
 
 
             </main>
         </div>
-        <div class="dashboard-body">
 
-            <main class="dashboard__main app-content">
-
-                <article class="app-content__widget app-content__widget--primary">
-                    <h2 class="title-resume">Resume</h2>
-                    <span class="description-resume">Please upload your resume to apply and gain access to the work immersion program. </span>
-
-                </article>
-
-
-
-            </main>
-        </div>
 
         <div class="dashboard-body">
 
             <main class="dashboard__main app-content">
 
                 <article class="app-content__widget app-content__widget--primary">
+                    <hr>
                     <h2 class="title-resume">Daily Insight</h2>
                     <span class="description-resume">The line chart analyzes student daily performance in work
                         immersion, and the pie chart displays the distribution of performance levels.</span>
