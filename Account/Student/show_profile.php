@@ -12,7 +12,7 @@ $lastName = $_SESSION['last_name'];
 $school = $_SESSION['school'];
 $gradeLevel = $_SESSION['grade_level'];
 $strand = strtoupper($_SESSION['strand']);
-$stars = $_SESSION['stars'];
+// $stars = $_SESSION['stars'];
 $currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
 $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];

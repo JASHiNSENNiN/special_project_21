@@ -219,6 +219,10 @@ require_once 'student_profile.php';
 
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
     <script> </script>
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
@@ -306,33 +310,80 @@ require_once 'student_profile.php';
             <main class="dashboard__main app-content">
 
                 <article class="app-content__widget app-content__widget--primary">
-                    <h2 class="title-resume">Resume</h2>
-                    <span class="description-resume">Please upload your resume to apply and gain access to the work immersion program. </span>
-
-
-
-                    <br>
-                    <br>
+                    <h2 class="title-resume">Personal Summary</h2>
+                    <span class="description-resume">Introduce yourself and explain your goals and interest in work immersion. </span>
+                    <form class="txt-Personal-summary">
+                        <div>
+                            <textarea class="form-control" rows="10" placeholder=""></textarea>
+                        </div>
+                        <button class="btn-save">Save Summary</button>
+                    </form>
 
                 </article>
                 <article class="app-content__widget app-content__widget--secondary">
 
+                    <div class="card-strong-profile">
+                        <h1 class="title-resume">Profile Strength</h1>
+                        <div class="card__indicator">
 
-                    <h1 class="title-resume">Profile Strength</h1>
+                            <span class="card__indicator-percentage">20%</span>
+                        </div>
+                        <div class="card__progress"><progress max="100" value="20"></progress></div>
 
-                    <div class="progress-wrap progress" data-progress-percent="50">
-                        <div class="progress-bar progress"></div>
                     </div>
 
-                    <hr>
+
+                    <div class="slideshow-container">
+                        <div class="mySlides fade-text">
+                            <div class="card__subtitle ">
+                                Showcase relevant skills and projects in your resume and cover letter
+                            </div>
+                        </div>
+                        <div class="mySlides fade-text " style="display: none;">
+                            <div class="card__subtitle">
+                                Introduce yourself and explain your goals and interest in work immersion.
+                            </div>
+                        </div>
+                        <div class="mySlides fade-text" style="display: none;">
+                            <div class="card__subtitle">
+                                Fill in accurate personal information, and interests.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="next" onclick="nextSlide()">Next tip &#8594;</button>
                 </article>
-                <article class="app-content__widget app-content__widget--tertiary">
-                    widget - tertiary
-                    <hr>
-                </article>
+
+
             </main>
         </div>
 
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+
+                <article class="app-content__widget app-content__widget--primary">
+                    <h2 class="title-resume">Cover Letter</h2>
+                    <span class="description-resume">Upload your cover letter for the work immersion application here. </span>
+
+                </article>
+
+
+            </main>
+        </div>
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+
+                <article class="app-content__widget app-content__widget--primary">
+                    <h2 class="title-resume">Resume</h2>
+                    <span class="description-resume">Please upload your resume to apply and gain access to the work immersion program. </span>
+
+                </article>
+
+
+
+            </main>
+        </div>
 
         <div class="dashboard-body">
 
@@ -354,8 +405,7 @@ require_once 'student_profile.php';
                         <div class="dp-graph" id="dp_chart_div"></div>
 
                     </div>
-                    <br>
-                    <br>
+
 
                 </article>
 
@@ -391,29 +441,6 @@ require_once 'student_profile.php';
                 </article>
             </main>
         </div>
-
-
-
-        <!-- 
-        <h2>Daily Insight</h2>
-        <div class="contaier-graph">
-            <div class="column-graph" style="background-color:#fff;">
-                <div class="container-grap">
-                    <div class="dp-graph" id="dp_chart_div"></div>
-
-                </div>
-            </div>
-
-
-            <div class="column-graph" style="background-color:#fff;">
-                <div class="container-grap">
-                    <div class="dp-graph" id="piechart_3d"></div>
-                </div>
-            </div>
-        </div> -->
-
-
-
     </div>
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
