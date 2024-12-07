@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS student_profiles (
   first_name VARCHAR(255),
   middle_name VARCHAR(255),
   last_name VARCHAR(255),
+  lrn INT(12),
   school VARCHAR(255),
   grade_level ENUM('11', '12'),
   strand ENUM('stem', 'humss', 'abm', 'gas', 'tvl'),
