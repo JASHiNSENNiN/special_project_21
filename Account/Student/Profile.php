@@ -362,6 +362,7 @@ $profile_divv = '<header class="nav-header">
             </main>
         </div>
 
+        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'student'): ?>
         <div class="dashboard-body">
 
             <main class="dashboard__main app-content">
@@ -379,7 +380,6 @@ $profile_divv = '<header class="nav-header">
                                     <tr>
                                         <th class="th-name">Document Type</th>
                                         <th class="th-name">File Name</th>
-
                                         <th class="th-date">Actions</th>
                                     </tr>
                                 </thead>
@@ -410,14 +410,10 @@ $profile_divv = '<header class="nav-header">
                             <i class="fa fa-thumbs-up"></i> Saved!
                         </span>
                     </div>
-
-
-
                 </article>
-
-
             </main>
         </div>
+        <?php endif; ?>
 
 
         <div class="dashboard-body">
