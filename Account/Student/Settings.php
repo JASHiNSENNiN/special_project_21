@@ -101,6 +101,7 @@ $middle_name = filter_var($_POST['middle_name'], FILTER_SANITIZE_STRING);
 $last_name = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
 $school = filter_var($_POST['school'], FILTER_SANITIZE_STRING);
 $strand = filter_var($_POST['strand'], FILTER_SANITIZE_STRING);
+$lrn = filter_var($_POST['lrn'], FILTER_SANITIZE_STRING);
 
 // Validate strand
 $valid_strands = ['stem', 'humss', 'abm', 'gas', 'tvl'];
@@ -113,16 +114,18 @@ $sql = "UPDATE student_profiles
 SET first_name = ?,
 middle_name = ?,
 last_name = ?,
+lrn = ?,
 school = ?,
 strand = ?
 WHERE user_id = ?";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param(
-"sssssi",
+"ssssssi",
 $first_name,
 $middle_name,
 $last_name,
+$lrn,
 $school,
 $strand,
 $user_id
@@ -407,6 +410,13 @@ $conn->close();
                                                             value="<?php echo htmlspecialchars($profile_data['last_name'] ?? ''); ?>"
                                                             required>
                                                     </div>
+                                                    <div class="col-md-6">
+                                                        <label class="small mb-1" for="inputLastName">LRN</label>
+                                                        <input class="form-control" id="inputLastName" name="lrn"
+                                                            type="text"
+                                                            value="<?php echo htmlspecialchars($profile_data['lrn'] ?? ''); ?>"
+                                                            required>
+                                                    </div>
                                                 </div>
                                                 <div class="row gx-3 mb-3">
                                                     <div class="col-md-6">
@@ -463,7 +473,6 @@ $conn->close();
 
 
 
-    </div>
 
 
 
@@ -589,14 +598,49 @@ $conn->close();
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
-    </div>
-    </div>
+    <script>
+    function validateForm(event) {
+        // Prevent form submission
+        event.preventDefault();
 
+        // Get form fields
+        const firstName = document.getElementById('inputFirstName').value.trim();
+        const middleName = document.getElementById('inputMiddleName').value.trim();
+        const lastName = document.getElementById('inputLastName').value.trim();
+        const lrn = document.getElementById('inputLRN').value.trim(); 
+        const school = document.getElementById('inputSchool').value;
+        const strand = document.getElementById('inputStrand').value;
+
+        let errorMessages = [];
+
+        if (!firstName) {
+            errorMessages.push("First name is required.");
+        }
+        if (!lastName) {
+            errorMessages.push("Last name is required.");
+        }
+        if (!lrn) {
+            errorMessages.push("LRN is required.");
+        } else if (!/^\d{12}$/.test(lrn)) { 
+            errorMessages.push("LRN must be a 12-digit numeric ID.");
+        }
+        if (!school || school === "") {
+            errorMessages.push("You must select a school.");
+        }
+        if (!strand || strand === "") {
+            errorMessages.push("You must select a strand.");
+        }
+
+        
+        if (errorMessages.length > 0) {
+            alert(errorMessages.join("\n"));
+        } else {
+      
+            document.getElementById("edit-profile-form").submit();
+        }
+    }
+    </script>
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
