@@ -61,7 +61,7 @@ if (isset($_SESSION['email'])) {
                 $stmt->close();
                 break;
 
-            case 'organization':
+            case 'Organization':
                 $stmt = $conn->prepare("SELECT organization_name, strand FROM partner_profiles WHERE user_id = ?");
                 $stmt->bind_param("i", $userId);
                 $stmt->execute();
@@ -175,9 +175,9 @@ function getSchoolList($conn)
                             <input type="hidden" name="email" id="email" value="<?php echo $_SESSION['email'] ?>">
                             <select id="account-type" name="account-type" onchange="toggleFields()" required>
                                 <option value="" selected disabled hidden class="null-type">Account Type:</option>
-                                <option value="student">Student</option>
-                                <option value="school">School</option>
-                                <option value="organization">Partner Organization</option>
+                                <option value="Student">Student</option>
+                                <option value="School">School</option>
+                                <option value="Organization">Partner Organization</option>
                             </select>
 
                             <div id="student-fields" style="display: none;">
@@ -385,17 +385,17 @@ function getSchoolList($conn)
         var partnerFields = document.getElementById("partner-fields");
         var registerForm = document.getElementById("register-form");
 
-        if (accountType === "student") {
+        if (accountType === "Student") {
             registerForm.style.paddingTop = "25%";
             studentFields.style.display = "block";
             schoolFields.style.display = "none";
             partnerFields.style.display = "none";
-        } else if (accountType === "school") {
+        } else if (accountType === "School") {
             registerForm.style.paddingTop = "10%";
             studentFields.style.display = "none";
             schoolFields.style.display = "block";
             partnerFields.style.display = "none";
-        } else if (accountType === "organization") {
+        } else if (accountType === "Organization") {
             registerForm.style.paddingTop = "10%";
             studentFields.style.display = "none";
             schoolFields.style.display = "none";

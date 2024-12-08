@@ -143,7 +143,7 @@ function generateJobCard()
           <i class="active icon-star"></i> 5           </span>
         <span class="bar-block">
           <span id="bar-five" class="bar">
-            <span>566,784</span>&nbsp;
+            <span>1</span>&nbsp;
           </span> 
         </span>
       </div>
@@ -254,7 +254,7 @@ function generateJobCard()
 
 if (isset($_SESSION['account_type'])) {
 
-    $account_type = $_SESSION['account_type'];
+    $account_type = ucfirst($_SESSION['account_type']);
 
     $link = "/Account/$account_type";
 } else {
@@ -302,9 +302,9 @@ if (isset($_SESSION['account_type'])) {
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -441,45 +441,45 @@ if (isset($_SESSION['account_type'])) {
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
     <script>
-        $(document).ready(function() {
-            $('.bar span').hide();
-            $('#bar-five').animate({
-                width: '85%'
-            }, 1000);
-            $('#bar-four').animate({
-                width: '35%'
-            }, 1000);
-            $('#bar-three').animate({
-                width: '20%'
-            }, 1000);
-            $('#bar-two').animate({
-                width: '17%'
-            }, 1000);
-            $('#bar-one').animate({
-                width: '30%'
-            }, 1000);
+    $(document).ready(function() {
+        $('.bar span').hide();
+        $('#bar-five').animate({
+            width: '85%'
+        }, 1000);
+        $('#bar-four').animate({
+            width: '35%'
+        }, 1000);
+        $('#bar-three').animate({
+            width: '20%'
+        }, 1000);
+        $('#bar-two').animate({
+            width: '17%'
+        }, 1000);
+        $('#bar-one').animate({
+            width: '30%'
+        }, 1000);
 
-            setTimeout(function() {
-                $('.bar span').fadeIn('slow');
-            }, 1000);
+        setTimeout(function() {
+            $('.bar span').fadeIn('slow');
+        }, 1000);
 
-        });
+    });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
