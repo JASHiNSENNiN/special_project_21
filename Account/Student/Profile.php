@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Account/student/student_profile.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
 
 $currentUrl = $_SERVER['REQUEST_URI'];
@@ -160,26 +160,6 @@ function getDailyPerformance($student_id, $pdo)
 }
 $dailyPerformance = getDailyPerformance($user_id, $pdo);
 
-$profile_divv = '<header class="nav-header">
-        <div class="logo">
-            <a href="../../Account/'. $_SESSION['account_type'] .'"> 
-                <img src="image/logov3.jpg" alt="Logo">
-            </a>
-           
-            
-        </div>
-        <nav class="by">
-
- 
- <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/'. $_SESSION['account_type'] .'"> Back </a>
-  
-</div>
-        
-        </nav>
-
-    </header>
-
-    ';
 ?>
 
 <!DOCTYPE html>
@@ -258,7 +238,14 @@ $profile_divv = '<header class="nav-header">
 
 <body>
     <!-- nasa student_profile.php yung code nito-->
-    <?php echo $profile_divv; ?>
+    <?php 
+    if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'student'){
+        echo $profile_divv; 
+    }else{
+        echo $profile_div_non_student;
+    }
+    
+    ?>
 
     <div class="row-graph-profile">
         <div class="column-graph-profile-right">

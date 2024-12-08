@@ -49,11 +49,13 @@ CREATE TABLE IF NOT EXISTS student_profiles (
   middle_name VARCHAR(255),
   last_name VARCHAR(255),
   lrn VARCHAR(12),
+  summary
   school VARCHAR(255),
   grade_level ENUM('11', '12'),
   strand ENUM('stem', 'humss', 'abm', 'gas', 'tvl'),
   current_work INT(11),
   user_id INT(11),
+  verified_status BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -73,6 +75,7 @@ CREATE TABLE IF NOT EXISTS job_offers (
   partner_id INT(11) NOT NULL,
   organization_name VARCHAR(255),
   is_archived BOOLEAN DEFAULT FALSE,
+  verified_status BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (partner_id) REFERENCES partner_profiles(user_id)
 );
 
@@ -91,14 +94,12 @@ CREATE TABLE IF NOT EXISTS Student_Evaluation (
     student_id INT,
     evaluator_id INT,
     
-    -- Work Habits
     punctual INT CHECK (punctual BETWEEN 0 AND 5),
     reports_regularly INT CHECK (reports_regularly BETWEEN 0 AND 5),
     performs_tasks_independently INT CHECK (performs_tasks_independently BETWEEN 0 AND 5),
     self_discipline INT CHECK (self_discipline BETWEEN 0 AND 5),
     dedication_commitment INT CHECK (dedication_commitment BETWEEN 0 AND 5),
 
-    -- Work Skills
     ability_to_operate_machines INT CHECK (ability_to_operate_machines BETWEEN 0 AND 5),
     handles_details INT CHECK (handles_details BETWEEN 0 AND 5),
     shows_flexibility INT CHECK (shows_flexibility BETWEEN 0 AND 5),
@@ -106,7 +107,6 @@ CREATE TABLE IF NOT EXISTS Student_Evaluation (
     understands_task_linkages INT CHECK (understands_task_linkages BETWEEN 0 AND 5),
     offers_suggestions INT CHECK (offers_suggestions BETWEEN 0 AND 5),
 
-    -- Social Skills
     tact_in_dealing_with_people INT CHECK (tact_in_dealing_with_people BETWEEN 0 AND 5),
     respect_and_courtesy INT CHECK (respect_and_courtesy BETWEEN 0 AND 5),
     helps_others INT CHECK (helps_others BETWEEN 0 AND 5),

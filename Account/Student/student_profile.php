@@ -75,3 +75,25 @@ $profile_divv = '<header class="nav-header">
     </header>
 
     ';
+
+
+    $profile_div_non_student = '<header class="nav-header">
+        <div class="logo">
+            <a href="../../Account/'. $_SESSION['account_type'] .'"> 
+                <img src="image/logov3.jpg" alt="Logo">
+            </a>
+           
+            
+        </div>
+        <nav class="by">
+
+ 
+ <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/'. $_SESSION['account_type'] .'"> Back </a>
+  
+</div>
+        
+        </nav>
+
+    </header>
+
+    ';
