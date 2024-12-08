@@ -7,7 +7,7 @@ $profile_divv = '<header class="nav-header">
             <a href="Company_Area.php"> 
                 <img src="image/logov3.jpg" alt="Logo">
             </a>
-           <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
+           <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Job_ads.php"> Home </a>
             
         </div>
         <nav class="by">
@@ -16,7 +16,7 @@ $profile_divv = '<header class="nav-header">
  <div class="menu">
   <div class="item">
     <a class="link">
-      <span class="firstname"> ' .  $organizationName . ' </span>
+      <span class="firstname"> ' . $organizationName . ' </span>
       <svg viewBox="0 0 360 360" xml:space="preserve">
         <g id="SVGRepo_iconCarrier">
           <path
@@ -154,7 +154,8 @@ $profile_divv = '<header class="nav-header">
                                     <div class="card-body pb-2">
                                         <div class="form-group">
                                             <label class="form-label">Email</label>
-                                            <input type="text" class="form-control mb-1" autocomplete="off" value="<?php echo $email ?>" readonly />
+                                            <input type="text" class="form-control mb-1" autocomplete="off"
+                                                value="<?php echo $email ?>" readonly />
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Current password</label>
@@ -209,10 +210,13 @@ $profile_divv = '<header class="nav-header">
                                                         <img class="img-account-cover  mb-2" id="profile-image-cover"
                                                             src="https://i.postimg.cc/c454Lh9J/bg.png" alt>
 
-                                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger
+                                                            than 5 MB</div>
                                                         <form id="image-upload-form">
-                                                            <input type="file" id="image-upload-cover" style="display: none;">
-                                                            <label for="image-upload" class="btn btn-primary">Upload new image</label>
+                                                            <input type="file" id="image-upload-cover"
+                                                                style="display: none;">
+                                                            <label for="image-upload" class="btn btn-primary">Upload new
+                                                                image</label>
                                                         </form>
 
                                                     </div>
@@ -222,14 +226,18 @@ $profile_divv = '<header class="nav-header">
                                                 <div class="card mb-4 mb-xl-0">
                                                     <div class="card-header">Profile Picture</div>
                                                     <div class="card-body text-center">
-                                                        <img class="img-account-profile rounded-circle mb-2" id="profile-image"
+                                                        <img class="img-account-profile rounded-circle mb-2"
+                                                            id="profile-image"
                                                             src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
-                                                            alt="Profile" style="width: 200px; height: 200px; object-fit: cover;">
-                                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                                                            alt="Profile"
+                                                            style="width: 200px; height: 200px; object-fit: cover;">
+                                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger
+                                                            than 5 MB</div>
                                                         <form id="profile-image-form">
-                                                            <input type="file" id="image-upload" name="profile_image" accept="image/*"
-                                                                style="display: none;">
-                                                            <label for="image-upload" class="btn btn-primary">Upload new image</label>
+                                                            <input type="file" id="image-upload" name="profile_image"
+                                                                accept="image/*" style="display: none;">
+                                                            <label for="image-upload" class="btn btn-primary">Upload new
+                                                                image</label>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -262,10 +270,10 @@ $profile_divv = '<header class="nav-header">
                                                                 <div class="col-md-6">
 
                                                                     <div class="container4">
-                                                                        <label class="small mb-1" for="inputSchool">Organization name</label>
-                                                                        <input class="form-control" id="inputSchoolName" name="SchoolName" type="text"
-                                                                            value=""
-                                                                            required>
+                                                                        <label class="small mb-1"
+                                                                            for="inputSchool">Organization name</label>
+                                                                        <input class="form-control" id="inputSchoolName"
+                                                                            name="SchoolName" type="text" value="" required>
                                                                         <!-- <form class="form-control" action="/submit" method="post">
                                                                             <select class="form-control" id="student" name="student"
                                                                             <?php echo htmlspecialchars($profile_data['school'] ?? ''); ?> required>
@@ -298,8 +306,10 @@ $profile_divv = '<header class="nav-header">
 
 
                                                                 <div class="col-md-6">
-                                                                    <label class="small mb-1" for="inputStrand">Strand</label>
-                                                                    <select class="form-control" id="inputStrand" name="strand" required>
+                                                                    <label class="small mb-1"
+                                                                        for="inputStrand">Strand</label>
+                                                                    <select class="form-control" id="inputStrand"
+                                                                        name="strand" required>
                                                                         <?php
                                                                         $strands = ['stem' => 'STEM', 'humss' => 'HUMSS', 'abm' => 'ABM', 'gas' => 'GAS', 'tvl' => 'TVL'];
                                                                         foreach ($strands as $value => $label) {
@@ -313,17 +323,17 @@ $profile_divv = '<header class="nav-header">
 
 
                                                                 <div class="col-md-6">
-                                                                    <label class="small mb-1" for="inputSchool">Location</label>
-                                                                    <input class="form-control" id="inputLocation" name="Location" type="text"
-                                                                        value=""
-                                                                        required>
+                                                                    <label class="small mb-1"
+                                                                        for="inputSchool">Location</label>
+                                                                    <input class="form-control" id="inputLocation"
+                                                                        name="Location" type="text" value="" required>
                                                                 </div>
 
                                                                 <div class="col-md-6">
-                                                                    <label class="small mb-1" for="inputSchool">Phone number</label>
-                                                                    <input class="form-control" id="inputLocation" name="Location" type="text"
-                                                                        value=""
-                                                                        required>
+                                                                    <label class="small mb-1" for="inputSchool">Phone
+                                                                        number</label>
+                                                                    <input class="form-control" id="inputLocation"
+                                                                        name="Location" type="text" value="" required>
                                                                 </div>
                                                             </div>
                                                             <!-- <button class="btn btn-primary" type="submit">Save changes</button> -->
@@ -486,7 +496,7 @@ $profile_divv = '<header class="nav-header">
         <script>
             let profilePic = document.getElementById("profile-pic");
             let inputfile = document.getElementById("input-file");
-            inputfile.onchange = function() {
+            inputfile.onchange = function () {
                 profilePic.src = URL.createObjectURL(inputfile.files[0]);
             }
         </script>
