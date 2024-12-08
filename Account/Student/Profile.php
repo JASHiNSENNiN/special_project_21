@@ -61,6 +61,7 @@ try {
     $fullName = trim("$firstName $middleName $lastName");
     $school = $student_profile['school'];
     $gradeLevel = $student_profile['grade_level'];
+    $lrn = $student_profile['lrn'];
     $strand = strtoupper($student_profile['strand']);
     $school = $student_profile['school'];
     $email = $user['email'];
@@ -255,7 +256,7 @@ $dailyPerformance = getDailyPerformance($user_id, $pdo);
 
                 <div class="card-body">
                     <span class="fullname"><?= $fullName ?></span>
-                    <span class="LRN">LRN: 20181234</span>
+                    <span class="LRN">LRN: <?=  $lrn ?></span>
                     <br>
 
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i><span

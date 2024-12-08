@@ -16,6 +16,7 @@ $strand = strtoupper($_SESSION['strand']);
 $currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
 $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
+$cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/default.png' : $_SESSION['cover_image'];
 
 
 $profile_divv = '<header class="nav-header">

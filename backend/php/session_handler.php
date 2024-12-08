@@ -70,19 +70,25 @@ function fetch_partner_profile($user_id)
 
 
 $user_profile = fetch_user_profile($user_id);
+
 $_SESSION['email'] = $user_profile['email'];
 $_SESSION['account_type'] = $user_profile['account_type'];
-$profile_image = '../Account/Student/image/default.png';
-$_SESSION['profile_image'] = "../../Account/Student/image/default.png";
+
 $profile_image_path = './uploads/' . $user_profile['profile_image'];
 if (file_exists($profile_image_path)) {
     $_SESSION['profile_image'] = $profile_image_path;
 } else {
     $_SESSION['profile_image'] = "../../Account/Student/image/default.png";
 }
+
 $_SESSION['profile_image'] = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
-
+$cover_image_path = './uploads/' . $user_profile['cover_image'];
+if (file_exists($cover_image_path)) {
+    $_SESSION['cover_image'] = $cover_image_path;
+} else {
+    $_SESSION['cover_image'] = "../../Account/Student/image/default_cover.png";
+}
 
 if ($user_profile['account_type'] === 'student') {
     $student_profile = fetch_student_profile($user_id);
@@ -91,6 +97,7 @@ if ($user_profile['account_type'] === 'student') {
     $_SESSION['middle_name'] = $student_profile['middle_name'];
     $_SESSION['last_name'] = $student_profile['last_name'];
     $_SESSION['school'] = $student_profile['school'];
+    $_SESSION['lrn'] = $student_profile['lrn'];
     $_SESSION['grade_level'] = $student_profile['grade_level'];
     $_SESSION['strand'] = $student_profile['strand'];
     $_SESSION['current_work'] = $student_profile['current_work'];

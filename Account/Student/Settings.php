@@ -1,10 +1,10 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-// require_once 'show_profile.php';
 require_once 'student_profile.php';
+
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
@@ -22,64 +22,32 @@ if (!$conn) {
 
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!isset($_SESSION['user_id'])) {
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => 'Not authenticated']);
-        exit;
-    }
-
     $user_id = $_SESSION['user_id'];
-    
-    // Handle image upload
-    if (isset($_FILES['profile_image'])) {
-        $file = $_FILES['profile_image'];
 
-        // Validate file
-        $allowed_types = ['image/jpeg', 'image/png'];
-        if (!in_array($file['type'], $allowed_types)) {
-            echo json_encode(['success' => false, 'message' => 'Invalid file type']);
-            exit;
-        }
+    // Handle file uploads
+    $profile_image_name = $_FILES['profile_image']['name'];
+    $cover_image_name = $_FILES['cover_image']['name'];
 
-        if ($file['size'] > 5 * 1024 * 1024) { // 5MB limit
-            echo json_encode(['success' => false, 'message' => 'File too large']);
-            exit;
-        }
-
-        // Create upload directory if it doesn't exist
+    function uploadImage($file) {
         $upload_dir = 'uploads/';
-        if (!file_exists($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $random_name = uniqid('', true) . '.' . $ext; // Generate a unique name
+            $destination = $upload_dir . $random_name;
+            move_uploaded_file($file['tmp_name'], $destination);
+            return $random_name;
         }
-
-        // Generate unique filename
-        $file_extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $new_filename = md5($user_id . time()) . '.' . $file_extension;
-        $upload_path = $upload_dir . $new_filename;
-
-        if (move_uploaded_file($file['tmp_name'], $upload_path)) {
-            // Update database with new image path
-            $sql = "UPDATE users SET profile_image = ? WHERE id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("si", $new_filename, $user_id);
-
-            if ($stmt->execute()) {
-                echo json_encode(['success' => true, 'filename' => $new_filename]);
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Database update failed']);
-            }
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Failed to upload file']);
-        }
-        exit;
+        return null; // Upload error
     }
+
+    $profile_image = uploadImage($_FILES['profile_image']);
+    $cover_image = uploadImage($_FILES['cover_image']);
 
     // Handle profile update
     if (isset($_POST['first_name'])) {
         $required_fields = ['first_name', 'last_name', 'school', 'strand'];
         foreach ($required_fields as $field) {
             if (!isset($_POST[$field]) || empty($_POST[$field])) {
-                echo json_encode(['success' => false, 'message' => 'Missing required fields']);
                 exit;
             }
         }
@@ -94,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Validate strand
         $valid_strands = ['stem', 'humss', 'abm', 'gas', 'tvl'];
         if (!in_array($strand, $valid_strands)) {
-            echo json_encode(['success' => false, 'message' => 'Invalid strand']);
             exit;
         }
 
@@ -119,16 +86,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
 
         if ($stmt->execute()) {
-            echo json_encode(['success' => true]);
+            // Update images if they exist
+            if ($profile_image) {
+                $sql_image = "UPDATE users SET profile_image = ? WHERE id = ?";
+                $stmt_image = $conn->prepare($sql_image);
+                $stmt_image->bind_param("si", $profile_image, $user_id);
+                $stmt_image->execute();
+            }
+            if ($cover_image) {
+                $sql_image = "UPDATE users SET cover_image = ? WHERE id = ?";
+                $stmt_image = $conn->prepare($sql_image);
+                $stmt_image->bind_param("si", $cover_image, $user_id);
+                $stmt_image->execute();
+            }
+
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit;
         } else {
-            echo json_encode(['success' => false, 'message' => 'Database update failed']);
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit;
         }
-        exit;
     }
 }
+
 function getSchoolList($conn) {
     $schools = [];
-    
+
     $schoolQuery = "SELECT school_name FROM school_profiles";
     $schoolResult = $conn->query($schoolQuery);
 
@@ -138,14 +121,15 @@ function getSchoolList($conn) {
         }
         $schoolResult->free();
     }
-    
+
     return $schools;
 }
+
 // Fetch current profile data
 $profile_data = null;
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    $sql = "SELECT sp.*, u.profile_image 
+    $sql = "SELECT sp.*, u.profile_image, u.cover_image
             FROM student_profiles sp 
             JOIN users u ON sp.user_id = u.id 
             WHERE sp.user_id = ?";
@@ -156,7 +140,6 @@ if (isset($_SESSION['user_id'])) {
     $result = $stmt->get_result();
     $profile_data = $result->fetch_assoc();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -246,31 +229,25 @@ if (isset($_SESSION['user_id'])) {
 
 
                             <div class="tab-pane fade active show" id="account-info">
-                                <form id="edit-profile-form" method="POST">
+                                <form id="edit-profile-form" method="POST" enctype="multipart/form-data">
                                     <div class="container-xl px-4 mt-4">
-
-
                                         <div class="row row1">
                                             <div class="col-xl-4">
-
                                                 <div class="card mb-4 mb-5 mb-xl-0">
                                                     <div class="card-header">Cover Picture </div>
-
                                                     <div class="card-body text-center">
-
-                                                        <img class="img-account-cover  mb-2" id="profile-image-cover"
-                                                            src="https://i.postimg.cc/c454Lh9J/bg.png" alt>
-
+                                                        <img class="img-account-cover mb-2" id="profile-image-cover"
+                                                            src="<?php echo $profile_data['cover_image'] ? 'uploads/' . $profile_data['cover_image'] : 'uploads/default.png'; ?>"
+                                                            alt="Cover Image Preview"
+                                                            style="width: 100%; height: auto;">
                                                         <div class="small font-italic text-muted mb-4">JPG or PNG no
-                                                            larger
-                                                            than 5 MB</div>
-
+                                                            larger than 5 MB</div>
                                                         <input type="file" id="image-upload-cover"
-                                                            style="display: none;">
-                                                        <label for="image-upload" class="btn btn-primary">Upload new
-                                                            image</label>
-
-
+                                                            accept="image/jpeg,image/png" style="display: none;"
+                                                            onchange="previewImage('image-upload-cover', 'profile-image-cover')"
+                                                            name="cover_image">
+                                                        <label for="image-upload-cover" class="btn btn-primary">Upload
+                                                            new image</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -281,25 +258,40 @@ if (isset($_SESSION['user_id'])) {
                                                         <img class="img-account-profile rounded-circle mb-2"
                                                             id="profile-image"
                                                             src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
-                                                            alt="Profile"
+                                                            alt="Profile Image Preview"
                                                             style="width: 200px; height: 200px; object-fit: cover;">
                                                         <div class="small font-italic text-muted mb-4">JPG or PNG no
-                                                            larger
-                                                            than 5 MB</div>
-
+                                                            larger than 5 MB</div>
                                                         <input type="file" id="image-upload" name="profile_image"
-                                                            accept="image/*" style="display: none;">
+                                                            accept="image/jpeg,image/png" style="display: none;"
+                                                            onchange="previewImage('image-upload', 'profile-image')"
+                                                            name="profile_image">
                                                         <label for="image-upload" class="btn btn-primary">Upload new
                                                             image</label>
-
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <script>
+                                            function previewImage(inputId, imgId) {
+                                                const file = document.getElementById(inputId).files[0];
+                                                const img = document.getElementById(imgId);
+
+                                                if (file) {
+                                                    const reader = new FileReader();
+                                                    reader.onload = function(e) {
+                                                        img.src = e.target
+                                                            .result;
+                                                    }
+                                                    reader.readAsDataURL(
+                                                        file);
+                                                }
+                                            }
+                                            </script>
                                             <div class="col-xl-8">
                                                 <div class="card mb-4">
                                                     <div class="card-header">Account Details</div>
                                                     <div class="card-body">
-
                                                         <div class="row gx-3 mb-3">
                                                             <div class="col-md-6">
                                                                 <label class="small mb-1" for="inputFirstName">First
@@ -327,33 +319,26 @@ if (isset($_SESSION['user_id'])) {
                                                         </div>
                                                         <div class="row gx-3 mb-3">
                                                             <div class="col-md-6">
-
-                                                                <div class="container4">
-
-                                                                    <label class="small mb-1" for="inputSchool">School
-                                                                        name</label>
-                                                                    <select class="form-control" id="student"
-                                                                        name="student"
+                                                                <label class="small mb-1" for="inputSchool">School
+                                                                    name</label>
+                                                                <select class="form-control" id="inputSchool"
+                                                                    name="school" required>
+                                                                    <option value="" disabled>Select your school
+                                                                    </option>
+                                                                    <option
+                                                                        value="<?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>"
+                                                                        selected>
                                                                         <?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>
-                                                                        required>
-                                                                        <option
-                                                                            value="<?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>">
-                                                                            <?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>
-                                                                        </option>
-                                                                        <?php if (!empty($schools)) : ?>
-                                                                        <?php foreach ($schools as $schoolName) : ?>
-                                                                        <option
-                                                                            value="<?php echo htmlspecialchars($schoolName); ?>">
-                                                                            <?php echo htmlspecialchars($schoolName); ?>
-                                                                        </option>
-                                                                        <?php endforeach; ?>
-                                                                        <?php endif; ?>
-                                                                    </select>
-
-
-                                                                </div>
-
-
+                                                                    </option>
+                                                                    <?php if (!empty($schools)) : ?>
+                                                                    <?php foreach ($schools as $schoolName) : ?>
+                                                                    <option
+                                                                        value="<?php echo htmlspecialchars($schoolName); ?>">
+                                                                        <?php echo htmlspecialchars($schoolName); ?>
+                                                                    </option>
+                                                                    <?php endforeach; ?>
+                                                                    <?php endif; ?>
+                                                                </select>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label class="small mb-1"
@@ -361,20 +346,24 @@ if (isset($_SESSION['user_id'])) {
                                                                 <select class="form-control" id="inputStrand"
                                                                     name="strand" required>
                                                                     <?php
-                                                                        $strands = ['stem' => 'STEM', 'humss' => 'HUMSS', 'abm' => 'ABM', 'gas' => 'GAS', 'tvl' => 'TVL'];
-                                                                        foreach ($strands as $value => $label) {
-                                                                            $selected = ($profile_data['strand'] ?? '') === $value ? 'selected' : '';
-                                                                            echo "<option value=\"$value\" $selected>$label</option>";
-                                                                        }
-                                                                        ?>
+                                    $strands = ['stem' => 'STEM', 'humss' => 'HUMSS', 'abm' => 'ABM', 'gas' => 'GAS', 'tvl' => 'TVL'];
+                                    foreach ($strands as $value => $label) {
+                                        $selected = ($profile_data['strand'] ?? '') === $value ? 'selected' : '';
+                                        echo "<option value=\"$value\" $selected>$label</option>";
+                                    }
+                                    ?>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="text-right mt-3">
                                                             <button type="submit" class="btn btn-primary">Save
                                                                 changes</button>&nbsp;
-
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
