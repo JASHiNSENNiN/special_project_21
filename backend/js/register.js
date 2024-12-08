@@ -234,12 +234,11 @@ window.onload = function () {
     const loginEmailField = document.getElementById("login-email");
     const loginPasswordField = document.getElementById("login-password");
 
-    // Redirect on click
     loginEmailField.addEventListener("click", function () {
-      window.location.href = "login.php"; // Redirect to login.php
+      window.location.href = "login.php";
     });
     loginPasswordField.addEventListener("click", function () {
-      window.location.href = "login.php"; // Redirect to login.php
+      window.location.href = "login.php";
     });
 
     if (loginEmailField && loginPasswordField) {
@@ -248,8 +247,17 @@ window.onload = function () {
       loginEmailField.reportValidity();
       loginPasswordField.reportValidity();
     }
+
+    loginEmailField.addEventListener("focus", function () {
+      window.location.href = "login.php";
+    });
+
+    loginPasswordField.addEventListener("focus", function () {
+      window.location.href = "login.php";
+    });
   }
 };
+
 const emailInput = document.getElementById("email");
 
 emailInput.addEventListener("input", function () {

@@ -15,7 +15,7 @@ $password = $_ENV['MYSQL_PASSWORD'];
 $database = $_ENV['MYSQL_DBNAME'];
 
 $conn = new mysqli($host, $username, $password, $database);
-
+$schools = getSchoolList($conn);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $user_id = $_SESSION['user_id'];
-    $email = $user['email'];
+
     // Handle image upload
     if (isset($_FILES['profile_image'])) {
         $file = $_FILES['profile_image'];
@@ -126,7 +126,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+function getSchoolList($conn)
+{
+    $schools = [];
 
+    $schoolQuery = "SELECT school_name FROM school_profiles";
+    $schoolResult = $conn->query($schoolQuery);
+
+    if ($schoolResult) {
+        while ($row = $schoolResult->fetch_assoc()) {
+            $schools[] = $row['school_name'];
+        }
+        $schoolResult->free();
+    }
+
+    return $schools;
+}
 // Fetch current profile data
 $profile_data = null;
 if (isset($_SESSION['user_id'])) {
@@ -203,12 +218,7 @@ if (isset($_SESSION['user_id'])) {
                                 <a class="list-group-item list-group-item-action" data-toggle="list"
                                     href="#account-change-password">Change password</a>
 
-                                <!-- <a class="list-group-item list-group-item-action" data-toggle="list"
-                                    href="#account-social-links">Social links</a>
-                                <a class="list-group-item list-group-item-action" data-toggle="list"
-                                    href="#account-connections">Connections</a>
-                                <a class="list-group-item list-group-item-action" data-toggle="list"
-                                    href="#account-notifications">Notifications</a> -->
+
                             </div>
                         </div>
                         <div class="col-md-9">
@@ -237,58 +247,60 @@ if (isset($_SESSION['user_id'])) {
 
 
                                 <div class="tab-pane fade active show" id="account-info">
+                                    <form id="edit-profile-form" method="POST">
+                                        <div class="container-xl px-4 mt-4">
 
-                                    <div class="container-xl px-4 mt-4">
 
+                                            <div class="row row1">
+                                                <div class="col-xl-4">
 
-                                        <div class="row row1">
-                                            <div class="col-xl-4">
+                                                    <div class="card mb-4 mb-5 mb-xl-0">
+                                                        <div class="card-header">Cover Picture </div>
 
-                                                <div class="card mb-4 mb-5 mb-xl-0">
-                                                    <div class="card-header">Cover Picture </div>
+                                                        <div class="card-body text-center">
 
-                                                    <div class="card-body text-center">
+                                                            <img class="img-account-cover  mb-2" id="profile-image-cover"
+                                                                src="https://i.postimg.cc/c454Lh9J/bg.png" alt>
 
-                                                        <img class="img-account-cover  mb-2" id="profile-image-cover"
-                                                            src="https://i.postimg.cc/c454Lh9J/bg.png" alt>
+                                                            <div class="small font-italic text-muted mb-4">JPG or PNG no
+                                                                larger
+                                                                than 5 MB</div>
 
-                                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger
-                                                            than 5 MB</div>
-                                                        <form id="image-upload-form">
                                                             <input type="file" id="image-upload-cover"
                                                                 style="display: none;">
                                                             <label for="image-upload" class="btn btn-primary">Upload new
                                                                 image</label>
-                                                        </form>
 
+
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-xl-4">
-                                                <div class="card mb-4 mb-xl-0">
-                                                    <div class="card-header">Profile Picture</div>
-                                                    <div class="card-body text-center">
-                                                        <img class="img-account-profile rounded-circle mb-2"
-                                                            id="profile-image"
-                                                            src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
-                                                            alt="Profile"
-                                                            style="width: 200px; height: 200px; object-fit: cover;">
-                                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger
-                                                            than 5 MB</div>
-                                                        <form id="profile-image-form">
+                                                <div class="col-xl-4">
+                                                    <div class="card mb-4 mb-xl-0">
+                                                        <div class="card-header">Profile Picture</div>
+                                                        <div class="card-body text-center">
+                                                            <img class="img-account-profile rounded-circle mb-2"
+                                                                id="profile-image"
+                                                                src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
+                                                                alt="Profile"
+                                                                style="width: 200px; height: 200px; object-fit: cover;">
+                                                            <div class="small font-italic text-muted mb-4">JPG or PNG no
+                                                                larger
+                                                                than 5 MB</div>
+
                                                             <input type="file" id="image-upload" name="profile_image"
                                                                 accept="image/*" style="display: none;">
                                                             <label for="image-upload" class="btn btn-primary">Upload new
                                                                 image</label>
-                                                        </form>
+
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-xl-8">
-                                                <div class="card mb-4">
-                                                    <div class="card-header">Account Details</div>
-                                                    <div class="card-body">
-                                                        <form id="edit-profile-form">
+                                                <div class="col-xl-8">
+                                                    <div class="card mb-4">
+                                                        <div class="card-header">Account Details</div>
+                                                        <div class="card-body">
+
                                                             <div class="row gx-3 mb-3">
                                                                 <div class="col-md-6">
                                                                     <label class="small mb-1" for="inputFirstName">First
@@ -318,25 +330,31 @@ if (isset($_SESSION['user_id'])) {
                                                                 <div class="col-md-6">
 
                                                                     <div class="container4">
-                                                                        <form class="form-control" action="/submit"
-                                                                            method="post">
-                                                                            <label class="small mb-1"
-                                                                                for="inputSchool">School name</label>
-                                                                            <select class="form-control" id="student" name="student" required>
-                                                                                <option value="" disabled <?php echo empty($profile_data['school']) ? 'selected' : ''; ?>>Select a School</option>
-                                                                                <option value="OLSHCO" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'OLSHCO') ? 'selected' : ''; ?>>OLSHCO</option>
-                                                                                <option value="National" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'National') ? 'selected' : ''; ?>>Dr Ramon</option>
-                                                                                <option value="CATMAN" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'CATMAN') ? 'selected' : ''; ?>>CATMAN</option>
-                                                                                <option value="WCC" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'WCC') ? 'selected' : ''; ?>>WCC</option>
-                                                                                <option value="CRT" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'CRT') ? 'selected' : ''; ?>>CRT</option>
-                                                                            </select>
 
-                                                                        </form>
+                                                                        <label class="small mb-1" for="inputSchool">School
+                                                                            name</label>
+                                                                        <select class="form-control" id="student"
+                                                                            name="student"
+                                                                            <?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>
+                                                                            required>
+                                                                            <option
+                                                                                value="<?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>">
+                                                                                <?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>
+                                                                            </option>
+                                                                            <?php if (!empty($schools)) : ?>
+                                                                                <?php foreach ($schools as $schoolName) : ?>
+                                                                                    <option
+                                                                                        value="<?php echo htmlspecialchars($schoolName); ?>">
+                                                                                        <?php echo htmlspecialchars($schoolName); ?>
+                                                                                    </option>
+                                                                                <?php endforeach; ?>
+                                                                            <?php endif; ?>
+                                                                        </select>
+
+
                                                                     </div>
 
 
-                                                                    <!-- value="<?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>"
-                                                                required > -->
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <label class="small mb-1"
@@ -353,152 +371,152 @@ if (isset($_SESSION['user_id'])) {
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="text-right mt-3">
+                                                                <button type="submit" class="btn btn-primary">Save
+                                                                    changes</button>&nbsp;
 
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-
-
-
-                                <div class="tab-pane fade" id="account-social-links">
-                                    <div class="card-body pb-2">
-                                        <div class="form-group">
-                                            <label class="form-label">Twitter</label>
-                                            <input type="text" class="form-control" value="https://twitter.com/user" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Facebook</label>
-                                            <input type="text" class="form-control" value="https://www.facebook.com/user" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Google+</label>
-                                            <input type="text" class="form-control" value />
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Instagram</label>
-                                            <input type="text" class="form-control"
-                                                value="https://www.instagram.com/user" />
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="tab-pane fade" id="account-connections">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-twitter" style="font-size: 15px">
-                                            Connect to <strong>Twitter</strong>
-                                        </button>
-                                    </div>
-                                    <hr class="border-light m-0" />
-                                    <div class="card-body">
-                                        <h5 class="mb-2" style="font-size: 15px">
-                                            <a href="javascript:void(0)" class="float-right text-muted text-tiny"
-                                                style="font-size: 15px"><i class="ion ion-md-close"></i> Remove</a>
-                                            <i class="ion ion-logo-google text-google"></i>
-                                            You are connected to Google:
-                                        </h5>
-                                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                            data-cfemail="f9979498818e9c9595b994989095d79a9694">[email&#160;protected]</a>
-                                    </div>
-                                    <hr class="border-light m-0" />
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-facebook" style="font-size: 15px">
-                                            Connect to <strong>Facebook</strong>
-                                        </button>
-                                    </div>
-                                    <hr class="border-light m-0" />
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-instagram" style="font-size: 15px">
-                                            Connect to <strong>Instagram</strong>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="account-notifications">
-                                    <div class="card-body pb-2">
-                                        <h6 class="mb-4">Activity</h6>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" checked />
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">When someone Send a Feedback </span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" checked />
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">When someone send a report</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" />
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">When someone follows </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <hr class="border-light m-0" />
-                                    <div class="card-body pb-2">
-                                        <h6 class="mb-4">Application</h6>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" checked />
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">News and announcements</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" />
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">Weekly product updates</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" checked />
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">Weekly blog digest</span>
-                                            </label>
-                                        </div>
-                                    </div>
+                                                            </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-right mt-3">
-                    <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
-                    <a href="Company_Area.php"><button type="button" class="btn btn-default">Cancel</button></a>
+
+
+
+            </div>
+
+
+
+            <div class="tab-pane fade" id="account-social-links">
+                <div class="card-body pb-2">
+                    <div class="form-group">
+                        <label class="form-label">Twitter</label>
+                        <input type="text" class="form-control" value="https://twitter.com/user" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Facebook</label>
+                        <input type="text" class="form-control" value="https://www.facebook.com/user" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Google+</label>
+                        <input type="text" class="form-control" value />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Instagram</label>
+                        <input type="text" class="form-control" value="https://www.instagram.com/user" />
+                    </div>
                 </div>
             </div>
+
+
+
+            <div class="tab-pane fade" id="account-connections">
+                <div class="card-body">
+                    <button type="button" class="btn btn-twitter" style="font-size: 15px">
+                        Connect to <strong>Twitter</strong>
+                    </button>
+                </div>
+                <hr class="border-light m-0" />
+                <div class="card-body">
+                    <h5 class="mb-2" style="font-size: 15px">
+                        <a href="javascript:void(0)" class="float-right text-muted text-tiny" style="font-size: 15px"><i
+                                class="ion ion-md-close"></i> Remove</a>
+                        <i class="ion ion-logo-google text-google"></i>
+                        You are connected to Google:
+                    </h5>
+                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                        data-cfemail="f9979498818e9c9595b994989095d79a9694">[email&#160;protected]</a>
+                </div>
+                <hr class="border-light m-0" />
+                <div class="card-body">
+                    <button type="button" class="btn btn-facebook" style="font-size: 15px">
+                        Connect to <strong>Facebook</strong>
+                    </button>
+                </div>
+                <hr class="border-light m-0" />
+                <div class="card-body">
+                    <button type="button" class="btn btn-instagram" style="font-size: 15px">
+                        Connect to <strong>Instagram</strong>
+                    </button>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="account-notifications">
+                <div class="card-body pb-2">
+                    <h6 class="mb-4">Activity</h6>
+                    <div class="form-group">
+                        <label class="switcher">
+                            <input type="checkbox" class="switcher-input" checked />
+                            <span class="switcher-indicator">
+                                <span class="switcher-yes"></span>
+                                <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">When someone Send a Feedback </span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="switcher">
+                            <input type="checkbox" class="switcher-input" checked />
+                            <span class="switcher-indicator">
+                                <span class="switcher-yes"></span>
+                                <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">When someone send a report</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="switcher">
+                            <input type="checkbox" class="switcher-input" />
+                            <span class="switcher-indicator">
+                                <span class="switcher-yes"></span>
+                                <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">When someone follows </span>
+                        </label>
+                    </div>
+                </div>
+                <hr class="border-light m-0" />
+                <div class="card-body pb-2">
+                    <h6 class="mb-4">Application</h6>
+                    <div class="form-group">
+                        <label class="switcher">
+                            <input type="checkbox" class="switcher-input" checked />
+                            <span class="switcher-indicator">
+                                <span class="switcher-yes"></span>
+                                <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">News and announcements</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="switcher">
+                            <input type="checkbox" class="switcher-input" />
+                            <span class="switcher-indicator">
+                                <span class="switcher-yes"></span>
+                                <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">Weekly product updates</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="switcher">
+                            <input type="checkbox" class="switcher-input" checked />
+                            <span class="switcher-indicator">
+                                <span class="switcher-yes"></span>
+                                <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">Weekly blog digest</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        </div>
         </div>
 
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
