@@ -164,7 +164,16 @@ if (isset($_SESSION['email'])) {
                             </select>
 
                             <div id="student-fields" style="display: none;">
-                                <input value="" type="text" placeholder="School Name" id="NameSchool" name="NameSchool">
+                                <!-- <input value="" type="text" placeholder="School Name" id="NameSchool" name="NameSchool"> -->
+                                <select id="schoolSelect">
+                                    <option value="">Select a School:</option>
+                                    <option value="Springfield High School">Springfield High School</option>
+                                    <option value="Greenwood Academy">Greenwood Academy</option>
+                                    <option value="Riverdale Secondary School">Riverdale Secondary School</option>
+                                    <option value="Westbrook International School">Westbrook International School
+                                    </option>
+                                    <option value="Sunshine Preparatory School">Sunshine Preparatory School</option>
+                                </select>
                                 <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn"
                                     oninput="validateLRN()">
                                 <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
@@ -218,7 +227,8 @@ if (isset($_SESSION['email'])) {
 
                                             <p>Back</p>
                                         </button></a>
-                                    <button class="btn-new" type="submit" onclick="uploadDocuments()">
+                                    <button class="btn-new" type="submit"
+                                        onclick="uploadDocuments();showSelectedSchool();">
                                         <p>Submit</p>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                             <path
@@ -367,6 +377,20 @@ if (isset($_SESSION['email'])) {
             studentFields.style.display = "none";
             schoolFields.style.display = "none";
             partnerFields.style.display = "none";
+        }
+    }
+</script>
+
+<script>
+    function showSelectedSchool() {
+        const schoolSelect = document.getElementById('schoolSelect');
+        const selectedSchool = schoolSelect.value;
+        const resultDiv = document.getElementById('selectedSchool');
+
+        if (selectedSchool) {
+            resultDiv.innerHTML = `<h2>You selected: ${selectedSchool}</h2>`;
+        } else {
+            resultDiv.innerHTML = "<h2>Please select a school from the list.</h2>";
         }
     }
 </script>
