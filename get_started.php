@@ -18,7 +18,7 @@ if (isset($_SESSION['email'])) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
+    $schools = getSchoolList($conn);
     $sqlCheck = $conn->prepare("SELECT id, account_type FROM users WHERE email = ?");
     $sqlCheck->bind_param("s", $email);
     $sqlCheck->execute();
@@ -86,6 +86,23 @@ if (isset($_SESSION['email'])) {
         $sqlCheck->close();
         $conn->close();
     }
+}
+
+function getSchoolList($conn)
+{
+    $schools = [];
+
+    $schoolQuery = "SELECT school_name FROM school_profiles";
+    $schoolResult = $conn->query($schoolQuery);
+
+    if ($schoolResult) {
+        while ($row = $schoolResult->fetch_assoc()) {
+            $schools[] = $row['school_name'];
+        }
+        $schoolResult->free();
+    }
+
+    return $schools;
 }
 
 ?>
@@ -180,6 +197,16 @@ if (isset($_SESSION['email'])) {
                                 <input value="" type="text" placeholder="Middle Name" id="middle-name"
                                     name="middle-name">
                                 <input value="" type="text" placeholder="Last Name" id="last-name" name="last-name">
+                                <select id="student-school-name" name="studentSchoolName">
+                                    <option value="">Select School Name</option>
+                                    <?php if (!empty($schools)): ?>
+                                        <?php foreach ($schools as $schoolName): ?>
+                                            <option value="<?php echo htmlspecialchars($schoolName); ?>">
+                                                <?php echo htmlspecialchars($schoolName); ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
                                 <select name="grade-level" id="grade-level">
                                     <option value class="null-type">Grade Level:</option>
                                     <option value="11">11</option>
@@ -382,17 +409,17 @@ if (isset($_SESSION['email'])) {
 </script>
 
 <script>
-    function showSelectedSchool() {
-        const schoolSelect = document.getElementById('schoolSelect');
-        const selectedSchool = schoolSelect.value;
-        const resultDiv = document.getElementById('selectedSchool');
+function showSelectedSchool() {
+    const schoolSelect = document.getElementById('schoolSelect');
+    const selectedSchool = schoolSelect.value;
+    const resultDiv = document.getElementById('selectedSchool');
 
-        if (selectedSchool) {
-            resultDiv.innerHTML = `<h2>You selected: ${selectedSchool}</h2>`;
-        } else {
-            resultDiv.innerHTML = "<h2>Please select a school from the list.</h2>";
-        }
+    if (selectedSchool) {
+        resultDiv.innerHTML = `<h2>You selected: ${selectedSchool}</h2>`;
+    } else {
+        resultDiv.innerHTML = "<h2>Please select a school from the list.</h2>";
     }
+}
 </script>
 
 <!-- <script type="text/javascript">

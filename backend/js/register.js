@@ -65,8 +65,12 @@ function validateSetupForm() {
   const strand = document.getElementById("strand").value;
   const strandFocus = document.getElementById("strand-focus").value;
   const lrn = document.getElementById("input-lrn").value;
+  const studentSchoolName = document.getElementById(
+    "student-school-name"
+  ).value;
 
   const lrnInput = document.getElementById("input-lrn");
+  const studentSchoolInput = document.getElementById("student-school-name");
   const accountTypeInput = document.getElementById("account-type");
   const schoolNameInput = document.getElementById("school-name");
   const organizationNameInput = document.getElementById("organization-name");
@@ -88,6 +92,7 @@ function validateSetupForm() {
     strandInput,
     strandFocusInput,
     lrnInput,
+    studentSchoolInput,
   ];
 
   allInputs.forEach((input) => {
@@ -148,6 +153,11 @@ function validateSetupForm() {
     if (strand === "") {
       strandInput.setCustomValidity("Please select a strand");
       strandInput.reportValidity();
+      return false;
+    }
+    if (studentSchoolName === "") {
+      studentSchoolInput.setCustomValidity("Please select a school name");
+      studentSchoolInput.reportValidity();
       return false;
     }
     try {

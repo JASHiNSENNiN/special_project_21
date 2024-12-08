@@ -93,16 +93,13 @@ if ($user_profile['account_type'] === 'student') {
     $_SESSION['school'] = $student_profile['school'];
     $_SESSION['grade_level'] = $student_profile['grade_level'];
     $_SESSION['strand'] = $student_profile['strand'];
-    // $_SESSION['stars'] = $student_profile['stars'];
     $_SESSION['current_work'] = $student_profile['current_work'];
 } elseif ($user_profile['account_type'] === 'school') {
     $school_profile = fetch_school_profile($user_id);
     $_SESSION['school_name'] = $school_profile['school_name'];
-    $_SESSION['stars'] = $school_profile['stars'];
 } elseif ($user_profile['account_type'] === 'organization') {
     $partner_profile = fetch_partner_profile($user_id);
     $_SESSION['organization_name'] = $partner_profile['organization_name'];
-    // $_SESSION['stars'] = $partner_profile['stars'];
     $_SESSION['strand'] = $partner_profile['strand'];
 }
 

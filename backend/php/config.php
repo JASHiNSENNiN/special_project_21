@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS student_profiles (
   first_name VARCHAR(255),
   middle_name VARCHAR(255),
   last_name VARCHAR(255),
+  lrn VARCHAR(12),
   school VARCHAR(255),
   grade_level ENUM('11', '12'),
   strand ENUM('stem', 'humss', 'abm', 'gas', 'tvl'),
@@ -157,7 +158,7 @@ CREATE TABLE IF NOT EXISTS uploaded_documents (
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     user_id INT(11),
     document_name ENUM('resume', 'application_letter', 'parents_consent', 'barangay_clearance', 
-                        'mayors_permit', 'police_clearance', 'medical_certificate', 'insurance_policy'),
+                        'mayors_permit', 'police_clearance', 'medical_certificate', 'insurance_policy, business_permit'),
     document_url VARCHAR(255),
     upload_date DATE DEFAULT CURRENT_DATE,
     FOREIGN KEY (user_id) REFERENCES users(id)

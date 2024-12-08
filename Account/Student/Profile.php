@@ -62,7 +62,7 @@ try {
     $school = $student_profile['school'];
     $gradeLevel = $student_profile['grade_level'];
     $strand = strtoupper($student_profile['strand']);
-    $stars = $student_profile['stars'];
+    $school = $student_profile['school'];
     $email = $user['email'];
     $profile_image_path = './uploads/' . $user['profile_image'];
 
@@ -142,13 +142,13 @@ function getDailyPerformance($student_id, $pdo)
     // Prepare the data for JavaScript
     $formattedData = [];
     foreach ($dailyPerformance as $row) {
-        $date = (string)$row['evaluation_date']; // Convert to string for JS
+        $date = (string)$row['evaluation_date']; 
         $averageScore = (
             ($row['avg_punctual'] +
                 $row['avg_reports'] +
                 $row['avg_independent_tasks'] +
                 $row['avg_self_discipline'] +
-                $row['avg_commitment']) / 5) ?? 0; // Calculate overall average score across categories 
+                $row['avg_commitment']) / 5) ?? 0; 
 
         $formattedData[] = [
             'date' => $date,
@@ -159,34 +159,27 @@ function getDailyPerformance($student_id, $pdo)
     return json_encode($formattedData);
 }
 $dailyPerformance = getDailyPerformance($user_id, $pdo);
-// $profile_div = '<header class="nav-header">
-//         <div class="logo">
-//             <a href="../' . $_SESSION['account_type'] . '"> 
-//                 <img src="image/logov3.jpg" alt="Logo">
-//             </a>
-//            <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
 
-//         </div>
-//         <nav class="by">
+$profile_divv = '<header class="nav-header">
+        <div class="logo">
+            <a href="../../Account/'. $_SESSION['account_type'] .'"> 
+                <img src="image/logov3.jpg" alt="Logo">
+            </a>
+           
+            
+        </div>
+        <nav class="by">
 
+ 
+ <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/'. $_SESSION['account_type'] .'"> Back </a>
+  
+</div>
+        
+        </nav>
 
-//  <div class="menu">
-//   <div class="item">
+    </header>
 
-
-//     <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../' . $_SESSION['account_type'] . '"> Home </a>
-
-//     </div>
-//   </div>
-// </div>
-
-//         </nav>
-
-//     </header>
-
-//     ';
-// 
-require_once 'student_profile.php';
+    ';
 ?>
 
 <!DOCTYPE html>
@@ -202,8 +195,6 @@ require_once 'student_profile.php';
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-
-
     <title>Student Dashboard</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
@@ -213,47 +204,55 @@ require_once 'student_profile.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
 
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
 
 
-    <script> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-        const averages = {
-            avgPunctual: <?= json_encode($avgPunctual) ?>,
-            avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
-            avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
-            avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
-            avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
-            avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
-            avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
-            avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
-            avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
-            avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
-            avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
-            avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
-            avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
-            avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
-            avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
-            avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
-            avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
-            avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+    const averages = {
+        avgPunctual: <?= json_encode($avgPunctual) ?>,
+        avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
+        avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
+        avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
+        avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
+        avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
+        avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
+        avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
+        avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
+        avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
+        avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
+        avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
+        avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
+        avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
+        avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
+        avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
+        avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
+        avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
 
-        };
-        const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
-        console.log(dailyPerformance);
+    };
+    const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
+    console.log(dailyPerformance);
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
     <style>
 
     </style>
-    <script>
 
-    </script>
 
 </head>
 
@@ -278,7 +277,7 @@ require_once 'student_profile.php';
                     <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
                     <br>
 
-                    <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info">09723207876</span>
+                    <i class="fa fa-house" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
                     <br>
 
                     <a style=" text-decoration: none; display:contents ;" href="Settings.php">
@@ -306,32 +305,115 @@ require_once 'student_profile.php';
             <main class="dashboard__main app-content">
 
                 <article class="app-content__widget app-content__widget--primary">
-                    <h2 class="title-resume">Resume</h2>
-                    <span class="description-resume">Please upload your resume to apply and gain access to the work immersion program. </span>
 
+                    <h2 class="title-resume">Personal Summary</h2>
+                    <span class="description-resume">Introduce yourself and explain your goals and interest in work
+                        immersion. </span>
+                    <form class="txt-Personal-summary">
+                        <div>
+                            <textarea class="form-control" rows="10" placeholder=""></textarea>
+                            <span class="description-resume subtitle-resume">Stay safe. Don’t include sensitive personal
+                                information such as identity documents, health, race, religion or financial data.
+                            </span>
+                        </div>
 
+                        <button class="btn-save">Save Summary</button>
 
-                    <br>
-                    <br>
+                    </form>
+
 
                 </article>
+
                 <article class="app-content__widget app-content__widget--secondary">
 
+                    <div class="card-strong-profile">
+                        <h1 class="title-resume">Profile Strength</h1>
+                        <div class="card__indicator">
 
-                    <h1 class="title-resume">Profile Strength</h1>
+                            <span class="card__indicator-percentage">20%</span>
+                        </div>
+                        <div class="card__progress"><progress max="100" value="20"></progress></div>
 
-                    <div class="progress-wrap progress" data-progress-percent="50">
-                        <div class="progress-bar progress"></div>
                     </div>
 
-                    <hr>
+
+                    <div class="slideshow-container">
+                        <div class="mySlides fade-text">
+                            <div class="card__subtitle ">
+                                Showcase relevant skills and projects in your resume and cover letter
+                            </div>
+                        </div>
+                        <div class="mySlides fade-text " style="display: none;">
+                            <div class="card__subtitle">
+                                Introduce yourself and explain your goals and interest in work immersion.
+                            </div>
+                        </div>
+                        <div class="mySlides fade-text" style="display: none;">
+                            <div class="card__subtitle">
+                                Fill in accurate personal information, and interests.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="next" onclick="nextSlide()">Next tip &#8594;</button>
+
                 </article>
-                <article class="app-content__widget app-content__widget--tertiary">
-                    widget - tertiary
+
+
+            </main>
+        </div>
+
+        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'student'): ?>
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+
+                <article class="app-content__widget app-content__widget--primary">
                     <hr>
+                    <h2 class="title-resume">Application Documents</h2>
+                    <span class="description-resume">Please upload the required documents for your work immersion
+                        application: resume, application letter, barangay clearance, police clearance, mayor's
+                        clearance, and medical certificate. </span>
+                    <div id="content-cover">
+                        <form action="" method="post">
+                            <table class="table" id="sortableTable-docu">
+                                <thead>
+                                    <tr>
+                                        <th class="th-name">Document Type</th>
+                                        <th class="th-name">File Name</th>
+                                        <th class="th-date">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <div class="one_col file-upload">
+                                <label for="documentType">Document Type:</label>
+                                <select id="documentType" name="documentType">
+                                    <option value="">--Select--</option>
+                                    <option value="Resume">Resume</option>
+                                    <option value="Application-letter ">Application letter </option>
+                                    <option value="Barangay">Barangay</option>
+                                    <option value="Police-Clearance ">Police Clearance </option>
+                                    <option value="Mayors-Clearance ">Mayor's Clearance </option>
+                                    <option value="Medical-Certificate">Medical Certificate</option>
+                                </select>
+                                <div id="file">
+                                    <ul id="image-list">
+                                    </ul>
+                                </div>
+                                <input type="file" class="file" name="images" id="uploadFile" multiple />
+                                <span class="error"></span>
+                            </div>
+                            <button class="btn btn-add btn-primary" disabled="disabled">Add New</button>
+                        </form>
+                        <span class="successfully-saved">
+                            <i class="fa fa-thumbs-up"></i> Saved!
+                        </span>
+                    </div>
                 </article>
             </main>
         </div>
+        <?php endif; ?>
 
 
         <div class="dashboard-body">
@@ -339,6 +421,7 @@ require_once 'student_profile.php';
             <main class="dashboard__main app-content">
 
                 <article class="app-content__widget app-content__widget--primary">
+                    <hr>
                     <h2 class="title-resume">Daily Insight</h2>
                     <span class="description-resume">The line chart analyzes student daily performance in work
                         immersion, and the pie chart displays the distribution of performance levels.</span>
@@ -354,8 +437,7 @@ require_once 'student_profile.php';
                         <div class="dp-graph" id="dp_chart_div"></div>
 
                     </div>
-                    <br>
-                    <br>
+
 
                 </article>
 
@@ -391,29 +473,6 @@ require_once 'student_profile.php';
                 </article>
             </main>
         </div>
-
-
-
-        <!-- 
-        <h2>Daily Insight</h2>
-        <div class="contaier-graph">
-            <div class="column-graph" style="background-color:#fff;">
-                <div class="container-grap">
-                    <div class="dp-graph" id="dp_chart_div"></div>
-
-                </div>
-            </div>
-
-
-            <div class="column-graph" style="background-color:#fff;">
-                <div class="container-grap">
-                    <div class="dp-graph" id="piechart_3d"></div>
-                </div>
-            </div>
-        </div> -->
-
-
-
     </div>
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
@@ -485,9 +544,9 @@ require_once 'student_profile.php';
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
-            location.reload("card-graph");
-        });
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        location.reload("card-graph");
+    });
     </script>
 
 

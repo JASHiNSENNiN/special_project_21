@@ -61,12 +61,13 @@ switch ($accountType) {
         $firstName = $_POST["first-name"];
         $middleName = $_POST["middle-name"];
         $lastName = $_POST["last-name"];
-        $schoolName = $_POST["school-name"];
+        $lrn = $_POST["input-lrn"]; 
+        $schoolName = $_POST["studentSchoolName"];
         $gradeLevel = $_POST["grade-level"];
         $strand = $_POST["strand"];
 
-        $stmt = $conn->prepare("INSERT INTO student_profiles (first_name, middle_name, last_name, school, grade_level, strand, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssi", $firstName, $middleName, $lastName, $schoolName, $gradeLevel, $strand, $userId);
+        $stmt = $conn->prepare("INSERT INTO student_profiles (first_name, middle_name, last_name, lrn, school, grade_level, strand, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssi", $firstName, $middleName, $lastName, $lrn, $schoolName, $gradeLevel, $strand, $userId);
         $stmt->execute();
         $stmt->close();
         break;

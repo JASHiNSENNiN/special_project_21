@@ -338,28 +338,231 @@ window.addEventListener("resize", function () {
 });
 ////////////////////////////// Profile strength ///////////////////////////////////
 
-// on page load...
-moveProgressBar();
-// on browser resize...
-$(window).resize(function () {
-  moveProgressBar();
+(function ($) {
+  $.fn.progress = function () {
+    var percent = this.data("percent");
+    this.css("width", percent + "%");
+  };
+})(jQuery);
+
+$(document).ready(function () {
+  $(".bar-one .bar").progress();
 });
 
-// SIGNATURE PROGRESS
-function moveProgressBar() {
-  console.log("moveProgressBar");
-  var getPercent = $(".progress-wrap").data("progress-percent") / 100;
-  var getProgressWrapWidth = $(".progress-wrap").width();
-  var progressTotal = getPercent * getProgressWrapWidth;
-  var animationLength = 2500;
+let slideIndex = 0;
+showSlides();
 
-  // on page load, animate percentage bar to data percentage length
-  // .stop() used to prevent animation queueing
-  $(".progress-bar").stop().animate(
-    {
-      left: progressTotal,
-    },
-    animationLength
-  );
+function showSlides() {
+  let slides = document.getElementsByClassName("mySlides");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = "block";
 }
+
+function nextSlide() {
+  let slides = document.getElementsByClassName("mySlides");
+  slides[slideIndex - 1].style.display = "none";
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = "block";
+}
+
 // //////////////////////////////////////upload file js/////////////////////////////////
+
+jQuery(document).ready(function ($) {
+  // Helper function to keep table row from collapsing when being sorted
+  var fixHelperModified = function (e, tr) {
+    var originals = tr.children(),
+      helper = tr.clone();
+    helper.children().each(function (index) {
+      $(this).width(originals.eq(index).width());
+    });
+    return helper;
+  };
+
+  // Make diagnosis table sortable
+  $("table#sortableTable tbody")
+    .sortable({
+      helper: fixHelperModified,
+      update: function () {
+        renumber_table("#sortableTable");
+      },
+    })
+    .disableSelection();
+
+  // Delete button in table rows
+  $("table").on("click", ".btn-delete", function () {
+    var tableID = "#" + $(this).closest("table").attr("id"),
+      r = confirm("Delete this item?");
+    if (r) {
+      $(this).closest("tr").remove();
+      renumber_table(tableID);
+    }
+  });
+
+  var size;
+  var filename;
+  $("#uploadFile").on("change", function () {
+    if (window.ActiveXObject) {
+      var fso = new ActiveXObject("Scripting.FileSystemObject"),
+        path = this.val(),
+        thefile = fso.getFile(path),
+        sizeinbytes = thefile.size;
+    } else {
+      sizeinbytes = this.files[0].size;
+    }
+    var list_size = new Array("Bytes", "KB", "MB", "GB"),
+      fSize = sizeinbytes;
+    i = 0;
+    while (fSize > 900) {
+      fSize /= 1024;
+      i++;
+    }
+    size = Math.round(fSize * 100) / 100 + " " + list_size[i];
+    filename = this.files[0].name;
+
+    var fileExist = false;
+    $("#sortableTable-docu td.name").each(function () {
+      if ($(this).html() == filename) {
+        $("#sortableTable-docu td.size").each(function () {
+          if ($(this).html() == size) {
+            fileExist = true;
+          }
+        });
+      }
+    });
+    if (fileExist === true) {
+      alert("File already exists!");
+      $("#uploadFile").val("");
+      return false;
+    } else {
+      $(".btn-add").removeAttr("disabled");
+    }
+  });
+
+  // Add a row to table
+  $(".btn-add").on("click", function () {
+    // Get current date
+    var d = new Date();
+    var date_modified =
+      d.getDate() +
+      "/" +
+      (d.getMonth() + 1) +
+      "/" +
+      d.getFullYear() +
+      " " +
+      d.getHours() +
+      ":" +
+      d.getMinutes() +
+      ":" +
+      d.getSeconds();
+
+    // Get the selected document type
+    var documentType = $("#documentType").val();
+
+    if (filename !== undefined && size !== undefined && documentType !== "") {
+      // Append to the table
+      $("table#sortableTable-docu tbody").append(
+        "<tr>" +
+          '<td class="name">' +
+          documentType +
+          "</td>" + // Display the selected document type
+          '<td class="name">' +
+          filename +
+          "</td>" +
+          "<td>" +
+          '<a class="btn btn-download btn-success" href="#" download="' +
+          filename +
+          '">Download</a>' +
+          '<a class="btn btn-delete btn-danger button-delete">Delete</a>' +
+          "</td>" +
+          "</tr>"
+      );
+      renumber_table("#sortableTable-docu");
+    } else {
+      alert("Please upload a file and select a document type.");
+    }
+
+    $("#uploadFile").val("");
+    $("#documentType").val(""); // Reset the document type selection
+    $(this).attr("disabled", "disabled");
+  });
+  // Download button in table rows
+  $("table").on("click", ".btn-download", function (e) {
+    e.preventDefault(); // Prevent the default anchor behavior
+    var filename = $(this).attr("download"); // Get the filename from the download attribute
+
+    // Create a Blob with some content (for demonstration purposes)
+    var content = "This is the content of the file: " + filename; // Replace with actual file content
+    var blob = new Blob([content], { type: "text/plain" }); // Create a Blob object
+    var url = URL.createObjectURL(blob); // Create a URL for the Blob
+
+    // Create a temporary anchor element to trigger the download
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename; // Set the filename for the download
+    document.body.appendChild(a); // Append the anchor to the body
+    a.click(); // Trigger the download
+    document.body.removeChild(a); // Remove the anchor from the document
+  });
+
+  // Renumber table rows
+  function renumber_table(tableID) {
+    $(tableID + " tr").each(function () {
+      var count = $(this).parent().children().index($(this)) + 1;
+      $(this).find(".priority").html(count);
+    });
+    $(".successfully-saved").css("display", "block").delay(1000).fadeOut(600);
+  }
+
+  // Table header sorter
+  function sortTable(table, col, reverse) {
+    var tb = table.tBodies[0], // use `<tbody>` to ignore `<thead>` and `<tfoot>` rows
+      tr = Array.prototype.slice.call(tb.rows, 0), // put rows into array
+      i;
+    reverse = -(+reverse || -1);
+    tr = tr.sort(function (a, b) {
+      // sort rows
+      return (
+        reverse *
+        a.cells[col].textContent
+          .trim()
+          .localeCompare(b.cells[col].textContent.trim())
+      );
+    });
+    for (i = 0; i < tr.length; ++i) tb.appendChild(tr[i]); // append each row in order
+  }
+
+  function makeSortable(table) {
+    var th = table.tHead,
+      i;
+    th && (th = th.rows[0]) && (th = th.cells);
+    if (th) i = th.length;
+    else return; // if no `<thead>` then do nothing
+    while (--i >= 0)
+      (function (i) {
+        var dir = 1;
+        th[i].addEventListener("click", function () {
+          sortTable(table, i, (dir = 1 - dir));
+        });
+      })(i);
+  }
+
+  function makeAllSortable(parent) {
+    parent = parent || document.body;
+    var t = parent.getElementsByTagName("table"),
+      i = t.length;
+    while (--i >= 0) makeSortable(t[i]);
+  }
+
+  window.onload = function () {
+    makeAllSortable();
+  };
+});
