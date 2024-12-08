@@ -172,342 +172,338 @@ if (isset($_SESSION['user_id'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
     <?php if (!isset($_SESSION['user_id'])): ?>
-    <div class="container mt-5">
-        <div class="alert alert-danger">Please log in to access this page.</div>
-    </div>
+        <div class="container mt-5">
+            <div class="alert alert-danger">Please log in to access this page.</div>
+        </div>
     <?php else: ?>
-    <?php echo $profile_divv; ?>
+        <?php echo $profile_divv; ?>
 
 
 
 
 
-    <div class="home-content">
-        <div class="container light-style flex-grow-1 container-p-y">
-            <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
-            <div class="card overflow-hidden">
-                <div class="row no-gutters row-bordered row-border-light">
-                    <div class="col-md-3 pt-0">
-                        <div class="list-group list-group-flush account-settings-links">
-                            <!-- <a class="list-group-item list-group-item-action active" data-toggle="list"
+        <div class="home-content">
+            <div class="container light-style flex-grow-1 container-p-y">
+                <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+                <div class="card overflow-hidden">
+                    <div class="row no-gutters row-bordered row-border-light">
+                        <div class="col-md-3 pt-0">
+                            <div class="list-group list-group-flush account-settings-links">
+                                <!-- <a class="list-group-item list-group-item-action active" data-toggle="list"
                                 href="#account-general">General</a> -->
-                            <a class="list-group-item list-group-item-action" data-toggle="list"
-                                href="#account-info">Personal Details</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list"
-                                href="#account-change-password">Change password</a>
+                                <a class="list-group-item list-group-item-action" data-toggle="list"
+                                    href="#account-info">Personal Details</a>
+                                <a class="list-group-item list-group-item-action" data-toggle="list"
+                                    href="#account-change-password">Change password</a>
 
-                            <!-- <a class="list-group-item list-group-item-action" data-toggle="list"
+                                <!-- <a class="list-group-item list-group-item-action" data-toggle="list"
                                     href="#account-social-links">Social links</a>
                                 <a class="list-group-item list-group-item-action" data-toggle="list"
                                     href="#account-connections">Connections</a>
                                 <a class="list-group-item list-group-item-action" data-toggle="list"
                                     href="#account-notifications">Notifications</a> -->
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="tab-content">
-                            <div class="tab-pane fade " id="account-change-password">
-                                <div class="card-body pb-2">
-                                    <div class="form-group">
-                                        <label class="form-label">Email</label>
-                                        <input type="text" class="form-control mb-1" autocomplete="off"
-                                            value="<?php echo $email ?>" readonly />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Current password</label>
-                                        <input type="password" class="form-control" placeholder="Current password" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">New password</label>
-                                        <input type="password" class="form-control" placeholder="New password" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Repeat new password</label>
-                                        <input type="password" class="form-control" placeholder="Repeat new password" />
+                        <div class="col-md-9">
+                            <div class="tab-content">
+                                <div class="tab-pane fade " id="account-change-password">
+                                    <div class="card-body pb-2">
+                                        <div class="form-group">
+                                            <label class="form-label">Email</label>
+                                            <input type="text" class="form-control mb-1" autocomplete="off"
+                                                value="<?php echo $email ?>" readonly />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Current password</label>
+                                            <input type="password" class="form-control" placeholder="Current password" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">New password</label>
+                                            <input type="password" class="form-control" placeholder="New password" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Repeat new password</label>
+                                            <input type="password" class="form-control" placeholder="Repeat new password" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
 
-                            <div class="tab-pane fade active show" id="account-info">
+                                <div class="tab-pane fade active show" id="account-info">
 
-                                <div class="container-xl px-4 mt-4">
+                                    <div class="container-xl px-4 mt-4">
 
 
-                                    <div class="row row1">
-                                        <div class="col-xl-4">
+                                        <div class="row row1">
+                                            <div class="col-xl-4">
 
-                                            <div class="card mb-4 mb-5 mb-xl-0">
-                                                <div class="card-header">Cover Picture </div>
+                                                <div class="card mb-4 mb-5 mb-xl-0">
+                                                    <div class="card-header">Cover Picture </div>
 
-                                                <div class="card-body text-center">
+                                                    <div class="card-body text-center">
 
-                                                    <img class="img-account-cover  mb-2" id="profile-image-cover"
-                                                        src="https://i.postimg.cc/c454Lh9J/bg.png" alt>
+                                                        <img class="img-account-cover  mb-2" id="profile-image-cover"
+                                                            src="https://i.postimg.cc/c454Lh9J/bg.png" alt>
 
-                                                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger
-                                                        than 5 MB</div>
-                                                    <form id="image-upload-form">
-                                                        <input type="file" id="image-upload-cover"
-                                                            style="display: none;">
-                                                        <label for="image-upload" class="btn btn-primary">Upload new
-                                                            image</label>
-                                                    </form>
+                                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger
+                                                            than 5 MB</div>
+                                                        <form id="image-upload-form">
+                                                            <input type="file" id="image-upload-cover"
+                                                                style="display: none;">
+                                                            <label for="image-upload" class="btn btn-primary">Upload new
+                                                                image</label>
+                                                        </form>
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="card mb-4 mb-xl-0">
-                                                <div class="card-header">Profile Picture</div>
-                                                <div class="card-body text-center">
-                                                    <img class="img-account-profile rounded-circle mb-2"
-                                                        id="profile-image"
-                                                        src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
-                                                        alt="Profile"
-                                                        style="width: 200px; height: 200px; object-fit: cover;">
-                                                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger
-                                                        than 5 MB</div>
-                                                    <form id="profile-image-form">
-                                                        <input type="file" id="image-upload" name="profile_image"
-                                                            accept="image/*" style="display: none;">
-                                                        <label for="image-upload" class="btn btn-primary">Upload new
-                                                            image</label>
-                                                    </form>
+                                            <div class="col-xl-4">
+                                                <div class="card mb-4 mb-xl-0">
+                                                    <div class="card-header">Profile Picture</div>
+                                                    <div class="card-body text-center">
+                                                        <img class="img-account-profile rounded-circle mb-2"
+                                                            id="profile-image"
+                                                            src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
+                                                            alt="Profile"
+                                                            style="width: 200px; height: 200px; object-fit: cover;">
+                                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger
+                                                            than 5 MB</div>
+                                                        <form id="profile-image-form">
+                                                            <input type="file" id="image-upload" name="profile_image"
+                                                                accept="image/*" style="display: none;">
+                                                            <label for="image-upload" class="btn btn-primary">Upload new
+                                                                image</label>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-8">
-                                            <div class="card mb-4">
-                                                <div class="card-header">Account Details</div>
-                                                <div class="card-body">
-                                                    <form id="edit-profile-form">
-                                                        <div class="row gx-3 mb-3">
-                                                            <div class="col-md-6">
-                                                                <label class="small mb-1" for="inputFirstName">First
-                                                                    name</label>
-                                                                <input class="form-control" id="inputFirstName"
-                                                                    name="first_name" type="text"
-                                                                    value="<?php echo htmlspecialchars($profile_data['first_name'] ?? ''); ?>"
-                                                                    required>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="small mb-1" for="inputMiddleName">Middle
-                                                                    name</label>
-                                                                <input class="form-control" id="inputMiddleName"
-                                                                    name="middle_name" type="text"
-                                                                    value="<?php echo htmlspecialchars($profile_data['middle_name'] ?? ''); ?>">
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="small mb-1" for="inputLastName">Last
-                                                                    name</label>
-                                                                <input class="form-control" id="inputLastName"
-                                                                    name="last_name" type="text"
-                                                                    value="<?php echo htmlspecialchars($profile_data['last_name'] ?? ''); ?>"
-                                                                    required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row gx-3 mb-3">
-                                                            <div class="col-md-6">
-
-                                                                <div class="container4">
-                                                                    <form class="form-control" action="/submit"
-                                                                        method="post">
-                                                                        <label class="small mb-1"
-                                                                            for="inputSchool">School name</label>
-                                                                        <select class="form-control" id="student"
-                                                                            name="student"
-                                                                            <?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>
-                                                                            required>
-                                                                            <option value="" disabled selected>Select a
-                                                                                School</option>
-                                                                            <option value="OLSHCO">OLSHCO</option>
-                                                                            <option value="National">Dr Ramon</option>
-                                                                            <option value="CATMAN">CATMAN</option>
-                                                                            <option value="WCC">WCC</option>
-                                                                            <option value="CRT">CRT</option>
-                                                                        </select>
-
-                                                                    </form>
+                                            <div class="col-xl-8">
+                                                <div class="card mb-4">
+                                                    <div class="card-header">Account Details</div>
+                                                    <div class="card-body">
+                                                        <form id="edit-profile-form">
+                                                            <div class="row gx-3 mb-3">
+                                                                <div class="col-md-6">
+                                                                    <label class="small mb-1" for="inputFirstName">First
+                                                                        name</label>
+                                                                    <input class="form-control" id="inputFirstName"
+                                                                        name="first_name" type="text"
+                                                                        value="<?php echo htmlspecialchars($profile_data['first_name'] ?? ''); ?>"
+                                                                        required>
                                                                 </div>
-
-
-                                                                value="<?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>"
-                                                                required> -->
+                                                                <div class="col-md-6">
+                                                                    <label class="small mb-1" for="inputMiddleName">Middle
+                                                                        name</label>
+                                                                    <input class="form-control" id="inputMiddleName"
+                                                                        name="middle_name" type="text"
+                                                                        value="<?php echo htmlspecialchars($profile_data['middle_name'] ?? ''); ?>">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="small mb-1" for="inputLastName">Last
+                                                                        name</label>
+                                                                    <input class="form-control" id="inputLastName"
+                                                                        name="last_name" type="text"
+                                                                        value="<?php echo htmlspecialchars($profile_data['last_name'] ?? ''); ?>"
+                                                                        required>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <label class="small mb-1"
-                                                                    for="inputStrand">Strand</label>
-                                                                <select class="form-control" id="inputStrand"
-                                                                    name="strand" required>
-                                                                    <?php
+                                                            <div class="row gx-3 mb-3">
+                                                                <div class="col-md-6">
+
+                                                                    <div class="container4">
+                                                                        <form class="form-control" action="/submit"
+                                                                            method="post">
+                                                                            <label class="small mb-1"
+                                                                                for="inputSchool">School name</label>
+                                                                            <select class="form-control" id="student" name="student" required>
+                                                                                <option value="" disabled <?php echo empty($profile_data['school']) ? 'selected' : ''; ?>>Select a School</option>
+                                                                                <option value="OLSHCO" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'OLSHCO') ? 'selected' : ''; ?>>OLSHCO</option>
+                                                                                <option value="National" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'National') ? 'selected' : ''; ?>>Dr Ramon</option>
+                                                                                <option value="CATMAN" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'CATMAN') ? 'selected' : ''; ?>>CATMAN</option>
+                                                                                <option value="WCC" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'WCC') ? 'selected' : ''; ?>>WCC</option>
+                                                                                <option value="CRT" <?php echo (isset($profile_data['school']) && $profile_data['school'] === 'CRT') ? 'selected' : ''; ?>>CRT</option>
+                                                                            </select>
+
+                                                                        </form>
+                                                                    </div>
+
+
+                                                                    <!-- value="<?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>"
+                                                                required > -->
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="small mb-1"
+                                                                        for="inputStrand">Strand</label>
+                                                                    <select class="form-control" id="inputStrand"
+                                                                        name="strand" required>
+                                                                        <?php
                                                                         $strands = ['stem' => 'STEM', 'humss' => 'HUMSS', 'abm' => 'ABM', 'gas' => 'GAS', 'tvl' => 'TVL'];
                                                                         foreach ($strands as $value => $label) {
                                                                             $selected = ($profile_data['strand'] ?? '') === $value ? 'selected' : '';
                                                                             echo "<option value=\"$value\" $selected>$label</option>";
                                                                         }
                                                                         ?>
-                                                                </select>
+                                                                    </select>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                    </form>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+
+
+                                <div class="tab-pane fade" id="account-social-links">
+                                    <div class="card-body pb-2">
+                                        <div class="form-group">
+                                            <label class="form-label">Twitter</label>
+                                            <input type="text" class="form-control" value="https://twitter.com/user" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Facebook</label>
+                                            <input type="text" class="form-control" value="https://www.facebook.com/user" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Google+</label>
+                                            <input type="text" class="form-control" value />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Instagram</label>
+                                            <input type="text" class="form-control"
+                                                value="https://www.instagram.com/user" />
                                         </div>
                                     </div>
                                 </div>
 
 
 
-                            </div>
-
-
-
-                            <div class="tab-pane fade" id="account-social-links">
-                                <div class="card-body pb-2">
-                                    <div class="form-group">
-                                        <label class="form-label">Twitter</label>
-                                        <input type="text" class="form-control" value="https://twitter.com/user" />
+                                <div class="tab-pane fade" id="account-connections">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-twitter" style="font-size: 15px">
+                                            Connect to <strong>Twitter</strong>
+                                        </button>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Facebook</label>
-                                        <input type="text" class="form-control" value="https://www.facebook.com/user" />
+                                    <hr class="border-light m-0" />
+                                    <div class="card-body">
+                                        <h5 class="mb-2" style="font-size: 15px">
+                                            <a href="javascript:void(0)" class="float-right text-muted text-tiny"
+                                                style="font-size: 15px"><i class="ion ion-md-close"></i> Remove</a>
+                                            <i class="ion ion-logo-google text-google"></i>
+                                            You are connected to Google:
+                                        </h5>
+                                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                            data-cfemail="f9979498818e9c9595b994989095d79a9694">[email&#160;protected]</a>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Google+</label>
-                                        <input type="text" class="form-control" value />
+                                    <hr class="border-light m-0" />
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-facebook" style="font-size: 15px">
+                                            Connect to <strong>Facebook</strong>
+                                        </button>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Instagram</label>
-                                        <input type="text" class="form-control"
-                                            value="https://www.instagram.com/user" />
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="tab-pane fade" id="account-connections">
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-twitter" style="font-size: 15px">
-                                        Connect to <strong>Twitter</strong>
-                                    </button>
-                                </div>
-                                <hr class="border-light m-0" />
-                                <div class="card-body">
-                                    <h5 class="mb-2" style="font-size: 15px">
-                                        <a href="javascript:void(0)" class="float-right text-muted text-tiny"
-                                            style="font-size: 15px"><i class="ion ion-md-close"></i> Remove</a>
-                                        <i class="ion ion-logo-google text-google"></i>
-                                        You are connected to Google:
-                                    </h5>
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                        data-cfemail="f9979498818e9c9595b994989095d79a9694">[email&#160;protected]</a>
-                                </div>
-                                <hr class="border-light m-0" />
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-facebook" style="font-size: 15px">
-                                        Connect to <strong>Facebook</strong>
-                                    </button>
-                                </div>
-                                <hr class="border-light m-0" />
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-instagram" style="font-size: 15px">
-                                        Connect to <strong>Instagram</strong>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="account-notifications">
-                                <div class="card-body pb-2">
-                                    <h6 class="mb-4">Activity</h6>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked />
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">When someone Send a Feedback </span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked />
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">When someone send a report</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" />
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">When someone follows </span>
-                                        </label>
+                                    <hr class="border-light m-0" />
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-instagram" style="font-size: 15px">
+                                            Connect to <strong>Instagram</strong>
+                                        </button>
                                     </div>
                                 </div>
-                                <hr class="border-light m-0" />
-                                <div class="card-body pb-2">
-                                    <h6 class="mb-4">Application</h6>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked />
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">News and announcements</span>
-                                        </label>
+                                <div class="tab-pane fade" id="account-notifications">
+                                    <div class="card-body pb-2">
+                                        <h6 class="mb-4">Activity</h6>
+                                        <div class="form-group">
+                                            <label class="switcher">
+                                                <input type="checkbox" class="switcher-input" checked />
+                                                <span class="switcher-indicator">
+                                                    <span class="switcher-yes"></span>
+                                                    <span class="switcher-no"></span>
+                                                </span>
+                                                <span class="switcher-label">When someone Send a Feedback </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="switcher">
+                                                <input type="checkbox" class="switcher-input" checked />
+                                                <span class="switcher-indicator">
+                                                    <span class="switcher-yes"></span>
+                                                    <span class="switcher-no"></span>
+                                                </span>
+                                                <span class="switcher-label">When someone send a report</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="switcher">
+                                                <input type="checkbox" class="switcher-input" />
+                                                <span class="switcher-indicator">
+                                                    <span class="switcher-yes"></span>
+                                                    <span class="switcher-no"></span>
+                                                </span>
+                                                <span class="switcher-label">When someone follows </span>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" />
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Weekly product updates</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked />
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Weekly blog digest</span>
-                                        </label>
+                                    <hr class="border-light m-0" />
+                                    <div class="card-body pb-2">
+                                        <h6 class="mb-4">Application</h6>
+                                        <div class="form-group">
+                                            <label class="switcher">
+                                                <input type="checkbox" class="switcher-input" checked />
+                                                <span class="switcher-indicator">
+                                                    <span class="switcher-yes"></span>
+                                                    <span class="switcher-no"></span>
+                                                </span>
+                                                <span class="switcher-label">News and announcements</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="switcher">
+                                                <input type="checkbox" class="switcher-input" />
+                                                <span class="switcher-indicator">
+                                                    <span class="switcher-yes"></span>
+                                                    <span class="switcher-no"></span>
+                                                </span>
+                                                <span class="switcher-label">Weekly product updates</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="switcher">
+                                                <input type="checkbox" class="switcher-input" checked />
+                                                <span class="switcher-indicator">
+                                                    <span class="switcher-yes"></span>
+                                                    <span class="switcher-no"></span>
+                                                </span>
+                                                <span class="switcher-label">Weekly blog digest</span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-right mt-3">
-                <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
-                <a href="Company_Area.php"><button type="button" class="btn btn-default">Cancel</button></a>
+                <div class="text-right mt-3">
+                    <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                    <a href="Company_Area.php"><button type="button" class="btn btn-default">Cancel</button></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <?php endif; ?>
 </body>
 

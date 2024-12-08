@@ -120,47 +120,50 @@ function generateJobCards($jobOffers)
 
     </header>
 
+    <div class="bg-search">
+        <div class="content-sticky">
 
-    <div class="content-sticky">
 
 
-        <section>
-            <!-- <h2 class="sfa">Search, Find and Apply!</h2> -->
-            <div class="line-search">
-                <div class="searchwork">
-                    <form action="#" method="get">
+            <section>
+                <!-- <h2 class="sfa">Search, Find and Apply!</h2> -->
+                <div class="line-search">
+                    <div class="searchwork">
+                        <form action="#" method="get">
 
-                        <div class="search-container">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                            <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch" type="text"
-                                placeholder="Work Immersion / Keyword">
+                            <div class="search-container">
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                                <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch" type="text"
+                                    placeholder="Work Immersion / Keyword">
 
-                        </div>
-                        <div class="search-container" style="border-left: 1px solid grey">
-                            <button type="submit"><i class="fas fa-map-marker-alt"></i></button>
-                            <input id="InputSearch" name="InputSearch" class="globalInputSearch" type="text"
-                                placeholder="Search location">
+                            </div>
+                            <div class="search-container" style="border-left: 1px solid grey">
+                                <button type="submit"><i class="fas fa-map-marker-alt"></i></button>
+                                <input id="InputSearch" name="InputSearch" class="globalInputSearch" type="text"
+                                    placeholder="Search location">
 
-                        </div>
+                            </div>
 
-                        <!-- <input class="sub-btn" type="submit" value="Find Now"> -->
+                            <!-- <input class="sub-btn" type="submit" value="Find Now"> -->
 
+                    </div>
+                    </form>
                 </div>
-                </form>
+
+            </section>
+
+
+            <div class="tab-selection">
+
+
+                <nav style="position:relative; margin-left:auto; margin-right:auto;">
+                    <a class="active" href="index.php">Work Immersion feed</a>
+                    <!-- <a href="recent-search.php">Recent search</a> -->
+
+
+
+                </nav>
             </div>
-
-        </section>
-
-        <div class="tab-selection">
-
-
-            <nav style="position:relative; margin-left:auto; margin-right:auto;">
-                <a class="active" href="index.php">Work Immersion feed</a>
-                <!-- <a href="recent-search.php">Recent search</a> -->
-
-
-
-            </nav>
         </div>
         <hr class="line_bottom">
         <!-- ------------------------------------------------------Job list------------------------------>
