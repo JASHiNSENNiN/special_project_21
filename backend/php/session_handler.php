@@ -90,7 +90,7 @@ if (file_exists($cover_image_path)) {
     $_SESSION['cover_image'] = "../../Account/Student/image/default_cover.png";
 }
 
-if ($user_profile['account_type'] === 'student') {
+if ($user_profile['account_type'] === 'Student') {
     $student_profile = fetch_student_profile($user_id);
     $_SESSION['id'] = $student_profile['id'];
     $_SESSION['first_name'] = $student_profile['first_name'];
@@ -101,10 +101,10 @@ if ($user_profile['account_type'] === 'student') {
     $_SESSION['grade_level'] = $student_profile['grade_level'];
     $_SESSION['strand'] = $student_profile['strand'];
     $_SESSION['current_work'] = $student_profile['current_work'];
-} elseif ($user_profile['account_type'] === 'school') {
+} elseif ($user_profile['account_type'] === 'School') {
     $school_profile = fetch_school_profile($user_id);
     $_SESSION['school_name'] = $school_profile['school_name'];
-} elseif ($user_profile['account_type'] === 'organization') {
+} elseif ($user_profile['account_type'] === 'Organization') {
     $partner_profile = fetch_partner_profile($user_id);
     $_SESSION['organization_name'] = $partner_profile['organization_name'];
     $_SESSION['strand'] = $partner_profile['strand'];
