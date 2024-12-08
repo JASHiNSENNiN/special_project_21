@@ -142,7 +142,7 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Mayors Permit</h3>
+                    <h3>Mayor's Permit</h3>
                     <div class="drop_box">
                         <header>
                             <h4>Select Files here</h4>

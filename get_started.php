@@ -182,7 +182,7 @@ function getSchoolList($conn)
 
                             <div id="student-fields" style="display: none;">
                                 <!-- <input value="" type="text" placeholder="School Name" id="NameSchool" name="NameSchool"> -->
-                                <select id="schoolSelect">
+                                <!-- <select id="schoolSelect">
                                     <option value="">Select a School:</option>
                                     <option value="Springfield High School">Springfield High School</option>
                                     <option value="Greenwood Academy">Greenwood Academy</option>
@@ -190,7 +190,7 @@ function getSchoolList($conn)
                                     <option value="Westbrook International School">Westbrook International School
                                     </option>
                                     <option value="Sunshine Preparatory School">Sunshine Preparatory School</option>
-                                </select>
+                                </select> -->
                                 <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn"
                                     oninput="validateLRN()">
                                 <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
