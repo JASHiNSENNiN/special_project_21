@@ -7,6 +7,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
+$ProfileViewURL = "../../ProfileView.php";
+
 $host = "localhost";
 $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
@@ -200,7 +202,7 @@ function acceptApplicant($applicant_id)
                                     <?php } ?>
                                 </form>
                                 <a
-                                    href="../Student/Profile.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
+                                    href="<?php echo $ProfileViewURL; ?>?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
                                     <button type="button" class="button-4">Details</button>
                                 </a>
                             </td>

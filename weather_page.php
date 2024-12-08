@@ -1,16 +1,43 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$profile_divv = '<header class="nav-header">
+        <div class="logo">
+            <a href="/Account/' . $_SESSION['account_type'] . '"> 
+                <img src="/img/logov3.jpg" alt="Logo">
+            </a>
+           
+            
+        </div>
+        <nav class="by">
+
+ 
+ <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="/Account/' . $_SESSION['account_type'] . '"> Back </a>
+  
+</div>
+        
+        </nav>
+
+    </header>
+
+    ';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <title>Weather Update | DRDSNHS</title>
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="/img/W.png">
     <link rel="stylesheet" type="text/css" href="css/weather_style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
 <body>
+    <?php echo $profile_divv; ?>
     <video autoplay muted loop id="myVideo">
         <source src="img/bg-weather.mp4" type="video/mp4">
     </video>
