@@ -74,11 +74,14 @@ if (isset($_SESSION['email'])) {
                 }
                 $stmt->close();
                 break;
+            default:
+                header('Location: google.com');
+                break;
         }
 
         $conn->close();
 
-        $accType = ucfirst($accountType);
+        $accType = $accountType;
         $redirectUrl = "/Account/" . $accType . "/";
         header("Location: " . $redirectUrl);
         exit;
