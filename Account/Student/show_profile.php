@@ -16,7 +16,7 @@ $strand = strtoupper($_SESSION['strand']);
 $currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
 $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
-
+$cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/logov3.png' : $_SESSION['cover_image'];
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">
@@ -49,13 +49,11 @@ $profile_div = '<header class="nav-header">
 
     </header>
 
-    <img class="logoimg" id="cover-pic" src="image/logov3.jpg" alt="" width="200" height="300">
+    <img class="logoimg" id="cover-pic" src="' . $cover_image . '" alt="" width="200" height="300">
     
 
     <div class="profile">
-    <script>
-    console.log("' . $profile_image . '");
-    </script>
+    
         <img src="' . $profile_image . '" alt="profile picture">
         <div class="name">' . $firstName . ' ' . $middleName . ' ' . $lastName . '</div>
         <label class="strand" for="">' . $strand . '</label>

@@ -16,6 +16,7 @@ $strand = strtoupper($_SESSION['strand']);
 $currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
 $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
+$cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/default.png' : $_SESSION['cover_image'];
 
 
 $profile_divv = '<header class="nav-header">
@@ -23,7 +24,7 @@ $profile_divv = '<header class="nav-header">
             <a href="Company_Area.php"> 
                 <img src="image/logov3.jpg" alt="Logo">
             </a>
-           <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
+           <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/'. $_SESSION['account_type'] .'"> Home </a>
             
         </div>
         <nav class="by">
