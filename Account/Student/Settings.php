@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function getSchoolList($conn) {
     $schools = [];
 
+
     $schoolQuery = "SELECT school_name FROM school_profiles";
     $schoolResult = $conn->query($schoolQuery);
 
@@ -121,6 +122,7 @@ function getSchoolList($conn) {
         }
         $schoolResult->free();
     }
+
 
     return $schools;
 }

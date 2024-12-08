@@ -1,6 +1,27 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+
+$profile_divv = '<header class="nav-header">
+        <div class="logo">
+            <a href="../../Account/' . $_SESSION['account_type'] . '"> 
+                <img src="image/logov3.jpg" alt="Logo">
+            </a>
+           
+            
+        </div>
+        <nav class="by">
+
+ 
+ <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/' . $_SESSION['account_type'] . '"> Back </a>
+  
+</div>
+        
+        </nav>
+
+    </header>
+
+    ';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,112 +45,41 @@ require_once 'show_profile.php';
 </head>
 
 <body>
-    <!-- Navbar top -->
-    <div class="navbar-top">
-        <div class="title">
-            <h1 style="font-weight: 700; color:#fff;">Profile</h1>
+
+    <?php echo $profile_divv; ?>
+
+
+    <div class="row-graph-profile">
+        <div class="column-graph-profile-right">
+
+            <div class="container-grap-right">
+
+
+                <div class="card-body">
+                    <span class="fullname"><?= $schoolName ?></span>
+                    <br>
+                    <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
+
+
+                    <a style=" text-decoration: none; display:contents ;" href="Settings.php">
+                        <button class="edit-button">
+                            <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                <path
+                                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                                </path>
+                            </svg>
+                        </button>
+                    </a>
+
+                </div>
+            </div>
         </div>
 
-        <!-- Navbar -->
-        <ul>
-            <!-- <li>
-          <a href="#message">
-            <span class="icon-count">29</span>
-            <i class="fa fa-envelope fa-2x"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#notification">
-            <span class="icon-count">59</span>
-            <i class="fa fa-bell fa-2x"></i>
-          </a>
-        </li> -->
-            <li>
-                <a href="Student.php">
-                    <i class="fa fa-sign-out-alt fa-2x"></i>
-                </a>
-            </li>
-        </ul>
-        <!-- End -->
     </div>
-    <!-- End -->
-
-    <!-- Sidenav -->
-    <div class="sidenav">
-        <div class="profile">
-            <img src="image/Dr.Ramon.png" alt="" width="100" height="100" />
-
-            <!-- <div class="name">Dr. Ramon De Santos National High School</div> -->
-            <!-- <div class="job">OLSHCO</div> -->
-        </div>
-
-        <!-- <div class="sidenav-url">
-            <div class="url">
-                <a href="#profile" class="active">Profile</a>
-                <hr align="center" />
-            </div>
-            <div class="url">
-                <a href="Settings.php">Settings</a>
-                <hr align="center" />
-            </div>
-        </div> -->
-    </div>
-    <!-- End -->
 
     <!-- Main -->
     <div class="main">
-        <h2>IDENTITY</h2>
-        <div class="card">
-            <div class="card-body">
 
-                <table class="personal-details-table">
-                    <tbody>
-                        <tr>
-                        <tr>
-                            <td><b>School name</b></td>
-                        </tr>
-                        <!-- <td>School</td> -->
-
-                        <td><input type="text" class="form-control mb-1" autocomplete="off"
-                                value="Dr. Ramon De Santos National High School" readonly></td>
-                        <!-- <td>Dr. Ramon De Santos National High School</td> -->
-                        </tr>
-                        <tr>
-
-                        <tr>
-                            <td><b>Email</b></td>
-
-                        </tr>
-                        <td><input type="text" class="form-control mb-1" autocomplete="off"
-                                value="SchoolAccMain@gmail.com" readonly></td>
-
-                        </tr>
-                        <tr>
-                        <tr>
-                            <td><b>Address</b></td>
-                        </tr>
-                        <td><input type="text" class="form-control mb-1" autocomplete="off"
-                                value="Nueva Ecija-Pangasinan Road 3117 Guimba Central Luzon · 66" readonly></td>
-
-                        </tr>
-                        <tr>
-
-                            <td><b>Contact Number</b></td>
-                        </tr>
-                        <td><input type="text" class="form-control mb-1" autocomplete="off"
-                                value="0975-321-7975" readonly></td>
-
-                        </tr>
-
-                        <!-- <tr>
-                            <td>Skill</td>
-                            <td>:</td>
-                            <td>PHP, HTML, CSS, Java</td>
-                        </tr> -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
         <br>
         <h2>Map</h2>
         <!-- <iframe
@@ -183,7 +133,8 @@ require_once 'show_profile.php';
     </div>
     <!-- End -->
     <footer>
-        2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School
+        <!-- 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School -->
+        2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
     </footer>
 </body>
 

@@ -2,6 +2,63 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+$profile_divv = '<header class="nav-header">
+        <div class="logo">
+            <a href="Company_Area.php"> 
+                <img src="image/logov3.jpg" alt="Logo">
+            </a>
+           <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
+            
+        </div>
+        <nav class="by">
+
+ 
+ <div class="menu">
+  <div class="item">
+    <a class="link">
+      <span class="firstname"> ' .  $organizationName . ' </span>
+      <svg viewBox="0 0 360 360" xml:space="preserve">
+        <g id="SVGRepo_iconCarrier">
+          <path
+            id="XMLID_225_"
+            d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
+          ></path>
+        </g>
+      </svg>
+    </a>
+    <div class="submenu">
+      <div class="submenu-item active-text-profile">
+         <a href="Profile.php?partner_id=' . base64_encode(encrypt_url_parameter($partner_id)) . '"> My
+                        Profile</a>
+      </div>
+      <div class="submenu-item">
+        <a href="../../weather_page.php"> 
+                        Weather Update</a>
+      </div>
+      <div class="submenu-item">
+        <a href="Upload.php">
+                        FIle Upload</a>
+      </div>
+      <div class="submenu-item active-text-setting">
+        <a href="Settings.php"> Settings & privacy</a>
+      </div>
+      <hr>
+      <a class="logout"  href="' . '/backend/php/logout.php' . '">
+      <div class="submenu-item ">
+        <i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out
+      
+      </div></a>
+    
+     
+    </div>
+  </div>
+</div>
+        
+        </nav>
+
+    </header>
+
+    ';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +67,8 @@ require_once 'show_profile.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization Dashboard</title>
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="image/W.png">
     <link rel="stylesheet" type="text/css" href="css/Settings.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -38,7 +95,7 @@ require_once 'show_profile.php';
             <div class="alert alert-danger">Please log in to access this page.</div>
         </div>
     <?php else: ?>
-
+        <?php echo $profile_divv; ?>
         <div class="home-content">
             <div class="container light-style flex-grow-1 container-p-y">
                 <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
