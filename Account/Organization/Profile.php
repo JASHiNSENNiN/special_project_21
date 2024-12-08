@@ -125,7 +125,7 @@ try {
 
 $profile_divv = '<header class="nav-header">
         <div class="logo">
-            <a href="../../Account/' . $_SESSION['account_type'] . '"> 
+            <a href="../../Account/' . ucfirst($_SESSION['account_type']) . '"> 
                 <img src="image/logov3.jpg" alt="Logo">
             </a>
            
@@ -134,7 +134,7 @@ $profile_divv = '<header class="nav-header">
         <nav class="by">
 
  
- <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/' . $_SESSION['account_type'] . '"> Back </a>
+ <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/' . ucfirst($_SESSION['account_type']) . '"> Back </a>
   
 </div>
         
