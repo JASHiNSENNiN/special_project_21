@@ -54,9 +54,7 @@ function generateJobCard()
     echo '<span class="job-category"><a href="#">Organization</a></span>';
     echo '<h1>' .  htmlspecialchars($job['organization_name']);
     echo '<hr>';
-    // foreach ($strands as $strand) {
-    //     echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
-    // }
+
 
     echo '</h1></div>';
 
@@ -130,7 +128,7 @@ function generateJobCard()
         <span><i class="active icon-star"></i></span>
         <span><i class="active icon-star"></i></span>
         <span><i class="active icon-star"></i></span>
-        <span><i class="icon-star"></i></span>
+        <span><i class="active icon-star"></i></span>
       </div>
       <div class="rating-users">
         <i class="icon-user"></i> 100 total student
@@ -143,7 +141,7 @@ function generateJobCard()
           <i class="active icon-star"></i> 5           </span>
         <span class="bar-block">
           <span id="bar-five" class="bar">
-            <span>566,784</span>&nbsp;
+            <span>9999999</span>&nbsp;
           </span> 
         </span>
       </div>
@@ -302,9 +300,9 @@ if (isset($_SESSION['account_type'])) {
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -437,45 +435,45 @@ if (isset($_SESSION['account_type'])) {
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
     <script>
-        $(document).ready(function() {
-            $('.bar span').hide();
-            $('#bar-five').animate({
-                width: '85%'
-            }, 1000);
-            $('#bar-four').animate({
-                width: '35%'
-            }, 1000);
-            $('#bar-three').animate({
-                width: '20%'
-            }, 1000);
-            $('#bar-two').animate({
-                width: '17%'
-            }, 1000);
-            $('#bar-one').animate({
-                width: '30%'
-            }, 1000);
+    $(document).ready(function() {
+        $('.bar span').hide();
+        $('#bar-five').animate({
+            width: '85%'
+        }, 1000);
+        $('#bar-four').animate({
+            width: '35%'
+        }, 1000);
+        $('#bar-three').animate({
+            width: '20%'
+        }, 1000);
+        $('#bar-two').animate({
+            width: '17%'
+        }, 1000);
+        $('#bar-one').animate({
+            width: '30%'
+        }, 1000);
 
-            setTimeout(function() {
-                $('.bar span').fadeIn('slow');
-            }, 1000);
+        setTimeout(function() {
+            $('.bar span').fadeIn('slow');
+        }, 1000);
 
-        });
+    });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
