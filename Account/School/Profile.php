@@ -42,6 +42,17 @@ $profile_divv = '<header class="nav-header">
 
 
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+    <script type="text/javascript" src="/js/eval_graph.js"></script>
 </head>
 
 <body>
@@ -77,61 +88,74 @@ $profile_divv = '<header class="nav-header">
 
     </div>
 
-    <!-- Main -->
-    <div class="main">
+    <div class="row-graph">
+        <div class="dashboard-body">
+            <main class="dashboard__main app-content">
 
-        <br>
-        <h2>Map</h2>
-        <!-- <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1920.8544297966187!2d120.7673922211044!3d15.660484473847125!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33912cdb2318296d%3A0xe4e2117e97dfc92e!2sOur%20Lady%20of%20The%20Sacred%20Heart%20College!5e0!3m2!1sen!2sph!4v1716015242226!5m2!1sen!2sph"
-            width="850" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                <article class="app-content__widget app-content__widget--primary">
 
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4180.818006163703!2d120.70824703813983!3d15.714406648857958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391320a99919993%3A0x9be48d66ed4cad27!2sDr%20Ramon%20De%20Santos%20National%20High%20School!5e1!3m2!1sen!2sph!4v1728567463175!5m2!1sen!2sph"
-            width="780" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <h2 class="title-resume">Personal Summary</h2>
+                    <span class="description-resume">Introduce yourself and explain your goals and interest in work
+                        immersion. </span>
+                    <form class="txt-Personal-summary">
+                        <div>
+                            <textarea class="form-control" rows="10" placeholder=""></textarea>
+                            <span class="description-resume subtitle-resume">Stay safe. Don’t include sensitive personal
+                                information such as identity documents, health, race, religion or financial data.
+                            </span>
+                        </div>
+
+                        <button class="btn-save">Save Summary</button>
+
+                    </form>
 
 
+                </article>
 
-        <!-- <h2>SOCIAL MEDIA</h2>
-        <div class="card">
-            <div class="card-body">
-                <i class="fa fa-pen fa-xs edit"></i>
-                <div class="social-media">
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-invision fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-            </div>
-        </div> -->
+                <article class="app-content__widget app-content__widget--secondary">
+
+                    <div class="card-strong-profile">
+                        <h1 class="title-resume">Profile Strength</h1>
+                        <div class="card__indicator">
+
+                            <span class="card__indicator-percentage">20%</span>
+                        </div>
+                        <div class="card__progress"><progress max="100" value="20"></progress></div>
+
+                    </div>
+
+
+                    <div class="slideshow-container">
+                        <div class="mySlides fade-text">
+                            <div class="card__subtitle ">
+                                Showcase relevant skills and projects in your resume and cover letter
+                            </div>
+                        </div>
+                        <div class="mySlides fade-text " style="display: none;">
+                            <div class="card__subtitle">
+                                Introduce yourself and explain your goals and interest in work immersion.
+                            </div>
+                        </div>
+                        <div class="mySlides fade-text" style="display: none;">
+                            <div class="card__subtitle">
+                                Fill in accurate personal information, and interests.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="next" onclick="nextSlide()">Next tip &#8594;</button>
+
+                </article>
+
+
+            </main>
+
+
+        </div>
+
     </div>
-    <!-- End -->
+
+
+
     <footer>
         <!-- 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School -->
         2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students

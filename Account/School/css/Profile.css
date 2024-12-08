@@ -445,3 +445,177 @@ a.btn-home:hover {
   transform: translateY(0px);
   transition-duration: 0.3s;
 }
+
+.row-graph {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1300px) {
+  .row-graph {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+/* Clear floats after the columns */
+
+.row-graph:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.dashboard-body {
+  position: relative;
+  background: #ddd;
+  height: auto;
+  display: grid;
+  grid-template-columns: 0rem 1fr;
+  grid-template-areas: "nav main";
+}
+
+@media (max-width: 950px) {
+  .dashboard-body {
+    grid-template-areas: "main main";
+  }
+}
+
+.dashboard__main {
+  grid-area: main;
+}
+
+.app-content {
+  /* padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem; */
+  display: grid;
+  grid-gap: 2.5rem;
+  grid-template-columns: 2fr 1.2fr;
+  grid-template-rows: 1fr 1.5fr;
+  grid-template-areas: "widget-p widget-s" "widget-p widget-t";
+  background-color: #fff;
+}
+
+@media (max-width: 950px) {
+  .app-content {
+    overflow-y: scroll;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 200px;
+    grid-template-areas: "widget-p widget-p" "widget-s widget-t";
+  }
+}
+
+@media (max-width: 600px) {
+  .app-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 250px 250px;
+    grid-template-areas: "widget-p" "widget-s" "widget-t";
+  }
+}
+
+.app-content__widget {
+  /* background: #2ecc40; */
+  border-radius: 0.5rem;
+  height: auto;
+}
+
+.app-content__widget--primary {
+  /* background: #39cccc; */
+  grid-area: widget-p;
+  padding: 20px;
+}
+
+.app-content__widget--secondary {
+  grid-area: widget-s;
+}
+
+.app-content__widget--tertiary {
+  grid-area: widget-t;
+}
+
+.title-resume {
+  font-size: 28px;
+  color: #2e3849;
+}
+
+.description-resume {
+  color: #5a6881;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+span .subtitle-resume {
+  margin-top: 20px;
+}
+
+.dashboard-body {
+  position: relative;
+  background: #ddd;
+  height: auto;
+  display: grid;
+  grid-template-columns: 0rem 1fr;
+  grid-template-areas: "nav main";
+}
+
+@media (max-width: 950px) {
+  .dashboard-body {
+    grid-template-areas: "main main";
+  }
+}
+
+.dashboard__main {
+  grid-area: main;
+}
+
+.app-content {
+  /* padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem; */
+  display: grid;
+  grid-gap: 2.5rem;
+  grid-template-columns: 2fr 1.2fr;
+  grid-template-rows: 1fr 1.5fr;
+  grid-template-areas: "widget-p widget-s" "widget-p widget-t";
+  background-color: #fff;
+}
+
+@media (max-width: 950px) {
+  .app-content {
+    overflow-y: scroll;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 200px;
+    grid-template-areas: "widget-p widget-p" "widget-s widget-t";
+  }
+}
+
+@media (max-width: 600px) {
+  .app-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 250px 250px;
+    grid-template-areas: "widget-p" "widget-s" "widget-t";
+  }
+}
+
+.app-content__widget {
+  /* background: #2ecc40; */
+  border-radius: 0.5rem;
+  height: auto;
+}
+
+.app-content__widget--primary {
+  /* background: #39cccc; */
+  grid-area: widget-p;
+  padding: 20px;
+}
+
+.app-content__widget--secondary {
+  grid-area: widget-s;
+}
+
+.app-content__widget--tertiary {
+  grid-area: widget-t;
+}

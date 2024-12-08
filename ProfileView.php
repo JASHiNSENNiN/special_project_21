@@ -61,7 +61,6 @@ try {
     $fullName = trim("$firstName $middleName $lastName");
     $school = $student_profile['school'];
     $gradeLevel = $student_profile['grade_level'];
-    $lrn = $student_profile['lrn'];
     $strand = strtoupper($student_profile['strand']);
     $school = $student_profile['school'];
     $email = $user['email'];
@@ -163,8 +162,8 @@ $dailyPerformance = getDailyPerformance($user_id, $pdo);
 
 $profile_divv = '<header class="nav-header">
         <div class="logo">
-            <a href="../../Account/' . $_SESSION['account_type'] . '"> 
-                <img src="image/logov3.jpg" alt="Logo">
+            <a href="/Account/' . $_SESSION['account_type'] . '"> 
+                <img src="/img/logov3.jpg" alt="Logo">
             </a>
            
             
@@ -178,7 +177,7 @@ $profile_divv = '<header class="nav-header">
         
         </nav>
 
-    </header> 
+    </header>
 
     ';
 ?>
@@ -189,7 +188,7 @@ $profile_divv = '<header class="nav-header">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/Profile.css">
+    <link rel="stylesheet" type="text/css" href="css/ProfileView.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -259,14 +258,7 @@ $profile_divv = '<header class="nav-header">
 
 <body>
     <!-- nasa student_profile.php yung code nito-->
-    <?php
-    if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'student') {
-        echo $profile_divv;
-    } else {
-        echo $profile_div_non_student;
-    }
-
-    ?>
+    <?php echo $profile_divv; ?>
 
     <div class="row-graph-profile">
         <div class="column-graph-profile-right">
@@ -276,7 +268,7 @@ $profile_divv = '<header class="nav-header">
 
                 <div class="card-body">
                     <span class="fullname"><?= $fullName ?></span>
-                    <span class="LRN">LRN: <?=  $lrn ?></span>
+                    <span class="LRN">LRN: 20181234</span>
                     <br>
 
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="other-info"><?= $strand ?></span>
@@ -312,18 +304,18 @@ $profile_divv = '<header class="nav-header">
     <!-- -----------------------------------column graph ------------------------- -->
 
     <div class="row-graph">
-        <!-- <div class="dashboard-body">
+        <d class="dashboard-body">
 
             <main class="dashboard__main app-content">
 
-                <article class="app-content__widget app-content__widget--primary">
+                <!-- <article class="app-content__widget app-content__widget--primary">
 
                     <h2 class="title-resume">Personal Summary</h2>
                     <span class="description-resume">Introduce yourself and explain your goals and interest in work
                         immersion. </span>
                     <form class="txt-Personal-summary">
                         <div>
-                            <textarea class="form-control" rows="10" placeholder=""></textarea>
+                            <textarea class="form-control" rows="10" placeholder="" readonly></textarea>
                             <span class="description-resume subtitle-resume">Stay safe. Don’t include sensitive personal
                                 information such as identity documents, health, race, religion or financial data.
                             </span>
@@ -334,9 +326,9 @@ $profile_divv = '<header class="nav-header">
                     </form>
 
 
-                </article>
+                </article> -->
 
-                <article class="app-content__widget app-content__widget--secondary">
+                <!-- <article class="app-content__widget app-content__widget--secondary">
 
                     <div class="card-strong-profile">
                         <h1 class="title-resume">Profile Strength</h1>
@@ -368,11 +360,11 @@ $profile_divv = '<header class="nav-header">
                     </div>
                     <button class="next" onclick="nextSlide()">Next tip &#8594;</button>
 
-                </article>
+                </article> -->
 
 
             </main>
-        </div> -->
+        </d iv>
 
         <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'student'): ?>
             <div class="dashboard-body">

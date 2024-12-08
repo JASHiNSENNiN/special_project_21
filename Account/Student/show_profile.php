@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 
@@ -16,7 +17,7 @@ $strand = strtoupper($_SESSION['strand']);
 $currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
 $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
-$cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/logov3.png' : $_SESSION['cover_image'];
+$cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/logov3.jpg' : $_SESSION['cover_image'];
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">
