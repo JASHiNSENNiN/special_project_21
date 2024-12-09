@@ -176,7 +176,7 @@ $profile_divv = '<header class="nav-header">
         <ul>
 
             <li>
-                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
+                <a href="<?php //echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
                     <i class=" fa fa-sign-out-alt fa-2x"></i>
                 </a>
             </li>

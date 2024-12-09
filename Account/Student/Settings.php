@@ -329,24 +329,26 @@ $conn->close();
                             <div class="container-xl px-4 mt-4">
                                 <div class="row row1">
                                     <div class="col-xl-4">
+                                        <!-- Cover Picture card -->
                                         <div class="card mb-4 mb-5 mb-xl-0">
                                             <div class="card-header">Cover Picture </div>
                                             <div class="card-body text-center">
                                                 <img class="img-account-cover mb-2" id="profile-image-cover"
                                                     src="<?php echo $profile_data['cover_image'] ? 'uploads/' . $profile_data['cover_image'] : 'uploads/default.png'; ?>"
                                                     alt="Cover Image Preview" style="width: 100%; height: auto;">
-                                                <div class="small font-italic text-muted mb-4">JPG or PNG no
-                                                    larger than 5 MB</div>
+                                                <div class="small font-italic text-muted mb-4">JPG or PNG no larger than
+                                                    5 MB</div>
                                                 <input type="file" id="image-upload-cover" accept="image/jpeg,image/png"
                                                     style="display: none;"
                                                     onchange="previewImage('image-upload-cover', 'profile-image-cover')"
                                                     name="cover_image">
-                                                <label for="image-upload-cover" class="btn btn-primary">Upload
-                                                    new image</label>
+                                                <label for="image-upload-cover" class="btn btn-primary">Upload new
+                                                    image</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-xl-4">
+                                        <!-- Profile Picture card -->
                                         <div class="card mb-4 mb-xl-0">
                                             <div class="card-header">Profile Picture</div>
                                             <div class="card-body text-center">
@@ -354,12 +356,11 @@ $conn->close();
                                                     src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
                                                     alt="Profile Image Preview"
                                                     style="width: 200px; height: 200px; object-fit: cover;">
-                                                <div class="small font-italic text-muted mb-4">JPG or PNG no
-                                                    larger than 5 MB</div>
+                                                <div class="small font-italic text-muted mb-4">JPG or PNG no larger than
+                                                    5 MB</div>
                                                 <input type="file" id="image-upload" name="profile_image"
                                                     accept="image/jpeg,image/png" style="display: none;"
-                                                    onchange="previewImage('image-upload', 'profile-image')"
-                                                    name="profile_image">
+                                                    onchange="previewImage('image-upload', 'profile-image')">
                                                 <label for="image-upload" class="btn btn-primary">Upload new
                                                     image</label>
                                             </div>
@@ -374,15 +375,15 @@ $conn->close();
                                         if (file) {
                                             const reader = new FileReader();
                                             reader.onload = function(e) {
-                                                img.src = e.target
-                                                    .result;
+                                                img.src = e.target.result;
                                             }
-                                            reader.readAsDataURL(
-                                                file);
+                                            reader.readAsDataURL(file);
                                         }
                                     }
                                     </script>
+
                                     <div class="col-xl-8">
+                                        <!-- Account Details card -->
                                         <div class="card mb-4">
                                             <div class="card-header">Account Details</div>
                                             <div class="card-body">
@@ -393,39 +394,40 @@ $conn->close();
                                                         <input class="form-control" id="inputFirstName"
                                                             name="first_name" type="text"
                                                             value="<?php echo htmlspecialchars($profile_data['first_name'] ?? ''); ?>"
-                                                            required>
+                                                            required pattern="[A-Za-z\s]+"
+                                                            title="Only letters and spaces are allowed">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="small mb-1" for="inputMiddleName">Middle
                                                             name</label>
                                                         <input class="form-control" id="inputMiddleName"
                                                             name="middle_name" type="text"
-                                                            value="<?php echo htmlspecialchars($profile_data['middle_name'] ?? ''); ?>">
+                                                            value="<?php echo htmlspecialchars($profile_data['middle_name'] ?? ''); ?>"
+                                                            pattern="[A-Za-z\s]*"
+                                                            title="Only letters and spaces are allowed">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputLastName">Last
-                                                            name</label>
+                                                        <label class="small mb-1" for="inputLastName">Last name</label>
                                                         <input class="form-control" id="inputLastName" name="last_name"
                                                             type="text"
                                                             value="<?php echo htmlspecialchars($profile_data['last_name'] ?? ''); ?>"
-                                                            required>
+                                                            required pattern="[A-Za-z\s]+"
+                                                            title="Only letters and spaces are allowed">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputLastName">LRN</label>
-                                                        <input class="form-control" id="inputLastName" name="lrn"
-                                                            type="number"
+                                                        <label class="small mb-1" for="inputLrn">LRN</label>
+                                                        <input class="form-control" id="inputLrn" name="lrn" type="text"
                                                             value="<?php echo htmlspecialchars($profile_data['lrn'] ?? ''); ?>"
-                                                            required>
+                                                            required pattern="\d{12}"
+                                                            title="LRN must be exactly 12 number digits">
                                                     </div>
                                                 </div>
                                                 <div class="row gx-3 mb-3">
                                                     <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputSchool">School
-                                                            name</label>
+                                                        <label class="small mb-1" for="inputSchool">School name</label>
                                                         <select class="form-control" id="inputSchool" name="school"
                                                             required>
-                                                            <option value="" disabled>Select your school
-                                                            </option>
+                                                            <option value="" disabled>Select your school</option>
                                                             <option
                                                                 value="<?php echo htmlspecialchars($profile_data['school'] ?? ''); ?>"
                                                                 selected>
