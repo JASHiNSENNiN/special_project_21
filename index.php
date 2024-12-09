@@ -99,9 +99,6 @@ function generateJobCards($jobOffers)
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
-    <script>
-    document.addEventListener('contextmenu', event => event.preventDefault());
-    </script>
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
@@ -136,6 +133,8 @@ function generateJobCards($jobOffers)
 
                             <div class="search-container">
                                 <button type="submit"><i class="fas fa-search"></i></button>
+                                <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch"
+                                    type="text" placeholder="Work Immersion / Keyword">
                                 <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch"
                                     type="text" placeholder="Work Immersion / Keyword">
 

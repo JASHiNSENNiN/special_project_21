@@ -1069,7 +1069,8 @@ input[type="file"] {
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background: conic-gradient(#4379f2 3.6deg, #ededed 0deg);
+  /* background: conic-gradient(#4379f2 3.6deg, #ededed 0deg); */
+  background: conic-gradient(#4379f2 calc(var(--progress) * 1%), #f3f3f3 0);
 }
 
 .circular-progress::before {
