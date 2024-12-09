@@ -193,14 +193,25 @@ function acceptApplicant($applicant_id)
                             <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
                             <td><?= $student_row['strand'] ?></td>
                             <td><?= $job_title ?></td>
-                            <td>Ongoing...</td>
+                            <td>
+                                <input type="text" value="Reqeusting.." readonly>
+                                <button type="submit" class="button-9" name="accept_applicant" autofocus
+                                    style="padding: 0 13px;">Ongoing..</button>
+                                <button type="submit" class="button-9" name="accept_applicant" autofocus
+                                    style="padding: 0 13px;">Completed!</button>
+                            </td>
+
+
                             <td>
                                 <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
                                     <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
                                     <?php if ($applicant['status'] === 'accepted') { ?>
-                                        <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button>
+                                        <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button><br>
+                                        <!-- <button type="submit" class="button-9" name="accept_applicant" autofocus
+                                            style="padding: 0 13px;">Completed!</button> -->
                                     <?php } else { ?>
-                                        <button type="submit" class="button-9" name="accept_applicant" autofocus>Accept</button>
+                                        <button type="submit" class="button-9" name="accept_applicant" onclick="updateStatus(this)"
+                                            autofocus>Accept</button>
                                     <?php } ?>
                                 </form>
                                 <a
@@ -212,8 +223,12 @@ function acceptApplicant($applicant_id)
                     <?php } ?>
                 <?php } ?>
             </table>
+
         </div>
     </div>
+
+    <!-- The Modal -->
+
 
     <!-- JavaScript for table search -->
     <script>
@@ -240,6 +255,8 @@ function acceptApplicant($applicant_id)
             });
         });
     </script>
+
+
 
 
     <footer>
