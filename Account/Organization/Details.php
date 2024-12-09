@@ -317,7 +317,7 @@ var dailyPerformance = <?php echo $dailyPerformance; ?>;
                             <span
                                 class="number-rating"><?php echo number_format(isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0, 1); ?></span>
                         </td>
-                        <td><?php echo (int) $job['approved_students']; ?></td>
+                        <td><?php echo (int) $job['total_students']; ?></td>
                     </tr>
                     <script>
                     // Add the average rating for this job offer
