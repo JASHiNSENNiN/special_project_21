@@ -174,6 +174,7 @@ function acceptApplicant($applicant_id)
                     <th>Name</th>
                     <th>Strand</th>
                     <th>Job Name</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 <?php foreach ($applicants as $job_id => $applicant_list) { ?>
@@ -192,6 +193,7 @@ function acceptApplicant($applicant_id)
                             <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
                             <td><?= $student_row['strand'] ?></td>
                             <td><?= $job_title ?></td>
+                            <td>Ongoing...</td>
                             <td>
                                 <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
                                     <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
@@ -215,11 +217,11 @@ function acceptApplicant($applicant_id)
 
     <!-- JavaScript for table search -->
     <script>
-        document.getElementById('searchInput').addEventListener('keyup', function() {
+        document.getElementById('searchInput').addEventListener('keyup', function () {
             var searchValue = this.value.toLowerCase();
             var rows = document.querySelectorAll('#tbl tr:not(:first-child)');
 
-            rows.forEach(function(row) {
+            rows.forEach(function (row) {
                 var cells = row.getElementsByTagName('td');
                 var found = false;
 
@@ -249,7 +251,7 @@ function acceptApplicant($applicant_id)
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
+        inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -258,7 +260,7 @@ function acceptApplicant($applicant_id)
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
+        inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>

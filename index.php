@@ -133,8 +133,8 @@ function generateJobCards($jobOffers)
 
                             <div class="search-container">
                                 <button type="submit"><i class="fas fa-search"></i></button>
-                                <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch" type="text"
-                                    placeholder="Work Immersion / Keyword">
+                                <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch"
+                                    type="text" placeholder="Work Immersion / Keyword">
 
                             </div>
                             <div class="search-container" style="border-left: 1px solid grey">
@@ -191,7 +191,7 @@ function generateJobCards($jobOffers)
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
+        window.onscroll = function () {
             myFunction();
         };
 
