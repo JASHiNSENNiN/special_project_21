@@ -1,3 +1,8 @@
+<?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    };
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,51 +15,101 @@
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/loginform.css">
-    <script src="backend/js/register.js"></script>
+    <script src="/backend/js/register.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const error = urlParams.get("error"); // Get the "error" parameter
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get("error"); // Get the "error" parameter
 
-            if (error === "invalidEmail") {
-                // If the error is "invalidEmail", set a custom validity message
-                const emailField = document.getElementById("login-email");
-                emailField.setCustomValidity("The email address is already taken.");
-                emailField.reportValidity();
-            } else if (error === "Login_Failed") {
-                // If the error is "Login_Failed", set a custom validity message for both fields
-                const emailField = document.getElementById("login-email");
-                const passwordField = document.getElementById("login-password");
-                emailField.setCustomValidity("Invalid email or password.");
-                passwordField.setCustomValidity("Invalid email or password.");
-                emailField.reportValidity();
-                passwordField.reportValidity();
-            } else {
-                // Clear custom validity if no error or other error
-                document.getElementById("login-email").setCustomValidity('');
-                document.getElementById("login-password").setCustomValidity('');
-            }
-        };
-
-
-        function onRegisterSubmit(token) {
-            document.getElementById("login_form").submit();
+        if (error === "invalidEmail") {
+            // If the error is "invalidEmail", set a custom validity message
+            const emailField = document.getElementById("login-email");
+            emailField.setCustomValidity("The email address is already taken.");
+            emailField.reportValidity();
+        } else if (error === "Login_Failed") {
+            // If the error is "Login_Failed", set a custom validity message for both fields
+            const emailField = document.getElementById("login-email");
+            const passwordField = document.getElementById("login-password");
+            emailField.setCustomValidity("Invalid email or password.");
+            passwordField.setCustomValidity("Invalid email or password.");
+            emailField.reportValidity();
+            passwordField.reportValidity();
+        } else {
+            // Clear custom validity if no error or other error
+            document.getElementById("login-email").setCustomValidity('');
+            document.getElementById("login-password").setCustomValidity('');
         }
-    </script>
-    <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
     };
-    ?>
+
+
+
+    function onRegisterSubmit(token) {
+        document.getElementById("login_form").submit();
+    }
+
+
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get("error");
+
+        if (error === "alreadyTakenEmail") {
+            document
+                .getElementById("email")
+                .setCustomValidity("The email address was already taken");
+            document.getElementById("email").reportValidity();
+        }
+        if (error === "0AuthDuplicateEmail") {
+            document
+                .getElementById("google-login-btn")
+                .setCustomValidity(
+                    "Your email was already taken, try logging in using a different method"
+                );
+            document.getElementById("email").reportValidity();
+        }
+        if (error === "Login_Failed") {
+            const loginEmailField = document.getElementById("login-email");
+            const loginPasswordField = document.getElementById("login-password");
+
+            loginEmailField.addEventListener("click", function() {
+                window.location.href = "login.php";
+            });
+            loginPasswordField.addEventListener("click", function() {
+                window.location.href = "login.php";
+            });
+
+            if (loginEmailField && loginPasswordField) {
+                loginEmailField.setCustomValidity("Invalid Email or Password");
+                loginPasswordField.setCustomValidity("Invalid Email or Password");
+                loginEmailField.reportValidity();
+                loginPasswordField.reportValidity();
+            }
+
+            loginEmailField.addEventListener("focus", function() {
+                window.location.href = "login.php";
+            });
+
+            loginPasswordField.addEventListener("focus", function() {
+                window.location.href = "login.php";
+            });
+        }
+    };
+
+    const emailInput = document.getElementById("email");
+
+    emailInput.addEventListener("input", function() {
+        emailInput.setCustomValidity("");
+    });
+    </script>
+
 </head>
 
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
@@ -138,14 +193,14 @@
     </div>
 
     <script>
-        function myFunction() {
-            var x = document.getElementById("login-password");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
+    function myFunction() {
+        var x = document.getElementById("login-password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
         }
+    }
     </script>
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer
@@ -156,4 +211,3 @@
 </body>
 
 </html>
-<script src="/../backend/js/register.js"></script>
