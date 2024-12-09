@@ -240,21 +240,34 @@ footer {
   color: #333;
 }
 
+/* General Input Styles */
 input[type="text"],
 input[type="date"],
-textarea[type="textarea"] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  /* border: none; */
-  background: #f1f1f1;
+textarea {
+  width: 100%; /* Full width for all input fields */
+  padding: 15px; /* Ample padding for comfort */
+  margin: 5px 0 20px 0; /* Balanced vertical spacing */
+  display: inline-block; /* Inline-block for better alignment */
+  border: 1px solid #ccc; /* Light border for definition */
+  border-radius: 4px; /* Rounded corners for a modern look */
+  background: #f9f9f9; /* Slightly lighter background */
+  transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+  font-size: 16px; /* Consistent font size */
 }
 
+/* Focus State for Inputs */
 input[type="text"]:focus,
-input[type="password"]:focus {
-  background-color: #ddd;
-  outline: none;
+input[type="date"]:focus,
+textarea:focus {
+  background-color: #fff; /* White background on focus for clarity */
+  border-color: #007bff; /* Blue border on focus for emphasis */
+  outline: none; /* Remove the default outline */
+}
+
+/* Textarea Specific Styles */
+textarea {
+  height: 120px; /* Set a default height for the textarea */
+  resize: vertical; /* Allow vertical resize only */
 }
 
 .container {
@@ -263,6 +276,17 @@ input[type="password"]:focus {
 
 #editor-container {
   height: 200px;
+}
+@media (max-width: 768px) {
+  .sales-boxes {
+    flex-direction: column; /* Stack boxes on smaller screens */
+  }
+
+  .sales-boxes .recent-sales,
+  .sales-boxes .top-sales {
+    width: 100%; /* Full width on smaller screens */
+    margin: 0; /* Remove margins for stacking */
+  }
 }
 
 /* ---header--- */
@@ -792,79 +816,94 @@ input {
 
 /* The container */
 
+/* Container for the custom checkbox */
 .con {
-  /* display: block; */
+  /* display: flex; */
+  width: 50%;
+  /* margin: auto; */
+  align-items: center; /* Center the checkbox and label vertically */
   position: relative;
-  padding-left: 50px;
-  margin-bottom: 12px;
-  margin: 30px;
+  padding-left: 35px; /* Reduced padding for a more compact look */
+  margin: 20px 40px; /* Vertical spacing between checkboxes */
   cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  font-size: 20px; /* Slightly smaller font size for better readability */
+  color: #333; /* Darker text color for better contrast */
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
 /* Hide the browser's default checkbox */
-
 .con input {
   position: absolute;
-  opacity: 0;
+  opacity: 0; /* Completely hide the default checkbox */
   cursor: pointer;
   height: 0;
   width: 0;
 }
 
 /* Create a custom checkbox */
-
 .checkmark {
   position: absolute;
-  top: 0;
+  top: 50%; /* Center vertically */
   left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
+  transform: translateY(-50%); /* Adjust for centering */
+  height: 20px; /* Reduced height for a more compact appearance */
+  width: 20px; /* Reduced width for a more compact appearance */
+  background-color: #eee; /* Default background color */
+  border-radius: 4px; /* Rounded corners for a modern look */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
 /* On mouse-over, add a grey background color */
-
-.con:hover input ~ .checkmark {
-  background-color: #ccc;
+.con:hover .checkmark {
+  background-color: #d0d0d0; /* Lighter grey on hover */
 }
 
 /* When the checkbox is checked, add a blue background */
-
 .con input:checked ~ .checkmark {
-  background-color: #2196f3;
+  background-color: #2196f3; /* Blue background when checked */
+  border: 1px solid #1e88e5; /* Add a darker border for clarity */
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-
 .checkmark:after {
   content: "";
   position: absolute;
-  display: none;
+  display: none; /* Hidden by default */
 }
 
 /* Show the checkmark when checked */
-
 .con input:checked ~ .checkmark:after {
-  display: block;
+  display: block; /* Show checkmark when checked */
 }
 
 /* Style the checkmark/indicator */
-
 .con .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  left: 8px; /* Adjusted for better positioning */
+  top: 3px; /* Adjusted for better positioning */
+  width: 4px; /* Smaller width for a more refined look */
+  height: 10px; /* Height of the checkmark */
+  border: solid white; /* White checkmark */
+  border-width: 0 3px 3px 0; /* Define the checkmark shape */
+  transform: rotate(45deg); /* Rotate for the checkmark effect */
+  transition: display 0.2s ease; /* Smooth appearance of the checkmark */
+}
+
+/* Add a focus effect for accessibility */
+.con input:focus ~ .checkmark {
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.5); /* Highlight on focus */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .con {
+    font-size: 16px; /* Smaller font size for mobile */
+  }
+
+  .checkmark {
+    height: 18px; /* Adjust checkbox size for smaller screens */
+    width: 18px; /* Adjust checkbox size for smaller screens */
+  }
 }
 
 .notification .badge {
