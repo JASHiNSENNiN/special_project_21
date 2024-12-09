@@ -178,8 +178,8 @@ function acceptApplicant($applicant_id)
                     <th>Action</th>
                 </tr>
                 <?php foreach ($applicants as $job_id => $applicant_list) { ?>
-                    <?php foreach ($applicant_list as $applicant) { ?>
-                        <?php
+                <?php foreach ($applicant_list as $applicant) { ?>
+                <?php
                         $student_id = $applicant['student_id'];
                         $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
                         $student_row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
@@ -188,39 +188,39 @@ function acceptApplicant($applicant_id)
                         $job_row = mysqli_fetch_assoc(mysqli_query($conn, $job_title_query));
                         $job_title = $job_row['work_title'] ?? 'N/A'; // Use 'N/A' if no job title found
                         ?>
-                        <tr>
-                            <td><?= $applicant['id'] ?></td>
-                            <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
-                            <td><?= $student_row['strand'] ?></td>
-                            <td><?= $job_title ?></td>
-                            <td>
-                                <input type="text" value="Reqeusting.." readonly>
-                                <button type="submit" class="button-9" name="accept_applicant" autofocus
-                                    style="padding: 0 13px;">Ongoing..</button>
-                                <button type="submit" class="button-9" name="accept_applicant" autofocus
-                                    style="padding: 0 13px;">Completed!</button>
-                            </td>
+                <tr>
+                    <td><?= $applicant['id'] ?></td>
+                    <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
+                    <td><?= $student_row['strand'] ?></td>
+                    <td><?= $job_title ?></td>
+                    <td>
+                        <input type="text" value="Reqeusting.." readonly>
+                        <button type="submit" class="button-9" name="accept_applicant" autofocus
+                            style="padding: 0 13px;">Ongoing..</button>
+                        <button type="submit" class="button-9" name="accept_applicant" autofocus
+                            style="padding: 0 13px;">Completed!</button>
+                    </td>
 
 
-                            <td>
-                                <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
-                                    <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
-                                    <?php if ($applicant['status'] === 'accepted') { ?>
-                                        <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button><br>
-                                        <!-- <button type="submit" class="button-9" name="accept_applicant" autofocus
+                    <td>
+                        <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
+                            <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
+                            <?php if ($applicant['status'] === 'accepted') { ?>
+                            <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button><br>
+                            <!-- <button type="submit" class="button-9" name="accept_applicant" autofocus
                                             style="padding: 0 13px;">Completed!</button> -->
-                                    <?php } else { ?>
-                                        <button type="submit" class="button-9" name="accept_applicant" onclick="updateStatus(this)"
-                                            autofocus>Accept</button>
-                                    <?php } ?>
-                                </form>
-                                <a
-                                    href="<?php echo $ProfileViewURL; ?>?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
-                                    <button type="button" class="button-4">Details</button>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php } ?>
+                            <?php } else { ?>
+                            <button type="submit" class="button-9" name="accept_applicant" onclick="updateStatus(this)"
+                                autofocus>Accept</button>
+                            <?php } ?>
+                        </form>
+                        <a
+                            href="<?php echo $ProfileViewURL; ?>?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
+                            <button type="button" class="button-4">Details</button>
+                        </a>
+                    </td>
+                </tr>
+                <?php } ?>
                 <?php } ?>
             </table>
 
@@ -232,28 +232,26 @@ function acceptApplicant($applicant_id)
 
     <!-- JavaScript for table search -->
     <script>
-        document.getElementById('searchInput').addEventListener('keyup', function () {
-            var searchValue = this.value.toLowerCase();
-            var rows = document.querySelectorAll('#tbl tr:not(:first-child)');
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        var searchValue = this.value.toLowerCase();
+        var rows = document.querySelectorAll('#tbl tr:not(:first-child)');
 
-            rows.forEach(function (row) {
-                var cells = row.getElementsByTagName('td');
-                var found = false;
+        Ramws.forEach(function(row) {
+            var cells = row.getElementsByTagName('td');
+            var nameCell = cells[1];
+            var jobCell = cells[3];
+            var found = false;
 
-                for (var i = 0; i < cells.length - 1; i++) {
-                    if (cells[i].textContent.toLowerCase().indexOf(searchValue) > -1) {
-                        found = true;
-                        break;
-                    }
-                }
+            if (
+                nameCell.textContent.toLowerCase().indexOf(searchValue) > -1 ||
+                jobCell.textContent.toLowerCase().indexOf(searchValue) > -1
+            ) {
+                found = true;
+            }
 
-                if (found) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+            row.style.display = found ? '' : 'none';
         });
+    });
     </script>
 
 
@@ -265,21 +263,21 @@ function acceptApplicant($applicant_id)
     </footer>
 
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
 
