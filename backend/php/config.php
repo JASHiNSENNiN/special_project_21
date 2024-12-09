@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS applicants (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   job_id INT(11),
   student_id INT(11),
-  status ENUM('applied', 'cancelled', 'accepted', 'rejected') DEFAULT 'applied',
+  status ENUM('applied', 'cancelled', 'accepted', 'rejected', 'completed') DEFAULT 'applied',
   UNIQUE KEY (job_id, student_id),
   FOREIGN KEY (job_id) REFERENCES job_offers(id),
   FOREIGN KEY (student_id) REFERENCES student_profiles(user_id)

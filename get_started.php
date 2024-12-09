@@ -72,11 +72,9 @@ if (isset($_SESSION['email'])) {
                         'strand' => $strand
                     ];
                 }
-                $stmt->close();
+                $stmt->close(); 
                 break;
-            default:
-                header('Location: google.com');
-                break;
+            
         }
 
         $conn->close();

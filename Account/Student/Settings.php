@@ -413,7 +413,7 @@ $conn->close();
                                                     <div class="col-md-6">
                                                         <label class="small mb-1" for="inputLastName">LRN</label>
                                                         <input class="form-control" id="inputLastName" name="lrn"
-                                                            type="text"
+                                                            type="number"
                                                             value="<?php echo htmlspecialchars($profile_data['lrn'] ?? ''); ?>"
                                                             required>
                                                     </div>
@@ -608,7 +608,7 @@ $conn->close();
         const firstName = document.getElementById('inputFirstName').value.trim();
         const middleName = document.getElementById('inputMiddleName').value.trim();
         const lastName = document.getElementById('inputLastName').value.trim();
-        const lrn = document.getElementById('inputLRN').value.trim(); 
+        const lrn = document.getElementById('inputLRN').value.trim();
         const school = document.getElementById('inputSchool').value;
         const strand = document.getElementById('inputStrand').value;
 
@@ -622,7 +622,7 @@ $conn->close();
         }
         if (!lrn) {
             errorMessages.push("LRN is required.");
-        } else if (!/^\d{12}$/.test(lrn)) { 
+        } else if (!/^\d{12}$/.test(lrn)) {
             errorMessages.push("LRN must be a 12-digit numeric ID.");
         }
         if (!school || school === "") {
@@ -632,11 +632,11 @@ $conn->close();
             errorMessages.push("You must select a strand.");
         }
 
-        
+
         if (errorMessages.length > 0) {
             alert(errorMessages.join("\n"));
         } else {
-      
+
             document.getElementById("edit-profile-form").submit();
         }
     }
