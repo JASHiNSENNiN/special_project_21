@@ -23,6 +23,7 @@ function getApplicants($conn, $currentOrgId)
 {
     $applicants = [];
 
+
     // Updated SQL query
     $sql = "SELECT 
                 s.user_id AS student_id, 
@@ -102,13 +103,21 @@ $applicants = getApplicants($conn, $org_id);
                 </tr>
                 <?php foreach ($applicants as $index => $applicant) {
                     $profile_image = '../Student/uploads/' . $applicant['profile_image'];
+                    $profile_image = '../Student/uploads/' . $applicant['profile_image'];
 
+                    // Check if the applicant has already evaluated today
+                    $sql = "SELECT COUNT(*) as eval_count FROM Student_Evaluation 
                     // Check if the applicant has already evaluated today
                     $sql = "SELECT COUNT(*) as eval_count FROM Student_Evaluation 
             WHERE student_id = :student_id AND evaluation_date = CURDATE()";
                     $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(':student_id', $applicant['student_id'], PDO::PARAM_INT);
+                    $stmt->execute();
                     $stmt = $pdo->prepare($sql);
                     $stmt->bindParam(':student_id', $applicant['student_id'], PDO::PARAM_INT);
                     $stmt->execute();
@@ -151,12 +160,24 @@ $applicants = getApplicants($conn, $org_id);
                                                 let seconds = countdown % 60;
                                                 countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
                                                 countdown--;
+                                            function updateCountdown() {
+                                                let hours = Math.floor(countdown / 3600);
+                                                let minutes = Math.floor((countdown % 3600) / 60);
+                                                let seconds = countdown % 60;
+                                                countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                                                countdown--;
 
                                                 if (countdown < 0) {
                                                     location.reload();
                                                 }
                                             }
+                                                if (countdown < 0) {
+                                                    location.reload();
+                                                }
+                                            }
 
+                                            setInterval(updateCountdown, 1000);
+                                        }
                                             setInterval(updateCountdown, 1000);
                                         }
 
@@ -178,6 +199,32 @@ $applicants = getApplicants($conn, $org_id);
             </tbody>
         </table>
     </div>
+
+    <script>
+        // Function to set progress value
+        function setProgress(progress) {
+            // Limit progress between 0 and 100
+            progress = Math.max(0, Math.min(100, progress));
+
+            // Update the progress value in the span
+            const progressValue = document.querySelector('.progress-value');
+            progressValue.textContent = `${progress}%`;
+
+            // Update the CSS variable for the circular progress
+            const circularProgress = document.querySelector('.circular-progress');
+            circularProgress.style.setProperty('--progress', progress);
+        }
+
+        // Example of animating the progress from 0 to 100
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 1;
+            setProgress(progress);
+            if (progress >= 100) {
+                clearInterval(interval);
+            }
+        }, 50); // Update every 50ms
+    </script>
     <footer>
         <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
         <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>

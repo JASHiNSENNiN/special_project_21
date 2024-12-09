@@ -702,7 +702,7 @@ h3,
 
 .button-4 {
   appearance: none;
-  background-color: #922222;
+  background-color: #f26b0f;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
@@ -734,7 +734,7 @@ h3,
 }
 
 .button-4:hover {
-  background-color: #972c2c;
+  background-color: #ca6521;
 }
 
 .button-4:focus {

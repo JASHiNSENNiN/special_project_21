@@ -116,7 +116,7 @@
                                         style="font-size:15px"></i></button>
                                 <button class="button-5" role="button"><i class='fas fa-user-alt'
                                         style='font-size:15px'></i></button>
-                                <button class="button-4" role="button"><i class="fa fa-trash-o"
+                                <button class="button-4" role="button"><i class="fa fa-archive"
                                         style="font-size:15px"></i></button>
                             </td>
                         </tr>

@@ -56,7 +56,7 @@ $storedUserId = $_SESSION['user_id'];
 $_SESSION['email'] = $email;
 
 switch ($accountType) {
-    case "student":
+    case "Student":
         $accType = "Student";
         $firstName = $_POST["first-name"];
         $middleName = $_POST["middle-name"];
@@ -72,7 +72,7 @@ switch ($accountType) {
         $stmt->close();
         break;
 
-    case "school":
+    case "School":
         $schoolName = $_POST["school-name"];
         $accType = "School";
         $stmt = $conn->prepare("INSERT INTO school_profiles (school_name, user_id) VALUES (?, ?)");
@@ -81,7 +81,7 @@ switch ($accountType) {
         $stmt->close();
         break;
 
-    case "organization":
+    case "Organization":
         $organizationName = $_POST["organization-name"];
         $strandFocus = $_POST["strand-focus"];
         $accType = "Organization";

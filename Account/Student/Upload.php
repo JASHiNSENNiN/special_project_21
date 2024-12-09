@@ -74,60 +74,211 @@ require_once 'show_profile.php';
     <hr class="line_bottom">
 
 
-
-    <div class="container">
-        <div class="card">
-            <h3>Upload Files</h3>
-            <div class="drop_box">
-                <header>
-                    <h4>Select Files here</h4>
-                </header>
-                <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="fileID" multiple>
-                <button class="btn">Choose Files</button>
+    <div class="row">
+        <div class="column">
+            <div class="container">
+                <div class="card">
+                    <h3>Resume</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select Files here</h4>
+                        </header>
+                        <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                        <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="Resume" multiple>
+                        <button class="btn">Choose Files</button>
+                    </div>
+                    <ul class="file-list"></ul>
+                </div>
             </div>
-            <ul class="file-list"></ul>
+        </div>
+        <div class="column">
+            <div class="container">
+                <div class="card">
+                    <h3>Application Letter</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select Files here</h4>
+                        </header>
+                        <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                        <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="Letter" multiple>
+                        <button class="btn">Choose Files</button>
+                    </div>
+                    <ul class="file-list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <div class="card">
+                    <h3>Parents Consent</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select Files here</h4>
+                        </header>
+                        <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                        <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="Consent" multiple>
+                        <button class="btn">Choose Files</button>
+                    </div>
+                    <ul class="file-list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <div class="card">
+                    <h3>Barangay Clearance</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select Files here</h4>
+                        </header>
+                        <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                        <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="Brgy" multiple>
+                        <button class="btn">Choose Files</button>
+                    </div>
+                    <ul class="file-list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <div class="card">
+                    <h3>Mayor's Permit</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select Files here</h4>
+                        </header>
+                        <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                        <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="Permit" multiple>
+                        <button class="btn">Choose Files</button>
+                    </div>
+                    <ul class="file-list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <div class="card">
+                    <h3>Police Clearance</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select Files here</h4>
+                        </header>
+                        <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                        <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="Police" multiple>
+                        <button class="btn">Choose Files</button>
+                    </div>
+                    <ul class="file-list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <div class="card">
+                    <h3>Medical Certificate</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select Files here</h4>
+                        </header>
+                        <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                        <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="Medical" multiple>
+                        <button class="btn">Choose Files</button>
+                    </div>
+                    <ul class="file-list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                <div class="card">
+                    <h3>Insurance Policy</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select Files here</h4>
+                        </header>
+                        <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                        <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="Policy" multiple>
+                        <button class="btn">Choose Files</button>
+                    </div>
+                    <ul class="file-list"></ul>
+                </div>
+            </div>
         </div>
     </div>
 
 
+
+
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function () {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
+
     <script type="text/javascript">
-    const dropArea = document.querySelector(".drop_box"),
-        button = dropArea.querySelector("button"),
-        dragText = dropArea.querySelector("header"),
-        input = dropArea.querySelector("input");
-    let files = [];
+        const dropBoxes = document.querySelectorAll(".drop_box");
 
-    button.onclick = () => {
-        input.click();
-    };
+        dropBoxes.forEach(dropBox => {
+            const button = dropBox.querySelector("button");
+            const input = dropBox.querySelector("input");
+            const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
 
-    input.addEventListener("change", function(e) {
-        files = e.target.files; // Get the selected files
-        const fileListElement = document.querySelector(".file-list");
-        fileListElement.innerHTML = ''; // Clear the previous file list
+            button.onclick = () => {
+                input.click();
+            };
 
-        // Display each selected file
-        Array.from(files).forEach(file => {
-            let fileItem = document.createElement('li');
-            fileItem.innerHTML = `
+            input.addEventListener("change", function (e) {
+                const files = e.target.files; // Get the selected files
+                fileListElement.innerHTML = ''; // Clear the previous file list
+
+                // Display each selected file
+                Array.from(files).forEach(file => {
+                    let fileItem = document.createElement('li');
+                    fileItem.innerHTML = `
+                    <h4>${file.name}</h4>
+                    <form action="" method="post">
+                        <div class="form">
+                            <input type="email" placeholder="Enter email to upload file">
+                            <button class="btn">Upload</button>
+                        </div>
+                    </form>
+                `;
+                    fileListElement.appendChild(fileItem);
+                });
+            });
+        });
+    </script>
+    <!-- <script type="text/javascript">
+        const dropArea = document.querySelector(".drop_box"),
+            button = dropArea.querySelector("button"),
+            dragText = dropArea.querySelector("header"),
+            input = dropArea.querySelector("input");
+        let files = [];
+
+        button.onclick = () => {
+            input.click();
+        };
+
+        input.addEventListener("change", function (e) {
+            files = e.target.files; // Get the selected files
+            const fileListElement = document.querySelector(".file-list");
+            fileListElement.innerHTML = ''; // Clear the previous file list
+
+            // Display each selected file
+            Array.from(files).forEach(file => {
+                let fileItem = document.createElement('li');
+                fileItem.innerHTML = `
       <h4>${file.name}</h4>
       <form action="" method="post">
         <div class="form">
@@ -136,10 +287,10 @@ require_once 'show_profile.php';
         </div>
       </form>
     `;
-            fileListElement.appendChild(fileItem);
+                fileListElement.appendChild(fileItem);
+            });
         });
-    });
-    </script>
+    </script> -->
 
     <footer>
         <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
