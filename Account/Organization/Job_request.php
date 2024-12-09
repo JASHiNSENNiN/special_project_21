@@ -112,6 +112,76 @@ function acceptApplicant($applicant_id)
     exit;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (isset($_POST['complete_applicant'])) {
+    $applicant_id = $_POST['applicant_id'];
+    completeApplicant($applicant_id);
+}
+
+function completeApplicant($applicant_id) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "UPDATE applicants SET status = 'completed' WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $applicant_id);
+    $stmt->execute();
+
+    $stmt->close();
+    $conn->close();
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+if (isset($_POST['ongoing_applicant'])) {
+    $applicant_id = $_POST['applicant_id'];
+    revertToOngoing($applicant_id);
+}
+
+function revertToOngoing($applicant_id) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "UPDATE applicants SET status = 'accepted' WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $applicant_id);
+    $stmt->execute();
+
+    $stmt->close();
+    $conn->close();
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,21 +264,35 @@ function acceptApplicant($applicant_id)
                     <td><?= $student_row['strand'] ?></td>
                     <td><?= $job_title ?></td>
                     <td>
-                        <input type="text" value="Reqeusting.." readonly>
-                        <button type="submit" class="button-9" name="accept_applicant" autofocus
-                            style="padding: 0 13px;">Ongoing..</button>
-                        <button type="submit" class="button-9" name="accept_applicant" autofocus
-                            style="padding: 0 13px;">Completed!</button>
+                        <?php
+                    switch ($applicant['status']) {
+                        case 'applied':
+                            echo '<input type="text" value="Requesting.." readonly>
+                                  ';
+                            break;
+                        case 'accepted':
+                            echo '<input type="text" value="Ongoing.." readonly>
+                                  ';
+                            break;
+                        case 'completed':
+                            echo '<input type="text" value="Completed!" readonly>
+                                  ';
+                            break;
+                        default:
+                            echo '<input type="text" value="Applying" readonly>';
+                    }
+                    ?>
                     </td>
 
 
                     <td>
                         <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
                             <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
-                            <?php if ($applicant['status'] === 'accepted') { ?>
+                            <?php if ($applicant['status'] === 'completed') { ?>
+                            <!-- Do not show any buttons if the status is 'completed' -->
+                            <!-- <input type="text" value="Completed!" readonly> -->
+                            <?php } elseif ($applicant['status'] === 'accepted') { ?>
                             <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button><br>
-                            <!-- <button type="submit" class="button-9" name="accept_applicant" autofocus
-                                            style="padding: 0 13px;">Completed!</button> -->
                             <?php } else { ?>
                             <button type="submit" class="button-9" name="accept_applicant" onclick="updateStatus(this)"
                                 autofocus>Accept</button>
@@ -218,6 +302,33 @@ function acceptApplicant($applicant_id)
                             href="<?php echo $ProfileViewURL; ?>?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
                             <button type="button" class="button-4">Details</button>
                         </a>
+                        <?php
+                    switch ($applicant['status']) {
+                        case 'applied':
+                            echo '
+                                  <form method="POST" style="display:inline;">
+                                      <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
+                                      <button type="submit" class="button-9" name="accept_applicant" style="padding: 0 13px;">Accept</button>
+                                  </form>';
+                            break;
+                        case 'accepted':
+                            echo '
+                                  <form method="POST" style="display:inline;">
+                                      <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
+                                      <button type="submit" class="button-9" name="complete_applicant" style="padding: 0 13px;">Complete</button>
+                                  </form>';
+                            break;
+                        case 'completed':
+                            echo '
+                                  <form method="POST" style="display:inline;">
+                                      <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
+                                      <button type="submit" class="button-9" name="ongoing_applicant" style="padding: 0 13px;">Revert to Ongoing</button>
+                                  </form>';
+                            break;
+                        default:
+                            break;
+                    }
+                    ?>
                     </td>
                 </tr>
                 <?php } ?>
