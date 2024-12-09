@@ -88,6 +88,38 @@ a {
     text-align: center;
 }
 
+.button-cancel {
+    font-weight: 500;
+    font-size: 14px;
+    background-color: #0b2c50;
+    text-transform: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: inline-block;
+    text-transform: none;
+    font-weight: 500;
+    font-size: 14px;
+    outline: none;
+    overflow: hidden;
+    line-height: 27px;
+    position: relative;
+    z-index: 10;
+    color: #fff;
+    border: none;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    border-radius: 0;
+    box-shadow: 3px;
+}
+
+.button-cancel:hover {
+    background-color: #fc5757;
+}
+
 a.button {
     font-weight: 500;
     font-size: 14px;
@@ -151,10 +183,6 @@ a.button {
     text-decoration: none;
     color: #fff;
     background-color: #26ae61;
-}
-
-.padding-right {
-    padding-right: 20px;
 }
 
 p {
@@ -2219,3 +2247,149 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     max-width: 1117.5px !important;
   }
 } */
+
+/* /////////////////////////////////////////////bar rating graph and pie chart///////////////////// */
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    box-shadow: 0px 6px 42px rgba(0, 0, 0, 0.103884);
+}
+
+.flex-left {
+    width: 50%;
+    margin: 5px;
+    padding: 5px;
+    /* border: 3px solid red; */
+    display: grid;
+    place-items: center;
+}
+
+.flex-right {
+    width: 50%;
+    margin: 5px;
+    padding: 5px;
+    /* border: 3px solid green; */
+    display: grid;
+    place-items: center;
+}
+
+#top_x_div_rating {
+    width: 100%;
+    /* Set width to 100% for responsiveness */
+    height: 300px;
+    /* Fixed height */
+}
+
+.rating-users,
+.fa {
+    font-size: 19px;
+    text-align: center;
+    padding-top: 10px;
+    color: #212529;
+}
+
+.fa {
+    margin-right: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#total-student {
+    min-width: 100%;
+    /* Minimum width */
+    min-height: 300px;
+    /* Minimum height */
+}
+
+/* ///////////////////////////////////rating //////////////////////////////////////////////////////// */
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container-btm-rating {
+    width: auto;
+    padding-top: 20px;
+}
+
+h3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 24px;
+    color: #252525;
+    margin-bottom: 20px;
+}
+
+.row {
+    margin: 0 -15px;
+}
+
+.col-3 {
+    float: left;
+    width: auto;
+    padding: 0 15px;
+    margin-bottom: 20px;
+}
+
+.col-4 {
+    float: left;
+    width: 277.5px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+}
+
+.col-5 {
+    float: left;
+    width: 222px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+}
+
+.col-6 {
+    float: left;
+    width: 185px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    background-color: blue;
+}
+
+.common {
+    background-color: white;
+    box-shadow: 0px 6px 42px rgba(0, 0, 0, 0.103884);
+    height: auto;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+#wp-top-x-div,
+#pro-top-x-div,
+#ld-top-x-div,
+#tc-top-x-div,
+#am-top-x-div {
+    min-width: 100%;
+    /* Minimum width */
+    min-height: 300px;
+}
+
+.fa-bar-chart,
+.fa-pie-chart {
+    color: #fff;
+    font-size: 25px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-right: 10px;
+    padding-top: 0px;
+}
+
+.single_job_listing {
+    margin-bottom: 90px;
+}

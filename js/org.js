@@ -23,7 +23,7 @@ function drawStuffam() {
     },
     chart: {
       title: "Attitude and Motivation",
-      subtitle: "Student attitude and motivation from the work immersion",
+      // subtitle: "Student attitude and motivation from the work immersion",
     },
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
@@ -72,7 +72,7 @@ function drawStufftc() {
     },
     chart: {
       title: "Team work and Collaboration",
-      subtitle: "Student team work and collaboration from the work immersion",
+      // subtitle: "Student team work and collaboration from the work immersion",
     },
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
@@ -120,7 +120,7 @@ function drawStuffld() {
     },
     chart: {
       title: "Learning and Development",
-      subtitle: "Student learning and development from the work immersion",
+      // subtitle: "Student learning and development from the work immersion",
     },
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
@@ -167,7 +167,7 @@ function drawStuffprof() {
     },
     chart: {
       title: "Professionalism",
-      subtitle: "Student professionalism from the work immersion",
+      // subtitle: "Student professionalism from the work immersion",
     },
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
@@ -215,7 +215,7 @@ function drawStuff() {
     },
     chart: {
       title: "Work Immerssion Experience",
-      subtitle: "Student experience from the work immersion",
+      // subtitle: "Student experience from the work immersion",
     },
     bars: "horizontal", // Required for Material Bar Charts.
     axes: {
@@ -242,3 +242,69 @@ function drawStuff() {
 window.addEventListener("resize", function () {
   drawStuff();
 });
+/////////////////////////////////////rating graph and pie chart ///////////////////////////////////
+google.charts.load("current", { packages: ["bar"] });
+google.charts.setOnLoadCallback(drawStuffrating);
+
+function drawStuffrating() {
+  var data = new google.visualization.arrayToDataTable([
+    ["Star", "Percentage"],
+    ["5", 50],
+    ["4", 31],
+    ["3", 12],
+    ["2", 10],
+    ["1", 3],
+  ]);
+
+  var options = {
+    title: "Chess opening moves",
+    width: "100%", // Set width to 100% for responsiveness
+    legend: { position: "none" },
+    chart: {
+      title: "Rating of Work Immersion ",
+      subtitle: "popularity by rating",
+    },
+    bars: "horizontal", // Required for Material Bar Charts.
+    axes: {
+      x: {
+        0: { side: "top", label: "Rating" }, // Top x-axis.
+      },
+    },
+    bar: { groupWidth: "90%" },
+  };
+
+  var chart = new google.charts.Bar(
+    document.getElementById("top_x_div_rating")
+  );
+  chart.draw(data, options);
+}
+
+// Redraw the chart on window resize
+window.addEventListener("resize", drawStuffrating);
+
+// ///////////////////////////////pie chart/////////////////
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChartts);
+
+function drawChartts() {
+  var datats = google.visualization.arrayToDataTable([
+    ["Task", "Hours per Day"],
+    ["Humss", 11],
+    ["Gass", 2],
+    ["Stem", 2],
+    ["Tvl", 2],
+  ]);
+
+  var optionsts = {
+    title: "Total Student Applied",
+    pieSliceText: "label",
+  };
+
+  var chartts = new google.visualization.PieChart(
+    document.getElementById("total-student")
+  );
+  chartts.draw(datats, optionsts);
+}
+
+// Redraw the chart on window resize
+window.addEventListener("resize", drawChartts);

@@ -120,76 +120,24 @@ function generateJobCard()
 
             <div class="eleven columns ">
                 <div class="padding-right">
+                
                     <div class="single_job_listing">
-                        <div class="container-rating">
-  <div class="inner-rating">
-    <div class="rating">
-      <span class="rating-num">4.0</span>
-      <div class="rating-stars">
-        <span><i class="active icon-star"></i></span>
-        <span><i class="active icon-star"></i></span>
-        <span><i class="active icon-star"></i></span>
-        <span><i class="active icon-star"></i></span>
-        <span><i class="icon-star"></i></span>
-      </div>
-      <div class="rating-users">
-        <i class="icon-user"></i> 100 total student
-      </div>
-    </div>
-    
-    <div class="histo">
-      <div class="five histo-rate">
-        <span class="histo-star">
-          <i class="active icon-star"></i> 5           </span>
-        <span class="bar-block">
-          <span id="bar-five" class="bar">
-            <span>1</span>&nbsp;
-          </span> 
-        </span>
-      </div>
-      
-      <div class="four histo-rate">
-        <span class="histo-star">
-          <i class="active icon-star"></i> 4           </span>
-        <span class="bar-block">
-          <span id="bar-four" class="bar">
-            <span>171,298</span>&nbsp;
-          </span> 
-        </span>
-      </div> 
-      
-      <div class="three histo-rate">
-        <span class="histo-star">
-          <i class="active icon-star"></i> 3           </span>
-        <span class="bar-block">
-          <span id="bar-three" class="bar">
-            <span>94,940</span>&nbsp;
-          </span> 
-        </span>
-      </div>
-      
-      <div class="two histo-rate">
-        <span class="histo-star">
-          <i class="active icon-star"></i> 2           </span>
-        <span class="bar-block">
-          <span id="bar-two" class="bar">
-            <span>44,525</span>&nbsp;
-          </span> 
-        </span>
-      </div>
-      
-      <div class="one histo-rate">
-        <span class="histo-star">
-          <i class="active icon-star"></i> 1           </span>
-        <span class="bar-block">
-          <span id="bar-one" class="bar">
-            <span>136,457</span>&nbsp;
-          </span> 
-        </span>
-      </div>
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                     <h4 class="font-weight-bold py-3 mb-4"
+            style="background-color:#172738; color:#fff; padding-left: 20px; padding-right: 10px;margin: 0px !important; "> <i class="fa fa-pie-chart" aria-hidden="true"></i>Rating</h4>
+                        <div class="flex-container">
+                        
+  <div class="flex-left">
+    <div id="top_x_div_rating"></div>
+    <div class="rating-users">
+      <i class="fa fa-user" aria-hidden="true"></i><span>1,014,004</span> total students
     </div>
   </div>
-</div>
+  <div class="flex-right">
+      
+<div id="total-student" style="width: 90%; height: 100%;"></div>
+  </div>
+</div> 
                         
 
                     </div>
@@ -199,54 +147,45 @@ function generateJobCard()
 
 
 
-             <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
-        <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#172738; color:#fff; padding-left: 10px; padding-right: 10px;margin: 0px !important; ">Job Evaluation Insight</h4>
-        <div class="card-graph overflow-hidden">
-            <div class="row no-gutters row-bordered row-border-light">
-                <div class="col-md-3 pt-0">
-                    <div class="list-group list-group-flush account-settings-links">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list"
-                            href="#wp-top-x-div-sel">Work Immerssion Experience</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#pro-top-x-div-sel">Professionalism</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#ld-top-x-div-sel">Learning and Development</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#tc-top-x-div-sel">Team Work and Collaboration</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#am-top-x-div-sel">Attitude and Motivation</a>
+             
+            <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
+            <h4 class="font-weight-bold py-3 mb-4"
+            style="background-color:#172738; color:#fff; padding-left: 20px; padding-right: 10px;margin: 0px !important; ">  <i class="fa fa-bar-chart" aria-hidden="true"></i>Insights</h4>
+        <div class="container-btm-rating">
+        
+		<div class="row clearfix">
+			<div class="col-3">
+				<div class="common">
+					 <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
 
-                    </div>
-                </div> 
-                <div class="col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade active show" id="wp-top-x-div-sel">
-                            <div class="wp-graph" id="wp-top-x-div" style="width: 900px; height: 500px;"></div>
-                        </div>
+			<div class="col-3">
+				<div class="common">
+					<div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
 
-                        <div class="tab-pane fade active " id="pro-top-x-div-sel">
-                            <div class="pro-graph" id="pro-top-x-div" style="width: 900px; height: 500px;"></div>
-                        </div>
+			<div class="col-3">
+				<div class="common">
+					 <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
 
-                        <div class="tab-pane fade active " id="ld-top-x-div-sel">
-                            <div class="ld-graph" id="ld-top-x-div" style="width: 900px; height: 500px;"></div>
-                        </div>
+			<div class="col-3">
+				<div class="common">
+					<div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+				
+			</div> <!-- end:col-3 -->
+			<div class="col-3">
+				<div class="common">
+					 <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+		</div><!-- end:row -->
+	</div> <!-- end:container -->
 
-                        <div class="tab-pane fade active " id="tc-top-x-div-sel">
-                            <div class="tc-graph" id="tc-top-x-div" style="width: 900px; height: 500px;"></div>
-                        </div>
-
-                        <div class="tab-pane fade active " id="am-top-x-div-sel">
-                            <div class="am-graph" id="am-top-x-div" style="width: 900px; height: 500px;"></div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
         </div>';
 }
@@ -293,6 +232,8 @@ if (isset($_SESSION['account_type'])) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
 </head>
 
@@ -302,9 +243,9 @@ if (isset($_SESSION['account_type'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -331,30 +272,7 @@ if (isset($_SESSION['account_type'])) {
 
     <div class="content-sticky">
         <!-- --------------------------------------------------location----------------------------------------------- -->
-        <!-- <span class="company-data__content--list-item _company_website">
-            <a class="website" href="#"
-                target="_blank" rel="nofollow">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    version="1.1" width="15.413" height="14" viewBox="0 0 256 256"
-                    xml:space="preserve">
 
-                    <defs>
-                    </defs>
-                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-                        transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                        <path
-                            d="M 45 90 c -1.415 0 -2.725 -0.748 -3.444 -1.966 l -4.385 -7.417 C 28.167 65.396 19.664 51.02 16.759 45.189 c -2.112 -4.331 -3.175 -8.955 -3.175 -13.773 C 13.584 14.093 27.677 0 45 0 c 17.323 0 31.416 14.093 31.416 31.416 c 0 4.815 -1.063 9.438 -3.157 13.741 c -0.025 0.052 -0.053 0.104 -0.08 0.155 c -2.961 5.909 -11.41 20.193 -20.353 35.309 l -4.382 7.413 C 47.725 89.252 46.415 90 45 90 z"
-                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(119, 119, 119); fill-rule: nonzero; opacity: 1;"
-                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                        <path
-                            d="M 45 45.678 c -8.474 0 -15.369 -6.894 -15.369 -15.368 S 36.526 14.941 45 14.941 c 8.474 0 15.368 6.895 15.368 15.369 S 53.474 45.678 45 45.678 z"
-                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                    </g>
-                </svg>
-                Location
-            </a>
-        </span> -->
 
         <?php generateJobCard(); ?>
 
@@ -441,45 +359,45 @@ if (isset($_SESSION['account_type'])) {
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.bar span').hide();
-        $('#bar-five').animate({
-            width: '85%'
-        }, 1000);
-        $('#bar-four').animate({
-            width: '35%'
-        }, 1000);
-        $('#bar-three').animate({
-            width: '20%'
-        }, 1000);
-        $('#bar-two').animate({
-            width: '17%'
-        }, 1000);
-        $('#bar-one').animate({
-            width: '30%'
-        }, 1000);
+        $(document).ready(function() {
+            $('.bar span').hide();
+            $('#bar-five').animate({
+                width: '85%'
+            }, 1000);
+            $('#bar-four').animate({
+                width: '35%'
+            }, 1000);
+            $('#bar-three').animate({
+                width: '20%'
+            }, 1000);
+            $('#bar-two').animate({
+                width: '17%'
+            }, 1000);
+            $('#bar-one').animate({
+                width: '30%'
+            }, 1000);
 
-        setTimeout(function() {
-            $('.bar span').fadeIn('slow');
-        }, 1000);
+            setTimeout(function() {
+                $('.bar span').fadeIn('slow');
+            }, 1000);
 
-    });
+        });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

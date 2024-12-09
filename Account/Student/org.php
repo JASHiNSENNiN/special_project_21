@@ -185,7 +185,7 @@ function generateJobCard()
                                     <input type="hidden" name="job_id" value="' . $jobId . '">';
 
     if ($hasApplied === true) {
-        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Cancel Application</button>
+        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button button-cancel apply-dialog-button">Cancel Application</button>
                                         <input type="hidden" name="action" value="cancel_application">';
     } else {
         echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button>
@@ -210,8 +210,79 @@ function generateJobCard()
                 </div>
 
             </div>
+
+            <div class="eleven columns ">
+                <div class="padding-right">
+                    <div class="single_job_listing">
+                    <h4 class="font-weight-bold py-3 mb-4"
+            style="background-color:#172738; color:#fff; padding-left: 20px; padding-right: 10px;margin: 0px !important; "> <i class="fa fa-pie-chart" aria-hidden="true"></i>Rating</h4>
+                        <div class="flex-container">
+                        
+  <div class="flex-left">
+    <div id="top_x_div_rating"></div>
+    <div class="rating-users">
+      <i class="fa fa-user" aria-hidden="true"></i><span>1,014,004</span> total students
+    </div>
+  </div>
+  <div class="flex-right">
+      
+<div id="total-student" style="width: 90%; height: 100%;"></div>
+  </div>
+</div>
+                        
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+             <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
+        <h4 class="font-weight-bold py-3 mb-4"
+            style="background-color:#172738; color:#fff; padding-left: 20px; padding-right: 10px;margin: 0px !important; "> <i class="fa fa-bar-chart" aria-hidden="true"></i>Insights</h4>
+        <div class="container-btm-rating">
+        
+		<div class="row clearfix">
+			<div class="col-3">
+				<div class="common">
+					 <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+
+			<div class="col-3">
+				<div class="common">
+					<div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+
+			<div class="col-3">
+				<div class="common">
+					 <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+
+			<div class="col-3">
+				<div class="common">
+					<div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+				
+			</div> <!-- end:col-3 -->
+			<div class="col-3">
+				<div class="common">
+					 <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+		</div><!-- end:row -->
+	</div> <!-- end:container -->
+
+    </div>
             
-        </div>';
+        </div>
+        
+        
+        
+        ';
 }
 
 
@@ -228,7 +299,8 @@ function generateJobCard()
     <title>Work Immersion | Workify</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="image/Dr.Ramon.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
-    <link rel="stylesheet" type="text/css" href="css/org_style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/org_style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/org_style.css"> -->
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -236,18 +308,28 @@ function generateJobCard()
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <!-- ---------------------------------------evaluation script ------------------------------------------- -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
-<style>
+<script type="text/javascript" src="../../js/org.js"></script>
 
-</style>
 
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -284,52 +366,14 @@ function generateJobCard()
         <div class="new_footer_top">
             <div class="container">
                 <div class="row" style=" gap: 120px !important;">
-                    <div class="col-lg-3 col-md-6">
-                        <a href="Company_Area.php">
-                            <img src="../../img/logov3.jpg" alt="Logo">
-                            <!-- <img src="../../img/header.png" alt="Logo"> -->
+                    <a href="index.php">
+                        <img src="../../img/logov3.jpg" alt="Logo">
+                        <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                    </a>
 
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s"
-                            style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
-                            <p>Don’t miss out on the latest updates and insights! Subscribe to our newsletter for
-                                exclusive content and tips.</p>
-                            <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true"
-                                _lpchecked="1">
-                                <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
-                                <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
-                                <p class="mchimp-errmessage" style="display: none;"></p>
-                                <p class="mchimp-sucmessage" style="display: none;"></p>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s"
-                            style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Help</h3>
-                            <ul class="list-unstyled f_list">
 
-                                <li><a href="term_and_Conditions.php">Term &amp; conditions</a></li>
-                                <li><a href="Support_policy.php">Support Policy</a></li>
-                                <li><a href="#">Privacy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s"
-                            style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
-                            <div class="f_social_icon">
-                                <a href="#" class="fab fa-facebook"></a>
-                                <a href="#" class="fab fa-twitter"></a>
-                                <a href="#" class="fab fa-linkedin"></a>
-                                <a href="#" class="fab fa-pinterest"></a>
-                            </div>
-                        </div>
-                    </div> -->
+
+
                 </div>
             </div>
             <div class="footer_bg">
@@ -355,20 +399,20 @@ function generateJobCard()
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script src="js/filter.js"> </script>
 

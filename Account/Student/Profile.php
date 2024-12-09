@@ -276,7 +276,7 @@ $profile_divv = '<header class="nav-header">
 
                 <div class="card-body">
                     <span class="fullname"><?= $fullName ?></span>
-                    <span class="LRN">LRN: <?=  $lrn ?></span>
+                    <span class="LRN">LRN: <?= $lrn ?></span>
                     <br>
 
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="other-info"><?= $strand ?></span>
@@ -333,7 +333,7 @@ $profile_divv = '<header class="nav-header">
 
                     </form>
 
-
+ 
                 </article>
 
                 <article class="app-content__widget app-content__widget--secondary">
