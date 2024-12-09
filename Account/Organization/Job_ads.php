@@ -85,7 +85,7 @@ require_once 'show_profile.php';
                         <label for="worktitle"><b>Work Title</b></label>
                         <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle" required>
 
-                        <label for=""><b>Choose a Strand:</b></label><br>
+                        <label for=""><b>Choose a Strand:</b></label><br><br>
                         <label class="con">STEM
                             <input type="checkbox" name="strand[]" value="STEM">
                             <span class="checkmark"></span>
@@ -230,7 +230,7 @@ require_once 'show_profile.php';
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
+        inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -239,7 +239,7 @@ require_once 'show_profile.php';
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
+        inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
