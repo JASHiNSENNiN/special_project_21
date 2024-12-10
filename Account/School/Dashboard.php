@@ -53,25 +53,25 @@ require_once 'show_profile.php';
         <div class="card blue">
             <h2>0</h2>
             <p>Total Humss</p>
-            <button class="view-details">View Details</button>
+            <a href="Student.php"><button class="view-details">View Details</button></a>
         </div>
 
         <div class="card green">
             <h2>0</h2>
             <p>Total Stem</p>
-            <button class="view-details">View Details</button>
+            <a href="Student.php"><button class="view-details">View Details</button></a>
         </div>
 
         <div class="card yellow">
             <h2>0</h2>
             <p>Total Gas</p>
-            <button class="view-details">View Details</button>
+            <a href="Student.php"><button class="view-details">View Details</button></a>
         </div>
 
         <div class="card red">
             <h2>0</h2>
             <p>Total TechVoc</p>
-            <button class="view-details">View Details</button>
+            <a href="Student.php"><button class="view-details">View Details</button></a>
         </div>
     </div>
 
