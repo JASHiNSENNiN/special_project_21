@@ -408,3 +408,262 @@ canvas {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
+
+:root {
+  --grey-d1: #585858;
+  --grey-d2: #f4f4f4;
+  --grey-d3: #000000;
+  --red-1: #f2b8d1;
+  --red-2: #f04b92;
+  --red-3: #eb1e77;
+  --red-4: #ad1257;
+  --white: #ffffff;
+  --blue: #329ef4;
+  --grey: #eeeeee;
+}
+
+.card-1,
+.card-2,
+.card-3,
+.card-4,
+.card-5,
+.card-6,
+.card-7 {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 2px #d7d7d7;
+}
+.chart-lbl {
+  margin-left: 5%;
+  font-size: 12px;
+  color: var(--grey-d3);
+  opacity: 0.8;
+}
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.divider {
+  background-color: var(--grey-d2);
+  height: 2px;
+  margin: auto;
+  width: 98%;
+}
+
+/*  media queries */
+
+@media only screen and (min-width: 320px) {
+  .dashboard-container {
+    display: grid;
+    grid-template: repeat(7, 15%) / repeat(1, 1fr);
+    grid-gap: 20px;
+  }
+  .doughnut-chart-container,
+  .pie-chart-container,
+  .polar-chart-container {
+    margin: 5% auto 5% auto;
+    position: relative;
+    width: 95%;
+  }
+  /*doughnut chart*/
+  .card-1 {
+    grid-row: 1 / 2;
+  }
+  /*pie chart*/
+  .card-2 {
+    grid-row: 2 / 3;
+  }
+  /*polar area*/
+  .card-3 {
+    grid-row: 3 / 4;
+  }
+  /*bubble chart*/
+  .card-4 {
+    grid-row: 4 / 5;
+  }
+  /*bar chart*/
+  .card-5 {
+    grid-row: 5 / 6;
+  }
+  /*line chart*/
+  .card-6 {
+    grid-row: 6 / 7;
+  }
+  /*mixed chart*/
+  .card-7 {
+    grid-row: 7 / 8;
+  }
+  main {
+    margin: 10% 0 140% 0;
+  }
+  .line-chart-container,
+  .bar-chart-container,
+  .bubble-chart-container,
+  .mixed-chart-container {
+    height: 70%;
+    margin: 5% auto 5% auto;
+    position: relative;
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 400px) {
+  main {
+    margin: 10% 5% 90% 5%;
+  }
+}
+@media only screen and (min-width: 750px) {
+  /*doughnut chart*/
+  .card-1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+  }
+  /*pie chart*/
+  .card-2 {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+  /*polar area*/
+  .card-3 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 5;
+  }
+  /*bubble chart*/
+  .card-4 {
+    grid-column: 2 / 3;
+    grid-row: 3 / 5;
+  }
+  /*bar chart*/
+  .card-5 {
+    grid-column: 1 / 3;
+    grid-row: 5 / 7;
+  }
+  /*line chart*/
+  .card-6 {
+    grid-column: 1 / 3;
+    grid-row: 7 / 9;
+  }
+  /*mixed chart*/
+  .card-7 {
+    grid-column: 1 / 3;
+    grid-row: 9 / -1;
+  }
+  .dashboard-container {
+    display: grid;
+    grid-template: repeat(10, 10%) / repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+  main {
+    margin: 10% 5% 45% 5%;
+  }
+  .line-chart-container,
+  .bar-chart-container,
+  .bubble-chart-container,
+  .mixed-chart-container {
+    margin: 2% auto 3% auto;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .bar-chart-container {
+    width: 90%;
+    height: 70%;
+    margin-top: 10%;
+  }
+  .bubble-chart-container,
+  .line-chart-container {
+    margin: 1% auto 0 auto;
+    width: 90%;
+    height: 65%;
+  }
+  /*doughnut chart*/
+  .card-1 {
+    grid-column: 10 / -1;
+    grid-row: 1 / 5;
+  }
+  /*pie chart*/
+  .card-2 {
+    grid-column: 10 / -1;
+    grid-row: 5 / 9;
+  }
+  /*polar area*/
+  .card-3 {
+    grid-column: 1 / 6;
+    grid-row: 9 / -1;
+  }
+  /*bubble chart*/
+  .card-4 {
+    grid-column: 4 / 10;
+    grid-row: 1 / 5;
+  }
+  /*bar chart*/
+  .card-5 {
+    grid-column: 1 / 4;
+    grid-row: 1 / 9;
+  }
+  /*line chart*/
+  .card-6 {
+    grid-column: 4 / 10;
+    grid-row: 5 / 9;
+  }
+  /*mixed chart*/
+  .card-7 {
+    grid-column: 6 / -1;
+    grid-row: 9 / -1;
+  }
+  .content-height {
+    height: 70%;
+  }
+  .dashboard-container {
+    grid-template: repeat(13, 7%) / repeat(13, 1fr);
+    grid-gap: 5px;
+    padding: 0;
+    width: 100%;
+  }
+  .doughnut-chart-container,
+  .pie-chart-container {
+    margin: 0 auto 2% auto;
+    width: 95%;
+  }
+  .polar-chart-container {
+    margin-top: 2%;
+    width: 95%;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 80vw;
+    margin: 5vh 10vw 5vh 10vw;
+    padding: 0;
+  }
+  .radar-chart-container {
+    width: 75%;
+    margin-top: 3%;
+  }
+}
+@media only screen and (min-width: 1300px) {
+  .dashboard-container {
+    grid-template: repeat(13, 6.8%) / repeat(13, 1fr);
+  }
+  .doughnut-chart-container,
+  .pie-chart-container {
+    margin: 0 auto 2% auto;
+    width: 80%;
+  }
+  .polar-chart-container {
+    margin-top: 2%;
+    width: 85%;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .dashboard-container {
+    grid-template: repeat(13, 7.3%) / repeat(13, 1fr);
+  }
+}
+@media screen and (min-width: 1920px) {
+  .dashboard-container {
+    grid-template: repeat(13, 7.5%) / repeat(13, 1fr);
+    max-width: 1536px;
+  }
+}
