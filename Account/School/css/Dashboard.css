@@ -127,11 +127,11 @@ footer {
 
 /* ---Header--- */
 
-h1,
+/* h1,
 h2,
 h3 {
   color: #333;
-}
+} */
 
 .nav-header {
   background-color: #fff;
@@ -612,4 +612,83 @@ input {
     width: 100%; /* Ensure it takes full width on very small screens */
     height: 300px; /* You can set a fixed height or adjust according to content */
   }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Responsive columns */
+  gap: 20px; /* Space between cards */
+  width: 90%; /* Adjust width as needed */
+  max-width: 1200px; /* Max width for larger screens */
+  margin-top: 50px;
+  margin: auto;
+  /* position: flex; */
+}
+
+.card {
+  margin-top: 40px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.card.blue {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.card.green {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.card.yellow {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.card.red {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.card h2 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+
+.card p {
+  margin: 0;
+}
+
+.view-details {
+  margin-top: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #0056b3;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.view-details:hover {
+  background-color: #004494;
+}
+
+.icon {
+  font-size: 2rem; /* Adjust icon size */
+}
+
+/* Card Hover Effect */
+.card:hover {
+  transform: translateY(-5px); /* Lift card on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
 }
