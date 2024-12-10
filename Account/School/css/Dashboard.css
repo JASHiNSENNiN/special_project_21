@@ -13,7 +13,7 @@
   background-color: #d4d2d0;
   border: none;
   margin-bottom: 0px;
-  margin-top: 0px;
+  margin-top: px;
 }
 
 /* ----------------Slider---------------------*/
@@ -37,7 +37,8 @@ img {
   object-fit: cover;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -535,7 +536,8 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -546,8 +548,10 @@ input {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 
@@ -590,26 +594,179 @@ input {
 #curve_chart {
   margin: auto;
   width: 100%;
-  max-width: 100%; /* Ensure it doesn't exceed container width */
-  height: auto; /* Make sure the height adjusts based on the content */
+  max-width: 100%;
+  /* Ensure it doesn't exceed container width */
+  height: auto;
+  /* Make sure the height adjusts based on the content */
 }
 
 @media screen and (max-width: 1200px) {
   #curve_chart {
-    width: 90%; /* Reduce the chart width for medium screens */
+    width: 90%;
+    /* Reduce the chart width for medium screens */
   }
 }
 
 @media screen and (max-width: 768px) {
   #curve_chart {
-    width: 100%; /* Full width on smaller screens */
-    height: auto; /* Maintain responsive height */
+    width: 100%;
+    /* Full width on smaller screens */
+    height: auto;
+    /* Maintain responsive height */
   }
 }
 
 @media screen and (max-width: 480px) {
   #curve_chart {
-    width: 100%; /* Ensure it takes full width on very small screens */
-    height: 300px; /* You can set a fixed height or adjust according to content */
+    width: 100%;
+    /* Ensure it takes full width on very small screens */
+    height: 300px;
+    /* You can set a fixed height or adjust according to content */
+  }
+}
+
+/* ///////////////////////////////////////////////////////card top //////////////////////// */
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:500,600|Ubuntu:400,700");
+:focus {
+  outline: none;
+}
+
+.wrap {
+  margin-top: 50px;
+}
+
+.panel-heading {
+  color: #fff;
+}
+
+.huge {
+  font-size: 50px;
+}
+
+/*-----Dashboard panels-----*/
+
+.panel-primary {
+  border: 1px solid #337ab7;
+}
+
+.panel-primary .panel-heading {
+  background-color: #337ab7;
+}
+
+.panel-primary .panel-footer span {
+  color: #337ab7;
+}
+
+.panel-primary .panel-footer:hover {
+  background-color: #337ab7;
+  transition: all 0.2s ease-in;
+}
+
+.panel-primary .panel-footer:hover span {
+  color: #fff;
+}
+
+.panel-green {
+  border: 1px solid #4caf50;
+}
+
+.panel-green .panel-heading {
+  background-color: #4caf50;
+}
+
+.panel-green .panel-footer span {
+  color: #4caf50;
+}
+
+.panel-green .panel-footer:hover {
+  background-color: #4caf50;
+  transition: all 0.2s ease-in;
+}
+
+.panel-green .panel-footer:hover span {
+  color: #fff;
+}
+
+.panel-yellow {
+  border: 1px solid #ffc107;
+}
+
+.panel-yellow .panel-heading {
+  background-color: #ffc107;
+}
+
+.panel-yellow .panel-footer span {
+  color: #ffc107;
+}
+
+.panel-yellow .panel-footer:hover {
+  background-color: #ffc107;
+  transition: all 0.2s ease-in;
+}
+
+.panel-yellow .panel-footer:hover span {
+  color: #fff;
+}
+
+.panel-red {
+  border: 1px solid #ff5722;
+}
+
+.panel-red .panel-heading {
+  background-color: #ff5722;
+}
+
+.panel-red .panel-footer span {
+  color: #ff5722;
+}
+
+.panel-red .panel-footer:hover {
+  background-color: #ff5722;
+  transition: all 0.2s ease-in;
+}
+
+.panel-red .panel-footer:hover span {
+  color: #fff;
+}
+
+/*-----Breadcrumbs-----*/
+
+.page-title-box {
+  border-bottom: 1px solid #337ab7;
+  margin-bottom: 30px;
+}
+
+.breadcrumb {
+  margin-top: 14px;
+  margin-bottom: 0;
+  background-color: transparent;
+}
+
+/*-----Media classes-----*/
+
+@media (max-width: 768px) {
+  .side-menu {
+    margin-left: -250px;
+    z-index: 999;
+  }
+  .side-body {
+    margin-left: 0;
+  }
+  .off {
+    z-index: 999;
+    transform: translate(250px);
+  }
+  .logo {
+    width: 195px;
+  }
+  .marr20 {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 400px) and (min-width: 290px) {
+  .logo {
+    width: 150px;
   }
 }

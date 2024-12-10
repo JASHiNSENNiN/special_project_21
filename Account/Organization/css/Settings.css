@@ -407,8 +407,8 @@ nav a:hover::after {
   transform-origin: bottom left;
 }
 
-.logo .btn-home:hover {
-  text-decoration-line: none;
+.logo .btn-home {
+  text-decoration-line: none !important;
 }
 
 /* //////////////////////////////////////////drop down css////////////////////////////////// */
@@ -497,7 +497,7 @@ nav a:hover::after {
 }
 
 .menu .item:hover .link {
-  color: #ffffff;
+  color: #000;
   border-radius: 16px 16px 0 0;
 }
 
@@ -570,7 +570,7 @@ nav a:hover::after {
   text-decoration-line: none !important;
 }
 
-.active-text-profile {
+.active-text-setting {
   font-weight: 600;
   background-color: #cccbc93a;
 }

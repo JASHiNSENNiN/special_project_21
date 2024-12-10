@@ -146,12 +146,12 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
     </div>
 
-    <div class="butts">
+    <!-- <div class="butts">
         <button class="button-66" id="modal-btn" role="button"><i class='fas fa-user-plus'
                 style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
-    </div>
+    </div> -->
 
-    <div id="my-modal" class="modal">
+    <!-- <div id="my-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
@@ -171,14 +171,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <option value="lisa_white">Lisa White</option>
                             <option value="mike_green">Mike Green</option>
                         </select>
-                        <!-- <label class="StudentLabel" for="student">Choose a Strand:</label>
-                        <select class="StudentSelect" id="student" name="student" required>
-                            <option value="" disabled selected>Select a student</option>
-                            <option value="HUMSS">HUMSS</option>
-                            <option value="STEM">STEM</option>
-                            <option value="GAS">GAS</option>
-                            <option value="TECHVOC">TECHVOC</option>
-                        </select> -->
+                        
 
                         <button type="submit" class="submit-btn"><i class='fas fa-user-plus'
                                 style='margin-right:10px;'></i>Add
@@ -187,7 +180,7 @@ $tvl_students = get_students_by_strand('tvl');
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div id="content_container">
         <div id="humss" class="content active">

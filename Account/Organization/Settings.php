@@ -9,7 +9,7 @@ $profile_divv = '<header class="nav-header">
             </a>
            <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Job_ads.php"> Home </a>
             
-        </div>
+        </div> 
         <nav class="by">
 
  
@@ -496,7 +496,7 @@ $profile_divv = '<header class="nav-header">
         <script>
             let profilePic = document.getElementById("profile-pic");
             let inputfile = document.getElementById("input-file");
-            inputfile.onchange = function () {
+            inputfile.onchange = function() {
                 profilePic.src = URL.createObjectURL(inputfile.files[0]);
             }
         </script>

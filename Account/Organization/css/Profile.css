@@ -450,3 +450,11 @@ footer {
   transform: translateY(0px);
   transition-duration: 0.3s;
 }
+
+.link .firstname:hover {
+  color: #000;
+}
+
+.menu a:hover {
+  color: #000;
+}

@@ -17,34 +17,13 @@ $profile_div = '<header class="nav-header">
         <nav class="by">
            
 
-            <div class="dropdowntf" style="float:right;">
-                <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
-                        class="badge">2</span></a>
-                <div class="dropdowntf-content" id="box">
-                    <label for="" class="notif">Notification</label>
-                    <hr style="width: 100%;">
-                    <div class="notifi-item">
-                        <img src="../Company/image/NIA.png" alt="img">
-                        <div class="text">
-                            <h4>NIA</h4>
-                            <p>sent report for Revira, Joshua</p>
-                        </div>
-                    </div>
-                    <div class="notifi-item">
-                        <img src="../Company/image/NIA.png" alt="img">
-                        <div class="text">
-                            <h4>NIA</h4>
-                            <p>sent report for Diaz, Ronald</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    
 
             <div class="dropdown" style="float:right;">
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:10px;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
-                    <a href="Profile.php"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My Profile</a>
+                    
                     <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i>
                         Weather Update</a>
                     <a href="Archive.php"> <i class="fa fa-archive" style="font-size:24px; Margin-right:10px"></i>Archive</a>
@@ -69,3 +48,4 @@ $profile_div = '<header class="nav-header">
 
         
     </div>';
+// <a href="Profile.php"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My Profile</a> line 26
