@@ -176,13 +176,14 @@
   background-color: #405cf5;
   border-radius: 6px;
   border-width: 0;
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0,
+    rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-    Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -194,7 +195,9 @@
   text-align: center;
   text-transform: none;
   transform: translateZ(0);
-  transition: all 0.2s, box-shadow 0.08s ease-in;
+  transition:
+    all 0.2s,
+    box-shadow 0.08s ease-in;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -211,8 +214,10 @@
 }
 
 .button-9:focus {
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
+    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
 }
 
@@ -226,7 +231,10 @@
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
+  font-family:
+    "Akzidenz Grotesk BQ Medium",
+    -apple-system,
+    BlinkMacSystemFont,
     sans-serif;
   font-size: 100%;
   font-weight: 400;
@@ -235,7 +243,9 @@
   padding: 10px 25px;
   text-align: center;
   transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
+  transition:
+    transform 150ms,
+    box-shadow 150ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -379,21 +389,28 @@
 }
 
 canvas {
-  width: 100%; /* Use full width */
-  height: auto; /* Increase the height of the canvas */
+  width: 100%;
+  /* Use full width */
+  height: auto;
+  /* Increase the height of the canvas */
   margin: auto;
 }
 
 /* Container to hold the boxes */
+
 .box-container {
   margin-top: 20px;
   display: flex;
-  flex-wrap: wrap; /* Allow boxes to wrap to the next row */
-  justify-content: center; /* Center the boxes horizontally */
-  gap: 20px; /* Space between boxes */
+  flex-wrap: wrap;
+  /* Allow boxes to wrap to the next row */
+  justify-content: center;
+  /* Center the boxes horizontally */
+  gap: 20px;
+  /* Space between boxes */
 }
 
 /* Style for each box */
+
 .box {
   width: 150px;
   height: 150px;
@@ -405,7 +422,8 @@ canvas {
   border-radius: 10px;
   font-size: 18px;
   /*            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -433,17 +451,20 @@ canvas {
   border-radius: 10px;
   box-shadow: 2px 2px 5px 2px #d7d7d7;
 }
+
 .chart-lbl {
   margin-left: 5%;
   font-size: 12px;
   color: var(--grey-d3);
   opacity: 0.8;
 }
+
 .content-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .divider {
   background-color: var(--grey-d2);
   height: 2px;
@@ -495,7 +516,10 @@ canvas {
     grid-row: 7 / 8;
   }
   main {
-    margin: 10% 0 140% 0;
+    /* margin: 10% 0 140% 0; */
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
   .line-chart-container,
   .bar-chart-container,
@@ -507,11 +531,13 @@ canvas {
     width: 90%;
   }
 }
+
 @media only screen and (min-width: 400px) {
   main {
     margin: 10% 5% 90% 5%;
   }
 }
+
 @media only screen and (min-width: 750px) {
   /*doughnut chart*/
   .card-1 {
@@ -554,7 +580,9 @@ canvas {
     grid-gap: 20px;
   }
   main {
-    margin: 10% 5% 45% 5%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
   .line-chart-container,
   .bar-chart-container,
@@ -563,6 +591,7 @@ canvas {
     margin: 2% auto 3% auto;
   }
 }
+
 @media only screen and (min-width: 1000px) {
   .bar-chart-container {
     width: 90%;
@@ -632,16 +661,20 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
-    width: 80vw;
-    margin: 5vh 10vw 5vh 10vw;
+    height: auto;
+    width: 85%;
+    /* margin: 5vh 10vw 5vh 10vw; */
+    margin: auto;
     padding: 0;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
   .radar-chart-container {
     width: 75%;
     margin-top: 3%;
   }
 }
+
 @media only screen and (min-width: 1300px) {
   .dashboard-container {
     grid-template: repeat(13, 6.8%) / repeat(13, 1fr);
@@ -656,11 +689,13 @@ canvas {
     width: 85%;
   }
 }
+
 @media screen and (min-width: 1500px) {
   .dashboard-container {
     grid-template: repeat(13, 7.3%) / repeat(13, 1fr);
   }
 }
+
 @media screen and (min-width: 1920px) {
   .dashboard-container {
     grid-template: repeat(13, 7.5%) / repeat(13, 1fr);

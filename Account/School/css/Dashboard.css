@@ -773,13 +773,14 @@ input {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(250px, 1fr)
-  ); /* Responsive columns */
-  gap: 20px; /* Space between cards */
-  width: 90%; /* Adjust width as needed */
-  max-width: 1200px; /* Max width for larger screens */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Responsive columns */
+  gap: 20px;
+  /* Space between cards */
+  width: 100%;
+  /* Adjust width as needed */
+  max-width: 1200px;
+  /* Max width for larger screens */
   margin-top: 50px;
   margin: auto;
   /* position: flex; */
@@ -792,7 +793,10 @@ input {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  /* Smooth transition for hover effects */
 }
 
 .card.blue {
@@ -841,11 +845,15 @@ input {
 }
 
 .icon {
-  font-size: 2rem; /* Adjust icon size */
+  font-size: 2rem;
+  /* Adjust icon size */
 }
 
 /* Card Hover Effect */
+
 .card:hover {
-  transform: translateY(-5px); /* Lift card on hover */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+  transform: translateY(-5px);
+  /* Lift card on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Shadow effect on hover */
 }

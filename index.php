@@ -129,6 +129,7 @@ function generateJobCards($jobOffers)
                 <!-- <h2 class="sfa">Search, Find and Apply!</h2> -->
                 <div class="line-search">
                     <div class="searchwork">
+
                         <form action="#" method="get">
 
                             <div class="search-container">

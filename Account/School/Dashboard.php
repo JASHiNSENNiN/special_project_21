@@ -210,7 +210,7 @@ require_once 'show_profile.php';
 
 
 
-    <hr class="line_bottom">
+
 
 
 
