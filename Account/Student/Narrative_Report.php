@@ -22,6 +22,26 @@ $stmt->execute();
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $has_evaluation_today = $result['eval_count'] > 0;
+
+function isApplicantCompleted($pdo, $student_id, $job_id) {
+    $sql = "SELECT status FROM applicants 
+            WHERE student_id = :student_id AND job_id = :job_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->bindParam(':job_id', $job_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result) {
+        return $result['status'] === 'completed';
+    }
+
+    return false; 
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -594,6 +614,17 @@ $has_evaluation_today = $result['eval_count'] > 0;
         <div class="btns_wrap">
 
             <div class="common_btns form_1_btns">
+                <?php 
+    $student_id = $_SESSION['user_id']; // Ensure session variable is set
+    $job_id = $student_profile['current_work']; // Assuming this gives the current job ID
+
+    $is_completed = isApplicantCompleted($pdo, $student_id, $job_id);
+
+    if ($is_completed): ?>
+                <div class="work-completion-message">
+                    Work Immersion Complete
+                </div>
+                <?php else: ?>
                 <?php if ($has_evaluation_today): ?>
                 <button type="button" class="btn_next" disabled>
                     <span class="time-remaining"></span>
@@ -604,6 +635,7 @@ $has_evaluation_today = $result['eval_count'] > 0;
                             <ion-icon name="arrow-forward-sharp"></ion-icon>
                         </span>
                 </button>
+                <?php endif; ?>
                 <?php endif; ?>
             </div>
             <div class="common_btns form_2_btns" style="display: none;">
