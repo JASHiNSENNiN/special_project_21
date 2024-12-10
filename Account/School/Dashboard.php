@@ -63,25 +63,25 @@ require_once 'show_profile.php';
         <div class="card blue">
             <h2>0</h2>
             <p>Total Humss</p>
-            <a href="Student.php"><button class="view-details">View Details</button></a>
+            <a href="Student.php#humss"><button class="view-details">View Details</button></a>
         </div>
 
         <div class="card green">
             <h2>0</h2>
             <p>Total Stem</p>
-            <a href="Student.php"><button class="view-details">View Details</button></a>
+            <a href="Student.php#stem"><button class="view-details">View Details</button></a>
         </div>
 
         <div class="card yellow">
             <h2>0</h2>
             <p>Total Gas</p>
-            <a href="Student.php"><button class="view-details">View Details</button></a>
+            <a href="Student.php#gas"><button class="view-details">View Details</button></a>
         </div>
 
         <div class="card red">
             <h2>0</h2>
             <p>Total TechVoc</p>
-            <a href="Student.php"><button class="view-details">View Details</button></a>
+            <a href="Student.php#techvoc"><button class="view-details">View Details</button></a>
         </div>
     </div>
 
@@ -436,7 +436,7 @@ require_once 'show_profile.php';
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
+        inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -445,7 +445,7 @@ require_once 'show_profile.php';
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
+        inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
@@ -461,17 +461,17 @@ require_once 'show_profile.php';
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal 
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
@@ -629,7 +629,7 @@ require_once 'show_profile.php';
 
             progressValue =
 
-            document.querySelector('.progress-value');
+                document.querySelector('.progress-value');
 
 
 
