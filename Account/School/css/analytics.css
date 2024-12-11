@@ -781,13 +781,38 @@ canvas {
 
 /* /////////////////////////////////////////////work immersion list /////////////////////////////////// */
 
-.table-container {
-  max-height: 337px;
-  /* Set the maximum height */
+/* .table-container {
+  max-height: 320px;
+
   overflow-y: auto;
-  /* Enable vertical scrolling */
+ 
   border: 1px solid #ddd;
-  /* Optional: border around the container */
+ 
+} */
+
+.table-container {
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.table-container > table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-container {
+    max-height: 150px;
+  }
 }
 
 table {
