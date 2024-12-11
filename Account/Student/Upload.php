@@ -878,7 +878,7 @@ require_once 'show_profile.php';
 
     <script type="text/javascript">
     const dropBoxes = document.querySelectorAll(".drop_box");
-    const dropBoxes = document.querySelectorAll(".drop_box");
+
 
     dropBoxes.forEach(dropBox => {
                 const button = dropBox.querySelector("button");
