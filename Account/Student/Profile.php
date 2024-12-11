@@ -285,7 +285,7 @@ $profile_divv = '<header class="nav-header">
                     <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
 
                     <br>
-                    <i class="fa fa-house" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
+                    <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
                     <br>
                     <i class="fa fa-briefcase" aria-hidden="true"></i><span
                         class="other-info"><?= $currentWork  ?></span>
