@@ -247,7 +247,9 @@ $tvl_students = get_students_by_strand('tvl');
                             // echo "</div>";
                             // echo "</div>";
                             // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button> <br>
+                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
+                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button></td>";
                             echo "</tr>";
                             $count++;
                         }
@@ -455,7 +457,7 @@ $tvl_students = get_students_by_strand('tvl');
 
             // Select the table within the active content section
             let table = document.getElementById(`search${section.charAt(0).toUpperCase() + section.slice(1)}`);
-            let tr = table.getElementsByTagName('tr'); // Get all rows in the table
+            let tr = table.getElementsByTagName('tr'); // Get all row   s in the table
 
             // Loop through the rows (skip the header row)
             for (let i = 1; i < tr.length; i++) {
