@@ -181,6 +181,120 @@ $profile_divv = '<header class="nav-header">
     </header> 
 
     ';
+
+
+
+
+    $host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+// Check if user_id is in session
+if (!isset($_SESSION['user_id'])) {
+    die("Unauthorized access!");
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Handle download request
+if (isset($_GET['document_name'])) {
+    $document_name = $_GET['document_name'];
+
+    // Define the acceptable document names
+    $acceptable_documents = [
+        'resume',
+        'application_letter',
+        'parents_consent',
+        'barangay_clearance',
+        'mayors_permit',
+        'police_clearance',
+        'medical_certificate',
+        'insurance_policy',
+        'business_permit'
+    ];
+
+    // Check if the document name is valid
+    if (!in_array($document_name, $acceptable_documents)) {
+        die("Invalid document name!");
+    }
+
+    // Prepare the SQL statement
+    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+    $stmt = $pdo->prepare($sql);
+
+    // Bind parameters and execute
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+    $stmt->execute();
+
+    // Fetch the document URL
+    $document_url = $stmt->fetchColumn();
+
+    // Check if the document URL exists
+    if ($document_url) {
+        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+
+        // Check if file exists
+        if (file_exists($file_path)) {
+            // Set headers to initiate download
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/pdf'); // Adjust based on actual file type
+            header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file_path));
+            flush(); // Flush the system output buffer
+            readfile($file_path); // Read and output the file
+            exit;
+                } else {
+                    die("File not found!");
+                }
+            } else {
+                die("Document URL not found in the database!");
+            }
+        }
+
+        $sql = "SELECT document_name FROM uploaded_documents WHERE user_id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $unique_documents = [];
+        foreach ($documents as $doc) {
+            if (!empty($doc['document_name']) && !isset($unique_documents[$doc['document_name']])) {
+                $unique_documents[$doc['document_name']] = $doc['document_name'];
+            }
+        }
+
+        $document_name_mapping = [
+            'resume' => 'Resume',
+            'application_letter' => 'Application Letter',
+            'parents_consent' => 'Parents Consent',
+            'barangay_clearance' => 'Barangay Clearance',
+            'mayors_permit' => 'Mayor\'s Permit',
+            'police_clearance' => 'Police Clearance',
+            'medical_certificate' => 'Medical Certificate',
+            'insurance_policy' => 'Insurance Policy',
+            'business_permit' => 'Business Permit'
+        ];
+    
+
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -285,7 +399,7 @@ $profile_divv = '<header class="nav-header">
                     <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email ?></span>
 
                     <br>
-                    <i class="fa fa-house" aria-hidden="true"></i><span class="other-info"><?= $school ?></span>
+                    <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
                     <br>
                     <i class="fa fa-briefcase" aria-hidden="true"></i><span
                         class="other-info"><?= $currentWork ?></span>
@@ -388,52 +502,48 @@ $profile_divv = '<header class="nav-header">
                         application: resume, application letter, barangay clearance, police clearance, mayor's
                         clearance, and medical certificate. </span> -->
                     <div id="content-cover">
-                        <form action="" method="post">
-                            <table class="table" id="sortableTable-docu">
-                                <thead>
-                                    <tr>
-                                        <th class="th-name">Document Name</th>
 
-                                        <!-- <th class="th-name">File Name</th> -->
-                                        <th class="th-date">Actions</th>
-                                    </tr>
-                                </thead>
+                        <table class="table" id="sortableTable-docu">
+                            <thead>
                                 <tr>
-                                    <td>Resume</td>
-                                    <!-- <td>Resume</td> -->
-                                    <td><button>Download</button></td>
+                                    <th class="th-name">Document Name</th>
+                                    <th class="th-date">Actions</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($unique_documents as $document_name): ?>
                                 <tr>
-                                    <td>Application letter</td>
-                                    <!-- <td>Resume</td> -->
-                                    <td><button>Download</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Barangay Clearance</td>
-                                    <!-- <td>Resume</td> -->
-                                    <td><button>Download</button></td>
-                                </tr>
-                                <tr>
-                                    <td> Police Clearance</td>
-                                    <!-- <td>Resume</td> -->
-                                    <td><button>Download</button></td>
-                                </tr>
-                                <tr>
-                                    <td> Mayor's
-                                        clearance</td>
-                                    <!-- <td>Resume</td> -->
-                                    <td><button>Download</button></td>
-                                </tr>
-                                <tr>
-                                    <td> Medical Certificate</td>
-                                    <!-- <td>Resume</td> -->
-                                    <td><button>Download</button></td>
-                                </tr>
+                                    <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); // Display mapped name ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                    // Check for the document URL and existence of file
+                                    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $document_url = $stmt->fetchColumn();
 
-                                <tbody>
-                                </tbody>
-                            </table>
-                            <!-- <div class="one_col file-upload">
+                                    if ($document_url) {
+                                        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                        if (file_exists($file_path)): ?>
+                                        <a
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
+                                            <button>Download</button>
+                                        </a>
+                                        <?php else: ?>
+                                        <button disabled>File Not Available</button>
+                                        <?php endif;
+                                    } else { ?>
+                                        <button disabled>No Document Found</button>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <!-- <div class="one_col file-upload">
                                 <label for="documentType">Document Type:</label>
                                 <select id="documentType" name="documentType">
                                     <option value="">--Select--</option>
@@ -451,8 +561,8 @@ $profile_divv = '<header class="nav-header">
                                 <input type="file" class="file" name="images" id="uploadFile" multiple />
                                 <span class="error"></span>
                             </div> -->
-                            <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
-                        </form>
+                        <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
+
                         <span class="successfully-saved">
                             <i class="fa fa-thumbs-up"></i> Saved!
                         </span>
