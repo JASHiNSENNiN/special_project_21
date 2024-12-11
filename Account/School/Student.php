@@ -420,12 +420,21 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
+<<<<<<< HEAD
+        $(".box").click(function (e) {
+            e.preventDefault();
+            $(".content").removeClass("active");
+            var content_id = $(this).attr("id");
+            $(content_id).addClass("active");
+        });
+=======
     $(".box").click(function(e) {
         e.preventDefault();
         $(".content").removeClass("active");
         var content_id = $(this).attr("id");
         $(content_id).addClass("active");
     });
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
     <br>
     <footer>
@@ -434,55 +443,82 @@ $tvl_students = get_students_by_strand('tvl');
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
+<<<<<<< HEAD
+        inputFile1.onchange = function () {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
+=======
     inputFile1.onchange = function() {
         profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
     }
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
+<<<<<<< HEAD
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
+=======
     inputFile2.onchange = function() {
         profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
     }
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script>
-    const searchInput = document.getElementById('searchInput');
-    const dropdownList = document.getElementById('dropdownList1');
-    const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
-    let selectedStudent = '';
+        const searchInput = document.getElementById('searchInput');
+        const dropdownList = document.getElementById('dropdownList1');
+        const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
+        let selectedStudent = '';
 
+<<<<<<< HEAD
+        // Filter dropdown items based on search input
+        searchInput.addEventListener('input', function () {
+            const filter = searchInput.value.toLowerCase();
+            let hasMatches = false;
+=======
     // Filter dropdown items based on search input
     searchInput.addEventListener('input', function() {
         const filter = searchInput.value.toLowerCase();
         let hasMatches = false;
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
 
-        // Show the dropdown list
-        dropdownList.style.display = 'block';
+            // Show the dropdown list
+            dropdownList.style.display = 'block';
 
-        // Check if the input is empty
-        if (filter === '') {
-            // If empty, show all items and return
+            // Check if the input is empty
+            if (filter === '') {
+                // If empty, show all items and return
+                for (let i = 0; i < dropdownItems.length; i++) {
+                    dropdownItems[i].style.display = 'block';
+                }
+                return; // Exit the function
+            }
+
+            // Filter based on input
             for (let i = 0; i < dropdownItems.length; i++) {
-                dropdownItems[i].style.display = 'block';
+                const itemText = dropdownItems[i].textContent.toLowerCase();
+                if (itemText.includes(filter)) {
+                    dropdownItems[i].style.display = 'block';
+                    hasMatches = true;
+                } else {
+                    dropdownItems[i].style.display = 'none';
+                }
             }
-            return; // Exit the function
-        }
 
-        // Filter based on input
-        for (let i = 0; i < dropdownItems.length; i++) {
-            const itemText = dropdownItems[i].textContent.toLowerCase();
-            if (itemText.includes(filter)) {
-                dropdownItems[i].style.display = 'block';
-                hasMatches = true;
-            } else {
-                dropdownItems[i].style.display = 'none';
+            // Hide dropdown if no matches found
+            if (!hasMatches) {
+                dropdownList.style.display = 'none';
             }
+<<<<<<< HEAD
+=======
         }
 
         // Hide dropdown if no matches found
@@ -497,9 +533,18 @@ $tvl_students = get_students_by_strand('tvl');
             selectedStudent = this.textContent;
             searchInput.value = selectedStudent;
             dropdownList.style.display = 'none';
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
         });
-    }
 
+<<<<<<< HEAD
+        // Select student on item click
+        for (let i = 0; i < dropdownItems.length; i++) {
+            dropdownItems[i].addEventListener('click', function () {
+                selectedStudent = this.textContent;
+                searchInput.value = selectedStudent;
+                dropdownList.style.display = 'none';
+            });
+=======
     // Add student to table
     document.getElementById('addButton1').addEventListener('click', function() {
         if (selectedStudent) {
@@ -515,44 +560,71 @@ $tvl_students = get_students_by_strand('tvl');
             selectedStudent = '';
         } else {
             alert('Please select a student.');
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
         }
-    });
 
+<<<<<<< HEAD
+        // Add student to table
+        document.getElementById('addButton1').addEventListener('click', function () {
+            if (selectedStudent) {
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+
+                nameCell.textContent = selectedStudent;
+                row.appendChild(nameCell);
+                document.getElementById('studentTableBody1').appendChild(row);
+
+                // Clear input and reset selected student
+                searchInput.value = '';
+                selectedStudent = '';
+            } else {
+                alert('Please select a student.');
+            }
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            if (!event.target.matches('.dropdown-input1')) {
+                dropdownList.style.display = 'none';
+            }
+        });
+=======
     // Hide dropdown when clicking outside
     document.addEventListener('click', function(event) {
         if (!event.target.matches('.dropdown-input1')) {
             dropdownList.style.display = 'none';
         }
     });
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script type="text/javascript">
-    // Get DOM Elements
-    const modal = document.querySelector('#my-modal');
-    const modalBtn = document.querySelector('#modal-btn');
-    const closeBtn = document.querySelector('.close');
+        // Get DOM Elements
+        const modal = document.querySelector('#my-modal');
+        const modalBtn = document.querySelector('#modal-btn');
+        const closeBtn = document.querySelector('.close');
 
-    // Events
-    modalBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', outsideClick);
+        // Events
+        modalBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
 
-    // Open
-    function openModal() {
-        modal.style.display = 'block';
-    }
+        // Open
+        function openModal() {
+            modal.style.display = 'block';
+        }
 
-    // Close
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    // Close If Outside Click
-    function outsideClick(e) {
-        if (e.target == modal) {
+        // Close
+        function closeModal() {
             modal.style.display = 'none';
         }
-    }
+
+        // Close If Outside Click
+        function outsideClick(e) {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
     </script>
 
 

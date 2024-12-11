@@ -85,11 +85,11 @@ function fetchEvaluationData($conn)
     while ($row = $result->fetch_assoc()) {
         $evaluation_data[] = [
             'name' => $row['first_name'] . ' ' . $row['last_name'], // Full name
-            'punctual' => (int)$row['punctual'],
-            'reports_regularly' => (int)$row['reports_regularly'],
-            'performs_tasks_independently' => (int)$row['performs_tasks_independently'],
-            'self_discipline' => (int)$row['self_discipline'],
-            'dedication_commitment' => (int)$row['dedication_commitment'],
+            'punctual' => (int) $row['punctual'],
+            'reports_regularly' => (int) $row['reports_regularly'],
+            'performs_tasks_independently' => (int) $row['performs_tasks_independently'],
+            'self_discipline' => (int) $row['self_discipline'],
+            'dedication_commitment' => (int) $row['dedication_commitment'],
         ];
     }
 
@@ -199,43 +199,49 @@ if (isset($_SESSION['school_name'])) {
 
 
     <style>
-    .bubble-chart-container-wh,
-    .line-chart-container-ws,
-    .mixed-chart-container-tp {
-        padding: 20px;
-
-        height: 300px;
-
-        display: flex;
-
-        justify-content: center;
-
-        align-items: center;
-
-        overflow: hidden;
-
-    }
-
-    .card-4,
-    .card-6,
-    .card-7 {
-        display: flex;
-
-        flex-direction: column;
-
-        height: auto;
-
-    }
-
-    @media (max-width: 600px) {
-
         .bubble-chart-container-wh,
         .line-chart-container-ws,
         .mixed-chart-container-tp {
-            height: 100%;
+            padding: 20px;
+
+            height: 300px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
 
         }
-    }
+
+        .card-4,
+        .card-6,
+        .card-7 {
+            display: flex;
+
+            flex-direction: column;
+
+            height: auto;
+
+        }
+
+        @media (max-width: 600px) {
+
+            .bubble-chart-container-wh,
+            .line-chart-container-ws,
+            .mixed-chart-container-tp {
+                height: 100%;
+
+            }
+        }
+
+        .bar-chart-container {
+            max-height: 100%;
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+        }
     </style>
 </head>
 
@@ -329,36 +335,69 @@ if (isset($_SESSION['school_name'])) {
                     <div class="content-center">
                         <div class="polar-chart-container">
                             <!-- <div id="radar-chart-ts"></div> -->
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Rating</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td data-label="Name">John Doe</td>
-                                        <td data-label="Rating">4.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Name">Jane Smith</td>
-                                        <td data-label="Rating">3.8</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Name">Emily Johnson</td>
-                                        <td data-label="Rating">5.0</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Name">Michael Brown</td>
-                                        <td data-label="Rating">4.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Name">Linda Davis</td>
-                                        <td data-label="Rating">4.0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Total Student</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Friendship</a></td>
+
+                                            <td data-label="TotalStudent">5</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Jollibee</a></td>
+
+                                            <td data-label="TotalStudent">2</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">NIA</a></td>
+
+                                            <td data-label="TotalStudent">5</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Puregold</a></td>
+
+                                            <td data-label="TotalStudent">1</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">BFP</a></td>
+
+                                            <td data-label="TotalStudent">10</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Police Station</a></td>
+
+                                            <td data-label="TotalStudent">5</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Brgy Hall</a></td>
+
+                                            <td data-label="TotalStudent">3</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Mang inasal</a></td>
+
+                                            <td data-label="TotalStudent">3</td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
                     </div>
@@ -376,6 +415,7 @@ if (isset($_SESSION['school_name'])) {
 
 
                 </div>
+
                 <div class="card-5">
                     <h4 class="chart-lbl">
                         Top Student Work Immersion
@@ -384,10 +424,9 @@ if (isset($_SESSION['school_name'])) {
                     </div>
                     <div class="bar-chart-container">
                         <div id="top_x_div_tp"></div>
-
-
                     </div>
                 </div>
+
                 <div class="card-6">
                     <h4 class="chart-lbl">
                         Top Student in Work skills
@@ -458,27 +497,27 @@ if (isset($_SESSION['school_name'])) {
 
     <br>
     <script>
-    let strands = <?php echo json_encode($strandCounts); ?>;
-    console.log("<?php echo $schoolName; ?>");
-    let humss = strands.humss;
-    let stem = strands.stem;
-    let gas = strands.gas;
-    let techVoc = strands.tvl;
-    let abm = strands.abm;
+        let strands = <?php echo json_encode($strandCounts); ?>;
+        console.log("<?php echo $schoolName; ?>");
+        let humss = strands.humss;
+        let stem = strands.stem;
+        let gas = strands.gas;
+        let techVoc = strands.tvl;
+        let abm = strands.abm;
 
-    console.log(strands);
+        console.log(strands);
 
 
 
-    function updateCardData() {
-        document.querySelector('.card.blue h2').textContent = humss;
-        document.querySelector('.card.green h2').textContent = stem;
-        document.querySelector('.card.yellow h2').textContent = gas;
-        document.querySelector('.card.red h2').textContent = techVoc;
-        document.querySelector('.card.orange h2').textContent = abm;
-    }
+        function updateCardData() {
+            document.querySelector('.card.blue h2').textContent = humss;
+            document.querySelector('.card.green h2').textContent = stem;
+            document.querySelector('.card.yellow h2').textContent = gas;
+            document.querySelector('.card.red h2').textContent = techVoc;
+            document.querySelector('.card.orange h2').textContent = abm;
+        }
 
-    updateCardData();
+        updateCardData();
     </script>
 
 
@@ -489,49 +528,49 @@ if (isset($_SESSION['school_name'])) {
 
     </scri>
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function() {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function() {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
     <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
             modal.style.display = "none";
         }
-    }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 
 
