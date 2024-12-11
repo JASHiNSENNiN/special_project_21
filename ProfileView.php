@@ -247,7 +247,8 @@ $profile_divv = '<header class="nav-header">
         const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
         console.log(dailyPerformance);
     </script>
-    <script type="text/javascript" src="css/eval_graph.js"></script>
+    <script type="text/javascript" src="/Account/Student/css/eval_graph.js"></script>
+
 
     <style>
 
