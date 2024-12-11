@@ -9,33 +9,52 @@ $dotenv->load();
 $ProfileViewURL = "../../ProfileView.php";
 function get_students_by_strand($strand)
 {
+    // Database connection parameters
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
     $database = $_ENV['MYSQL_DBNAME'];
+
+    // Create a new MySQLi connection
     $conn = new mysqli($host, $username, $password, $database);
 
+    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+
+    // Check if school_name is set in the session
+    if (!isset($_SESSION['school_name'])) {
+        die("Error: School name is not set in the session.");
+    }
     $schoolName = $_SESSION['school_name'];
-    $query = "SELECT sp.*, u.* 
-          FROM student_profiles AS sp 
-          JOIN users AS u ON sp.user_id = u.id 
-          WHERE sp.strand = '$strand' AND sp.school = '$schoolName'";
 
-    $result = $conn->query($query);
+    // Prepare the SQL statement
+    $stmt = $conn->prepare("SELECT sp.*, u.* 
+                             FROM student_profiles AS sp 
+                             JOIN users AS u ON sp.user_id = u.id 
+                             WHERE sp.strand = ? AND sp.school = ?");
+    // Bind parameters
+    $stmt->bind_param("ss", $strand, $schoolName); // 'ss' indicates that both parameters are strings
 
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch the students into an array
+    $students = [];
     if ($result->num_rows > 0) {
-        $students = array();
         while ($row = $result->fetch_assoc()) {
             $students[] = $row;
         }
-    } else {
-        $students = array();
     }
 
+    // Close the prepared statement and the connection
+    $stmt->close();
     $conn->close();
+
     return $students;
 }
 
@@ -298,8 +317,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'> NIA</td>";
                             echo "<td data-th='Status'> Ongoing </td>";
-                            echo "<td data-th='Organization'> NIA</td>";
-                            echo "<td data-th='Status'> Ongoing </td>";
+
                             // echo "<td data-th='Result'>";
                             // echo "<div class='container3'>";
                             // echo "<div class='circular-progress'>";
@@ -402,12 +420,12 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
-        $(".box").click(function (e) {
-            e.preventDefault();
-            $(".content").removeClass("active");
-            var content_id = $(this).attr("id");
-            $(content_id).addClass("active");
-        });
+    $(".box").click(function(e)  {
+        e.preventDefault();
+        $(".content").removeClass("active");
+        var content_id = $(this).attr("id");
+        $(content_id).addClass("active");
+    });
     </script>
     <br>
     <footer>
@@ -416,157 +434,125 @@ $tvl_students = get_students_by_strand('tvl');
     </footer>
 
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() { 
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() { 
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
     <script>
-        let circularProgress =
-            document.querySelector('.circular-progress'),
-            progressValue =
-                document.querySelector('.progress-value');
+    const searchInput = document.getElementById('searchInput');
+    const dropdownList = document.getElementById('dropdownList1');
+    const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
+    let selectedStudent = '';
 
+    // Filter dropdown items based on search input
+    searchInput.addEventListener('input', function() { 
+        const filter = searchInput.value.toLowerCase();
+        let hasMatches = false;
 
+        // Show the dropdown list
+        dropdownList.style.display = 'block';
 
-        let progressStartValue = 0,
-            progressEndValue = 80,
-            speed = 20;
-
-
-
-        let progress = setInterval(() => {
-
-            progressStartValue++;
-            progressValue.textContent =
-                `${progressStartValue}%`;
-            circularProgress.style.background =
-                `conic-gradient(#4379F2 ${progressStartValue
-                * 3.6}deg, #ededed 0deg)`;
-
-            //3.6deg * 100 = 360deg
-
-            //3.6deg * 90 = 324deg
-
-
-
-
-
-            if (progressStartValue == progressEndValue) {
-
-                clearInterval(progress);
-
-
-
-            }
-
-            console.log(progressStartValue);
-
-        }, speed);
-    </script>
-
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const dropdownList = document.getElementById('dropdownList1');
-        const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
-        let selectedStudent = '';
-
-        // Filter dropdown items based on search input
-        searchInput.addEventListener('input', function () {
-            const filter = searchInput.value.toLowerCase();
-            let hasMatches = false;
-
-            dropdownList.style.display = 'block'; // Show the dropdown list
-
+        // Check if the input is empty
+        if (filter === '') {
+            // If empty, show all items and return
             for (let i = 0; i < dropdownItems.length; i++) {
-                const itemText = dropdownItems[i].textContent.toLowerCase();
-                if (itemText.includes(filter)) {
-                    dropdownItems[i].style.display = 'block';
-                    hasMatches = true;
-                } else {
-                    dropdownItems[i].style.display = 'none';
-                }
+                dropdownItems[i].style.display = 'block';
             }
-
-            if (!hasMatches) {
-                dropdownList.style.display = 'none'; // Hide if no matches
-            }
-        });
-
-        // Select student on item click
-        for (let i = 0; i < dropdownItems.length; i++) {
-            dropdownItems[i].addEventListener('click', function () {
-                selectedStudent = this.textContent; // Store the selected student
-                searchInput.value = selectedStudent; // Set input value
-                dropdownList.style.display = 'none'; // Hide dropdown
-            });
+            return; // Exit the function
         }
 
-        // Add student to table
-        document.getElementById('addButton1').addEventListener('click', function () {
-            if (selectedStudent) {
-                const row = document.createElement('tr');
-                const nameCell = document.createElement('td');
-
-                nameCell.textContent = selectedStudent;
-                row.appendChild(nameCell);
-                document.getElementById('studentTableBody1').appendChild(row);
-
-                // Clear input and reset selected student
-                searchInput.value = '';
-                selectedStudent = '';
+        // Filter based on input
+        for (let i = 0; i < dropdownItems.length; i++) {
+            const itemText = dropdownItems[i].textContent.toLowerCase();
+            if (itemText.includes(filter)) {
+                dropdownItems[i].style.display = 'block';
+                hasMatches = true;
             } else {
-                alert('Please select a student.');
+                dropdownItems[i].style.display = 'none';
             }
-        });
+        }
 
-        // Hide dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            if (!event.target.matches('.dropdown-input1')) {
-                dropdownList.style.display = 'none';
-            }
+        // Hide dropdown if no matches found
+        if (!hasMatches) {
+            dropdownList.style.display = 'none';
+        }
+    });
+
+    // Select student on item click
+    for (let i = 0; i < dropdownItems.length; i++) {
+        dropdownItems[i].addEventListener('click', function() { 
+            selectedStudent = this.textContent;
+            searchInput.value = selectedStudent;
+            dropdownList.style.display = 'none';
         });
+    }
+
+    // Add student to table
+    document.getElementById('addButton1').addEventListener('click', function() { 
+        if (selectedStudent) {
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+
+            nameCell.textContent = selectedStudent;
+            row.appendChild(nameCell);
+            document.getElementById('studentTableBody1').appendChild(row);
+
+            // Clear input and reset selected student
+            searchInput.value = '';
+            selectedStudent = '';
+        } else {
+            alert('Please select a student.');
+        }
+    });
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(eve nt) {
+        if (!event.target.matches('.dropdown-input1')) {
+            dropdownList.style.display = 'none';
+        }
+    });
     </script>
 
     <script type="text/javascript">
-        // Get DOM Elements
-        const modal = document.querySelector('#my-modal');
-        const modalBtn = document.querySelector('#modal-btn');
-        const closeBtn = document.querySelector('.close');
+    // Get DOM Elements
+    const modal = document.querySelector('#my-modal');
+    const modalBtn = document.querySelector('#modal-btn');
+    const closeBtn = document.querySelector('.close');
 
-        // Events
-        modalBtn.addEventListener('click', openModal);
-        closeBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', outsideClick);
+    // Events
+    modalBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', outsideClick);
 
-        // Open
-        function openModal() {
-            modal.style.display = 'block';
-        }
+    // Open
+    function openModal() {
+        modal.style.display = 'block';
+    }
 
-        // Close
-        function closeModal() {
+    // Close
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Close If Outside Click
+    function outsideClick(e) {
+        if (e.target == modal) {
             modal.style.display = 'none';
         }
-
-        // Close If Outside Click
-        function outsideClick(e) {
-            if (e.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
+    }
     </script>
 
 

@@ -16,8 +16,12 @@ $strand = strtoupper($_SESSION['strand']);
 // $stars = $_SESSION['stars'];
 $currentWork = $_SESSION['current_work'];
 $email = $_SESSION['email'];
-$profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
-$cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/logov3.jpg' : $_SESSION['cover_image'];
+$profile_image_path = $_SESSION['profile_image'];
+$cover_image_path = $_SESSION['cover_image'];
+
+$profile_image = (!empty($profile_image_path) && file_exists($_SERVER['DOCUMENT_ROOT'] . $profile_image_path)) ? $profile_image_path : './uploads/default.png';
+
+$cover_image = (!empty($cover_image_path) && file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) ? $cover_image_path : './uploads/cover.png';
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">

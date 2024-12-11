@@ -41,7 +41,8 @@ function generateJobCards($jobOffers)
 
     foreach ($jobOffers as $job) {
         $strands = json_decode($job['strands']);
-        $description = nl2br(html_entity_decode($job['description']));
+        $description = strip_tags($job['description']); // Removes HTML tags
+$description = nl2br($description); // Preserve line breaks
 
         echo '
         <li>
@@ -191,9 +192,9 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -345,55 +346,55 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     </script> -->
 
     <script>
-        // Open the modal for the specific job
-        function openModal(jobId) {
-            var modal = document.getElementById("myModal_" + jobId); // Get the modal based on job ID
-            modal.style.display = "block";
-        }
+    // Open the modal for the specific job
+    function openModal(jobId) {
+        var modal = document.getElementById("myModal_" + jobId); // Get the modal based on job ID
+        modal.style.display = "block";
+    }
 
-        // Close the modal for the specific job
-        function closeModal(jobId) {
-            var modal = document.getElementById("myModal_" + jobId); // Get the modal based on job ID
-            modal.style.display = "none";
-        }
+    // Close the modal for the specific job
+    function closeModal(jobId) {
+        var modal = document.getElementById("myModal_" + jobId); // Get the modal based on job ID
+        modal.style.display = "none";
+    }
 
-        // Close modal when clicking outside of it
-        window.onclick = function (event) {
-            var modalBtns = document.querySelectorAll('.modal');
-            modalBtns.forEach(function (modal) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            });
-        }
-    </script>
-
-    <script>
-        // Initialize Quill editor for each modal dynamically
-        document.addEventListener("DOMContentLoaded", function () {
-            <?php foreach ($jobOffers as $job): ?>
-                var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
-                    theme: 'snow'
-                });
-
-                // Set the current description in the editor for each job modal
-                quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
-
-                // When submitting the form, save the content from the editor
-                var form = document.querySelector("#myModal_<?php echo $job['id']; ?> form");
-                form.addEventListener("submit", function () {
-                    document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
-                        .innerHTML;
-                });
-            <?php endforeach; ?>
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        var modalBtns = document.querySelectorAll('.modal');
+        modalBtns.forEach(function(modal) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         });
+    }
+    </script>
+
+    <script>
+    // Initialize Quill editor for each modal dynamically
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php foreach ($jobOffers as $job): ?>
+        var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
+            theme: 'snow'
+        });
+
+        // Set the current description in the editor for each job modal
+        quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
+
+        // When submitting the form, save the content from the editor
+        var form = document.querySelector("#myModal_<?php echo $job['id']; ?> form");
+        form.addEventListener("submit", function() {
+            document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
+                .innerHTML;
+        });
+        <?php endforeach; ?>
+    });
     </script>
 
 
     <script>
-        function myFunction() {
-            confirm("Are you Sure?");
-        }
+    function myFunction() {
+        confirm("Are you Sure?");
+    }
     </script>
     <script type="text/javascript" src="css/doc.js"></script>
 

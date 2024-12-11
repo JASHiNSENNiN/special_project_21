@@ -453,7 +453,7 @@ canvas {
 }
 
 .chart-lbl {
-  margin-left: 5%;
+  /* margin-left: 5%; */
   font-size: 12px;
   color: var(--grey-d3);
   opacity: 0.8;
@@ -502,6 +502,8 @@ canvas {
   /*bubble chart*/
   .card-4 {
     grid-row: 4 / 5;
+    width: 167%;
+    /* padding: 10px; */
   }
   /*bar chart*/
   .card-5 {
@@ -510,6 +512,7 @@ canvas {
   /*line chart*/
   .card-6 {
     grid-row: 6 / 7;
+    width: 167%;
   }
   /*mixed chart*/
   .card-7 {
@@ -538,6 +541,12 @@ canvas {
   }
 }
 
+.bubble-chart-container-wh,
+.line-chart-container-ws,
+.mixed-chart-container-tp {
+  padding: 20px;
+}
+
 @media only screen and (min-width: 750px) {
   /*doughnut chart*/
   .card-1 {
@@ -545,14 +554,15 @@ canvas {
     grid-row: 1 / 3;
   }
   /*pie chart*/
-  .card-2 {
+  /* .card-2 {
     grid-column: 2 / 3;
     grid-row: 1 / 3;
-  }
+  } */
   /*polar area*/
   .card-3 {
     grid-column: 1 / 2;
     grid-row: 3 / 5;
+    width: 59%;
   }
   /*bubble chart*/
   .card-4 {
@@ -573,6 +583,7 @@ canvas {
   .card-7 {
     grid-column: 1 / 3;
     grid-row: 9 / -1;
+    /* width: ; */
   }
   .dashboard-container {
     display: grid;
@@ -636,8 +647,9 @@ canvas {
   }
   /*mixed chart*/
   .card-7 {
-    grid-column: 6 / -1;
+    grid-column: 4 / -1;
     grid-row: 9 / -1;
+    width: 100%;
   }
   .content-height {
     height: 70%;
@@ -700,5 +712,151 @@ canvas {
   .dashboard-container {
     grid-template: repeat(13, 7.5%) / repeat(13, 1fr);
     max-width: 1536px;
+  }
+}
+
+#top_x_div_wh {
+  width: 100% !important;
+  /* Make the chart container take full width */
+  height: 100% !important;
+  /* Set a fixed height or use a percentage */
+  position: inherit;
+}
+
+@media (max-width: 600px) {
+  #top_x_div_wh {
+    height: 300px !important;
+    /* Adjust height for smaller screens */
+  }
+}
+
+#top_x_div_ws {
+  width: 100% !important;
+  /* Make the chart container take full width */
+  height: 100% !important;
+  /* Set a fixed height or use a percentage */
+  position: inherit;
+}
+
+@media (max-width: 600px) {
+  #top_x_div_ws {
+    height: 300px !important;
+    /* Adjust height for smaller screens */
+  }
+}
+
+#top_x_div_tp {
+  width: 100% !important;
+  /* Make the chart container take full width */
+  height: 130% !important;
+  /* Set a fixed height or use a percentage */
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  #top_x_div_tp {
+    height: 300px !important;
+    /* Adjust height for smaller screens */
+  }
+}
+
+#top_x_div_ss {
+  width: 100% !important;
+  /* Make the chart container take full width */
+  height: 100% !important;
+  /* Set a fixed height or use a percentage */
+  position: inherit;
+}
+
+@media (max-width: 600px) {
+  #top_x_div_ss {
+    height: 300px !important;
+    /* Adjust height for smaller screens */
+  }
+}
+
+#radar-chart-ts {
+  text-align: left;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #aaa;
+  margin: 32px auto;
+  background: white;
+}
+
+/* /////////////////////////////////////////////work immersion list /////////////////////////////////// */
+
+table {
+  width: 100%;
+  max-width: 600px;
+  /* Set a max width for larger screens */
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #172738;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 600px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    /* Make each element a block */
+  }
+  th {
+    display: none;
+    /* Hide the header on small screens */
+  }
+  tr {
+    margin-bottom: 15px;
+    /* Add space between rows */
+    border: 1px solid #ddd;
+    /* Add border to each row */
+  }
+  td {
+    text-align: right;
+    /* Align text to the right */
+    position: relative;
+    /* Position relative for pseudo-elements */
+    padding-left: 50%;
+    /* Add padding for labels */
+  }
+  td::before {
+    content: attr(data-label);
+    /* Use data-label for the header */
+    position: absolute;
+    left: 10px;
+    /* Position the label */
+    width: calc(50% - 20px);
+    /* Adjust width */
+    padding-right: 10px;
+    /* Add padding */
+    text-align: left;
+    /* Align text to the left */
+    font-weight: bold;
+    /* Make it bold */
   }
 }
