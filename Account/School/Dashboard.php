@@ -14,19 +14,14 @@ $database = $_ENV['MYSQL_DBNAME'];
 
 function getStudentsBySchool($conn, $schoolName)
 {
-function getStudentsBySchool($conn, $schoolName)
-{
     $students = [];
-
 
     // Prepare the SQL query to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM student_profiles WHERE school = ?");
     $stmt->bind_param("s", $schoolName); // "s" means the parameter is a string
 
-
     // Execute the query
     $stmt->execute();
-
 
     // Get the result
     $result = $stmt->get_result();
@@ -36,16 +31,12 @@ function getStudentsBySchool($conn, $schoolName)
         $students[] = $row;
     }
 
-
     // Close the statement
     $stmt->close();
-
 
     return $students;
 }
 
-function countStrands($students)
-{
 function countStrands($students)
 {
     $strandCounts = [
@@ -55,7 +46,6 @@ function countStrands($students)
         'tvl' => 0,
         'abm' => 0,
     ];
-
 
     foreach ($students as $student) {
         $strand = strtolower($student['strand']);
@@ -67,8 +57,6 @@ function countStrands($students)
     return $strandCounts;
 }
 
-function fetchEvaluationData($conn)
-{
 function fetchEvaluationData($conn)
 {
     // Assuming the session is already started and school_name is set
@@ -97,20 +85,17 @@ function fetchEvaluationData($conn)
     while ($row = $result->fetch_assoc()) {
         $evaluation_data[] = [
             'name' => $row['first_name'] . ' ' . $row['last_name'], // Full name
-            'punctual' => (int) $row['punctual'],
-            'reports_regularly' => (int) $row['reports_regularly'],
-            'performs_tasks_independently' => (int) $row['performs_tasks_independently'],
-            'self_discipline' => (int) $row['self_discipline'],
-            'dedication_commitment' => (int) $row['dedication_commitment'],
+            'punctual' => (int)$row['punctual'],
+            'reports_regularly' => (int)$row['reports_regularly'],
+            'performs_tasks_independently' => (int)$row['performs_tasks_independently'],
+            'self_discipline' => (int)$row['self_discipline'],
+            'dedication_commitment' => (int)$row['dedication_commitment'],
         ];
     }
-
 
     return $evaluation_data;
 }
 
-function fetchTopStudents($conn)
-{
 function fetchTopStudents($conn)
 {
     $schoolName = $_SESSION['school_name'];
@@ -141,11 +126,9 @@ function fetchTopStudents($conn)
         $students[] = [
             'name' => $row['student_name'],
             'avg_score' => round($row['avg_score'], 2)
-            'avg_score' => round($row['avg_score'], 2)
         ];
     }
 
-    return $students;
     return $students;
 }
 
@@ -162,9 +145,7 @@ if (isset($_SESSION['school_name'])) {
     $schoolName = $_SESSION['school_name'];
     $students = getStudentsBySchool($conn, $schoolName);
 
-
     $strandCounts = countStrands($students);
-
 
     $topStudents = fetchTopStudents($conn);
 
@@ -305,7 +286,7 @@ if (isset($_SESSION['school_name'])) {
         <div class="card orange">
             <h2>0</h2>
             <p>Total ABM</p>
-            <a href="Student.php#abm"><button class="view-details">View Details</button></a>
+            <a href="Student.php#techvoc"><button class="view-details">View Details</button></a>
         </div>
         </main>
     </div>
@@ -484,15 +465,7 @@ if (isset($_SESSION['school_name'])) {
     let gas = strands.gas;
     let techVoc = strands.tvl;
     let abm = strands.abm;
-    let strands = <?php echo json_encode($strandCounts); ?>;
-    console.log("<?php echo $schoolName; ?>");
-    let humss = strands.humss;
-    let stem = strands.stem;
-    let gas = strands.gas;
-    let techVoc = strands.tvl;
-    let abm = strands.abm;
 
-    console.log(strands);
     console.log(strands);
 
 
@@ -505,15 +478,6 @@ if (isset($_SESSION['school_name'])) {
         document.querySelector('.card.orange h2').textContent = abm;
     }
 
-    function updateCardData() {
-        document.querySelector('.card.blue h2').textContent = humss;
-        document.querySelector('.card.green h2').textContent = stem;
-        document.querySelector('.card.yellow h2').textContent = gas;
-        document.querySelector('.card.red h2').textContent = techVoc;
-        document.querySelector('.card.orange h2').textContent = abm;
-    }
-
-    updateCardData();
     updateCardData();
     </script>
 
@@ -521,174 +485,13 @@ if (isset($_SESSION['school_name'])) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
-    <script type="text/javascript">
-    //bar chart
-    var topStudentsData = <?php echo $jsonData; ?>;
-    console.log(topStudentsData);
-    // Prepare labels and data arrays for the chart
-    var labels = topStudentsData.map(student => student.name);
-    var dataPoints = topStudentsData.map(student => student.avg_score);
-
-    var bar = document.getElementById('bar');
-    bar.height = 400;
-
-    var barConfig = new Chart(bar, {
-        type: 'horizontalBar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Average Evaluation Score',
-                data: dataPoints,
-                backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)',
-                    'rgba(225, 50, 64, 1)', 'rgba(64, 159, 64, 1)', 'rgba(200, 200, 200, 1)',
-                    'rgba(120, 120, 120, 1)', 'rgba(10, 100, 200, 1)'
-                ], // You can customize colors based on the number of students
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                    }
-                }]
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-        }
-    });
-
-    //doughnut chart
-    var doughnut = document.getElementById('doughnut');
-    var doughnutConfig = new Chart(doughnut, {
-        type: 'doughnut',
-        data: {
-            labels: ['data-1', 'data-2', 'data-3'],
-            datasets: [{
-                label: '# of data',
-                data: [11, 30, 20],
-                backgroundColor: ['rgba(0, 230, 118, 1)', 'rgba(255, 206, 86, 1)',
-                    'rgba(255,99,132,1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true, // Instruct chart js to respond nicely.
-            maintainAspectRatio: true, // Add to prevent default behaviour of full-width/height 
-        }
-    });
-    //line chart
-    var line = document.getElementById('line');
-    line.height = 200
-    var lineConfig = new Chart(line, {
-        type: 'line',
-        data: {
-            labels: ['data-1', 'data-2', 'data-3', 'data-4', 'data-5', 'data-6'],
-            datasets: [{
-                label: '# of data', // Name the series
-                data: [10, 15, 20, 10, 25, 5, 10], // Specify the data values array
-                fill: false,
-                borderColor: '#2196f3', // Add custom color border (Line)
-                backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                borderWidth: 1 // Specify bar border width
-            }]
-        },
-        options: {
-            responsive: true, // Instruct chart js to respond nicely.
-            maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-        }
-    })
-    //pie chart
-    var pie = document.getElementById('pie');
-    var pieConfig = new Chart(pie, {
-        type: 'pie',
-        data: {
-            labels: ['data-1', 'data-2'],
-            datasets: [{
-                label: '# of data',
-                data: [40, 80],
-                backgroundColor: ['rgba(103, 216, 239, 1)', 'rgba(246, 26, 104,1)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true, // Instruct chart js to respond nicely.
-            maintainAspectRatio: true, // Add to prevent default behaviour of full-width/height 
-        }
-    });
-    //polar area chart
-    var polar = document.getElementById('polar');
-    var polarConfig = new Chart(polar, {
-        type: 'polarArea',
-        data: {
-            labels: ['data-1', 'data-2', 'data-3'],
-            datasets: [{
-                label: '# of data',
-                data: [10, 20, 30],
-                backgroundColor: ['rgba(0, 230, 118, 1)', 'rgba(255, 206, 86, 1)',
-                    'rgba(255,99,132,1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true, // Instruct chart js to respond nicely.
-            maintainAspectRatio: true, // Add to prevent default behaviour of full-width/height 
-        }
-    });
-    //mixed chart
-    var mixed = document.getElementById('mixed');
-    var mixedConfig = new Chart(mixed, {
-        type: 'bar',
-        data: {
-            labels: ['data-1', 'data-2', 'data-3', 'data-4', 'data-5', 'data-6', 'data-7'],
-            datasets: [{
-                label: '# of data',
-                data: [18, 12, 9, 11, 8, 4, 2],
-                backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)',
-                    'rgba(225, 50, 64, 1)', 'rgba(64, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }, {
-                label: '# of data', // Name the series
-                data: [20, 19, 18, 14, 12, 15, 10],
-                type: 'line', // Specify the data values array
-                fill: false,
-                borderColor: '#2196f3', // Add custom color border (Line)
-                backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                borderWidth: 1,
-                order: 2
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            },
-            responsive: true, // Instruct chart js to respond nicely.
-            maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-        }
-    })
-    </script>
     <scri type="text/javascript">
 
     </scri>
     <script>
     let profilePic1 = document.getElementById("cover-pic");
     let inputFile1 = document.getElementById("input-file1");
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
     inputFile1.onchange = function() {
         profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
     }
@@ -697,12 +500,7 @@ if (isset($_SESSION['school_name'])) {
     <script>
     let profilePic2 = document.getElementById("profile-pic");
     let inputFile2 = document.getElementById("input-file2");
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
     inputFile2.onchange = function() {
         profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
     }
@@ -711,16 +509,10 @@ if (isset($_SESSION['school_name'])) {
     <script>
     // Get the modal
     var modal = document.getElementById("myModal");
-    // Get the modal
-    var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
@@ -728,15 +520,7 @@ if (isset($_SESSION['school_name'])) {
     btn.onclick = function() {
         modal.style.display = "block";
     }
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
@@ -748,116 +532,8 @@ if (isset($_SESSION['school_name'])) {
             modal.style.display = "none";
         }
     }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
     </script>
 
-
-
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        // JSON data object
-        var chartData = {
-            "data": [
-                ["Day", "Joshua Rivera", "Ronald Olipas"],
-                ["1", 50, 60],
-                ["2", 20, 10],
-                ["3", 40, 25],
-                ["4", 30, 45],
-                ["5", 30, 45]
-            ],
-            "options": {
-                "curveType": "function",
-                "legend": {
-                    "position": "bottom"
-                }
-            }
-        };
-
-        var data = google.visualization.arrayToDataTable(chartData.data);
-        var options = chartData.options;
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-        chart.draw(data, options);
-    }
-    </script>
-
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['table']
-    });
-    google.charts.setOnLoadCallback(drawTable);
-
-    function drawTable() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Company Name');
-        // data.addColumn('number', 'Ratings');
-        // data.addColumn('boolean', 'Full Time Employee');
-        data.addRows([
-            ['PNP'],
-            ['Lamart'],
-            ['BDO'],
-            ['Mcdo'],
-            ['Inasal'],
-            ['Jollibee'],
-            ['Kuya J']
-
-        ]);
-
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(data, {
-            showRowNumber: true,
-            width: '100%',
-            height: '100%'
-        });
-    }
-    </script>
-    <!-- <script>
-        google.charts.load('current', {
-            'packages': ['timeline']
-        });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var container = document.getElementById('timeline');
-            var chart = new google.visualization.Timeline(container);
-            var dataTable = new google.visualization.DataTable();
-
-            dataTable.addColumn({
-                type: 'string',
-                id: 'President'
-            });
-            dataTable.addColumn({
-                type: 'date',
-                id: 'Start'
-            });
-            dataTable.addColumn({
-                type: 'date',
-                id: 'End'
-            });
-            dataTable.addRows([
-                ['Joshua Rivera ', new Date(2024, 1, 8), new Date(2024, 12, 8)],
-                ['Dan Mamaid', new Date(2024, 1, 8), new Date(2024, 13, 8)],
-                ['Jefferson Dela cruz', new Date(2024, 1, 8), new Date(2024, 14, 8)]
-            ]);
-
-            chart.draw(dataTable);
-        }
-    </script> -->
 
     <footer>
         <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->

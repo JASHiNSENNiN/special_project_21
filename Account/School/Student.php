@@ -420,7 +420,7 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
-    $(".box").click(function(e)  {
+    $(".box").click(function(e) {
         e.preventDefault();
         $(".content").removeClass("active");
         var content_id = $(this).attr("id");
@@ -437,7 +437,7 @@ $tvl_students = get_students_by_strand('tvl');
     let profilePic1 = document.getElementById("cover-pic");
     let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() { 
+    inputFile1.onchange = function() {
         profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
     }
     </script>
@@ -446,7 +446,7 @@ $tvl_students = get_students_by_strand('tvl');
     let profilePic2 = document.getElementById("profile-pic");
     let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() { 
+    inputFile2.onchange = function() {
         profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
     }
     </script>
@@ -458,7 +458,7 @@ $tvl_students = get_students_by_strand('tvl');
     let selectedStudent = '';
 
     // Filter dropdown items based on search input
-    searchInput.addEventListener('input', function() { 
+    searchInput.addEventListener('input', function() {
         const filter = searchInput.value.toLowerCase();
         let hasMatches = false;
 
@@ -493,7 +493,7 @@ $tvl_students = get_students_by_strand('tvl');
 
     // Select student on item click
     for (let i = 0; i < dropdownItems.length; i++) {
-        dropdownItems[i].addEventListener('click', function() { 
+        dropdownItems[i].addEventListener('click', function() {
             selectedStudent = this.textContent;
             searchInput.value = selectedStudent;
             dropdownList.style.display = 'none';
@@ -501,7 +501,7 @@ $tvl_students = get_students_by_strand('tvl');
     }
 
     // Add student to table
-    document.getElementById('addButton1').addEventListener('click', function() { 
+    document.getElementById('addButton1').addEventListener('click', function() {
         if (selectedStudent) {
             const row = document.createElement('tr');
             const nameCell = document.createElement('td');
@@ -519,7 +519,7 @@ $tvl_students = get_students_by_strand('tvl');
     });
 
     // Hide dropdown when clicking outside
-    document.addEventListener('click', function(eve nt) {
+    document.addEventListener('click', function(event) {
         if (!event.target.matches('.dropdown-input1')) {
             dropdownList.style.display = 'none';
         }
