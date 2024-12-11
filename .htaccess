@@ -1,9 +1,19 @@
-DirectoryIndex Student.php
 RewriteEngine On
-
 RewriteCond %{HTTPS} off
-RewriteRule ^(.\*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 Header always set Content-Security-Policy “upgrade-insecure-requests;”
+
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} ^https?://([^/]+)/ [NC]
+RewriteCond %1#%{HTTP_HOST} !^(.+)#\1$
+RewriteRule \.(jpg|jpeg|png|gif|swf|svg)$ - [NC,F,L]
+
+# Add Caching.
+<FilesMatch ".(ico|jpg|jpeg|png|gif|js|css|swf)$">
+    Header set Cache-Control "max-age=6000"
+</FilesMatch>
+
+
 
 <IfModule mod_headers.c>
 	Header set X-XSS-Protection "1; mode=block"

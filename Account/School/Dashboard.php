@@ -2,6 +2,163 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+
+
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+$dotenv->load();
+
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+function getStudentsBySchool($conn, $schoolName)
+{
+    $students = [];
+
+    // Prepare the SQL query to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM student_profiles WHERE school = ?");
+    $stmt->bind_param("s", $schoolName); // "s" means the parameter is a string
+
+    // Execute the query
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch all students into an array
+    while ($row = $result->fetch_assoc()) {
+        $students[] = $row;
+    }
+
+    // Close the statement
+    $stmt->close();
+
+    return $students;
+}
+
+function countStrands($students)
+{
+    $strandCounts = [
+        'humss' => 0,
+        'stem' => 0,
+        'gas' => 0,
+        'tvl' => 0,
+        'abm' => 0,
+    ];
+
+    foreach ($students as $student) {
+        $strand = strtolower($student['strand']);
+        if (array_key_exists($strand, $strandCounts)) {
+            $strandCounts[$strand]++;
+        }
+    }
+
+    return $strandCounts;
+}
+
+function fetchEvaluationData($conn)
+{
+    // Assuming the session is already started and school_name is set
+    $school_name = $_SESSION['school_name'];
+
+    // Prepare the SQL to fetch data
+    $sql = "
+    SELECT SE.evaluation_id, 
+           SP.first_name, 
+           SP.last_name,
+           SE.punctual,
+           SE.reports_regularly,
+           SE.performs_tasks_independently,
+           SE.self_discipline,
+           SE.dedication_commitment
+    FROM Student_Evaluation SE
+    JOIN student_profiles SP ON SE.student_id = SP.user_id 
+    WHERE SP.school = ?"; // Using prepared statements for security
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $school_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $evaluation_data = [];
+    while ($row = $result->fetch_assoc()) {
+        $evaluation_data[] = [
+            'name' => $row['first_name'] . ' ' . $row['last_name'], // Full name
+            'punctual' => (int)$row['punctual'],
+            'reports_regularly' => (int)$row['reports_regularly'],
+            'performs_tasks_independently' => (int)$row['performs_tasks_independently'],
+            'self_discipline' => (int)$row['self_discipline'],
+            'dedication_commitment' => (int)$row['dedication_commitment'],
+        ];
+    }
+
+    return $evaluation_data;
+}
+
+function fetchTopStudents($conn)
+{
+    $schoolName = $_SESSION['school_name'];
+
+    $sql = "
+        SELECT sp.id, CONCAT(sp.first_name, ' ', sp.last_name) AS student_name, 
+               AVG((punctual + reports_regularly + performs_tasks_independently + 
+                    self_discipline + dedication_commitment + ability_to_operate_machines + 
+                    handles_details + shows_flexibility + thoroughness_attention_to_detail + 
+                    understands_task_linkages + offers_suggestions + tact_in_dealing_with_people + 
+                    respect_and_courtesy + helps_others + learns_from_co_workers + 
+                    shows_gratitude + poise_and_self_confidence + emotional_maturity) / 17) as avg_score
+        FROM student_profiles sp
+        JOIN Student_Evaluation se ON sp.id = se.student_id
+        WHERE sp.school = ?
+        GROUP BY sp.id
+        ORDER BY avg_score DESC
+        LIMIT 10
+    ";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $schoolName);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $students = [];
+    while ($row = $result->fetch_assoc()) {
+        $students[] = [
+            'name' => $row['student_name'],
+            'avg_score' => round($row['avg_score'], 2)
+        ];
+    }
+
+    return $students;
+}
+
+
+
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+if (isset($_SESSION['school_name'])) {
+    $schoolName = $_SESSION['school_name'];
+    $students = getStudentsBySchool($conn, $schoolName);
+
+    $strandCounts = countStrands($students);
+
+    $topStudents = fetchTopStudents($conn);
+
+    $jsonData = json_encode($topStudents);
+}
+
+
+
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,19 +261,19 @@ require_once 'show_profile.php';
     <div class="container">
         <div class="card blue">
             <h2>0</h2>
-            <p>Total Humss</p>
+            <p>Total HUMSS</p>
             <a href="Student.php#humss"><button class="view-details">View Details</button></a>
         </div>
 
         <div class="card green">
             <h2>0</h2>
-            <p>Total Stem</p>
+            <p>Total STEM</p>
             <a href="Student.php#stem"><button class="view-details">View Details</button></a>
         </div>
 
         <div class="card yellow">
             <h2>0</h2>
-            <p>Total Gas</p>
+            <p>Total GAS</p>
             <a href="Student.php#gas"><button class="view-details">View Details</button></a>
         </div>
 
@@ -125,6 +282,13 @@ require_once 'show_profile.php';
             <p>Total TechVoc</p>
             <a href="Student.php#techvoc"><button class="view-details">View Details</button></a>
         </div>
+
+        <div class="card orange">
+            <h2>0</h2>
+            <p>Total ABM</p>
+            <a href="Student.php#techvoc"><button class="view-details">View Details</button></a>
+        </div>
+        </main>
     </div>
 
     <div class="container2">
@@ -294,10 +458,16 @@ require_once 'show_profile.php';
 
     <br>
     <script>
-        let humss = 7;
-        let stem = 612;
-        let gas = 2148;
-        let techVoc = 56;
+        let strands = <?php echo json_encode($strandCounts); ?>;
+        console.log("<?php echo $schoolName; ?>");
+        let humss = strands.humss;
+        let stem = strands.stem;
+        let gas = strands.gas;
+        let techVoc = strands.tvl;
+        let abm = strands.abm;
+
+        console.log(strands);
+
 
 
         function updateCardData() {
@@ -305,6 +475,7 @@ require_once 'show_profile.php';
             document.querySelector('.card.green h2').textContent = stem;
             document.querySelector('.card.yellow h2').textContent = gas;
             document.querySelector('.card.red h2').textContent = techVoc;
+            document.querySelector('.card.orange h2').textContent = abm;
         }
 
         updateCardData();

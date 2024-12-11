@@ -6,12 +6,12 @@ google.charts.setOnLoadCallback(drawStuffam);
 
 function drawStuffam() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
-    ["Excellent", 25],
-    ["Good", 23],
-    ["Average", 30],
-    ["Poor", 15],
-    ["Very poor", 1],
+    ["Category", "Performance"],
+    ["Enthusiasm for Tasks", avgEnthusiasmForTasks],
+    ["Drive to Achieve Goals", avgDriveToAchieveGoals],
+    ["Resilience to Challenges", avgResilienceToChallenges],
+    ["Commitment to Experience", avgCommitmentToExperience],
+    ["Self-Motivation Levels", avgSelfMotivationLevels],
   ]);
 
   var options = {
@@ -56,11 +56,11 @@ google.charts.setOnLoadCallback(drawStufftc);
 function drawStufftc() {
   var data = new google.visualization.arrayToDataTable([
     ["", "Performance"],
-    ["Excellent", 35],
-    ["Good", 20],
-    ["Average", 10],
-    ["Poor", 15],
-    ["Very poor", 5],
+    ["Team Participation Opportunities", avgTeamParticipationOpportunities],
+    ["Cooperation Among Peers", avgCooperationAmongPeers],
+    ["Conflict Resolution Guidance", avgConflictResolutionGuidance],
+    ["Supportiveness Among Peers", avgSupportivenessAmongPeers],
+    ["Contribution To Team Success", avgContributionToTeamSuccess],
   ]);
 
   var options = {
@@ -103,12 +103,13 @@ google.charts.setOnLoadCallback(drawStuffld);
 
 function drawStuffld() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
-    ["Excellent", 27],
-    ["Good", 30],
-    ["Average", 20],
-    ["Poor", 2],
-    ["Very poor", 1],
+    ["Category", "Performance"],
+    ["Willingness to Learn Encouragement", avgWillingnessToLearnEncouragement],
+    ["Feedback Application Opportunities", avgFeedbackApplicationOpportunities],
+    ["Self-Improvement Support", avgSelfImprovementSupport],
+    ["Skill Development Assessment", avgSkillDevelopmentAssessment],
+    ["Knowledge Application in Practice", avgKnowledgeApplicationInPractice],
+    ["Overall Learning and Development", avgLearningAndDevelopment],
   ]);
 
   var options = {
@@ -150,12 +151,13 @@ google.charts.setOnLoadCallback(drawStuffprof);
 
 function drawStuffprof() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
-    ["Excellent", 40],
-    ["Good", 35],
-    ["Average", 20],
-    ["Poor", 0],
-    ["Very poor", 0],
+    ["Category", "Performance"],
+    ["Punctuality Expectations", avgPunctualityExpectations],
+    ["Professional Appearance Standards", avgProfessionalAppearanceStandards],
+    ["Communication Training", avgCommunicationTraining],
+    ["Respectfulness in Environment", avgRespectfulnessEnvironment],
+    ["Adaptability to Challenges", avgAdaptabilityChallenges],
+    ["Overall Professionalism", avgProfessionalism],
   ]);
 
   var options = {
@@ -199,11 +201,11 @@ google.charts.setOnLoadCallback(drawStuff);
 function drawStuff() {
   var data = new google.visualization.arrayToDataTable([
     ["", "Performance"],
-    ["Excellent", 40],
-    ["Good", 20],
-    ["Average", 0],
-    ["Poor", 0],
-    ["Very poor", 0],
+    ["Quality of Experience", avgQualityOfExperience],
+    ["Productivity of Tasks", avgProductivityOfTasks],
+    ["Problem Solving Opportunities", avgProblemSolvingOpportunities],
+    ["Attention to Detail in Guidance", avgAttentionToDetailInGuidance],
+    ["Initiative Encouragement", avgInitiativeEncouragement],
   ]);
 
   var options = {
@@ -229,6 +231,10 @@ function drawStuff() {
     bar: {
       groupWidth: "90%",
     },
+    hAxis: {
+      minValue: 5,
+      ticks: [1, 2, 3, 4, 5],
+    },
   };
 
   var chart = new google.charts.Bar(document.getElementById("wp-top-x-div"));
@@ -248,12 +254,12 @@ google.charts.setOnLoadCallback(drawStuffrating);
 
 function drawStuffrating() {
   var data = new google.visualization.arrayToDataTable([
-    ["Star", "Percentage"],
-    ["5", 50],
-    ["4", 31],
-    ["3", 12],
-    ["2", 10],
-    ["1", 3],
+    ["Category", "Average"],
+    ["Experience", avgExperience],
+    ["Professionalism", avgProfessionalism],
+    ["Learning and Development", avgLearningAndDevelopment],
+    ["Collaboration", avgCollaboration],
+    ["Attitude and Motivation", avgAttitudeAndMotivation],
   ]);
 
   var options = {
@@ -288,13 +294,14 @@ google.charts.setOnLoadCallback(drawChartts);
 
 function drawChartts() {
   var datats = google.visualization.arrayToDataTable([
-    ["Task", "Hours per Day"],
-    ["Humss", 11],
-    ["Gass", 2],
-    ["Stem", 2],
-    ["Tvl", 2],
+    ["Task", "Number of Students"],
+    ["HUMSS", strandCounts.humss],
+    ["GAS", strandCounts.gas],
+    ["STEM", strandCounts.stem],
+    ["TVL", strandCounts.tvl],
+    ["ABM", strandCounts.abm],
   ]);
-
+  // 'stem', 'humss', 'abm', 'gas', 'tvl'
   var optionsts = {
     title: "Total Student Applied",
     pieSliceText: "label",
