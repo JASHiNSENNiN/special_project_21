@@ -28,25 +28,25 @@ if ($result->num_rows > 0) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['resume_files'])) {
-    $userId = $_SESSION['user_id']; 
+    $userId = $_SESSION['user_id'];
     $firstName = $_SESSION['first_name'];
     $middleName = $_SESSION['middle_name'];
     $lastName = $_SESSION['last_name'];
     $lrn = $_SESSION['lrn'];
-    
+
     $randomNumber = sprintf('%06d', mt_rand(0, 999999));
     $dateTime = microtime(true);
     $formattedDateTime = DateTime::createFromFormat('U.u', $dateTime)->format('YmdHisv');
-    
+
     $newFileName = "{$firstName}_{$middleName}_{$lastName}_{$lrn}_resume_{$randomNumber}_{$formattedDateTime}";
-    
+
     $existingDocumentQuery = $conn->prepare("SELECT document_url FROM uploaded_documents WHERE user_id = ? AND document_name = 'resume'");
     $existingDocumentQuery->bind_param('i', $userId);
     $existingDocumentQuery->execute();
     $result = $existingDocumentQuery->get_result();
-    
+
     if ($row = $result->fetch_assoc()) {
-        $oldFilePath = $row['document_url']; 
+        $oldFilePath = $row['document_url'];
 
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
@@ -62,26 +62,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['resume_files'])) {
         if ($_FILES['resume_files']['error'][$key] === UPLOAD_ERR_OK) {
             $originalFileName = basename($_FILES['resume_files']['name'][$key]);
             $fileExtension = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));
-            
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); 
-            $mimeType = finfo_file($finfo, $tmpName); 
-            finfo_close($finfo); 
+
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx'];
             $allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
-            
-                $filePath = "documents/{$newFileName}." . $fileExtension; 
+
+                $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
-                    
+
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, ?, ?)");
-                    $documentName = 'resume'; 
+                    $documentName = 'resume';
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
-                    
+
                     if ($stmt->execute()) {
-                       
+
                     } else {
                         echo "Error uploading file: " . htmlspecialchars($newFileName);
                     }
@@ -96,11 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['resume_files'])) {
             echo "Error uploading file: " . htmlspecialchars($_FILES['resume_files']['name'][$key]);
         }
     }
-}  
+}
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['letter_files'])) {
-    $userId = $_SESSION['user_id']; 
+    $userId = $_SESSION['user_id'];
     $firstName = $_SESSION['first_name'];
     $middleName = $_SESSION['middle_name'];
     $lastName = $_SESSION['last_name'];
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['letter_files'])) {
     $result = $existingDocumentQuery->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        $oldFilePath = $row['document_url']; 
+        $oldFilePath = $row['document_url'];
 
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
@@ -136,28 +136,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['letter_files'])) {
             $originalFileName = basename($_FILES['letter_files']['name'][$key]);
             $fileExtension = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));
 
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); 
-            $mimeType = finfo_file($finfo, $tmpName); 
-            finfo_close($finfo); 
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt'];
             $allowedMimeTypes = [
-                'application/pdf', 
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
-                'application/msword', 
+                'application/pdf',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/msword',
                 'text/plain'
             ];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
-                
-                $filePath = "documents/{$newFileName}." . $fileExtension; 
+
+                $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
-            
+
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, ?, ?)");
-                    $documentName = 'application_letter'; 
+                    $documentName = 'application_letter';
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
-                    
+
                     if ($stmt->execute()) {
                         // echo "Application letter uploaded successfully: " . htmlspecialchars($newFileName);
                     } else {
@@ -178,25 +178,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['letter_files'])) {
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['parents_consent_files'])) {
-    $userId = $_SESSION['user_id']; 
+    $userId = $_SESSION['user_id'];
     $firstName = $_SESSION['first_name'];
     $middleName = $_SESSION['middle_name'];
     $lastName = $_SESSION['last_name'];
     $lrn = $_SESSION['lrn'];
-    
+
     $randomNumber = sprintf('%06d', mt_rand(0, 999999));
     $dateTime = microtime(true);
     $formattedDateTime = DateTime::createFromFormat('U.u', $dateTime)->format('YmdHisv');
-    
+
     $newFileName = "{$firstName}_{$middleName}_{$lastName}_{$lrn}_parents_consent_{$randomNumber}_{$formattedDateTime}";
-    
+
     $existingDocumentQuery = $conn->prepare("SELECT document_url FROM uploaded_documents WHERE user_id = ? AND document_name = 'parents_consent'");
     $existingDocumentQuery->bind_param('i', $userId);
     $existingDocumentQuery->execute();
     $result = $existingDocumentQuery->get_result();
-    
+
     if ($row = $result->fetch_assoc()) {
-        $oldFilePath = $row['document_url']; 
+        $oldFilePath = $row['document_url'];
 
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
@@ -212,22 +212,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['parents_consent_files
         if ($_FILES['parents_consent_files']['error'][$key] === UPLOAD_ERR_OK) {
             $originalFileName = basename($_FILES['parents_consent_files']['name'][$key]);
             $fileExtension = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));
-            
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); 
-            $mimeType = finfo_file($finfo, $tmpName); 
-            finfo_close($finfo); 
+
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx'];
             $allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
-                $filePath = "documents/{$newFileName}." . $fileExtension; 
+                $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, ?, ?)");
-                    $documentName = 'parents_consent'; 
+                    $documentName = 'parents_consent';
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
-                    
+
                     if ($stmt->execute()) {
                         // Successfully uploaded parents consent file
                     } else {
@@ -244,28 +244,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['parents_consent_files
             echo "Error uploading file: " . htmlspecialchars($_FILES['parents_consent_files']['name'][$key]);
         }
     }
-}  
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['barangay_clearance_files'])) {
-    $userId = $_SESSION['user_id']; 
+    $userId = $_SESSION['user_id'];
     $firstName = $_SESSION['first_name'];
     $middleName = $_SESSION['middle_name'];
     $lastName = $_SESSION['last_name'];
     $lrn = $_SESSION['lrn'];
-    
+
     $randomNumber = sprintf('%06d', mt_rand(0, 999999));
     $dateTime = microtime(true);
     $formattedDateTime = DateTime::createFromFormat('U.u', $dateTime)->format('YmdHisv');
-    
+
     $newFileName = "{$firstName}_{$middleName}_{$lastName}_{$lrn}_barangay_clearance_{$randomNumber}_{$formattedDateTime}";
-    
+
     $existingDocumentQuery = $conn->prepare("SELECT document_url FROM uploaded_documents WHERE user_id = ? AND document_name = 'barangay_clearance'");
     $existingDocumentQuery->bind_param('i', $userId);
     $existingDocumentQuery->execute();
     $result = $existingDocumentQuery->get_result();
-    
+
     if ($row = $result->fetch_assoc()) {
-        $oldFilePath = $row['document_url']; 
+        $oldFilePath = $row['document_url'];
 
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
@@ -281,27 +281,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['barangay_clearance_fi
         if ($_FILES['barangay_clearance_files']['error'][$key] === UPLOAD_ERR_OK) {
             $originalFileName = basename($_FILES['barangay_clearance_files']['name'][$key]);
             $fileExtension = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));
-            
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); 
-            $mimeType = finfo_file($finfo, $tmpName); 
-            finfo_close($finfo); 
+
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt'];
             $allowedMimeTypes = [
-                'application/pdf', 
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+                'application/pdf',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                 'application/msword',
                 'text/plain'
             ];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
-                $filePath = "documents/{$newFileName}." . $fileExtension; 
+                $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, ?, ?)");
-                    $documentName = 'barangay_clearance'; 
+                    $documentName = 'barangay_clearance';
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
-                    
+
                     if ($stmt->execute()) {
                         // echo "Barangay clearance uploaded successfully: " . htmlspecialchars($newFileName);
                     } else {
@@ -321,7 +321,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['barangay_clearance_fi
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['mayor_permit_files'])) {
-    $userId = $_SESSION['user_id']; 
+    $userId = $_SESSION['user_id'];
     $firstName = $_SESSION['first_name'];
     $middleName = $_SESSION['middle_name'];
     $lastName = $_SESSION['last_name'];
@@ -340,7 +340,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['mayor_permit_files'])
     $result = $existingDocumentQuery->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        $oldFilePath = $row['document_url']; 
+        $oldFilePath = $row['document_url'];
 
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
@@ -357,10 +357,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['mayor_permit_files'])
         if ($_FILES['mayor_permit_files']['error'][$key] === UPLOAD_ERR_OK) {
             $originalFileName = basename($_FILES['mayor_permit_files']['name'][$key]);
             $fileExtension = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));
-            
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); 
-            $mimeType = finfo_file($finfo, $tmpName); 
-            finfo_close($finfo); 
+
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt'];
             $allowedMimeTypes = [
@@ -376,7 +376,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['mayor_permit_files'])
                 if (move_uploaded_file($tmpName, $filePath)) {
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, 'mayors_permit', ?)");
                     $stmt->bind_param('is', $userId, $filePath);
-                    
+
                     if ($stmt->execute()) {
                         // echo "Mayor's Permit uploaded successfully: " . htmlspecialchars($newFileName);
                     } else {
@@ -396,16 +396,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['mayor_permit_files'])
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['police_clearance_files'])) {
-    $userId = $_SESSION['user_id']; 
+    $userId = $_SESSION['user_id'];
     $firstName = $_SESSION['first_name'];
     $middleName = $_SESSION['middle_name'];
     $lastName = $_SESSION['last_name'];
     $lrn = $_SESSION['lrn'];
-    
+
     $randomNumber = sprintf('%06d', mt_rand(0, 999999));
     $dateTime = microtime(true);
     $formattedDateTime = DateTime::createFromFormat('U.u', $dateTime)->format('YmdHisv');
-    
+
     $newFileName = "{$firstName}_{$middleName}_{$lastName}_{$lrn}_police_clearance_{$randomNumber}_{$formattedDateTime}";
 
     // Check if a document already exists for the user
@@ -415,7 +415,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['police_clearance_file
     $result = $existingDocumentQuery->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        $oldFilePath = $row['document_url']; 
+        $oldFilePath = $row['document_url'];
 
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
@@ -432,26 +432,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['police_clearance_file
             $originalFileName = basename($_FILES['police_clearance_files']['name'][$key]);
             $fileExtension = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));
 
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); 
-            $mimeType = finfo_file($finfo, $tmpName); 
-            finfo_close($finfo); 
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt'];
             $allowedMimeTypes = [
-                'application/pdf', 
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
-                'application/msword', 
+                'application/pdf',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/msword',
                 'text/plain'
             ];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
-                $filePath = "documents/{$newFileName}." . $fileExtension; 
+                $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, ?, ?)");
-                    $documentName = 'police_clearance'; 
+                    $documentName = 'police_clearance';
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
-                    
+
                     if ($stmt->execute()) {
                         // echo "Police clearance uploaded successfully: " . htmlspecialchars($newFileName);
                     } else {
@@ -471,7 +471,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['police_clearance_file
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['medical_certificate_files'])) {
-    $userId = $_SESSION['user_id']; 
+    $userId = $_SESSION['user_id'];
     $firstName = $_SESSION['first_name'];
     $middleName = $_SESSION['middle_name'];
     $lastName = $_SESSION['last_name'];
@@ -480,7 +480,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['medical_certificate_f
     $randomNumber = sprintf('%06d', mt_rand(0, 999999));
     $dateTime = microtime(true);
     $formattedDateTime = DateTime::createFromFormat('U.u', $dateTime)->format('YmdHisv');
-    
+
     $newFileName = "{$firstName}_{$middleName}_{$lastName}_{$lrn}_medical_certificate_{$randomNumber}_{$formattedDateTime}";
 
     // Check if a document already exists for the user
@@ -490,7 +490,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['medical_certificate_f
     $result = $existingDocumentQuery->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        $oldFilePath = $row['document_url']; 
+        $oldFilePath = $row['document_url'];
 
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
@@ -506,22 +506,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['medical_certificate_f
         if ($_FILES['medical_certificate_files']['error'][$key] === UPLOAD_ERR_OK) {
             $originalFileName = basename($_FILES['medical_certificate_files']['name'][$key]);
             $fileExtension = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));
-            
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); 
-            $mimeType = finfo_file($finfo, $tmpName); 
-            finfo_close($finfo); 
+
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx'];
             $allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
-                $filePath = "documents/{$newFileName}." . $fileExtension; 
+                $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, ?, ?)");
-                    $documentName = 'medical_certificate'; 
+                    $documentName = 'medical_certificate';
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
-                    
+
                     if ($stmt->execute()) {
                         // echo "Medical certificate uploaded successfully: " . htmlspecialchars($newFileName);
                     } else {
@@ -546,20 +546,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['insurance_policy_file
     $middleName = $_SESSION['middle_name'];
     $lastName = $_SESSION['last_name'];
     $lrn = $_SESSION['lrn'];
-    
+
     $randomNumber = sprintf('%06d', mt_rand(0, 999999));
     $dateTime = microtime(true);
     $formattedDateTime = DateTime::createFromFormat('U.u', $dateTime)->format('YmdHisv');
-    
+
     $newFileName = "{$firstName}_{$middleName}_{$lastName}_{$lrn}_insurance_policy_{$randomNumber}_{$formattedDateTime}";
-    
+
     $existingDocumentQuery = $conn->prepare("SELECT document_url FROM uploaded_documents WHERE user_id = ? AND document_name = 'insurance_policy'");
     $existingDocumentQuery->bind_param('i', $userId);
     $existingDocumentQuery->execute();
     $result = $existingDocumentQuery->get_result();
-    
+
     if ($row = $result->fetch_assoc()) {
-        $oldFilePath = $row['document_url']; 
+        $oldFilePath = $row['document_url'];
 
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
@@ -576,25 +576,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['insurance_policy_file
             $originalFileName = basename($_FILES['insurance_policy_files']['name'][$key]);
             $fileExtension = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));
 
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); 
-            $mimeType = finfo_file($finfo, $tmpName); 
-            finfo_close($finfo); 
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt'];
             $allowedMimeTypes = [
-                'application/pdf', 
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
-                'application/msword', 
+                'application/pdf',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/msword',
                 'text/plain'
             ];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
-                $filePath = "documents/{$newFileName}." . $fileExtension; 
+                $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, 'insurance_policy', ?)");
                     $stmt->bind_param('is', $userId, $filePath);
-                    
+
                     if ($stmt->execute()) {
                         // echo "Insurance policy uploaded successfully: " . htmlspecialchars($newFileName);
                     } else {
@@ -881,36 +881,37 @@ require_once 'show_profile.php';
 
 
     dropBoxes.forEach(dropBox => {
-                const button = dropBox.querySelector("button");
-                const input = dropBox.querySelector("input");
-                const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
-                dropBoxes.forEach(dropBox => {
-                    const button = dropBox.querySelector("button");
-                    const input = dropBox.querySelector("input");
-                    const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
+        const button = dropBox.querySelector("button");
+        const input = dropBox.querySelector("input");
+        const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
+        dropBoxes.forEach(dropBox => {
+            const button = dropBox.querySelector("button");
+            const input = dropBox.querySelector("input");
+            const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
 
-                    button.onclick = () => {
-                        input.click();
-                    };
-                    button.onclick = () => {
-                        input.click();
-                    };
+            button.onclick = () => {
+                input.click();
+            };
+            button.onclick = () => {
+                input.click();
+            };
 
-                    input.addEventListener("change", function(e) {
-                        const files = e.target.files; // Get the selected files
-                        fileListElement.innerHTML = ''; // Clear the previous file list
+            input.addEventListener("change", function(e) {
+                const files = e.target.files; // Get the selected files
+                fileListElement.innerHTML = ''; // Clear the previous file list
 
-                        // Display each selected file
-                        Array.from(files).forEach(file => {
-                            let fileItem = document.createElement('li');
-                            fileItem.innerHTML = `
+                // Display each selected file
+                Array.from(files).forEach(file => {
+                    let fileItem = document.createElement('li');
+                    fileItem.innerHTML = `
                     <h4>${file.name}</h4>
                     
                 `;
-                            fileListElement.appendChild(fileItem);
-                        });
-                    });
+                    fileListElement.appendChild(fileItem);
                 });
+            });
+        });
+    });
     </script>
 
 
