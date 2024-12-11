@@ -13,6 +13,13 @@ $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
 $database = $_ENV['MYSQL_DBNAME'];
 
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Enable exceptions
+} catch (PDOException $e) {
+    die("Could not connect to the database: " . $e->getMessage());
+}
+
 $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -70,6 +77,32 @@ function generateJobCards($jobOffers)
         </li>';
     }
 }
+
+
+
+function isStudentProfileVerified($pdo) {
+    $sql = "SELECT verified_status FROM student_profiles WHERE user_id = :user_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+    
+    if ($stmt->execute()) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return (bool) $result['verified_status']; // Explicitly cast to boolean
+        }
+    }
+    
+    return false;
+}
+
+$student_id = $_SESSION['user_id']; 
+
+if (!isStudentProfileVerified($pdo)) {
+    header('Location: verify.php'); 
+    exit(); 
+}
+
 // <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
@@ -182,20 +215,20 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function () {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
 
     <footer>

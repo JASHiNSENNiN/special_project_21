@@ -58,6 +58,58 @@ function get_students_by_strand($strand)
     return $students;
 }
 
+function verify_student($student_id) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("UPDATE student_profiles SET verified_status = TRUE WHERE user_id = ?");
+    $stmt->bind_param("i", $student_id);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+}
+
+function unverify_student($student_id) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("UPDATE student_profiles SET verified_status = FALSE WHERE user_id = ?");
+    $stmt->bind_param("i", $student_id);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['student_id'])) {
+    $student_id = intval($_POST['student_id']);
+    $action = $_POST['action'];
+
+    if ($action === 'verify') {
+        verify_student($student_id);
+    } elseif ($action === 'unverify') {
+        unverify_student($student_id);
+    }
+
+    // header("Location: " . $_SERVER['PHP_SELF']); 
+    // exit();
+}
+
 $humss_students = get_students_by_strand('humss');
 $stem_students = get_students_by_strand('stem');
 $abm_students = get_students_by_strand('abm');
@@ -229,7 +281,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
@@ -238,24 +289,26 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'> NIA</td>";
-                            echo "<td data-th='Status'> Ongoing </td>";
-                            // echo "<td data-th='Result'>";
-                            // echo "<div class='container3'>";
-                            // echo "<div class='circular-progress'>";
-                            // echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            // echo "</div>";
-                            // echo "</div>";
-                            // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button> <br>
-                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
-                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button></td>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
+                            echo "</td>";
                             echo "</tr>";
                             $count++;
                         }
                         ?>
                     </tbody>
-
                 </table>
             </div>
         </div>
@@ -279,7 +332,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
@@ -288,23 +340,25 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'> NIA</td>";
-                            echo "<td data-th='Status'> Ongoing </td>";
-                            // echo "<td data-th='Result'>";
-                            // echo "<div class='container3'>";
-                            // echo "<div class='circular-progress'>";
-                            // echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            // echo "</div>";
-                            // echo "</div>";
-                            // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button><br>
-                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
-                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button></td>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
+                            echo "</td>";
                             echo "</tr>";
                             $count++;
                         }
                         ?>
-
                     </tbody>
 
                 </table>
@@ -328,7 +382,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
@@ -337,19 +390,21 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'> NIA</td>";
-                            echo "<td data-th='Status'> Ongoing </td>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
-                            // echo "<td data-th='Result'>";
-                            // echo "<div class='container3'>";
-                            // echo "<div class='circular-progress'>";
-                            // echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            // echo "</div>";
-                            // echo "</div>";
-                            // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button><br>
-                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
-                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button></td>";
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
+                            echo "</td>";
                             echo "</tr>";
                             $count++;
                         }
@@ -376,7 +431,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
@@ -385,24 +439,25 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'> NIA</td>";
-                            echo "<td data-th='Status'> Ongoing </td>";
-                            // echo "<td data-th='Result'>";
-                            // echo "<div class='container3'>";
-                            // echo "<div class='circular-progress'>";
-                            // echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            // echo "</div>";
-                            // echo "</div>";
-                            // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button><br>
-                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br>
-                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button>  </td> 
-                            ";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
+                            echo "</td>";
                             echo "</tr>";
                             $count++;
                         }
                         ?>
-
                     </tbody>
 
                 </table>
@@ -425,7 +480,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
@@ -434,23 +488,25 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'> NIA</td>";
-                            echo "<td data-th='Status'> Ongoing </td>";
-                            // echo "<td data-th='Result'>";
-                            // echo "<div class='container3'>";
-                            // echo "<div class='circular-progress'>";
-                            // echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            // echo "</div>";
-                            // echo "</div>";
-                            // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button><br>
-                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
-                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button></td>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
+                            echo "</td>";
                             echo "</tr>";
                             $count++;
                         }
                         ?>
-
                     </tbody>
 
                 </table>
