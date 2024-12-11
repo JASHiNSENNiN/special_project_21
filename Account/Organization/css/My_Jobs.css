@@ -295,10 +295,11 @@ img {
   max-width: 100%;
 }
 
+/* 
 html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
-}
+} */
 
 .dark-light svg {
   margin-right: 8px;
@@ -391,7 +392,7 @@ html {
   margin-right: 10px;
 }
 
-.wrapper {
+/* .wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -399,7 +400,7 @@ html {
   scroll-behavior: smooth;
   padding: 30px 40px;
   overflow: auto;
-}
+} */
 
 .search-menu {
   height: 56px;
@@ -1177,30 +1178,19 @@ ul {
 
 /* -----------------------EDIT MODAL-------------------------- */
 
-.modal {
+.modal-job {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
   padding-top: 100px;
-  /* Location of the box */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: rgb(0, 0, 0);
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 }
-
-/* Modal Content */
 
 .modal-content {
   background-color: #fefefe;
@@ -1209,8 +1199,6 @@ ul {
   border: 1px solid #888;
   width: 50%;
 }
-
-/* The Close Button */
 
 .close {
   color: #aaaaaa;
@@ -1228,7 +1216,8 @@ ul {
 
 /* ----------- end modal----------- */
 
-.button-9 {
+.button-9,
+.button-9-save {
   appearance: button;
   backface-visibility: hidden;
   background-color: #405cf5;
@@ -1261,6 +1250,10 @@ ul {
   touch-action: manipulation;
   font-weight: bold;
   /* width: 100%; */
+}
+
+.button-9-save:hover {
+  background-color: #60c76e;
 }
 
 .button-9:disabled {
@@ -1359,7 +1352,7 @@ ul {
 
 .con .checkmark:after {
   left: 9px;
-  /* top: 5px; */
+  top: 5px;
   width: 5px;
   height: 10px;
   border: solid white;
@@ -1367,4 +1360,146 @@ ul {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.sales-boxes .recent-sales {
+  width: 65%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  border: solid 1px;
+}
+
+.sales-boxes {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+.sales-boxes .sales-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box {
+  margin-top: 20px;
+}
+
+.sales-boxes .box .title {
+  font-size: 24px;
+  font-weight: 500;
+  /* margin-bottom: 10px; */
+}
+
+.sales-boxes .sales-details li.topic {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.sales-boxes .sales-details li {
+  list-style: none;
+  margin: 8px 0;
+}
+
+.sales-boxes .sales-details li a {
+  font-size: 18px;
+  color: #333;
+  font-size: 400;
+  text-decoration: none;
+}
+
+.sales-boxes .box .button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sales-boxes .box .button a {
+  color: #fff;
+  background: #0a2558;
+  padding: 4px 12px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sales-boxes .box .button a:hover {
+  background: #0d3073;
+}
+
+/* Right box */
+
+.home-content .sales-boxes .top-sales {
+  width: 35%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px 0 0;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sales-boxes .top-sales li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.sales-boxes .top-sales li a img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 10px;
+  background: #333;
+}
+
+.sales-boxes .top-sales li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.sales-boxes .top-sales li .product,
+.price {
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+}
+
+.ti {
+  margin-left: -45px;
+  margin-right: -45px;
+  text-align: center;
+  background-color: #08203a;
+  padding-top: 5px;
+  color: #ffff;
+  margin-bottom: 0px;
+}
+
+#editor-container {
+  height: 200px;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f9f9f9;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+  font-size: 16px;
 }

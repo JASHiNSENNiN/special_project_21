@@ -796,6 +796,7 @@ canvas {
   border: 1px solid #ddd;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
 @media (max-width: 768px) {
