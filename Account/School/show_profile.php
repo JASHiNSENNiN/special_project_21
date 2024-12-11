@@ -34,8 +34,8 @@ function get_user_images($email) {
     
     $result = $stmt->get_result();
 
-    $defaultProfileImage = 'image/default_profile.png';
-    $defaultCoverImage = 'image/default_cover.png';
+    $defaultProfileImage = 'uploads/default.png';
+    $defaultCoverImage = 'uploads/cover.png';
 
     $images = [
         'profile_image' => $defaultProfileImage,
