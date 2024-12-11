@@ -143,25 +143,32 @@ $tvl_students = get_students_by_strand('tvl');
             <span class="material-symbols-outlined">
                 balance
             </span>
-            <p>Humss</p>
+            <p>HUMSS</p>
         </div>
         <div class="box" id="#stem">
             <span class="material-symbols-outlined">
                 experiment
             </span>
-            <p>Stem</p>
+            <p>STEM</p>
         </div>
         <div class="box" id="#gas">
             <span class="material-symbols-outlined">
                 menu_book
             </span>
-            <p>Gas</p>
+            <p>GAS</p>
         </div>
         <div class="box" id="#techvoc">
             <span class="material-symbols-outlined">
                 construction
             </span>
-            <p>TechVOc</p>
+            <p>TECHVOC</p>
+        </div>
+        <div class="box" id="#abm">
+            <span class="material-symbols-outlined">
+                insert_drive_file
+            </span>
+
+            <p>ABM</p>
         </div>
     </div>
 
@@ -369,15 +376,65 @@ $tvl_students = get_students_by_strand('tvl');
                 </table>
             </div>
         </div>
+        <div id="abm" class="content">
+            <h1 style="margin-bottom: 50px; margin-top:50px">ABM</h1>
+            <div class="container2">
+                <table class="rwd-table">
+                    <tbody>
+                        <tr>
+                            <th>#</th>
+                            <th>ID Picture</th>
+                            <th>Student Name</th>
+                            <th>Organization</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+                        <?php
+                        $count = 1;
+                        foreach ($abm_students as $student) {
+                            echo "<tr>";
+                            echo "<td data-th='#'>" . $count . "</td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
+                            echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Organization'> NIA</td>";
+                            echo "<td data-th='Status'> Ongoing </td>";
+                            // echo "<td data-th='Result'>";
+                            // echo "<div class='container3'>";
+                            // echo "<div class='circular-progress'>";
+                            // echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
+                            // echo "</div>";
+                            // echo "</div>";
+                            // echo "</td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "</tr>";
+                            $count++;
+                        }
+                        ?>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
-        $(".box").click(function(e) {
+<<<<<<< HEAD
+        $(".box").click(function (e) {
             e.preventDefault();
             $(".content").removeClass("active");
             var content_id = $(this).attr("id");
             $(content_id).addClass("active");
         });
+=======
+    $(".box").click(function(e) {
+        e.preventDefault();
+        $(".content").removeClass("active");
+        var content_id = $(this).attr("id");
+        $(content_id).addClass("active");
+    });
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
     <br>
     <footer>
@@ -389,18 +446,30 @@ $tvl_students = get_students_by_strand('tvl');
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
+<<<<<<< HEAD
+        inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
+=======
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script>
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
+<<<<<<< HEAD
+        inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
+=======
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script>
@@ -409,10 +478,17 @@ $tvl_students = get_students_by_strand('tvl');
         const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
         let selectedStudent = '';
 
+<<<<<<< HEAD
         // Filter dropdown items based on search input
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             const filter = searchInput.value.toLowerCase();
             let hasMatches = false;
+=======
+    // Filter dropdown items based on search input
+    searchInput.addEventListener('input', function() {
+        const filter = searchInput.value.toLowerCase();
+        let hasMatches = false;
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
 
             // Show the dropdown list
             dropdownList.style.display = 'block';
@@ -441,19 +517,55 @@ $tvl_students = get_students_by_strand('tvl');
             if (!hasMatches) {
                 dropdownList.style.display = 'none';
             }
+<<<<<<< HEAD
+=======
+        }
+
+        // Hide dropdown if no matches found
+        if (!hasMatches) {
+            dropdownList.style.display = 'none';
+        }
+    });
+
+    // Select student on item click
+    for (let i = 0; i < dropdownItems.length; i++) {
+        dropdownItems[i].addEventListener('click', function() {
+            selectedStudent = this.textContent;
+            searchInput.value = selectedStudent;
+            dropdownList.style.display = 'none';
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
         });
 
+<<<<<<< HEAD
         // Select student on item click
         for (let i = 0; i < dropdownItems.length; i++) {
-            dropdownItems[i].addEventListener('click', function() {
+            dropdownItems[i].addEventListener('click', function () {
                 selectedStudent = this.textContent;
                 searchInput.value = selectedStudent;
                 dropdownList.style.display = 'none';
             });
+=======
+    // Add student to table
+    document.getElementById('addButton1').addEventListener('click', function() {
+        if (selectedStudent) {
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+
+            nameCell.textContent = selectedStudent;
+            row.appendChild(nameCell);
+            document.getElementById('studentTableBody1').appendChild(row);
+
+            // Clear input and reset selected student
+            searchInput.value = '';
+            selectedStudent = '';
+        } else {
+            alert('Please select a student.');
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
         }
 
+<<<<<<< HEAD
         // Add student to table
-        document.getElementById('addButton1').addEventListener('click', function() {
+        document.getElementById('addButton1').addEventListener('click', function () {
             if (selectedStudent) {
                 const row = document.createElement('tr');
                 const nameCell = document.createElement('td');
@@ -471,11 +583,19 @@ $tvl_students = get_students_by_strand('tvl');
         });
 
         // Hide dropdown when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!event.target.matches('.dropdown-input1')) {
                 dropdownList.style.display = 'none';
             }
         });
+=======
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.matches('.dropdown-input1')) {
+            dropdownList.style.display = 'none';
+        }
+    });
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script type="text/javascript">

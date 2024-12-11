@@ -85,11 +85,11 @@ function fetchEvaluationData($conn)
     while ($row = $result->fetch_assoc()) {
         $evaluation_data[] = [
             'name' => $row['first_name'] . ' ' . $row['last_name'], // Full name
-            'punctual' => (int)$row['punctual'],
-            'reports_regularly' => (int)$row['reports_regularly'],
-            'performs_tasks_independently' => (int)$row['performs_tasks_independently'],
-            'self_discipline' => (int)$row['self_discipline'],
-            'dedication_commitment' => (int)$row['dedication_commitment'],
+            'punctual' => (int) $row['punctual'],
+            'reports_regularly' => (int) $row['reports_regularly'],
+            'performs_tasks_independently' => (int) $row['performs_tasks_independently'],
+            'self_discipline' => (int) $row['self_discipline'],
+            'dedication_commitment' => (int) $row['dedication_commitment'],
         ];
     }
 
