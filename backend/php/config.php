@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(255),
   account_type ENUM('Student', 'School', 'Organization'),
   profile_image VARCHAR(255) DEFAULT 'default.png',
-  cover_image VARCHAR(255)
+  cover_image VARCHAR(255) DEFAULT 'cover.png'
 );
 
 CREATE TABLE IF NOT EXISTS school_profiles (
