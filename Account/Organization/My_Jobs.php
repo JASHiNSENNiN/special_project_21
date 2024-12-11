@@ -70,7 +70,7 @@ function generateJobCards($jobOffers)
 
         // Edit button
         // Inside the loop, generate the edit button for each job
-        echo '<a href="edit_jobs.php" target="_blank" class="editBtn" id="editBtn_' . $job['id'] . '" onclick="openModal(' . $job['id'] . ')">
+        echo '<a href="edit_jobs.php" target="_blank" class="editBtn" id="editBtn_' . $job['id'] . '">
         <button class="search-buttons card-buttons">Edit</button>
       </a>';
 
