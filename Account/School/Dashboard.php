@@ -236,6 +236,12 @@ if (isset($_SESSION['school_name'])) {
 
             }
         }
+
+        .bar-chart-container {
+            max-height: 100%;
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+        }
     </style>
 </head>
 
@@ -329,36 +335,69 @@ if (isset($_SESSION['school_name'])) {
                     <div class="content-center">
                         <div class="polar-chart-container">
                             <!-- <div id="radar-chart-ts"></div> -->
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Rating</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td data-label="Name">John Doe</td>
-                                        <td data-label="Rating">4.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Name">Jane Smith</td>
-                                        <td data-label="Rating">3.8</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Name">Emily Johnson</td>
-                                        <td data-label="Rating">5.0</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Name">Michael Brown</td>
-                                        <td data-label="Rating">4.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Name">Linda Davis</td>
-                                        <td data-label="Rating">4.0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Total Student</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Friendship</a></td>
+
+                                            <td data-label="TotalStudent">5</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Jollibee</a></td>
+
+                                            <td data-label="TotalStudent">2</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">NIA</a></td>
+
+                                            <td data-label="TotalStudent">5</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Puregold</a></td>
+
+                                            <td data-label="TotalStudent">1</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">BFP</a></td>
+
+                                            <td data-label="TotalStudent">10</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Police Station</a></td>
+
+                                            <td data-label="TotalStudent">5</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Brgy Hall</a></td>
+
+                                            <td data-label="TotalStudent">3</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td data-label="Name"><a href="#">Mang inasal</a></td>
+
+                                            <td data-label="TotalStudent">3</td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
                     </div>
@@ -376,6 +415,7 @@ if (isset($_SESSION['school_name'])) {
 
 
                 </div>
+
                 <div class="card-5">
                     <h4 class="chart-lbl">
                         Top Student Work Immersion
@@ -384,10 +424,9 @@ if (isset($_SESSION['school_name'])) {
                     </div>
                     <div class="bar-chart-container">
                         <div id="top_x_div_tp"></div>
-
-
                     </div>
                 </div>
+
                 <div class="card-6">
                     <h4 class="chart-lbl">
                         Top Student in Work skills
