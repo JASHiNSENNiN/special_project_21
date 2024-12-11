@@ -394,9 +394,10 @@ $tvl_students = get_students_by_strand('tvl');
                             // echo "</div>";
                             // echo "</div>";
                             // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td><br>
-                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
-                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button><br>
+                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br>
+                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button>  </td> 
+                            ";
                             echo "</tr>";
                             $count++;
                         }
@@ -411,7 +412,7 @@ $tvl_students = get_students_by_strand('tvl');
             <h1 style="margin-bottom: 50px; margin-top:50px">ABM</h1>
             <div class="container2">
                 <div class="search-bar">
-                    <input type="text" class="search-input" id="searchtechvocInput" onkeyup="searchTable('abm')"
+                    <input type="text" class="search-input" id="searchAbmInput" onkeyup="searchTable('abm')"
                         placeholder="Search..." />
                     <button class="search-button">Search</button>
                 </div>

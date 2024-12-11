@@ -1776,6 +1776,7 @@ input[type="file"] {
   justify-content: center;
   float: left;
   width: 50%;
+  margin-top: 50px;
   /* padding: 10px; */
   height: auto; /* Should be removed. Only for demonstration */
 }
@@ -1798,13 +1799,14 @@ input[type="file"] {
   justify-content: center;
   position: relative;
   border: 2px solid #fff;
+  margin: auto;
 }
 
 /* Checkmark style */
 .check-icon::before {
   content: "";
-  width: 20px;
-  height: 10px;
+  width: 10px;
+  height: 5px;
   border-left: 4px solid white;
   border-bottom: 4px solid white;
   transform: rotate(-45deg);
