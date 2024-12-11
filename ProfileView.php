@@ -277,7 +277,7 @@ $profile_divv = '<header class="nav-header">
                     <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
 
                     <br>
-                    <i class="fa fa-house" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
+                    <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
                     <br>
                     <i class="fa fa-briefcase" aria-hidden="true"></i><span class="other-info"><?= $currentWork   ?></span>
 
@@ -285,7 +285,7 @@ $profile_divv = '<header class="nav-header">
 
 
 
-                    <a style=" text-decoration: none; display:contents ;" href="Settings.php">
+                    <!-- <a style=" text-decoration: none; display:contents ;" href="Settings.php">
                         <button class="edit-button">
                             <svg class="edit-svgIcon" viewBox="0 0 512 512">
                                 <path
@@ -293,7 +293,7 @@ $profile_divv = '<header class="nav-header">
                                 </path>
                             </svg>
                         </button>
-                    </a>
+                    </a> -->
 
                 </div>
             </div>
