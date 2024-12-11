@@ -44,6 +44,45 @@ function isApplicantCompleted($pdo, $student_id, $job_id)
     return false;
 }
 
+function isApplicantVerified($pdo, $student_id, $job_id)
+{
+    
+    $sql = "SELECT sp.verified_status FROM applicants a
+            JOIN student_profiles sp ON a.student_id = sp.id
+            WHERE a.student_id = :student_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->bindParam(':job_id', $job_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        return $result['verified_status'] === true; 
+    }
+
+    return false;
+}
+
+function isStudentProfileVerified($pdo, $student_id)
+{
+    $sql = "SELECT verified_status FROM student_profiles 
+            WHERE user_id = :student_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        return $result['verified_status'] === true; 
+    }
+
+    return false;
+}
+
 function fetchAppliedJobAds($conn) {
     $studentId = $_SESSION['user_id'];
     $query = "
@@ -70,7 +109,18 @@ function fetchAppliedJobAds($conn) {
 
     return $jobTitles; 
 }
+$student_id = $_SESSION['user_id'];
+ $job_id = $student_profile['current_work']; 
+$is_completed = isApplicantCompleted($pdo, $student_id, $job_id);
 
+if ($is_completed) {
+    header('Location: Congratulation.php');
+    exit();
+}
+if (!isStudentProfileVerified($pdo, $student_id)) {
+    header('Location: verify.php');
+    exit();
+} 
 
 ?>
 <!DOCTYPE html>
@@ -654,10 +704,9 @@ function fetchAppliedJobAds($conn) {
 
             <div class="common_btns form_1_btns">
                 <?php
-                $student_id = $_SESSION['user_id']; // Ensure session variable is set
-                $job_id = $student_profile['current_work']; // Assuming this gives the current job ID
                 
-                $is_completed = isApplicantCompleted($pdo, $student_id, $job_id);
+                
+                $is_completed;
 
                 if ($is_completed): ?>
                 <div class="work-completion-message">
