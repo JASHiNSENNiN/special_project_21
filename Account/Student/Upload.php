@@ -684,7 +684,7 @@ require_once 'show_profile.php';
                                 hidden>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Resume').click();">Choose Files</button>
-                            <button type="submit" class="btn">Upload Files</button>
+                            <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
                     </form>
@@ -705,7 +705,7 @@ require_once 'show_profile.php';
                                 hidden>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Letter').click();">Choose Files</button>
-                            <button type="submit" class="btn">Upload Files</button>
+                            <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
                     </form>
@@ -726,7 +726,7 @@ require_once 'show_profile.php';
                                 multiple hidden>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Consent').click();">Choose Files</button>
-                            <button type="submit" class="btn">Upload Files</button>
+                            <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
                     </form>
@@ -747,7 +747,7 @@ require_once 'show_profile.php';
                                 multiple hidden>
                             <button type="button" class="btn" onclick="document.getElementById('Brgy').click();">Choose
                                 Files</button>
-                            <button type="submit" class="btn">Upload Files</button>
+                            <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
                     </form>
@@ -768,7 +768,7 @@ require_once 'show_profile.php';
                                 id="Permit" multiple>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Permit').click();">Choose Files</button>
-                            <button type="submit" class="btn">Upload Files</button>
+                            <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
                     </form>
@@ -789,7 +789,7 @@ require_once 'show_profile.php';
                                 id="Police" multiple>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Police').click();">Choose Files</button>
-                            <button type="submit" class="btn">Upload Files</button>
+                            <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
                     </form>
@@ -810,7 +810,7 @@ require_once 'show_profile.php';
                                 id="Medical" multiple hidden>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Medical').click();">Choose Files</button>
-                            <button type="submit" class="btn">Upload Files</button>
+                            <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
                     </form>
@@ -832,7 +832,7 @@ require_once 'show_profile.php';
                                 id="Policy" multiple>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Policy').click();">Choose Files</button>
-                            <button type="submit" class="btn">Upload Files</button>
+                            <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
                     </form>
