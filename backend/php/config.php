@@ -18,9 +18,7 @@ if (!$conn) {
 
 $sql = "CREATE DATABASE IF NOT EXISTS $database";
 if (mysqli_query($conn, $sql)) {
-  
 } else {
-  
 }
 
 
@@ -159,7 +157,7 @@ CREATE TABLE IF NOT EXISTS uploaded_documents (
     document_name ENUM('resume', 'application_letter', 'parents_consent', 'barangay_clearance', 
                         'mayors_permit', 'police_clearance', 'medical_certificate', 'insurance_policy, business_permit'),
     document_url VARCHAR(255),
-    upload_date DATE DEFAULT CURRENT_DATE,
+    upload_date DATE DEFAULT CURRENT_DATE, 
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 ";

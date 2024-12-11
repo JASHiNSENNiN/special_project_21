@@ -42,7 +42,7 @@ function generateJobCards($jobOffers)
     foreach ($jobOffers as $job) {
         $strands = json_decode($job['strands']);
         $description = strip_tags($job['description']); // Removes HTML tags
-$description = nl2br($description); // Preserve line breaks
+        $description = nl2br($description); // Preserve line breaks
 
         echo '
         <li>
@@ -70,7 +70,7 @@ $description = nl2br($description); // Preserve line breaks
 
         // Edit button
         // Inside the loop, generate the edit button for each job
-        echo '<a href="javascript:void(0);" class="editBtn" id="editBtn_' . $job['id'] . '" onclick="openModal(' . $job['id'] . ')">
+        echo '<a href="edit_jobs.php" target="_blank" class="editBtn" id="editBtn_' . $job['id'] . '" onclick="openModal(' . $job['id'] . ')">
         <button class="search-buttons card-buttons">Edit</button>
       </a>';
 
@@ -92,7 +92,7 @@ $description = nl2br($description); // Preserve line breaks
 </div>
 </div>
 </li>';
-        echo '<div id="myModal_' . $job['id'] . '" class="modal">
+        echo '<div id="myModal-job' . $job['id'] . '" class="modal-job">
     <div class="modal-content" style="width:50%; margin-top:-60px; border-radius:20px;">
         <span class="close" onclick="closeModal(' . $job['id'] . ')">&times;</span>
         <div class="gra">
@@ -122,6 +122,11 @@ $description = nl2br($description); // Preserve line breaks
                         </label>
                         <label class="con">TECHVOC
                             <input type="checkbox" name="strand[]" value="TVL" ' . (in_array("TVL", $strands)
+            ? 'checked' : '') . '>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="con">ABM
+                            <input type="checkbox" name="strand[]" value="ABM" ' . (in_array("ABM", $strands)
             ? 'checked' : '') . '>
                             <span class="checkmark"></span>
                         </label>
@@ -192,66 +197,12 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
-    <!-- <div id="myModal" class="modal">
-
-       
-        <div class="modal-content" style="width:50%; margin-top:-60px; border-radius:20px;">
-            <span class="close">&times;</span>
-            <div class="gra">
-                <h1 style="color:#fff;">EDIT JOB ADS</h1>
-                <p style="color:#fff;">Please fill in this form to update your job.</p>
-            </div>
-            <form method="post" action="/backend/php/add_job.php">
-
-                <div class="container1">
-
-
-                    <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle" required>
-
-                    <div class="container2">
-                       
-                        <label class="con">STEM
-                            <input type="checkbox" name="strand[]" value="STEM">
-                            <span class="checkmark"></span>
-                        </label>
-
-                        <label class="con">GAS
-                            <input type="checkbox" name="strand[]" value="GAS">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="con">HUMSS
-                            <input type="checkbox" name="strand[]" value="HUMSS">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="con">TECHVOC
-                            <input type="checkbox" name="strand[]" value="TVL">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    
-
-                    <input type="hidden" name="description" id="description">
-                    <div id="editor-container" style="height: 100px;"></div>
-
-                    <div class="container__nav">
-                        <small>By clicking 'Check box' you are agreeing to our <a
-                                href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
-                        <input type="checkbox" id="agree" name="agree" value="agree" required>
-                    </div>
-                    <button class="button-9" role="button" type="submit">Submit</button>
-                </div>
-            </form>
-
-        </div>
-
-    </div> -->
-
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="<?= $home ?>">
@@ -259,13 +210,11 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                 <!-- <img src="image/drdsnhs.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">
-                <!-- <a class="active-header" href="index.php">Home</a>
-                <a href="job_list.php">Company review</a>
-                <a href="contact.php">Contact</a> -->
+
             </nav>
         </div>
         <nav class="nav-log">
-            <!-- <a class="login-btn" href="login.php" style="margin-left: 20px;">Sign in</a> -->
+
             <div class="css-1ld7x2h eu4oa1w0"></div>
             <a class="com-btn" href="<?= $home ?>"> Back</a>
         </nav>
@@ -288,113 +237,57 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         </div>
     </div>
 
-    <!-- <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
-        btn.onclick = function () {
+    <script>
+        // Open the modal for the specific job
+        function openModal(jobId) {
+            var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
             modal.style.display = "block";
         }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
+        // Close the modal for the specific job
+        function closeModal(jobId) {
+            var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
             modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script> -->
-
-    <!-- <script>
-    // Get all the buttons that open modals
-    var modalBtns = document.querySelectorAll('.editBtn'); // Use a class for all buttons
-
-    modalBtns.forEach(function(btn) {
-        // Get the modal ID dynamically from the button's ID (e.g., editBtn_1 -> myModal_1)
-        var modalId = 'myModal_' + btn.id.split('_')[1]; // Extract job id from the button ID
-        var modal = document.getElementById(modalId); // Get the corresponding modal
-        var span = modal.getElementsByClassName("close")[0]; // Get the close button inside the modal
-
-        // When the user clicks the button, open the modal
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
+        // Close modal when clicking outside of it
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+            var modalBtns = document.querySelectorAll('.modal-job');
+            modalBtns.forEach(function(modal) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
         }
-    });
-    </script> -->
-
-    <script>
-    // Open the modal for the specific job
-    function openModal(jobId) {
-        var modal = document.getElementById("myModal_" + jobId); // Get the modal based on job ID
-        modal.style.display = "block";
-    }
-
-    // Close the modal for the specific job
-    function closeModal(jobId) {
-        var modal = document.getElementById("myModal_" + jobId); // Get the modal based on job ID
-        modal.style.display = "none";
-    }
-
-    // Close modal when clicking outside of it
-    window.onclick = function(event) {
-        var modalBtns = document.querySelectorAll('.modal');
-        modalBtns.forEach(function(modal) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        });
-    }
     </script>
 
     <script>
-    // Initialize Quill editor for each modal dynamically
-    document.addEventListener("DOMContentLoaded", function() {
-        <?php foreach ($jobOffers as $job): ?>
-        var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
-            theme: 'snow'
-        });
+        // Initialize Quill editor for each modal dynamically
+        document.addEventListener("DOMContentLoaded", function() {
+            <?php foreach ($jobOffers as $job): ?>
+                var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
+                    theme: 'snow'
+                });
 
-        // Set the current description in the editor for each job modal
-        quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
+                // Set the current description in the editor for each job modal
+                quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
 
-        // When submitting the form, save the content from the editor
-        var form = document.querySelector("#myModal_<?php echo $job['id']; ?> form");
-        form.addEventListener("submit", function() {
-            document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
-                .innerHTML;
+                // When submitting the form, save the content from the editor
+                var form = document.querySelector("#myModal-job<?php echo $job['id']; ?> form");
+                form.addEventListener("submit", function() {
+                    document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
+                        .innerHTML;
+                });
+            <?php endforeach; ?>
         });
-        <?php endforeach; ?>
-    });
     </script>
 
 
     <script>
-    function myFunction() {
-        confirm("Are you Sure?");
-    }
+        function myFunction() {
+            confirm("Are you Sure?");
+        }
     </script>
     <script type="text/javascript" src="css/doc.js"></script>
 
