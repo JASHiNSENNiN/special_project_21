@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
-$home = "Job_ads.php";
+$home = "My_Jobs.php";
 
 $host = "localhost";
 $username = $_ENV['MYSQL_USERNAME'];
