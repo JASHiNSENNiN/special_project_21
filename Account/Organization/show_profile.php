@@ -24,6 +24,9 @@ $strandFocus = strtoupper($_SESSION['strand']);
 function get_user_images($email)
 {
 
+function get_user_images($email)
+{
+
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -37,8 +40,10 @@ function get_user_images($email)
 
     $stmt = $conn->prepare("SELECT profile_image, cover_image FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
+    $stmt->bind_param("s", $email);
 
     $stmt->execute();
+
 
     $result = $stmt->get_result();
 
@@ -54,8 +59,12 @@ function get_user_images($email)
         $row = $result->fetch_assoc();
 
         if (!empty($row['profile_image']) && file_exists('uploads/' . $row['profile_image'])) {
+
+        if (!empty($row['profile_image']) && file_exists('uploads/' . $row['profile_image'])) {
             $images['profile_image'] = 'uploads/' . $row['profile_image'];
         }
+
+        if (!empty($row['cover_image']) && file_exists('uploads/' . $row['cover_image'])) {
 
         if (!empty($row['cover_image']) && file_exists('uploads/' . $row['cover_image'])) {
             $images['cover_image'] = 'uploads/' . $row['cover_image'];
@@ -68,6 +77,7 @@ function get_user_images($email)
     return $images;
 }
 
+$userImages = get_user_images($email);
 $userImages = get_user_images($email);
 
 $profileImageSrc = $userImages['profile_image'];
@@ -150,7 +160,7 @@ $profile_div = '<header class="nav-header">
                     
                          <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i>
                         Weather Update</a>
-                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;"></i> Settings & privacy</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;"></i> Settings</a>
                     <hr>
                     
                     <hr>
@@ -164,9 +174,11 @@ $profile_div = '<header class="nav-header">
 
 
     <img class="logoimg" id="cover-pic" src="' . $coverImageSrc . '" alt="" height="300" width="200">
+    <img class="logoimg" id="cover-pic" src="' . $coverImageSrc . '" alt="" height="300" width="200">
 
 
     <div class="profile">
+        <img id="profile-pic" src="' . $profileImageSrc . '" alt="">
         <img id="profile-pic" src="' . $profileImageSrc . '" alt="">
         <div class="name">' . $organizationName . '</div>
         <label class="strand" for="">' . $strandFocus . '</label>

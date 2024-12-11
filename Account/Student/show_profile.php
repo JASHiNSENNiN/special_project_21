@@ -42,7 +42,7 @@ $profile_div = '<header class="nav-header">
                         <a href="Upload.php"><i class="fa fa-file-text" style="font-size:24px; margin-right:10px;"></i>
                         FIle Upload</a>
                    
-                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings & privacy</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
                     <hr>
                     <hr>
                     <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>

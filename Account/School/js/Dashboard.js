@@ -40,21 +40,16 @@ google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStuffwh);
 
 function drawStuffwh() {
-  var datawh = new google.visualization.arrayToDataTable([
-    ["Student", "Rating"],
-    ["King's pawn (e4)", 44],
-    ["Queen's pawn (d4)", 31],
-    ["Knight to King 3 (Nf3)", 12],
-    ["Queen's bishop pawn (c4)", 10],
-    ["Other", 3],
-  ]);
+  var datawh = new google.visualization.arrayToDataTable(
+    topStudentsDataWorkHabits
+  );
 
   var options = {
     legend: { position: "none" },
-    bars: "horizontal", // Required for Material Bar Charts.
+    bars: "horizontal",
     axes: {
       x: {
-        0: { side: "top", label: "Rating" }, // Top x-axis.
+        0: { side: "top", label: "Rating" },
       },
     },
     bar: { groupWidth: "50%" },
@@ -73,21 +68,16 @@ google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStuffws);
 
 function drawStuffws() {
-  var dataws = new google.visualization.arrayToDataTable([
-    ["Student", "Rating"],
-    ["King's pawn (e4)", 44],
-    ["Queen's pawn (d4)", 31],
-    ["Knight to King 3 (Nf3)", 12],
-    ["Queen's bishop pawn (c4)", 10],
-    ["Other", 3],
-  ]);
+  var dataws = new google.visualization.arrayToDataTable(
+    topStudentsDataWorkSkills
+  );
 
   var options = {
     legend: { position: "none" },
-    bars: "horizontal", // Required for Material Bar Charts.
+    bars: "horizontal",
     axes: {
       x: {
-        0: { side: "top", label: "Rating" }, // Top x-axis.
+        0: { side: "top", label: "Rating" },
       },
     },
     bar: { groupWidth: "50%" },
@@ -106,33 +96,14 @@ google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStufftp);
 
 function drawStufftp() {
-  var datatp = new google.visualization.arrayToDataTable([
-    ["Student", "Rating"],
-    ["student 1", 21],
-    ["student 2", 30],
-    ["student 3", 16],
-    ["student 4", 10],
-    ["student 5", 14],
-    ["student 6", 31],
-    ["student 7", 12],
-    ["student 8", 10],
-    ["student 9", 24],
-    ["student 10", 11],
-    ["student 1", 12],
-    ["student 1", 10],
-    ["student 1", 24],
-    ["student 1", 11],
-    ["student 1", 12],
-    ["student 1", 10],
-    ["Other", 3],
-  ]);
+  var datatp = new google.visualization.arrayToDataTable(topStudentsData);
 
   var options = {
     legend: { position: "none" },
-    bars: "horizontal", // Required for Material Bar Charts.
+    bars: "horizontal",
     axes: {
       x: {
-        0: { side: "top", label: "Rating" }, // Top x-axis.
+        0: { side: "top", label: "Rating" },
       },
     },
     bar: { groupWidth: "50%" },
@@ -141,7 +112,6 @@ function drawStufftp() {
   var chart = new google.charts.Bar(document.getElementById("top_x_div_tp"));
   chart.draw(datatp, options);
 
-  // Redraw the chart on window resize
   window.addEventListener("resize", function () {
     chart.draw(datatp, options);
   });
@@ -151,14 +121,9 @@ google.charts.load("current", { packages: ["bar"] });
 google.charts.setOnLoadCallback(drawStuffss);
 
 function drawStuffss() {
-  var datass = new google.visualization.arrayToDataTable([
-    ["Student", "Rating"],
-    ["King's pawn (e4)", 44],
-    ["Queen's pawn (d4)", 31],
-    ["Knight to King 3 (Nf3)", 12],
-    ["Queen's bishop pawn (c4)", 10],
-    ["Other", 3],
-  ]);
+  var datass = new google.visualization.arrayToDataTable(
+    topStudentsDataJsonSocialSkills
+  );
 
   var options = {
     legend: { position: "none" },

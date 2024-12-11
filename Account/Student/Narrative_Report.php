@@ -10,6 +10,8 @@ $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
 $database = $_ENV['MYSQL_DBNAME'];
 
+$conn = new mysqli($host, $username, $password, $database);
+$appliedJobAds = fetchAppliedJobAds($conn);
 $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
 
 $sql = "SELECT COUNT(*) as eval_count FROM Organization_Evaluation 
@@ -17,13 +19,42 @@ $sql = "SELECT COUNT(*) as eval_count FROM Organization_Evaluation
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':job_id', $student_profile['current_work'], PDO::PARAM_INT);
-$stmt->bindParam( ':evaluator_id', $_SESSION['user_id'], PDO::PARAM_INT);
+$stmt->bindParam(':evaluator_id', $_SESSION['user_id'], PDO::PARAM_INT);
 $stmt->execute();
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $has_evaluation_today = $result['eval_count'] > 0;
 
-function isApplicantCompleted($pdo, $student_id, $job_id) {
+
+
+function fetchAppliedJobAds($conn) {
+    $studentId = $_SESSION['user_id'];
+    $query = "
+        SELECT 
+            jo.work_title 
+        FROM 
+            job_offers jo
+        INNER JOIN 
+            applicants a ON jo.id = a.job_id
+        WHERE 
+            a.student_id = ?
+    ";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $studentId); 
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $jobTitles = [];
+    
+    while ($row = $result->fetch_assoc()) {
+        $jobTitles[] = $row['work_title'];
+    }
+
+    return $jobTitles; 
+}
+function isApplicantCompleted($pdo, $student_id, $job_id)
+{
     $sql = "SELECT status FROM applicants 
             WHERE student_id = :student_id AND job_id = :job_id";
 
@@ -33,12 +64,44 @@ function isApplicantCompleted($pdo, $student_id, $job_id) {
     $stmt->execute();
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     if ($result) {
         return $result['status'] === 'completed';
     }
 
-    return false; 
+    return false;
+}
+
+function isStudentProfileVerified($pdo) {
+    $sql = "SELECT verified_status FROM student_profiles WHERE user_id = :user_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+    
+    if ($stmt->execute()) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return (bool) $result['verified_status']; // Explicitly cast to boolean
+        }
+    }
+    
+    return false;
+}
+
+$student_id = $_SESSION['user_id']; 
+
+if (!isStudentProfileVerified($pdo)) {
+    header('Location: verify.php'); 
+    exit(); 
+}
+
+$student_id = $_SESSION['user_id'];
+ $job_id = $student_profile['current_work']; 
+$is_completed = isApplicantCompleted($pdo, $student_id, $job_id);
+
+if ($is_completed) {
+    header('Location: Congratulation.php');
+    exit();
 }
 
 
@@ -92,7 +155,16 @@ function isApplicantCompleted($pdo, $student_id, $job_id) {
     <div class="titleEF">
         <b>
             <h1 class="sfa">Evaluation Form</h1>
-            <div class="box-topic"></div>
+            <div class="box-topic">
+                <?php 
+    
+    if (!empty($appliedJobAds)) {
+        echo implode(", ", $appliedJobAds); 
+    } else {
+        echo "No job applications found.";
+    }
+    ?>
+            </div>
         </b>
     </div>
 
@@ -614,13 +686,12 @@ function isApplicantCompleted($pdo, $student_id, $job_id) {
         <div class="btns_wrap">
 
             <div class="common_btns form_1_btns">
-                <?php 
-    $student_id = $_SESSION['user_id']; // Ensure session variable is set
-    $job_id = $student_profile['current_work']; // Assuming this gives the current job ID
+                <?php
+                
+                
+                $is_completed;
 
-    $is_completed = isApplicantCompleted($pdo, $student_id, $job_id);
-
-    if ($is_completed): ?>
+                if ($is_completed): ?>
                 <div class="work-completion-message">
                     Work Immersion Complete
                 </div>
