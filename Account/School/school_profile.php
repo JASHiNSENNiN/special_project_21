@@ -8,7 +8,7 @@ $email = $_SESSION['email'];
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php"> 
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/header.png" alt="Logo">
             </a>
            <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="Narrative_Report.php"> Home </a>
             

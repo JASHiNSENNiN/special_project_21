@@ -66,8 +66,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
 <head>
     <meta charset="UTF-8">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/My_Jobs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -86,17 +86,17 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="<?= $home ?>">
-                <img src="../../img/logov3.jpg" alt="Logo">
-                <!-- <img src="image/drdsnhs.svg" alt="Logo"> -->
+                <!-- <img src="../../img/logov3.jpg" alt="Logo"> -->
+                <img src="image/drdsnhs.svg" alt="Logo">
             </a>
             <nav class="dash-middle">
 
@@ -171,7 +171,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                                     href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
                             <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
                         </div>
-                        <button class="button-9-save" id="show-modal" role="button" type="submit" autofocus>Save</button>
+                        <button class="button-9-save" id="show-modal" role="button" type="submit"
+                            autofocus>Save</button>
                     </div>
                 </div>
             </form>
@@ -181,31 +182,31 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
 
     <script>
-        // Initialize Quill editor for each modal dynamically
-        document.addEventListener("DOMContentLoaded", function() {
-            <?php foreach ($jobOffers as $job): ?>
-                var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
-                    theme: 'snow'
-                });
-
-                // Set the current description in the editor for each job modal
-                quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
-
-                // When submitting the form, save the content from the editor
-                var form = document.querySelector("#myModal-job<?php echo $job['id']; ?> form");
-                form.addEventListener("submit", function() {
-                    document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
-                        .innerHTML;
-                });
-            <?php endforeach; ?>
+    // Initialize Quill editor for each modal dynamically
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php foreach ($jobOffers as $job): ?>
+        var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
+            theme: 'snow'
         });
+
+        // Set the current description in the editor for each job modal
+        quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
+
+        // When submitting the form, save the content from the editor
+        var form = document.querySelector("#myModal-job<?php echo $job['id']; ?> form");
+        form.addEventListener("submit", function() {
+            document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
+                .innerHTML;
+        });
+        <?php endforeach; ?>
+    });
     </script>
 
 
     <script>
-        function myFunction() {
-            confirm("Are you Sure?");
-        }
+    function myFunction() {
+        confirm("Are you Sure?");
+    }
     </script>
     <script type="text/javascript" src="css/doc.js"></script>
 

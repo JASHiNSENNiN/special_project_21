@@ -58,7 +58,8 @@ function get_students_by_strand($strand)
     return $students;
 }
 
-function verify_student($student_id) {
+function verify_student($student_id)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -77,7 +78,8 @@ function verify_student($student_id) {
     $conn->close();
 }
 
-function unverify_student($student_id) {
+function unverify_student($student_id)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -124,8 +126,8 @@ $tvl_students = get_students_by_strand('tvl');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Dashboard</title>
 
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/Student.css">
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
@@ -299,7 +301,7 @@ $tvl_students = get_students_by_strand('tvl');
                             if ($student['verified_status']) {
                                 echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
                             } else {
-                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button> <br>";
                             }
                             echo "</form>";
                             echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
@@ -350,7 +352,7 @@ $tvl_students = get_students_by_strand('tvl');
                             if ($student['verified_status']) {
                                 echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
                             } else {
-                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button> <br>";
                             }
                             echo "</form>";
                             echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
@@ -400,7 +402,7 @@ $tvl_students = get_students_by_strand('tvl');
                             if ($student['verified_status']) {
                                 echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
                             } else {
-                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
                             }
                             echo "</form>";
                             echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
@@ -449,7 +451,7 @@ $tvl_students = get_students_by_strand('tvl');
                             if ($student['verified_status']) {
                                 echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
                             } else {
-                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
                             }
                             echo "</form>";
                             echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
@@ -498,7 +500,7 @@ $tvl_students = get_students_by_strand('tvl');
                             if ($student['verified_status']) {
                                 echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button>";
                             } else {
-                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button>";
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
                             }
                             echo "</form>";
                             echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
@@ -551,8 +553,8 @@ $tvl_students = get_students_by_strand('tvl');
     </script>
     <br>
     <footer>
-        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
-        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p> -->
     </footer>
 
     <script>

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <title>Woriky Verification</title>
     <style>
     body {
@@ -116,7 +117,8 @@
     <header class="nav-header">
         <div class="logo">
             <a href="#">
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/header.png" alt="Logo">
+                <!-- <img src="image/logov3.jpg" alt="Logo"> -->
             </a>
         </div>
 

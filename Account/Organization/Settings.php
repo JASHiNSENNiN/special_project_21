@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['change_password'])) 
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssi", $organization_name, $strand, $user_id);
-        
+
         if ($stmt->execute()) {
             // Update images if they exist
             if ($profile_image) {
@@ -215,7 +215,7 @@ $conn->close();
                                             <div class="card-header">Cover Picture</div>
                                             <div class="card-body text-center">
                                                 <img class="img-account-cover mb-2" id="profile-image-cover"
-                                                    src="<?php echo $profile_data['cover_image'] ? 'uploads/' . $profile_data['cover_image'] : 'uploads/logov3.jpg'; ?>"
+                                                    src="<?php echo $profile_data['cover_image'] ? 'uploads/' . $profile_data['cover_image'] : 'uploads/cover.png'; ?>"
                                                     alt="Cover Image Preview" style="width: 100%; height: auto;">
                                                 <div class="small font-italic text-muted mb-4">JPG or PNG no larger than
                                                     5 MB</div>
@@ -283,12 +283,12 @@ $conn->close();
                                                         <select class="form-control" id="inputStrand" name="strand"
                                                             required>
                                                             <?php
-                                    $strands = ['stem' => 'STEM', 'humss' => 'HUMSS', 'abm' => 'ABM', 'gas' => 'GAS', 'tvl' => 'TVL'];
-                                    foreach ($strands as $value => $label) {
-                                        $selected = ($profile_data['strand'] ?? '') === $value ? 'selected' : '';
-                                        echo "<option value=\"$value\" $selected>$label</option>";
-                                    }
-                                    ?>
+                                                                $strands = ['stem' => 'STEM', 'humss' => 'HUMSS', 'abm' => 'ABM', 'gas' => 'GAS', 'tvl' => 'TVL'];
+                                                                foreach ($strands as $value => $label) {
+                                                                    $selected = ($profile_data['strand'] ?? '') === $value ? 'selected' : '';
+                                                                    echo "<option value=\"$value\" $selected>$label</option>";
+                                                                }
+                                                                ?>
                                                         </select>
                                                     </div>
                                                 </div>

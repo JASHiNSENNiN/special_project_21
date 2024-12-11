@@ -80,27 +80,28 @@ function generateJobCards($jobOffers)
 
 
 
-function isStudentProfileVerified($pdo) {
+function isStudentProfileVerified($pdo)
+{
     $sql = "SELECT verified_status FROM student_profiles WHERE user_id = :user_id";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-    
+
     if ($stmt->execute()) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             return (bool) $result['verified_status']; // Explicitly cast to boolean
         }
     }
-    
+
     return false;
 }
 
-$student_id = $_SESSION['user_id']; 
+$student_id = $_SESSION['user_id'];
 
 if (!isStudentProfileVerified($pdo)) {
-    header('Location: verify.php'); 
-    exit(); 
+    header('Location: verify.php');
+    exit();
 }
 
 // <a href="../../org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
@@ -114,8 +115,8 @@ require_once 'show_profile.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <!-- <link rel="stylesheet" type="text/css" href="css/modal.css"> -->
@@ -232,8 +233,8 @@ require_once 'show_profile.php';
     </script>
 
     <footer>
-        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
-        ©2024 Your Website. All rights reserved. | Junior Philippines Computer
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- ©2024 Your Website. All rights reserved. | Junior Philippines Computer -->
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>
