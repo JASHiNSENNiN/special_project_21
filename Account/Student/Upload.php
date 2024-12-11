@@ -850,9 +850,22 @@ require_once 'show_profile.php';
     window.onscroll = function() {
         myFunction();
     };
+    window.onscroll = function() {
+        myFunction();
+    };
 
     var header = document.getElementById("myHeader-sticky");
     var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
+        }
+    }
 
     function myFunction() {
         if (window.pageYOffset > sticky) {
@@ -865,31 +878,39 @@ require_once 'show_profile.php';
 
     <script type="text/javascript">
     const dropBoxes = document.querySelectorAll(".drop_box");
+    const dropBoxes = document.querySelectorAll(".drop_box");
 
     dropBoxes.forEach(dropBox => {
-        const button = dropBox.querySelector("button");
-        const input = dropBox.querySelector("input");
-        const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
+                const button = dropBox.querySelector("button");
+                const input = dropBox.querySelector("input");
+                const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
+                dropBoxes.forEach(dropBox => {
+                    const button = dropBox.querySelector("button");
+                    const input = dropBox.querySelector("input");
+                    const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
 
-        button.onclick = () => {
-            input.click();
-        };
+                    button.onclick = () => {
+                        input.click();
+                    };
+                    button.onclick = () => {
+                        input.click();
+                    };
 
-        input.addEventListener("change", function(e) {
-            const files = e.target.files; // Get the selected files
-            fileListElement.innerHTML = ''; // Clear the previous file list
+                    input.addEventListener("change", function(e) {
+                        const files = e.target.files; // Get the selected files
+                        fileListElement.innerHTML = ''; // Clear the previous file list
 
-            // Display each selected file
-            Array.from(files).forEach(file => {
-                let fileItem = document.createElement('li');
-                fileItem.innerHTML = `
+                        // Display each selected file
+                        Array.from(files).forEach(file => {
+                            let fileItem = document.createElement('li');
+                            fileItem.innerHTML = `
                     <h4>${file.name}</h4>
                     
                 `;
-                fileListElement.appendChild(fileItem);
-            });
-        });
-    });
+                            fileListElement.appendChild(fileItem);
+                        });
+                    });
+                });
     </script>
 
 
