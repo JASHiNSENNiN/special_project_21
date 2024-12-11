@@ -172,6 +172,7 @@ $tvl_students = get_students_by_strand('tvl');
         </div>
     </div>
 
+
     <!-- <div class="butts">
         <button class="button-66" id="modal-btn" role="button"><i class='fas fa-user-plus'
                 style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
@@ -211,9 +212,16 @@ $tvl_students = get_students_by_strand('tvl');
     <div id="content_container">
         <div id="humss" class="content active">
             <h1 style="margin-bottom: 50px; margin-top:50px">HUMSS</h1>
+
+
             <div class="container2">
-                <table class="rwd-table">
-                    <tbody id="studentTableBody1">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchHumssInput" onkeyup="searchTable('humss')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchHumss">
+                    <tbody>
                         <tr>
                             <th>#</th>
                             <th>ID Picture</th>
@@ -255,7 +263,12 @@ $tvl_students = get_students_by_strand('tvl');
         <div id="stem" class="content">
             <h1 style="margin-bottom: 50px; margin-top:50px">STEM</h1>
             <div class="container2">
-                <table class="rwd-table">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchStemInput" onkeyup="searchTable('stem')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchStem">
                     <tbody>
                         <tr>
                             <th>#</th>
@@ -297,7 +310,12 @@ $tvl_students = get_students_by_strand('tvl');
         <div id="gas" class="content">
             <h1 style="margin-bottom: 50px; margin-top:50px">GAS</h1>
             <div class="container2">
-                <table class="rwd-table">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchGasInput" onkeyup="searchTable('gas')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchGas">
                     <tbody>
                         <tr>
                             <th>#</th>
@@ -338,7 +356,12 @@ $tvl_students = get_students_by_strand('tvl');
         <div id="techvoc" class="content">
             <h1 style="margin-bottom: 50px; margin-top:50px">TECHVOC</h1>
             <div class="container2">
-                <table class="rwd-table">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchtechvocInput" onkeyup="searchTable('techvoc')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchTechvoc">
                     <tbody>
                         <tr>
                             <th>#</th>
@@ -379,7 +402,12 @@ $tvl_students = get_students_by_strand('tvl');
         <div id="abm" class="content">
             <h1 style="margin-bottom: 50px; margin-top:50px">ABM</h1>
             <div class="container2">
-                <table class="rwd-table">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchtechvocInput" onkeyup="searchTable('abm')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchAbm">
                     <tbody>
                         <tr>
                             <th>#</th>
@@ -420,12 +448,39 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
-    $(".box").click(function(e) {
-        e.preventDefault();
-        $(".content").removeClass("active");
-        var content_id = $(this).attr("id");
-        $(content_id).addClass("active");
-    });
+        function searchTable(section) {
+            // Get the input value and convert it to uppercase
+            let input = document.querySelector(`#search${section.charAt(0).toUpperCase() + section.slice(1)}Input`);
+            let filter = input.value.toUpperCase();
+
+            // Select the table within the active content section
+            let table = document.getElementById(`search${section.charAt(0).toUpperCase() + section.slice(1)}`);
+            let tr = table.getElementsByTagName('tr'); // Get all rows in the table
+
+            // Loop through the rows (skip the header row)
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td')[2]; // Check the Student Name column (index 2)
+                if (td) {
+                    let textValue = td.textContent || td.innerText;
+                    // If the name matches the input value, show the row; otherwise, hide it
+                    if (textValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = ''; // Show the row
+                    } else {
+                        tr[i].style.display = 'none'; // Hide the row
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <script>
+        $(".box").click(function (e) {
+            e.preventDefault();
+            $(".content").removeClass("active");
+            var content_id = $(this).attr("id");
+            $(content_id).addClass("active");
+        });
     </script>
     <br>
     <footer>
@@ -434,125 +489,125 @@ $tvl_students = get_students_by_strand('tvl');
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function () {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
-    <script>
-    const searchInput = document.getElementById('searchInput');
-    const dropdownList = document.getElementById('dropdownList1');
-    const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
-    let selectedStudent = '';
+    <!-- <script>
+        const searchInput = document.getElementById('searchInput');
+        const dropdownList = document.getElementById('dropdownList1');
+        const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
+        let selectedStudent = '';
 
-    // Filter dropdown items based on search input
-    searchInput.addEventListener('input', function() {
-        const filter = searchInput.value.toLowerCase();
-        let hasMatches = false;
+        // Filter dropdown items based on search input
+        searchInput.addEventListener('input', function () {
+            const filter = searchInput.value.toLowerCase();
+            let hasMatches = false;
 
-        // Show the dropdown list
-        dropdownList.style.display = 'block';
+            // Show the dropdown list
+            dropdownList.style.display = 'block';
 
-        // Check if the input is empty
-        if (filter === '') {
-            // If empty, show all items and return
+            // Check if the input is empty
+            if (filter === '') {
+                // If empty, show all items and return
+                for (let i = 0; i < dropdownItems.length; i++) {
+                    dropdownItems[i].style.display = 'block';
+                }
+                return; // Exit the function
+            }
+
+            // Filter based on input
             for (let i = 0; i < dropdownItems.length; i++) {
-                dropdownItems[i].style.display = 'block';
+                const itemText = dropdownItems[i].textContent.toLowerCase();
+                if (itemText.includes(filter)) {
+                    dropdownItems[i].style.display = 'block';
+                    hasMatches = true;
+                } else {
+                    dropdownItems[i].style.display = 'none';
+                }
             }
-            return; // Exit the function
-        }
 
-        // Filter based on input
-        for (let i = 0; i < dropdownItems.length; i++) {
-            const itemText = dropdownItems[i].textContent.toLowerCase();
-            if (itemText.includes(filter)) {
-                dropdownItems[i].style.display = 'block';
-                hasMatches = true;
-            } else {
-                dropdownItems[i].style.display = 'none';
+            // Hide dropdown if no matches found
+            if (!hasMatches) {
+                dropdownList.style.display = 'none';
             }
-        }
-
-        // Hide dropdown if no matches found
-        if (!hasMatches) {
-            dropdownList.style.display = 'none';
-        }
-    });
-
-    // Select student on item click
-    for (let i = 0; i < dropdownItems.length; i++) {
-        dropdownItems[i].addEventListener('click', function() {
-            selectedStudent = this.textContent;
-            searchInput.value = selectedStudent;
-            dropdownList.style.display = 'none';
         });
-    }
 
-    // Add student to table
-    document.getElementById('addButton1').addEventListener('click', function() {
-        if (selectedStudent) {
-            const row = document.createElement('tr');
-            const nameCell = document.createElement('td');
-
-            nameCell.textContent = selectedStudent;
-            row.appendChild(nameCell);
-            document.getElementById('studentTableBody1').appendChild(row);
-
-            // Clear input and reset selected student
-            searchInput.value = '';
-            selectedStudent = '';
-        } else {
-            alert('Please select a student.');
+        // Select student on item click
+        for (let i = 0; i < dropdownItems.length; i++) {
+            dropdownItems[i].addEventListener('click', function () {
+                selectedStudent = this.textContent;
+                searchInput.value = selectedStudent;
+                dropdownList.style.display = 'none';
+            });
         }
-    });
 
-    // Hide dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.matches('.dropdown-input1')) {
-            dropdownList.style.display = 'none';
-        }
-    });
-    </script>
+        // Add student to table
+        document.getElementById('addButton1').addEventListener('click', function () {
+            if (selectedStudent) {
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+
+                nameCell.textContent = selectedStudent;
+                row.appendChild(nameCell);
+                document.getElementById('studentTableBody1').appendChild(row);
+
+                // Clear input and reset selected student
+                searchInput.value = '';
+                selectedStudent = '';
+            } else {
+                alert('Please select a student.');
+            }
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            if (!event.target.matches('.dropdown-input1')) {
+                dropdownList.style.display = 'none';
+            }
+        });
+    </script> -->
 
     <script type="text/javascript">
-    // Get DOM Elements
-    const modal = document.querySelector('#my-modal');
-    const modalBtn = document.querySelector('#modal-btn');
-    const closeBtn = document.querySelector('.close');
+        // Get DOM Elements
+        const modal = document.querySelector('#my-modal');
+        const modalBtn = document.querySelector('#modal-btn');
+        const closeBtn = document.querySelector('.close');
 
-    // Events
-    modalBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', outsideClick);
+        // Events
+        modalBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
 
-    // Open
-    function openModal() {
-        modal.style.display = 'block';
-    }
+        // Open
+        function openModal() {
+            modal.style.display = 'block';
+        }
 
-    // Close
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    // Close If Outside Click
-    function outsideClick(e) {
-        if (e.target == modal) {
+        // Close
+        function closeModal() {
             modal.style.display = 'none';
         }
-    }
+
+        // Close If Outside Click
+        function outsideClick(e) {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
     </script>
 
 
