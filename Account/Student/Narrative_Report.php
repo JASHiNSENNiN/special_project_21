@@ -25,63 +25,7 @@ $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $has_evaluation_today = $result['eval_count'] > 0;
 
-function isApplicantCompleted($pdo, $student_id, $job_id)
-{
-    $sql = "SELECT status FROM applicants 
-            WHERE student_id = :student_id AND job_id = :job_id";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
-    $stmt->bindParam(':job_id', $job_id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($result) {
-        return $result['status'] === 'completed';
-    }
-
-    return false;
-}
-
-function isApplicantVerified($pdo, $student_id, $job_id)
-{
-    
-    $sql = "SELECT sp.verified_status FROM applicants a
-            JOIN student_profiles sp ON a.student_id = sp.id
-            WHERE a.student_id = :student_id";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
-    $stmt->bindParam(':job_id', $job_id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($result) {
-        return $result['verified_status'] === true; 
-    }
-
-    return false;
-}
-
-function isStudentProfileVerified($pdo, $student_id)
-{
-    $sql = "SELECT verified_status FROM student_profiles 
-            WHERE user_id = :student_id";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($result) {
-        return $result['verified_status'] === true; 
-    }
-
-    return false;
-}
 
 function fetchAppliedJobAds($conn) {
     $studentId = $_SESSION['user_id'];
@@ -109,6 +53,48 @@ function fetchAppliedJobAds($conn) {
 
     return $jobTitles; 
 }
+function isApplicantCompleted($pdo, $student_id, $job_id)
+{
+    $sql = "SELECT status FROM applicants 
+            WHERE student_id = :student_id AND job_id = :job_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->bindParam(':job_id', $job_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        return $result['status'] === 'completed';
+    }
+
+    return false;
+}
+
+function isStudentProfileVerified($pdo) {
+    $sql = "SELECT verified_status FROM student_profiles WHERE user_id = :user_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+    
+    if ($stmt->execute()) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return (bool) $result['verified_status']; // Explicitly cast to boolean
+        }
+    }
+    
+    return false;
+}
+
+$student_id = $_SESSION['user_id']; 
+
+if (!isStudentProfileVerified($pdo)) {
+    header('Location: verify.php'); 
+    exit(); 
+}
+
 $student_id = $_SESSION['user_id'];
  $job_id = $student_profile['current_work']; 
 $is_completed = isApplicantCompleted($pdo, $student_id, $job_id);
@@ -117,10 +103,7 @@ if ($is_completed) {
     header('Location: Congratulation.php');
     exit();
 }
-if (!isStudentProfileVerified($pdo, $student_id)) {
-    header('Location: verify.php');
-    exit();
-} 
+
 
 ?>
 <!DOCTYPE html>
