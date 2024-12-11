@@ -617,7 +617,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['insurance_policy_file
 
 
 
+function isDocumentUploaded($documentName) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
 
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Enable exceptions
+    } catch (PDOException $e) {
+        die("Could not connect to the database: " . $e->getMessage());
+    }
+
+    $sql = "SELECT COUNT(*) FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+    
+    $stmt = $pdo->prepare($sql);
+    
+    $userId = $_SESSION['user_id'];
+
+    $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindParam(':document_name', $documentName, PDO::PARAM_STR);
+
+    $stmt->execute();
+    
+    $count = $stmt->fetchColumn();
+    
+    return $count > 0;
+}
 
 
 
@@ -673,7 +700,10 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Resume <div class="check-icon"></div>
+                    <h3>Resume
+                        <?php if (isDocumentUploaded( "resume")): ?>
+                        <div class="check-icon"></div>
+                        <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
@@ -695,7 +725,11 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Application Letter <div class="check-icon"></div>
+                    <h3>Application Letter
+                        <?php if (isDocumentUploaded( "application_letter")): ?>
+                        <div class="check-icon"></div>
+                        <?php endif; ?>
+
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
@@ -706,7 +740,8 @@ require_once 'show_profile.php';
                             <input type="file" name="letter_files[]" accept=".doc,.docx,.pdf,.txt" id="Letter" multiple
                                 hidden>
                             <button type="button" class="btn"
-                                onclick="document.getElementById('Letter').click();">Choose Files</button>
+                                onclick="document.getElementById('Letter').click();">Choose
+                                Files</button>
                             <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
@@ -717,7 +752,10 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Parents Consent <div class="check-icon"></div>
+                    <h3>Parents Consent
+                        <?php if (isDocumentUploaded( "parents_consent")): ?>
+                        <div class="check-icon"></div>
+                        <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
@@ -728,7 +766,8 @@ require_once 'show_profile.php';
                             <input type="file" name="parents_consent_files[]" accept=".doc,.docx,.pdf" id="Consent"
                                 multiple hidden>
                             <button type="button" class="btn"
-                                onclick="document.getElementById('Consent').click();">Choose Files</button>
+                                onclick="document.getElementById('Consent').click();">Choose
+                                Files</button>
                             <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
@@ -739,7 +778,10 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Barangay Clearance <div class="check-icon"></div>
+                    <h3>Barangay Clearance
+                        <?php if (isDocumentUploaded( "barangay_clearance")): ?>
+                        <div class="check-icon"></div>
+                        <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
@@ -761,7 +803,10 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Mayor's Permit <div class="check-icon"></div>
+                    <h3>Mayor's Permit
+                        <?php if (isDocumentUploaded( "mayors_permit")): ?>
+                        <div class="check-icon"></div>
+                        <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
@@ -772,7 +817,8 @@ require_once 'show_profile.php';
                             <input type="file" name="mayor_permit_files[]" hidden accept=".doc,.docx,.pdf,.txt"
                                 id="Permit" multiple>
                             <button type="button" class="btn"
-                                onclick="document.getElementById('Permit').click();">Choose Files</button>
+                                onclick="document.getElementById('Permit').click();">Choose
+                                Files</button>
                             <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
@@ -783,7 +829,10 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Police Clearance <div class="check-icon"></div>
+                    <h3>Police Clearance
+                        <?php if (isDocumentUploaded( "police_clearance")): ?>
+                        <div class="check-icon"></div>
+                        <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
@@ -794,7 +843,8 @@ require_once 'show_profile.php';
                             <input type="file" name="police_clearance_files[]" hidden accept=".doc,.docx,.pdf,.txt"
                                 id="Police" multiple>
                             <button type="button" class="btn"
-                                onclick="document.getElementById('Police').click();">Choose Files</button>
+                                onclick="document.getElementById('Police').click();">Choose
+                                Files</button>
                             <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
@@ -805,7 +855,10 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Medical Certificate <div class="check-icon"></div>
+                    <h3>Medical Certificate
+                        <?php if (isDocumentUploaded( "medical_certificate")): ?>
+                        <div class="check-icon"></div>
+                        <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
@@ -816,7 +869,8 @@ require_once 'show_profile.php';
                             <input type="file" name="medical_certificate_files[]" accept=".doc,.docx,.pdf,.txt"
                                 id="Medical" multiple hidden>
                             <button type="button" class="btn"
-                                onclick="document.getElementById('Medical').click();">Choose Files</button>
+                                onclick="document.getElementById('Medical').click();">Choose
+                                Files</button>
                             <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
@@ -828,7 +882,10 @@ require_once 'show_profile.php';
             <div class="container">
 
                 <div class="card">
-                    <h3>Insurance Policy <div class="check-icon"></div>
+                    <h3>Insurance Policy
+                        <?php if (isDocumentUploaded( "insurance_policy")): ?>
+                        <div class="check-icon"></div>
+                        <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
@@ -839,7 +896,8 @@ require_once 'show_profile.php';
                             <input type="file" name="insurance_policy_files[]" hidden accept=".doc,.docx,.pdf,.txt"
                                 id="Policy" multiple>
                             <button type="button" class="btn"
-                                onclick="document.getElementById('Policy').click();">Choose Files</button>
+                                onclick="document.getElementById('Policy').click();">Choose
+                                Files</button>
                             <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
                         </div>
                         <ul class="file-list"></ul>
