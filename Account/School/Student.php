@@ -467,7 +467,7 @@ $tvl_students = get_students_by_strand('tvl');
             <h1 style="margin-bottom: 50px; margin-top:50px">ABM</h1>
             <div class="container2">
                 <div class="search-bar">
-                    <input type="text" class="search-input" id="searchtechvocInput" onkeyup="searchTable('abm')"
+                    <input type="text" class="search-input" id="searchAbmInput" onkeyup="searchTable('abm')"
                         placeholder="Search..." />
                     <button class="search-button">Search</button>
                 </div>

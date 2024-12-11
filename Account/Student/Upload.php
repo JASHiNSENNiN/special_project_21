@@ -717,7 +717,8 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Parents Consent</h3>
+                    <h3>Parents Consent <div class="check-icon"></div>
+                    </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
@@ -738,7 +739,8 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Barangay Clearance</h3>
+                    <h3>Barangay Clearance <div class="check-icon"></div>
+                    </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
@@ -759,7 +761,8 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Mayor's Permit</h3>
+                    <h3>Mayor's Permit <div class="check-icon"></div>
+                    </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
@@ -780,7 +783,8 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Police Clearance</h3>
+                    <h3>Police Clearance <div class="check-icon"></div>
+                    </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
@@ -801,7 +805,8 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Medical Certificate </h3>
+                    <h3>Medical Certificate <div class="check-icon"></div>
+                    </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
@@ -823,7 +828,8 @@ require_once 'show_profile.php';
             <div class="container">
 
                 <div class="card">
-                    <h3>Insurance Policy</h3>
+                    <h3>Insurance Policy <div class="check-icon"></div>
+                    </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
