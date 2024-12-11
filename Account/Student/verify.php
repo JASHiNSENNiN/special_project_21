@@ -127,9 +127,9 @@
 
             <!-- Dropdown menu -->
             <div class="dropdown">
-                <a href="#">Profile</a>
-                <a href="#">Settings</a>
-                <a href="#">Logout</a>
+                <a href="Profile.php">Profile</a>
+                <a href="Settings.php">Settings</a>
+                <a href="../../index.php">Logout</a>
             </div>
         </div>
     </header>
