@@ -420,12 +420,21 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
+<<<<<<< HEAD
         $(".box").click(function (e) {
             e.preventDefault();
             $(".content").removeClass("active");
             var content_id = $(this).attr("id");
             $(content_id).addClass("active");
         });
+=======
+    $(".box").click(function(e) {
+        e.preventDefault();
+        $(".content").removeClass("active");
+        var content_id = $(this).attr("id");
+        $(content_id).addClass("active");
+    });
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
     <br>
     <footer>
@@ -437,18 +446,30 @@ $tvl_students = get_students_by_strand('tvl');
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
+<<<<<<< HEAD
         inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
+=======
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script>
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
+<<<<<<< HEAD
         inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
+=======
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script>
@@ -457,10 +478,17 @@ $tvl_students = get_students_by_strand('tvl');
         const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
         let selectedStudent = '';
 
+<<<<<<< HEAD
         // Filter dropdown items based on search input
         searchInput.addEventListener('input', function () {
             const filter = searchInput.value.toLowerCase();
             let hasMatches = false;
+=======
+    // Filter dropdown items based on search input
+    searchInput.addEventListener('input', function() {
+        const filter = searchInput.value.toLowerCase();
+        let hasMatches = false;
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
 
             // Show the dropdown list
             dropdownList.style.display = 'block';
@@ -489,8 +517,26 @@ $tvl_students = get_students_by_strand('tvl');
             if (!hasMatches) {
                 dropdownList.style.display = 'none';
             }
+<<<<<<< HEAD
+=======
+        }
+
+        // Hide dropdown if no matches found
+        if (!hasMatches) {
+            dropdownList.style.display = 'none';
+        }
+    });
+
+    // Select student on item click
+    for (let i = 0; i < dropdownItems.length; i++) {
+        dropdownItems[i].addEventListener('click', function() {
+            selectedStudent = this.textContent;
+            searchInput.value = selectedStudent;
+            dropdownList.style.display = 'none';
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
         });
 
+<<<<<<< HEAD
         // Select student on item click
         for (let i = 0; i < dropdownItems.length; i++) {
             dropdownItems[i].addEventListener('click', function () {
@@ -498,8 +544,26 @@ $tvl_students = get_students_by_strand('tvl');
                 searchInput.value = selectedStudent;
                 dropdownList.style.display = 'none';
             });
+=======
+    // Add student to table
+    document.getElementById('addButton1').addEventListener('click', function() {
+        if (selectedStudent) {
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+
+            nameCell.textContent = selectedStudent;
+            row.appendChild(nameCell);
+            document.getElementById('studentTableBody1').appendChild(row);
+
+            // Clear input and reset selected student
+            searchInput.value = '';
+            selectedStudent = '';
+        } else {
+            alert('Please select a student.');
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
         }
 
+<<<<<<< HEAD
         // Add student to table
         document.getElementById('addButton1').addEventListener('click', function () {
             if (selectedStudent) {
@@ -524,6 +588,14 @@ $tvl_students = get_students_by_strand('tvl');
                 dropdownList.style.display = 'none';
             }
         });
+=======
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.matches('.dropdown-input1')) {
+            dropdownList.style.display = 'none';
+        }
+    });
+>>>>>>> 778b178b16296014141c701ac13d75e0b3477505
     </script>
 
     <script type="text/javascript">

@@ -199,43 +199,43 @@ if (isset($_SESSION['school_name'])) {
 
 
     <style>
+    .bubble-chart-container-wh,
+    .line-chart-container-ws,
+    .mixed-chart-container-tp {
+        padding: 20px;
+
+        height: 300px;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        overflow: hidden;
+
+    }
+
+    .card-4,
+    .card-6,
+    .card-7 {
+        display: flex;
+
+        flex-direction: column;
+
+        height: auto;
+
+    }
+
+    @media (max-width: 600px) {
+
         .bubble-chart-container-wh,
         .line-chart-container-ws,
         .mixed-chart-container-tp {
-            padding: 20px;
-
-            height: 300px;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            overflow: hidden;
+            height: 100%;
 
         }
-
-        .card-4,
-        .card-6,
-        .card-7 {
-            display: flex;
-
-            flex-direction: column;
-
-            height: auto;
-
-        }
-
-        @media (max-width: 600px) {
-
-            .bubble-chart-container-wh,
-            .line-chart-container-ws,
-            .mixed-chart-container-tp {
-                height: 100%;
-
-            }
-        }
+    }
     </style>
 </head>
 
@@ -470,13 +470,13 @@ if (isset($_SESSION['school_name'])) {
 
 
 
-        function updateCardData() {
-            document.querySelector('.card.blue h2').textContent = humss;
-            document.querySelector('.card.green h2').textContent = stem;
-            document.querySelector('.card.yellow h2').textContent = gas;
-            document.querySelector('.card.red h2').textContent = techVoc;
-            document.querySelector('.card.orange h2').textContent = abm;
-        }
+    function updateCardData() {
+        document.querySelector('.card.blue h2').textContent = humss;
+        document.querySelector('.card.green h2').textContent = stem;
+        document.querySelector('.card.yellow h2').textContent = gas;
+        document.querySelector('.card.red h2').textContent = techVoc;
+        document.querySelector('.card.orange h2').textContent = abm;
+    }
 
         updateCardData();
     </script>
