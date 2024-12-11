@@ -297,7 +297,9 @@ $tvl_students = get_students_by_strand('tvl');
                             // echo "</div>";
                             // echo "</div>";
                             // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button><br>
+                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
+                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button></td>";
                             echo "</tr>";
                             $count++;
                         }
@@ -345,7 +347,9 @@ $tvl_students = get_students_by_strand('tvl');
                             // echo "</div>";
                             // echo "</div>";
                             // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td><br>
+                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
+                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button>";
                             echo "</tr>";
                             $count++;
                         }
@@ -390,7 +394,9 @@ $tvl_students = get_students_by_strand('tvl');
                             // echo "</div>";
                             // echo "</div>";
                             // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td><br>
+                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
+                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button>";
                             echo "</tr>";
                             $count++;
                         }
@@ -436,7 +442,9 @@ $tvl_students = get_students_by_strand('tvl');
                             // echo "</div>";
                             // echo "</div>";
                             // echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button><br>
+                            <button class='button-10' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Verify</button> <br> 
+                            <button class='button-11' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">Unverify</button></td>";
                             echo "</tr>";
                             $count++;
                         }
@@ -450,39 +458,39 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
-        function searchTable(section) {
-            // Get the input value and convert it to uppercase
-            let input = document.querySelector(`#search${section.charAt(0).toUpperCase() + section.slice(1)}Input`);
-            let filter = input.value.toUpperCase();
+    function searchTable(section) {
+        // Get the input value and convert it to uppercase
+        let input = document.querySelector(`#search${section.charAt(0).toUpperCase() + section.slice(1)}Input`);
+        let filter = input.value.toUpperCase();
 
-            // Select the table within the active content section
-            let table = document.getElementById(`search${section.charAt(0).toUpperCase() + section.slice(1)}`);
-            let tr = table.getElementsByTagName('tr'); // Get all row   s in the table
+        // Select the table within the active content section
+        let table = document.getElementById(`search${section.charAt(0).toUpperCase() + section.slice(1)}`);
+        let tr = table.getElementsByTagName('tr'); // Get all row   s in the table
 
-            // Loop through the rows (skip the header row)
-            for (let i = 1; i < tr.length; i++) {
-                let td = tr[i].getElementsByTagName('td')[2]; // Check the Student Name column (index 2)
-                if (td) {
-                    let textValue = td.textContent || td.innerText;
-                    // If the name matches the input value, show the row; otherwise, hide it
-                    if (textValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = ''; // Show the row
-                    } else {
-                        tr[i].style.display = 'none'; // Hide the row
-                    }
+        // Loop through the rows (skip the header row)
+        for (let i = 1; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName('td')[2]; // Check the Student Name column (index 2)
+            if (td) {
+                let textValue = td.textContent || td.innerText;
+                // If the name matches the input value, show the row; otherwise, hide it
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ''; // Show the row
+                } else {
+                    tr[i].style.display = 'none'; // Hide the row
                 }
             }
         }
+    }
     </script>
 
 
     <script>
-        $(".box").click(function (e) {
-            e.preventDefault();
-            $(".content").removeClass("active");
-            var content_id = $(this).attr("id");
-            $(content_id).addClass("active");
-        });
+    $(".box").click(function(e) {
+        e.preventDefault();
+        $(".content").removeClass("active");
+        var content_id = $(this).attr("id");
+        $(content_id).addClass("active");
+    });
     </script>
     <br>
     <footer>
@@ -491,21 +499,21 @@ $tvl_students = get_students_by_strand('tvl');
     </footer>
 
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
     <!-- <script>
@@ -584,32 +592,32 @@ $tvl_students = get_students_by_strand('tvl');
     </script> -->
 
     <script type="text/javascript">
-        // Get DOM Elements
-        const modal = document.querySelector('#my-modal');
-        const modalBtn = document.querySelector('#modal-btn');
-        const closeBtn = document.querySelector('.close');
+    // Get DOM Elements
+    const modal = document.querySelector('#my-modal');
+    const modalBtn = document.querySelector('#modal-btn');
+    const closeBtn = document.querySelector('.close');
 
-        // Events
-        modalBtn.addEventListener('click', openModal);
-        closeBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', outsideClick);
+    // Events
+    modalBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', outsideClick);
 
-        // Open
-        function openModal() {
-            modal.style.display = 'block';
-        }
+    // Open
+    function openModal() {
+        modal.style.display = 'block';
+    }
 
-        // Close
-        function closeModal() {
+    // Close
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Close If Outside Click
+    function outsideClick(e) {
+        if (e.target == modal) {
             modal.style.display = 'none';
         }
-
-        // Close If Outside Click
-        function outsideClick(e) {
-            if (e.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
+    }
     </script>
 
 

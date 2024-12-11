@@ -1786,3 +1786,27 @@ input[type="file"] {
   display: table;
   clear: both;
 }
+
+/* Container for the circle */
+.check-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #00c09d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid #fff;
+}
+
+/* Checkmark style */
+.check-icon::before {
+  content: "";
+  width: 20px;
+  height: 10px;
+  border-left: 4px solid white;
+  border-bottom: 4px solid white;
+  transform: rotate(-45deg);
+  position: absolute;
+}

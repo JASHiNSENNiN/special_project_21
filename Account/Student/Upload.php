@@ -673,7 +673,8 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Resume</h3>
+                    <h3>Resume <div class="check-icon"></div>
+                    </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
@@ -694,7 +695,8 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Application Letter</h3>
+                    <h3>Application Letter <div class="check-icon"></div>
+                    </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
@@ -799,7 +801,7 @@ require_once 'show_profile.php';
         <div class="column">
             <div class="container">
                 <div class="card">
-                    <h3>Medical Certificate</h3>
+                    <h3>Medical Certificate </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="drop_box">
                             <header>
