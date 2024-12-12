@@ -41,8 +41,9 @@ function generateJobCards($jobOffers)
 
     foreach ($jobOffers as $job) {
         $strands = json_decode($job['strands']);
-        $description = strip_tags($job['description']); // Removes HTML tags
-        $description = nl2br($description); // Preserve line breaks
+        $description = html_entity_decode($job['description']);
+
+        $description = nl2br($description);
 
         echo '
         <li>
@@ -68,16 +69,12 @@ function generateJobCards($jobOffers)
                 
                 <div class="job-card-buttons">';
 
-        // Edit button
-        // Inside the loop, generate the edit button for each job
-        echo '<a href="edit_jobs.php" target="_blank" class="editBtn" id="editBtn_' . $job['id'] . '">
+        echo '<a href="edit_jobs.php?job_id='. base64_encode(encrypt_url_parameter((string) $job['id'])) .'" target="_blank" class="editBtn" id="editBtn_' . $job['id'] . '">
         <button class="search-buttons card-buttons">Edit</button>
       </a>';
 
 
 
-
-        // Conditionally display archive/unarchive buttons based on job status
         if ($job['is_archived']) {
             echo '<a href="?action=unarchive&id=' . htmlspecialchars($job['id']) . '"
     onclick="return confirm(\'Are you sure you want to unarchive this job?\');"><button

@@ -13,14 +13,39 @@ $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
 $database = $_ENV['MYSQL_DBNAME'];
 
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+$jobIdParam;
+$currentUrl = $_SERVER['REQUEST_URI'];
+$urlParts = parse_url($currentUrl);
+if (isset($urlParts['query'])) {
+    parse_str($urlParts['query'], $queryParameters);
+    if (isset($queryParameters['job_id'])) {
+        $jobIdParam =  $queryParameters['job_id'];
+    }
+} else {
+    echo "Query string parameter not found.";
+}
+
+$jobId = decrypt_url_parameter(base64_decode($jobIdParam));
+
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
 $conn = new mysqli($host, $username, $password, $database);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = $conn->prepare("SELECT * FROM job_offers WHERE partner_id = ?");
-$sql->bind_param("i", $_SESSION['user_id']);
+$sql = $conn->prepare("SELECT * FROM job_offers WHERE id = ?");
+$sql->bind_param("i", $jobId);
 $sql->execute();
 $result = $sql->get_result();
 
@@ -30,6 +55,37 @@ if ($result) {
         $jobOffers[] = $row;
     }
 }
+
+
+if (isset($_POST['job_id'])) {
+    // Collect the form data
+    $job_id = intval($_POST['job_id']); // Ensure it's an integer
+    $work_title = htmlspecialchars($_POST['work_title']);
+    $strands = json_encode($_POST['strand']); // Encode the strands back to JSON
+    $description = htmlspecialchars($_POST['description']);
+    
+    // Prepare the SQL update statement
+    $sql = "UPDATE job_offers 
+            SET work_title = ?, strands = ?, description = ? 
+            WHERE id = ?";
+    
+    // Prepare the statement
+    $stmt = $conn->prepare($sql);
+    
+    // Bind the parameters
+    $stmt->bind_param("sssi", $work_title, $strands, $description, $job_id);
+    
+    // Execute the statement
+    if ($stmt->execute()) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?job_id=" . $jobIdParam);
+        exit();
+    } else {
+        echo "<script>alert('Error updating job data: " . $stmt->error . "');</script>";
+    }
+    
+  
+}
+
 
 function archiveJob($id)
 {
@@ -118,53 +174,41 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             <!-- <div class="title">Popularity Company </div> -->
             <!-- <div class="title">Student List <div class="icon"><i class="bx bx-user-plus"></i> </div> </div> -->
 
-            <form method="post" action="/backend/php/add_job.php">
+            <?php
+// Assuming $jobOffers contains the job data from your previous query
+if (!empty($jobOffers)) {
+    $job = $jobOffers[0]; // Get the first (and likely only) job record
+?>
+            <form method="post" action="" id="jobForm">
+                <input type="hidden" name="job_id" value="<?php echo htmlspecialchars($job['id']); ?>">
                 <div class="container">
-
                     <h1 class="ti">EDIT POST JOB AD</h1>
-                    <p class="ti">Please fill in this form to create a job.</p>
-
-
+                    <p class="ti">Please update the job details.</p>
 
                     <div class="box">
                         <label for="worktitle"><b>Work Title</b></label>
-                        <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle" required>
+                        <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle"
+                            value="<?php echo htmlspecialchars($job['work_title']); ?>" required>
 
                         <label for=""><b>Choose a Strand:</b></label><br><br>
-                        <label class="con">STEM
-                            <input type="checkbox" name="strand[]" value="STEM">
+                        <?php 
+            // Decode the JSON strands
+            $selectedStrands = json_decode($job['strands'], true);
+            $strands = ['STEM', 'GAS', 'HUMSS', 'TVL', 'ABM'];
+            
+            foreach ($strands as $strand): ?>
+                        <label class="con"><?php echo $strand; ?>
+                            <input type="checkbox" name="strand[]" value="<?php echo $strand; ?>"
+                                <?php echo (in_array($strand, $selectedStrands) ? 'checked' : ''); ?>>
                             <span class="checkmark"></span>
                         </label>
-
-                        <label class="con">GAS
-                            <input type="checkbox" name="strand[]" value="GAS">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="con">HUMSS
-                            <input type="checkbox" name="strand[]" value="HUMSS">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="con">TECHVOC
-                            <input type="checkbox" name="strand[]" value="TVL">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="con">ABM
-                            <input type="checkbox" name="strand[]" value="ABM">
-                            <span class="checkmark"></span>
-                        </label>
-
-
-                        <div class="wrapper">
-                            <div class="title">
-
-
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
 
                         <h1>Job Description</h1>
-
                         <input type="hidden" name="description" id="description">
-                        <div id="editor-container"></div>
+                        <div id="editor-container">
+                            <?php echo html_entity_decode($job['description']); ?>
+                        </div>
 
                         <div class="container__nav">
                             <small>By clicking 'Check box' you are agreeing to our <a
@@ -172,10 +216,15 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                             <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
                         </div>
                         <button class="button-9-save" id="show-modal" role="button" type="submit"
-                            autofocus>Save</button>
+                            autofocus>Update</button>
                     </div>
                 </div>
             </form>
+            <?php 
+} else {
+    echo "No job found.";
+}
+?>
         </div>
     </div>
 
