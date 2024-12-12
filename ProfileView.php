@@ -251,7 +251,34 @@ $profile_divv = '<header class="nav-header">
 
 
     <style>
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                /* For Chrome */
+                color-adjust: exact;
+                /* For Firefox */
+            }
 
+            /* Hide elements that should not be printed */
+            .print-btn,
+            .btn,
+            .docu,
+            .edit-button,
+            .nav-header,
+            footer {
+                display: none;
+            }
+
+            /* You can also adjust the layout for printing */
+            .dashboard-body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+            }
+
+            /* Add any other styles you want for print */
+        }
+    </style>
     </style>
 
 
@@ -282,7 +309,7 @@ $profile_divv = '<header class="nav-header">
                     <i class="fa fa-briefcase" aria-hidden="true"></i><span class="other-info"><?= $currentWork   ?></span>
 
 
-                    <button class="print-btn">
+                    <button class="print-btn" onclick="printPage()">
                         <span class="printer-wrapper">
                             <span class="printer-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
@@ -331,7 +358,7 @@ $profile_divv = '<header class="nav-header">
     <!-- -----------------------------------column graph ------------------------- -->
 
     <div class="row-graph">
-        <d class="dashboard-body">
+        <d class="dashboard-body docu">
 
             <main class="dashboard__main app-content">
 
@@ -394,7 +421,7 @@ $profile_divv = '<header class="nav-header">
         </d iv>
 
         <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student'): ?>
-            <div class="dashboard-body">
+            <!-- <div class="dashboard-body">
 
                 <main class="dashboard__main app-content">
 
@@ -437,6 +464,87 @@ $profile_divv = '<header class="nav-header">
                                 </div>
                                 <button class="btn btn-add btn-primary" disabled="disabled">Add New</button>
                             </form>
+                            <span class="successfully-saved">
+                                <i class="fa fa-thumbs-up"></i> Saved!
+                            </span>
+                        </div>
+                    </article>
+                </main>
+            </div> -->
+
+            <div class="dashboard-body docu">
+
+                <main class="dashboard__main app-content">
+
+                    <article class="app-content__widget app-content__widget--primary">
+                        <hr>
+                        <h2 class="title-resume">Application Documents</h2>
+                        <!-- <span class="description-resume">Please upload the required documents for your work immersion
+                        application: resume, application letter, barangay clearance, police clearance, mayor's
+                        clearance, and medical certificate. </span> -->
+                        <div id="content-cover">
+
+                            <table class="table" id="sortableTable-docu">
+                                <thead>
+                                    <tr>
+                                        <th class="th-name">Document Name</th>
+                                        <th class="th-date">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($unique_documents as $document_name): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); // Display mapped name 
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                // Check for the document URL and existence of file
+                                                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                                $stmt = $pdo->prepare($sql);
+                                                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                                $stmt->execute();
+                                                $document_url = $stmt->fetchColumn();
+
+                                                if ($document_url) {
+                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                                    if (file_exists($file_path)): ?>
+                                                        <a
+                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
+                                                            <button>Download</button>
+                                                        </a>
+                                                    <?php else: ?>
+                                                        <button disabled>File Not Available</button>
+                                                    <?php endif;
+                                                } else { ?>
+                                                    <button disabled>No Document Found</button>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <!-- <div class="one_col file-upload">
+                                <label for="documentType">Document Type:</label>
+                                <select id="documentType" name="documentType">
+                                    <option value="">--Select--</option>
+                                    <option value="Resume">Resume</option>
+                                    <option value="Application-letter ">Application letter </option>
+                                    <option value="Barangay">Barangay</option>
+                                    <option value="Police-Clearance ">Police Clearance </option>
+                                    <option value="Mayors-Clearance ">Mayor's Clearance </option>
+                                    <option value="Medical-Certificate">Medical Certificate</option>
+                                </select>
+                                <div id="file">
+                                    <ul id="image-list">
+                                    </ul>
+                                </div>
+                                <input type="file" class="file" name="images" id="uploadFile" multiple />
+                                <span class="error"></span>
+                            </div> -->
+                            <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
+
                             <span class="successfully-saved">
                                 <i class="fa fa-thumbs-up"></i> Saved!
                             </span>
@@ -582,7 +690,11 @@ $profile_divv = '<header class="nav-header">
 
 
 
-
+    <script>
+        function printPage() {
+            window.print(); // This will open the print dialog
+        }
+    </script>
     <!-- End -->
     <footer>
         <!-- 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School -->
