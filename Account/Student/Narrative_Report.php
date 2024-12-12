@@ -27,7 +27,8 @@ $has_evaluation_today = $result['eval_count'] > 0;
 
 
 
-function fetchAppliedJobAds($conn) {
+function fetchAppliedJobAds($conn)
+{
     $studentId = $_SESSION['user_id'];
     $query = "
         SELECT 
@@ -41,17 +42,17 @@ function fetchAppliedJobAds($conn) {
     ";
 
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $studentId); 
+    $stmt->bind_param("i", $studentId);
     $stmt->execute();
     $result = $stmt->get_result();
 
     $jobTitles = [];
-    
+
     while ($row = $result->fetch_assoc()) {
         $jobTitles[] = $row['work_title'];
     }
 
-    return $jobTitles; 
+    return $jobTitles;
 }
 function isApplicantCompleted($pdo, $student_id, $job_id)
 {
@@ -72,31 +73,32 @@ function isApplicantCompleted($pdo, $student_id, $job_id)
     return false;
 }
 
-function isStudentProfileVerified($pdo) {
+function isStudentProfileVerified($pdo)
+{
     $sql = "SELECT verified_status FROM student_profiles WHERE user_id = :user_id";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-    
+
     if ($stmt->execute()) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             return (bool) $result['verified_status']; // Explicitly cast to boolean
         }
     }
-    
+
     return false;
 }
 
-$student_id = $_SESSION['user_id']; 
+$student_id = $_SESSION['user_id'];
 
 if (!isStudentProfileVerified($pdo)) {
-    header('Location: verify.php'); 
-    exit(); 
+    header('Location: verify.php');
+    exit();
 }
 
 $student_id = $_SESSION['user_id'];
- $job_id = $student_profile['current_work']; 
+$job_id = $student_profile['current_work'];
 $is_completed = isApplicantCompleted($pdo, $student_id, $job_id);
 
 if ($is_completed) {
@@ -156,14 +158,14 @@ if ($is_completed) {
         <b>
             <h1 class="sfa">Evaluation Form</h1>
             <div class="box-topic">
-                <?php 
-    
-    if (!empty($appliedJobAds)) {
-        echo implode(", ", $appliedJobAds); 
-    } else {
-        echo "No job applications found.";
-    }
-    ?>
+                <?php
+
+                if (!empty($appliedJobAds)) {
+                    echo implode(", ", $appliedJobAds);
+                } else {
+                    echo "No job applications found.";
+                }
+                ?>
             </div>
         </b>
     </div>
@@ -687,8 +689,8 @@ if ($is_completed) {
 
             <div class="common_btns form_1_btns">
                 <?php
-                
-                
+
+
                 $is_completed;
 
                 if ($is_completed): ?>
@@ -757,8 +759,8 @@ if ($is_completed) {
 
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p>
-
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p> -->
+        ©2024 Your Website. All rights reserved. | Junior Philippines Computer
     </footer>
 
     <script>
