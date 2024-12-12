@@ -25,7 +25,7 @@ $cover_image = (!empty($cover_image_path) && file_exists($_SERVER['DOCUMENT_ROOT
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/header.png" alt="Logo">
             </a>
         </div>
         <nav class="by">

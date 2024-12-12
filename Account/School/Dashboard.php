@@ -59,7 +59,7 @@ function countStrands($students)
 
 function fetchEvaluationData($conn)
 {
-   
+
     $school_name = $_SESSION['school_name'];
 
     $sql = "
@@ -73,7 +73,7 @@ function fetchEvaluationData($conn)
            SE.dedication_commitment
     FROM Student_Evaluation SE
     JOIN student_profiles SP ON SE.student_id = SP.user_id 
-    WHERE SP.school = ?"; 
+    WHERE SP.school = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $school_name);
     $stmt->execute();
@@ -95,11 +95,12 @@ function fetchEvaluationData($conn)
 }
 
 
-function fetchTopStudentsWorkHabits($conn) {
-   
-        $school_name = $_SESSION['school_name'];
-    
-        $query = "
+function fetchTopStudentsWorkHabits($conn)
+{
+
+    $school_name = $_SESSION['school_name'];
+
+    $query = "
             SELECT 
                 sp.first_name, 
                 sp.last_name, 
@@ -120,33 +121,34 @@ function fetchTopStudentsWorkHabits($conn) {
                 average_work_habits_score DESC
             LIMIT 5
         ";
-    
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $school_name); 
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result) {
-            $topStudents = [];
-            
-            while ($row = $result->fetch_assoc()) {
-                $topStudents[] = [
-                    'name' => $row['first_name'] . ' ' . $row['last_name'],
-                    'average_score' => $row['average_work_habits_score']
-                ];
-            }
-            
-            return $topStudents;
-        } else {
-            error_log("Error fetching top students: " . $conn->error);
-            return [];
-        }
-    }
 
-    function fetchTopStudentsWorkSkills($conn) {
-        $school_name = $_SESSION['school_name'];
-    
-        $query = "
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $school_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result) {
+        $topStudents = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $topStudents[] = [
+                'name' => $row['first_name'] . ' ' . $row['last_name'],
+                'average_score' => $row['average_work_habits_score']
+            ];
+        }
+
+        return $topStudents;
+    } else {
+        error_log("Error fetching top students: " . $conn->error);
+        return [];
+    }
+}
+
+function fetchTopStudentsWorkSkills($conn)
+{
+    $school_name = $_SESSION['school_name'];
+
+    $query = "
             SELECT 
                 sp.first_name, 
                 sp.last_name, 
@@ -168,33 +170,34 @@ function fetchTopStudentsWorkHabits($conn) {
                 average_skills_score DESC
             LIMIT 5
         ";
-    
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $school_name); 
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result) {
-            $topStudents = [];
-            
-            while ($row = $result->fetch_assoc()) {
-                $topStudents[] = [
-                    'name' => $row['first_name'] . ' ' . $row['last_name'],
-                    'average_score' => $row['average_skills_score']
-                ];
-            }
-            
-            return $topStudents;
-        } else {
-            error_log("Error fetching top students: " . $conn->error);
-            return [];
-        }
-    }
 
-    function fetchTopStudentsSocialSkills($conn) {
-        $school_name = $_SESSION['school_name'];
-    
-        $query = "
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $school_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result) {
+        $topStudents = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $topStudents[] = [
+                'name' => $row['first_name'] . ' ' . $row['last_name'],
+                'average_score' => $row['average_skills_score']
+            ];
+        }
+
+        return $topStudents;
+    } else {
+        error_log("Error fetching top students: " . $conn->error);
+        return [];
+    }
+}
+
+function fetchTopStudentsSocialSkills($conn)
+{
+    $school_name = $_SESSION['school_name'];
+
+    $query = "
             SELECT 
                 sp.first_name, 
                 sp.last_name, 
@@ -217,33 +220,34 @@ function fetchTopStudentsWorkHabits($conn) {
                 average_social_skills_score DESC
             LIMIT 5
         ";
-    
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $school_name); 
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result) {
-            $topStudents = [];
-            
-            while ($row = $result->fetch_assoc()) {
-                $topStudents[] = [
-                    'name' => $row['first_name'] . ' ' . $row['last_name'],
-                    'average_score' => $row['average_social_skills_score']
-                ];
-            }
-            
-            return $topStudents;
-        } else {
-            error_log("Error fetching top students: " . $conn->error);
-            return [];
-        }
-    }
 
-        function fetchJobOffersWithStudentCount($conn) {
-            $school_name = $_SESSION['school_name'];
-        
-            $query = "
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $school_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result) {
+        $topStudents = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $topStudents[] = [
+                'name' => $row['first_name'] . ' ' . $row['last_name'],
+                'average_score' => $row['average_social_skills_score']
+            ];
+        }
+
+        return $topStudents;
+    } else {
+        error_log("Error fetching top students: " . $conn->error);
+        return [];
+    }
+}
+
+function fetchJobOffersWithStudentCount($conn)
+{
+    $school_name = $_SESSION['school_name'];
+
+    $query = "
                 SELECT 
                     jo.work_title, 
                     COUNT(a.student_id) AS student_count
@@ -264,33 +268,34 @@ function fetchTopStudentsWorkHabits($conn) {
                 ORDER BY 
                     student_count DESC
             ";
-        
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("s", $school_name); 
-            $stmt->execute();
-            $result = $stmt->get_result();
-            
-            if ($result) {
-                $jobOffers = [];
-                
-                while ($row = $result->fetch_assoc()) {
-                    $jobOffers[] = [
-                        'work_title' => $row['work_title'],
-                        'student_count' => $row['student_count']
-                    ];
-                }
-                
-                return $jobOffers;
-            } else {
-                error_log("Error fetching job offers: " . $conn->error);
-                return [];
-            }
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $school_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result) {
+        $jobOffers = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $jobOffers[] = [
+                'work_title' => $row['work_title'],
+                'student_count' => $row['student_count']
+            ];
         }
 
-function fetchTopStudents($conn) {
+        return $jobOffers;
+    } else {
+        error_log("Error fetching job offers: " . $conn->error);
+        return [];
+    }
+}
+
+function fetchTopStudents($conn)
+{
     $school_name = $_SESSION['school_name'];
 
-$query = "
+    $query = "
     SELECT 
         sp.first_name, 
         sp.last_name, 
@@ -325,21 +330,21 @@ $query = "
     LIMIT 10
 ";
 
-$stmt = $conn->prepare($query);
-$stmt->bind_param("s", $school_name); 
-$stmt->execute();
-$result = $stmt->get_result();
-    
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $school_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
     if ($result) {
         $topStudents = [];
-        
+
         while ($row = $result->fetch_assoc()) {
             $topStudents[] = [
                 'name' => $row['first_name'] . ' ' . $row['last_name'],
                 'score' => $row['total_score']
             ];
         }
-        
+
         return $topStudents;
     } else {
         error_log("Error fetching top students: " . $conn->error);
@@ -361,12 +366,12 @@ if (isset($_SESSION['school_name'])) {
 
     $strandCounts = countStrands($students);
 
-    
+
     $topStudentsData = fetchTopStudents($conn);
 
     $topStudentsDataJson = json_encode([
         ['Student', 'Rating'],
-        ...array_map(function($student) {
+        ...array_map(function ($student) {
             return [$student['name'], $student['score']];
         }, $topStudentsData)
     ]);
@@ -375,8 +380,8 @@ if (isset($_SESSION['school_name'])) {
 
     $topStudentsDataJsonWorkHabits = json_encode([
         ['Student', 'Rating'],
-        ...array_map(function($student) {
-            return [$student['name'], $student['average_score']]; 
+        ...array_map(function ($student) {
+            return [$student['name'], $student['average_score']];
         }, $topStudentsDataWorkHabits)
     ]);
 
@@ -384,7 +389,7 @@ if (isset($_SESSION['school_name'])) {
 
     $topStudentsDataJsonWorkSkills = json_encode([
         ['Student', 'Rating'],
-        ...array_map(function($student) {
+        ...array_map(function ($student) {
             return [$student['name'], $student['average_score']];
         }, $topStudentsDataWorkSkills)
     ]);
@@ -393,16 +398,16 @@ if (isset($_SESSION['school_name'])) {
 
     $topStudentsDataJsonSocialSkills = json_encode([
         ['Student', 'Rating'],
-        ...array_map(function($student) {
+        ...array_map(function ($student) {
             return [$student['name'], $student['average_score']];
         }, $topStudentsDataSocialSkills)
     ]);
 
     $jobOffersData = fetchJobOffersWithStudentCount($conn);
-    
+
     $jobOffersDataJson = json_encode([
         ['Work Title', 'Student Count'],
-        ...array_map(function($offer) {
+        ...array_map(function ($offer) {
             return [$offer['work_title'], $offer['student_count']];
         }, $jobOffersData)
     ]);
@@ -423,8 +428,8 @@ if (isset($_SESSION['school_name'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Dashboard</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/Dashboard.css">
     <link rel="stylesheet" type="text/css" href="css/analytics.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -602,21 +607,21 @@ if (isset($_SESSION['school_name'])) {
                                     </thead>
                                     <tbody>
                                         <?php
-     
-            $jobOffersData = fetchJobOffersWithStudentCount($conn);
 
-            if (!empty($jobOffersData)) {
-                foreach ($jobOffersData as $offer) {
-                    echo '<tr>';
-                    echo '<td data-label="Name"><a href="#">' . htmlspecialchars($offer['work_title']) . '</a></td>';
-                    echo '<td data-label="TotalStudent">' . htmlspecialchars($offer['student_count']) . '</td>';
-                    echo '</tr>';
-                }
-            } else {
-        
-                echo '<tr><td colspan="2">No job offers found.</td></tr>';
-            }
-            ?>
+                                        $jobOffersData = fetchJobOffersWithStudentCount($conn);
+
+                                        if (!empty($jobOffersData)) {
+                                            foreach ($jobOffersData as $offer) {
+                                                echo '<tr>';
+                                                echo '<td data-label="Name"><a href="#">' . htmlspecialchars($offer['work_title']) . '</a></td>';
+                                                echo '<td data-label="TotalStudent">' . htmlspecialchars($offer['student_count']) . '</td>';
+                                                echo '</tr>';
+                                            }
+                                        } else {
+
+                                            echo '<tr><td colspan="2">No job offers found.</td></tr>';
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -797,8 +802,8 @@ if (isset($_SESSION['school_name'])) {
 
 
     <footer>
-        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
-        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p> -->
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>

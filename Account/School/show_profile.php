@@ -122,7 +122,7 @@ $navbar_div = '<header class="nav-header">
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="#">
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/header.png" alt="Logo">
             </a>
         </div>
 

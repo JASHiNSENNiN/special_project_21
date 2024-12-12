@@ -10,9 +10,9 @@ require_once 'show_profile.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization Dashboard</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" type="text/css" href="css/job_ads.css">
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
 
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
@@ -145,8 +145,8 @@ require_once 'show_profile.php';
     <script type="text/javascript" src="css/doc.js"></script>
 
     <footer>
-        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer </p>
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer </p> -->
     </footer>
 
     <!-- <script>
@@ -195,53 +195,53 @@ require_once 'show_profile.php';
     </script> -->
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const button = document.getElementById("show-modal");
-            const modal = document.getElementById("success-modal");
-            const countdownElement = document.getElementById("countdown");
+    document.addEventListener("DOMContentLoaded", () => {
+        const button = document.getElementById("show-modal");
+        const modal = document.getElementById("success-modal");
+        const countdownElement = document.getElementById("countdown");
 
 
 
-            button.addEventListener("click", () => {
-                // Open the modal
-                modal.classList.add("modal--open");
+        button.addEventListener("click", () => {
+            // Open the modal
+            modal.classList.add("modal--open");
 
-                // Countdown logic
-                let seconds = 5;
+            // Countdown logic
+            let seconds = 5;
+            countdownElement.textContent = seconds;
+
+            const countdownInterval = setInterval(() => {
+                seconds--;
                 countdownElement.textContent = seconds;
 
-                const countdownInterval = setInterval(() => {
-                    seconds--;
-                    countdownElement.textContent = seconds;
-
-                    // When the countdown reaches 0, hide the modal
-                    if (seconds <= 0) {
-                        clearInterval(countdownInterval);
-                        modal.classList.remove("modal--open");
-                    }
-                }, 1000);
-            });
+                // When the countdown reaches 0, hide the modal
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    modal.classList.remove("modal--open");
+                }
+            }, 1000);
         });
+    });
     </script>
 
 
 
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
 

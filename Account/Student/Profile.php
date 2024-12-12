@@ -311,8 +311,8 @@ $document_name_mapping = [
 
 
     <title>Student Dashboard</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
 
 
     <!-- FontAwesome 5 -->
@@ -768,8 +768,8 @@ $document_name_mapping = [
 
     <!-- End -->
     <footer>
-        <!-- 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School -->
-        2024 Your Website. All rights reserved. | Junior Philippines Computer
+        2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School
+        <!-- 2024 Your Website. All rights reserved. | Junior Philippines Computer -->
         Society Students
     </footer>
 
