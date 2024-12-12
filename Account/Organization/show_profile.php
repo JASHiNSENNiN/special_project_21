@@ -1,6 +1,6 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
-  session_start();
+    session_start();
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
@@ -15,7 +15,7 @@ $database = $_ENV['MYSQL_DBNAME'];
 $conn = new mysqli($host, $username, $password, $database);
 
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
 // Session variables
@@ -27,51 +27,51 @@ $strandFocus = strtoupper($_SESSION['strand']);
 // Function to get user images based on email
 function get_user_images($email)
 {
-  $host = "localhost";
-  $username = $_ENV['MYSQL_USERNAME'];
-  $password = $_ENV['MYSQL_PASSWORD'];
-  $database = $_ENV['MYSQL_DBNAME'];
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
 
-  $conn = new mysqli($host, $username, $password, $database);
+    $conn = new mysqli($host, $username, $password, $database);
 
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-  // Prepare statement
-  $stmt = $conn->prepare("SELECT profile_image, cover_image FROM users WHERE email = ?");
-  $stmt->bind_param("s", $email);
-
-  $stmt->execute();
-  $result = $stmt->get_result();
-
-  // Setting default images
-  $defaultProfileImage = 'uploads/default.png';
-  $defaultCoverImage = 'uploads/cover.png';
-
-  $images = [
-    'profile_image' => $defaultProfileImage,
-    'cover_image' => $defaultCoverImage,
-  ];
-
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-
-    // Validate and assign profile image
-    if (!empty($row['profile_image']) && file_exists('uploads/' . $row['profile_image'])) {
-      $images['profile_image'] = 'uploads/' . $row['profile_image'];
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    // Validate and assign cover image
-    if (!empty($row['cover_image']) && file_exists('uploads/' . $row['cover_image'])) {
-      $images['cover_image'] = 'uploads/' . $row['cover_image'];
+    // Prepare statement
+    $stmt = $conn->prepare("SELECT profile_image, cover_image FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Setting default images
+    $defaultProfileImage = 'uploads/default.png';
+    $defaultCoverImage = 'uploads/cover.png';
+
+    $images = [
+        'profile_image' => $defaultProfileImage,
+        'cover_image' => $defaultCoverImage,
+    ];
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Validate and assign profile image
+        if (!empty($row['profile_image']) && file_exists('uploads/' . $row['profile_image'])) {
+            $images['profile_image'] = 'uploads/' . $row['profile_image'];
+        }
+
+        // Validate and assign cover image
+        if (!empty($row['cover_image']) && file_exists('uploads/' . $row['cover_image'])) {
+            $images['cover_image'] = 'uploads/' . $row['cover_image'];
+        }
     }
-  }
 
-  $stmt->close();
-  $conn->close();
+    $stmt->close();
+    $conn->close();
 
-  return $images;
+    return $images;
 }
 
 // Get user images
@@ -123,7 +123,7 @@ $navbar_div = '<header class="nav-header">
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="#">
-                 <img src="image/header.png" alt="Logo">
+                 <img src="image/logov3.jpg" alt="Logo">
             </a>
         </div>
         <nav class="by">

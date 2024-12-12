@@ -182,8 +182,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
 <head>
     <meta charset="UTF-8">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/My_Jobs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -206,8 +206,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="<?= $home ?>">
-                <!-- <img src="../../img/logov3.jpg" alt="Logo"> -->
-                <img src="image/drdsnhs.svg" alt="Logo">
+                <img src="../../img/logov3.jpg" alt="Logo">
+                <!-- <img src="image/drdsnhs.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">
 

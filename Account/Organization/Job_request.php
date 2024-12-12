@@ -192,8 +192,8 @@ function revertToOngoing($applicant_id)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization Dashboard</title>
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="image/W.png">
     <link rel="stylesheet" type="text/css" href="css/Job_request.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -371,8 +371,8 @@ function revertToOngoing($applicant_id)
 
 
     <footer>
-        <!-- <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p> -->
-        <p>&copy;2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
+        <!-- <p>&copy;2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
     </footer>
 
     <script>
