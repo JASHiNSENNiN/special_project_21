@@ -112,11 +112,11 @@ function getSchoolList($conn)
 
 <head>
     <script>
-        window.onload = function () {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/backend/php/ajax/checkAccType.php', true);
-            xhr.send();
-        };
+    window.onload = function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/backend/php/ajax/checkAccType.php', true);
+        xhr.send();
+    };
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,9 +142,9 @@ function getSchoolList($conn)
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
@@ -201,11 +201,11 @@ function getSchoolList($conn)
                                 <select id="student-school-name" name="studentSchoolName">
                                     <option value="">Select School Name</option>
                                     <?php if (!empty($schools)): ?>
-                                        <?php foreach ($schools as $schoolName): ?>
-                                            <option value="<?php echo htmlspecialchars($schoolName); ?>">
-                                                <?php echo htmlspecialchars($schoolName); ?>
-                                            </option>
-                                        <?php endforeach; ?>
+                                    <?php foreach ($schools as $schoolName): ?>
+                                    <option value="<?php echo htmlspecialchars($schoolName); ?>">
+                                        <?php echo htmlspecialchars($schoolName); ?>
+                                    </option>
+                                    <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <select name="grade-level" id="grade-level">
@@ -246,7 +246,7 @@ function getSchoolList($conn)
                                         <ul class="file-list"></ul>
                                     </div>
                                 </div> -->
-                                <nav>
+                                <!-- <nav>
                                     <a style="text-decoration: none" href="login.php">
                                         <button class="btn-login" id="switch-to-login">
 
@@ -263,12 +263,12 @@ function getSchoolList($conn)
                                     </button>
 
 
-                                </nav>
+                                </nav> -->
                             </div>
                             <div id="school-fields" style="display: none;">
                                 <input value="" type="text" placeholder="School Name" id="school-name"
                                     name="school-name">
-                                <nav>
+                                <!-- <nav>
                                     <a style="text-decoration: none" href="login.php">
                                         <button class="btn-login" id="switch-to-login">
 
@@ -284,7 +284,7 @@ function getSchoolList($conn)
                                     </button>
 
 
-                                </nav>
+                                </nav> -->
                             </div>
                             <div id="partner-fields" style="display: none;">
                                 <input value="" type="text" placeholder="Organization Name" id="organization-name"
@@ -297,10 +297,10 @@ function getSchoolList($conn)
                                     <option value="GAS">GAS</option>
                                     <option value="TVL">TVL</option>
                                 </select>
-                                <br>
-                                <hr>
+                                <!-- <br>
+                                <hr> -->
                                 <!-- Image Upload Section -->
-                                <div class="container1">
+                                <!-- <div class="container1">
                                     <div class="card">
                                         <h3>Upload Images</h3>
 
@@ -319,14 +319,12 @@ function getSchoolList($conn)
                                                 Choose Files</div>
                                         </div>
 
-                                        <!-- Image Preview Section -->
+
                                         <div class="image-preview"></div>
-                                        <!-- Upload Button for Images -->
-                                        <!-- <button onclick="uploadDocuments(); uploadImages();" class="btn">Upload
-                                            Images</button> -->
+
                                     </div>
-                                </div>
-                                <nav>
+                                </div> -->
+                                <!-- <nav>
                                     <a style="text-decoration: none" href="login.php">
                                         <button class="btn-login" id="switch-to-login">
 
@@ -342,29 +340,28 @@ function getSchoolList($conn)
                                     </button>
 
 
-                                </nav>
+                                </nav> -->
                             </div>
+                            <nav>
+                                <a style="text-decoration: none" href="login.php">
+                                    <button class="btn-login" id="switch-to-login">
+
+                                        <p>Back</p>
+                                    </button></a>
+                                <button class="btn-new" type="submit">
+                                    <p>Submit</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                        <path
+                                            d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
+                                            data-name="3-Arrow Right" />
+                                    </svg>
+                                </button>
+                            </nav>
 
                         </form>
 
                     </div>
-                    <nav>
-                        <a style="text-decoration: none" href="login.php">
-                            <button class="btn-login" id="switch-to-login">
 
-                                <p style="color:white;">Back</p>
-                            </button></a>
-                        <button class="btn-new" type="submit" onclick="uploadImages()">
-                            <p style="color:white;">Submit</p>
-                            <!-- <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32">
-                                <path
-                                    d="m31.71 15.29-10-10-1.42 1.42 8.3 8.29H0v2h28.59l-8.29 8.29 1.41 1.41 10-10a1 1 0 0 0 0-1.41z"
-                                    data-name="3-Arrow Right" />
-                            </svg> -->
-                        </button>
-
-
-                    </nav>
                 </div>
             </div>
 
@@ -376,48 +373,48 @@ function getSchoolList($conn)
 </body>
 
 <script>
-    function toggleFields() {
-        var accountType = document.getElementById("account-type").value;
-        var studentFields = document.getElementById("student-fields");
-        var schoolFields = document.getElementById("school-fields");
-        var partnerFields = document.getElementById("partner-fields");
-        var registerForm = document.getElementById("register-form");
+function toggleFields() {
+    var accountType = document.getElementById("account-type").value;
+    var studentFields = document.getElementById("student-fields");
+    var schoolFields = document.getElementById("school-fields");
+    var partnerFields = document.getElementById("partner-fields");
+    var registerForm = document.getElementById("register-form");
 
-        if (accountType === "Student") {
-            registerForm.style.paddingTop = "25%";
-            studentFields.style.display = "block";
-            schoolFields.style.display = "none";
-            partnerFields.style.display = "none";
-        } else if (accountType === "School") {
-            registerForm.style.paddingTop = "10%";
-            studentFields.style.display = "none";
-            schoolFields.style.display = "block";
-            partnerFields.style.display = "none";
-        } else if (accountType === "Organization") {
-            registerForm.style.paddingTop = "10%";
-            studentFields.style.display = "none";
-            schoolFields.style.display = "none";
-            partnerFields.style.display = "block";
-        } else {
-            studentFields.style.display = "none";
-            schoolFields.style.display = "none";
-            partnerFields.style.display = "none";
-        }
+    if (accountType === "Student") {
+        registerForm.style.paddingTop = "25%";
+        studentFields.style.display = "block";
+        schoolFields.style.display = "none";
+        partnerFields.style.display = "none";
+    } else if (accountType === "School") {
+        registerForm.style.paddingTop = "10%";
+        studentFields.style.display = "none";
+        schoolFields.style.display = "block";
+        partnerFields.style.display = "none";
+    } else if (accountType === "Organization") {
+        registerForm.style.paddingTop = "10%";
+        studentFields.style.display = "none";
+        schoolFields.style.display = "none";
+        partnerFields.style.display = "block";
+    } else {
+        studentFields.style.display = "none";
+        schoolFields.style.display = "none";
+        partnerFields.style.display = "none";
     }
+}
 </script>
 
 <script>
-    function showSelectedSchool() {
-        const schoolSelect = document.getElementById('schoolSelect');
-        const selectedSchool = schoolSelect.value;
-        const resultDiv = document.getElementById('selectedSchool');
+function showSelectedSchool() {
+    const schoolSelect = document.getElementById('schoolSelect');
+    const selectedSchool = schoolSelect.value;
+    const resultDiv = document.getElementById('selectedSchool');
 
-        if (selectedSchool) {
-            resultDiv.innerHTML = `<h2>You selected: ${selectedSchool}</h2>`;
-        } else {
-            resultDiv.innerHTML = "<h2>Please select a school from the list.</h2>";
-        }
+    if (selectedSchool) {
+        resultDiv.innerHTML = `<h2>You selected: ${selectedSchool}</h2>`;
+    } else {
+        resultDiv.innerHTML = "<h2>Please select a school from the list.</h2>";
     }
+}
 </script>
 
 <!-- <script type="text/javascript">
@@ -571,119 +568,119 @@ function uploadImages() {
 </script> -->
 
 <script type="text/javascript">
-    // Handling Document File Upload
-    const documentInput = document.querySelector("#documentID");
-    let documentFiles = [];
-    const documentFileList = document.querySelector(".file-list");
+// Handling Document File Upload
+const documentInput = document.querySelector("#documentID");
+let documentFiles = [];
+const documentFileList = document.querySelector(".file-list");
 
-    documentInput.addEventListener("change", function (e) {
-        documentFiles = e.target.files;
-        documentFileList.innerHTML = ''; // Clear previous files
+documentInput.addEventListener("change", function(e) {
+    documentFiles = e.target.files;
+    documentFileList.innerHTML = ''; // Clear previous files
 
-        Array.from(documentFiles).forEach((file, index) => {
-            let fileItem = document.createElement('li');
-            fileItem.innerHTML = `
+    Array.from(documentFiles).forEach((file, index) => {
+        let fileItem = document.createElement('li');
+        fileItem.innerHTML = `
                 <h4>${file.name}</h4>
                 <button class="remove-btn" onclick="removeDocumentFile(${index})">Remove</button>
             `;
-            documentFileList.appendChild(fileItem);
-        });
+        documentFileList.appendChild(fileItem);
     });
+});
 
-    function removeDocumentFile(index) {
-        documentFiles = Array.from(documentFiles).filter((_, i) => i !== index);
-        documentFileList.innerHTML = '';
-        Array.from(documentFiles).forEach((file, index) => {
-            let fileItem = document.createElement('li');
-            fileItem.innerHTML = `
+function removeDocumentFile(index) {
+    documentFiles = Array.from(documentFiles).filter((_, i) => i !== index);
+    documentFileList.innerHTML = '';
+    Array.from(documentFiles).forEach((file, index) => {
+        let fileItem = document.createElement('li');
+        fileItem.innerHTML = `
                 <h4>${file.name}</h4>
                 <button class="remove-btn" onclick="removeDocumentFile(${index})">Remove</button>
             `;
-            documentFileList.appendChild(fileItem);
-        });
-    }
+        documentFileList.appendChild(fileItem);
+    });
+}
 
-    // Function to upload documents
-    function uploadDocuments() {
-        const formData = new FormData();
-        Array.from(documentFiles).forEach(file => {
-            formData.append('documents', file);
-        });
-
-        fetch('YOUR_SERVER_URL_HERE', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                alert('Documents uploaded successfully!');
-            })
-        // .catch(error => {
-        //     alert('Document upload failed. Please try again.');
-        //     console.error('Error uploading documents:', error);
-        // });
-    }
-
-    // Handling Image File Upload
-    const imageInput = document.querySelector("#imageID");
-    let imageFiles = [];
-    const imagePreviewContainer = document.querySelector(".image-preview");
-
-    imageInput.addEventListener("change", function (e) {
-        imageFiles = e.target.files;
-        imagePreviewContainer.innerHTML = ''; // Clear previous image previews
-
-        Array.from(imageFiles).forEach((image, index) => {
-            let imgPreview = document.createElement('div');
-            imgPreview.innerHTML = `
-                <img src="${URL.createObjectURL(image)}" alt="${image.name}">
-                <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
-            `;
-            imagePreviewContainer.appendChild(imgPreview);
-        });
+// Function to upload documents
+function uploadDocuments() {
+    const formData = new FormData();
+    Array.from(documentFiles).forEach(file => {
+        formData.append('documents', file);
     });
 
-    function removeImage(index) {
-        imageFiles = Array.from(imageFiles).filter((_, i) => i !== index);
-        imagePreviewContainer.innerHTML = '';
-        Array.from(imageFiles).forEach((image, index) => {
-            let imgPreview = document.createElement('div');
-            imgPreview.innerHTML = `
-                <img src="${URL.createObjectURL(image)}" alt="${image.name}">
-                <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
-            `;
-            imagePreviewContainer.appendChild(imgPreview);
-        });
-    }
-
-    // Function to upload images
-    function uploadImages() {
-        const formData = new FormData();
-        Array.from(imageFiles).forEach(image => {
-            formData.append('images', image);
-        });
-
-        fetch('YOUR_SERVER_URL_HERE', {
+    fetch('YOUR_SERVER_URL_HERE', {
             method: 'POST',
             body: formData
         })
-            .then(response => response.json())
-            .then(data => {
-                alert('Images uploaded successfully!');
-            })
-        // .catch(error => {
-        //     alert('Image upload failed. Please try again.');
-        //     console.error('Error uploading images:', error);
-        // });
-    }
+        .then(response => response.json())
+        .then(data => {
+            alert('Documents uploaded successfully!');
+        })
+    // .catch(error => {
+    //     alert('Document upload failed. Please try again.');
+    //     console.error('Error uploading documents:', error);
+    // });
+}
+
+// Handling Image File Upload
+const imageInput = document.querySelector("#imageID");
+let imageFiles = [];
+const imagePreviewContainer = document.querySelector(".image-preview");
+
+imageInput.addEventListener("change", function(e) {
+    imageFiles = e.target.files;
+    imagePreviewContainer.innerHTML = ''; // Clear previous image previews
+
+    Array.from(imageFiles).forEach((image, index) => {
+        let imgPreview = document.createElement('div');
+        imgPreview.innerHTML = `
+                <img src="${URL.createObjectURL(image)}" alt="${image.name}">
+                <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
+            `;
+        imagePreviewContainer.appendChild(imgPreview);
+    });
+});
+
+function removeImage(index) {
+    imageFiles = Array.from(imageFiles).filter((_, i) => i !== index);
+    imagePreviewContainer.innerHTML = '';
+    Array.from(imageFiles).forEach((image, index) => {
+        let imgPreview = document.createElement('div');
+        imgPreview.innerHTML = `
+                <img src="${URL.createObjectURL(image)}" alt="${image.name}">
+                <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
+            `;
+        imagePreviewContainer.appendChild(imgPreview);
+    });
+}
+
+// Function to upload images
+function uploadImages() {
+    const formData = new FormData();
+    Array.from(imageFiles).forEach(image => {
+        formData.append('images', image);
+    });
+
+    fetch('YOUR_SERVER_URL_HERE', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Images uploaded successfully!');
+        })
+    // .catch(error => {
+    //     alert('Image upload failed. Please try again.');
+    //     console.error('Error uploading images:', error);
+    // });
+}
 </script>
 <script>
-    // Function to allow only numbers (no special characters)
-    function validateLRN() {
-        const input = document.getElementById('input-lrn');
-        // Remove any non-numeric characters (except for the "-" sign, if needed)
-        input.value = input.value.replace(/[^0-9]/g, '');
-    }
+// Function to allow only numbers (no special characters)
+function validateLRN() {
+    const input = document.getElementById('input-lrn');
+    // Remove any non-numeric characters (except for the "-" sign, if needed)
+    input.value = input.value.replace(/[^0-9]/g, '');
+}
 </script>
 
 
