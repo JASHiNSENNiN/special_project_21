@@ -134,6 +134,8 @@ $profile_div = '<header class="nav-header">
                     <a href="Profile.php?organization_id=' . base64_encode(encrypt_url_parameter($organizationId)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My Profile</a>
                     <a href="My_Jobs.php"><i class="fas fa-bookmark" style="font-size:24px; margin-right:10px;"></i> My Jobs</a>
                     <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i>Weather Update</a>
+                    <a href="Upload.php"><i class="fa fa-file-text" style="font-size:24px; margin-right:10px;"></i>
+                        FIle Upload</a>
                     <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;"></i> Settings</a>
                     <hr>
                     <a class="logout" href="' . '/backend/php/logout.php' . '"> <i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>
