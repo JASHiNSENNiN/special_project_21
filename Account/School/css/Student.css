@@ -1272,7 +1272,7 @@ h3:after {
 
 .search-input {
   width: 100%;
-  max-width: 400px; /* Max width for the input */
+  max-width: 400px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -1281,7 +1281,7 @@ h3:after {
 }
 
 .search-input:focus {
-  border-color: #007bff; /* Change border color on focus */
+  border-color: #007bff;
   outline: none;
 }
 
@@ -1298,46 +1298,45 @@ h3:after {
 }
 
 .search-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
   .search-bar {
-    justify-content: center; /* Center align the elements */
-    margin-right: 0; /* Remove the margin on smaller screens */
-    margin-left: 20px; /* Add some margin to the left for spacing */
+    justify-content: center;
+    margin-right: 0;
+    margin-left: 20px;
   }
 
   .search-input {
-    max-width: 300px; /* Reduce the max width on tablets */
-    font-size: 14px; /* Reduce font size slightly */
+    max-width: 300px;
+    font-size: 14px;
   }
 
   .search-button {
-    max-width: 100%; /* Allow button to take full width if needed */
-    margin-left: 0; /* Reset the margin on the button */
-    margin-top: 10px; /* Add some top margin for spacing */
-    width: 100%; /* Make the button full-width on smaller screens */
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
   }
 }
 
-/* Media Query for mobile devices (max-width: 480px) */
 @media (max-width: 480px) {
   .search-bar {
-    flex-direction: column; /* Stack input and button vertically */
-    justify-content: center; /* Center align items */
+    flex-direction: column;
+    justify-content: center;
     margin-right: 0;
   }
 
   .search-input {
-    max-width: 100%; /* Full width on mobile */
-    font-size: 14px; /* Adjust font size for small screens */
+    max-width: 100%;
+    font-size: 14px;
   }
 
   .search-button {
-    width: 100%; /* Make button full width on mobile */
-    font-size: 14px; /* Adjust font size on mobile */
-    padding: 12px 15px; /* Increase padding for better clickability */
-    margin-top: 10px; /* Add margin on top for spacing */
+    width: 100%;
+    font-size: 14px;
+    padding: 12px 15px;
+    margin-top: 10px;
   }
 }
