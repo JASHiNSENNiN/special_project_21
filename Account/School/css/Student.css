@@ -600,6 +600,31 @@ nav a:hover::after {
   padding: 0.5em 1em;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rwd-table {
+    width: 100%; /* Ensure it takes full width */
+    padding: 10px;
+  }
+
+  .rwd-table td:before {
+    width: 100%; /* Adjust label width to take up more space */
+    text-align: left; /* Align labels to the left on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .rwd-table td:before {
+    width: auto; /* Let label text take as much space as needed */
+    text-align: left; /* Align labels to the left on small screens */
+  }
+
+  .rwd-table {
+    width: 100%;
+    padding: 5px;
+  }
+}
+
 @media screen and (max-width: 601px) {
   .rwd-table tr:nth-child(2) {
     border-top: none;
@@ -816,6 +841,21 @@ h3:after {
   background-color: #fff;
 }
 
+@media (max-width: 768px) {
+  .container2 {
+    padding: 15px; /* Reduce padding for tablets */
+    font-size: 14px; /* Adjust font size for better readability on smaller screens */
+  }
+}
+
+/* Media Query for devices with max width of 480px (mobile devices) */
+@media (max-width: 480px) {
+  .container2 {
+    padding: 10px; /* Further reduce padding for very small screens */
+    font-size: 12px; /* Reduce font size for mobile */
+  }
+}
+
 .idpic {
   width: 150px;
   height: 150px;
@@ -863,6 +903,24 @@ h3:after {
   touch-action: manipulation;
   width: auto;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .button-9 {
+    width: auto;
+    font-size: 90%;
+    padding: 0 20px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-9 {
+    width: 100%;
+    font-size: 14px;
+    padding: 0 15px;
+    height: 36px;
+  }
 }
 
 .button-10:hover {
@@ -947,6 +1005,24 @@ h3:after {
   touch-action: manipulation;
   width: 148px;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .button-11 {
+    width: 120px;
+    font-size: 90%;
+    padding: 0 20px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-11 {
+    width: 100%;
+    font-size: 14px;
+    padding: 0 15px;
+    height: 36px;
+  }
 }
 .container3 {
   display: flex;
@@ -1223,4 +1299,45 @@ h3:after {
 
 .search-button:hover {
   background-color: #0056b3; /* Darker blue on hover */
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    justify-content: center; /* Center align the elements */
+    margin-right: 0; /* Remove the margin on smaller screens */
+    margin-left: 20px; /* Add some margin to the left for spacing */
+  }
+
+  .search-input {
+    max-width: 300px; /* Reduce the max width on tablets */
+    font-size: 14px; /* Reduce font size slightly */
+  }
+
+  .search-button {
+    max-width: 100%; /* Allow button to take full width if needed */
+    margin-left: 0; /* Reset the margin on the button */
+    margin-top: 10px; /* Add some top margin for spacing */
+    width: 100%; /* Make the button full-width on smaller screens */
+  }
+}
+
+/* Media Query for mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .search-bar {
+    flex-direction: column; /* Stack input and button vertically */
+    justify-content: center; /* Center align items */
+    margin-right: 0;
+  }
+
+  .search-input {
+    max-width: 100%; /* Full width on mobile */
+    font-size: 14px; /* Adjust font size for small screens */
+  }
+
+  .search-button {
+    width: 100%; /* Make button full width on mobile */
+    font-size: 14px; /* Adjust font size on mobile */
+    padding: 12px 15px; /* Increase padding for better clickability */
+    margin-top: 10px; /* Add margin on top for spacing */
+  }
 }
