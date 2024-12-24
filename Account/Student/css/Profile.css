@@ -1267,3 +1267,59 @@ span .subtitle-resume {
 .print-btn:hover {
   background-color: rgb(239, 239, 239);
 }
+
+/* .img-account-profile {
+  height: 10rem;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+  width: 10rem;
+  height: 10rem;
+} */
+
+.column-profile {
+  float: left;
+  width: auto;
+  padding: 10px;
+  height: 300px;
+}
+
+.row-profile:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 1200px) {
+  .column-side {
+    width: 25%;
+    /* Adjust side column width for medium screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .column-side {
+    width: 30%;
+    /* Adjust side column width for smaller screens */
+  }
+  .column-profile {
+    height: auto;
+    /* Allow profile column to adjust height */
+  }
+}
+
+@media (max-width: 768px) {
+  .column-side {
+    width: 100%;
+    /* Full width for side column on small screens */
+  }
+  .column-profile {
+    width: 100%;
+    /* Full width for profile column on small screens */
+    height: auto;
+    /* Allow profile column to adjust height */
+  }
+}
