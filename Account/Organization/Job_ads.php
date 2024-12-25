@@ -48,11 +48,11 @@ require_once 'show_profile.php';
         </div> -->
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a class="active" href="Job_ads.php"> Job Ads</a>
-            <a href="Job_request.php">Job Request</a>
-            <a href="Faculty_report.php">Student Evaluation</a>
+            <a class="active" href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
+            <a href="Job_request.php"><i class="fa fa-user-plus"></i> Job Request</a>
+            <a href="Faculty_report.php"><i class='fas fa-tasks'></i> Student Evaluation</a>
             <!-- <a href="Question.php">Questions</a> -->
-            <a href="Details.php">Analytics</a>
+            <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
 
 
         </nav>
@@ -61,6 +61,8 @@ require_once 'show_profile.php';
 
 
     <br>
+
+
 
     <div class="sales-boxes">
         <div class="recent-sales box">
@@ -73,79 +75,162 @@ require_once 'show_profile.php';
 
             <form method="post" action="/backend/php/add_job.php">
                 <div class="container">
-                    <h1>Post a Job ad</h1>
-                    <p>Please fill in this form to create a job.</p>
+
+                    <h1 class="ti">POST A JOB AD</h1>
+                    <p class="ti">Please fill in this form to create a job.</p>
 
 
-                    <label for="worktitle"><b>Work Title</b></label>
-                    <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle" required>
 
-                    <label for=""><b>Choose a Strand:</b></label><br>
-                    <label class="con">STEM
-                        <input type="checkbox" name="strand[]" value="stem">
-                        <span class="checkmark"></span>
-                    </label>
+                    <div class="box">
+                        <label for="worktitle"><b>Work Title</b></label>
+                        <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle" required>
 
-                    <label class="con">GAS
-                        <input type="checkbox" name="strand[]" value="gas">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="con">HUMSS
-                        <input type="checkbox" name="strand[]" value="humss">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="con">TECHVOC
-                        <input type="checkbox" name="strand[]" value="tvl">
-                        <span class="checkmark"></span>
-                    </label>
+                        <label for=""><b>Choose a Strand:</b></label><br><br>
+                        <label class="con">STEM
+                            <input type="checkbox" name="strand[]" value="STEM">
+                            <span class="checkmark"></span>
+                        </label>
 
-                    <div class="wrapper">
-                        <div class="title">
+                        <label class="con">GAS
+                            <input type="checkbox" name="strand[]" value="GAS">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="con">HUMSS
+                            <input type="checkbox" name="strand[]" value="HUMSS">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="con">TECHVOC
+                            <input type="checkbox" name="strand[]" value="TVL">
+                            <span class="checkmark"></span>
+                        </label>
 
-                            <!-- <h2>Tags</h2>
+                        <div class="wrapper">
+                            <div class="title">
+
+
+                            </div>
                         </div>
-                        <div class="content">
-                            <p>Press add a comma after each tag</p>
-                            <ul><input type="text" spellcheck="false" id="tag-input">
-                                <button>Add</button>
-                            </ul>
-                        </div>
-                        <div class="details">
-                            <p><span>10</span> tags are remaining</p> -->
 
-                            <!-- <button>Remove All</button> -->
+                        <h1>Job Description</h1>
+
+                        <input type="hidden" name="description" id="description">
+                        <div id="editor-container"></div>
+
+                        <div class="container__nav">
+                            <small>By clicking 'Check box' you are agreeing to our <a
+                                    href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
+                            <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
                         </div>
+                        <button class="button-9" id="show-modal" role="button" type="submit" autofocus>Submit</button>
                     </div>
-
-                    <h1>Job Description</h1>
-
-                    <input type="hidden" name="description" id="description">
-                    <div id="editor-container"></div>
-
-
-                    <p>By creating job ads you agree to our <a href="#">Terms & Privacy</a>.</p>
-                    <button class="button-9" role="button" type="submit">Submit</button>
                 </div>
             </form>
         </div>
-
-
     </div>
+
+    <!-- <div id="containerModal" class="contain"> -->
+    <div id="success-modal" class="modal">
+        <div class="modal__icon">✓</div>
+        <h3 class="modal__title">Successfully posted ads.</h3>
+        <p class="modal__countdown">
+            <!-- <button class="button-0" role="button" type="submit">Submit</button><br><br> -->
+            Disappearing in <span id="countdown">5</span> seconds...
+        </p>
+    </div>
+    <!-- </div> -->
+
 
     <script src="css/job_ads.js"> </script>
 
     <script type="text/javascript" src="css/doc.js"></script>
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer </p>
     </footer>
+
+    <!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const button = document.getElementById("show-modal");
+        const modal = document.getElementById("success-modal");
+        const countdownElement = document.getElementById("countdown");
+        const inputField = document.getElementById("worktitle"); 
+        const checkbox = document.getElementById("agree"); 
+
+        button.addEventListener("click", () => {
+           
+            if (inputField.value.trim() === "") {
+                alert("Please fill out text cannot be empty!"); 
+                return; 
+            }
+
+            if (!checkbox.checked) {
+                alert("You must agree to the terms!"); 
+                return; 
+            }
+
+           
+            modal.style.display = "flex"; 
+            modal.classList.add("modal--open");
+
+            
+            let seconds = 5;
+            countdownElement.textContent = seconds;
+
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    modal.classList.remove("modal--open"); 
+                    setTimeout(() => {
+                        modal.style.display = "none"; 
+                    }, 500); 
+                }
+            }, 1000);
+        });
+    });
+    </script> -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const button = document.getElementById("show-modal");
+            const modal = document.getElementById("success-modal");
+            const countdownElement = document.getElementById("countdown");
+
+
+
+            button.addEventListener("click", () => {
+                // Open the modal
+                modal.classList.add("modal--open");
+
+                // Countdown logic
+                let seconds = 5;
+                countdownElement.textContent = seconds;
+
+                const countdownInterval = setInterval(() => {
+                    seconds--;
+                    countdownElement.textContent = seconds;
+
+                    // When the countdown reaches 0, hide the modal
+                    if (seconds <= 0) {
+                        clearInterval(countdownInterval);
+                        modal.classList.remove("modal--open");
+                    }
+                }, 1000);
+            });
+        });
+    </script>
+
 
 
     <script>
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
+        inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -154,10 +239,11 @@ require_once 'show_profile.php';
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
+        inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
+
 
 
 </body>

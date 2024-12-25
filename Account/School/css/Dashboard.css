@@ -13,7 +13,7 @@
   background-color: #d4d2d0;
   border: none;
   margin-bottom: 0px;
-  margin-top: 0px;
+  margin-top: px;
 }
 
 /* ----------------Slider---------------------*/
@@ -25,13 +25,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-.active {
-  color: #000000;
-  /* background-color: rgba(27, 121, 40, 0.575); */
-  background-color: rgba(27, 188, 155, 0.9);
-  font-weight: bold;
-}
-
 img {
   vertical-align: middle;
 }
@@ -41,7 +34,11 @@ img {
   margin-right: auto;
   width: 76%;
   display: block;
-  border-radius: 10px;
+  object-fit: cover;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .Settings {
@@ -64,10 +61,11 @@ img {
 
 .name {
   margin-top: 1%;
-  margin-left: 21%;
+  margin-left: 22%;
   font-size: 1.25rem;
   /* size: 10px; */
-  font-family: sans-serif;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
 
 .strand {
@@ -129,11 +127,11 @@ footer {
 
 /* ---Header--- */
 
-h1,
+/* h1,
 h2,
 h3 {
   color: #333;
-}
+} */
 
 .nav-header {
   background-color: #fff;
@@ -236,6 +234,13 @@ nav a:hover {
   font-weight: bold;
 }
 
+.active {
+  color: #fff;
+  /* background-color: rgba(27, 121, 40, 0.9); */
+  background-color: rgba(27, 188, 155, 0.9);
+  font-weight: bold;
+}
+
 .bt a:hover {
   color: #000000;
   background-color: rgba(27, 188, 155, 0.3);
@@ -244,6 +249,7 @@ nav a:hover {
 }
 
 .by a:hover {
+  /* color: #347928; */
   color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.3); */
   font-weight: bold;
@@ -511,7 +517,8 @@ nav a:hover::after {
   outline: 0;
 }
 
-.fa {
+.fa,
+.fas {
   margin: 6px;
 }
 
@@ -567,4 +574,280 @@ input {
   position: relative;
   display: inline-block;
   border-radius: 2px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* #curve_chart {
+  margin: auto;
+  width: 100%;
+} */
+
+#curve_chart {
+  margin: auto;
+  width: 100%;
+  max-width: 100%;
+  /* Ensure it doesn't exceed container width */
+  height: auto;
+  /* Make sure the height adjusts based on the content */
+}
+
+@media screen and (max-width: 1200px) {
+  #curve_chart {
+    width: 90%;
+    /* Reduce the chart width for medium screens */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #curve_chart {
+    width: 100%;
+    /* Full width on smaller screens */
+    height: auto;
+    /* Maintain responsive height */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #curve_chart {
+    width: 100%;
+    /* Ensure it takes full width on very small screens */
+    height: 300px;
+    /* You can set a fixed height or adjust according to content */
+  }
+}
+
+/* ///////////////////////////////////////////////////////card top //////////////////////// */
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:500,600|Ubuntu:400,700");
+:focus {
+  outline: none;
+}
+
+.wrap {
+  margin-top: 50px;
+}
+
+.panel-heading {
+  color: #fff;
+}
+
+.huge {
+  font-size: 50px;
+}
+
+/*-----Dashboard panels-----*/
+
+.panel-primary {
+  border: 1px solid #337ab7;
+}
+
+.panel-primary .panel-heading {
+  background-color: #337ab7;
+}
+
+.panel-primary .panel-footer span {
+  color: #337ab7;
+}
+
+.panel-primary .panel-footer:hover {
+  background-color: #337ab7;
+  transition: all 0.2s ease-in;
+}
+
+.panel-primary .panel-footer:hover span {
+  color: #fff;
+}
+
+.panel-green {
+  border: 1px solid #4caf50;
+}
+
+.panel-green .panel-heading {
+  background-color: #4caf50;
+}
+
+.panel-green .panel-footer span {
+  color: #4caf50;
+}
+
+.panel-green .panel-footer:hover {
+  background-color: #4caf50;
+  transition: all 0.2s ease-in;
+}
+
+.panel-green .panel-footer:hover span {
+  color: #fff;
+}
+
+.panel-yellow {
+  border: 1px solid #ffc107;
+}
+
+.panel-yellow .panel-heading {
+  background-color: #ffc107;
+}
+
+.panel-yellow .panel-footer span {
+  color: #ffc107;
+}
+
+.panel-yellow .panel-footer:hover {
+  background-color: #ffc107;
+  transition: all 0.2s ease-in;
+}
+
+.panel-yellow .panel-footer:hover span {
+  color: #fff;
+}
+
+.panel-red {
+  border: 1px solid #ff5722;
+}
+
+.panel-red .panel-heading {
+  background-color: #ff5722;
+}
+
+.panel-red .panel-footer span {
+  color: #ff5722;
+}
+
+.panel-red .panel-footer:hover {
+  background-color: #ff5722;
+  transition: all 0.2s ease-in;
+}
+
+.panel-red .panel-footer:hover span {
+  color: #fff;
+}
+
+/*-----Breadcrumbs-----*/
+
+.page-title-box {
+  border-bottom: 1px solid #337ab7;
+  margin-bottom: 30px;
+}
+
+.breadcrumb {
+  margin-top: 14px;
+  margin-bottom: 0;
+  background-color: transparent;
+}
+
+/*-----Media classes-----*/
+
+@media (max-width: 768px) {
+  .side-menu {
+    margin-left: -250px;
+    z-index: 999;
+  }
+  .side-body {
+    margin-left: 0;
+  }
+  .off {
+    z-index: 999;
+    transform: translate(250px);
+  }
+  .logo {
+    width: 195px;
+  }
+  .marr20 {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 400px) and (min-width: 290px) {
+  .logo {
+    width: 150px;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Responsive columns */
+  gap: 20px;
+  /* Space between cards */
+  width: 100%;
+  /* Adjust width as needed */
+  max-width: 1200px;
+  /* Max width for larger screens */
+  margin-top: 50px;
+  margin: auto;
+  /* position: flex; */
+}
+
+.card {
+  margin-top: 40px;
+  background: #b3b0b0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transition for hover effects */
+}
+
+.card.blue {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.card.green {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.card.yellow {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.card.red {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.card h2 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+
+.card p {
+  margin: 0;
+}
+
+.view-details {
+  margin-top: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #0056b3;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.view-details:hover {
+  background-color: #004494;
+}
+
+.icon {
+  font-size: 2rem;
+  /* Adjust icon size */
+}
+
+/* Card Hover Effect */
+
+.card:hover {
+  transform: translateY(-5px);
+  /* Lift card on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Shadow effect on hover */
 }

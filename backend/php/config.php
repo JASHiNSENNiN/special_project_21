@@ -18,9 +18,7 @@ if (!$conn) {
 
 $sql = "CREATE DATABASE IF NOT EXISTS $database";
 if (mysqli_query($conn, $sql)) {
-  //echo "Database created successfully or already exists\n";
 } else {
-  //echo "Error creating database: " . mysqli_error($conn) . "\n";
 }
 
 
@@ -31,15 +29,14 @@ CREATE TABLE IF NOT EXISTS users (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   email VARCHAR(255) UNIQUE,
   password VARCHAR(255),
-  account_type ENUM('student', 'school', 'organization'),
+  account_type ENUM('Student', 'School', 'Organization'),
   profile_image VARCHAR(255) DEFAULT 'default.png',
-  cover_image VARCHAR(255)
+  cover_image VARCHAR(255) DEFAULT 'cover.png'
 );
 
 CREATE TABLE IF NOT EXISTS school_profiles (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   school_name VARCHAR(255),
-  stars INT(10),
   user_id INT(11),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -49,19 +46,19 @@ CREATE TABLE IF NOT EXISTS student_profiles (
   first_name VARCHAR(255),
   middle_name VARCHAR(255),
   last_name VARCHAR(255),
+  lrn VARCHAR(12),
   school VARCHAR(255),
   grade_level ENUM('11', '12'),
   strand ENUM('stem', 'humss', 'abm', 'gas', 'tvl'),
-  stars INT(10),
   current_work INT(11),
   user_id INT(11),
+  verified_status BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS partner_profiles (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   organization_name VARCHAR(255),
-  stars INT(10),
   user_id INT(11),
   strand ENUM('stem', 'humss', 'abm', 'gas', 'tvl'),
   FOREIGN KEY (user_id) REFERENCES users(id)
@@ -74,6 +71,8 @@ CREATE TABLE IF NOT EXISTS job_offers (
   description TEXT NOT NULL,
   partner_id INT(11) NOT NULL,
   organization_name VARCHAR(255),
+  is_archived BOOLEAN DEFAULT FALSE,
+  verified_status BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (partner_id) REFERENCES partner_profiles(user_id)
 );
 
@@ -81,46 +80,47 @@ CREATE TABLE IF NOT EXISTS applicants (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   job_id INT(11),
   student_id INT(11),
-  status ENUM('applied', 'cancelled', 'accepted', 'rejected') DEFAULT 'applied',
+  status ENUM('applied', 'cancelled', 'accepted', 'rejected', 'completed') DEFAULT 'applied',
   UNIQUE KEY (job_id, student_id),
   FOREIGN KEY (job_id) REFERENCES job_offers(id),
   FOREIGN KEY (student_id) REFERENCES student_profiles(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Student_Evaluation (
-    evaluation_id INT PRIMARY KEY,
+    evaluation_id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
-    quality_of_work INT CHECK (quality_of_work BETWEEN 0 AND 5),
-    productivity INT CHECK (productivity BETWEEN 0 AND 5),
-    problem_solving_skills INT CHECK (problem_solving_skills BETWEEN 0 AND 5),
-    attention_to_detail INT CHECK (attention_to_detail BETWEEN 0 AND 5),
-    initiative INT CHECK (initiative BETWEEN 0 AND 5),
-    punctuality INT CHECK (punctuality BETWEEN 0 AND 5),
-    appearance INT CHECK (appearance BETWEEN 0 AND 5),
-    communication_skills INT CHECK (communication_skills BETWEEN 0 AND 5),
-    respectfulness INT CHECK (respectfulness BETWEEN 0 AND 5),
-    adaptability INT CHECK (adaptability BETWEEN 0 AND 5),
-    willingness_to_learn INT CHECK (willingness_to_learn BETWEEN 0 AND 5),
-    application_of_feedback INT CHECK (application_of_feedback BETWEEN 0 AND 5),
-    self_improvement INT CHECK (self_improvement BETWEEN 0 AND 5),
-    skill_development INT CHECK (skill_development BETWEEN 0 AND 5),
-    knowledge_application INT CHECK (knowledge_application BETWEEN 0 AND 5),
-    team_participation INT CHECK (team_participation BETWEEN 0 AND 5),
-    cooperation INT CHECK (cooperation BETWEEN 0 AND 5),
-    conflict_resolution INT CHECK (conflict_resolution BETWEEN 0 AND 5),
-    supportiveness INT CHECK (supportiveness BETWEEN 0 AND 5),
-    contribution INT CHECK (contribution BETWEEN 0 AND 5),
-    enthusiasm INT CHECK (enthusiasm BETWEEN 0 AND 5),
-    drive INT CHECK (drive BETWEEN 0 AND 5),
-    resilience INT CHECK (resilience BETWEEN 0 AND 5),
-    commitment INT CHECK (commitment BETWEEN 0 AND 5),
-    self_motivation INT CHECK (self_motivation BETWEEN 0 AND 5),
-    FOREIGN KEY (student_id) REFERENCES student_profiles(id)
+    evaluator_id INT,
+    
+    punctual INT CHECK (punctual BETWEEN 0 AND 5),
+    reports_regularly INT CHECK (reports_regularly BETWEEN 0 AND 5),
+    performs_tasks_independently INT CHECK (performs_tasks_independently BETWEEN 0 AND 5),
+    self_discipline INT CHECK (self_discipline BETWEEN 0 AND 5),
+    dedication_commitment INT CHECK (dedication_commitment BETWEEN 0 AND 5),
+
+    ability_to_operate_machines INT CHECK (ability_to_operate_machines BETWEEN 0 AND 5),
+    handles_details INT CHECK (handles_details BETWEEN 0 AND 5),
+    shows_flexibility INT CHECK (shows_flexibility BETWEEN 0 AND 5),
+    thoroughness_attention_to_detail INT CHECK (thoroughness_attention_to_detail BETWEEN 0 AND 5),
+    understands_task_linkages INT CHECK (understands_task_linkages BETWEEN 0 AND 5),
+    offers_suggestions INT CHECK (offers_suggestions BETWEEN 0 AND 5),
+
+    tact_in_dealing_with_people INT CHECK (tact_in_dealing_with_people BETWEEN 0 AND 5),
+    respect_and_courtesy INT CHECK (respect_and_courtesy BETWEEN 0 AND 5),
+    helps_others INT CHECK (helps_others BETWEEN 0 AND 5),
+    learns_from_co_workers INT CHECK (learns_from_co_workers BETWEEN 0 AND 5),
+    shows_gratitude INT CHECK (shows_gratitude BETWEEN 0 AND 5),
+    poise_and_self_confidence INT CHECK (poise_and_self_confidence BETWEEN 0 AND 5),
+    emotional_maturity INT CHECK (emotional_maturity BETWEEN 0 AND 5),
+    
+    evaluation_date DATE DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES student_profiles(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Organization_Evaluation (
     evaluation_id INT PRIMARY KEY AUTO_INCREMENT,
     organization_id INT,
+    job_id INT,
+    evaluator_id INT,
     quality_of_experience INT CHECK (quality_of_experience BETWEEN 0 AND 5),
     productivity_of_tasks INT CHECK (productivity_of_tasks BETWEEN 0 AND 5),
     problem_solving_opportunities INT CHECK (problem_solving_opportunities BETWEEN 0 AND 5),
@@ -146,7 +146,19 @@ CREATE TABLE IF NOT EXISTS Organization_Evaluation (
     resilience_to_challenges INT CHECK (resilience_to_challenges BETWEEN 0 AND 5),
     commitment_to_experience INT CHECK (commitment_to_experience BETWEEN 0 AND 5),
     self_motivation_levels INT CHECK (self_motivation_levels BETWEEN 0 AND 5),
-    FOREIGN KEY (organization_id) REFERENCES partner_profiles(id)
+    evaluation_date DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (organization_id) REFERENCES partner_profiles(id),
+    FOREIGN KEY (job_id) REFERENCES job_offers(id)
+);
+
+CREATE TABLE IF NOT EXISTS uploaded_documents (
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    user_id INT(11),
+    document_name ENUM('resume', 'application_letter', 'parents_consent', 'barangay_clearance', 
+                        'mayors_permit', 'police_clearance', 'medical_certificate', 'insurance_policy', 'business_permit'),
+    document_url VARCHAR(255),
+    upload_date DATE DEFAULT CURRENT_DATE, 
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 ";
 

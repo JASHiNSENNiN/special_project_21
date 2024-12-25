@@ -2,9 +2,111 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+$conn = new mysqli($host, $username, $password, $database);
+$appliedJobAds = fetchAppliedJobAds($conn);
+$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+
+$sql = "SELECT COUNT(*) as eval_count FROM Organization_Evaluation 
+        WHERE job_id = :job_id AND evaluation_date = CURDATE() AND evaluator_id = :evaluator_id";
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':job_id', $student_profile['current_work'], PDO::PARAM_INT);
+$stmt->bindParam(':evaluator_id', $_SESSION['user_id'], PDO::PARAM_INT);
+$stmt->execute();
+
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$has_evaluation_today = $result['eval_count'] > 0;
+
+
+
+function fetchAppliedJobAds($conn)
+{
+    $studentId = $_SESSION['user_id'];
+    $query = "
+        SELECT 
+            jo.work_title 
+        FROM 
+            job_offers jo
+        INNER JOIN 
+            applicants a ON jo.id = a.job_id
+        WHERE 
+            a.student_id = ?
+    ";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $studentId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $jobTitles = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $jobTitles[] = $row['work_title'];
+    }
+
+    return $jobTitles;
+}
+function isApplicantCompleted($pdo, $student_id, $job_id)
+{
+    $sql = "SELECT status FROM applicants 
+            WHERE student_id = :student_id AND job_id = :job_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->bindParam(':job_id', $job_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        return $result['status'] === 'completed';
+    }
+
+    return false;
+}
+
+function isStudentProfileVerified($pdo)
+{
+    $sql = "SELECT verified_status FROM student_profiles WHERE user_id = :user_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return (bool) $result['verified_status']; // Explicitly cast to boolean
+        }
+    }
+
+    return false;
+}
+
+$student_id = $_SESSION['user_id'];
+
+if (!isStudentProfileVerified($pdo)) {
+    header('Location: verify.php');
+    exit();
+}
+
+$student_id = $_SESSION['user_id'];
+$job_id = $student_profile['current_work'];
+$is_completed = isApplicantCompleted($pdo, $student_id, $job_id);
+
+if ($is_completed) {
+    header('Location: Congratulation.php');
+    exit();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +115,7 @@ require_once 'show_profile.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="shortcut icon" type="x-icon" href="image/W.png">
     <link rel="stylesheet" href="css/Narrative.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -54,7 +157,16 @@ require_once 'show_profile.php';
     <div class="titleEF">
         <b>
             <h1 class="sfa">Evaluation Form</h1>
-            <div class="box-topic"></div>
+            <div class="box-topic">
+                <?php
+
+                if (!empty($appliedJobAds)) {
+                    echo implode(", ", $appliedJobAds);
+                } else {
+                    echo "No job applications found.";
+                }
+                ?>
+            </div>
         </b>
     </div>
 
@@ -574,10 +686,30 @@ require_once 'show_profile.php';
             </div>
         </div>
         <div class="btns_wrap">
+
             <div class="common_btns form_1_btns">
+                <?php
+
+
+                $is_completed;
+
+                if ($is_completed): ?>
+                <div class="work-completion-message">
+                    Work Immersion Complete
+                </div>
+                <?php else: ?>
+                <?php if ($has_evaluation_today): ?>
+                <button type="button" class="btn_next" disabled>
+                    <span class="time-remaining"></span>
+                </button>
+                <?php else: ?>
                 <button type="button" class="btn_next">Next <span class="icon">
-                        <ion-icon name="arrow-forward-sharp"></ion-icon>
-                    </span></button>
+                        <span class="icon">
+                            <ion-icon name="arrow-forward-sharp"></ion-icon>
+                        </span>
+                </button>
+                <?php endif; ?>
+                <?php endif; ?>
             </div>
             <div class="common_btns form_2_btns" style="display: none;">
                 <button type="button" class="btn_back"><span class="icon">
@@ -627,9 +759,35 @@ require_once 'show_profile.php';
 
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p>
-
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p> -->
+        ©2024 Your Website. All rights reserved. | Junior Philippines Computer
     </footer>
+
+    <script>
+    <?php if ($has_evaluation_today): ?>
+
+    const now = new Date();
+    const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    let countdown = Math.floor((midnight - now) / 1000);
+
+    let countdownElement = document.querySelector('.time-remaining');
+
+    function updateCountdown() {
+        let hours = Math.floor(countdown / 3600);
+        let minutes = Math.floor((countdown % 3600) / 60);
+        let seconds = countdown % 60;
+        countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+        countdown--;
+
+        if (countdown < 0) {
+
+            location.reload();
+        }
+    }
+
+    setInterval(updateCountdown, 1000);
+    <?php endif; ?>
+    </script>
 
     <script>
     $("input:checkbox").on('click', function() {
@@ -869,19 +1027,41 @@ require_once 'show_profile.php';
                 },
                 body: JSON.stringify(jsonData)
             })
-            .then(response => response.text())
-            .then(data => {
-                if (JSON.parse(data).status === 'success') {
-                    window.location.reload();
+            .then(response => {
+                // Check if response is OK (status in the range 200-299)
+                if (!response.ok) {
+                    // Log the raw response even for non 200 status
+                    return response.text().then(text => {
+                        console.error('Error response:', text); // Log the entire response
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    });
                 }
+
+                return response.text(); // Get response as text if it's OK
+            })
+            .then(data => {
                 try {
+                    // Try to parse the response as JSON
                     const jsonData = JSON.parse(data);
-                    console.log(jsonData);
+
+                    // Check if jsonData.status exists and is 'success'
+                    if (jsonData.status === 'success') {
+                        window.location.reload();
+                    } else {
+                        console.error('Operation failed:', jsonData);
+                    }
+
+                    console.log(jsonData); // Log JSON data
                 } catch (e) {
+                    // Log the error if JSON parsing fails
                     console.error('Parsing error:', e);
+                    console.log('Response data:', data); // Log the raw data for inspection
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                // Catch network errors or parsing errors
+                console.error('Error:', error);
+            });
     });
 
     shadow.addEventListener("click", function() {

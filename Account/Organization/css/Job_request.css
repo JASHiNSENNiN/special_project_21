@@ -29,8 +29,11 @@ img {
   margin-right: auto;
   width: 76%;
   display: block;
-  border-radius: 10px;
   object-fit: cover;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .Settings {
@@ -107,95 +110,115 @@ hr {
 }
 
 .button-9 {
-  appearance: button;
-  backface-visibility: hidden;
-  background-color: #405cf5;
-  border-radius: 6px;
-  border-width: 0;
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
+  appearance: none; /* Remove default button appearance */
+  background: linear-gradient(
+    145deg,
+    #3cbf6b,
+    #2e9e56
+  ); /* Gradient background */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2),
+    /* Outer shadow for depth */ inset 2px 2px 5px rgba(255, 255, 255, 0.3); /* Inner highlight */
+  color: #ffffff; /* White text color */
+  cursor: pointer; /* Pointer cursor for interaction */
   font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-    Ubuntu, sans-serif;
-  font-size: 100%;
-  height: 44px;
-  line-height: 1.15;
-  margin: 12px 0 0;
-  outline: none;
-  overflow: hidden;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-transform: none;
-  transform: translateZ(0);
-  transition: all 0.2s, box-shadow 0.08s ease-in;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  /* width: 100%; */
+    Ubuntu, sans-serif; /* Modern font */
+  font-size: 16px; /* Font size */
+  height: 44px; /* Fixed height */
+  line-height: 1; /* Normal line height */
+  margin: 12px 0; /* Vertical spacing */
+  outline: none; /* Remove outline */
+  padding: 0 25px; /* Horizontal padding */
+  position: relative; /* Position for shadow effects */
+  text-align: center; /* Center text */
+  text-transform: uppercase; /* Uppercase text for emphasis */
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+  user-select: none; /* Prevent text selection */
+  touch-action: manipulation; /* Disable touch actions */
+  font-weight: 600; /* Bold text */
+}
+
+.button-9:hover {
+  background: linear-gradient(145deg, #35a058, #2a853b);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3),
+    /* Slightly darker shadow */ inset 1px 1px 3px rgba(255, 255, 255, 0.4); /* Softer inner highlight */
+}
+
+.button-9:active {
+  background: linear-gradient(145deg, #2e9e56, #227a45);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4),
+    /* Inset shadow to simulate depth */ 2px 2px 6px rgba(0, 0, 0, 0.15);
+  transform: translateY(2px);
 }
 
 .button-9:disabled {
-  cursor: default;
+  cursor: not-allowed;
+  background: linear-gradient(145deg, #a1d8a1, #a1d8a1);
+  color: #ccc;
+  box-shadow: none;
 }
 
-.button-9:focus {
-  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+/* .button-9:focus {
+  box-shadow:
+    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
+    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
-}
+} */
 
 .button-4 {
-  appearance: none;
-  background-color: #fafbfc;
-  border: 1px solid rgba(27, 31, 35, 1.15);
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
-    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  appearance: none; /* Remove default button appearance */
+  color: #fff; /* Text color */
+  background: linear-gradient(
+    145deg,
+    rgb(66, 122, 168),
+    rgb(56, 103, 141)
+  ); /* Gradient background */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15),
+    /* Outer shadow for depth */ inset 0 1px 2px rgba(255, 255, 255, 0.2); /* Inner highlight */
   box-sizing: border-box;
-  color: #24292e;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  list-style: none;
-  padding: 12px 30px;
-  position: relative;
-  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
-  word-wrap: break-word;
+  cursor: pointer; /* Pointer cursor on hover */
+  display: inline-block; /* Inline block display */
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif; /* Font family */
+  font-size: 16px; /* Font size */
+  line-height: 1.5; /* Line height for better readability */
+  padding: 12px 25px; /* Padding for button */
+  position: relative; /* Positioning context for shadows */
+  transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth transitions */
+  user-select: none; /* Prevent text selection */
+  vertical-align: middle; /* Vertical alignment */
+  white-space: nowrap; /* Prevent wrapping of text */
+  margin-top: 10px; /* Top margin */
+  font-weight: 600; /* Slightly bolder text */
 }
 
 .button-4:hover {
-  background-color: #f3f4f6;
-  text-decoration: none;
-  transition-duration: 0.1s;
+  background: linear-gradient(145deg, rgb(56, 103, 141), rgb(66, 122, 168));
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2),
+    /* Deeper shadow on hover */ inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .button-4:disabled {
-  background-color: #fafbfc;
-  border-color: rgba(27, 31, 35, 0.15);
+  background-color: #eaecef;
   color: #959da5;
-  cursor: default;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .button-4:active {
-  background-color: #edeff2;
-  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-  transition: none 0s;
+  background-color: rgb(45, 45, 45);
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+  transition: none;
 }
 
 .button-4:focus {
-  outline: 1px transparent;
+  outline: 2px solid rgba(66, 122, 168, 0.5);
 }
 
 .button-4:before {
@@ -206,6 +229,89 @@ hr {
   display: none;
 }
 
+.button-5 {
+  appearance: none;
+  color: #fff;
+  background-color: rgb(249, 84, 84);
+  border: none;
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
+  font-size: 100%;
+  line-height: 20px;
+  list-style: none;
+  padding: 12px 20px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.button-5 {
+  display: inline-block; /* Allows the button to behave like a block element but still inline */
+  padding: 10px 20px; /* Adds vertical and horizontal padding for a better clickable area */
+  font-size: 16px; /* Increases font size for readability */
+  font-weight: bold; /* Makes the text bold for emphasis */
+  color: #ffffff; /* Default text color is white */
+  background-color: #df4848; /* Default background color is a shade of red */
+  border: 1px solid #d9534f; /* Adds a solid border around the button */
+  border-radius: 5px; /* Gives rounded corners for a modern look */
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.button-5:hover {
+  color: #fff;
+  background-color: rgb(216, 69, 69);
+  text-decoration: none;
+}
+
+.button-5:disabled {
+  background-color: #fafbfc;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+
+.button-5:active {
+  background-color: #edeff2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none;
+}
+
+.button-5:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+
+.button-5:before {
+  display: none;
+}
+
+.button-5:-webkit-details-marker {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .button-5 {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
 footer {
   background-color: #fff;
   color: #333;
@@ -232,7 +338,7 @@ footer {
   margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid grey;
 }
 
 .sales-boxes .sales-details {
@@ -328,7 +434,7 @@ footer {
 input[type="text"],
 input[type="date"],
 textarea[type="textarea"] {
-  width: 30%;
+  width: 50%;
   padding: 15px;
   margin: 22px 0 22px 0;
   display: inline-block;
@@ -406,7 +512,7 @@ div .search-box .bx-search {
 
 #tbl td,
 #tbl th {
-  border: 1px solid #ddd;
+  border: none;
   padding: 8px;
 }
 
@@ -414,9 +520,9 @@ div .search-box .bx-search {
   background-color: #f2f2f2;
 }
 
-#tbl tr:hover {
+/* #tbl tr:hover {
   background-color: #ddd;
-}
+} */
 
 #tbl th {
   padding-top: 12px;
@@ -651,6 +757,7 @@ nav .login-btn:hover {
 }
 
 .by a:hover {
+  /* color: #347928; */
   color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
@@ -932,6 +1039,10 @@ nav a:hover::after {
   margin: 6px;
 }
 
+.fas {
+  margin: 6px;
+}
+
 input {
   display: none;
 }
@@ -984,4 +1095,68 @@ input {
   position: relative;
   display: inline-block;
   border-radius: 2px;
+}
+
+select {
+  width: auto;
+  /* padding: 15px; */
+  margin: 22px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Modal background */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: auto;
+  padding-top: 60px;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-button {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+.modal-yes {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.modal-no {
+  background-color: #f44336; /* Red */
+  color: white;
 }

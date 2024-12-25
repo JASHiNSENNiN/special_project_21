@@ -64,7 +64,13 @@ function validateSetupForm() {
   const gradeLevel = document.getElementById("grade-level").value;
   const strand = document.getElementById("strand").value;
   const strandFocus = document.getElementById("strand-focus").value;
+  const lrn = document.getElementById("input-lrn").value;
+  const studentSchoolName = document.getElementById(
+    "student-school-name"
+  ).value;
 
+  const lrnInput = document.getElementById("input-lrn");
+  const studentSchoolInput = document.getElementById("student-school-name");
   const accountTypeInput = document.getElementById("account-type");
   const schoolNameInput = document.getElementById("school-name");
   const organizationNameInput = document.getElementById("organization-name");
@@ -85,6 +91,8 @@ function validateSetupForm() {
     gradeLevelInput,
     strandInput,
     strandFocusInput,
+    lrnInput,
+    studentSchoolInput,
   ];
 
   allInputs.forEach((input) => {
@@ -131,6 +139,12 @@ function validateSetupForm() {
 
       return false;
     }
+    const lrnRegex = /^\d{12}$/;
+    if (!lrnRegex.test(lrn)) {
+      lrnInput.setCustomValidity("LRN must be a 12-digit number");
+      lrnInput.reportValidity();
+      return false;
+    }
     if (gradeLevel === "") {
       gradeLevelInput.setCustomValidity("Please select a grade level");
       gradeLevelInput.reportValidity();
@@ -139,6 +153,11 @@ function validateSetupForm() {
     if (strand === "") {
       strandInput.setCustomValidity("Please select a strand");
       strandInput.reportValidity();
+      return false;
+    }
+    if (studentSchoolName === "") {
+      studentSchoolInput.setCustomValidity("Please select a school name");
+      studentSchoolInput.reportValidity();
       return false;
     }
     try {
@@ -197,7 +216,7 @@ window.onload = function () {
   const urlParams = new URLSearchParams(window.location.search);
   const error = urlParams.get("error");
 
-  if (error === "invalidEmail") {
+  if (error === "alreadyTakenEmail") {
     document
       .getElementById("email")
       .setCustomValidity("The email address was already taken");
@@ -214,11 +233,33 @@ window.onload = function () {
   if (error === "Login_Failed") {
     const loginEmailField = document.getElementById("login-email");
     const loginPasswordField = document.getElementById("login-password");
+
+    loginEmailField.addEventListener("click", function () {
+      window.location.href = "login.php";
+    });
+    loginPasswordField.addEventListener("click", function () {
+      window.location.href = "login.php";
+    });
+
     if (loginEmailField && loginPasswordField) {
       loginEmailField.setCustomValidity("Invalid Email or Password");
       loginPasswordField.setCustomValidity("Invalid Email or Password");
       loginEmailField.reportValidity();
       loginPasswordField.reportValidity();
     }
+
+    loginEmailField.addEventListener("focus", function () {
+      window.location.href = "login.php";
+    });
+
+    loginPasswordField.addEventListener("focus", function () {
+      window.location.href = "login.php";
+    });
   }
 };
+
+const emailInput = document.getElementById("email");
+
+emailInput.addEventListener("input", function () {
+  emailInput.setCustomValidity("");
+});

@@ -4,7 +4,7 @@ $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 $email = $_POST['register_email'];
 if (email_exists($email)) {
-    header('Location: ../../register.php?error=invalidEmail');
+    header('Location: ../../register.php?error=alreadyTakenEmail');
     exit;
 }
 function email_exists($email) {

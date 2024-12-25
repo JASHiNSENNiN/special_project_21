@@ -13,7 +13,7 @@ $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM job_offers";
+$sql = "SELECT * FROM job_offers WHERE is_archived = false";
 $result = $conn->query($sql);
 
 $jobOffers = [];
@@ -59,7 +59,7 @@ function generateJobCards($jobOffers)
                 </div>
                 
                 <div class="job-card-buttons">
-                    <a href="org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank"><button class="search-buttons card-buttons">Details</button></a>
+                    <a href="org.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" ><button class="search-buttons card-buttons">Details</button></a>
                     
                 </div>
             </div>
@@ -93,9 +93,9 @@ function generateJobCards($jobOffers)
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -103,6 +103,8 @@ function generateJobCards($jobOffers)
         <div class="logo">
             <a href="index.php">
                 <img src="img/WORKIFY-LOGO.svg" alt="Logo">
+                <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                <!-- <img src="img/drdsnhs.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a>
@@ -118,47 +120,52 @@ function generateJobCards($jobOffers)
 
     </header>
 
+    <div class="bg-search">
+        <div class="content-sticky">
 
-    <div class="content-sticky">
 
 
-        <section>
-            <!-- <h2 class="sfa">Search, Find and Apply!</h2> -->
-            <div class="line-search">
-                <div class="searchwork">
-                    <form action="#" method="get">
+            <section>
+                <!-- <h2 class="sfa">Search, Find and Apply!</h2> -->
+                <div class="line-search">
+                    <div class="searchwork">
 
-                        <div class="search-container">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                            <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch" type="text"
-                                placeholder="Work Immersion / Keyword">
+                        <form action="#" method="get">
 
-                        </div>
-                        <div class="search-container" style="border-left: 1px solid grey">
-                            <button type="submit"><i class="fas fa-map-marker-alt"></i></button>
-                            <input id="InputSearch" name="InputSearch" class="globalInputSearch" type="text"
-                                placeholder="Search location">
+                            <div class="search-container">
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                                <input id="globalInputSearch" name="globalInputSearch" class="globalInputSearch"
+                                    type="text" placeholder="Work Immersion / Keyword">
 
-                        </div>
 
-                        <!-- <input class="sub-btn" type="submit" value="Find Now"> -->
+                            </div>
+                            <div class="search-container" style="border-left: 1px solid grey">
+                                <button type="submit"><i class="fas fa-map-marker-alt"></i></button>
+                                <input id="InputSearch" name="InputSearch" class="globalInputSearch" type="text"
+                                    placeholder="Search location">
 
+                            </div>
+
+                            <!-- <input class="sub-btn" type="submit" value="Find Now"> -->
+
+                    </div>
+                    </form>
                 </div>
-                </form>
+
+            </section>
+
+
+            <div class="tab-selection">
+
+
+                <nav style="position:relative; margin-left:auto; margin-right:auto;">
+                    <a class="active" href="index.php">Work Immersion feed</a>
+                    <!-- <a href="recent-search.php">Recent search</a> -->
+
+
+
+                </nav>
             </div>
-
-        </section>
-
-        <div class="tab-selection">
-
-
-            <nav style="position:relative; margin-left:auto; margin-right:auto;">
-                <a class="active" href="index.php">Work Immersion feed</a>
-                <!-- <a href="recent-search.php">Recent search</a> -->
-
-
-
-            </nav>
         </div>
         <hr class="line_bottom">
         <!-- ------------------------------------------------------Job list------------------------------>
@@ -186,20 +193,20 @@ function generateJobCards($jobOffers)
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script src="js/filter.js"> </script>
 

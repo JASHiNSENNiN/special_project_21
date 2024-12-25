@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400);
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 /* -------------Text container-----------*/
 
@@ -129,8 +131,11 @@ img {
   margin-right: auto;
   width: 76%;
   display: block;
-  border-radius: 10px;
   object-fit: cover;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .Settings {
@@ -154,21 +159,21 @@ img {
 
 .name {
   margin-top: 1%;
-  margin-left: 21%;
+  margin-left: 22%;
   font-size: 1.25rem;
   /* size: 10px; */
   font-family: sans-serif;
 }
 
 .strand {
-  margin-top: 1%;
-  margin-left: 21%;
+  /* margin-top: 1%; */
+  margin-left: 22%;
   font-size: 1.25rem;
   color: #777;
 }
 
 hr {
-  margin: auto;
+  margin: auto !important;
   width: 75%;
 }
 
@@ -333,6 +338,7 @@ nav .login-btn:hover {
 }
 
 .by a:hover {
+  /* color: #347928; */
   color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
@@ -775,13 +781,14 @@ p {
   outline: 0;
 }
 
-.fa {
+.fa,
+.fas {
   margin: 6px;
 }
 
-input {
+/* input {
   display: none;
-}
+} */
 
 .button-12 {
   display: inline-block;
@@ -1343,4 +1350,84 @@ svg g[show_data] {
   .column-1 {
     max-width: 100%;
   }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f8ce0b;
+}
+
+/* .input-search-bar-job-title {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 200px;
+} */
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 190px;
+}
+
+.input-search-bar-job-title {
+  /* width: 100%; */
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #0d0c22;
+  transition: 0.3s ease;
+}
+
+.input-search-bar-job-title::placeholder {
+  color: #9e9ea7;
+}
+
+.input-search-bar-job-title:focus,
+input:hover {
+  outline: none;
+  border-color: rgba(0, 48, 73, 0.4);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgb(0 48 73 / 10%);
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: #9e9ea7;
+  width: 1rem;
+  height: 1rem;
 }

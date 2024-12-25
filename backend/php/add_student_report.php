@@ -13,14 +13,14 @@ $password = $_ENV['MYSQL_PASSWORD'];
 $database = $_ENV['MYSQL_DBNAME'];
 
 $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+$job_id = $_SESSION['current_work']; 
 $sql = "SELECT pp.id AS partner_profile_id 
-        FROM applicants a 
-        JOIN job_offers jo ON a.job_id = jo.id 
+        FROM job_offers jo
         JOIN partner_profiles pp ON jo.partner_id = pp.user_id 
-        WHERE a.id = :applicant_id";
+        WHERE jo.id = :job_id";
+
 $stmt = $pdo->prepare($sql);
-$applicant_id = $_SESSION['current_work']; // Assuming this contains the applicants.id
-$stmt->bindParam(':applicant_id', $applicant_id, PDO::PARAM_INT);
+$stmt->bindParam(':job_id', $job_id, PDO::PARAM_INT);
 $stmt->execute();
 $work_id = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($work_id) {
@@ -28,7 +28,6 @@ if ($work_id) {
 } else {
     $partner_profile_id = null; 
 }
-
 
 $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
@@ -67,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $work_id = $_SESSION['current_work'];
 
         $stmt = $conn->prepare("INSERT INTO Organization_Evaluation (
-            organization_id, quality_of_experience, productivity_of_tasks, 
+            organization_id, evaluator_id, job_id, quality_of_experience, productivity_of_tasks, 
             problem_solving_opportunities, attention_to_detail_in_guidance, 
             initiative_encouragement, punctuality_expectations, 
             professional_appearance_standards, communication_training, 
@@ -79,10 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             supportiveness_among_peers, contribution_to_team_success, 
             enthusiasm_for_tasks, drive_to_achieve_goals, 
             resilience_to_challenges, commitment_to_experience, 
-            self_motivation_levels) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            self_motivation_levels) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $stmt->bind_param("isssssssssssssssssssssssss", 
-            $partner_profile_id, $quality_of_experience, $productivity_of_tasks, 
+        $stmt->bind_param("iiisssssssssssssssssssssssss", 
+            $partner_profile_id,  $_SESSION['user_id'], $work_id, $quality_of_experience, $productivity_of_tasks, 
             $problem_solving_opportunities, $attention_to_detail_in_guidance, 
             $initiative_encouragement, $punctuality_expectations, 
             $professional_appearance_standards, $communication_training, 

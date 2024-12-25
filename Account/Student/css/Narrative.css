@@ -32,6 +32,7 @@ img {
   width: 76%;
   display: block;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .profile img {
@@ -174,6 +175,7 @@ hr {
 }
 
 /* ----------------------------company review---------------- */
+
 /* 
 h1,
 h2,
@@ -330,6 +332,7 @@ h3 {
 .cam {
   display: none;
 }
+
 .pen {
   display: none;
 }
@@ -394,12 +397,21 @@ nav .login-btn:hover {
   color: #172738;
 }
 
+.active1 {
+  color: #fff;
+  /* background-color: rgba(52, 121, 40, 0.9); */
+  background-color: rgba(27, 188, 155, 0.3);
+  font-weight: bold;
+}
+
 .bt a:hover {
   color: #000000;
   background-color: rgba(27, 188, 155, 0.3);
   font-weight: bold;
 }
+
 .by a:hover {
+  /* color: #347928; */
   color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
@@ -417,6 +429,7 @@ nav .login-btn:hover {
   transform-origin: bottom right;
   transition: transform 0.3s;
 }
+
 .by a::after {
   content: "";
   position: absolute;
@@ -440,7 +453,7 @@ nav .login-btn:hover {
   display: none;
   position: absolute;
   right: 0;
-  background-color: rgba(249, 249, 249, 0.8);
+  background-color: rgb(249, 249, 249);
   min-width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -499,6 +512,7 @@ nav .login-btn:hover {
   float: left;
   margin-top: -20px;
 }
+
 .dropdowntf-content img {
   display: block;
   width: 50px;
@@ -525,16 +539,19 @@ nav .login-btn:hover {
   cursor: pointer;
   text-align: left;
 }
+
 .foot {
   margin-top: 20px;
   margin-bottom: 20px;
   color: #000;
 }
+
 .email {
   text-align: left;
   font-weight: bold;
   color: #000;
 }
+
 .logout a {
   text-align: center;
 }
@@ -839,12 +856,6 @@ nav .login-btn:hover {
   color: #172738;
 }
 
-.active1 {
-  color: #000000;
-  background-color: rgba(27, 188, 155, 0.3);
-  font-weight: bold;
-}
-
 .login-btn {
   margin-right: 10px;
   display: inline-block;
@@ -886,19 +897,16 @@ nav .login-btn:hover {
     padding-left: 20px !important;
     padding-bottom: 5px !important;
   }
-
   .logo img {
     width: 160px !important;
     /* Adjust the width as needed */
     margin-right: 15px !important;
   }
-
   nav a {
     /* padding: 5px 10px !important; */
     margin: 0 10px !important;
     font-size: 14px !important;
   }
-
   .login-btn {
     /* width: 10% !important; */
     height: 10% !important;
@@ -995,6 +1003,7 @@ nav .login-btn:hover {
 }
 
 /* --edit-- */
+
 .button-13 {
   background-color: #fff;
   border: 1px solid #d5d9d9;
@@ -1066,6 +1075,7 @@ input[type="radio"] {
     0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
+
 .button-12:hover {
   background-color: #030303;
 }
@@ -1080,6 +1090,7 @@ input[type="radio"] {
   color: white;
   /* display: none; */
 }
+
 .notification {
   /* background-color: #555; */
   /* color: white; */
@@ -1339,6 +1350,7 @@ input[type="radio"] {
 .st {
   margin: 20px;
 }
+
 .sr {
   text-align: center;
   margin-top: 20px;
@@ -1348,14 +1360,17 @@ input[type="radio"] {
 [name^="question"] {
   display: none;
 }
+
 .star {
   font-size: 30px;
   cursor: pointer;
   margin: 20px;
 }
+
 .empty i {
   color: #ccc;
 }
+
 .green i {
   color: gold;
 }

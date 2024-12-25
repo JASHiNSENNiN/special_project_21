@@ -225,7 +225,7 @@ main {
 }
 
 /* .colm-form .form-container .btn-new:hover {
-    background-color: #0e745f;
+  background-color: #0e745f;
 } */
 
 .colm-form p {
@@ -259,6 +259,8 @@ main {
 .btn-login {
   --primary-color: #111;
   --hovered-color: #1bbc9b;
+  /* ////dr ramon////// */
+  /* --hovered-color: #18613b; */
   position: relative;
   display: flex;
   font-weight: 600;

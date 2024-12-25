@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -39,6 +42,103 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $job = $result;
 
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT 
+    AVG(quality_of_experience) AS avg_quality_of_experience,
+    AVG(productivity_of_tasks) AS avg_productivity_of_tasks,
+    AVG(problem_solving_opportunities) AS avg_problem_solving_opportunities,
+    AVG(attention_to_detail_in_guidance) AS avg_attention_to_detail_in_guidance,
+    AVG(initiative_encouragement) AS avg_initiative_encouragement,
+    AVG(punctuality_expectations) AS avg_punctuality_expectations,
+    AVG(professional_appearance_standards) AS avg_professional_appearance_standards,
+    AVG(communication_training) AS avg_communication_training,
+    AVG(respectfulness_environment) AS avg_respectfulness_environment,
+    AVG(adaptability_challenges) AS avg_adaptability_challenges,
+    AVG(willingness_to_learn_encouragement) AS avg_willingness_to_learn_encouragement,
+    AVG(feedback_application_opportunities) AS avg_feedback_application_opportunities,
+    AVG(self_improvement_support) AS avg_self_improvement_support,
+    AVG(skill_development_assessment) AS avg_skill_development_assessment,
+    AVG(knowledge_application_in_practice) AS avg_knowledge_application_in_practice,
+    AVG(team_participation_opportunities) AS avg_team_participation_opportunities,
+    AVG(cooperation_among_peers) AS avg_cooperation_among_peers,
+    AVG(conflict_resolution_guidance) AS avg_conflict_resolution_guidance,
+    AVG(supportiveness_among_peers) AS avg_supportiveness_among_peers,
+    AVG(contribution_to_team_success) AS avg_contribution_to_team_success,
+    AVG(enthusiasm_for_tasks) AS avg_enthusiasm_for_tasks,
+    AVG(drive_to_achieve_goals) AS avg_drive_to_achieve_goals,
+    AVG(resilience_to_challenges) AS avg_resilience_to_challenges,
+    AVG(commitment_to_experience) AS avg_commitment_to_experience,
+    AVG(self_motivation_levels) AS avg_self_motivation_levels
+FROM Organization_Evaluation";
+
+$result = $conn->query($sql);
+
+$avg_quality_of_experience = 0.0;
+$avg_productivity_of_tasks = 0.0;
+$avg_problem_solving_opportunities = 0.0;
+$avg_attention_to_detail_in_guidance = 0.0;
+$avg_initiative_encouragement = 0.0;
+$avg_punctuality_expectations = 0.0;
+$avg_professional_appearance_standards = 0.0;
+$avg_communication_training = 0.0;
+$avg_respectfulness_environment = 0.0;
+$avg_adaptability_challenges = 0.0;
+$avg_willingness_to_learn_encouragement = 0.0;
+$avg_feedback_application_opportunities = 0.0;
+$avg_self_improvement_support = 0.0;
+$avg_skill_development_assessment = 0.0;
+$avg_knowledge_application_in_practice = 0.0;
+$avg_team_participation_opportunities = 0.0;
+$avg_cooperation_among_peers = 0.0;
+$avg_conflict_resolution_guidance = 0.0;
+$avg_supportiveness_among_peers = 0.0;
+$avg_contribution_to_team_success = 0.0;
+$avg_enthusiasm_for_tasks = 0.0;
+$avg_drive_to_achieve_goals = 0.0;
+$avg_resilience_to_challenges = 0.0;
+$avg_commitment_to_experience = 0.0;
+$avg_self_motivation_levels = 0.0;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    
+    $avg_quality_of_experience = $row['avg_quality_of_experience'];
+    $avg_productivity_of_tasks = $row['avg_productivity_of_tasks'];
+    $avg_problem_solving_opportunities = $row['avg_problem_solving_opportunities'];
+    $avg_attention_to_detail_in_guidance = $row['avg_attention_to_detail_in_guidance'];
+    $avg_initiative_encouragement = $row['avg_initiative_encouragement'];
+    $avg_punctuality_expectations = $row['avg_punctuality_expectations'];
+    $avg_professional_appearance_standards = $row['avg_professional_appearance_standards'];
+    $avg_communication_training = $row['avg_communication_training'];
+    $avg_respectfulness_environment = $row['avg_respectfulness_environment'];
+    $avg_adaptability_challenges = $row['avg_adaptability_challenges'];
+    $avg_willingness_to_learn_encouragement = $row['avg_willingness_to_learn_encouragement'];
+    $avg_feedback_application_opportunities = $row['avg_feedback_application_opportunities'];
+    $avg_self_improvement_support = $row['avg_self_improvement_support'];
+    $avg_skill_development_assessment = $row['avg_skill_development_assessment'];
+    $avg_knowledge_application_in_practice = $row['avg_knowledge_application_in_practice'];
+    $avg_team_participation_opportunities = $row['avg_team_participation_opportunities'];
+    $avg_cooperation_among_peers = $row['avg_cooperation_among_peers'];
+    $avg_conflict_resolution_guidance = $row['avg_conflict_resolution_guidance'];
+    $avg_supportiveness_among_peers = $row['avg_supportiveness_among_peers'];
+    $avg_contribution_to_team_success = $row['avg_contribution_to_team_success'];
+    $avg_enthusiasm_for_tasks = $row['avg_enthusiasm_for_tasks'];
+    $avg_drive_to_achieve_goals = $row['avg_drive_to_achieve_goals'];
+    $avg_resilience_to_challenges = $row['avg_resilience_to_challenges'];
+    $avg_commitment_to_experience = $row['avg_commitment_to_experience'];
+    $avg_self_motivation_levels = $row['avg_self_motivation_levels'];
+}
+
 function generateJobCard()
 {
     global $job;
@@ -46,7 +146,15 @@ function generateJobCard()
     $work_title = $job['work_title'];
     $description = html_entity_decode($job['description']);
     $description = nl2br($description);
+    global $totalApplicants;
+    $strands = json_decode($job['strands']);
+    $work_title = $job['work_title'];
+    $description = html_entity_decode($job['description']);
+    $description = nl2br($description);
 
+    echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
+    echo '<div class="container">';
+    echo '<div class="eleven columns">';
     echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
     echo '<div class="container">';
     echo '<div class="eleven columns">';
@@ -57,13 +165,24 @@ function generateJobCard()
     foreach ($strands as $strand) {
         echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
     }
+    echo '<span class="job-category"><a href="#">Organization</a></span>';
+    echo '<h1>' .  htmlspecialchars($job['organization_name']);
+    echo '<hr>';
+    // foreach ($strands as $strand) {
+    //     echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+    // }
 
+    echo '</h1></div>';
     echo '</h1></div>';
 
     echo '<div class="five columns">';
     echo '<div class="job-manager-form wp-job-manager-bookmarks-form">';
     echo '</div></div></div></div>';
+    echo '<div class="five columns">';
+    echo '<div class="job-manager-form wp-job-manager-bookmarks-form">';
+    echo '</div></div></div></div>';
 
+    echo '
     echo '
             </div>
         </div>
@@ -76,60 +195,22 @@ function generateJobCard()
             <div class="company-info-boxed">
                 <div class="company-info left-company-logo">
 
-                    <div class="company-info-boxed-logo">
-                        <a href="#"> <img width="150" height="150" class="company_logo"
-                                src="https://workscout.in/wp-content/uploads/job-manager-uploads/company_logo/2021/11/company-logo-06-150x150.png"
-                                alt=""> </a>
-                    </div>
 
                     <div class="content">
                         <h4>
                             <a href="#"> <strong>' . htmlspecialchars($job['organization_name']) .
         '</strong>
+                            <a href="#"> <strong>' . htmlspecialchars($job['work_title']) .
+        '</strong>
                             </a>
-                            <p class="company-data__content--list-item">Improving Lives Together</p>
-                        </h4>
+                           
+                        </h4>';
 
-                        <div class="company-info-boxed-links">
+    foreach ($strands as $strand) {
+        echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+    }
 
-
-
-                            <span class="company-data__content--list-item _company_website"><a class="website" href="#"
-                                    target="_blank" rel="nofollow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        version="1.1" width="15.413" height="14" viewBox="0 0 256 256"
-                                        xml:space="preserve">
-
-                                        <defs>
-                                        </defs>
-                                        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-                                            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                                            <path
-                                                d="M 45 90 c -1.415 0 -2.725 -0.748 -3.444 -1.966 l -4.385 -7.417 C 28.167 65.396 19.664 51.02 16.759 45.189 c -2.112 -4.331 -3.175 -8.955 -3.175 -13.773 C 13.584 14.093 27.677 0 45 0 c 17.323 0 31.416 14.093 31.416 31.416 c 0 4.815 -1.063 9.438 -3.157 13.741 c -0.025 0.052 -0.053 0.104 -0.08 0.155 c -2.961 5.909 -11.41 20.193 -20.353 35.309 l -4.382 7.413 C 47.725 89.252 46.415 90 45 90 z"
-                                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(119, 119, 119); fill-rule: nonzero; opacity: 1;"
-                                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                                            <path
-                                                d="M 45 45.678 c -8.474 0 -15.369 -6.894 -15.369 -15.368 S 36.526 14.941 45 14.941 c 8.474 0 15.368 6.895 15.368 15.369 S 53.474 45.678 45 45.678 z"
-                                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-                                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                                        </g>
-                                    </svg>
-                                    Location
-                                </a>
-                                </span>
-                            <span class="company-data__content--list-item _company_email">
-                                <a href="#" target="_blank"><i class="fa fa-envelope"></i>
-                                    telimed@example.com</a>
-                            </span>
-                            <span class="company-data__content--list-item _company_x">
-                                <a href="#">  <i class="fa fa-link"></i> 
-                                   
-                                    Link </a></span>
-
-                            
-
-
-                        </div>
+    echo '                  
 
 
                     </div>
@@ -156,12 +237,127 @@ function generateJobCard()
                 </div>
 
             </div>
-            
+
+
+            <div class="eleven columns ">
+                <div class="padding-right">
+                
+                    <div class="single_job_listing">
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                     <h4 class="font-weight-bold py-3 mb-4"
+            style="background-color:#172738; color:#fff; padding-left: 20px; padding-right: 10px;margin: 0px !important; "> <i class="fa fa-pie-chart" aria-hidden="true"></i>Rating</h4>
+                        <div class="flex-container">
+                        
+  <div class="flex-left">
+    <div id="top_x_div_rating"></div>
+    <div class="rating-users">
+      <i class="fa fa-user" aria-hidden="true"></i><span>'. $totalApplicants  .'</span> total students
+    </div>
+  </div>
+  <div class="flex-right">
+      
+<div id="total-student" style="width: 90%; height: 100%;"></div>
+  </div>
+</div> 
+                        
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+             
+            <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
+            <h4 class="font-weight-bold py-3 mb-4"
+            style="background-color:#172738; color:#fff; padding-left: 20px; padding-right: 10px;margin: 0px !important; ">  <i class="fa fa-bar-chart" aria-hidden="true"></i>Insights</h4>
+        <div class="container-btm-rating">
+        
+		<div class="row clearfix">
+			<div class="col-3">
+				<div class="common">
+					 <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+
+			<div class="col-3">
+				<div class="common">
+					<div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+
+			<div class="col-3">
+				<div class="common">
+					 <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+
+			<div class="col-3">
+				<div class="common">
+					<div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+				
+			</div> <!-- end:col-3 -->
+			<div class="col-3">
+				<div class="common">
+					 <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 100%;"></div>
+				</div> <!-- end:common -->
+			</div> <!-- end:col-3 -->
+		</div><!-- end:row -->
+	</div> <!-- end:container -->
+
 
         </div>';
 }
 
+function getApplicantsCountByStrand($jobId, $pdo) {
+    $sql = "SELECT strand, COUNT(*) AS count FROM applicants 
+            JOIN student_profiles ON applicants.student_id = student_profiles.user_id 
+            WHERE applicants.job_id = :jobId 
+            GROUP BY strand";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':jobId', $jobId, PDO::PARAM_INT);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    $strandCounts = [
+        'humss' => 0,
+        'gas' => 0,
+        'stem' => 0,
+        'tvl' => 0,
+        'abm' => 0,
+    ];
+    
+    foreach ($results as $row) {
+        if (isset($strandCounts[$row['strand']])) {
+            $strandCounts[$row['strand']] = (int)$row['count'];
+        }
+    }
+    
+    // Calculate the total number of applicants
+    $totalApplicants = array_sum($strandCounts);
+    
+    return [
+        'counts' => $strandCounts,
+        'total' => $totalApplicants
+    ];
+}
 
+$strandData = getApplicantsCountByStrand($jobId, $pdo); 
+$strandCounts = $strandData['counts'];
+$totalApplicants = $strandData['total'];
+
+if (isset($_SESSION['account_type'])) {
+
+    $account_type = ucfirst($_SESSION['account_type']);
+
+    $link = "/Account/$account_type";
+} else {
+
+    $link = "./";
+}
 ?>
 
 
@@ -174,6 +370,9 @@ function generateJobCard()
 
     <title>Work Immersion | Workify</title>
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <title>Work Immersion | DRDSNHS</title> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -183,10 +382,22 @@ function generateJobCard()
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-</head>
-<style>
+    <!-- ---------------------------------------evaluation script ------------------------------------------- -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-</style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+</head>
+
+
+
 
 <body>
     <noscript>
@@ -197,27 +408,111 @@ function generateJobCard()
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
+
+
+    <script>
+    var strandCounts = <?php echo json_encode($strandCounts); ?>;
+    var totalApplicants = strandCounts.humss + strandCounts.gas + strandCounts.stem + strandCounts.tvl;
+
+    // Experience averages
+    const avgQualityOfExperience = Number(<?php echo json_encode($avg_quality_of_experience); ?>);
+    const avgProductivityOfTasks = Number(<?php echo json_encode($avg_productivity_of_tasks); ?>);
+    const avgProblemSolvingOpportunities = Number(<?php echo json_encode($avg_problem_solving_opportunities); ?>);
+    const avgAttentionToDetailInGuidance = Number(<?php echo json_encode($avg_attention_to_detail_in_guidance); ?>);
+    const avgInitiativeEncouragement = Number(<?php echo json_encode($avg_initiative_encouragement); ?>);
+
+    const avgExperience = (
+        (avgQualityOfExperience + avgProductivityOfTasks + avgProblemSolvingOpportunities +
+            avgAttentionToDetailInGuidance + avgInitiativeEncouragement) / 5
+    );
+
+    // Professionalism averages
+    const avgPunctualityExpectations = Number(<?php echo json_encode($avg_punctuality_expectations); ?>);
+    const avgProfessionalAppearanceStandards = Number(
+        <?php echo json_encode($avg_professional_appearance_standards); ?>);
+    const avgCommunicationTraining = Number(<?php echo json_encode($avg_communication_training); ?>);
+    const avgRespectfulnessEnvironment = Number(<?php echo json_encode($avg_respectfulness_environment); ?>);
+    const avgAdaptabilityChallenges = Number(<?php echo json_encode($avg_adaptability_challenges); ?>);
+
+    const avgProfessionalism = (
+        (avgPunctualityExpectations + avgProfessionalAppearanceStandards + avgCommunicationTraining +
+            avgRespectfulnessEnvironment + avgAdaptabilityChallenges) / 5
+    );
+
+    // Learning and development averages
+    const avgWillingnessToLearnEncouragement = Number(
+        <?php echo json_encode($avg_willingness_to_learn_encouragement); ?>);
+    const avgFeedbackApplicationOpportunities = Number(
+        <?php echo json_encode($avg_feedback_application_opportunities); ?>);
+    const avgSelfImprovementSupport = Number(<?php echo json_encode($avg_self_improvement_support); ?>);
+    const avgSkillDevelopmentAssessment = Number(<?php echo json_encode($avg_skill_development_assessment); ?>);
+    const avgKnowledgeApplicationInPractice = Number(
+        <?php echo json_encode($avg_knowledge_application_in_practice); ?>);
+
+    const avgLearningAndDevelopment = (
+        (avgWillingnessToLearnEncouragement + avgFeedbackApplicationOpportunities + avgSelfImprovementSupport +
+            avgSkillDevelopmentAssessment + avgKnowledgeApplicationInPractice) / 5
+    );
+
+    // Collaboration averages
+    const avgTeamParticipationOpportunities = Number(<?php echo json_encode($avg_team_participation_opportunities); ?>);
+    const avgCooperationAmongPeers = Number(<?php echo json_encode($avg_cooperation_among_peers); ?>);
+    const avgConflictResolutionGuidance = Number(<?php echo json_encode($avg_conflict_resolution_guidance); ?>);
+    const avgSupportivenessAmongPeers = Number(<?php echo json_encode($avg_supportiveness_among_peers); ?>);
+    const avgContributionToTeamSuccess = Number(<?php echo json_encode($avg_contribution_to_team_success); ?>);
+
+    const avgCollaboration = (
+        (avgTeamParticipationOpportunities + avgCooperationAmongPeers + avgConflictResolutionGuidance +
+            avgSupportivenessAmongPeers + avgContributionToTeamSuccess) / 5
+    );
+
+    // Attitude and Motivation averages
+    const avgEnthusiasmForTasks = Number(<?php echo json_encode($avg_enthusiasm_for_tasks); ?>);
+    const avgDriveToAchieveGoals = Number(<?php echo json_encode($avg_drive_to_achieve_goals); ?>);
+    const avgResilienceToChallenges = Number(<?php echo json_encode($avg_resilience_to_challenges); ?>);
+    const avgCommitmentToExperience = Number(<?php echo json_encode($avg_commitment_to_experience); ?>);
+    const avgSelfMotivationLevels = Number(<?php echo json_encode($avg_self_motivation_levels); ?>);
+
+    const avgAttitudeAndMotivation = (
+        (avgEnthusiasmForTasks + avgDriveToAchieveGoals + avgResilienceToChallenges +
+            avgCommitmentToExperience + avgSelfMotivationLevels) / 5
+    );
+    </script>
+
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
                 <img src="img/logov3.jpg" alt="Logo">
+                <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
             </a>
             <nav class="dash-middle">
-                <a class="active-header" href="index.php">Home</a>
-                <!-- <a href="job_list.php">Company review</a>
-                <a href="contact.php">Contact</a> -->
+
             </nav>
         </div>
         <nav class="nav-log">
-            <a class="login-btn" href="login.php" style="margin-left: 20px;">Sign in</a>
+
             <div class="css-1ld7x2h eu4oa1w0"></div>
-            <a class="com-btn" href="post_work_Immersion.php">Post Work Immersion</a>
+            <?php
+session_start(); 
+
+if (isset($_SESSION['account_type'])) {
+    $account_type = ucfirst($_SESSION['account_type']); 
+    $link = "/Account/$account_type"; 
+} else {
+    $link = "./"; 
+}
+?>
+
+            <a class="com-btn" href="<?php echo htmlspecialchars($link); ?>">Back</a>
         </nav>
 
     </header>
 
 
     <div class="content-sticky">
+        <!-- --------------------------------------------------location----------------------------------------------- -->
+
+
         <?php generateJobCard(); ?>
 
 
@@ -227,13 +522,18 @@ function generateJobCard()
     <footer class="new_footer_area bg_color">
         <div class="new_footer_top">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                <div class="row" style=" gap: 120px !important;">
+                    <a href="index.php">
+                        <img src="img/logov3.jpg" alt="Logo">
+                        <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                    </a>
+                    <!-- <div class="col-lg-3 col-md-6">
                         <a href="index.php">
                             <img src="img/logov3.jpg" alt="Logo">
+                            <img src="img/DrRamonLOGO.svg" alt="Logo">
                         </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-6">
                         <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s"
                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
                             <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
@@ -259,8 +559,8 @@ function generateJobCard()
                                 <li><a href="#">Privacy</a></li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-6">
                         <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s"
                             style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
                             <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
@@ -271,7 +571,7 @@ function generateJobCard()
                                 <a href="#" class="fab fa-pinterest"></a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="footer_bg">
@@ -285,6 +585,7 @@ function generateJobCard()
                     <div class="col-lg-6 col-sm-7">
                         <p class="mb-0 f_400">© 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer
                             Society Students</p>
+                        <!-- <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p> -->
                     </div>
                     <!-- <div class="col-lg-6 col-sm-5 text-right">
                         <p>Made with <i class="icon_heart"></i> in <a href="#" target="_blank">JPCS</a></p>
@@ -312,8 +613,40 @@ function generateJobCard()
             }
         }
     </script>
-    <script src="js/filter.js"> </script>
+    <script>
+    $(document).ready(function() {
+        $('.bar span').hide();
+        $('#bar-five').animate({
+            width: '85%'
+        }, 1000);
+        $('#bar-four').animate({
+            width: '35%'
+        }, 1000);
+        $('#bar-three').animate({
+            width: '20%'
+        }, 1000);
+        $('#bar-two').animate({
+            width: '17%'
+        }, 1000);
+        $('#bar-one').animate({
+            width: '30%'
+        }, 1000);
 
+        setTimeout(function() {
+            $('.bar span').fadeIn('slow');
+        }, 1000);
+
+    });
+    </script>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script src="js/filter.js"> </script>
+    <script type="text/javascript" src="js/org.js"></script>
 
 </body>
 

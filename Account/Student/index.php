@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$user_id = $_SESSION['user_id']; 
+$user_id = $_SESSION['user_id'];
 
 $query = "SELECT current_work FROM student_profiles WHERE user_id = ?";
 $stmt = $conn->prepare($query);

@@ -65,44 +65,52 @@ function fetch_partner_profile($user_id)
     $stmt = $conn->prepare("SELECT * FROM partner_profiles WHERE user_id = ?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
-    return $stmt->get_result()->fetch_assoc(); 
+    return $stmt->get_result()->fetch_assoc();
 }
 
+
 $user_profile = fetch_user_profile($user_id);
+
 $_SESSION['email'] = $user_profile['email'];
-$_SESSION['account_type'] = $user_profile['account_type'];
-$profile_image = '../Account/Student/image/default.png';
-$_SESSION['profile_image'] = "../../Account/Student/image/default.png";
+$_SESSION['account_type'] = ucfirst($user_profile['account_type']);
+
 $profile_image_path = './uploads/' . $user_profile['profile_image'];
 if (file_exists($profile_image_path)) {
     $_SESSION['profile_image'] = $profile_image_path;
 } else {
     $_SESSION['profile_image'] = "../../Account/Student/image/default.png";
 }
-$_SESSION['profile_image'] =  ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
+$_SESSION['profile_image'] = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 
+$cover_image_path = './uploads/' . $user_profile['cover_image'];
+if (file_exists($cover_image_path)) {
+    $_SESSION['cover_image'] = $cover_image_path;
+} else {
+    $_SESSION['cover_image'] = "../../Account/Student/image/default_cover.png";
+}
 
-if ($user_profile['account_type'] === 'student') {
+if ($user_profile['account_type'] === 'Student') {
     $student_profile = fetch_student_profile($user_id);
     $_SESSION['id'] = $student_profile['id'];
     $_SESSION['first_name'] = $student_profile['first_name'];
     $_SESSION['middle_name'] = $student_profile['middle_name'];
     $_SESSION['last_name'] = $student_profile['last_name'];
     $_SESSION['school'] = $student_profile['school'];
+    $_SESSION['lrn'] = $student_profile['lrn'];
     $_SESSION['grade_level'] = $student_profile['grade_level'];
     $_SESSION['strand'] = $student_profile['strand'];
-    $_SESSION['stars'] = $student_profile['stars'];
     $_SESSION['current_work'] = $student_profile['current_work'];
-} elseif ($user_profile['account_type'] === 'school') {
+} elseif ($user_profile['account_type'] === 'School') {
     $school_profile = fetch_school_profile($user_id);
     $_SESSION['school_name'] = $school_profile['school_name'];
-    $_SESSION['stars'] = $school_profile['stars'];
-} elseif ($user_profile['account_type'] === 'organization') {
+} elseif ($user_profile['account_type'] === 'Organization') {
     $partner_profile = fetch_partner_profile($user_id);
     $_SESSION['organization_name'] = $partner_profile['organization_name'];
-    $_SESSION['stars'] = $partner_profile['stars'];
     $_SESSION['strand'] = $partner_profile['strand'];
+} else {
+    header('Location: google.com');
+                
 }
 
 $conn->close();

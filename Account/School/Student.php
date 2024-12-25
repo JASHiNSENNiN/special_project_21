@@ -6,34 +6,116 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
-
+$ProfileViewURL = "../../ProfileView.php";
 function get_students_by_strand($strand)
+{
+    // Database connection parameters
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    // Create a new MySQLi connection
+    $conn = new mysqli($host, $username, $password, $database);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Check if school_name is set in the session
+    if (!isset($_SESSION['school_name'])) {
+        die("Error: School name is not set in the session.");
+    }
+    $schoolName = $_SESSION['school_name'];
+
+    // Prepare the SQL statement
+    $stmt = $conn->prepare("SELECT sp.*, u.* 
+                             FROM student_profiles AS sp 
+                             JOIN users AS u ON sp.user_id = u.id 
+                             WHERE sp.strand = ? AND sp.school = ?");
+    // Bind parameters
+    $stmt->bind_param("ss", $strand, $schoolName); // 'ss' indicates that both parameters are strings
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch the students into an array
+    $students = [];
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $students[] = $row;
+        }
+    }
+
+    // Close the prepared statement and the connection
+    $stmt->close();
+    $conn->close();
+
+    return $students;
+}
+
+// function verify_student($student_id)
+// {
+// }
+function verify_student($student_id)
 {
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
     $database = $_ENV['MYSQL_DBNAME'];
+
     $conn = new mysqli($host, $username, $password, $database);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $query = "SELECT * FROM student_profiles WHERE strand = '$strand'";
+    $stmt = $conn->prepare("UPDATE student_profiles SET verified_status = TRUE WHERE user_id = ?");
+    $stmt->bind_param("i", $student_id);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+}
 
-    $result = $conn->query($query);
+// function unverify_student($student_id)
+// {}
 
-    if ($result->num_rows > 0) {
-        $students = array();
-        while ($row = $result->fetch_assoc()) {
-            $students[] = $row;
-        }
-    } else {
-        $students = array();
+function unverify_student($student_id)
+{
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
+    $stmt = $conn->prepare("UPDATE student_profiles SET verified_status = FALSE WHERE user_id = ?");
+    $stmt->bind_param("i", $student_id);
+    $stmt->execute();
+    $stmt->close();
     $conn->close();
-    return $students;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['student_id'])) {
+    $student_id = intval($_POST['student_id']);
+    $action = $_POST['action'];
+
+    if ($action === 'verify') {
+        verify_student($student_id);
+    } elseif ($action === 'unverify') {
+        unverify_student($student_id);
+    }
+
+    // header("Location: " . $_SERVER['PHP_SELF']); 
+    // exit();
 }
 
 $humss_students = get_students_by_strand('humss');
@@ -100,9 +182,9 @@ $tvl_students = get_students_by_strand('tvl');
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <!-- <a href="Company.php">Work Immersion List</a> -->
             <!-- <a href="#.php">Company</a> -->
-            <a class="active1" href="Student.php">Student</a>
-            <a href="Dashboard.php">Analytics</a>
-            <a href="Reports.php">Reports</a>
+            <a class="active1" href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
+            <a href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a href="Reports.php"><i class="fa fa-file-text-o"></i>Reports</a>
             <!-- <a href="Details.php">Details</a> -->
 
 
@@ -113,7 +195,7 @@ $tvl_students = get_students_by_strand('tvl');
 
     <br>
 
-
+    <!-- <a href="Archive.php"> <i class="fa fa-archive" style="font-size:24px; Margin-right:10px"></i>Archive</a> -->
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <div class="container">
@@ -121,34 +203,42 @@ $tvl_students = get_students_by_strand('tvl');
             <span class="material-symbols-outlined">
                 balance
             </span>
-            <p>Humss</p>
+            <p>HUMSS</p>
         </div>
         <div class="box" id="#stem">
             <span class="material-symbols-outlined">
                 experiment
             </span>
-            <p>Stem</p>
+            <p>STEM</p>
         </div>
         <div class="box" id="#gas">
             <span class="material-symbols-outlined">
                 menu_book
             </span>
-            <p>Gas</p>
+            <p>GAS</p>
         </div>
         <div class="box" id="#techvoc">
             <span class="material-symbols-outlined">
                 construction
             </span>
-            <p>TechVOc</p>
+            <p>TECHVOC</p>
+        </div>
+        <div class="box" id="#abm">
+            <span class="material-symbols-outlined">
+                insert_drive_file
+            </span>
+
+            <p>ABM</p>
         </div>
     </div>
 
-    <div class="butts">
+
+    <!-- <div class="butts">
         <button class="button-66" id="modal-btn" role="button"><i class='fas fa-user-plus'
                 style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
-    </div>
+    </div> -->
 
-    <div id="my-modal" class="modal">
+    <!-- <div id="my-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
@@ -168,14 +258,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <option value="lisa_white">Lisa White</option>
                             <option value="mike_green">Mike Green</option>
                         </select>
-                        <!-- <label class="StudentLabel" for="student">Choose a Strand:</label>
-                        <select class="StudentSelect" id="student" name="student" required>
-                            <option value="" disabled selected>Select a student</option>
-                            <option value="HUMSS">HUMSS</option>
-                            <option value="STEM">STEM</option>
-                            <option value="GAS">GAS</option>
-                            <option value="TECHVOC">TECHVOC</option>
-                        </select> -->
+                        
 
                         <button type="submit" class="submit-btn"><i class='fas fa-user-plus'
                                 style='margin-right:10px;'></i>Add
@@ -184,43 +267,56 @@ $tvl_students = get_students_by_strand('tvl');
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div id="content_container">
         <div id="humss" class="content active">
             <h1 style="margin-bottom: 50px; margin-top:50px">HUMSS</h1>
+
+
             <div class="container2">
-                <table class="rwd-table">
-                    <tbody id="studentTableBody1">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchHumssInput" onkeyup="searchTable('humss')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchHumss">
+                    <tbody>
                         <tr>
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Result</th>
+                            <th>Organization</th>
+                            <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
                         foreach ($humss_students as $student) {
                             echo "<tr>";
                             echo "<td data-th='#'>" . $count . "</td>";
-                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Result'>";
-                            echo "<div class='container3'>";
-                            echo "<div class='circular-progress'>";
-                            echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            echo "</div>";
-                            echo "</div>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify' autofocus>Unverify</button><br>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify' autofocus>Verify</button><br>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
                             echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
                             echo "</tr>";
                             $count++;
                         }
                         ?>
                     </tbody>
-
                 </table>
             </div>
         </div>
@@ -230,36 +326,47 @@ $tvl_students = get_students_by_strand('tvl');
         <div id="stem" class="content">
             <h1 style="margin-bottom: 50px; margin-top:50px">STEM</h1>
             <div class="container2">
-                <table class="rwd-table">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchStemInput" onkeyup="searchTable('stem')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchStem">
                     <tbody>
                         <tr>
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Result</th>
+                            <th>Organization</th>
+                            <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
                         foreach ($stem_students as $student) {
                             echo "<tr>";
                             echo "<td data-th='#'>" . $count . "</td>";
-                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Result'>";
-                            echo "<div class='container3'>";
-                            echo "<div class='circular-progress'>";
-                            echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            echo "</div>";
-                            echo "</div>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button><br>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button> <br>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
                             echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
                             echo "</tr>";
                             $count++;
                         }
                         ?>
-
                     </tbody>
 
                 </table>
@@ -269,31 +376,92 @@ $tvl_students = get_students_by_strand('tvl');
         <div id="gas" class="content">
             <h1 style="margin-bottom: 50px; margin-top:50px">GAS</h1>
             <div class="container2">
-                <table class="rwd-table">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchGasInput" onkeyup="searchTable('gas')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchGas">
                     <tbody>
                         <tr>
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Result</th>
+                            <th>Organization</th>
+                            <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
                         foreach ($gas_students as $student) {
                             echo "<tr>";
                             echo "<td data-th='#'>" . $count . "</td>";
-                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Result'>";
-                            echo "<div class='container3'>";
-                            echo "<div class='circular-progress'>";
-                            echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            echo "</div>";
-                            echo "</div>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button><br>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
                             echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
+                            echo "</tr>";
+                            $count++;
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="techvoc" class="content">
+            <h1 style="margin-bottom: 50px; margin-top:50px">TECHVOC</h1>
+            <div class="container2">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchtechvocInput" onkeyup="searchTable('techvoc')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchTechvoc">
+                    <tbody>
+                        <tr>
+                            <th>#</th>
+                            <th>ID Picture</th>
+                            <th>Student Name</th>
+                            <th>Organization</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        <?php
+                        $count = 1;
+                        foreach ($tvl_students as $student) {
+                            echo "<tr>";
+                            echo "<td data-th='#'>" . $count . "</td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
+                            echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button><br>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
+                            echo "</td>";
                             echo "</tr>";
                             $count++;
                         }
@@ -303,40 +471,50 @@ $tvl_students = get_students_by_strand('tvl');
                 </table>
             </div>
         </div>
-
-        <div id="techvoc" class="content">
-            <h1 style="margin-bottom: 50px; margin-top:50px">TECHVOC</h1>
+        <div id="abm" class="content">
+            <h1 style="margin-bottom: 50px; margin-top:50px">ABM</h1>
             <div class="container2">
-                <table class="rwd-table">
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchAbmInput" onkeyup="searchTable('abm')"
+                        placeholder="Search..." />
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="rwd-table" id="searchAbm">
                     <tbody>
                         <tr>
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Result</th>
+                            <th>Organization</th>
+                            <th>Status</th>
                             <th>Action</th>
-
                         </tr>
                         <?php
                         $count = 1;
-                        foreach ($tvl_students as $student) {
+                        foreach ($abm_students as $student) {
                             echo "<tr>";
                             echo "<td data-th='#'>" . $count . "</td>";
-                            echo "<td data-th='ID Picture'><img class='idpic' src='" . $student['id_picture'] . "' alt='me'></td>";
+                            echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Result'>";
-                            echo "<div class='container3'>";
-                            echo "<div class='circular-progress'>";
-                            echo "<span class='progress-value'>" . $student['stars'] . "%</span>";
-                            echo "</div>";
-                            echo "</div>";
+                            echo "<td data-th='Organization'>NIA</td>";
+                            echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+                            echo "<td data-th='Action'>";
+                            // Action form for verification and unverification
+                            echo "<form method='post' style='display: inline;'>";
+                            echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
+                            if ($student['verified_status']) {
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button><br>";
+                            } else {
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
+                            }
+                            echo "</form>";
+                            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
                             echo "</td>";
-                            echo "<td data-th='Action'><button class='button-9' role='button' onclick=\"window.location.href='../Student/Profile.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button></td>";
                             echo "</tr>";
                             $count++;
                         }
                         ?>
-
                     </tbody>
 
                 </table>
@@ -345,81 +523,65 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
-        $(".box").click(function (e) {
-            e.preventDefault();
-            $(".content").removeClass("active");
-            var content_id = $(this).attr("id");
-            $(content_id).addClass("active");
-        });
+    function searchTable(section) {
+        // Get the input value and convert it to uppercase
+        let input = document.querySelector(`#search${section.charAt(0).toUpperCase() + section.slice(1)}Input`);
+        let filter = input.value.toUpperCase();
+
+        // Select the table within the active content section
+        let table = document.getElementById(`search${section.charAt(0).toUpperCase() + section.slice(1)}`);
+        let tr = table.getElementsByTagName('tr'); // Get all row   s in the table
+
+        // Loop through the rows (skip the header row)
+        for (let i = 1; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName('td')[2]; // Check the Student Name column (index 2)
+            if (td) {
+                let textValue = td.textContent || td.innerText;
+                // If the name matches the input value, show the row; otherwise, hide it
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ''; // Show the row
+                } else {
+                    tr[i].style.display = 'none'; // Hide the row
+                }
+            }
+        }
+    }
+    </script>
+
+
+    <script>
+    $(".box").click(function(e) {
+        e.preventDefault();
+        $(".content").removeClass("active");
+        var content_id = $(this).attr("id");
+        $(content_id).addClass("active");
+    });
     </script>
     <br>
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>Fhums -->
+        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
     </footer>
 
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
-    <script>
-        let circularProgress =
-            document.querySelector('.circular-progress'),
-            progressValue =
-                document.querySelector('.progress-value');
-
-
-
-        let progressStartValue = 0,
-            progressEndValue = 80,
-            speed = 20;
-
-
-
-        let progress = setInterval(() => {
-
-            progressStartValue++;
-            progressValue.textContent =
-                `${progressStartValue}%`;
-            circularProgress.style.background =
-                `conic-gradient(#4379F2 ${progressStartValue
-                * 3.6}deg, #ededed 0deg)`;
-
-            //3.6deg * 100 = 360deg
-
-            //3.6deg * 90 = 324deg
-
-
-
-
-
-            if (progressStartValue == progressEndValue) {
-
-                clearInterval(progress);
-
-
-
-            }
-
-            console.log(progressStartValue);
-
-        }, speed);
-    </script>
-
-    <script>
+    <!-- <script>
         const searchInput = document.getElementById('searchInput');
         const dropdownList = document.getElementById('dropdownList1');
         const dropdownItems = dropdownList.getElementsByClassName('dropdown-item1');
@@ -430,8 +592,19 @@ $tvl_students = get_students_by_strand('tvl');
             const filter = searchInput.value.toLowerCase();
             let hasMatches = false;
 
-            dropdownList.style.display = 'block'; // Show the dropdown list
+            // Show the dropdown list
+            dropdownList.style.display = 'block';
 
+            // Check if the input is empty
+            if (filter === '') {
+                // If empty, show all items and return
+                for (let i = 0; i < dropdownItems.length; i++) {
+                    dropdownItems[i].style.display = 'block';
+                }
+                return; // Exit the function
+            }
+
+            // Filter based on input
             for (let i = 0; i < dropdownItems.length; i++) {
                 const itemText = dropdownItems[i].textContent.toLowerCase();
                 if (itemText.includes(filter)) {
@@ -442,17 +615,18 @@ $tvl_students = get_students_by_strand('tvl');
                 }
             }
 
+            // Hide dropdown if no matches found
             if (!hasMatches) {
-                dropdownList.style.display = 'none'; // Hide if no matches
+                dropdownList.style.display = 'none';
             }
         });
 
         // Select student on item click
         for (let i = 0; i < dropdownItems.length; i++) {
             dropdownItems[i].addEventListener('click', function () {
-                selectedStudent = this.textContent; // Store the selected student
-                searchInput.value = selectedStudent; // Set input value
-                dropdownList.style.display = 'none'; // Hide dropdown
+                selectedStudent = this.textContent;
+                searchInput.value = selectedStudent;
+                dropdownList.style.display = 'none';
             });
         }
 
@@ -480,35 +654,35 @@ $tvl_students = get_students_by_strand('tvl');
                 dropdownList.style.display = 'none';
             }
         });
-    </script>
+    </script> -->
 
     <script type="text/javascript">
-        // Get DOM Elements
-        const modal = document.querySelector('#my-modal');
-        const modalBtn = document.querySelector('#modal-btn');
-        const closeBtn = document.querySelector('.close');
+    // Get DOM Elements
+    const modal = document.querySelector('#my-modal');
+    const modalBtn = document.querySelector('#modal-btn');
+    const closeBtn = document.querySelector('.close');
 
-        // Events
-        modalBtn.addEventListener('click', openModal);
-        closeBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', outsideClick);
+    // Events
+    modalBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', outsideClick);
 
-        // Open
-        function openModal() {
-            modal.style.display = 'block';
-        }
+    // Open
+    function openModal() {
+        modal.style.display = 'block';
+    }
 
-        // Close
-        function closeModal() {
+    // Close
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Close If Outside Click
+    function outsideClick(e) {
+        if (e.target == modal) {
             modal.style.display = 'none';
         }
-
-        // Close If Outside Click
-        function outsideClick(e) {
-            if (e.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
+    }
     </script>
 
 

@@ -29,8 +29,11 @@ img {
   margin-right: auto;
   width: 76%;
   display: block;
-  border-radius: 10px;
   object-fit: cover;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .profile img {
@@ -144,6 +147,7 @@ footer {
   margin-bottom: 50px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  border: solid 1px;
 }
 
 .sales-boxes .sales-details {
@@ -236,21 +240,51 @@ footer {
   color: #333;
 }
 
+/* General Input Styles */
+
 input[type="text"],
 input[type="date"],
-textarea[type="textarea"] {
+textarea {
   width: 100%;
+  /* Full width for all input fields */
   padding: 15px;
-  margin: 5px 0 22px 0;
+  /* Ample padding for comfort */
+  margin: 5px 0 20px 0;
+  /* Balanced vertical spacing */
   display: inline-block;
-  /* border: none; */
-  background: #f1f1f1;
+  /* Inline-block for better alignment */
+  border: 1px solid #ccc;
+  /* Light border for definition */
+  border-radius: 4px;
+  /* Rounded corners for a modern look */
+  background: #f9f9f9;
+  /* Slightly lighter background */
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  /* Smooth transitions */
+  font-size: 16px;
+  /* Consistent font size */
 }
 
+/* Focus State for Inputs */
+
 input[type="text"]:focus,
-input[type="password"]:focus {
-  background-color: #ddd;
+input[type="date"]:focus,
+textarea:focus {
+  background-color: #fff;
+  /* White background on focus for clarity */
+  border-color: #007bff;
+  /* Blue border on focus for emphasis */
   outline: none;
+  /* Remove the default outline */
+}
+
+/* Textarea Specific Styles */
+
+textarea {
+  height: 120px;
+  /* Set a default height for the textarea */
+  resize: vertical;
+  /* Allow vertical resize only */
 }
 
 .container {
@@ -259,6 +293,20 @@ input[type="password"]:focus {
 
 #editor-container {
   height: 200px;
+}
+
+@media (max-width: 768px) {
+  .sales-boxes {
+    flex-direction: column;
+    /* Stack boxes on smaller screens */
+  }
+  .sales-boxes .recent-sales,
+  .sales-boxes .top-sales {
+    width: 100%;
+    /* Full width on smaller screens */
+    margin: 0;
+    /* Remove margins for stacking */
+  }
 }
 
 /* ---header--- */
@@ -385,6 +433,7 @@ nav .login-btn:hover {
 }
 
 .by a:hover {
+  /* color: #347928; */
   color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
@@ -650,7 +699,6 @@ nav a:hover::after {
   -webkit-user-select: none;
   touch-action: manipulation;
   font-weight: bold;
-  /* width: 100%; */
 }
 
 .button-9:disabled {
@@ -658,6 +706,47 @@ nav a:hover::after {
 }
 
 .button-9:focus {
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+    rgba(50, 151, 211, 0.3) 0 0 0 4px;
+}
+
+.button-0 {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: rgba(21, 188, 116, 0.5);
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
+  font-size: 100%;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all 0.2s, box-shadow 0.08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-weight: bold;
+}
+
+.button-0:disabled {
+  cursor: default;
+}
+
+.button-0:focus {
   box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
     rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
@@ -705,9 +794,14 @@ nav a:hover::after {
   margin: 6px;
 }
 
+.fas {
+  margin: 6px;
+}
+
+/* 
 input {
   display: none;
-}
+} */
 
 .button-12 {
   display: inline-block;
@@ -743,18 +837,26 @@ input {
 
 /* The container */
 
+/* Container for the custom checkbox */
+
 .con {
-  /* display: block; */
+  /* display: flex; */
+  width: 50%;
+  /* margin: auto; */
+  align-items: center;
+  /* Center the checkbox and label vertically */
   position: relative;
-  padding-left: 50px;
-  margin-bottom: 12px;
-  margin: 30px;
+  padding-left: 35px;
+  /* Reduced padding for a more compact look */
+  margin: 20px 40px;
+  /* Vertical spacing between checkboxes */
   cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  font-size: 20px;
+  /* Slightly smaller font size for better readability */
+  color: #333;
+  /* Darker text color for better contrast */
+  transition: color 0.3s ease;
+  /* Smooth color transition */
 }
 
 /* Hide the browser's default checkbox */
@@ -762,6 +864,7 @@ input {
 .con input {
   position: absolute;
   opacity: 0;
+  /* Completely hide the default checkbox */
   cursor: pointer;
   height: 0;
   width: 0;
@@ -771,23 +874,39 @@ input {
 
 .checkmark {
   position: absolute;
-  top: 0;
+  top: 50%;
+  /* Center vertically */
   left: 0;
-  height: 25px;
-  width: 25px;
+  transform: translateY(-50%);
+  /* Adjust for centering */
+  height: 20px;
+  /* Reduced height for a more compact appearance */
+  width: 20px;
+  /* Reduced width for a more compact appearance */
   background-color: #eee;
+  /* Default background color */
+  border-radius: 4px;
+  /* Rounded corners for a modern look */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  transition: background-color 0.3s ease;
+  /* Smooth background transition */
 }
 
 /* On mouse-over, add a grey background color */
 
-.con:hover input ~ .checkmark {
-  background-color: #ccc;
+.con:hover .checkmark {
+  background-color: #d0d0d0;
+  /* Lighter grey on hover */
 }
 
 /* When the checkbox is checked, add a blue background */
 
 .con input:checked ~ .checkmark {
   background-color: #2196f3;
+  /* Blue background when checked */
+  border: 1px solid #1e88e5;
+  /* Add a darker border for clarity */
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -796,26 +915,57 @@ input {
   content: "";
   position: absolute;
   display: none;
+  /* Hidden by default */
 }
 
 /* Show the checkmark when checked */
 
 .con input:checked ~ .checkmark:after {
   display: block;
+  /* Show checkmark when checked */
 }
 
 /* Style the checkmark/indicator */
 
 .con .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
+  left: 8px;
+  /* Adjusted for better positioning */
+  top: 3px;
+  /* Adjusted for better positioning */
+  width: 4px;
+  /* Smaller width for a more refined look */
   height: 10px;
+  /* Height of the checkmark */
   border: solid white;
+  /* White checkmark */
   border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
+  /* Define the checkmark shape */
   transform: rotate(45deg);
+  /* Rotate for the checkmark effect */
+  transition: display 0.2s ease;
+  /* Smooth appearance of the checkmark */
+}
+
+/* Add a focus effect for accessibility */
+
+.con input:focus ~ .checkmark {
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.5);
+  /* Highlight on focus */
+}
+
+/* Responsive styles */
+
+@media (max-width: 600px) {
+  .con {
+    font-size: 16px;
+    /* Smaller font size for mobile */
+  }
+  .checkmark {
+    height: 18px;
+    /* Adjust checkbox size for smaller screens */
+    width: 18px;
+    /* Adjust checkbox size for smaller screens */
+  }
 }
 
 .notification .badge {
@@ -915,7 +1065,7 @@ input {
   justify-content: space-between;
 }
 
-.details button {
+/* .details button {
   border: none;
   outline: none;
   color: #fff;
@@ -929,9 +1079,9 @@ input {
 
 .details button:hover {
   background: #2c52ed;
-}
+} */
 
-.content button {
+/* .content button {
   width: 50px;
   outline: none;
   border: 1px solid #5372f0;
@@ -943,7 +1093,7 @@ input {
 .content button:hover {
   background-color: #2c52ed;
   font-weight: 600;
-}
+} */
 
 .content input {
   background: #fff;
@@ -951,4 +1101,146 @@ input {
 
 .content input:hover {
   background: #fff;
+}
+
+.container__nav {
+  text-align: left;
+  padding: 1rem 0 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* 
+.container__nav > .button {
+  background-color: #1bbc9b;
+  box-shadow: 0rem 0.5rem 1rem -0.125rem rgba(0, 0, 0, 0.25);
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+
+.container__nav > .button:hover {
+  box-shadow: 0rem 0rem 1rem -0.125rem rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.5rem);
+} */
+
+.container__nav > small {
+  color: #777;
+  margin-right: 5px;
+}
+
+/* ------------MODAL----------- */
+
+.contain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  visibility: visible;
+  overflow: visible;
+}
+
+/* .modal {
+  width: auto;
+  height: 0;
+  background: #fff;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  overflow: hidden;
+  transition: 1s;
+  opacity: 0;
+  visibility: hidden;
+} */
+
+.modal {
+  width: auto;
+  height: 0;
+  background: #fff;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  overflow: hidden;
+  transition: 1s;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.19), 0 6px 20px rgba(0, 0, 0, 0.19);
+  /* Add shadow */
+}
+
+.modal--open {
+  overflow: visible;
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__icon {
+  position: absolute;
+  background: #15bc74;
+  border-radius: 50%;
+  color: #fff;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px #fff solid;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -32px;
+}
+
+.modal__title {
+  font-weight: 300;
+  color: #333;
+  text-align: center;
+  margin-top: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
+}
+
+.modal__text {
+  font-weight: 300;
+  color: #696969;
+  text-align: center;
+  margin-top: 40px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.modal__countdown {
+  color: #696969;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.ti {
+  margin-left: -45px;
+  margin-right: -45px;
+  text-align: center;
+  background-color: #08203a;
+  padding-top: 5px;
+  color: #ffff;
+}
+
+.box {
+  margin-top: 20px;
 }
