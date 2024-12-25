@@ -111,7 +111,7 @@ $avg_self_motivation_levels = 0.0;
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    
+
     $avg_quality_of_experience = $row['avg_quality_of_experience'];
     $avg_productivity_of_tasks = $row['avg_productivity_of_tasks'];
     $avg_problem_solving_opportunities = $row['avg_problem_solving_opportunities'];
@@ -183,7 +183,6 @@ function generateJobCard()
     echo '</div></div></div></div>';
 
     echo '
-    echo '
             </div>
         </div>
 
@@ -251,7 +250,7 @@ function generateJobCard()
   <div class="flex-left">
     <div id="top_x_div_rating"></div>
     <div class="rating-users">
-      <i class="fa fa-user" aria-hidden="true"></i><span>'. $totalApplicants  .'</span> total students
+      <i class="fa fa-user" aria-hidden="true"></i><span>' . $totalApplicants  . '</span> total students
     </div>
   </div>
   <div class="flex-right">
@@ -311,17 +310,18 @@ function generateJobCard()
         </div>';
 }
 
-function getApplicantsCountByStrand($jobId, $pdo) {
+function getApplicantsCountByStrand($jobId, $pdo)
+{
     $sql = "SELECT strand, COUNT(*) AS count FROM applicants 
             JOIN student_profiles ON applicants.student_id = student_profiles.user_id 
             WHERE applicants.job_id = :jobId 
             GROUP BY strand";
-    
+
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':jobId', $jobId, PDO::PARAM_INT);
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     $strandCounts = [
         'humss' => 0,
         'gas' => 0,
@@ -329,23 +329,23 @@ function getApplicantsCountByStrand($jobId, $pdo) {
         'tvl' => 0,
         'abm' => 0,
     ];
-    
+
     foreach ($results as $row) {
         if (isset($strandCounts[$row['strand']])) {
             $strandCounts[$row['strand']] = (int)$row['count'];
         }
     }
-    
+
     // Calculate the total number of applicants
     $totalApplicants = array_sum($strandCounts);
-    
+
     return [
         'counts' => $strandCounts,
         'total' => $totalApplicants
     ];
 }
 
-$strandData = getApplicantsCountByStrand($jobId, $pdo); 
+$strandData = getApplicantsCountByStrand($jobId, $pdo);
 $strandCounts = $strandData['counts'];
 $totalApplicants = $strandData['total'];
 
@@ -411,72 +411,72 @@ if (isset($_SESSION['account_type'])) {
 
 
     <script>
-    var strandCounts = <?php echo json_encode($strandCounts); ?>;
-    var totalApplicants = strandCounts.humss + strandCounts.gas + strandCounts.stem + strandCounts.tvl;
+        var strandCounts = <?php echo json_encode($strandCounts); ?>;
+        var totalApplicants = strandCounts.humss + strandCounts.gas + strandCounts.stem + strandCounts.tvl;
 
-    // Experience averages
-    const avgQualityOfExperience = Number(<?php echo json_encode($avg_quality_of_experience); ?>);
-    const avgProductivityOfTasks = Number(<?php echo json_encode($avg_productivity_of_tasks); ?>);
-    const avgProblemSolvingOpportunities = Number(<?php echo json_encode($avg_problem_solving_opportunities); ?>);
-    const avgAttentionToDetailInGuidance = Number(<?php echo json_encode($avg_attention_to_detail_in_guidance); ?>);
-    const avgInitiativeEncouragement = Number(<?php echo json_encode($avg_initiative_encouragement); ?>);
+        // Experience averages
+        const avgQualityOfExperience = Number(<?php echo json_encode($avg_quality_of_experience); ?>);
+        const avgProductivityOfTasks = Number(<?php echo json_encode($avg_productivity_of_tasks); ?>);
+        const avgProblemSolvingOpportunities = Number(<?php echo json_encode($avg_problem_solving_opportunities); ?>);
+        const avgAttentionToDetailInGuidance = Number(<?php echo json_encode($avg_attention_to_detail_in_guidance); ?>);
+        const avgInitiativeEncouragement = Number(<?php echo json_encode($avg_initiative_encouragement); ?>);
 
-    const avgExperience = (
-        (avgQualityOfExperience + avgProductivityOfTasks + avgProblemSolvingOpportunities +
-            avgAttentionToDetailInGuidance + avgInitiativeEncouragement) / 5
-    );
+        const avgExperience = (
+            (avgQualityOfExperience + avgProductivityOfTasks + avgProblemSolvingOpportunities +
+                avgAttentionToDetailInGuidance + avgInitiativeEncouragement) / 5
+        );
 
-    // Professionalism averages
-    const avgPunctualityExpectations = Number(<?php echo json_encode($avg_punctuality_expectations); ?>);
-    const avgProfessionalAppearanceStandards = Number(
-        <?php echo json_encode($avg_professional_appearance_standards); ?>);
-    const avgCommunicationTraining = Number(<?php echo json_encode($avg_communication_training); ?>);
-    const avgRespectfulnessEnvironment = Number(<?php echo json_encode($avg_respectfulness_environment); ?>);
-    const avgAdaptabilityChallenges = Number(<?php echo json_encode($avg_adaptability_challenges); ?>);
+        // Professionalism averages
+        const avgPunctualityExpectations = Number(<?php echo json_encode($avg_punctuality_expectations); ?>);
+        const avgProfessionalAppearanceStandards = Number(
+            <?php echo json_encode($avg_professional_appearance_standards); ?>);
+        const avgCommunicationTraining = Number(<?php echo json_encode($avg_communication_training); ?>);
+        const avgRespectfulnessEnvironment = Number(<?php echo json_encode($avg_respectfulness_environment); ?>);
+        const avgAdaptabilityChallenges = Number(<?php echo json_encode($avg_adaptability_challenges); ?>);
 
-    const avgProfessionalism = (
-        (avgPunctualityExpectations + avgProfessionalAppearanceStandards + avgCommunicationTraining +
-            avgRespectfulnessEnvironment + avgAdaptabilityChallenges) / 5
-    );
+        const avgProfessionalism = (
+            (avgPunctualityExpectations + avgProfessionalAppearanceStandards + avgCommunicationTraining +
+                avgRespectfulnessEnvironment + avgAdaptabilityChallenges) / 5
+        );
 
-    // Learning and development averages
-    const avgWillingnessToLearnEncouragement = Number(
-        <?php echo json_encode($avg_willingness_to_learn_encouragement); ?>);
-    const avgFeedbackApplicationOpportunities = Number(
-        <?php echo json_encode($avg_feedback_application_opportunities); ?>);
-    const avgSelfImprovementSupport = Number(<?php echo json_encode($avg_self_improvement_support); ?>);
-    const avgSkillDevelopmentAssessment = Number(<?php echo json_encode($avg_skill_development_assessment); ?>);
-    const avgKnowledgeApplicationInPractice = Number(
-        <?php echo json_encode($avg_knowledge_application_in_practice); ?>);
+        // Learning and development averages
+        const avgWillingnessToLearnEncouragement = Number(
+            <?php echo json_encode($avg_willingness_to_learn_encouragement); ?>);
+        const avgFeedbackApplicationOpportunities = Number(
+            <?php echo json_encode($avg_feedback_application_opportunities); ?>);
+        const avgSelfImprovementSupport = Number(<?php echo json_encode($avg_self_improvement_support); ?>);
+        const avgSkillDevelopmentAssessment = Number(<?php echo json_encode($avg_skill_development_assessment); ?>);
+        const avgKnowledgeApplicationInPractice = Number(
+            <?php echo json_encode($avg_knowledge_application_in_practice); ?>);
 
-    const avgLearningAndDevelopment = (
-        (avgWillingnessToLearnEncouragement + avgFeedbackApplicationOpportunities + avgSelfImprovementSupport +
-            avgSkillDevelopmentAssessment + avgKnowledgeApplicationInPractice) / 5
-    );
+        const avgLearningAndDevelopment = (
+            (avgWillingnessToLearnEncouragement + avgFeedbackApplicationOpportunities + avgSelfImprovementSupport +
+                avgSkillDevelopmentAssessment + avgKnowledgeApplicationInPractice) / 5
+        );
 
-    // Collaboration averages
-    const avgTeamParticipationOpportunities = Number(<?php echo json_encode($avg_team_participation_opportunities); ?>);
-    const avgCooperationAmongPeers = Number(<?php echo json_encode($avg_cooperation_among_peers); ?>);
-    const avgConflictResolutionGuidance = Number(<?php echo json_encode($avg_conflict_resolution_guidance); ?>);
-    const avgSupportivenessAmongPeers = Number(<?php echo json_encode($avg_supportiveness_among_peers); ?>);
-    const avgContributionToTeamSuccess = Number(<?php echo json_encode($avg_contribution_to_team_success); ?>);
+        // Collaboration averages
+        const avgTeamParticipationOpportunities = Number(<?php echo json_encode($avg_team_participation_opportunities); ?>);
+        const avgCooperationAmongPeers = Number(<?php echo json_encode($avg_cooperation_among_peers); ?>);
+        const avgConflictResolutionGuidance = Number(<?php echo json_encode($avg_conflict_resolution_guidance); ?>);
+        const avgSupportivenessAmongPeers = Number(<?php echo json_encode($avg_supportiveness_among_peers); ?>);
+        const avgContributionToTeamSuccess = Number(<?php echo json_encode($avg_contribution_to_team_success); ?>);
 
-    const avgCollaboration = (
-        (avgTeamParticipationOpportunities + avgCooperationAmongPeers + avgConflictResolutionGuidance +
-            avgSupportivenessAmongPeers + avgContributionToTeamSuccess) / 5
-    );
+        const avgCollaboration = (
+            (avgTeamParticipationOpportunities + avgCooperationAmongPeers + avgConflictResolutionGuidance +
+                avgSupportivenessAmongPeers + avgContributionToTeamSuccess) / 5
+        );
 
-    // Attitude and Motivation averages
-    const avgEnthusiasmForTasks = Number(<?php echo json_encode($avg_enthusiasm_for_tasks); ?>);
-    const avgDriveToAchieveGoals = Number(<?php echo json_encode($avg_drive_to_achieve_goals); ?>);
-    const avgResilienceToChallenges = Number(<?php echo json_encode($avg_resilience_to_challenges); ?>);
-    const avgCommitmentToExperience = Number(<?php echo json_encode($avg_commitment_to_experience); ?>);
-    const avgSelfMotivationLevels = Number(<?php echo json_encode($avg_self_motivation_levels); ?>);
+        // Attitude and Motivation averages
+        const avgEnthusiasmForTasks = Number(<?php echo json_encode($avg_enthusiasm_for_tasks); ?>);
+        const avgDriveToAchieveGoals = Number(<?php echo json_encode($avg_drive_to_achieve_goals); ?>);
+        const avgResilienceToChallenges = Number(<?php echo json_encode($avg_resilience_to_challenges); ?>);
+        const avgCommitmentToExperience = Number(<?php echo json_encode($avg_commitment_to_experience); ?>);
+        const avgSelfMotivationLevels = Number(<?php echo json_encode($avg_self_motivation_levels); ?>);
 
-    const avgAttitudeAndMotivation = (
-        (avgEnthusiasmForTasks + avgDriveToAchieveGoals + avgResilienceToChallenges +
-            avgCommitmentToExperience + avgSelfMotivationLevels) / 5
-    );
+        const avgAttitudeAndMotivation = (
+            (avgEnthusiasmForTasks + avgDriveToAchieveGoals + avgResilienceToChallenges +
+                avgCommitmentToExperience + avgSelfMotivationLevels) / 5
+        );
     </script>
 
     <header id="myHeader-sticky">
@@ -493,15 +493,15 @@ if (isset($_SESSION['account_type'])) {
 
             <div class="css-1ld7x2h eu4oa1w0"></div>
             <?php
-session_start(); 
+            session_start();
 
-if (isset($_SESSION['account_type'])) {
-    $account_type = ucfirst($_SESSION['account_type']); 
-    $link = "/Account/$account_type"; 
-} else {
-    $link = "./"; 
-}
-?>
+            if (isset($_SESSION['account_type'])) {
+                $account_type = ucfirst($_SESSION['account_type']);
+                $link = "/Account/$account_type";
+            } else {
+                $link = "./";
+            }
+            ?>
 
             <a class="com-btn" href="<?php echo htmlspecialchars($link); ?>">Back</a>
         </nav>
@@ -614,29 +614,29 @@ if (isset($_SESSION['account_type'])) {
         }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.bar span').hide();
-        $('#bar-five').animate({
-            width: '85%'
-        }, 1000);
-        $('#bar-four').animate({
-            width: '35%'
-        }, 1000);
-        $('#bar-three').animate({
-            width: '20%'
-        }, 1000);
-        $('#bar-two').animate({
-            width: '17%'
-        }, 1000);
-        $('#bar-one').animate({
-            width: '30%'
-        }, 1000);
+        $(document).ready(function() {
+            $('.bar span').hide();
+            $('#bar-five').animate({
+                width: '85%'
+            }, 1000);
+            $('#bar-four').animate({
+                width: '35%'
+            }, 1000);
+            $('#bar-three').animate({
+                width: '20%'
+            }, 1000);
+            $('#bar-two').animate({
+                width: '17%'
+            }, 1000);
+            $('#bar-one').animate({
+                width: '30%'
+            }, 1000);
 
-        setTimeout(function() {
-            $('.bar span').fadeIn('slow');
-        }, 1000);
+            setTimeout(function() {
+                $('.bar span').fadeIn('slow');
+            }, 1000);
 
-    });
+        });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
