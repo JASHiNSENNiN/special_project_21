@@ -476,7 +476,7 @@ $document_name_mapping = [
                                 </button>
                             </a>
 
-                            <a href="print_profile.php" style="text-decoration:none;"> <button class="print-btn">
+                            <a href="print_profile.php" target="_blank" style="text-decoration:none;"> <button class="print-btn">
                                     <span class="printer-wrapper">
                                         <span class="printer-container">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
