@@ -800,38 +800,38 @@ $document_name_mapping = [
     </script>
 
     <script>
-        function printPage() {
-            var rowprofile = document.getElementById('row_profile');
-            var piechart_3d = document.getElementById('piechart_3d');
-            var dp_chart_div = document.getElementById('dp_chart_div');
-            var wptopxdiv = document.getElementById('wp-top-x-div');
-            var protopxdiv = document.getElementById('pro-top-x-div');
-            var ldtopxdiv = document.getElementById('ld-top-x-div');
+        // function printPage() {
+        //     var rowprofile = document.getElementById('row_profile');
+        //     var piechart_3d = document.getElementById('piechart_3d');
+        //     var dp_chart_div = document.getElementById('dp_chart_div');
+        //     var wptopxdiv = document.getElementById('wp-top-x-div');
+        //     var protopxdiv = document.getElementById('pro-top-x-div');
+        //     var ldtopxdiv = document.getElementById('ld-top-x-div');
 
-            var printWindow = window.open('', '', 'height=600,width=800');
+        //     var printWindow = window.open('', '', 'height=600,width=800');
 
-            printWindow.document.write('<html><head><title>Print Chart</title>');
-            printWindow.document.write('<style>');
-            printWindow.document.write('body { margin: 0; padding: 0; }'); // Remove margins and padding
-            printWindow.document.write('.chart { width: 600px; height: 400px; }'); // Set the desired size for charts
-            printWindow.document.write('.pie-chart { width: 400px; height: 400px; }'); // Customize pie chart size
-            printWindow.document.write('.dp-chart { width: 600px; height: 300px; }'); // Customize DP chart size
-            printWindow.document.write('.wptopxdiv { width: 600px; height: 300px; }'); // Customize WP Top X Div size
-            printWindow.document.write('.protopxdiv { width: 600px; height: 300px; }'); // Customize Pro Top X Div size
-            printWindow.document.write('.ldtopxdiv { width: 600px; height: 300px; }'); // Customize LD Top X Div size
-            printWindow.document.write('</style>');
-            printWindow.document.write('</head><body>');
-            printWindow.document.write('<div class="chart">' + rowprofile.innerHTML + '</div>');
-            printWindow.document.write('<div class="pie-chart">' + piechart_3d.innerHTML + '</div>');
-            printWindow.document.write('<div class="dp-chart">' + dp_chart_div.innerHTML + '</div>');
-            printWindow.document.write('<div class="wptopxdiv">' + wptopxdiv.innerHTML + '</div>');
-            printWindow.document.write('<div class="protopxdiv">' + protopxdiv.innerHTML + '</div>');
-            printWindow.document.write('<div class="ldtopxdiv">' + ldtopxdiv.innerHTML + '</div>');
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            printWindow.print();
+        //     printWindow.document.write('<html><head><title>Print Chart</title>');
+        //     printWindow.document.write('<style>');
+        //     printWindow.document.write('body { margin: 0; padding: 0; }'); // Remove margins and padding
+        //     printWindow.document.write('.chart { width: 600px; height: 400px; }'); // Set the desired size for charts
+        //     printWindow.document.write('.pie-chart { width: 400px; height: 400px; }'); // Customize pie chart size
+        //     printWindow.document.write('.dp-chart { width: 600px; height: 300px; }'); // Customize DP chart size
+        //     printWindow.document.write('.wptopxdiv { width: 600px; height: 300px; }'); // Customize WP Top X Div size
+        //     printWindow.document.write('.protopxdiv { width: 600px; height: 300px; }'); // Customize Pro Top X Div size
+        //     printWindow.document.write('.ldtopxdiv { width: 600px; height: 300px; }'); // Customize LD Top X Div size
+        //     printWindow.document.write('</style>');
+        //     printWindow.document.write('</head><body>');
+        //     printWindow.document.write('<div class="chart">' + rowprofile.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="pie-chart">' + piechart_3d.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="dp-chart">' + dp_chart_div.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="wptopxdiv">' + wptopxdiv.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="protopxdiv">' + protopxdiv.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="ldtopxdiv">' + ldtopxdiv.innerHTML + '</div>');
+        //     printWindow.document.write('</body></html>');
+        //     printWindow.document.close();
+        //     printWindow.print();
 
-        }
+        // }
     </script>
 
 
