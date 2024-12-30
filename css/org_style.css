@@ -359,7 +359,7 @@ form {
     padding-bottom: 160px;
     margin-bottom: 0;
     padding-top: 60px;
-    background: linear-gradient(to bottom, #f6f6f6 0%, rgba(255, 255, 255, 0.5));
+    /* background: linear-gradient(to bottom, #f6f6f6 0%, rgba(255, 255, 255, 0.5)); */
 }
 
 #titlebar span a {
@@ -2227,7 +2227,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     display: flex;
     flex-direction: row;
     height: 100%;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 100px;
     box-shadow: 0px 6px 42px rgba(0, 0, 0, 0.103884);
 }

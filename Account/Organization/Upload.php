@@ -710,7 +710,7 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
                             <input type="file" name="resume_files[]" accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="Resume" multiple
                                 hidden>
                             <button type="button" class="btn"
@@ -736,7 +736,7 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
                             <input type="file" name="letter_files[]" accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="Letter" multiple
                                 hidden>
                             <button type="button" class="btn"

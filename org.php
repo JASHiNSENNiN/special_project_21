@@ -155,18 +155,16 @@ function generateJobCard()
     echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
     echo '<div class="container">';
     echo '<div class="eleven columns">';
-    echo '<div id="titlebar" class="single titlebar-boxed-company-info">';
-    echo '<div class="container">';
-    echo '<div class="eleven columns">';
 
-    echo '<span class="job-category"><a href="#">Position title</a></span>';
-    echo '<h1>' . htmlspecialchars($job['work_title']);
+    echo '<span class="job-category"><a href="#">Company</a></span>';
+    // echo '<h1>' . htmlspecialchars($job['work_title']);
+    echo '<h1>' .  htmlspecialchars($job['organization_name']);
 
     foreach ($strands as $strand) {
         echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
     }
-    echo '<span class="job-category"><a href="#">Organization</a></span>';
-    echo '<h1>' .  htmlspecialchars($job['organization_name']);
+    // echo '<span class="job-category"><a href="#">Organization</a></span>';
+    // echo '<h1>' .  htmlspecialchars($job['organization_name']);
     echo '<hr>';
     // foreach ($strands as $strand) {
     //     echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
@@ -197,8 +195,7 @@ function generateJobCard()
 
                     <div class="content">
                         <h4>
-                            <a href="#"> <strong>' . htmlspecialchars($job['organization_name']) .
-        '</strong>
+                           
                             <a href="#"> <strong>' . htmlspecialchars($job['work_title']) .
         '</strong>
                             </a>

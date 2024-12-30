@@ -1025,7 +1025,7 @@ table .th-date {
 .btn-delete {
   cursor: pointer;
   color: #fff !important;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 .btn-primary:disabled {
@@ -1322,4 +1322,9 @@ span .subtitle-resume {
     height: auto;
     /* Allow profile column to adjust height */
   }
+}
+
+.print-left {
+  position: absolute;
+  right: 50px;
 }
