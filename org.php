@@ -375,16 +375,16 @@ if (isset($_SESSION['account_type'])) {
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 
 
     <!-- ---------------------------------------evaluation script ------------------------------------------- -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -488,7 +488,7 @@ if (isset($_SESSION['account_type'])) {
         </div>
         <nav class="nav-log">
 
-            <div class="css-1ld7x2h eu4oa1w0"></div>
+
             <?php
             session_start();
 
@@ -499,7 +499,7 @@ if (isset($_SESSION['account_type'])) {
                 $link = "./";
             }
             ?>
-
+            <div class="css-1ld7x2h eu4oa1w0"></div>
             <a class="com-btn" href="<?php echo htmlspecialchars($link); ?>">Back</a>
         </nav>
 
@@ -524,51 +524,7 @@ if (isset($_SESSION['account_type'])) {
                         <img src="img/logov3.jpg" alt="Logo">
                         <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
                     </a>
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <a href="index.php">
-                            <img src="img/logov3.jpg" alt="Logo">
-                            <img src="img/DrRamonLOGO.svg" alt="Logo">
-                        </a>
-                    </div> -->
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s"
-                            style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
-                            <p>Don’t miss out on the latest updates and insights! Subscribe to our newsletter for
-                                exclusive content and tips.</p>
-                            <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true"
-                                _lpchecked="1">
-                                <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
-                                <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
-                                <p class="mchimp-errmessage" style="display: none;"></p>
-                                <p class="mchimp-sucmessage" style="display: none;"></p>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s"
-                            style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Help</h3>
-                            <ul class="list-unstyled f_list">
 
-                                <li><a href="term_and_Conditions.php">Term &amp; conditions</a></li>
-                                <li><a href="Support_policy.php">Support Policy</a></li>
-                                <li><a href="#">Privacy</a></li>
-                            </ul>
-                        </div>
-                    </div> -->
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s"
-                            style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
-                            <div class="f_social_icon">
-                                <a href="#" class="fab fa-facebook"></a>
-                                <a href="#" class="fab fa-twitter"></a>
-                                <a href="#" class="fab fa-linkedin"></a>
-                                <a href="#" class="fab fa-pinterest"></a>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="footer_bg">

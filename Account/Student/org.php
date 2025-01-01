@@ -40,6 +40,105 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $job = $result;
 
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT 
+    AVG(quality_of_experience) AS avg_quality_of_experience,
+    AVG(productivity_of_tasks) AS avg_productivity_of_tasks,
+    AVG(problem_solving_opportunities) AS avg_problem_solving_opportunities,
+    AVG(attention_to_detail_in_guidance) AS avg_attention_to_detail_in_guidance,
+    AVG(initiative_encouragement) AS avg_initiative_encouragement,
+    AVG(punctuality_expectations) AS avg_punctuality_expectations,
+    AVG(professional_appearance_standards) AS avg_professional_appearance_standards,
+    AVG(communication_training) AS avg_communication_training,
+    AVG(respectfulness_environment) AS avg_respectfulness_environment,
+    AVG(adaptability_challenges) AS avg_adaptability_challenges,
+    AVG(willingness_to_learn_encouragement) AS avg_willingness_to_learn_encouragement,
+    AVG(feedback_application_opportunities) AS avg_feedback_application_opportunities,
+    AVG(self_improvement_support) AS avg_self_improvement_support,
+    AVG(skill_development_assessment) AS avg_skill_development_assessment,
+    AVG(knowledge_application_in_practice) AS avg_knowledge_application_in_practice,
+    AVG(team_participation_opportunities) AS avg_team_participation_opportunities,
+    AVG(cooperation_among_peers) AS avg_cooperation_among_peers,
+    AVG(conflict_resolution_guidance) AS avg_conflict_resolution_guidance,
+    AVG(supportiveness_among_peers) AS avg_supportiveness_among_peers,
+    AVG(contribution_to_team_success) AS avg_contribution_to_team_success,
+    AVG(enthusiasm_for_tasks) AS avg_enthusiasm_for_tasks,
+    AVG(drive_to_achieve_goals) AS avg_drive_to_achieve_goals,
+    AVG(resilience_to_challenges) AS avg_resilience_to_challenges,
+    AVG(commitment_to_experience) AS avg_commitment_to_experience,
+    AVG(self_motivation_levels) AS avg_self_motivation_levels
+FROM Organization_Evaluation";
+
+$result = $conn->query($sql);
+
+$avg_quality_of_experience = 0.0;
+$avg_productivity_of_tasks = 0.0;
+$avg_problem_solving_opportunities = 0.0;
+$avg_attention_to_detail_in_guidance = 0.0;
+$avg_initiative_encouragement = 0.0;
+$avg_punctuality_expectations = 0.0;
+$avg_professional_appearance_standards = 0.0;
+$avg_communication_training = 0.0;
+$avg_respectfulness_environment = 0.0;
+$avg_adaptability_challenges = 0.0;
+$avg_willingness_to_learn_encouragement = 0.0;
+$avg_feedback_application_opportunities = 0.0;
+$avg_self_improvement_support = 0.0;
+$avg_skill_development_assessment = 0.0;
+$avg_knowledge_application_in_practice = 0.0;
+$avg_team_participation_opportunities = 0.0;
+$avg_cooperation_among_peers = 0.0;
+$avg_conflict_resolution_guidance = 0.0;
+$avg_supportiveness_among_peers = 0.0;
+$avg_contribution_to_team_success = 0.0;
+$avg_enthusiasm_for_tasks = 0.0;
+$avg_drive_to_achieve_goals = 0.0;
+$avg_resilience_to_challenges = 0.0;
+$avg_commitment_to_experience = 0.0;
+$avg_self_motivation_levels = 0.0;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+
+    $avg_quality_of_experience = $row['avg_quality_of_experience'];
+    $avg_productivity_of_tasks = $row['avg_productivity_of_tasks'];
+    $avg_problem_solving_opportunities = $row['avg_problem_solving_opportunities'];
+    $avg_attention_to_detail_in_guidance = $row['avg_attention_to_detail_in_guidance'];
+    $avg_initiative_encouragement = $row['avg_initiative_encouragement'];
+    $avg_punctuality_expectations = $row['avg_punctuality_expectations'];
+    $avg_professional_appearance_standards = $row['avg_professional_appearance_standards'];
+    $avg_communication_training = $row['avg_communication_training'];
+    $avg_respectfulness_environment = $row['avg_respectfulness_environment'];
+    $avg_adaptability_challenges = $row['avg_adaptability_challenges'];
+    $avg_willingness_to_learn_encouragement = $row['avg_willingness_to_learn_encouragement'];
+    $avg_feedback_application_opportunities = $row['avg_feedback_application_opportunities'];
+    $avg_self_improvement_support = $row['avg_self_improvement_support'];
+    $avg_skill_development_assessment = $row['avg_skill_development_assessment'];
+    $avg_knowledge_application_in_practice = $row['avg_knowledge_application_in_practice'];
+    $avg_team_participation_opportunities = $row['avg_team_participation_opportunities'];
+    $avg_cooperation_among_peers = $row['avg_cooperation_among_peers'];
+    $avg_conflict_resolution_guidance = $row['avg_conflict_resolution_guidance'];
+    $avg_supportiveness_among_peers = $row['avg_supportiveness_among_peers'];
+    $avg_contribution_to_team_success = $row['avg_contribution_to_team_success'];
+    $avg_enthusiasm_for_tasks = $row['avg_enthusiasm_for_tasks'];
+    $avg_drive_to_achieve_goals = $row['avg_drive_to_achieve_goals'];
+    $avg_resilience_to_challenges = $row['avg_resilience_to_challenges'];
+    $avg_commitment_to_experience = $row['avg_commitment_to_experience'];
+    $avg_self_motivation_levels = $row['avg_self_motivation_levels'];
+}
+
+
+
 function UserIsApplied($jobId)
 {
     $host = "localhost";
@@ -79,6 +178,8 @@ function deleteUserApplication($jobId)
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+
+
 
     $stmt = $conn->prepare("DELETE FROM applicants WHERE job_id = ? AND student_id = ?");
     $stmt->bind_param("ii", $jobId, $_SESSION['user_id']);
@@ -126,8 +227,13 @@ if (isset($_POST['action'])) {
     }
 }
 
+
+
+
+
 function generateJobCard()
 {
+    global $totalApplicants;
     global $job;
     global $jobId;
     $strands = json_decode($job['strands']);
@@ -188,7 +294,7 @@ function generateJobCard()
         echo '<button type="submit" class="small-dialog popup-with-zoom-anim button button-cancel apply-dialog-button">Cancel Application</button>
                                         <input type="hidden" name="action" value="cancel_application">';
     } else {
-        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</button>
+        echo '<button type="submit" class="small-dialog popup-with-zoom-anim button-apply apply-dialog-button">Apply now</button>
                                         <input type="hidden" name="action" value="apply_application">';
     }
 
@@ -221,7 +327,7 @@ function generateJobCard()
   <div class="flex-left">
     <div id="top_x_div_rating"></div>
     <div class="rating-users">
-      <i class="fa fa-user" aria-hidden="true"></i><span>1,014,004</span> total students
+      <i class="fa fa-user" aria-hidden="true"></i><span>' . $totalApplicants  . '</span> total students
     </div>
   </div>
   <div class="flex-right">
@@ -305,15 +411,15 @@ function generateJobCard()
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 
     <!-- ---------------------------------------evaluation script ------------------------------------------- -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -327,12 +433,80 @@ function generateJobCard()
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
+    <script>
+        var strandCounts = <?php echo json_encode($strandCounts); ?>;
+        var totalApplicants = strandCounts.humss + strandCounts.gas + strandCounts.stem + strandCounts.tvl;
+
+        // Experience averages
+        const avgQualityOfExperience = Number(<?php echo json_encode($avg_quality_of_experience); ?>);
+        const avgProductivityOfTasks = Number(<?php echo json_encode($avg_productivity_of_tasks); ?>);
+        const avgProblemSolvingOpportunities = Number(<?php echo json_encode($avg_problem_solving_opportunities); ?>);
+        const avgAttentionToDetailInGuidance = Number(<?php echo json_encode($avg_attention_to_detail_in_guidance); ?>);
+        const avgInitiativeEncouragement = Number(<?php echo json_encode($avg_initiative_encouragement); ?>);
+
+        const avgExperience = (
+            (avgQualityOfExperience + avgProductivityOfTasks + avgProblemSolvingOpportunities +
+                avgAttentionToDetailInGuidance + avgInitiativeEncouragement) / 5
+        );
+
+        // Professionalism averages
+        const avgPunctualityExpectations = Number(<?php echo json_encode($avg_punctuality_expectations); ?>);
+        const avgProfessionalAppearanceStandards = Number(
+            <?php echo json_encode($avg_professional_appearance_standards); ?>);
+        const avgCommunicationTraining = Number(<?php echo json_encode($avg_communication_training); ?>);
+        const avgRespectfulnessEnvironment = Number(<?php echo json_encode($avg_respectfulness_environment); ?>);
+        const avgAdaptabilityChallenges = Number(<?php echo json_encode($avg_adaptability_challenges); ?>);
+
+        const avgProfessionalism = (
+            (avgPunctualityExpectations + avgProfessionalAppearanceStandards + avgCommunicationTraining +
+                avgRespectfulnessEnvironment + avgAdaptabilityChallenges) / 5
+        );
+
+        // Learning and development averages
+        const avgWillingnessToLearnEncouragement = Number(
+            <?php echo json_encode($avg_willingness_to_learn_encouragement); ?>);
+        const avgFeedbackApplicationOpportunities = Number(
+            <?php echo json_encode($avg_feedback_application_opportunities); ?>);
+        const avgSelfImprovementSupport = Number(<?php echo json_encode($avg_self_improvement_support); ?>);
+        const avgSkillDevelopmentAssessment = Number(<?php echo json_encode($avg_skill_development_assessment); ?>);
+        const avgKnowledgeApplicationInPractice = Number(
+            <?php echo json_encode($avg_knowledge_application_in_practice); ?>);
+
+        const avgLearningAndDevelopment = (
+            (avgWillingnessToLearnEncouragement + avgFeedbackApplicationOpportunities + avgSelfImprovementSupport +
+                avgSkillDevelopmentAssessment + avgKnowledgeApplicationInPractice) / 5
+        );
+
+        // Collaboration averages
+        const avgTeamParticipationOpportunities = Number(<?php echo json_encode($avg_team_participation_opportunities); ?>);
+        const avgCooperationAmongPeers = Number(<?php echo json_encode($avg_cooperation_among_peers); ?>);
+        const avgConflictResolutionGuidance = Number(<?php echo json_encode($avg_conflict_resolution_guidance); ?>);
+        const avgSupportivenessAmongPeers = Number(<?php echo json_encode($avg_supportiveness_among_peers); ?>);
+        const avgContributionToTeamSuccess = Number(<?php echo json_encode($avg_contribution_to_team_success); ?>);
+
+        const avgCollaboration = (
+            (avgTeamParticipationOpportunities + avgCooperationAmongPeers + avgConflictResolutionGuidance +
+                avgSupportivenessAmongPeers + avgContributionToTeamSuccess) / 5
+        );
+
+        // Attitude and Motivation averages
+        const avgEnthusiasmForTasks = Number(<?php echo json_encode($avg_enthusiasm_for_tasks); ?>);
+        const avgDriveToAchieveGoals = Number(<?php echo json_encode($avg_drive_to_achieve_goals); ?>);
+        const avgResilienceToChallenges = Number(<?php echo json_encode($avg_resilience_to_challenges); ?>);
+        const avgCommitmentToExperience = Number(<?php echo json_encode($avg_commitment_to_experience); ?>);
+        const avgSelfMotivationLevels = Number(<?php echo json_encode($avg_self_motivation_levels); ?>);
+
+        const avgAttitudeAndMotivation = (
+            (avgEnthusiasmForTasks + avgDriveToAchieveGoals + avgResilienceToChallenges +
+                avgCommitmentToExperience + avgSelfMotivationLevels) / 5
+        );
+    </script>
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="Company_Area.php">
@@ -367,7 +541,7 @@ function generateJobCard()
             <div class="container">
                 <div class="row" style=" gap: 120px !important;">
                     <a href="index.php">
-                        <img src="../../img/logov3.jpg" alt="Logo">
+                        <img src="../../img/WORKIFY-LOGO.svg" alt="Logo">
                         <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
                     </a>
 
@@ -399,21 +573,25 @@ function generateJobCard()
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
+    <!-- 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="js/filter.js"> </script>
 
 
