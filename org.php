@@ -521,7 +521,7 @@ if (isset($_SESSION['account_type'])) {
             <div class="container">
                 <div class="row" style=" gap: 120px !important;">
                     <a href="index.php">
-                        <img src="img/logov3.jpg" alt="Logo">
+                        <img src="img/WORKIFY-LOGO.svg" alt="Logo">
                         <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
                     </a>
 
