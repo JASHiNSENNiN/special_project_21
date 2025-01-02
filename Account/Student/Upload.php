@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -67,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['resume_files'])) {
             $mimeType = finfo_file($finfo, $tmpName);
             finfo_close($finfo);
 
-            $allowedFileExtensions = ['pdf', 'doc', 'docx'];
+            $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt', 'png', 'jpg'];
             $allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
@@ -81,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['resume_files'])) {
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
 
                     if ($stmt->execute()) {
-
                     } else {
                         echo "Error uploading file: " . htmlspecialchars($newFileName);
                     }
@@ -168,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['letter_files'])) {
                     echo "Failed to move uploaded file.";
                 }
             } else {
-                echo "Invalid file format for application letter. Allowed formats: PDF, DOC, DOCX, TXT.";
+                echo "Invalid file format for application letter. Allowed formats: PDF, DOC, DOCX, TXT, JPG, PNG.";
             }
         } else {
             echo "Error uploading application letter: " . htmlspecialchars($_FILES['letter_files']['name'][$key]);
@@ -217,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['parents_consent_files
             $mimeType = finfo_file($finfo, $tmpName);
             finfo_close($finfo);
 
-            $allowedFileExtensions = ['pdf', 'doc', 'docx'];
+            $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt', 'png', 'jpg'];
             $allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
@@ -312,7 +310,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['barangay_clearance_fi
                     echo "Failed to move uploaded barangay clearance.";
                 }
             } else {
-                echo "Invalid file format for barangay clearance. Allowed formats: PDF, DOC, DOCX, TXT.";
+                echo "Invalid file format for barangay clearance. Allowed formats: PDF, DOC, DOCX, TXT, JPG, PNG.";
             }
         } else {
             echo "Error uploading barangay clearance: " . htmlspecialchars($_FILES['barangay_clearance_files']['name'][$key]);
@@ -387,7 +385,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['mayor_permit_files'])
                     echo "Failed to move uploaded Mayor's Permit.";
                 }
             } else {
-                echo "Invalid file format for Mayor's Permit. Allowed formats: PDF, DOC, DOCX, TXT.";
+                echo "Invalid file format for Mayor's Permit. Allowed formats: PDF, DOC, DOCX, TXT, JPG, PNG.";
             }
         } else {
             echo "Error uploading Mayor's Permit: " . htmlspecialchars($_FILES['mayor_permit_files']['name'][$key]);
@@ -462,7 +460,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['police_clearance_file
                     echo "Failed to move uploaded file.";
                 }
             } else {
-                echo "Invalid file format for police clearance. Allowed formats: PDF, DOC, DOCX, TXT.";
+                echo "Invalid file format for police clearance. Allowed formats: PDF, DOC, DOCX, TXT, JPG, PNG.";
             }
         } else {
             echo "Error uploading police clearance: " . htmlspecialchars($_FILES['police_clearance_files']['name'][$key]);
@@ -511,7 +509,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['medical_certificate_f
             $mimeType = finfo_file($finfo, $tmpName);
             finfo_close($finfo);
 
-            $allowedFileExtensions = ['pdf', 'doc', 'docx'];
+            $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt', 'png', 'jpg'];
             $allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
@@ -605,7 +603,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['insurance_policy_file
                     echo "Failed to move uploaded insurance policy.";
                 }
             } else {
-                echo "Invalid file format for insurance policy. Allowed formats: PDF, DOC, DOCX, TXT.";
+                echo "Invalid file format for insurance policy. Allowed formats: PDF, DOC, DOCX, TXT, JPG, PNG.";
             }
         } else {
             echo "Error uploading insurance policy: " . htmlspecialchars($_FILES['insurance_policy_files']['name'][$key]);
@@ -703,7 +701,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Resume
                         <?php if (isDocumentUploaded("resume")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -711,9 +709,9 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                            <input type="file" name="resume_files[]" accept=".doc,.docx,.pdf,.txt" id="Resume" multiple
-                                hidden>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                            <input type="file" name="resume_files[]" accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="Resume"
+                                multiple hidden>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Resume').click();">Choose Files</button>
                             <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
@@ -728,7 +726,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Application Letter
                         <?php if (isDocumentUploaded("application_letter")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
 
                     </h3>
@@ -737,9 +735,9 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, DOC, DOCX, TXT</p>
-                            <input type="file" name="letter_files[]" accept=".doc,.docx,.pdf,.txt" id="Letter" multiple
-                                hidden>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                            <input type="file" name="letter_files[]" accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="Letter"
+                                multiple hidden>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Letter').click();">Choose
                                 Files</button>
@@ -755,7 +753,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Parents Consent
                         <?php if (isDocumentUploaded("parents_consent")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -763,7 +761,7 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, DOC, DOCX</p>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
                             <input type="file" name="parents_consent_files[]" accept=".doc,.docx,.pdf" id="Consent"
                                 multiple hidden>
                             <button type="button" class="btn"
@@ -781,7 +779,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Barangay Clearance
                         <?php if (isDocumentUploaded("barangay_clearance")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -789,9 +787,9 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                            <input type="file" name="barangay_clearance_files[]" accept=".doc,.docx,.pdf,.txt" id="Brgy"
-                                multiple hidden>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                            <input type="file" name="barangay_clearance_files[]" accept=".doc,.docx,.pdf,.txt,.png,.jpg"
+                                id="Brgy" multiple hidden>
                             <button type="button" class="btn" onclick="document.getElementById('Brgy').click();">Choose
                                 Files</button>
                             <button type="submit" style="margin-top:10px;" class="btn">Upload Files</button>
@@ -806,7 +804,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Mayor's Permit
                         <?php if (isDocumentUploaded("mayors_permit")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -814,9 +812,9 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                            <input type="file" name="mayor_permit_files[]" hidden accept=".doc,.docx,.pdf,.txt"
-                                id="Permit" multiple>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                            <input type="file" name="mayor_permit_files[]" hidden
+                                accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="Permit" multiple>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Permit').click();">Choose
                                 Files</button>
@@ -832,7 +830,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Police Clearance
                         <?php if (isDocumentUploaded("police_clearance")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -840,9 +838,9 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                            <input type="file" name="police_clearance_files[]" hidden accept=".doc,.docx,.pdf,.txt"
-                                id="Police" multiple>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                            <input type="file" name="police_clearance_files[]" hidden
+                                accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="Police" multiple>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Police').click();">Choose
                                 Files</button>
@@ -858,7 +856,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Medical Certificate
                         <?php if (isDocumentUploaded("medical_certificate")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -866,9 +864,9 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                            <input type="file" name="medical_certificate_files[]" accept=".doc,.docx,.pdf,.txt"
-                                id="Medical" multiple hidden>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                            <input type="file" name="medical_certificate_files[]"
+                                accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="Medical" multiple hidden>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Medical').click();">Choose
                                 Files</button>
@@ -885,7 +883,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Insurance Policy
                         <?php if (isDocumentUploaded("insurance_policy")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -893,9 +891,9 @@ require_once 'show_profile.php';
                             <header>
                                 <h4>Select Files here</h4>
                             </header>
-                            <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                            <input type="file" name="insurance_policy_files[]" hidden accept=".doc,.docx,.pdf,.txt"
-                                id="Policy" multiple>
+                            <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                            <input type="file" name="insurance_policy_files[]" hidden
+                                accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="Policy" multiple>
                             <button type="button" class="btn"
                                 onclick="document.getElementById('Policy').click();">Choose
                                 Files</button>
@@ -914,71 +912,71 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function () {
-            myFunction();
-        };
-        window.onscroll = function () {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
 
     <script type="text/javascript">
-        const dropBoxes = document.querySelectorAll(".drop_box");
+    const dropBoxes = document.querySelectorAll(".drop_box");
 
 
+    dropBoxes.forEach(dropBox => {
+        const button = dropBox.querySelector("button");
+        const input = dropBox.querySelector("input");
+        const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
         dropBoxes.forEach(dropBox => {
             const button = dropBox.querySelector("button");
             const input = dropBox.querySelector("input");
             const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
-            dropBoxes.forEach(dropBox => {
-                const button = dropBox.querySelector("button");
-                const input = dropBox.querySelector("input");
-                const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
 
-                button.onclick = () => {
-                    input.click();
-                };
-                button.onclick = () => {
-                    input.click();
-                };
+            button.onclick = () => {
+                input.click();
+            };
+            button.onclick = () => {
+                input.click();
+            };
 
-                input.addEventListener("change", function (e) {
-                    const files = e.target.files; // Get the selected files
-                    fileListElement.innerHTML = ''; // Clear the previous file list
+            input.addEventListener("change", function(e) {
+                const files = e.target.files; // Get the selected files
+                fileListElement.innerHTML = ''; // Clear the previous file list
 
-                    // Display each selected file
-                    Array.from(files).forEach(file => {
-                        let fileItem = document.createElement('li');
-                        fileItem.innerHTML = `
+                // Display each selected file
+                Array.from(files).forEach(file => {
+                    let fileItem = document.createElement('li');
+                    fileItem.innerHTML = `
                     <h4>${file.name}</h4>
                     
                 `;
-                        fileListElement.appendChild(fileItem);
-                    });
+                    fileListElement.appendChild(fileItem);
                 });
             });
         });
+    });
     </script>
 
 

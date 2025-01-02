@@ -111,7 +111,7 @@ $avg_self_motivation_levels = 0.0;
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    
+
     $avg_quality_of_experience = $row['avg_quality_of_experience'];
     $avg_productivity_of_tasks = $row['avg_productivity_of_tasks'];
     $avg_problem_solving_opportunities = $row['avg_problem_solving_opportunities'];
@@ -142,6 +142,10 @@ if ($result->num_rows > 0) {
 function generateJobCard()
 {
     global $job;
+    $strands = json_decode($job['strands']);
+    $work_title = $job['work_title'];
+    $description = html_entity_decode($job['description']);
+    $description = nl2br($description);
     global $totalApplicants;
     $strands = json_decode($job['strands']);
     $work_title = $job['work_title'];
@@ -152,15 +156,26 @@ function generateJobCard()
     echo '<div class="container">';
     echo '<div class="eleven columns">';
 
-    echo '<span class="job-category"><a href="#">Organization</a></span>';
+    echo '<span class="job-category"><a href="#">Company</a></span>';
+    // echo '<h1>' . htmlspecialchars($job['work_title']);
     echo '<h1>' .  htmlspecialchars($job['organization_name']);
+
+    foreach ($strands as $strand) {
+        echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+    }
+    // echo '<span class="job-category"><a href="#">Organization</a></span>';
+    // echo '<h1>' .  htmlspecialchars($job['organization_name']);
     echo '<hr>';
     // foreach ($strands as $strand) {
     //     echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
     // }
 
     echo '</h1></div>';
+    echo '</h1></div>';
 
+    echo '<div class="five columns">';
+    echo '<div class="job-manager-form wp-job-manager-bookmarks-form">';
+    echo '</div></div></div></div>';
     echo '<div class="five columns">';
     echo '<div class="job-manager-form wp-job-manager-bookmarks-form">';
     echo '</div></div></div></div>';
@@ -180,6 +195,7 @@ function generateJobCard()
 
                     <div class="content">
                         <h4>
+                           
                             <a href="#"> <strong>' . htmlspecialchars($job['work_title']) .
         '</strong>
                             </a>
@@ -231,7 +247,7 @@ function generateJobCard()
   <div class="flex-left">
     <div id="top_x_div_rating"></div>
     <div class="rating-users">
-      <i class="fa fa-user" aria-hidden="true"></i><span>'. $totalApplicants  .'</span> total students
+      <i class="fa fa-user" aria-hidden="true"></i><span>' . $totalApplicants  . '</span> total students
     </div>
   </div>
   <div class="flex-right">
@@ -291,17 +307,18 @@ function generateJobCard()
         </div>';
 }
 
-function getApplicantsCountByStrand($jobId, $pdo) {
+function getApplicantsCountByStrand($jobId, $pdo)
+{
     $sql = "SELECT strand, COUNT(*) AS count FROM applicants 
             JOIN student_profiles ON applicants.student_id = student_profiles.user_id 
             WHERE applicants.job_id = :jobId 
             GROUP BY strand";
-    
+
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':jobId', $jobId, PDO::PARAM_INT);
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     $strandCounts = [
         'humss' => 0,
         'gas' => 0,
@@ -309,23 +326,23 @@ function getApplicantsCountByStrand($jobId, $pdo) {
         'tvl' => 0,
         'abm' => 0,
     ];
-    
+
     foreach ($results as $row) {
         if (isset($strandCounts[$row['strand']])) {
             $strandCounts[$row['strand']] = (int)$row['count'];
         }
     }
-    
+
     // Calculate the total number of applicants
     $totalApplicants = array_sum($strandCounts);
-    
+
     return [
         'counts' => $strandCounts,
         'total' => $totalApplicants
     ];
 }
 
-$strandData = getApplicantsCountByStrand($jobId, $pdo); 
+$strandData = getApplicantsCountByStrand($jobId, $pdo);
 $strandCounts = $strandData['counts'];
 $totalApplicants = $strandData['total'];
 
@@ -349,6 +366,7 @@ if (isset($_SESSION['account_type'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Work Immersion | Workify</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <!-- <title>Work Immersion | DRDSNHS</title> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
@@ -357,16 +375,16 @@ if (isset($_SESSION['account_type'])) {
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 
 
     <!-- ---------------------------------------evaluation script ------------------------------------------- -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -381,81 +399,81 @@ if (isset($_SESSION['account_type'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
 
 
     <script>
-    var strandCounts = <?php echo json_encode($strandCounts); ?>;
-    var totalApplicants = strandCounts.humss + strandCounts.gas + strandCounts.stem + strandCounts.tvl;
+        var strandCounts = <?php echo json_encode($strandCounts); ?>;
+        var totalApplicants = strandCounts.humss + strandCounts.gas + strandCounts.stem + strandCounts.tvl;
 
-    // Experience averages
-    const avgQualityOfExperience = Number(<?php echo json_encode($avg_quality_of_experience); ?>);
-    const avgProductivityOfTasks = Number(<?php echo json_encode($avg_productivity_of_tasks); ?>);
-    const avgProblemSolvingOpportunities = Number(<?php echo json_encode($avg_problem_solving_opportunities); ?>);
-    const avgAttentionToDetailInGuidance = Number(<?php echo json_encode($avg_attention_to_detail_in_guidance); ?>);
-    const avgInitiativeEncouragement = Number(<?php echo json_encode($avg_initiative_encouragement); ?>);
+        // Experience averages
+        const avgQualityOfExperience = Number(<?php echo json_encode($avg_quality_of_experience); ?>);
+        const avgProductivityOfTasks = Number(<?php echo json_encode($avg_productivity_of_tasks); ?>);
+        const avgProblemSolvingOpportunities = Number(<?php echo json_encode($avg_problem_solving_opportunities); ?>);
+        const avgAttentionToDetailInGuidance = Number(<?php echo json_encode($avg_attention_to_detail_in_guidance); ?>);
+        const avgInitiativeEncouragement = Number(<?php echo json_encode($avg_initiative_encouragement); ?>);
 
-    const avgExperience = (
-        (avgQualityOfExperience + avgProductivityOfTasks + avgProblemSolvingOpportunities +
-            avgAttentionToDetailInGuidance + avgInitiativeEncouragement) / 5
-    );
+        const avgExperience = (
+            (avgQualityOfExperience + avgProductivityOfTasks + avgProblemSolvingOpportunities +
+                avgAttentionToDetailInGuidance + avgInitiativeEncouragement) / 5
+        );
 
-    // Professionalism averages
-    const avgPunctualityExpectations = Number(<?php echo json_encode($avg_punctuality_expectations); ?>);
-    const avgProfessionalAppearanceStandards = Number(
-        <?php echo json_encode($avg_professional_appearance_standards); ?>);
-    const avgCommunicationTraining = Number(<?php echo json_encode($avg_communication_training); ?>);
-    const avgRespectfulnessEnvironment = Number(<?php echo json_encode($avg_respectfulness_environment); ?>);
-    const avgAdaptabilityChallenges = Number(<?php echo json_encode($avg_adaptability_challenges); ?>);
+        // Professionalism averages
+        const avgPunctualityExpectations = Number(<?php echo json_encode($avg_punctuality_expectations); ?>);
+        const avgProfessionalAppearanceStandards = Number(
+            <?php echo json_encode($avg_professional_appearance_standards); ?>);
+        const avgCommunicationTraining = Number(<?php echo json_encode($avg_communication_training); ?>);
+        const avgRespectfulnessEnvironment = Number(<?php echo json_encode($avg_respectfulness_environment); ?>);
+        const avgAdaptabilityChallenges = Number(<?php echo json_encode($avg_adaptability_challenges); ?>);
 
-    const avgProfessionalism = (
-        (avgPunctualityExpectations + avgProfessionalAppearanceStandards + avgCommunicationTraining +
-            avgRespectfulnessEnvironment + avgAdaptabilityChallenges) / 5
-    );
+        const avgProfessionalism = (
+            (avgPunctualityExpectations + avgProfessionalAppearanceStandards + avgCommunicationTraining +
+                avgRespectfulnessEnvironment + avgAdaptabilityChallenges) / 5
+        );
 
-    // Learning and development averages
-    const avgWillingnessToLearnEncouragement = Number(
-        <?php echo json_encode($avg_willingness_to_learn_encouragement); ?>);
-    const avgFeedbackApplicationOpportunities = Number(
-        <?php echo json_encode($avg_feedback_application_opportunities); ?>);
-    const avgSelfImprovementSupport = Number(<?php echo json_encode($avg_self_improvement_support); ?>);
-    const avgSkillDevelopmentAssessment = Number(<?php echo json_encode($avg_skill_development_assessment); ?>);
-    const avgKnowledgeApplicationInPractice = Number(
-        <?php echo json_encode($avg_knowledge_application_in_practice); ?>);
+        // Learning and development averages
+        const avgWillingnessToLearnEncouragement = Number(
+            <?php echo json_encode($avg_willingness_to_learn_encouragement); ?>);
+        const avgFeedbackApplicationOpportunities = Number(
+            <?php echo json_encode($avg_feedback_application_opportunities); ?>);
+        const avgSelfImprovementSupport = Number(<?php echo json_encode($avg_self_improvement_support); ?>);
+        const avgSkillDevelopmentAssessment = Number(<?php echo json_encode($avg_skill_development_assessment); ?>);
+        const avgKnowledgeApplicationInPractice = Number(
+            <?php echo json_encode($avg_knowledge_application_in_practice); ?>);
 
-    const avgLearningAndDevelopment = (
-        (avgWillingnessToLearnEncouragement + avgFeedbackApplicationOpportunities + avgSelfImprovementSupport +
-            avgSkillDevelopmentAssessment + avgKnowledgeApplicationInPractice) / 5
-    );
+        const avgLearningAndDevelopment = (
+            (avgWillingnessToLearnEncouragement + avgFeedbackApplicationOpportunities + avgSelfImprovementSupport +
+                avgSkillDevelopmentAssessment + avgKnowledgeApplicationInPractice) / 5
+        );
 
-    // Collaboration averages
-    const avgTeamParticipationOpportunities = Number(<?php echo json_encode($avg_team_participation_opportunities); ?>);
-    const avgCooperationAmongPeers = Number(<?php echo json_encode($avg_cooperation_among_peers); ?>);
-    const avgConflictResolutionGuidance = Number(<?php echo json_encode($avg_conflict_resolution_guidance); ?>);
-    const avgSupportivenessAmongPeers = Number(<?php echo json_encode($avg_supportiveness_among_peers); ?>);
-    const avgContributionToTeamSuccess = Number(<?php echo json_encode($avg_contribution_to_team_success); ?>);
+        // Collaboration averages
+        const avgTeamParticipationOpportunities = Number(<?php echo json_encode($avg_team_participation_opportunities); ?>);
+        const avgCooperationAmongPeers = Number(<?php echo json_encode($avg_cooperation_among_peers); ?>);
+        const avgConflictResolutionGuidance = Number(<?php echo json_encode($avg_conflict_resolution_guidance); ?>);
+        const avgSupportivenessAmongPeers = Number(<?php echo json_encode($avg_supportiveness_among_peers); ?>);
+        const avgContributionToTeamSuccess = Number(<?php echo json_encode($avg_contribution_to_team_success); ?>);
 
-    const avgCollaboration = (
-        (avgTeamParticipationOpportunities + avgCooperationAmongPeers + avgConflictResolutionGuidance +
-            avgSupportivenessAmongPeers + avgContributionToTeamSuccess) / 5
-    );
+        const avgCollaboration = (
+            (avgTeamParticipationOpportunities + avgCooperationAmongPeers + avgConflictResolutionGuidance +
+                avgSupportivenessAmongPeers + avgContributionToTeamSuccess) / 5
+        );
 
-    // Attitude and Motivation averages
-    const avgEnthusiasmForTasks = Number(<?php echo json_encode($avg_enthusiasm_for_tasks); ?>);
-    const avgDriveToAchieveGoals = Number(<?php echo json_encode($avg_drive_to_achieve_goals); ?>);
-    const avgResilienceToChallenges = Number(<?php echo json_encode($avg_resilience_to_challenges); ?>);
-    const avgCommitmentToExperience = Number(<?php echo json_encode($avg_commitment_to_experience); ?>);
-    const avgSelfMotivationLevels = Number(<?php echo json_encode($avg_self_motivation_levels); ?>);
+        // Attitude and Motivation averages
+        const avgEnthusiasmForTasks = Number(<?php echo json_encode($avg_enthusiasm_for_tasks); ?>);
+        const avgDriveToAchieveGoals = Number(<?php echo json_encode($avg_drive_to_achieve_goals); ?>);
+        const avgResilienceToChallenges = Number(<?php echo json_encode($avg_resilience_to_challenges); ?>);
+        const avgCommitmentToExperience = Number(<?php echo json_encode($avg_commitment_to_experience); ?>);
+        const avgSelfMotivationLevels = Number(<?php echo json_encode($avg_self_motivation_levels); ?>);
 
-    const avgAttitudeAndMotivation = (
-        (avgEnthusiasmForTasks + avgDriveToAchieveGoals + avgResilienceToChallenges +
-            avgCommitmentToExperience + avgSelfMotivationLevels) / 5
-    );
+        const avgAttitudeAndMotivation = (
+            (avgEnthusiasmForTasks + avgDriveToAchieveGoals + avgResilienceToChallenges +
+                avgCommitmentToExperience + avgSelfMotivationLevels) / 5
+        );
     </script>
 
     <header id="myHeader-sticky">
@@ -470,18 +488,18 @@ if (isset($_SESSION['account_type'])) {
         </div>
         <nav class="nav-log">
 
-            <div class="css-1ld7x2h eu4oa1w0"></div>
+
             <?php
-session_start(); 
+            session_start();
 
-if (isset($_SESSION['account_type'])) {
-    $account_type = ucfirst($_SESSION['account_type']); 
-    $link = "/Account/$account_type"; 
-} else {
-    $link = "./"; 
-}
-?>
-
+            if (isset($_SESSION['account_type'])) {
+                $account_type = ucfirst($_SESSION['account_type']);
+                $link = "/Account/$account_type";
+            } else {
+                $link = "./";
+            }
+            ?>
+            <div class="css-1ld7x2h eu4oa1w0"></div>
             <a class="com-btn" href="<?php echo htmlspecialchars($link); ?>">Back</a>
         </nav>
 
@@ -503,54 +521,10 @@ if (isset($_SESSION['account_type'])) {
             <div class="container">
                 <div class="row" style=" gap: 120px !important;">
                     <a href="index.php">
-                        <img src="img/logov3.jpg" alt="Logo">
+                        <img src="img/WORKIFY-LOGO.svg" alt="Logo">
                         <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
                     </a>
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <a href="index.php">
-                            <img src="img/logov3.jpg" alt="Logo">
-                            <img src="img/DrRamonLOGO.svg" alt="Logo">
-                        </a>
-                    </div> -->
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s"
-                            style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
-                            <p>Don’t miss out on the latest updates and insights! Subscribe to our newsletter for
-                                exclusive content and tips.</p>
-                            <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true"
-                                _lpchecked="1">
-                                <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
-                                <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
-                                <p class="mchimp-errmessage" style="display: none;"></p>
-                                <p class="mchimp-sucmessage" style="display: none;"></p>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s"
-                            style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Help</h3>
-                            <ul class="list-unstyled f_list">
 
-                                <li><a href="term_and_Conditions.php">Term &amp; conditions</a></li>
-                                <li><a href="Support_policy.php">Support Policy</a></li>
-                                <li><a href="#">Privacy</a></li>
-                            </ul>
-                        </div>
-                    </div> -->
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s"
-                            style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
-                            <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
-                            <div class="f_social_icon">
-                                <a href="#" class="fab fa-facebook"></a>
-                                <a href="#" class="fab fa-twitter"></a>
-                                <a href="#" class="fab fa-linkedin"></a>
-                                <a href="#" class="fab fa-pinterest"></a>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="footer_bg">
@@ -577,45 +551,45 @@ if (isset($_SESSION['account_type'])) {
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.bar span').hide();
-        $('#bar-five').animate({
-            width: '85%'
-        }, 1000);
-        $('#bar-four').animate({
-            width: '35%'
-        }, 1000);
-        $('#bar-three').animate({
-            width: '20%'
-        }, 1000);
-        $('#bar-two').animate({
-            width: '17%'
-        }, 1000);
-        $('#bar-one').animate({
-            width: '30%'
-        }, 1000);
+        $(document).ready(function() {
+            $('.bar span').hide();
+            $('#bar-five').animate({
+                width: '85%'
+            }, 1000);
+            $('#bar-four').animate({
+                width: '35%'
+            }, 1000);
+            $('#bar-three').animate({
+                width: '20%'
+            }, 1000);
+            $('#bar-two').animate({
+                width: '17%'
+            }, 1000);
+            $('#bar-one').animate({
+                width: '30%'
+            }, 1000);
 
-        setTimeout(function() {
-            $('.bar span').fadeIn('slow');
-        }, 1000);
+            setTimeout(function() {
+                $('.bar span').fadeIn('slow');
+            }, 1000);
 
-    });
+        });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

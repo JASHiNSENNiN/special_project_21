@@ -69,8 +69,8 @@
                                 <header>
                                     <h4>Select Files here</h4>
                                 </header>
-                                <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                                <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="fileID" multiple>
+                                <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                                <input type="file" hidden accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="fileID" multiple>
                                 <div class="btn">Choose Files</div>
                             </div>
                             <ul class="file-list"></ul>
@@ -88,8 +88,8 @@
                                 <header>
                                     <h4>Select Files here</h4>
                                 </header>
-                                <p>Files Supported: PDF, TEXT, DOC, DOCX</p>
-                                <input type="file" hidden accept=".doc,.docx,.pdf,.txt" id="fileID" multiple>
+                                <p>PDF, DOC, DOCX, TXT, JPG, PNG</p>
+                                <input type="file" hidden accept=".doc,.docx,.pdf,.txt,.png,.jpg" id="fileID" multiple>
                                 <div class="btn">Choose Files</div>
                             </div>
                             <ul class="file-list"></ul>
@@ -168,7 +168,7 @@
             input.click();
         };
 
-        input.addEventListener("change", function (e) {
+        input.addEventListener("change", function(e) {
             files = e.target.files; // Get the selected files
             const fileListElement = document.querySelector(".file-list");
             fileListElement.innerHTML = ''; // Clear the previous file list
@@ -216,7 +216,7 @@
         var modal_wrapper = document.querySelector(".modal_wrapper");
         var shadow = document.querySelector(".shadow");
 
-        form_1_next_btn.addEventListener("click", function () {
+        form_1_next_btn.addEventListener("click", function() {
             form_1.style.display = "none";
             form_2.style.display = "block";
 
@@ -226,7 +226,7 @@
             form_2_progessbar.classList.add("active");
         });
 
-        form_2_back_btn.addEventListener("click", function () {
+        form_2_back_btn.addEventListener("click", function() {
             form_1.style.display = "block";
             form_2.style.display = "none";
 
@@ -237,11 +237,11 @@
         });
 
 
-        btn_done.addEventListener("click", function () {
+        btn_done.addEventListener("click", function() {
             modal_wrapper.classList.add("active");
         });
 
-        shadow.addEventListener("click", function () {
+        shadow.addEventListener("click", function() {
             modal_wrapper.classList.remove("active");
         });
     </script>

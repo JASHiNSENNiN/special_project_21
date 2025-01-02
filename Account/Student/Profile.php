@@ -367,14 +367,29 @@ $document_name_mapping = [
     <style>
         @media print {
             body {
+
                 -webkit-print-color-adjust: exact;
-                /* For Chrome */
-                color-adjust: exact;
-                /* For Firefox */
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                height: 100% !important;
             }
 
-            /* Hide elements that should not be printed */
-            .btn,
+            .column-profile {
+                float: left;
+                width: auto;
+                padding: 10px;
+                height: 300px;
+            }
+
+            .row-profile:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+
+            .print-btn,
             .docu,
             .edit-button,
             .nav-header,
@@ -382,16 +397,23 @@ $document_name_mapping = [
                 display: none;
             }
 
-            /* You can also adjust the layout for printing */
-            .dashboard-body,
-            .container-grap,
-            .eval-graph {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-            }
+            /* #piechart_3d,
+            #dp_chart_div {
+                width: auto;
+                height: 200%;
+                padding-bottom: 50px;
 
+
+            } */
+
+            /* main,
+            .app-content__widget,
+            .eval-graph,
+            .dp-graph {
+                
+                
+
+            } */
 
         }
     </style>
@@ -400,7 +422,7 @@ $document_name_mapping = [
 </head>
 
 <body>
-    <!-- nasa student_profile.php yung code nito-->
+
     <?php
     if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student') {
         echo $profile_divv;
@@ -414,63 +436,85 @@ $document_name_mapping = [
         <div class="column-graph-profile-right">
 
             <div class="container-grap-right">
-
-
-                <div class="card-body">
-                    <span class="fullname"><?= $fullName ?></span>
-                    <span class="LRN">LRN: <?= $lrn ?></span>
-                    <br>
-
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i><span
-                        class="other-info"><?= $strand ?></span>
-                    <br>
-                    <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email ?></span>
-
-                    <br>
-                    <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
-                    <br>
-                    <i class="fa fa-briefcase" aria-hidden="true"></i><span
-                        class="other-info"><?= $currentWork ?></span>
-
-
-                    <a style=" text-decoration: none; display:contents ;" href="Settings.php">
-                        <button class="edit-button">
-                            <svg class="edit-svgIcon" viewBox="0 0 512 512">
-                                <path
-                                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
-                                </path>
-                            </svg>
-                        </button>
-                    </a>
-
-                    <button class="print-btn" onclick="printPage()">
-                        <span class="printer-wrapper">
-                            <span class="printer-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
-                                    <path
-                                        stroke-width="5"
-                                        stroke="black"
-                                        d="M12 37.5H80C85.2467 37.5 89.5 41.7533 89.5 47V69C89.5 70.933 87.933 72.5 86 72.5H6C4.067 72.5 2.5 70.933 2.5 69V47C2.5 41.7533 6.75329 37.5 12 37.5Z"></path>
-                                    <mask fill="white" id="path-2-inside-1_30_7">
+                <div class="print-left">
+                    <a href="print_profile.php" target="_blank" style="text-decoration:none;"> <button class="print-btn">
+                            <span class="printer-wrapper">
+                                <span class="printer-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
                                         <path
-                                            d="M12 12C12 5.37258 17.3726 0 24 0H57C70.2548 0 81 10.7452 81 24V29H12V12Z"></path>
-                                    </mask>
-                                    <path
-                                        mask="url(#path-2-inside-1_30_7)"
-                                        fill="black"
-                                        d="M7 12C7 2.61116 14.6112 -5 24 -5H57C73.0163 -5 86 7.98374 86 24H76C76 13.5066 67.4934 5 57 5H24C20.134 5 17 8.13401 17 12H7ZM81 29H12H81ZM7 29V12C7 2.61116 14.6112 -5 24 -5V5C20.134 5 17 8.13401 17 12V29H7ZM57 -5C73.0163 -5 86 7.98374 86 24V29H76V24C76 13.5066 67.4934 5 57 5V-5Z"></path>
-                                    <circle fill="black" r="3" cy="49" cx="78"></circle>
-                                </svg>
-                            </span>
+                                            stroke-width="5"
+                                            stroke="black"
+                                            d="M12 37.5H80C85.2467 37.5 89.5 41.7533 89.5 47V69C89.5 70.933 87.933 72.5 86 72.5H6C4.067 72.5 2.5 70.933 2.5 69V47C2.5 41.7533 6.75329 37.5 12 37.5Z"></path>
+                                        <mask fill="white" id="path-2-inside-1_30_7">
+                                            <path
+                                                d="M12 12C12 5.37258 17.3726 0 24 0H57C70.2548 0 81 10.7452 81 24V29H12V12Z"></path>
+                                        </mask>
+                                        <path
+                                            mask="url(#path-2-inside-1_30_7)"
+                                            fill="black"
+                                            d="M7 12C7 2.61116 14.6112 -5 24 -5H57C73.0163 -5 86 7.98374 86 24H76C76 13.5066 67.4934 5 57 5H24C20.134 5 17 8.13401 17 12H7ZM81 29H12H81ZM7 29V12C7 2.61116 14.6112 -5 24 -5V5C20.134 5 17 8.13401 17 12V29H7ZM57 -5C73.0163 -5 86 7.98374 86 24V29H76V24C76 13.5066 67.4934 5 57 5V-5Z"></path>
+                                        <circle fill="black" r="3" cy="49" cx="78"></circle>
+                                    </svg>
+                                </span>
 
-                            <span class="printer-page-wrapper">
-                                <span class="printer-page"></span>
+                                <span class="printer-page-wrapper">
+                                    <span class="printer-page"></span>
+                                </span>
                             </span>
-                        </span>
-                        Print
-                    </button>
-
+                            Print
+                        </button></a>
                 </div>
+
+
+                <div class="row-profile" id="row_profile">
+
+                    <div class="column-profile column-side profile-pic">
+                        <!-- <img class="img-account-profile rounded-circle mb-2" id="profile-image"
+                        src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
+                        alt="Profile Image Preview"
+                        style="width: 200px; height: 200px; object-fit: cover;"> -->
+                        <img src="uploads/default.png" alt="Profile Image Preview" width="100%" height="100%" style="border-radius: 50%;">
+
+
+                    </div>
+                    <div class="column-profile ">
+                        <div class="card-body">
+                            <span class="fullname"><?= $fullName ?></span>
+                            <span class="LRN">LRN: <?= $lrn ?></span>
+                            <br>
+
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i><span
+                                class="other-info"><?= $strand ?></span>
+                            <br>
+                            <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email ?></span>
+
+                            <br>
+                            <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
+                            <br>
+                            <i class="fa fa-briefcase" aria-hidden="true"></i><span
+                                class="other-info"><?= $currentWork ?></span>
+
+
+                            <a style=" text-decoration: none; display:contents ;" href="Settings.php">
+                                <button class="edit-button">
+                                    <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                        <path
+                                            d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </a>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
             </div>
         </div>
 
@@ -565,9 +609,7 @@ $document_name_mapping = [
                                 <tbody>
                                     <?php foreach ($unique_documents as $document_name): ?>
                                         <tr>
-                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); // Display mapped name 
-                                                ?>
-                                            </td>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?></td>
                                             <td>
                                                 <?php
                                                 // Check for the document URL and existence of file
@@ -581,10 +623,11 @@ $document_name_mapping = [
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
-                                                        <a
-                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
-                                                            <button>Download</button>
+                                                        <a class="btn btn-download btn-success" href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
+                                                            Download
                                                         </a>
+                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                                        <a class="btn btn-delete btn-danger button-delete">Delete</a>
                                                     <?php else: ?>
                                                         <button disabled>File Not Available</button>
                                                     <?php endif;
@@ -760,17 +803,46 @@ $document_name_mapping = [
     </script>
 
     <script>
-        function printPage() {
-            window.print(); // This will open the print dialog
-        }
+        // function printPage() {
+        //     var rowprofile = document.getElementById('row_profile');
+        //     var piechart_3d = document.getElementById('piechart_3d');
+        //     var dp_chart_div = document.getElementById('dp_chart_div');
+        //     var wptopxdiv = document.getElementById('wp-top-x-div');
+        //     var protopxdiv = document.getElementById('pro-top-x-div');
+        //     var ldtopxdiv = document.getElementById('ld-top-x-div');
+
+        //     var printWindow = window.open('', '', 'height=600,width=800');
+
+        //     printWindow.document.write('<html><head><title>Print Chart</title>');
+        //     printWindow.document.write('<style>');
+        //     printWindow.document.write('body { margin: 0; padding: 0; }'); // Remove margins and padding
+        //     printWindow.document.write('.chart { width: 600px; height: 400px; }'); // Set the desired size for charts
+        //     printWindow.document.write('.pie-chart { width: 400px; height: 400px; }'); // Customize pie chart size
+        //     printWindow.document.write('.dp-chart { width: 600px; height: 300px; }'); // Customize DP chart size
+        //     printWindow.document.write('.wptopxdiv { width: 600px; height: 300px; }'); // Customize WP Top X Div size
+        //     printWindow.document.write('.protopxdiv { width: 600px; height: 300px; }'); // Customize Pro Top X Div size
+        //     printWindow.document.write('.ldtopxdiv { width: 600px; height: 300px; }'); // Customize LD Top X Div size
+        //     printWindow.document.write('</style>');
+        //     printWindow.document.write('</head><body>');
+        //     printWindow.document.write('<div class="chart">' + rowprofile.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="pie-chart">' + piechart_3d.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="dp-chart">' + dp_chart_div.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="wptopxdiv">' + wptopxdiv.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="protopxdiv">' + protopxdiv.innerHTML + '</div>');
+        //     printWindow.document.write('<div class="ldtopxdiv">' + ldtopxdiv.innerHTML + '</div>');
+        //     printWindow.document.write('</body></html>');
+        //     printWindow.document.close();
+        //     printWindow.print();
+
+        // }
     </script>
 
 
     <!-- End -->
     <footer>
         2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School
-        <!-- 2024 Your Website. All rights reserved. | Junior Philippines Computer -->
-        Society Students
+        <!-- 2024 Your Website. All rights reserved. | Junior Philippines Computer
+        Society Students -->
     </footer>
 
 </body>

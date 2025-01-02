@@ -481,6 +481,9 @@ jQuery(document).ready(function ($) {
           '<a class="btn btn-download btn-success" href="#" download="' +
           filename +
           '">Download</a>' +
+          '<a class="btn btn-view btn-info" href="view_document.php?document_name=' +
+          encodeURIComponent(filename) +
+          '" target="_blank">View</a>' +
           '<a class="btn btn-delete btn-danger button-delete">Delete</a>' +
           "</td>" +
           "</tr>"
