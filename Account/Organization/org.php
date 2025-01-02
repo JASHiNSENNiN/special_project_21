@@ -212,12 +212,7 @@ function generateJobCard()
                     </div>
                     <div class="company-info-apply-btn">
 
-                        <div class="job_application application">
-
-                            <a href="login.php" class="small-dialog popup-with-zoom-anim button apply-dialog-button">Apply now</a>
-
-
-                        </div>
+                        
                     </div>
                 </div>
 
