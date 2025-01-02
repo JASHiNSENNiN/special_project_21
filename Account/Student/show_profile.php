@@ -39,8 +39,10 @@ $profile_div = '<header class="nav-header">
                         Profile</a>
                         <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i>
                         Weather Update</a>
+                         <a href="Journal.php"><i class="fa fa-newspaper-o" style="font-size:24px; margin-right:10px;"></i>
+                        Journal</a>
                         <a href="Upload.php"><i class="fa fa-file-text" style="font-size:24px; margin-right:10px;"></i>
-                        FIle Upload</a>
+                        File Upload</a>
                    
                     <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
                     <hr>
