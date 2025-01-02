@@ -59,23 +59,19 @@ if ($result) {
 
 if (isset($_POST['job_id'])) {
     // Collect the form data
-    $job_id = intval($_POST['job_id']); // Ensure it's an integer
+    $job_id = intval($_POST['job_id']); 
     $work_title = htmlspecialchars($_POST['work_title']);
-    $strands = json_encode($_POST['strand']); // Encode the strands back to JSON
+    $strands = json_encode($_POST['strand']); 
     $description = htmlspecialchars($_POST['description']);
     
-    // Prepare the SQL update statement
     $sql = "UPDATE job_offers 
             SET work_title = ?, strands = ?, description = ? 
             WHERE id = ?";
     
-    // Prepare the statement
     $stmt = $conn->prepare($sql);
     
-    // Bind the parameters
     $stmt->bind_param("sssi", $work_title, $strands, $description, $job_id);
     
-    // Execute the statement
     if ($stmt->execute()) {
         header("Location: " . $_SERVER['PHP_SELF'] . "?job_id=" . $jobIdParam);
         exit();
