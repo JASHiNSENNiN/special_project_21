@@ -156,13 +156,13 @@ function generateJobCard()
     echo '<div class="container">';
     echo '<div class="eleven columns">';
 
-    echo '<span class="job-category"><a href="#">Company</a></span>';
+    echo '<span class="job-category"><a href="#">Organization</a></span>';
     // echo '<h1>' . htmlspecialchars($job['work_title']);
-    echo '<h1>' .  htmlspecialchars($job['organization_name']);
+    echo '<h1> ' .  htmlspecialchars($job['organization_name']);
 
-    foreach ($strands as $strand) {
-        echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
-    }
+    // foreach ($strands as $strand) {
+    //     echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
+    // }
     // echo '<span class="job-category"><a href="#">Organization</a></span>';
     // echo '<h1>' .  htmlspecialchars($job['organization_name']);
     echo '<hr>';
@@ -512,7 +512,7 @@ if (isset($_SESSION['account_type'])) {
             }
             ?>
             <div class="css-1ld7x2h eu4oa1w0"></div>
-            <a class="com-btn" href="<?php echo htmlspecialchars($link); ?>">Back</a>
+            <a class="com-btn" href="<?php echo htmlspecialchars($link); ?>">Back </a>
         </nav>
 
     </header>

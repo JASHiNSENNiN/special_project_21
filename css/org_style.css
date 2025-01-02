@@ -632,16 +632,16 @@ nav a {
 
 /* ----------------------------workify css--------------------- */
 
-nav .login-btn:hover {
+.login-btn:hover {
     color: #172738;
 }
 
-nav a:hover {
-    color: rgb(27, 188, 155);
+.com-btn:hover {
+    color: rgb(27, 188, 155) !important;
     text-decoration: none !important;
 }
 
-nav a::after {
+.com-btn::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -803,7 +803,7 @@ nav a:hover::after {
 
 .css-1ld7x2h {
     box-sizing: border-box;
-    height: 1.5rem;
+    height: 15px;
     min-width: 0;
     width: 0.0625rem;
 }
@@ -2000,9 +2000,9 @@ h6 {
     transform: translateY(63%);
 }
 
-.col-lg-6 p {
-    /* transform: translateX(63%); */
-}
+/* .col-lg-6 p {
+    transform: translateX(63%);
+} */
 
 @-moz-keyframes myfirst {
     0% {
