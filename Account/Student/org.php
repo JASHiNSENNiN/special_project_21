@@ -344,7 +344,7 @@ function generateJobCard()
 
 
 
-             <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
+            <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
             <h4 class="font-weight-bold py-3 mb-4">  <i class="fa fa-bar-chart" aria-hidden="true"></i>Insights</h4>
         <div class="container-btm-rating">
         
@@ -360,6 +360,13 @@ function generateJobCard()
 					<div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 100%;"></div>
 				</div> <!-- end:common -->
 			</div> <!-- end:col-3 -->
+
+		</div><!-- end:row -->
+        
+
+        <div class="row clearfix">
+			
+			 
 
 			<div class="col-3">
 				<div class="common">
@@ -383,9 +390,11 @@ function generateJobCard()
 				</div> <!-- end:common -->
 			</div> <!-- end:col-3 -->
 		</div><!-- end:row -->
+
 	</div> <!-- end:container -->
 
-    </div>
+
+        </div>
             
         </div>
         
