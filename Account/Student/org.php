@@ -345,8 +345,7 @@ function generateJobCard()
 
 
              <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
-        <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#172738; color:#fff; padding-left: 20px; padding-right: 10px;margin: 0px !important; "> <i class="fa fa-bar-chart" aria-hidden="true"></i>Insights</h4>
+            <h4 class="font-weight-bold py-3 mb-4">  <i class="fa fa-bar-chart" aria-hidden="true"></i>Insights</h4>
         <div class="container-btm-rating">
         
 		<div class="row clearfix">
@@ -374,7 +373,11 @@ function generateJobCard()
 				</div> <!-- end:common -->
 				
 			</div> <!-- end:col-3 -->
-			<div class="col-3">
+		
+		</div><!-- end:row -->
+
+        <div class="row clearfix">
+			<div class="col-3 col-3-last ">
 				<div class="common">
 					 <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 100%;"></div>
 				</div> <!-- end:common -->
@@ -421,7 +424,7 @@ function generateJobCard()
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

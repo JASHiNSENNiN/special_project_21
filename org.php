@@ -315,6 +315,7 @@ function generateJobCard()
 	</div> <!-- end:container -->
 
 
+        </div>
         </div>';
 }
 
