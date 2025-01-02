@@ -17,7 +17,7 @@ $profile_divv = '<header class="nav-header">
   
 </div>
         
-        </nav>
+        </nav> 
 
     </header>
 
@@ -43,13 +43,7 @@ $profile_divv = '<header class="nav-header">
     </video>
     <h1>Weather Update</h1>
     <div class="container">
-        <!--       <div class="weather-input">
-        <h3>Enter a City Name</h3>
-        <input class="city-input" type="text" placeholder="E.g., New York, London, Tokyo">
-        <button class="search-btn">Search</button>
-        <div class="separator"></div>
-        <button class="location-btn">Use Current Location</button>
-      </div> -->
+
         <div class="weather-data">
 
             <div class="current-weather">

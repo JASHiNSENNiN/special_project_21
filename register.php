@@ -55,6 +55,8 @@
                     </div>
                     <p class="show">Show Password</p>
 
+                    <p class="link-terms-pp">By clicking Register, you agree to our <a href="terms.php" target="_blank">Terms</a> and <a href="Privacy_policy.php" target="_blank">Privacy Policy</a></p>
+
 
                     <button id="register-button" class="btn-new" data-action="submit">Register</button>
                 </form>

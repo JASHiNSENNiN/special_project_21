@@ -55,7 +55,7 @@ google.charts.setOnLoadCallback(drawStufftc);
 
 function drawStufftc() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
+    ["Category", "Performance"],
     ["Team Participation Opportunities", avgTeamParticipationOpportunities],
     ["Cooperation Among Peers", avgCooperationAmongPeers],
     ["Conflict Resolution Guidance", avgConflictResolutionGuidance],
@@ -200,7 +200,7 @@ google.charts.setOnLoadCallback(drawStuff);
 
 function drawStuff() {
   var data = new google.visualization.arrayToDataTable([
-    ["", "Performance"],
+    ["Category", "Performance"],
     ["Quality of Experience", avgQualityOfExperience],
     ["Productivity of Tasks", avgProductivityOfTasks],
     ["Problem Solving Opportunities", avgProblemSolvingOpportunities],

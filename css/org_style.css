@@ -2272,6 +2272,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     /* margin-top: 50px; */
     margin-bottom: 100px;
     box-shadow: 0px 6px 42px rgba(0, 0, 0, 0.103884);
+    background-color: #fff;
 }
 
 .flex-left {
@@ -2328,6 +2329,13 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     display: table;
 }
 
+.clearfix {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .container-btm-rating {
     width: auto;
     padding-top: 20px;
@@ -2343,15 +2351,47 @@ h3 {
     margin-bottom: 20px;
 }
 
-.row {
+/* .row {
     margin: 0 -15px;
-}
+} */
 
 .col-3 {
     float: left;
-    width: auto;
+    width: 80%;
     padding: 0 15px;
     margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .col-3 {
+        width: 75% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-3 {
+        width: 100% !important;
+    }
+}
+
+.col-3-last {
+    width: 55% !important;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .col-3-last {
+        width: 75% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-3-last {
+        width: 100% !important;
+    }
 }
 
 .col-4 {
@@ -2407,4 +2447,15 @@ h3 {
 
 .single_job_listing {
     margin-bottom: 90px;
+}
+
+.font-weight-bold {
+    padding: 20px;
+    font-weight: 700;
+    font-size: 25px;
+    background-color: #172738;
+    color: #fff;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin: 0px !important;
 }
