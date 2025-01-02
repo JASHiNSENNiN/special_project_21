@@ -76,6 +76,16 @@ CREATE TABLE IF NOT EXISTS job_offers (
   FOREIGN KEY (partner_id) REFERENCES partner_profiles(user_id)
 );
 
+CREATE TABLE IF NOT EXISTS student_journals (
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    entry_number INT(11),
+    student_id INT(11),
+    date DATE,
+    title VARCHAR(255),
+    entry TEXT,
+    FOREIGN KEY (student_id) REFERENCES student_profiles(user_id)
+);
+
 CREATE TABLE IF NOT EXISTS applicants (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
   job_id INT(11),
