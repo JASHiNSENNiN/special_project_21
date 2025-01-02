@@ -1769,11 +1769,11 @@ html {
 
 /* ---------------------------------search not found-------------------------------- */
 
-footer {
+/* footer {
     width: 100% !important;
     padding-left: 0% !important;
     padding-right: 0% !important;
-}
+} */
 
 .globalSearchResultNoFoundFeedback {
     font-size: 30px;

@@ -420,7 +420,7 @@ function generateJobCard()
     <link rel="stylesheet" type="text/css" href="../../css/org_style.css">
     <!-- <link rel="stylesheet" type="text/css" href="css/org_style.css"> -->
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
