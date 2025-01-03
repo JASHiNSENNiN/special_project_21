@@ -1,7 +1,43 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
+
+
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+$conn = new mysqli($host, $username, $password, $database);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $student_id = $_SESSION['user_id'];
+    ;
+
+    $date = $_POST['date'];
+    $title = $_POST['title'];
+    $entry = $_POST['entry'];
+    $entry_number = $_POST['entry_number'];
+
+    $stmt = $conn->prepare("INSERT INTO student_journals (student_id, date, title, entry, entry_number) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssi", $student_id, $date, $title, $entry, $entry_number);
+
+    if ($stmt->execute()) {
+        // echo "New journal entry created successfully.";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +77,8 @@ require_once 'show_profile.php';
         <h1>Student Work Immersion Journal</h1>
         <div class="page-wrapper">
             <ol class='years'>
-                <li class='year'><a class='expander' href="#">
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i>
                         <i class="fa fa-check-circle" style="font-size:24px;color:green"></i> Day 1 - Immersion
                         Experience
                     </a>
@@ -50,6 +87,7 @@ require_once 'show_profile.php';
                             <div class="container3">
                                 <h2 class="title">Journal Entry </h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="1">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -75,13 +113,15 @@ require_once 'show_profile.php';
 
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 2 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="2">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -106,13 +146,15 @@ require_once 'show_profile.php';
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 3 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="3">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -137,13 +179,15 @@ require_once 'show_profile.php';
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 4 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="4">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -168,13 +212,15 @@ require_once 'show_profile.php';
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 5 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="5">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -199,13 +245,15 @@ require_once 'show_profile.php';
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 6 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="6">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -230,13 +278,15 @@ require_once 'show_profile.php';
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 7 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="7">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -261,13 +311,15 @@ require_once 'show_profile.php';
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 8 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="8">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -292,13 +344,15 @@ require_once 'show_profile.php';
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 9 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="9">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>
@@ -323,13 +377,15 @@ require_once 'show_profile.php';
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 10 - Immersion Experience</a>
                     <ol>
                         <li>
                             <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
+                                    <input type="hidden" id="entry_number" name="entry_number" value="10">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
                                         <input class="inp" type="date" id="date" name="date" required>

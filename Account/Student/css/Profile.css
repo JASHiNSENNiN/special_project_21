@@ -1134,7 +1134,7 @@ table .th-date {
     display: grid;
     grid-gap: 2.5rem;
     grid-template-columns: 2fr 1.2fr;
-    grid-template-rows: 1fr 1.5fr;
+    /* grid-template-rows: 1fr 1.5fr; */
     grid-template-areas: "widget-p widget-s" "widget-p widget-t";
     background-color: #fff;
 }
@@ -1331,4 +1331,46 @@ span .subtitle-resume {
 .print-left {
     position: absolute;
     right: 50px;
+}
+
+
+/* Journal */
+
+.content-box {
+    width: auto;
+    border: 2px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.content-box .day {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.content-box .date {
+    text-align: right;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.content-box .titleW {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.content-box .description {
+    font-size: 14px;
+    color: #555;
+}
+
+.DailyJournal {
+    margin-top: 50px;
 }
