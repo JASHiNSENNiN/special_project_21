@@ -613,7 +613,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 .card-body {
     padding-left: 2.25rem !important;
-    padding-right: 2.25rem !important;
+    padding-right: 1rem !important;
 }
 
 .LRN {
@@ -1044,7 +1044,7 @@ table .th-date {
 /* //////////////////////////////end///////////////////////////////////////////////// */
 
 .edit-button {
-    margin-top: 25px;
+    top: 3rem;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -1217,7 +1217,7 @@ span .subtitle-resume {
     font-weight: 500;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.065);
     transition: all 0.3s;
-    margin-top: 10px;
+    margin-top: 1.5rem;
 }
 
 .printer-wrapper {
@@ -1285,7 +1285,7 @@ span .subtitle-resume {
     float: left;
     width: auto;
     padding: 10px;
-    height: 300px;
+    height: 16rem;
 }
 
 .row-profile:after {
@@ -1334,7 +1334,7 @@ span .subtitle-resume {
 }
 
 
-/* Journal */
+/*----------------------- Journal --------------------------*/
 
 .content-box {
     width: auto;
@@ -1353,10 +1353,11 @@ span .subtitle-resume {
 }
 
 .content-box .date {
-    text-align: right;
+    position: absolute;
     font-size: 14px;
     color: #777;
     margin-bottom: 10px;
+    right: 2rem;
 }
 
 .content-box .titleW {

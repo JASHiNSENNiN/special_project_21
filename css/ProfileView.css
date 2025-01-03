@@ -400,13 +400,6 @@ footer {
 
 /* -------------------------------------column profile ---------------------------- */
 
-.column-profile {
-    float: left;
-    width: auto;
-    padding: 10px;
-    height: 300px;
-}
-
 .row-profile:after {
     content: "";
     display: table;
@@ -417,7 +410,7 @@ footer {
     float: left;
     width: auto;
     padding: 10px;
-    height: 300px;
+    height: 16rem;
 }
 
 @media (max-width: 1200px) {
@@ -1255,7 +1248,7 @@ span .subtitle-resume {
     font-weight: 500;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.065);
     transition: all 0.3s;
-    margin-top: 10px;
+    margin-top: 1.5rem;
 }
 
 .printer-wrapper {
@@ -1306,4 +1299,47 @@ span .subtitle-resume {
 
 .print-btn:hover {
     background-color: rgb(239, 239, 239);
+}
+
+
+/*----------------------- Journal --------------------------*/
+
+.content-box {
+    width: auto;
+    border: 2px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.content-box .day {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.content-box .date {
+    position: absolute;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+    right: 2rem;
+}
+
+.content-box .titleW {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.content-box .description {
+    font-size: 14px;
+    color: #555;
+}
+
+.DailyJournal {
+    margin-top: 50px;
 }

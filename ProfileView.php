@@ -321,7 +321,7 @@ $profile_divv = '<header class="nav-header">
                             <i class="fa fa-briefcase" aria-hidden="true"></i><span class="other-info"><?= $currentWork   ?></span>
 
 
-                            <a href="Account/Student/print_profile.php" style="text-decoration:none;"> <button class="print-btn">
+                            <a href="Account/Student/print_profile.php" style="text-decoration:none;" target="_blank"> <button class="print-btn">
                                     <span class="printer-wrapper">
                                         <span class="printer-container">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
@@ -374,11 +374,11 @@ $profile_divv = '<header class="nav-header">
     <!-- -----------------------------------column graph ------------------------- -->
 
     <div class="row-graph">
-        <d class="dashboard-body docu">
+        <!-- <div class="dashboard-body docu">
 
             <main class="dashboard__main app-content">
 
-                <!-- <article class="app-content__widget app-content__widget--primary">
+                <article class="app-content__widget app-content__widget--primary">
 
                     <h2 class="title-resume">Personal Summary</h2>
                     <span class="description-resume">Introduce yourself and explain your goals and interest in work
@@ -396,9 +396,9 @@ $profile_divv = '<header class="nav-header">
                     </form>
 
 
-                </article> -->
+                </article>
 
-                <!-- <article class="app-content__widget app-content__widget--secondary">
+                <article class="app-content__widget app-content__widget--secondary">
 
                     <div class="card-strong-profile">
                         <h1 class="title-resume">Profile Strength</h1>
@@ -430,11 +430,11 @@ $profile_divv = '<header class="nav-header">
                     </div>
                     <button class="next" onclick="nextSlide()">Next tip &#8594;</button>
 
-                </article> -->
+                </article>
 
 
             </main>
-        </d iv>
+        </div> -->
 
         <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'School'): ?>
             <!-- <div class="dashboard-body">
@@ -565,40 +565,70 @@ $profile_divv = '<header class="nav-header">
                                 <i class="fa fa-thumbs-up"></i> Saved!
                             </span>
                         </div>
+
+                        <hr>
+                        <h2 class="title-resume">Daily Insight</h2>
+                        <span class="description-resume">The line chart analyzes student daily performance in work
+                            immersion, and the pie chart displays the distribution of performance levels.</span>
+
+
+                        <div class="container-grap">
+                            <div class="dp-graph" id="piechart_3d"></div>
+                        </div>
+
+
+
+                        <div class="container-grap">
+                            <div class="dp-graph" id="dp_chart_div"></div>
+
+                        </div>
+
+                        <hr>
+                        <h2 class="title-resume">Evaluation Insight</h2>
+                        <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
+                            skills, and social skills during immersion.</span>
+                        <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
+                        <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
+                        <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
                     </article>
+
+
+                    <div class="DailyJournal">
+                        <h2 class="title-resume">Daily Journal (2/10)</h2>
+
+                        <div class="content-box">
+                            <div class="date">January 3, 2025</div>
+                            <div class="day">Day 1</div>
+
+                            <div class="titleW">Work Immersion Report</div>
+                            <div class="description">
+                                This report highlights the key learnings and experiences during the work immersion program.
+                                It includes
+                                tasks performed, skills gained, challenges encountered, and reflections on the work
+                                experience.
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <div class="date">January 4, 2025</div>
+                            <div class="day">Day 2</div>
+
+                            <div class="titleW">Work Immersion Report</div>
+                            <div class="description">
+                                This report highlights the key learnings and experiences during the work immersion program.
+                                It includes
+                                tasks performed, skills gained, challenges encountered, and reflections on the work
+                                experience.
+                            </div>
+                        </div>
+                        <!-- <button class="next">View all &#8594;</button> -->
+                        <a href="#">View all</a>
+                    </div>
                 </main>
             </div>
         <?php endif; ?>
 
 
-        <div class="dashboard-body">
 
-            <main class="dashboard__main app-content">
-
-                <article class="app-content__widget app-content__widget--primary">
-                    <hr>
-                    <h2 class="title-resume">Daily Insight</h2>
-                    <span class="description-resume">The line chart analyzes student daily performance in work
-                        immersion, and the pie chart displays the distribution of performance levels.</span>
-
-
-                    <div class="container-grap">
-                        <div class="dp-graph" id="piechart_3d"></div>
-                    </div>
-
-
-
-                    <div class="container-grap">
-                        <div class="dp-graph" id="dp_chart_div"></div>
-
-                    </div>
-
-
-                </article>
-
-
-            </main>
-        </div>
 
 
         <div class="dashboard-body">
@@ -607,12 +637,6 @@ $profile_divv = '<header class="nav-header">
                 <article class="app-content__widget app-content__widget--primary">
 
 
-                    <h2 class="title-resume">Evaluation Insight</h2>
-                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
-                        skills, and social skills during immersion.</span>
-                    <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-                    <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-                    <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
 
 
 
