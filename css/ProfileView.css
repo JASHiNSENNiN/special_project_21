@@ -12,6 +12,7 @@ body {
     /* overflow: hidden; */
 }
 
+
 /* NavbarTop */
 
 .navbar-top {
@@ -68,6 +69,7 @@ body {
     float: left;
 }
 
+
 /* li {
   list-style: none;
 } */
@@ -89,7 +91,9 @@ body {
     position: relative;
 }
 
+
 /* End */
+
 
 /* Sidenav */
 
@@ -132,6 +136,7 @@ body {
     padding-top: 10px;
 }
 
+
 /* .url,
 hr {
   text-align: center;
@@ -160,7 +165,9 @@ hr {
   width: 65%;
 } */
 
+
 /* End */
+
 
 /* Main */
 
@@ -189,12 +196,14 @@ hr {
     border: solid grey 1px;
 }
 
+
 /* .main .card table {
   border: none;
   font-size: 16px;
   height: 270px;
   width: 80%;
 } */
+
 
 /* End */
 
@@ -223,6 +232,7 @@ footer {
     padding: 20px;
     /* add some padding to make the div more visible */
 }
+
 
 /* -----------------------------------wp_chart--------------------------------------------  */
 
@@ -318,7 +328,9 @@ footer {
     }
 }
 
+
 /* ----------------------------------top graph-------------------------------- */
+
 
 /* Create two equal columns that floats next to each other */
 
@@ -350,6 +362,7 @@ footer {
     }
 }
 
+
 /* Clear floats after the columns */
 
 .row-graph:after {
@@ -357,6 +370,7 @@ footer {
     display: table;
     clear: both;
 }
+
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 
@@ -383,13 +397,58 @@ footer {
     padding: 5px 10px 0px 10px;
 }
 
+
 /* -------------------------------------column profile ---------------------------- */
+
+.column-profile {
+    float: left;
+    width: auto;
+    padding: 10px;
+    height: 300px;
+}
+
+.row-profile:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column-profile {
+    float: left;
+    width: auto;
+    padding: 10px;
+    height: 300px;
+}
+
+@media (max-width: 1200px) {
+    .column-side {
+        width: 25%;
+    }
+}
+
+@media (max-width: 992px) {
+    .column-side {
+        width: 30%;
+    }
+    .column-profile {
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .column-side {
+        width: 100%;
+    }
+    .column-profile {
+        width: 100%;
+        height: auto;
+    }
+}
 
 .row-graph-profile {
     margin-left: 100px;
     margin-right: 100px;
     margin-bottom: 50px;
-    /* border: 1px solid gray; */
 }
 
 @media (max-width: 1300px) {
@@ -401,8 +460,6 @@ footer {
         width: auto !important;
     }
 }
-
-/* Clear floats after the columns */
 
 .row-graph-profile:after {
     content: "";
@@ -465,6 +522,7 @@ footer {
     border-radius: 20px;
     height: auto;
 }
+
 
 /* -------------------------------------------graph evaluation ------------------------ */
 
@@ -533,7 +591,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     background: transparent !important;
 }
 
-.account-settings-multiselect ~ .select2-container {
+.account-settings-multiselect~.select2-container {
     width: 100% !important;
 }
 
@@ -674,6 +732,7 @@ img {
     /* font-weight: bold; */
     color: #000;
 }
+
 
 /* //////////////////////////////////////////drop down css////////////////////////////////// */
 
@@ -839,25 +898,16 @@ img {
     background-color: #cccbc93a;
 }
 
+
 /* ///////////////////////////////////////////end //////////////////////////////////// */
+
 
 /* ///////////////////////////////////////Strong profile///////////////////////////// */
 
 .card-strong-profile {
     --main-color: #172738;
     --bg-color: #fff;
-    font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Oxygen,
-        Ubuntu,
-        Cantarell,
-        "Open Sans",
-        "Helvetica Neue",
-        sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     width: 100%;
     padding: 25px;
     background: var(--bg-color);
@@ -965,24 +1015,15 @@ img {
 }
 
 .form-control {
-    font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Oxygen,
-        Ubuntu,
-        Cantarell,
-        "Open Sans",
-        "Helvetica Neue",
-        sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     min-height: 254px;
     max-height: 254px;
     margin-bottom: 20px;
 }
 
+
 /* //////////////////////////////////////////END ////////////////////////////////// */
+
 
 /*//////////////////////////////////////////upload csss//////////////////////////// */
 
@@ -1039,6 +1080,7 @@ table .th-date {
 .btn-primary:hover {
     background-color: #17273811;
 }
+
 
 /* //////////////////////////////end///////////////////////////////////////////////// */
 
