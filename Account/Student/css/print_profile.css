@@ -83,7 +83,7 @@ h2 {
 }
 
 .column-side {
-    width: 300px;
+    width: 15rem;
 }
 
 .card-body {
@@ -130,6 +130,7 @@ img {
     height: auto;
     margin-bottom: 20px;
     margin-top: 20px;
+    width: 100%;
 }
 
 .container-grap p {
@@ -141,10 +142,10 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 800px;
+    /* max-width: 800px; */
     margin: 0 auto;
     position: relative;
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 .title-resume {
@@ -158,7 +159,31 @@ img {
     font-weight: 400;
 }
 
+
 /* .eval-graph {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 400px;
 } */
+
+.container-graph-bar {
+    background-color: #fff;
+    /* column-count: 1; */
+    column-gap: 40px;
+    border-radius: 5px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.container-graph {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column-graph {
+    padding-left: 20px;
+    flex: 1;
+}

@@ -70,16 +70,23 @@
             <span class="description-resume">The line chart analyzes student daily performance in work
                 immersion, and the pie chart displays the distribution of performance levels.</span>
 
-            <div class="container-grap">
-                <div class="dp-graph" id="piechart_3d"></div>
+
+
+            <div class="container-graph">
+                <div class="column-graph">
+                    <div class="container-grap">
+                        <div class="dp-graph" id="piechart_3d"></div>
+                    </div>
+                </div>
+                <div class="column-graph">
+                    <div class="container-grap">
+                        <div class="dp-graph" id="dp_chart_div"></div>
+
+                    </div>
+                </div>
             </div>
 
 
-
-            <div class="container-grap">
-                <div class="dp-graph" id="dp_chart_div"></div>
-
-            </div>
         </div>
 
 
@@ -90,10 +97,19 @@
             <span class="description-resume" style="margin-bottom:20px;">The graph summarizes supervisor feedback on students' work habits,
                 skills, and social skills during immersion.</span>
 
+            <div class="container-graph-bar">
+                <div class="wp-graph eval-graph" id="wp-top-x-div"></div>
+            </div>
 
-            <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-            <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-            <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
+
+            <div class="container-graph-bar">
+                <div class="pro-graph eval-graph" id="pro-top-x-div"></div>
+            </div>
+
+            <div class="container-graph-bar">
+                <div class="ld-graph eval-graph" id="ld-top-x-div"></div>
+            </div>
+
 
         </div>
 
@@ -118,8 +134,8 @@
 
         var options = {
             title: "Total Work Performance",
-            height: "100%",
-            width: "100%",
+            height: "50%",
+            width: "50%",
             is3D: true,
         };
 

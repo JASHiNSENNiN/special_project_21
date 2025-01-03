@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
     $entry = $_POST['entry'];
     $entry_number = $_POST['entry_number'];
+    $entry_number = $_POST['entry_number'];
 
     $existingEntry = getJournalEntry($conn, $student_id, $entry_number);
 

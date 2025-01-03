@@ -292,53 +292,65 @@ $profile_divv = '<header class="nav-header">
         <div class="column-graph-profile-right">
 
             <div class="container-grap-right">
+                <div class="row-profile" id="row_profile">
+
+                    <div class="column-profile column-side profile-pic">
+                        <!-- <img class="img-account-profile rounded-circle mb-2" id="profile-image"
+                        src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
+                        alt="Profile Image Preview"
+                        style="width: 200px; height: 200px; object-fit: cover;"> -->
+                        <img src="img/default.png" alt="Profile Image Preview" width="100%" height="100%" style="border-radius: 50%;">
 
 
-                <div class="card-body">
-                    <span class="fullname"><?= $fullName ?></span>
-                    <span class="LRN">LRN: 20181234</span>
-                    <br>
-
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="other-info"><?= $strand ?></span>
-                    <br>
-                    <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
-
-                    <br>
-                    <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
-                    <br>
-                    <i class="fa fa-briefcase" aria-hidden="true"></i><span class="other-info"><?= $currentWork   ?></span>
+                    </div>
 
 
-                    <button class="print-btn" onclick="printPage()">
-                        <span class="printer-wrapper">
-                            <span class="printer-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
-                                    <path
-                                        stroke-width="5"
-                                        stroke="black"
-                                        d="M12 37.5H80C85.2467 37.5 89.5 41.7533 89.5 47V69C89.5 70.933 87.933 72.5 86 72.5H6C4.067 72.5 2.5 70.933 2.5 69V47C2.5 41.7533 6.75329 37.5 12 37.5Z"></path>
-                                    <mask fill="white" id="path-2-inside-1_30_7">
-                                        <path
-                                            d="M12 12C12 5.37258 17.3726 0 24 0H57C70.2548 0 81 10.7452 81 24V29H12V12Z"></path>
-                                    </mask>
-                                    <path
-                                        mask="url(#path-2-inside-1_30_7)"
-                                        fill="black"
-                                        d="M7 12C7 2.61116 14.6112 -5 24 -5H57C73.0163 -5 86 7.98374 86 24H76C76 13.5066 67.4934 5 57 5H24C20.134 5 17 8.13401 17 12H7ZM81 29H12H81ZM7 29V12C7 2.61116 14.6112 -5 24 -5V5C20.134 5 17 8.13401 17 12V29H7ZM57 -5C73.0163 -5 86 7.98374 86 24V29H76V24C76 13.5066 67.4934 5 57 5V-5Z"></path>
-                                    <circle fill="black" r="3" cy="49" cx="78"></circle>
-                                </svg>
-                            </span>
+                    <div class="column-profile ">
+                        <div class="card-body">
+                            <span class="fullname"><?= $fullName ?></span>
+                            <span class="LRN">LRN: 20181234</span>
+                            <br>
 
-                            <span class="printer-page-wrapper">
-                                <span class="printer-page"></span>
-                            </span>
-                        </span>
-                        Print
-                    </button>
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="other-info"><?= $strand ?></span>
+                            <br>
+                            <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
+
+                            <br>
+                            <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
+                            <br>
+                            <i class="fa fa-briefcase" aria-hidden="true"></i><span class="other-info"><?= $currentWork   ?></span>
 
 
+                            <a href="Account/Student/print_profile.php" style="text-decoration:none;" target="_blank"> <button class="print-btn">
+                                    <span class="printer-wrapper">
+                                        <span class="printer-container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
+                                                <path
+                                                    stroke-width="5"
+                                                    stroke="black"
+                                                    d="M12 37.5H80C85.2467 37.5 89.5 41.7533 89.5 47V69C89.5 70.933 87.933 72.5 86 72.5H6C4.067 72.5 2.5 70.933 2.5 69V47C2.5 41.7533 6.75329 37.5 12 37.5Z"></path>
+                                                <mask fill="white" id="path-2-inside-1_30_7">
+                                                    <path
+                                                        d="M12 12C12 5.37258 17.3726 0 24 0H57C70.2548 0 81 10.7452 81 24V29H12V12Z"></path>
+                                                </mask>
+                                                <path
+                                                    mask="url(#path-2-inside-1_30_7)"
+                                                    fill="black"
+                                                    d="M7 12C7 2.61116 14.6112 -5 24 -5H57C73.0163 -5 86 7.98374 86 24H76C76 13.5066 67.4934 5 57 5H24C20.134 5 17 8.13401 17 12H7ZM81 29H12H81ZM7 29V12C7 2.61116 14.6112 -5 24 -5V5C20.134 5 17 8.13401 17 12V29H7ZM57 -5C73.0163 -5 86 7.98374 86 24V29H76V24C76 13.5066 67.4934 5 57 5V-5Z"></path>
+                                                <circle fill="black" r="3" cy="49" cx="78"></circle>
+                                            </svg>
+                                        </span>
 
-                    <!-- <a style=" text-decoration: none; display:contents ;" href="Settings.php">
+                                        <span class="printer-page-wrapper">
+                                            <span class="printer-page"></span>
+                                        </span>
+                                    </span>
+                                    Print
+                                </button>
+                            </a>
+
+
+                            <!-- <a style=" text-decoration: none; display:contents ;" href="Settings.php">
                         <button class="edit-button">
                             <svg class="edit-svgIcon" viewBox="0 0 512 512">
                                 <path
@@ -348,7 +360,11 @@ $profile_divv = '<header class="nav-header">
                         </button>
                     </a> -->
 
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
         </div>
 
@@ -358,11 +374,11 @@ $profile_divv = '<header class="nav-header">
     <!-- -----------------------------------column graph ------------------------- -->
 
     <div class="row-graph">
-        <d class="dashboard-body docu">
+        <!-- <div class="dashboard-body docu">
 
             <main class="dashboard__main app-content">
 
-                <!-- <article class="app-content__widget app-content__widget--primary">
+                <article class="app-content__widget app-content__widget--primary">
 
                     <h2 class="title-resume">Personal Summary</h2>
                     <span class="description-resume">Introduce yourself and explain your goals and interest in work
@@ -380,9 +396,9 @@ $profile_divv = '<header class="nav-header">
                     </form>
 
 
-                </article> -->
+                </article>
 
-                <!-- <article class="app-content__widget app-content__widget--secondary">
+                <article class="app-content__widget app-content__widget--secondary">
 
                     <div class="card-strong-profile">
                         <h1 class="title-resume">Profile Strength</h1>
@@ -414,13 +430,13 @@ $profile_divv = '<header class="nav-header">
                     </div>
                     <button class="next" onclick="nextSlide()">Next tip &#8594;</button>
 
-                </article> -->
+                </article>
 
 
             </main>
-        </d iv>
+        </div> -->
 
-        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student'): ?>
+        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'School'): ?>
             <!-- <div class="dashboard-body">
 
                 <main class="dashboard__main app-content">
@@ -549,40 +565,70 @@ $profile_divv = '<header class="nav-header">
                                 <i class="fa fa-thumbs-up"></i> Saved!
                             </span>
                         </div>
+
+                        <hr>
+                        <h2 class="title-resume">Daily Insight</h2>
+                        <span class="description-resume">The line chart analyzes student daily performance in work
+                            immersion, and the pie chart displays the distribution of performance levels.</span>
+
+
+                        <div class="container-grap">
+                            <div class="dp-graph" id="piechart_3d"></div>
+                        </div>
+
+
+
+                        <div class="container-grap">
+                            <div class="dp-graph" id="dp_chart_div"></div>
+
+                        </div>
+
+                        <hr>
+                        <h2 class="title-resume">Evaluation Insight</h2>
+                        <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
+                            skills, and social skills during immersion.</span>
+                        <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
+                        <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
+                        <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
                     </article>
+
+
+                    <div class="DailyJournal">
+                        <h2 class="title-resume">Daily Journal (2/10)</h2>
+
+                        <div class="content-box">
+                            <div class="date">January 3, 2025</div>
+                            <div class="day">Day 1</div>
+
+                            <div class="titleW">Work Immersion Report</div>
+                            <div class="description">
+                                This report highlights the key learnings and experiences during the work immersion program.
+                                It includes
+                                tasks performed, skills gained, challenges encountered, and reflections on the work
+                                experience.
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <div class="date">January 4, 2025</div>
+                            <div class="day">Day 2</div>
+
+                            <div class="titleW">Work Immersion Report</div>
+                            <div class="description">
+                                This report highlights the key learnings and experiences during the work immersion program.
+                                It includes
+                                tasks performed, skills gained, challenges encountered, and reflections on the work
+                                experience.
+                            </div>
+                        </div>
+                        <!-- <button class="next">View all &#8594;</button> -->
+                        <a href="#">View all</a>
+                    </div>
                 </main>
             </div>
         <?php endif; ?>
 
 
-        <div class="dashboard-body">
 
-            <main class="dashboard__main app-content">
-
-                <article class="app-content__widget app-content__widget--primary">
-                    <hr>
-                    <h2 class="title-resume">Daily Insight</h2>
-                    <span class="description-resume">The line chart analyzes student daily performance in work
-                        immersion, and the pie chart displays the distribution of performance levels.</span>
-
-
-                    <div class="container-grap">
-                        <div class="dp-graph" id="piechart_3d"></div>
-                    </div>
-
-
-
-                    <div class="container-grap">
-                        <div class="dp-graph" id="dp_chart_div"></div>
-
-                    </div>
-
-
-                </article>
-
-
-            </main>
-        </div>
 
 
         <div class="dashboard-body">
@@ -591,12 +637,6 @@ $profile_divv = '<header class="nav-header">
                 <article class="app-content__widget app-content__widget--primary">
 
 
-                    <h2 class="title-resume">Evaluation Insight</h2>
-                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
-                        skills, and social skills during immersion.</span>
-                    <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-                    <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-                    <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
 
 
 
