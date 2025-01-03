@@ -17,13 +17,14 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   
-    $student_id = $_SESSION['user_id'];;
+
+    $student_id = $_SESSION['user_id'];
+    ;
 
     $date = $_POST['date'];
     $title = $_POST['title'];
     $entry = $_POST['entry'];
-    $entry_number = $_POST['entry_number']; 
+    $entry_number = $_POST['entry_number'];
 
     $stmt = $conn->prepare("INSERT INTO student_journals (student_id, date, title, entry, entry_number) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("isssi", $student_id, $date, $title, $entry, $entry_number);
@@ -76,7 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Student Work Immersion Journal</h1>
         <div class="page-wrapper">
             <ol class='years'>
-                <li class='year'><a class='expander' href="#">
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i>
                         <i class="fa fa-check-circle" style="font-size:24px;color:green"></i> Day 1 - Immersion
                         Experience
                     </a>
@@ -111,7 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 2 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -143,7 +146,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 3 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -175,7 +179,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 4 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -207,7 +212,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 5 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -239,7 +245,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 6 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -271,7 +278,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 7 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -303,7 +311,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 8 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -335,7 +344,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 9 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -367,7 +377,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-check-circle"
+                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
+                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
                             style="font-size:24px;color:green"></i>Day 10 - Immersion Experience</a>
                     <ol>
                         <li>
@@ -432,52 +443,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script> -->
 
     <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
             modal.style.display = "none";
         }
-    }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-    $('.expander').click(function(e) {
-        e.preventDefault();
-        $(this)
-            .parent()
-            .toggleClass('expanded')
-            .find('>ol')
-            .slideToggle();
-    });
+        $('.expander').click(function (e) {
+            e.preventDefault();
+            $(this)
+                .parent()
+                .toggleClass('expanded')
+                .find('>ol')
+                .slideToggle();
+        });
     </script>
 
     <script type="text/javascript">
-    // Get the current year
-    const currentYear = new Date().getFullYear();
+        // Get the current year
+        const currentYear = new Date().getFullYear();
 
-    // Find the element with id 'current-year' and set its text
-    document.getElementById("current-year").textContent = currentYear;
+        // Find the element with id 'current-year' and set its text
+        document.getElementById("current-year").textContent = currentYear;
     </script>
 
 </body>

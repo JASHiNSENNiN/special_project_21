@@ -209,9 +209,13 @@ h1 {
 
 .logo img {
   width: 220px;
-  /* Adjust the width as needed */
-  /* height: 50px; Adjust the height as needed */
   margin-right: 30px;
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    margin-right: 15px; /* Adjusts margin for smaller screens */
+  }
 }
 
 .logo h1 {
