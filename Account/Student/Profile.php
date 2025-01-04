@@ -341,6 +341,9 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -702,40 +705,121 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                     </div>
                 </article>
 
-                <div class="DailyJournal">
-                    <h2 class="title-resume">Daily Journal (2/10)</h2>
+                <!-- /////////////////////////////////////////side column ////////////////////////////// -->
 
-                    <div class="content-box">
-                        <div class="date">January 3, 2025</div>
-                        <div class="day">Day 1</div>
 
-                        <div class="titleW">Work Immersion Report</div>
-                        <div class="description">
-                            This report highlights the key learnings and experiences during the work immersion program.
-                            It includes
-                            tasks performed, skills gained, challenges encountered, and reflections on the work
-                            experience.
-                        </div>
-                    </div>
-                    <div class="content-box">
-                        <div class="date">January 4, 2025</div>
-                        <div class="day">Day 2</div>
-
-                        <div class="titleW">Work Immersion Report</div>
-                        <div class="description">
-                            This report highlights the key learnings and experiences during the work immersion program.
-                            It includes
-                            tasks performed, skills gained, challenges encountered, and reflections on the work
-                            experience.
-                        </div>
-                    </div>
-                    <!-- <button class="next">View all &#8594;</button> -->
-                    <a href="#">View all</a>
-                </div>
 
             </main>
         </div>
         <?php endif; ?>
+
+
+
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">Daily Journal (2/10)</h2>
+                    <!-- <span class="description-resume">The journal in the work immersion program for senior high students promotes reflective learning by allowing them to document experiences, analyze workplace dynamics, and develop skills essential for their future careers.</span> -->
+
+                    <div class="DailyJournal">
+                        <!-- <h2 class="title-resume">Daily Journal (2/10)</h2> -->
+
+                        <div class="content-box">
+
+
+
+                            <div class="date">January 3, 2025</div>
+                            <div class="day">Day 1</div>
+
+                            <div class="titleW">Work Immersion Report</div>
+                            <div class="description">
+                                This report highlights the key learnings and experiences during the work immersion
+                                program.
+                                It includes
+                                tasks performed, skills gained, challenges encountered, and reflections on the work
+                                experience.
+                            </div>
+
+                            <span class="action">
+
+
+
+                                <a href="print_journal.php" target="_blank"><button
+                                        class="eye fas fas fa-eye"></button></a>
+
+                                <a href="print_journal.php" target="_blank"> <button
+                                        class="print fas fas fa-print"></button></a>
+
+                                <button class="edit fas fa-pencil-alt"></button>
+                                <button class="delete fas fa-trash-alt"></button>
+                            </span>
+
+                        </div>
+                        <div class="content-box">
+                            <div class="date">January 4, 2025</div>
+                            <div class="day">Day 2</div>
+
+                            <div class="titleW">Work Immersion Report</div>
+                            <div class="description">
+                                This report highlights the key learnings and experiences during the work immersion
+                                program.
+                                It includes
+                                tasks performed, skills gained, challenges encountered, and reflections on the work
+                                experience.
+                            </div>
+                            <span class="action">
+
+
+
+                                <a href="print_journal.php" target="_blank"> <button
+                                        class="eye fas fas fa-eye"></button></a>
+
+                                <a href="print_journal.php" target="_blank"> <button
+                                        class="print fas fas fa-print"></button></a>
+
+                                <button class="edit fas fa-pencil-alt"></button>
+                                <button class="delete fas fa-trash-alt"></button>
+                            </span>
+                        </div>
+                        <!-- <button class="next">View all &#8594;</button> -->
+                        <!-- <a href="#">View all</a> -->
+                    </div>
+
+
+
+
+
+                    <hr>
+
+                    <span class="description-resume">Daily journaling after work immersion boosts learning and
+                        reflection for growth.</span>
+
+                    <a href="Journal.php">
+                        <button class="btn-create">
+                            <span>
+                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
+                                </svg>
+                                Create
+                            </span>
+                        </button></a>
+
+
+                </article>
+                <article class="app-content__widget app-content__widget--secondary">
+                    <!-- widget - secondary
+                    <hr> -->
+                </article>
+                <article class="app-content__widget app-content__widget--tertiary">
+                    <!-- widget - tertiary
+                    <hr> -->
+                </article>
+            </main>
+        </div>
 
 
 

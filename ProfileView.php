@@ -346,7 +346,7 @@ $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -695,70 +695,93 @@ $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_
                             </div> -->
                         <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
 
-                        <span class="successfully-saved">
-                            <i class="fa fa-thumbs-up"></i> Saved!
-                        </span>
-                    </div>
 
-                    <hr>
-                    <h2 class="title-resume">Daily Insight</h2>
-                    <span class="description-resume">The line chart analyzes student daily performance in work
-                        immersion, and the pie chart displays the distribution of performance levels.</span>
-
-
-                    <div class="container-grap">
-                        <div class="dp-graph" id="piechart_3d"></div>
-                    </div>
-
-
-
-                    <div class="container-grap">
-                        <div class="dp-graph" id="dp_chart_div"></div>
-
-                    </div>
-
-                    <hr>
-                    <h2 class="title-resume">Evaluation Insight</h2>
-                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
-                        skills, and social skills during immersion.</span>
-                    <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-                    <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-                    <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
-                </article>
-
-
-                <div class="DailyJournal">
-                    <h2 class="title-resume">Daily Journal (2/10)</h2>
-
-                    <div class="content-box">
-                        <div class="date">January 3, 2025</div>
-                        <div class="day">Day 1</div>
-
-                        <div class="titleW">Work Immersion Report</div>
-                        <div class="description">
-                            This report highlights the key learnings and experiences during the work immersion program.
-                            It includes
-                            tasks performed, skills gained, challenges encountered, and reflections on the work
-                            experience.
                         </div>
-                    </div>
-                    <div class="content-box">
-                        <div class="date">January 4, 2025</div>
-                        <div class="day">Day 2</div>
+                        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'School'): ?>
+                            <div class="DailyJournal">
+                                <h2 class="title-resume">Daily Journal (2/10)</h2>
 
-                        <div class="titleW">Work Immersion Report</div>
-                        <div class="description">
-                            This report highlights the key learnings and experiences during the work immersion program.
-                            It includes
-                            tasks performed, skills gained, challenges encountered, and reflections on the work
-                            experience.
+                                <div class="content-box">
+                                    <div class="date">January 3, 2025</div>
+                                    <div class="day">Day 1</div>
+
+                                    <div class="titleW">Work Immersion Report</div>
+                                    <div class="description">
+                                        This report highlights the key learnings and experiences during the work immersion program.
+                                        It includes
+                                        tasks performed, skills gained, challenges encountered, and reflections on the work
+                                        experience.
+                                    </div>
+
+                                    <span class="action">
+
+                                        <button class="eye fas fas fa-eye"></button>
+
+                                        <button class="print fas fas fa-print"></button>
+                                    </span>
+
+
+                                </div>
+                                <div class="content-box">
+                                    <div class="date">January 4, 2025</div>
+                                    <div class="day">Day 2</div>
+
+                                    <div class="titleW">Work Immersion Report</div>
+                                    <div class="description">
+                                        This report highlights the key learnings and experiences during the work immersion program.
+                                        It includes
+                                        tasks performed, skills gained, challenges encountered, and reflections on the work
+                                        experience.
+                                    </div>
+
+                                    <span class="action">
+
+                                        <button class="eye fas fas fa-eye"></button>
+
+                                        <button class="print fas fas fa-print"></button>
+                                    </span>
+                                </div>
+
+                                <!-- <a href="#">View all</a> -->
+                            </div>
+                        <?php endif; ?>
+
+
+
+
+
+                        <hr>
+                        <h2 class="title-resume">Daily Insight</h2>
+                        <span class="description-resume">The line chart analyzes student daily performance in work
+                            immersion, and the pie chart displays the distribution of performance levels.</span>
+
+
+                        <div class="container-grap">
+                            <div class="dp-graph" id="piechart_3d"></div>
                         </div>
-                    </div>
-                    <!-- <button class="next">View all &#8594;</button> -->
-                    <a href="#">View all</a>
-                </div>
-            </main>
-        </div>
+
+
+
+                        <div class="container-grap">
+                            <div class="dp-graph" id="dp_chart_div"></div>
+
+                        </div>
+
+
+
+                        <hr>
+                        <h2 class="title-resume">Evaluation Insight</h2>
+                        <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
+                            skills, and social skills during immersion.</span>
+                        <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
+                        <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
+                        <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
+                    </article>
+
+
+
+                </main>
+            </div>
         <?php endif; ?>
 
 
