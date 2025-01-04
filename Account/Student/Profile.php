@@ -736,9 +736,10 @@ $document_name_mapping = [
                             <span class="action">
 
 
-                                <button class="eye fas fas fa-eye"></button>
 
-                                <button class="print fas fas fa-print"></button>
+                                <a href="print_journal.php" target="_blank"><button class="eye fas fas fa-eye"></button></a>
+
+                                <a href="print_journal.php" target="_blank"> <button class="print fas fas fa-print"></button></a>
 
                                 <button class="edit fas fa-pencil-alt"></button>
                                 <button class="delete fas fa-trash-alt"></button>
@@ -759,9 +760,10 @@ $document_name_mapping = [
                             <span class="action">
 
 
-                                <button class="eye fas fas fa-eye"></button>
 
-                                <button class="print fas fas fa-print"></button>
+                                <a href="print_journal.php" target="_blank"> <button class="eye fas fas fa-eye"></button></a>
+
+                                <a href="print_journal.php" target="_blank"> <button class="print fas fas fa-print"></button></a>
 
                                 <button class="edit fas fa-pencil-alt"></button>
                                 <button class="delete fas fa-trash-alt"></button>
