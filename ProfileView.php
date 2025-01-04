@@ -346,7 +346,8 @@ $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -647,27 +648,26 @@ $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_
                                     </td>
                                     <td>
                                         <?php
-                                                // Check for the document URL and existence of file
-                                                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
-                                                $stmt = $pdo->prepare($sql);
-                                                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                                                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
-                                                $stmt->execute();
-                                                $document_url = $stmt->fetchColumn();
+                // Check for the document URL
+                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                $stmt->execute();
+                $document_url = $stmt->fetchColumn();
 
-                                                if ($document_url) {
-                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
-                                                    if (file_exists($file_path)): ?>
+                // Check if the document URL is found
+                if ($document_url) {
+                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                    if (file_exists($file_path)): ?>
                                         <a class="btn btn-download btn-success"
                                             href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
                                             Download
                                         </a>
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
                                         <?php else: ?>
                                         <button disabled>File Not Available</button>
                                         <?php endif;
-                                                } else { ?>
+                } else { ?>
                                         <button disabled>No Document Found</button>
                                         <?php } ?>
                                     </td>
@@ -696,92 +696,86 @@ $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_
                         <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
 
 
-                        </div>
-                        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'School'): ?>
-                            <div class="DailyJournal">
-                                <h2 class="title-resume">Daily Journal (2/10)</h2>
+                    </div>
+                    <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'School'): ?>
+                    <hr>
+                    <h2 class="title-resume">Daily Journal</h2>
 
-                                <div class="content-box">
-                                    <div class="date">January 3, 2025</div>
-                                    <div class="day">Day 1</div>
+                    <div class="DailyJournal">
+                        <?php
+    try {
+        // Create a new PDO instance
+        $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                                    <div class="titleW">Work Immersion Report</div>
-                                    <div class="description">
-                                        This report highlights the key learnings and experiences during the work immersion program.
-                                        It includes
-                                        tasks performed, skills gained, challenges encountered, and reflections on the work
-                                        experience.
-                                    </div>
+        // Prepare the SQL statement to fetch entries numbered 1 to 10
+        $stmt = $pdo->prepare("SELECT date, title, entry, entry_number FROM student_journals WHERE student_id = ? AND entry_number BETWEEN 1 AND 10 ORDER BY entry_number ASC");
+        $stmt->execute([$user_id]);
 
-                                    <span class="action">
+        // Check if there are entries
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="content-box">';
+                echo '<div class="date">' . htmlspecialchars($row['date']) . '</div>';
+                echo '<div class="day">Day ' . htmlspecialchars($row['entry_number']) . '</div>';
+                echo '<div class="titleW">' . htmlspecialchars($row['title']) . '</div>';
+                echo '<div class="description">' . htmlspecialchars($row['entry']) . '</div>';
+                echo '<span class="action">';
+                // echo '<a href="print_journal.php" target="_blank"><button class="eye fas fas fa-eye"></button></a>';
+                // echo '<a href="print_journal.php" target="_blank"><button class="print fas fas fa-print"></button></a>';
+                // echo '<button class="edit fas fa-pencil-alt"></button>';
+                // echo '<button class="delete fas fa-trash-alt"></button>';
+                echo '</span>';
+                echo '</div>'; // close content-box
+            }
+        } else {
+            echo '<div class="content-box">No journal entries found.</div>';
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . htmlspecialchars($e->getMessage());
+    }
+    ?>
+                    </div>
 
-                                        <button class="eye fas fas fa-eye"></button>
-
-                                        <button class="print fas fas fa-print"></button>
-                                    </span>
-
-
-                                </div>
-                                <div class="content-box">
-                                    <div class="date">January 4, 2025</div>
-                                    <div class="day">Day 2</div>
-
-                                    <div class="titleW">Work Immersion Report</div>
-                                    <div class="description">
-                                        This report highlights the key learnings and experiences during the work immersion program.
-                                        It includes
-                                        tasks performed, skills gained, challenges encountered, and reflections on the work
-                                        experience.
-                                    </div>
-
-                                    <span class="action">
-
-                                        <button class="eye fas fas fa-eye"></button>
-
-                                        <button class="print fas fas fa-print"></button>
-                                    </span>
-                                </div>
-
-                                <!-- <a href="#">View all</a> -->
-                            </div>
-                        <?php endif; ?>
+                    <hr>
+                    <?php endif; ?>
 
 
 
 
 
-                        <hr>
-                        <h2 class="title-resume">Daily Insight</h2>
-                        <span class="description-resume">The line chart analyzes student daily performance in work
-                            immersion, and the pie chart displays the distribution of performance levels.</span>
+                    <hr>
+                    <h2 class="title-resume">Daily Insight</h2>
+                    <span class="description-resume">The line chart analyzes student daily performance in work
+                        immersion, and the pie chart displays the distribution of performance levels.</span>
 
 
-                        <div class="container-grap">
-                            <div class="dp-graph" id="piechart_3d"></div>
-                        </div>
-
-
-
-                        <div class="container-grap">
-                            <div class="dp-graph" id="dp_chart_div"></div>
-
-                        </div>
+                    <div class="container-grap">
+                        <div class="dp-graph" id="piechart_3d"></div>
+                    </div>
 
 
 
-                        <hr>
-                        <h2 class="title-resume">Evaluation Insight</h2>
-                        <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
-                            skills, and social skills during immersion.</span>
-                        <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-                        <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-                        <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
-                    </article>
+                    <div class="container-grap">
+                        <div class="dp-graph" id="dp_chart_div"></div>
+
+                    </div>
 
 
 
-                </main>
-            </div>
+                    <hr>
+                    <h2 class="title-resume">Evaluation Insight</h2>
+                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
+                        skills, and social skills during immersion.</span>
+                    <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
+                    <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
+                    <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
+                </article>
+
+
+
+            </main>
+        </div>
         <?php endif; ?>
 
 

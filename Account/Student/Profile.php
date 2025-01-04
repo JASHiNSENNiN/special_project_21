@@ -721,76 +721,43 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                 <article class="app-content__widget app-content__widget--primary">
 
                     <hr>
-                    <h2 class="title-resume">Daily Journal (2/10)</h2>
-                    <!-- <span class="description-resume">The journal in the work immersion program for senior high students promotes reflective learning by allowing them to document experiences, analyze workplace dynamics, and develop skills essential for their future careers.</span> -->
+                    <h2 class="title-resume">Daily Journal</h2>
 
                     <div class="DailyJournal">
-                        <!-- <h2 class="title-resume">Daily Journal (2/10)</h2> -->
+                        <?php
+    try {
+        // Create a new PDO instance
+        $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                        <div class="content-box">
+        // Prepare the SQL statement to fetch entries numbered 1 to 10
+        $stmt = $pdo->prepare("SELECT date, title, entry, entry_number FROM student_journals WHERE student_id = ? AND entry_number BETWEEN 1 AND 10 ORDER BY entry_number ASC");
+        $stmt->execute([$user_id]);
 
-
-
-                            <div class="date">January 3, 2025</div>
-                            <div class="day">Day 1</div>
-
-                            <div class="titleW">Work Immersion Report</div>
-                            <div class="description">
-                                This report highlights the key learnings and experiences during the work immersion
-                                program.
-                                It includes
-                                tasks performed, skills gained, challenges encountered, and reflections on the work
-                                experience.
-                            </div>
-
-                            <span class="action">
-
-
-
-                                <a href="print_journal.php" target="_blank"><button
-                                        class="eye fas fas fa-eye"></button></a>
-
-                                <a href="print_journal.php" target="_blank"> <button
-                                        class="print fas fas fa-print"></button></a>
-
-                                <button class="edit fas fa-pencil-alt"></button>
-                                <button class="delete fas fa-trash-alt"></button>
-                            </span>
-
-                        </div>
-                        <div class="content-box">
-                            <div class="date">January 4, 2025</div>
-                            <div class="day">Day 2</div>
-
-                            <div class="titleW">Work Immersion Report</div>
-                            <div class="description">
-                                This report highlights the key learnings and experiences during the work immersion
-                                program.
-                                It includes
-                                tasks performed, skills gained, challenges encountered, and reflections on the work
-                                experience.
-                            </div>
-                            <span class="action">
-
-
-
-                                <a href="print_journal.php" target="_blank"> <button
-                                        class="eye fas fas fa-eye"></button></a>
-
-                                <a href="print_journal.php" target="_blank"> <button
-                                        class="print fas fas fa-print"></button></a>
-
-                                <button class="edit fas fa-pencil-alt"></button>
-                                <button class="delete fas fa-trash-alt"></button>
-                            </span>
-                        </div>
-                        <!-- <button class="next">View all &#8594;</button> -->
-                        <!-- <a href="#">View all</a> -->
+        // Check if there are entries
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="content-box">';
+                echo '<div class="date">' . htmlspecialchars($row['date']) . '</div>';
+                echo '<div class="day">Day ' . htmlspecialchars($row['entry_number']) . '</div>';
+                echo '<div class="titleW">' . htmlspecialchars($row['title']) . '</div>';
+                echo '<div class="description">' . htmlspecialchars($row['entry']) . '</div>';
+                echo '<span class="action">';
+                // echo '<a href="print_journal.php" target="_blank"><button class="eye fas fas fa-eye"></button></a>';
+                // echo '<a href="print_journal.php" target="_blank"><button class="print fas fas fa-print"></button></a>';
+                // echo '<button class="edit fas fa-pencil-alt"></button>';
+                // echo '<button class="delete fas fa-trash-alt"></button>';
+                echo '</span>';
+                echo '</div>'; // close content-box
+            }
+        } else {
+            echo '<div class="content-box">No journal entries found.</div>';
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . htmlspecialchars($e->getMessage());
+    }
+    ?>
                     </div>
-
-
-
-
 
                     <hr>
 
