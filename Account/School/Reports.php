@@ -48,22 +48,39 @@ require_once 'show_profile.php';
 
 
     <div class="container2">
+        <div class="search-bar">
+            <input type="text" class="search-input" onkeyup="searchTable()" placeholder="Search..." />
+            <button class="search-button">Search</button>
+        </div>
         <table class="rwd-table">
             <tbody>
                 <tr>
                     <th>#</th>
-                    <th>Company</th>
                     <th>Student Name</th>
-                    <th>Action</th>
+                    <th>Company</th>
+                    <th>Status</th>
                 </tr>
                 <tr>
                     <td data-th="#">1</td>
-                    <td data-th="Company">NIA</td>
                     <td data-th="Student Name">Joshua Rivera</td>
+                    <td data-th="Company">NIA</td>
                     <td data-th="Action">
-                        <button class="button-9" onclick="toggleExpand(1)" role="button">View</button>
+                        Ongoing
+                        <!-- <button class="button-9" onclick="toggleExpand(1)" role="button">View</button>
                         <button class="button-37" onclick="printStudentGraph('Joshua Rivera')" role="button">
-                            <a href="Print.php" style="text-decoration:none; color:#fff;">Print</a></button>
+                            <a href="Print.php" style="text-decoration:none; color:#fff;">Print</a></button> -->
+                        <!-- <button class="button-print" onclick="printStudentGraph('Joshua Rivera')" role="button">Print</button> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td data-th="#">2</td>
+                    <td data-th="Student Name">Michael Dela Cruz</td>
+                    <td data-th="Company">N/A</td>
+                    <td data-th="Action">
+                        N/A
+                        <!-- <button class="button-9" onclick="toggleExpand(1)" role="button">View</button>
+                        <button class="button-37" onclick="printStudentGraph('Joshua Rivera')" role="button">
+                            <a href="Print.php" style="text-decoration:none; color:#fff;">Print</a></button> -->
                         <!-- <button class="button-print" onclick="printStudentGraph('Joshua Rivera')" role="button">Print</button> -->
                     </td>
                 </tr>
@@ -125,13 +142,13 @@ require_once 'show_profile.php';
                     // Handle window resize to redraw the chart
                     window.addEventListener("resize", drawStufftsw);
                 </script>
-                <tr id="expander-row-1">
+                <!-- <tr id="expander-row-1">
                     <td colspan="4">
                         <div class="expander-content">
                             <div id="top_x_div_tsw"></div>
                         </div>
                     </td>
-                </tr>
+                </tr> -->
 
 
 
@@ -148,6 +165,33 @@ require_once 'show_profile.php';
         <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
         <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
     </footer>
+
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.querySelector(".search-input");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".rwd-table");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, starting from index 1 (skipping the header row)
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none"; // Initially hide all rows
+                td = tr[i].getElementsByTagName("td");
+
+                // Check each cell in the row
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = ""; // Show row if it matches the search
+                            break; // No need to check further cells in this row
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
     <script>
         let profilePic1 = document.getElementById("cover-pic");
