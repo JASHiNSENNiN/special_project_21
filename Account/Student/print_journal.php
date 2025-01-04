@@ -20,6 +20,7 @@
 
     <!-- <script type="text/javascript" src="css/eval_graph.js"></script> -->
 </head>
+<!-- ///////////////////////////////////connnected in print profile  ///////////////////// -->
 
 <body>
     <div class="print-container">
@@ -83,7 +84,7 @@
 
     </div>
 
-    <!-- <button onclick="window.print()">Print this page</button> -->
+
 </body>
 
 </html>
