@@ -197,14 +197,6 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-// Check if user_id is in session
-if (!isset($_SESSION['user_id'])) {
-    die("Unauthorized access!");
-}
-
-$user_id = $_SESSION['user_id'];
-
-// Handle download request
 if (isset($_GET['document_name'])) {
     $document_name = $_GET['document_name'];
 
@@ -289,8 +281,26 @@ $document_name_mapping = [
 ];
 
 
+$conn = new mysqli($host, $username, $password, $database);
 
+$profile_data = null;
+if (isset($user_id)) {
+    $sql = "SELECT sp.*, u.profile_image, u.cover_image
+FROM student_profiles sp
+JOIN users u ON sp.user_id = u.id
+WHERE sp.user_id = ?";
 
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $profile_data = $result->fetch_assoc();
+}
+$stmt->close();
+$conn->close();
+
+$profile_image_path = 'uploads/' . $profile_data['profile_image'];
+$cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
 
 
@@ -338,66 +348,66 @@ $document_name_mapping = [
 
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-        const averages = {
-            avgPunctual: <?= json_encode($avgPunctual) ?>,
-            avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
-            avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
-            avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
-            avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
-            avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
-            avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
-            avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
-            avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
-            avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
-            avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
-            avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
-            avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
-            avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
-            avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
-            avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
-            avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
-            avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+    const averages = {
+        avgPunctual: <?= json_encode($avgPunctual) ?>,
+        avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
+        avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
+        avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
+        avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
+        avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
+        avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
+        avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
+        avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
+        avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
+        avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
+        avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
+        avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
+        avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
+        avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
+        avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
+        avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
+        avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
 
-        };
-        const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
-        console.log(dailyPerformance);
+    };
+    const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
+    console.log(dailyPerformance);
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
     <style>
-        @media print {
-            body {
+    @media print {
+        body {
 
-                -webkit-print-color-adjust: exact;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                height: 100% !important;
-            }
+            -webkit-print-color-adjust: exact;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100% !important;
+        }
 
-            .column-profile {
-                float: left;
-                width: auto;
-                padding: 10px;
-                height: 300px;
-            }
+        .column-profile {
+            float: left;
+            width: auto;
+            padding: 10px;
+            height: 300px;
+        }
 
-            .row-profile:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
+        .row-profile:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
 
 
-            .print-btn,
-            .docu,
-            .edit-button,
-            .nav-header,
-            footer {
-                display: none;
-            }
+        .print-btn,
+        .docu,
+        .edit-button,
+        .nav-header,
+        footer {
+            display: none;
+        }
 
-            /* #piechart_3d,
+        /* #piechart_3d,
             #dp_chart_div {
                 width: auto;
                 height: 200%;
@@ -406,7 +416,7 @@ $document_name_mapping = [
 
             } */
 
-            /* main,
+        /* main,
             .app-content__widget,
             .eval-graph,
             .dp-graph {
@@ -415,7 +425,7 @@ $document_name_mapping = [
 
             } */
 
-        }
+    }
     </style>
 
 
@@ -445,12 +455,10 @@ $document_name_mapping = [
                 <div class="row-profile" id="row_profile">
 
                     <div class="column-profile column-side profile-pic">
-                        <!-- <img class="img-account-profile rounded-circle mb-2" id="profile-image"
-                        src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
-                        alt="Profile Image Preview"
-                        style="width: 200px; height: 200px; object-fit: cover;"> -->
-                        <img src="uploads/default.png" alt="Profile Image Preview" width="100%" height="100%"
-                            style="border-radius: 50%;">
+                        <img class="img-account-profile rounded-circle mb-2" id="profile-image"
+                            src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
+                            alt="Profile Image Preview" style="width: 200px; height: 200px; object-fit: cover;">
+
 
 
                     </div>
@@ -593,32 +601,32 @@ $document_name_mapping = [
         </div> -->
 
         <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student'): ?>
-            <div class="dashboard-body docu">
+        <div class="dashboard-body docu">
 
-                <main class="dashboard__main app-content">
+            <main class="dashboard__main app-content">
 
-                    <article class="app-content__widget app-content__widget--primary">
-                        <hr>
-                        <h2 class="title-resume">Application Documents</h2>
-                        <!-- <span class="description-resume">Please upload the required documents for your work immersion
+                <article class="app-content__widget app-content__widget--primary">
+                    <hr>
+                    <h2 class="title-resume">Application Documents</h2>
+                    <!-- <span class="description-resume">Please upload the required documents for your work immersion
                         application: resume, application letter, barangay clearance, police clearance, mayor's
                         clearance, and medical certificate. </span> -->
-                        <div id="content-cover">
+                    <div id="content-cover">
 
-                            <table class="table" id="sortableTable-docu">
-                                <thead>
-                                    <tr>
-                                        <th class="th-name">Document Name</th>
-                                        <th class="th-date">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($unique_documents as $document_name): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
-                                            </td>
-                                            <td>
-                                                <?php
+                        <table class="table" id="sortableTable-docu">
+                            <thead>
+                                <tr>
+                                    <th class="th-name">Document Name</th>
+                                    <th class="th-date">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($unique_documents as $document_name): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
+                                    </td>
+                                    <td>
+                                        <?php
                                                 // Check for the document URL and existence of file
                                                 $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
                                                 $stmt = $pdo->prepare($sql);
@@ -630,24 +638,24 @@ $document_name_mapping = [
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
-                                                        <a class="btn btn-download btn-success"
-                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
-                                                            Download
-                                                        </a>
-                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                                        <a class="btn btn-delete btn-danger button-delete">Delete</a>
-                                                    <?php else: ?>
-                                                        <button disabled>File Not Available</button>
-                                                    <?php endif;
+                                        <a class="btn btn-download btn-success"
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
+                                            Download
+                                        </a>
+                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                        <?php else: ?>
+                                        <button disabled>File Not Available</button>
+                                        <?php endif;
                                                 } else { ?>
-                                                    <button disabled>No Document Found</button>
-                                                <?php } ?>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <!-- <div class="one_col file-upload">
+                                        <button disabled>No Document Found</button>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <!-- <div class="one_col file-upload">
                                 <label for="documentType">Document Type:</label>
                                 <select id="documentType" name="documentType">
                                     <option value="">--Select--</option>
@@ -665,9 +673,9 @@ $document_name_mapping = [
                                 <input type="file" class="file" name="images" id="uploadFile" multiple />
                                 <span class="error"></span>
                             </div> -->
-                            <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
+                        <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
 
-                            <!-- <span class="successfully-saved">
+                        <!-- <span class="successfully-saved">
                                 <i class="fa fa-thumbs-up"></i> Saved!
                             </span> -->
 
@@ -675,58 +683,58 @@ $document_name_mapping = [
 
 
 
-                        </div>
-                        <hr>
-                        <h2 class="title-resume">Daily Insight</h2>
-                        <span class="description-resume">The line chart analyzes student daily performance in work
-                            immersion, and the pie chart displays the distribution of performance levels.</span>
+                    </div>
+                    <hr>
+                    <h2 class="title-resume">Daily Insight</h2>
+                    <span class="description-resume">The line chart analyzes student daily performance in work
+                        immersion, and the pie chart displays the distribution of performance levels.</span>
 
 
-                        <div class="container-grap">
-                            <div class="dp-graph" id="piechart_3d"></div>
-                        </div>
-
-
-
-                        <div class="container-grap">
-                            <div class="dp-graph" id="dp_chart_div"></div>
-
-                        </div>
-                    </article>
-
-                    <div class="DailyJournal">
-                        <h2 class="title-resume">Daily Journal (2/10)</h2>
-
-                        <div class="content-box">
-                            <div class="date">January 3, 2025</div>
-                            <div class="day">Day 1</div>
-
-                            <div class="titleW">Work Immersion Report</div>
-                            <div class="description">
-                                This report highlights the key learnings and experiences during the work immersion program.
-                                It includes
-                                tasks performed, skills gained, challenges encountered, and reflections on the work
-                                experience.
-                            </div>
-                        </div>
-                        <div class="content-box">
-                            <div class="date">January 4, 2025</div>
-                            <div class="day">Day 2</div>
-
-                            <div class="titleW">Work Immersion Report</div>
-                            <div class="description">
-                                This report highlights the key learnings and experiences during the work immersion program.
-                                It includes
-                                tasks performed, skills gained, challenges encountered, and reflections on the work
-                                experience.
-                            </div>
-                        </div>
-                        <!-- <button class="next">View all &#8594;</button> -->
-                        <a href="#">View all</a>
+                    <div class="container-grap">
+                        <div class="dp-graph" id="piechart_3d"></div>
                     </div>
 
-                </main>
-            </div>
+
+
+                    <div class="container-grap">
+                        <div class="dp-graph" id="dp_chart_div"></div>
+
+                    </div>
+                </article>
+
+                <div class="DailyJournal">
+                    <h2 class="title-resume">Daily Journal (2/10)</h2>
+
+                    <div class="content-box">
+                        <div class="date">January 3, 2025</div>
+                        <div class="day">Day 1</div>
+
+                        <div class="titleW">Work Immersion Report</div>
+                        <div class="description">
+                            This report highlights the key learnings and experiences during the work immersion program.
+                            It includes
+                            tasks performed, skills gained, challenges encountered, and reflections on the work
+                            experience.
+                        </div>
+                    </div>
+                    <div class="content-box">
+                        <div class="date">January 4, 2025</div>
+                        <div class="day">Day 2</div>
+
+                        <div class="titleW">Work Immersion Report</div>
+                        <div class="description">
+                            This report highlights the key learnings and experiences during the work immersion program.
+                            It includes
+                            tasks performed, skills gained, challenges encountered, and reflections on the work
+                            experience.
+                        </div>
+                    </div>
+                    <!-- <button class="next">View all &#8594;</button> -->
+                    <a href="#">View all</a>
+                </div>
+
+            </main>
+        </div>
         <?php endif; ?>
 
 
@@ -831,45 +839,12 @@ $document_name_mapping = [
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
-            location.reload("card-graph");
-        });
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        location.reload("card-graph");
+    });
     </script>
 
-    <script>
-        // function printPage() {
-        //     var rowprofile = document.getElementById('row_profile');
-        //     var piechart_3d = document.getElementById('piechart_3d');
-        //     var dp_chart_div = document.getElementById('dp_chart_div');
-        //     var wptopxdiv = document.getElementById('wp-top-x-div');
-        //     var protopxdiv = document.getElementById('pro-top-x-div');
-        //     var ldtopxdiv = document.getElementById('ld-top-x-div');
 
-        //     var printWindow = window.open('', '', 'height=600,width=800');
-
-        //     printWindow.document.write('<html><head><title>Print Chart</title>');
-        //     printWindow.document.write('<style>');
-        //     printWindow.document.write('body { margin: 0; padding: 0; }'); // Remove margins and padding
-        //     printWindow.document.write('.chart { width: 600px; height: 400px; }'); // Set the desired size for charts
-        //     printWindow.document.write('.pie-chart { width: 400px; height: 400px; }'); // Customize pie chart size
-        //     printWindow.document.write('.dp-chart { width: 600px; height: 300px; }'); // Customize DP chart size
-        //     printWindow.document.write('.wptopxdiv { width: 600px; height: 300px; }'); // Customize WP Top X Div size
-        //     printWindow.document.write('.protopxdiv { width: 600px; height: 300px; }'); // Customize Pro Top X Div size
-        //     printWindow.document.write('.ldtopxdiv { width: 600px; height: 300px; }'); // Customize LD Top X Div size
-        //     printWindow.document.write('</style>');
-        //     printWindow.document.write('</head><body>');
-        //     printWindow.document.write('<div class="chart">' + rowprofile.innerHTML + '</div>');
-        //     printWindow.document.write('<div class="pie-chart">' + piechart_3d.innerHTML + '</div>');
-        //     printWindow.document.write('<div class="dp-chart">' + dp_chart_div.innerHTML + '</div>');
-        //     printWindow.document.write('<div class="wptopxdiv">' + wptopxdiv.innerHTML + '</div>');
-        //     printWindow.document.write('<div class="protopxdiv">' + protopxdiv.innerHTML + '</div>');
-        //     printWindow.document.write('<div class="ldtopxdiv">' + ldtopxdiv.innerHTML + '</div>');
-        //     printWindow.document.write('</body></html>');
-        //     printWindow.document.close();
-        //     printWindow.print();
-
-        // }
-    </script>
 
 
 

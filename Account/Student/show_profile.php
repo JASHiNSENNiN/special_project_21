@@ -5,6 +5,17 @@ if (session_status() == PHP_SESSION_NONE) {
 ;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+$dotenv->load();
+
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+$conn = new mysqli($host, $username, $password, $database);
 
 $student_id = $_SESSION['user_id'];
 $firstName = $_SESSION['first_name'];
@@ -19,9 +30,31 @@ $email = $_SESSION['email'];
 $profile_image_path = $_SESSION['profile_image'];
 $cover_image_path = $_SESSION['cover_image'];
 
-$profile_image = (!empty($profile_image_path) && file_exists($_SERVER['DOCUMENT_ROOT'] . $profile_image_path)) ? $profile_image_path : './uploads/default.png';
 
-$cover_image = (!empty($cover_image_path) && file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) ? $cover_image_path : './uploads/cover.png';
+// Fetch current profile data
+$profile_data = null;
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT sp.*, u.profile_image, u.cover_image
+FROM student_profiles sp
+JOIN users u ON sp.user_id = u.id
+WHERE sp.user_id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $profile_data = $result->fetch_assoc();
+}
+$stmt->close();
+$conn->close();
+
+$profile_image_path = 'uploads/' . $profile_data['profile_image'];
+$cover_image_path = 'uploads/' . $profile_data['cover_image'];
+
+$profile_image = (isset($profile_data['profile_image']) && file_exists($profile_image_path)) ? $profile_image_path : 'uploads/default.png';
+
+$cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_path)) ? $cover_image_path : 'uploads/cover.png';
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">

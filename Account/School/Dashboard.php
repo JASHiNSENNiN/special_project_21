@@ -248,26 +248,26 @@ function fetchJobOffersWithStudentCount($conn)
     $school_name = $_SESSION['school_name'];
 
     $query = "
-                SELECT 
-                    jo.work_title, 
-                    COUNT(a.student_id) AS student_count
-                FROM 
-                    job_offers jo
-                LEFT JOIN 
-                    applicants a ON jo.id = a.job_id
-                JOIN 
-                    partner_profiles pp ON jo.partner_id = pp.user_id
-                JOIN 
-                    student_profiles sp ON sp.current_work = jo.id
-                WHERE 
-                    sp.school = ?
-                AND 
-                    jo.is_archived = FALSE
-                GROUP BY 
-                    jo.id, jo.work_title
-                ORDER BY 
-                    student_count DESC
-            ";
+    SELECT 
+        jo.work_title, 
+        COUNT(DISTINCT a.student_id) AS student_count
+    FROM 
+        job_offers jo
+    LEFT JOIN 
+        applicants a ON jo.id = a.job_id
+    JOIN 
+        partner_profiles pp ON jo.partner_id = pp.user_id
+    JOIN 
+        student_profiles sp ON sp.current_work = jo.id
+    WHERE 
+        sp.school = ?
+    AND 
+        jo.is_archived = FALSE
+    GROUP BY 
+        jo.id, jo.work_title
+    ORDER BY 
+        student_count DESC
+";
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $school_name);

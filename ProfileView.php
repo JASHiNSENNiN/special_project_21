@@ -180,6 +180,136 @@ $profile_divv = '<header class="nav-header">
     </header>
 
     ';
+
+
+
+
+
+
+
+
+    
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+
+// Handle download request
+if (isset($_GET['document_name'])) {
+    $document_name = $_GET['document_name'];
+
+    // Define the acceptable document names
+    $acceptable_documents = [
+        'resume',
+        'application_letter',
+        'parents_consent',
+        'barangay_clearance',
+        'mayors_permit',
+        'police_clearance',
+        'medical_certificate',
+        'insurance_policy',
+        'business_permit'
+    ];
+
+    // Check if the document name is valid
+    if (!in_array($document_name, $acceptable_documents)) {
+        die("Invalid document name!");
+    }
+
+    // Prepare the SQL statement
+    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+    $stmt = $pdo->prepare($sql);
+
+    // Bind parameters and execute
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+    $stmt->execute();
+
+    // Fetch the document URL
+    $document_url = $stmt->fetchColumn();
+
+    // Check if the document URL exists
+    if ($document_url) {
+        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+
+        // Check if file exists
+        if (file_exists($file_path)) {
+            // Set headers to initiate download
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/pdf'); // Adjust based on actual file type
+            header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file_path));
+            flush(); // Flush the system output buffer
+            readfile($file_path); // Read and output the file
+            exit;
+        } else {
+            die("File not found!");
+        }
+    } else {
+        die("Document URL not found in the database!");
+    }
+}
+
+$sql = "SELECT document_name FROM uploaded_documents WHERE user_id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$unique_documents = [];
+foreach ($documents as $doc) {
+    if (!empty($doc['document_name']) && !isset($unique_documents[$doc['document_name']])) {
+        $unique_documents[$doc['document_name']] = $doc['document_name'];
+    }
+}
+
+$document_name_mapping = [
+    'resume' => 'Resume',
+    'application_letter' => 'Application Letter',
+    'parents_consent' => 'Parents Consent',
+    'barangay_clearance' => 'Barangay Clearance',
+    'mayors_permit' => 'Mayor\'s Permit',
+    'police_clearance' => 'Police Clearance',
+    'medical_certificate' => 'Medical Certificate',
+    'insurance_policy' => 'Insurance Policy',
+    'business_permit' => 'Business Permit'
+];
+
+$conn = new mysqli($host, $username, $password, $database);
+$profile_data = null;
+if (isset($user_id)) {
+    
+    $sql = "SELECT sp.*, u.profile_image, u.cover_image
+FROM student_profiles sp
+JOIN users u ON sp.user_id = u.id
+WHERE sp.user_id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $profile_data = $result->fetch_assoc();
+}
+$stmt->close();
+$conn->close();
+
+$profile_image_path = 'Account/Student/uploads/' . $profile_data['profile_image'];
+$cover_image_path = 'Account/Student/uploads/' . $profile_data['cover_image'];
+
+$profile_image = (isset($profile_data['profile_image']) && file_exists($profile_image_path)) ? $profile_image_path : 'Account/Student/uploads/default.png';
+
+$cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_path)) ? $cover_image_path : 'Account/Student/uploads/cover.png';
 ?>
 
 <!DOCTYPE html>
@@ -223,61 +353,61 @@ $profile_divv = '<header class="nav-header">
 
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-        const averages = {
-            avgPunctual: <?= json_encode($avgPunctual) ?>,
-            avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
-            avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
-            avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
-            avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
-            avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
-            avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
-            avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
-            avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
-            avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
-            avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
-            avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
-            avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
-            avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
-            avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
-            avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
-            avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
-            avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+    const averages = {
+        avgPunctual: <?= json_encode($avgPunctual) ?>,
+        avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
+        avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
+        avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
+        avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
+        avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
+        avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
+        avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
+        avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
+        avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
+        avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
+        avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
+        avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
+        avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
+        avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
+        avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
+        avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
+        avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
 
-        };
-        const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
-        console.log(dailyPerformance);
+    };
+    const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
+    console.log(dailyPerformance);
     </script>
     <script type="text/javascript" src="/Account/Student/css/eval_graph.js"></script>
 
 
     <style>
-        @media print {
-            body {
-                -webkit-print-color-adjust: exact;
-                /* For Chrome */
-                color-adjust: exact;
-                /* For Firefox */
-            }
-
-            /* Hide elements that should not be printed */
-            .print-btn,
-            .btn,
-            .docu,
-            .edit-button,
-            .nav-header,
-            footer {
-                display: none;
-            }
-
-            /* You can also adjust the layout for printing */
-            .dashboard-body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-            }
-
-            /* Add any other styles you want for print */
+    @media print {
+        body {
+            -webkit-print-color-adjust: exact;
+            /* For Chrome */
+            color-adjust: exact;
+            /* For Firefox */
         }
+
+        /* Hide elements that should not be printed */
+        .print-btn,
+        .btn,
+        .docu,
+        .edit-button,
+        .nav-header,
+        footer {
+            display: none;
+        }
+
+        /* You can also adjust the layout for printing */
+        .dashboard-body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        /* Add any other styles you want for print */
+    }
     </style>
     </style>
 
@@ -295,11 +425,11 @@ $profile_divv = '<header class="nav-header">
                 <div class="row-profile" id="row_profile">
 
                     <div class="column-profile column-side profile-pic">
-                        <!-- <img class="img-account-profile rounded-circle mb-2" id="profile-image"
-                        src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
-                        alt="Profile Image Preview"
-                        style="width: 200px; height: 200px; object-fit: cover;"> -->
-                        <img src="img/default.png" alt="Profile Image Preview" width="100%" height="100%" style="border-radius: 50%;">
+                        <img class="img-account-profile rounded-circle mb-2" id="profile-image"
+                            src="<?php echo $profile_image; ?>" alt="Profile Image Preview"
+                            style="width: 200px; height: 200px; object-fit: cover;">
+                        <!-- <img src="img/default.png" alt="Profile Image Preview" width="100%" height="100%"
+                            style="border-radius: 50%;"> -->
 
 
                     </div>
@@ -311,32 +441,35 @@ $profile_divv = '<header class="nav-header">
                             <span class="LRN">LRN: 20181234</span>
                             <br>
 
-                            <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="other-info"><?= $strand ?></span>
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i><span
+                                class="other-info"><?= $strand ?></span>
                             <br>
-                            <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
+                            <i class="fa fa-envelope" aria-hidden="true"></i><span
+                                class="other-info"><?= $email  ?></span>
 
                             <br>
                             <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
                             <br>
-                            <i class="fa fa-briefcase" aria-hidden="true"></i><span class="other-info"><?= $currentWork   ?></span>
+                            <i class="fa fa-briefcase" aria-hidden="true"></i><span
+                                class="other-info"><?= $currentWork   ?></span>
 
 
-                            <a href="Account/Student/print_profile.php" style="text-decoration:none;" target="_blank"> <button class="print-btn">
+                            <a href="Account/Student/print_profile.php" style="text-decoration:none;" target="_blank">
+                                <button class="print-btn">
                                     <span class="printer-wrapper">
                                         <span class="printer-container">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
-                                                <path
-                                                    stroke-width="5"
-                                                    stroke="black"
-                                                    d="M12 37.5H80C85.2467 37.5 89.5 41.7533 89.5 47V69C89.5 70.933 87.933 72.5 86 72.5H6C4.067 72.5 2.5 70.933 2.5 69V47C2.5 41.7533 6.75329 37.5 12 37.5Z"></path>
+                                                <path stroke-width="5" stroke="black"
+                                                    d="M12 37.5H80C85.2467 37.5 89.5 41.7533 89.5 47V69C89.5 70.933 87.933 72.5 86 72.5H6C4.067 72.5 2.5 70.933 2.5 69V47C2.5 41.7533 6.75329 37.5 12 37.5Z">
+                                                </path>
                                                 <mask fill="white" id="path-2-inside-1_30_7">
                                                     <path
-                                                        d="M12 12C12 5.37258 17.3726 0 24 0H57C70.2548 0 81 10.7452 81 24V29H12V12Z"></path>
+                                                        d="M12 12C12 5.37258 17.3726 0 24 0H57C70.2548 0 81 10.7452 81 24V29H12V12Z">
+                                                    </path>
                                                 </mask>
-                                                <path
-                                                    mask="url(#path-2-inside-1_30_7)"
-                                                    fill="black"
-                                                    d="M7 12C7 2.61116 14.6112 -5 24 -5H57C73.0163 -5 86 7.98374 86 24H76C76 13.5066 67.4934 5 57 5H24C20.134 5 17 8.13401 17 12H7ZM81 29H12H81ZM7 29V12C7 2.61116 14.6112 -5 24 -5V5C20.134 5 17 8.13401 17 12V29H7ZM57 -5C73.0163 -5 86 7.98374 86 24V29H76V24C76 13.5066 67.4934 5 57 5V-5Z"></path>
+                                                <path mask="url(#path-2-inside-1_30_7)" fill="black"
+                                                    d="M7 12C7 2.61116 14.6112 -5 24 -5H57C73.0163 -5 86 7.98374 86 24H76C76 13.5066 67.4934 5 57 5H24C20.134 5 17 8.13401 17 12H7ZM81 29H12H81ZM7 29V12C7 2.61116 14.6112 -5 24 -5V5C20.134 5 17 8.13401 17 12V29H7ZM57 -5C73.0163 -5 86 7.98374 86 24V29H76V24C76 13.5066 67.4934 5 57 5V-5Z">
+                                                </path>
                                                 <circle fill="black" r="3" cy="49" cx="78"></circle>
                                             </svg>
                                         </span>
@@ -437,7 +570,7 @@ $profile_divv = '<header class="nav-header">
         </div> -->
 
         <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'School' || $_SESSION['account_type'] === 'Organization'): ?>
-            <!-- <div class="dashboard-body">
+        <!-- <div class="dashboard-body">
 
                 <main class="dashboard__main app-content">
 
@@ -488,33 +621,32 @@ $profile_divv = '<header class="nav-header">
                 </main>
             </div> -->
 
-            <div class="dashboard-body docu">
+        <div class="dashboard-body docu">
 
-                <main class="dashboard__main app-content">
+            <main class="dashboard__main app-content">
 
-                    <article class="app-content__widget app-content__widget--primary">
-                        <hr>
-                        <h2 class="title-resume">Application Documents</h2>
-                        <!-- <span class="description-resume">Please upload the required documents for your work immersion
+                <article class="app-content__widget app-content__widget--primary">
+                    <hr>
+                    <h2 class="title-resume">Application Documents</h2>
+                    <!-- <span class="description-resume">Please upload the required documents for your work immersion
                         application: resume, application letter, barangay clearance, police clearance, mayor's
                         clearance, and medical certificate. </span> -->
-                        <div id="content-cover">
+                    <div id="content-cover">
 
-                            <table class="table" id="sortableTable-docu">
-                                <thead>
-                                    <tr>
-                                        <th class="th-name">Document Name</th>
-                                        <th class="th-date">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($unique_documents as $document_name): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); // Display mapped name 
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?php
+                        <table class="table" id="sortableTable-docu">
+                            <thead>
+                                <tr>
+                                    <th class="th-name">Document Name</th>
+                                    <th class="th-date">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($unique_documents as $document_name): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
+                                    </td>
+                                    <td>
+                                        <?php
                                                 // Check for the document URL and existence of file
                                                 $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
                                                 $stmt = $pdo->prepare($sql);
@@ -526,22 +658,24 @@ $profile_divv = '<header class="nav-header">
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
-                                                        <a
-                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
-                                                            <button>Download</button>
-                                                        </a>
-                                                    <?php else: ?>
-                                                        <button disabled>File Not Available</button>
-                                                    <?php endif;
+                                        <a class="btn btn-download btn-success"
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
+                                            Download
+                                        </a>
+                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                        <?php else: ?>
+                                        <button disabled>File Not Available</button>
+                                        <?php endif;
                                                 } else { ?>
-                                                    <button disabled>No Document Found</button>
-                                                <?php } ?>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <!-- <div class="one_col file-upload">
+                                        <button disabled>No Document Found</button>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <!-- <div class="one_col file-upload">
                                 <label for="documentType">Document Type:</label>
                                 <select id="documentType" name="documentType">
                                     <option value="">--Select--</option>
@@ -559,72 +693,72 @@ $profile_divv = '<header class="nav-header">
                                 <input type="file" class="file" name="images" id="uploadFile" multiple />
                                 <span class="error"></span>
                             </div> -->
-                            <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
+                        <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
 
-                            <span class="successfully-saved">
-                                <i class="fa fa-thumbs-up"></i> Saved!
-                            </span>
-                        </div>
-
-                        <hr>
-                        <h2 class="title-resume">Daily Insight</h2>
-                        <span class="description-resume">The line chart analyzes student daily performance in work
-                            immersion, and the pie chart displays the distribution of performance levels.</span>
-
-
-                        <div class="container-grap">
-                            <div class="dp-graph" id="piechart_3d"></div>
-                        </div>
-
-
-
-                        <div class="container-grap">
-                            <div class="dp-graph" id="dp_chart_div"></div>
-
-                        </div>
-
-                        <hr>
-                        <h2 class="title-resume">Evaluation Insight</h2>
-                        <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
-                            skills, and social skills during immersion.</span>
-                        <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-                        <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-                        <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
-                    </article>
-
-
-                    <div class="DailyJournal">
-                        <h2 class="title-resume">Daily Journal (2/10)</h2>
-
-                        <div class="content-box">
-                            <div class="date">January 3, 2025</div>
-                            <div class="day">Day 1</div>
-
-                            <div class="titleW">Work Immersion Report</div>
-                            <div class="description">
-                                This report highlights the key learnings and experiences during the work immersion program.
-                                It includes
-                                tasks performed, skills gained, challenges encountered, and reflections on the work
-                                experience.
-                            </div>
-                        </div>
-                        <div class="content-box">
-                            <div class="date">January 4, 2025</div>
-                            <div class="day">Day 2</div>
-
-                            <div class="titleW">Work Immersion Report</div>
-                            <div class="description">
-                                This report highlights the key learnings and experiences during the work immersion program.
-                                It includes
-                                tasks performed, skills gained, challenges encountered, and reflections on the work
-                                experience.
-                            </div>
-                        </div>
-                        <!-- <button class="next">View all &#8594;</button> -->
-                        <a href="#">View all</a>
+                        <span class="successfully-saved">
+                            <i class="fa fa-thumbs-up"></i> Saved!
+                        </span>
                     </div>
-                </main>
-            </div>
+
+                    <hr>
+                    <h2 class="title-resume">Daily Insight</h2>
+                    <span class="description-resume">The line chart analyzes student daily performance in work
+                        immersion, and the pie chart displays the distribution of performance levels.</span>
+
+
+                    <div class="container-grap">
+                        <div class="dp-graph" id="piechart_3d"></div>
+                    </div>
+
+
+
+                    <div class="container-grap">
+                        <div class="dp-graph" id="dp_chart_div"></div>
+
+                    </div>
+
+                    <hr>
+                    <h2 class="title-resume">Evaluation Insight</h2>
+                    <span class="description-resume">The graph summarizes supervisor feedback on students' work habits,
+                        skills, and social skills during immersion.</span>
+                    <div class="wp-graph eval-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
+                    <div class="pro-graph eval-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
+                    <div class="ld-graph eval-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
+                </article>
+
+
+                <div class="DailyJournal">
+                    <h2 class="title-resume">Daily Journal (2/10)</h2>
+
+                    <div class="content-box">
+                        <div class="date">January 3, 2025</div>
+                        <div class="day">Day 1</div>
+
+                        <div class="titleW">Work Immersion Report</div>
+                        <div class="description">
+                            This report highlights the key learnings and experiences during the work immersion program.
+                            It includes
+                            tasks performed, skills gained, challenges encountered, and reflections on the work
+                            experience.
+                        </div>
+                    </div>
+                    <div class="content-box">
+                        <div class="date">January 4, 2025</div>
+                        <div class="day">Day 2</div>
+
+                        <div class="titleW">Work Immersion Report</div>
+                        <div class="description">
+                            This report highlights the key learnings and experiences during the work immersion program.
+                            It includes
+                            tasks performed, skills gained, challenges encountered, and reflections on the work
+                            experience.
+                        </div>
+                    </div>
+                    <!-- <button class="next">View all &#8594;</button> -->
+                    <a href="#">View all</a>
+                </div>
+            </main>
+        </div>
         <?php endif; ?>
 
 
@@ -723,17 +857,17 @@ $profile_divv = '<header class="nav-header">
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
-            location.reload("card-graph");
-        });
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        location.reload("card-graph");
+    });
     </script>
 
 
 
     <script>
-        function printPage() {
-            window.print(); // This will open the print dialog
-        }
+    function printPage() {
+        window.print(); // This will open the print dialog
+    }
     </script>
     <!-- End -->
     <footer>
