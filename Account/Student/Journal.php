@@ -5,7 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
 
-
 $host = "localhost";
 $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
@@ -16,28 +15,50 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+function getJournalEntry($conn, $student_id, $entry_number) {
+    $query = $conn->prepare("SELECT date, title, entry FROM student_journals WHERE student_id = ? AND entry_number = ?");
+    $query->bind_param("ii", $student_id, $entry_number);
+    $query->execute();
+    $result = $query->get_result();
+
+    return $result->fetch_assoc(); 
+}
+
+$student_id = $_SESSION['user_id'];
+$entries = [];
+
+for ($i = 1; $i <= 10; $i++) {
+    $entries[$i] = getJournalEntry($conn, $student_id, $i);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $student_id = $_SESSION['user_id'];
-    ;
-
     $date = $_POST['date'];
     $title = $_POST['title'];
     $entry = $_POST['entry'];
     $entry_number = $_POST['entry_number'];
+    $entry_number = $_POST['entry_number'];
 
-    $stmt = $conn->prepare("INSERT INTO student_journals (student_id, date, title, entry, entry_number) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("isssi", $student_id, $date, $title, $entry, $entry_number);
+    $existingEntry = getJournalEntry($conn, $student_id, $entry_number);
+
+    if ($existingEntry) {
+     
+        $stmt = $conn->prepare("UPDATE student_journals SET date = ?, title = ?, entry = ? WHERE student_id = ? AND entry_number = ?");
+        $stmt->bind_param("sssii", $date, $title, $entry, $student_id, $entry_number);
+    } else {
+        $stmt = $conn->prepare("INSERT INTO student_journals (student_id, date, title, entry, entry_number) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssi", $student_id, $date, $title, $entry, $entry_number);
+    }
 
     if ($stmt->execute()) {
-        // echo "New journal entry created successfully.";
+        // echo "Journal entry saved successfully.";
     } else {
         echo "Error: " . $stmt->error;
     }
 
     $stmt->close();
-    $conn->close();
 }
+
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,68 +98,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Student Work Immersion Journal</h1>
         <div class="page-wrapper">
             <ol class='years'>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i>
-                        <i class="fa fa-check-circle" style="font-size:24px;color:green"></i> Day 1 - Immersion
-                        Experience
+                <?php for ($i = 1; $i <= 10; $i++): ?>
+                <li class='year'><a class='expander' href="#">
+                        <i class="fa fa-check-circle" style="font-size:24px;color:green"></i>Day <?php echo $i; ?> -
+                        Immersion Experience
                     </a>
                     <ol>
                         <li>
                             <div class="container3">
-                                <h2 class="title">Journal Entry </h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="1">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-
-                    </ol>
-                </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 2 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
                                 <h2 class="title">Journal Entry</h2>
                                 <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="2">
+                                    <input type="hidden" id="entry_number" name="entry_number"
+                                        value="<?php echo $i; ?>">
                                     <div class="form-group">
                                         <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
+                                        <input class="inp" type="date" id="date" name="date"
+                                            value="<?php echo $entries[$i]['date'] ?? ''; ?>" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="Jor" for="title">Title</label>
                                         <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
+                                            placeholder="Enter a title"
+                                            value="<?php echo $entries[$i]['title'] ?? ''; ?>" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="Jor" for="entry">Journal Entry</label>
                                         <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
+                                            required><?php echo $entries[$i]['entry'] ?? ''; ?></textarea>
                                     </div>
-
 
                                     <button class="sub" type="submit">Save Entry</button>
                                 </form>
@@ -146,275 +135,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                     </ol>
                 </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 3 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
-                                <h2 class="title">Journal Entry</h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="3">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 4 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
-                                <h2 class="title">Journal Entry</h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="4">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <li class='year'><a class='expander' href="#"> <i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 5 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
-                                <h2 class="title">Journal Entry</h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="5">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 6 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
-                                <h2 class="title">Journal Entry</h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="6">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 7 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
-                                <h2 class="title">Journal Entry</h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="7">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 8 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
-                                <h2 class="title">Journal Entry</h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="8">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 9 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
-                                <h2 class="title">Journal Entry</h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="9">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
-                <li class='year'><a class='expander' href="#"><i class="fa fa-exclamation-circle"
-                            style="font-size:24px;color:red"></i><i class="fa fa-check-circle"
-                            style="font-size:24px;color:green"></i>Day 10 - Immersion Experience</a>
-                    <ol>
-                        <li>
-                            <div class="container3">
-                                <h2 class="title">Journal Entry</h2>
-                                <form action="#" method="post">
-                                    <input type="hidden" id="entry_number" name="entry_number" value="10">
-                                    <div class="form-group">
-                                        <label class="Jor" for="date">Date</label>
-                                        <input class="inp" type="date" id="date" name="date" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="title">Title</label>
-                                        <input class="inp" type="text" id="title" name="title"
-                                            placeholder="Enter a title" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="Jor" for="entry">Journal Entry</label>
-                                        <textarea id="entry" name="entry" placeholder="Write your journal entry here..."
-                                            required></textarea>
-                                    </div>
-
-
-                                    <button class="sub" type="submit">Save Entry</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ol>
-                </li>
+                <?php endfor; ?>
             </ol>
         </div>
     </div>
-
-
 
     <br>
 
@@ -443,52 +167,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script> -->
 
     <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
+    // Get the modal
+    var modal = document.getElementById("myModal");
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+    }
     </script>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        $('.expander').click(function (e) {
-            e.preventDefault();
-            $(this)
-                .parent()
-                .toggleClass('expanded')
-                .find('>ol')
-                .slideToggle();
-        });
+    $('.expander').click(function(e) {
+        e.preventDefault();
+        $(this)
+            .parent()
+            .toggleClass('expanded')
+            .find('>ol')
+            .slideToggle();
+    });
     </script>
 
     <script type="text/javascript">
-        // Get the current year
-        const currentYear = new Date().getFullYear();
+    // Get the current year
+    const currentYear = new Date().getFullYear();
 
-        // Find the element with id 'current-year' and set its text
-        document.getElementById("current-year").textContent = currentYear;
+    // Find the element with id 'current-year' and set its text
+    document.getElementById("current-year").textContent = currentYear;
     </script>
 
 </body>

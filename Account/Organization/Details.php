@@ -43,7 +43,7 @@ function getStudentCounts($partner_user_id)
         $stmt_total->bind_param(str_repeat('i', count($job_ids)), ...$job_ids);
         $stmt_total->execute();
         $result_total = $stmt_total->get_result();
-        $counts['total_students'] = $result_total->fetch_assoc()['total'];
+        $counts['total_students'] = (int)$result_total->fetch_assoc()['total'];
 
         // Count approved students for these job IDs
         $sql_approved = "SELECT COUNT(DISTINCT student_id) as approved FROM applicants WHERE job_id IN ($job_ids_placeholder) AND status = 'accepted'";
@@ -51,15 +51,15 @@ function getStudentCounts($partner_user_id)
         $stmt_approved->bind_param(str_repeat('i', count($job_ids)), ...$job_ids);
         $stmt_approved->execute();
         $result_approved = $stmt_approved->get_result();
-        $counts['approved_students'] = $result_approved->fetch_assoc()['approved'];
+        $counts['approved_students'] = (int)$result_approved->fetch_assoc()['approved'];
 
         // Count pending students for these job IDs
-        $sql_pending = "SELECT COUNT(DISTINCT student_id) as pending FROM applicants WHERE job_id IN ($job_ids_placeholder) AND NOT status = 'accepted'";
+        $sql_pending = "SELECT COUNT(DISTINCT student_id) as pending FROM applicants WHERE job_id IN ($job_ids_placeholder) AND status != 'accepted'";
         $stmt_pending = $conn->prepare($sql_pending);
         $stmt_pending->bind_param(str_repeat('i', count($job_ids)), ...$job_ids);
         $stmt_pending->execute();
         $result_pending = $stmt_pending->get_result();
-        $counts['pending_students'] = $result_pending->fetch_assoc()['pending'];
+        $counts['pending_students'] = (int)$result_pending->fetch_assoc()['pending'];
     }
 
     $conn->close();
@@ -143,7 +143,7 @@ function getJobOffers($partner_user_id)
         SELECT 
             job_offers.work_title, 
             job_offers.id,
-            COUNT(applicants.student_id) as total_students,
+            COUNT(DISTINCT applicants.student_id) as total_students,  -- Count distinct students
             AVG(Organization_Evaluation.quality_of_experience) as avg_quality_of_experience,
             AVG(Organization_Evaluation.productivity_of_tasks) as avg_productivity,
             AVG(Organization_Evaluation.problem_solving_opportunities) as avg_problem_solving,
@@ -173,6 +173,7 @@ function getJobOffers($partner_user_id)
         LEFT JOIN applicants ON job_offers.id = applicants.job_id 
         LEFT JOIN Organization_Evaluation ON job_offers.id = Organization_Evaluation.job_id
         WHERE job_offers.partner_id = ? 
+        AND applicants.status IN ('applied', 'accepted')  -- Filter for ongoing students
         GROUP BY job_offers.id
     ";
 
@@ -188,6 +189,7 @@ function getJobOffers($partner_user_id)
     $conn->close();
     return $job_offers;
 }
+
 
 $dailyPerformance = getDailyPerformanceData();
 $studentCounts = getStudentCounts($_SESSION['user_id']);

@@ -110,7 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['letter_files'])) {
 
     $newFileName = "{$firstName}_{$middleName}_{$lastName}_{$lrn}_application_letter_{$randomNumber}_{$formattedDateTime}";
 
-    // Check if a document already exists for the user
     $existingDocumentQuery = $conn->prepare("SELECT document_url FROM uploaded_documents WHERE user_id = ? AND document_name = 'application_letter'");
     $existingDocumentQuery->bind_param('i', $userId);
     $existingDocumentQuery->execute();
