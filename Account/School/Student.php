@@ -286,7 +286,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -297,7 +296,6 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>NIA</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -337,7 +335,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -348,7 +345,6 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>NIA</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -387,7 +383,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -398,7 +393,6 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>NIA</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -436,7 +430,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -447,7 +440,6 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>NIA</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -485,7 +477,6 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
-                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -496,7 +487,6 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>NIA</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -523,39 +513,39 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
     <script>
-    function searchTable(section) {
-        // Get the input value and convert it to uppercase
-        let input = document.querySelector(`#search${section.charAt(0).toUpperCase() + section.slice(1)}Input`);
-        let filter = input.value.toUpperCase();
+        function searchTable(section) {
+            // Get the input value and convert it to uppercase
+            let input = document.querySelector(`#search${section.charAt(0).toUpperCase() + section.slice(1)}Input`);
+            let filter = input.value.toUpperCase();
 
-        // Select the table within the active content section
-        let table = document.getElementById(`search${section.charAt(0).toUpperCase() + section.slice(1)}`);
-        let tr = table.getElementsByTagName('tr'); // Get all row   s in the table
+            // Select the table within the active content section
+            let table = document.getElementById(`search${section.charAt(0).toUpperCase() + section.slice(1)}`);
+            let tr = table.getElementsByTagName('tr'); // Get all row   s in the table
 
-        // Loop through the rows (skip the header row)
-        for (let i = 1; i < tr.length; i++) {
-            let td = tr[i].getElementsByTagName('td')[2]; // Check the Student Name column (index 2)
-            if (td) {
-                let textValue = td.textContent || td.innerText;
-                // If the name matches the input value, show the row; otherwise, hide it
-                if (textValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = ''; // Show the row
-                } else {
-                    tr[i].style.display = 'none'; // Hide the row
+            // Loop through the rows (skip the header row)
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td')[2]; // Check the Student Name column (index 2)
+                if (td) {
+                    let textValue = td.textContent || td.innerText;
+                    // If the name matches the input value, show the row; otherwise, hide it
+                    if (textValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = ''; // Show the row
+                    } else {
+                        tr[i].style.display = 'none'; // Hide the row
+                    }
                 }
             }
         }
-    }
     </script>
 
 
     <script>
-    $(".box").click(function(e) {
-        e.preventDefault();
-        $(".content").removeClass("active");
-        var content_id = $(this).attr("id");
-        $(content_id).addClass("active");
-    });
+        $(".box").click(function (e) {
+            e.preventDefault();
+            $(".content").removeClass("active");
+            var content_id = $(this).attr("id");
+            $(content_id).addClass("active");
+        });
     </script>
     <br>
     <footer>
@@ -564,21 +554,21 @@ $tvl_students = get_students_by_strand('tvl');
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function () {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
     <!-- <script>
@@ -657,32 +647,32 @@ $tvl_students = get_students_by_strand('tvl');
     </script> -->
 
     <script type="text/javascript">
-    // Get DOM Elements
-    const modal = document.querySelector('#my-modal');
-    const modalBtn = document.querySelector('#modal-btn');
-    const closeBtn = document.querySelector('.close');
+        // Get DOM Elements
+        const modal = document.querySelector('#my-modal');
+        const modalBtn = document.querySelector('#modal-btn');
+        const closeBtn = document.querySelector('.close');
 
-    // Events
-    modalBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', outsideClick);
+        // Events
+        modalBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
 
-    // Open
-    function openModal() {
-        modal.style.display = 'block';
-    }
+        // Open
+        function openModal() {
+            modal.style.display = 'block';
+        }
 
-    // Close
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    // Close If Outside Click
-    function outsideClick(e) {
-        if (e.target == modal) {
+        // Close
+        function closeModal() {
             modal.style.display = 'none';
         }
-    }
+
+        // Close If Outside Click
+        function outsideClick(e) {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
     </script>
 
 
