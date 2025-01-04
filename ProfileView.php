@@ -436,7 +436,7 @@ $profile_divv = '<header class="nav-header">
             </main>
         </div> -->
 
-        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'School'): ?>
+        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'School' || $_SESSION['account_type'] === 'Organization'): ?>
             <!-- <div class="dashboard-body">
 
                 <main class="dashboard__main app-content">
