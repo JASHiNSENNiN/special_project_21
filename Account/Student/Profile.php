@@ -472,7 +472,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                     <div class="column-profile column-side profile-pic">
                         <img class="img-account-profile rounded-circle mb-2" id="profile-image"
                             src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
-                            alt="Profile Image Preview" style="width: 200px; height: 200px; object-fit: cover;">
+                            alt="Profile Image Preview" style="width: 16rem;  object-fit: cover;">
 
 
 
@@ -737,38 +737,38 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
                     <div class="DailyJournal">
                         <?php
-    try {
-        // Create a new PDO instance
-        $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        try {
+                            // Create a new PDO instance
+                            $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Prepare the SQL statement to fetch entries numbered 1 to 10
-        $stmt = $pdo->prepare("SELECT date, title, entry, entry_number FROM student_journals WHERE student_id = ? AND entry_number BETWEEN 1 AND 10 ORDER BY entry_number ASC");
-        $stmt->execute([$user_id]);
+                            // Prepare the SQL statement to fetch entries numbered 1 to 10
+                            $stmt = $pdo->prepare("SELECT date, title, entry, entry_number FROM student_journals WHERE student_id = ? AND entry_number BETWEEN 1 AND 10 ORDER BY entry_number ASC");
+                            $stmt->execute([$user_id]);
 
-        // Check if there are entries
-        if ($stmt->rowCount() > 0) {
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '<div class="content-box">';
-                echo '<div class="date">' . htmlspecialchars($row['date']) . '</div>';
-                echo '<div class="day">Day ' . htmlspecialchars($row['entry_number']) . '</div>';
-                echo '<div class="titleW">' . htmlspecialchars($row['title']) . '</div>';
-                echo '<div class="description">' . htmlspecialchars($row['entry']) . '</div>';
-                echo '<span class="action">';
-                // echo '<a href="print_journal.php" target="_blank"><button class="eye fas fas fa-eye"></button></a>';
-                // echo '<a href="print_journal.php" target="_blank"><button class="print fas fas fa-print"></button></a>';
-                // echo '<button class="edit fas fa-pencil-alt"></button>';
-                // echo '<button class="delete fas fa-trash-alt"></button>';
-                echo '</span>';
-                echo '</div>'; // close content-box
-            }
-        } else {
-            echo '<div class="content-box">No journal entries found.</div>';
-        }
-    } catch (PDOException $e) {
-        echo "Error: " . htmlspecialchars($e->getMessage());
-    }
-    ?>
+                            // Check if there are entries
+                            if ($stmt->rowCount() > 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    echo '<div class="content-box">';
+                                    echo '<div class="date">' . htmlspecialchars($row['date']) . '</div>';
+                                    echo '<div class="day">Day ' . htmlspecialchars($row['entry_number']) . '</div>';
+                                    echo '<div class="titleW">' . htmlspecialchars($row['title']) . '</div>';
+                                    echo '<div class="description">' . htmlspecialchars($row['entry']) . '</div>';
+                                    echo '<span class="action">';
+                                    // echo '<a href="print_journal.php" target="_blank"><button class="eye fas fas fa-eye"></button></a>';
+                                    // echo '<a href="print_journal.php" target="_blank"><button class="print fas fas fa-print"></button></a>';
+                                    // echo '<button class="edit fas fa-pencil-alt"></button>';
+                                    // echo '<button class="delete fas fa-trash-alt"></button>';
+                                    echo '</span>';
+                                    echo '</div>'; // close content-box
+                                }
+                            } else {
+                                echo '<div class="content-box">No journal entries found.</div>';
+                            }
+                        } catch (PDOException $e) {
+                            echo "Error: " . htmlspecialchars($e->getMessage());
+                        }
+                        ?>
                     </div>
 
                     <hr>

@@ -365,7 +365,7 @@ if (isset($_SESSION['account_type'])) {
     <!-- <title>Work Immersion | DRDSNHS</title> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="stylesheet" type="text/css" href="css/org_style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -381,7 +381,7 @@ if (isset($_SESSION['account_type'])) {
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -394,81 +394,81 @@ if (isset($_SESSION['account_type'])) {
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
 
 
     <script>
-    var strandCounts = <?php echo json_encode($strandCounts); ?>;
-    var totalApplicants = strandCounts.humss + strandCounts.gas + strandCounts.stem + strandCounts.tvl;
+        var strandCounts = <?php echo json_encode($strandCounts); ?>;
+        var totalApplicants = strandCounts.humss + strandCounts.gas + strandCounts.stem + strandCounts.tvl;
 
-    // Experience averages
-    const avgQualityOfExperience = Number(<?php echo json_encode($avg_quality_of_experience); ?>);
-    const avgProductivityOfTasks = Number(<?php echo json_encode($avg_productivity_of_tasks); ?>);
-    const avgProblemSolvingOpportunities = Number(<?php echo json_encode($avg_problem_solving_opportunities); ?>);
-    const avgAttentionToDetailInGuidance = Number(<?php echo json_encode($avg_attention_to_detail_in_guidance); ?>);
-    const avgInitiativeEncouragement = Number(<?php echo json_encode($avg_initiative_encouragement); ?>);
+        // Experience averages
+        const avgQualityOfExperience = Number(<?php echo json_encode($avg_quality_of_experience); ?>);
+        const avgProductivityOfTasks = Number(<?php echo json_encode($avg_productivity_of_tasks); ?>);
+        const avgProblemSolvingOpportunities = Number(<?php echo json_encode($avg_problem_solving_opportunities); ?>);
+        const avgAttentionToDetailInGuidance = Number(<?php echo json_encode($avg_attention_to_detail_in_guidance); ?>);
+        const avgInitiativeEncouragement = Number(<?php echo json_encode($avg_initiative_encouragement); ?>);
 
-    const avgExperience = (
-        (avgQualityOfExperience + avgProductivityOfTasks + avgProblemSolvingOpportunities +
-            avgAttentionToDetailInGuidance + avgInitiativeEncouragement) / 5
-    );
+        const avgExperience = (
+            (avgQualityOfExperience + avgProductivityOfTasks + avgProblemSolvingOpportunities +
+                avgAttentionToDetailInGuidance + avgInitiativeEncouragement) / 5
+        );
 
-    // Professionalism averages
-    const avgPunctualityExpectations = Number(<?php echo json_encode($avg_punctuality_expectations); ?>);
-    const avgProfessionalAppearanceStandards = Number(
-        <?php echo json_encode($avg_professional_appearance_standards); ?>);
-    const avgCommunicationTraining = Number(<?php echo json_encode($avg_communication_training); ?>);
-    const avgRespectfulnessEnvironment = Number(<?php echo json_encode($avg_respectfulness_environment); ?>);
-    const avgAdaptabilityChallenges = Number(<?php echo json_encode($avg_adaptability_challenges); ?>);
+        // Professionalism averages
+        const avgPunctualityExpectations = Number(<?php echo json_encode($avg_punctuality_expectations); ?>);
+        const avgProfessionalAppearanceStandards = Number(
+            <?php echo json_encode($avg_professional_appearance_standards); ?>);
+        const avgCommunicationTraining = Number(<?php echo json_encode($avg_communication_training); ?>);
+        const avgRespectfulnessEnvironment = Number(<?php echo json_encode($avg_respectfulness_environment); ?>);
+        const avgAdaptabilityChallenges = Number(<?php echo json_encode($avg_adaptability_challenges); ?>);
 
-    const avgProfessionalism = (
-        (avgPunctualityExpectations + avgProfessionalAppearanceStandards + avgCommunicationTraining +
-            avgRespectfulnessEnvironment + avgAdaptabilityChallenges) / 5
-    );
+        const avgProfessionalism = (
+            (avgPunctualityExpectations + avgProfessionalAppearanceStandards + avgCommunicationTraining +
+                avgRespectfulnessEnvironment + avgAdaptabilityChallenges) / 5
+        );
 
-    // Learning and development averages
-    const avgWillingnessToLearnEncouragement = Number(
-        <?php echo json_encode($avg_willingness_to_learn_encouragement); ?>);
-    const avgFeedbackApplicationOpportunities = Number(
-        <?php echo json_encode($avg_feedback_application_opportunities); ?>);
-    const avgSelfImprovementSupport = Number(<?php echo json_encode($avg_self_improvement_support); ?>);
-    const avgSkillDevelopmentAssessment = Number(<?php echo json_encode($avg_skill_development_assessment); ?>);
-    const avgKnowledgeApplicationInPractice = Number(
-        <?php echo json_encode($avg_knowledge_application_in_practice); ?>);
+        // Learning and development averages
+        const avgWillingnessToLearnEncouragement = Number(
+            <?php echo json_encode($avg_willingness_to_learn_encouragement); ?>);
+        const avgFeedbackApplicationOpportunities = Number(
+            <?php echo json_encode($avg_feedback_application_opportunities); ?>);
+        const avgSelfImprovementSupport = Number(<?php echo json_encode($avg_self_improvement_support); ?>);
+        const avgSkillDevelopmentAssessment = Number(<?php echo json_encode($avg_skill_development_assessment); ?>);
+        const avgKnowledgeApplicationInPractice = Number(
+            <?php echo json_encode($avg_knowledge_application_in_practice); ?>);
 
-    const avgLearningAndDevelopment = (
-        (avgWillingnessToLearnEncouragement + avgFeedbackApplicationOpportunities + avgSelfImprovementSupport +
-            avgSkillDevelopmentAssessment + avgKnowledgeApplicationInPractice) / 5
-    );
+        const avgLearningAndDevelopment = (
+            (avgWillingnessToLearnEncouragement + avgFeedbackApplicationOpportunities + avgSelfImprovementSupport +
+                avgSkillDevelopmentAssessment + avgKnowledgeApplicationInPractice) / 5
+        );
 
-    // Collaboration averages
-    const avgTeamParticipationOpportunities = Number(<?php echo json_encode($avg_team_participation_opportunities); ?>);
-    const avgCooperationAmongPeers = Number(<?php echo json_encode($avg_cooperation_among_peers); ?>);
-    const avgConflictResolutionGuidance = Number(<?php echo json_encode($avg_conflict_resolution_guidance); ?>);
-    const avgSupportivenessAmongPeers = Number(<?php echo json_encode($avg_supportiveness_among_peers); ?>);
-    const avgContributionToTeamSuccess = Number(<?php echo json_encode($avg_contribution_to_team_success); ?>);
+        // Collaboration averages
+        const avgTeamParticipationOpportunities = Number(<?php echo json_encode($avg_team_participation_opportunities); ?>);
+        const avgCooperationAmongPeers = Number(<?php echo json_encode($avg_cooperation_among_peers); ?>);
+        const avgConflictResolutionGuidance = Number(<?php echo json_encode($avg_conflict_resolution_guidance); ?>);
+        const avgSupportivenessAmongPeers = Number(<?php echo json_encode($avg_supportiveness_among_peers); ?>);
+        const avgContributionToTeamSuccess = Number(<?php echo json_encode($avg_contribution_to_team_success); ?>);
 
-    const avgCollaboration = (
-        (avgTeamParticipationOpportunities + avgCooperationAmongPeers + avgConflictResolutionGuidance +
-            avgSupportivenessAmongPeers + avgContributionToTeamSuccess) / 5
-    );
+        const avgCollaboration = (
+            (avgTeamParticipationOpportunities + avgCooperationAmongPeers + avgConflictResolutionGuidance +
+                avgSupportivenessAmongPeers + avgContributionToTeamSuccess) / 5
+        );
 
-    // Attitude and Motivation averages
-    const avgEnthusiasmForTasks = Number(<?php echo json_encode($avg_enthusiasm_for_tasks); ?>);
-    const avgDriveToAchieveGoals = Number(<?php echo json_encode($avg_drive_to_achieve_goals); ?>);
-    const avgResilienceToChallenges = Number(<?php echo json_encode($avg_resilience_to_challenges); ?>);
-    const avgCommitmentToExperience = Number(<?php echo json_encode($avg_commitment_to_experience); ?>);
-    const avgSelfMotivationLevels = Number(<?php echo json_encode($avg_self_motivation_levels); ?>);
+        // Attitude and Motivation averages
+        const avgEnthusiasmForTasks = Number(<?php echo json_encode($avg_enthusiasm_for_tasks); ?>);
+        const avgDriveToAchieveGoals = Number(<?php echo json_encode($avg_drive_to_achieve_goals); ?>);
+        const avgResilienceToChallenges = Number(<?php echo json_encode($avg_resilience_to_challenges); ?>);
+        const avgCommitmentToExperience = Number(<?php echo json_encode($avg_commitment_to_experience); ?>);
+        const avgSelfMotivationLevels = Number(<?php echo json_encode($avg_self_motivation_levels); ?>);
 
-    const avgAttitudeAndMotivation = (
-        (avgEnthusiasmForTasks + avgDriveToAchieveGoals + avgResilienceToChallenges +
-            avgCommitmentToExperience + avgSelfMotivationLevels) / 5
-    );
+        const avgAttitudeAndMotivation = (
+            (avgEnthusiasmForTasks + avgDriveToAchieveGoals + avgResilienceToChallenges +
+                avgCommitmentToExperience + avgSelfMotivationLevels) / 5
+        );
     </script>
 
     <header id="myHeader-sticky">
@@ -547,45 +547,45 @@ if (isset($_SESSION['account_type'])) {
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-    window.onscroll = function() {
-        myFunction();
-    };
+        window.onscroll = function() {
+            myFunction();
+        };
 
-    var header = document.getElementById("myHeader-sticky");
-    var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
 
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("stickyhead");
-        } else {
-            header.classList.remove("stickyhead");
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
         }
-    }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.bar span').hide();
-        $('#bar-five').animate({
-            width: '85%'
-        }, 1000);
-        $('#bar-four').animate({
-            width: '35%'
-        }, 1000);
-        $('#bar-three').animate({
-            width: '20%'
-        }, 1000);
-        $('#bar-two').animate({
-            width: '17%'
-        }, 1000);
-        $('#bar-one').animate({
-            width: '30%'
-        }, 1000);
+        $(document).ready(function() {
+            $('.bar span').hide();
+            $('#bar-five').animate({
+                width: '85%'
+            }, 1000);
+            $('#bar-four').animate({
+                width: '35%'
+            }, 1000);
+            $('#bar-three').animate({
+                width: '20%'
+            }, 1000);
+            $('#bar-two').animate({
+                width: '17%'
+            }, 1000);
+            $('#bar-one').animate({
+                width: '30%'
+            }, 1000);
 
-        setTimeout(function() {
-            $('.bar span').fadeIn('slow');
-        }, 1000);
+            setTimeout(function() {
+                $('.bar span').fadeIn('slow');
+            }, 1000);
 
-    });
+        });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
