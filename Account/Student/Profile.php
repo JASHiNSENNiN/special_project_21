@@ -200,7 +200,6 @@ try {
 if (isset($_GET['document_name'])) {
     $document_name = $_GET['document_name'];
 
-    // Define the acceptable document names
     $acceptable_documents = [
         'resume',
         'application_letter',
@@ -218,7 +217,6 @@ if (isset($_GET['document_name'])) {
         die("Invalid document name!");
     }
 
-    // Prepare the SQL statement
     $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
     $stmt = $pdo->prepare($sql);
 
@@ -227,25 +225,39 @@ if (isset($_GET['document_name'])) {
     $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
     $stmt->execute();
 
-    // Fetch the document URL
     $document_url = $stmt->fetchColumn();
-
-    // Check if the document URL exists
+    
     if ($document_url) {
         $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
-
-        // Check if file exists
+    
+        echo $file_path;
         if (file_exists($file_path)) {
-            // Set headers to initiate download
+           
+            $file_extension = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+    
+            $mime_types = [
+                'pdf' => 'application/pdf',
+                'doc' => 'application/msword',
+                'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'txt' => 'text/plain',
+                'png' => 'image/png',
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                
+            ];
+    
+            $content_type = isset($mime_types[$file_extension]) ? $mime_types[$file_extension] : 'application/octet-stream';
+    
             header('Content-Description: File Transfer');
-            header('Content-Type: application/pdf'); // Adjust based on actual file type
+            header('Content-Type: ' . $content_type);
             header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Length: ' . filesize($file_path));
-            flush(); // Flush the system output buffer
-            readfile($file_path); // Read and output the file
+            
+            flush(); 
+            readfile($file_path); 
             exit;
         } else {
             die("File not found!");
@@ -642,7 +654,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
                                         <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
                                             Download
                                         </a>
                                         <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->

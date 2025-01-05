@@ -61,6 +61,7 @@ try {
     $fullName = trim("$firstName $middleName $lastName");
     $school = $student_profile['school'];
     $gradeLevel = $student_profile['grade_level'];
+    $lrn = $student_profile['lrn'];
     $strand = strtoupper($student_profile['strand']);
     $school = $student_profile['school'];
     $email = $user['email'];
@@ -142,7 +143,7 @@ function getDailyPerformance($student_id, $pdo)
     // Prepare the data for JavaScript
     $formattedData = [];
     foreach ($dailyPerformance as $row) {
-        $date = (string)$row['evaluation_date'];
+        $date = (string) $row['evaluation_date'];
         $averageScore = (
             ($row['avg_punctual'] +
                 $row['avg_reports'] +
@@ -162,8 +163,8 @@ $dailyPerformance = getDailyPerformance($user_id, $pdo);
 
 $profile_divv = '<header class="nav-header">
         <div class="logo">
-            <a href="/Account/' . $_SESSION['account_type'] . '"> 
-                <img src="/img/logov3.jpg" alt="Logo">
+            <a href="../../Account/' . $_SESSION['account_type'] . '"> 
+                <img src="image/logov3.jpg" alt="Logo">
             </a>
            
             
@@ -177,18 +178,13 @@ $profile_divv = '<header class="nav-header">
         
         </nav>
 
-    </header>
+    </header> 
 
     ';
 
 
 
 
-
-
-
-
-    
 $host = "localhost";
 $username = $_ENV['MYSQL_USERNAME'];
 $password = $_ENV['MYSQL_PASSWORD'];
@@ -201,12 +197,9 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-
-// Handle download request
 if (isset($_GET['document_name'])) {
     $document_name = $_GET['document_name'];
 
-    // Define the acceptable document names
     $acceptable_documents = [
         'resume',
         'application_letter',
@@ -224,7 +217,6 @@ if (isset($_GET['document_name'])) {
         die("Invalid document name!");
     }
 
-    // Prepare the SQL statement
     $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
     $stmt = $pdo->prepare($sql);
 
@@ -233,25 +225,39 @@ if (isset($_GET['document_name'])) {
     $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
     $stmt->execute();
 
-    // Fetch the document URL
     $document_url = $stmt->fetchColumn();
-
-    // Check if the document URL exists
+    
     if ($document_url) {
         $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
-
-        // Check if file exists
+    
+        echo $file_path;
         if (file_exists($file_path)) {
-            // Set headers to initiate download
+           
+            $file_extension = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+    
+            $mime_types = [
+                'pdf' => 'application/pdf',
+                'doc' => 'application/msword',
+                'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'txt' => 'text/plain',
+                'png' => 'image/png',
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                
+            ];
+    
+            $content_type = isset($mime_types[$file_extension]) ? $mime_types[$file_extension] : 'application/octet-stream';
+    
             header('Content-Description: File Transfer');
-            header('Content-Type: application/pdf'); // Adjust based on actual file type
+            header('Content-Type: ' . $content_type);
             header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Length: ' . filesize($file_path));
-            flush(); // Flush the system output buffer
-            readfile($file_path); // Read and output the file
+            
+            flush(); 
+            readfile($file_path); 
             exit;
         } else {
             die("File not found!");
@@ -286,10 +292,11 @@ $document_name_mapping = [
     'business_permit' => 'Business Permit'
 ];
 
+
 $conn = new mysqli($host, $username, $password, $database);
+
 $profile_data = null;
 if (isset($user_id)) {
-    
     $sql = "SELECT sp.*, u.profile_image, u.cover_image
 FROM student_profiles sp
 JOIN users u ON sp.user_id = u.id
@@ -304,12 +311,12 @@ WHERE sp.user_id = ?";
 $stmt->close();
 $conn->close();
 
-$profile_image_path = 'Account/Student/uploads/' . $profile_data['profile_image'];
-$cover_image_path = 'Account/Student/uploads/' . $profile_data['cover_image'];
+$profile_image_path = 'uploads/' . $profile_data['profile_image'];
+$cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
-$profile_image = (isset($profile_data['profile_image']) && file_exists($profile_image_path)) ? $profile_image_path : 'Account/Student/uploads/default.png';
 
-$cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_path)) ? $cover_image_path : 'Account/Student/uploads/cover.png';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -648,26 +655,27 @@ $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_
                                     </td>
                                     <td>
                                         <?php
-                // Check for the document URL
-                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
-                $stmt->execute();
-                $document_url = $stmt->fetchColumn();
+                                                // Check for the document URL and existence of file
+                                                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                                $stmt = $pdo->prepare($sql);
+                                                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                                $stmt->execute();
+                                                $document_url = $stmt->fetchColumn();
 
-                // Check if the document URL is found
-                if ($document_url) {
-                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
-                    if (file_exists($file_path)): ?>
+                                                if ($document_url) {
+                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                                    if (file_exists($file_path)): ?>
                                         <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name); ?>">
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
                                             Download
                                         </a>
+                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
                                         <?php else: ?>
                                         <button disabled>File Not Available</button>
                                         <?php endif;
-                } else { ?>
+                                                } else { ?>
                                         <button disabled>No Document Found</button>
                                         <?php } ?>
                                     </td>

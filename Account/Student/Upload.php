@@ -67,7 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['resume_files'])) {
             finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt', 'png', 'jpg'];
-            $allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
+            $allowedMimeTypes = [
+                'application/pdf',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/msword',
+                'text/plain', 
+                'image/png',  
+                'image/jpeg' 
+            ];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
 
@@ -215,7 +222,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['parents_consent_files
             finfo_close($finfo);
 
             $allowedFileExtensions = ['pdf', 'doc', 'docx', 'txt', 'png', 'jpg'];
-            $allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
+            $allowedMimeTypes = [
+                'application/pdf',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/msword',
+                'text/plain', 
+                'image/png',  
+                'image/jpeg' 
+            ];
 
             if (in_array($fileExtension, $allowedFileExtensions) && in_array($mimeType, $allowedMimeTypes)) {
                 $filePath = "documents/{$newFileName}." . $fileExtension;
