@@ -163,8 +163,8 @@ $dailyPerformance = getDailyPerformance($user_id, $pdo);
 
 $profile_divv = '<header class="nav-header">
         <div class="logo">
-            <a href="../../Account/' . $_SESSION['account_type'] . '"> 
-                <img src="image/logov3.jpg" alt="Logo">
+            <a href="/Account/' . $_SESSION['account_type'] . '"> 
+                <img src="/Account/Student/image/logov3.jpg" alt="Logo">
             </a>
            
             
@@ -311,8 +311,19 @@ WHERE sp.user_id = ?";
 $stmt->close();
 $conn->close();
 
-$profile_image_path = 'uploads/' . $profile_data['profile_image'];
-$cover_image_path = 'uploads/' . $profile_data['cover_image'];
+$default_profile_image = '/Account/Student/uploads/default.png';
+$default_cover_image = '/Account/Student/uploads/cover.png';
+
+$profile_image_path = '/Account/Student/uploads/' . $profile_data['profile_image'];
+$cover_image_path = '/Account/Student/uploads/' . $profile_data['cover_image'];
+
+if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $profile_image_path)) {
+    $profile_image_path = $default_profile_image;
+}
+
+if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
+    $cover_image_path = $default_cover_image;
+}
 
 
 
@@ -434,7 +445,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
                     <div class="column-profile column-side profile-pic">
                         <img class="img-account-profile rounded-circle mb-2" id="profile-image"
-                            src="<?php echo $profile_image; ?>" alt="Profile Image Preview"
+                            src="<?php echo $profile_image_path; ?>" alt="Profile Image Preview"
                             style="width: 200px; height: 200px; object-fit: cover;">
                         <!-- <img src="img/default.png" alt="Profile Image Preview" width="100%" height="100%"
                             style="border-radius: 50%;"> -->
@@ -446,7 +457,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                     <div class="column-profile ">
                         <div class="card-body">
                             <span class="fullname"><?= $fullName ?></span>
-                            <span class="LRN">LRN: 20181234</span>
+                            <span class="LRN">LRN: <?= $lrn ?></span>
                             <br>
 
                             <i class="fa fa-graduation-cap" aria-hidden="true"></i><span
@@ -462,7 +473,8 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                 class="other-info"><?= $currentWork   ?></span>
 
 
-                            <a href="Account/Student/print_profile.php" style="text-decoration:none;" target="_blank">
+                            <a href="Account/Student/print_profile.php?student_id=<?php echo $IdParam ?>"
+                                style="text-decoration:none;" target="_blank">
                                 <button class="print-btn">
                                     <span class="printer-wrapper">
                                         <span class="printer-container">
