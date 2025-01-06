@@ -675,7 +675,20 @@ $tvl_students = get_students_by_strand('tvl');
     }
     </script>
 
+    <script type="text/javascript">
+    function toggleNotifications() {
+        const extraNotifications = document.querySelector('.extra-notifications');
+        const seeMoreLink = document.querySelector('.see-more');
 
+        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+            extraNotifications.style.display = 'block';
+            seeMoreLink.textContent = 'See Less';
+        } else {
+            extraNotifications.style.display = 'none';
+            seeMoreLink.textContent = 'See More';
+        }
+    }
+    </script>
 
 </body>
 

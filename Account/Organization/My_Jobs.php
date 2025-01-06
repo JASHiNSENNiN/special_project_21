@@ -69,7 +69,7 @@ function generateJobCards($jobOffers)
                 
                 <div class="job-card-buttons">';
 
-        echo '<a href="edit_jobs.php?job_id='. base64_encode(encrypt_url_parameter((string) $job['id'])) .'" target="_blank" class="editBtn" id="editBtn_' . $job['id'] . '">
+        echo '<a href="edit_jobs.php?job_id=' . base64_encode(encrypt_url_parameter((string) $job['id'])) . '" target="_blank" class="editBtn" id="editBtn_' . $job['id'] . '">
         <button class="search-buttons card-buttons">Edit</button>
       </a>';
 
@@ -287,6 +287,21 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     }
     </script>
     <script type="text/javascript" src="css/doc.js"></script>
+
+    <script type="text/javascript">
+    function toggleNotifications() {
+        const extraNotifications = document.querySelector('.extra-notifications');
+        const seeMoreLink = document.querySelector('.see-more');
+
+        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+            extraNotifications.style.display = 'block';
+            seeMoreLink.textContent = 'See Less';
+        } else {
+            extraNotifications.style.display = 'none';
+            seeMoreLink.textContent = 'See More';
+        }
+    }
+    </script>
 
 </body>
 

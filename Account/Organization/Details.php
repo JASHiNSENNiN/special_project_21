@@ -43,7 +43,7 @@ function getStudentCounts($partner_user_id)
         $stmt_total->bind_param(str_repeat('i', count($job_ids)), ...$job_ids);
         $stmt_total->execute();
         $result_total = $stmt_total->get_result();
-        $counts['total_students'] = (int)$result_total->fetch_assoc()['total'];
+        $counts['total_students'] = (int) $result_total->fetch_assoc()['total'];
 
         // Count approved students for these job IDs
         $sql_approved = "SELECT COUNT(DISTINCT student_id) as approved FROM applicants WHERE job_id IN ($job_ids_placeholder) AND status = 'accepted'";
@@ -51,7 +51,7 @@ function getStudentCounts($partner_user_id)
         $stmt_approved->bind_param(str_repeat('i', count($job_ids)), ...$job_ids);
         $stmt_approved->execute();
         $result_approved = $stmt_approved->get_result();
-        $counts['approved_students'] = (int)$result_approved->fetch_assoc()['approved'];
+        $counts['approved_students'] = (int) $result_approved->fetch_assoc()['approved'];
 
         // Count pending students for these job IDs
         $sql_pending = "SELECT COUNT(DISTINCT student_id) as pending FROM applicants WHERE job_id IN ($job_ids_placeholder) AND status != 'accepted'";
@@ -59,7 +59,7 @@ function getStudentCounts($partner_user_id)
         $stmt_pending->bind_param(str_repeat('i', count($job_ids)), ...$job_ids);
         $stmt_pending->execute();
         $result_pending = $stmt_pending->get_result();
-        $counts['pending_students'] = (int)$result_pending->fetch_assoc()['pending'];
+        $counts['pending_students'] = (int) $result_pending->fetch_assoc()['pending'];
     }
 
     $conn->close();
@@ -196,7 +196,7 @@ $studentCounts = getStudentCounts($_SESSION['user_id']);
 $jobOffers = getJobOffers($_SESSION['user_id']);
 ?>
 <script>
-    var dailyPerformance = <?php echo $dailyPerformance; ?>;
+var dailyPerformance = <?php echo $dailyPerformance; ?>;
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -305,34 +305,35 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
                 </thead>
                 <tbody>
                     <?php if (!empty($jobOffers)): ?>
-                        <?php foreach ($jobOffers as $job): ?>
-                            <tr class="job_title">
-                                <td>
-                                    <a href="../../org.php?job_id=<?php echo urlencode(base64_encode(encrypt_url_parameter((string) $job['id']))); ?>">
-                                        <?php echo htmlspecialchars($job['work_title'], ENT_QUOTES, 'UTF-8'); ?>
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="stars-outer">
-                                        <div class="stars-inner"
-                                            style="width: <?php echo (isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0) / 5 * 100; ?>%;">
-                                        </div>
-                                    </div>
-                                    <span
-                                        class="number-rating"><?php echo number_format(isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0, 1); ?></span>
-                                </td>
-                                <td><?php echo (int) $job['total_students']; ?></td>
-                            </tr>
-                            <script>
-                                // Add the average rating for this job offer
-                                ratings['job_title_<?php echo $job['id']; ?>'] =
-                                    <?php echo isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0; ?>;
-                            </script>
-                        <?php endforeach; ?>
+                    <?php foreach ($jobOffers as $job): ?>
+                    <tr class="job_title">
+                        <td>
+                            <a
+                                href="../../org.php?job_id=<?php echo urlencode(base64_encode(encrypt_url_parameter((string) $job['id']))); ?>">
+                                <?php echo htmlspecialchars($job['work_title'], ENT_QUOTES, 'UTF-8'); ?>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="stars-outer">
+                                <div class="stars-inner"
+                                    style="width: <?php echo (isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0) / 5 * 100; ?>%;">
+                                </div>
+                            </div>
+                            <span
+                                class="number-rating"><?php echo number_format(isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0, 1); ?></span>
+                        </td>
+                        <td><?php echo (int) $job['total_students']; ?></td>
+                    </tr>
+                    <script>
+                    // Add the average rating for this job offer
+                    ratings['job_title_<?php echo $job['id']; ?>'] =
+                        <?php echo isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0; ?>;
+                    </script>
+                    <?php endforeach; ?>
                     <?php else: ?>
-                        <tr>
-                            <td colspan="3">No job offers available.</td>
-                        </tr>
+                    <tr>
+                        <td colspan="3">No job offers available.</td>
+                    </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
@@ -348,76 +349,91 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
         <!-- <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p> -->
     </footer>
     <script>
-        // Total Stars
-        const starsTotal = 5;
+    // Total Stars
+    const starsTotal = 5;
 
-        // Get ratings
-        function getRatings() {
-            const jobTitles = document.querySelectorAll('.job_title'); // Get all job titles
+    // Get ratings
+    function getRatings() {
+        const jobTitles = document.querySelectorAll('.job_title'); // Get all job titles
 
-            jobTitles.forEach((job) => {
-                const ratingElement = job.querySelector('.number-rating');
+        jobTitles.forEach((job) => {
+            const ratingElement = job.querySelector('.number-rating');
 
-                if (ratingElement) {
-                    const ratingValue = parseFloat(ratingElement.innerHTML);
-                    // Get percentage
-                    const starPercentage = (ratingValue / starsTotal) * 100;
+            if (ratingElement) {
+                const ratingValue = parseFloat(ratingElement.innerHTML);
+                // Get percentage
+                const starPercentage = (ratingValue / starsTotal) * 100;
 
-                    // Round to nearest 10
-                    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-                    const starsInnerElement = job.querySelector('.stars-inner');
+                // Round to nearest 10
+                const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+                const starsInnerElement = job.querySelector('.stars-inner');
 
-                    if (starsInnerElement) {
-                        starsInnerElement.style.width = starPercentageRounded;
-                    }
+                if (starsInnerElement) {
+                    starsInnerElement.style.width = starPercentageRounded;
                 }
-            });
-        }
-
-        // Run getRatings when DOM loads
-        document.addEventListener('DOMContentLoaded', getRatings);
-    </script>
-
-    <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
-
-        inputFile1.onchange = function() {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0])
-        };
-    </script>
-
-    <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
-
-        inputFile2.onchange = function() {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0])
-        };
-    </script>
-
-
-    <script>
-        document.getElementById('searchInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                filterTable();
             }
         });
+    }
 
-        function filterTable() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
-            const table = document.getElementById('job-title');
-            const tr = table.getElementsByTagName('tr');
+    // Run getRatings when DOM loads
+    document.addEventListener('DOMContentLoaded', getRatings);
+    </script>
 
-            for (let i = 1; i < tr.length; i++) {
-                const td = tr[i].getElementsByTagName('td')[0];
-                if (td) {
-                    const txtValue = td.textContent || td.innerText;
-                    tr[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
-                }
+    <script>
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
+
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0])
+    };
+    </script>
+
+    <script>
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
+
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0])
+    };
+    </script>
+
+
+    <script>
+    document.getElementById('searchInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            filterTable();
+        }
+    });
+
+    function filterTable() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById('job-title');
+        const tr = table.getElementsByTagName('tr');
+
+        for (let i = 1; i < tr.length; i++) {
+            const td = tr[i].getElementsByTagName('td')[0];
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                tr[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
             }
         }
+    }
+    </script>
+
+    <script type="text/javascript">
+    function toggleNotifications() {
+        const extraNotifications = document.querySelector('.extra-notifications');
+        const seeMoreLink = document.querySelector('.see-more');
+
+        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+            extraNotifications.style.display = 'block';
+            seeMoreLink.textContent = 'See Less';
+        } else {
+            extraNotifications.style.display = 'none';
+            seeMoreLink.textContent = 'See More';
+        }
+    }
     </script>
     <!-- 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

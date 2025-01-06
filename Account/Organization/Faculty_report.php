@@ -197,6 +197,23 @@ $applicants = getApplicants($conn, $org_id);
         }
     }, 50); // Update every 50ms
     </script>
+
+
+    <script type="text/javascript">
+    function toggleNotifications() {
+        const extraNotifications = document.querySelector('.extra-notifications');
+        const seeMoreLink = document.querySelector('.see-more');
+
+        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+            extraNotifications.style.display = 'block';
+            seeMoreLink.textContent = 'See Less';
+        } else {
+            extraNotifications.style.display = 'none';
+            seeMoreLink.textContent = 'See More';
+        }
+    }
+    </script>
+
     <footer>
         <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
         <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>

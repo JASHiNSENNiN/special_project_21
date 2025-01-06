@@ -32,8 +32,7 @@ img {
   object-fit: cover;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  box-shadow:
-    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -119,15 +118,15 @@ hr {
   /* Remove default border */
   border-radius: 8px;
   /* Rounded corners */
-  box-shadow:
-    5px 5px 15px rgba(0, 0, 0, 0.2),
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2),
     /* Outer shadow for depth */ inset 2px 2px 5px rgba(255, 255, 255, 0.3);
   /* Inner highlight */
   color: #ffffff;
   /* White text color */
   cursor: pointer;
   /* Pointer cursor for interaction */
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
   /* Modern font */
   font-size: 16px;
   /* Font size */
@@ -159,16 +158,14 @@ hr {
 
 .button-9:hover {
   background: linear-gradient(145deg, #35a058, #2a853b);
-  box-shadow:
-    3px 3px 10px rgba(0, 0, 0, 0.3),
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3),
     /* Slightly darker shadow */ inset 1px 1px 3px rgba(255, 255, 255, 0.4);
   /* Softer inner highlight */
 }
 
 .button-9:active {
   background: linear-gradient(145deg, #2e9e56, #227a45);
-  box-shadow:
-    inset 2px 2px 5px rgba(0, 0, 0, 0.4),
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4),
     /* Inset shadow to simulate depth */ 2px 2px 6px rgba(0, 0, 0, 0.15);
   transform: translateY(2px);
 }
@@ -199,8 +196,7 @@ hr {
   /* Remove border */
   border-radius: 8px;
   /* Rounded corners */
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.15),
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15),
     /* Outer shadow for depth */ inset 0 1px 2px rgba(255, 255, 255, 0.2);
   /* Inner highlight */
   box-sizing: border-box;
@@ -208,7 +204,8 @@ hr {
   /* Pointer cursor on hover */
   display: inline-block;
   /* Inline block display */
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
   /* Font family */
   font-size: 16px;
   /* Font size */
@@ -218,9 +215,7 @@ hr {
   /* Padding for button */
   position: relative;
   /* Positioning context for shadows */
-  transition:
-    background-color 0.3s ease,
-    transform 0.1s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease;
   /* Smooth transitions */
   user-select: none;
   /* Prevent text selection */
@@ -236,8 +231,7 @@ hr {
 
 .button-4:hover {
   background: linear-gradient(145deg, rgb(56, 103, 141), rgb(66, 122, 168));
-  box-shadow:
-    0 6px 12px rgba(0, 0, 0, 0.2),
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2),
     /* Deeper shadow on hover */ inset 0 1px 2px rgba(255, 255, 255, 0.3);
   /* transform: translateY(-2px); */
 }
@@ -274,13 +268,13 @@ hr {
   background-color: rgb(249, 84, 84);
   border: none;
   border-radius: 6px;
-  box-shadow:
-    rgba(27, 31, 35, 0.04) 0 1px 0,
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
     rgba(255, 255, 255, 0.25) 0 1px 0 inset;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
   font-size: 100%;
   line-height: 20px;
   list-style: none;
@@ -317,10 +311,7 @@ hr {
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -949,6 +940,22 @@ nav .login-btn:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.see-more {
+  text-align: center;
+  color: #007bff;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
+.extra-notifications {
+  display: none;
+}
+
 .foot {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -1113,8 +1120,7 @@ input {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow:
-    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -1125,10 +1131,8 @@ input {
 }
 
 .button-12:focus {
-  box-shadow:
-    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 

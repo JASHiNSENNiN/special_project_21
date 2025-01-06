@@ -751,17 +751,14 @@ if (isset($_SESSION['school_name'])) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
     </script>
-    <scri type="text/javascript">
-
-    </scri>
-    <script>
+    <!-- <script>
     let profilePic1 = document.getElementById("cover-pic");
     let inputFile1 = document.getElementById("input-file1");
 
     inputFile1.onchange = function() {
         profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
     }
-    </script>
+    </script> -->
 
     <script>
     let profilePic2 = document.getElementById("profile-pic");
@@ -796,6 +793,21 @@ if (isset($_SESSION['school_name'])) {
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+        }
+    }
+    </script>
+
+    <script type="text/javascript">
+    function toggleNotifications() {
+        const extraNotifications = document.querySelector('.extra-notifications');
+        const seeMoreLink = document.querySelector('.see-more');
+
+        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+            extraNotifications.style.display = 'block';
+            seeMoreLink.textContent = 'See Less';
+        } else {
+            extraNotifications.style.display = 'none';
+            seeMoreLink.textContent = 'See More';
         }
     }
     </script>

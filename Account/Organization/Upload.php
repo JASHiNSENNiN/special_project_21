@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -81,13 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['business_permit_files
                 $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
-                    
+
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, ?, ?)");
                     $documentName = 'business_permit';
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
 
                     if ($stmt->execute()) {
-                      
+
                     } else {
                         echo "Error uploading file: " . htmlspecialchars($newFileName);
                     }
@@ -159,13 +160,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['memorandum_of_agreeme
                 $filePath = "documents/{$newFileName}." . $fileExtension;
 
                 if (move_uploaded_file($tmpName, $filePath)) {
-                   
+
                     $stmt = $conn->prepare("INSERT INTO uploaded_documents (user_id, document_name, document_url) VALUES (?, ?, ?)");
                     $documentName = 'memorandum_of_agreement';
                     $stmt->bind_param('iss', $userId, $documentName, $filePath);
 
                     if ($stmt->execute()) {
-                      
+
                     } else {
                         echo "Error uploading file: " . htmlspecialchars($newFileName);
                     }
@@ -401,6 +402,21 @@ require_once 'show_profile.php';
     </footer>
 
     <script src="css/filter.js"></script>
+
+    <script type="text/javascript">
+    function toggleNotifications() {
+        const extraNotifications = document.querySelector('.extra-notifications');
+        const seeMoreLink = document.querySelector('.see-more');
+
+        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+            extraNotifications.style.display = 'block';
+            seeMoreLink.textContent = 'See Less';
+        } else {
+            extraNotifications.style.display = 'none';
+            seeMoreLink.textContent = 'See More';
+        }
+    }
+    </script>
 
 
 </body>

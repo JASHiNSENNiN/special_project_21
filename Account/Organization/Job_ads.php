@@ -195,55 +195,69 @@ require_once 'show_profile.php';
     </script> -->
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const button = document.getElementById("show-modal");
-            const modal = document.getElementById("success-modal");
-            const countdownElement = document.getElementById("countdown");
+    document.addEventListener("DOMContentLoaded", () => {
+        const button = document.getElementById("show-modal");
+        const modal = document.getElementById("success-modal");
+        const countdownElement = document.getElementById("countdown");
 
 
 
-            button.addEventListener("click", () => {
-                // Open the modal
-                modal.classList.add("modal--open");
+        button.addEventListener("click", () => {
+            // Open the modal
+            modal.classList.add("modal--open");
 
-                // Countdown logic
-                let seconds = 5;
+            // Countdown logic
+            let seconds = 5;
+            countdownElement.textContent = seconds;
+
+            const countdownInterval = setInterval(() => {
+                seconds--;
                 countdownElement.textContent = seconds;
 
-                const countdownInterval = setInterval(() => {
-                    seconds--;
-                    countdownElement.textContent = seconds;
-
-                    // When the countdown reaches 0, hide the modal
-                    if (seconds <= 0) {
-                        clearInterval(countdownInterval);
-                        modal.classList.remove("modal--open");
-                    }
-                }, 1000);
-            });
+                // When the countdown reaches 0, hide the modal
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    modal.classList.remove("modal--open");
+                }
+            }, 1000);
         });
+    });
     </script>
 
 
 
     <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-        }
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-        }
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
     </script>
 
+    <script type="text/javascript">
+    function toggleNotifications() {
+        const extraNotifications = document.querySelector('.extra-notifications');
+        const seeMoreLink = document.querySelector('.see-more');
+
+        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+            extraNotifications.style.display = 'block';
+            seeMoreLink.textContent = 'See Less';
+        } else {
+            extraNotifications.style.display = 'none';
+            seeMoreLink.textContent = 'See More';
+        }
+    }
+    </script>
 
 
 </body>

@@ -1490,3 +1490,94 @@ textarea {
   transition: border-color 0.3s ease, background-color 0.3s ease;
   font-size: 16px;
 }
+
+.dropdowntf {
+  position: relative;
+  display: inline-block;
+  /* margin-top: 10px; */
+}
+
+.dropdowntf-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: rgba(249, 249, 249, 0.9);
+  min-width: 400px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-top: 0;
+  padding: 30px;
+  cursor: pointer;
+}
+
+.dropdowntf-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  margin-right: auto;
+  text-align: left;
+}
+
+.dropdowntf:hover .dropdowntf-content {
+  display: block;
+}
+
+.notif {
+  color: black;
+  float: left;
+  margin-top: -20px;
+}
+
+.dropdowntf-content img {
+  display: block;
+  width: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.dropdowntf-content .text h4 {
+  color: #000;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.dropdowntf-content .text p {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+}
+
+.notifi-item {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 15px 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.notifi-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-left: -5px;
+}
+
+.notifi-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-left: -5px;
+}
+
+.see-more {
+  text-align: center;
+  color: #007bff;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
+.extra-notifications {
+  display: none;
+}

@@ -130,7 +130,67 @@ $profile_div = '<header class="nav-header">
         <nav class="by">
            
 
+    <div class="dropdowntf" style="float:right;">
+                <a href="#" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
+                        class="badge">2</span></a>
+                <div class="dropdowntf-content" id="box">
+                    <label for="" class="notif">Notification</label>
+                    <hr style="width: 100%;">
+                    <div class="notifi-item">
+                        <img src="../Student/uploads/6777a3cc3e0d80.79792922.jpg" alt="img">
+                        <div class="text">
+                            <h4>Miguel Von Aldea</h4>
+                            <p>Miguel sent request to verify account</p>
+                        </div>
+                    </div>
+                    <div class="notifi-item">
+                        <img src="../Organization/image/NIA.png" alt="img">
+                        <div class="text">
+                            <h4>NIA</h4>
+                            <p>New account organization</p>
+                        </div>
+                    </div>
+                    
+    <div class="notifi-item">
+      <img src="https://via.placeholder.com/50" alt="img">
+      <div class="text">
+        <h4>Notification 3</h4>
+        <p>Some message here</p>
+      </div>
+    </div>
+
+   
+    <div class="notifi-item">
+      <img src="https://via.placeholder.com/50" alt="img">
+      <div class="text">
+        <h4>Notification 4</h4>
+        <p>Another message</p>
+      </div>
+    </div>
+
     
+    <div class="extra-notifications">
+      <div class="notifi-item">
+        <img src="https://via.placeholder.com/50" alt="img">
+        <div class="text">
+          <h4>Notification 5</h4>
+          <p>Extra notification 1</p>
+        </div>
+      </div>
+      <div class="notifi-item">
+        <img src="https://via.placeholder.com/50" alt="img">
+        <div class="text">
+          <h4>Notification 6</h4>
+          <p>Extra notification 2</p>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="see-more" onclick="toggleNotifications()">See More</div>
+  </div>
+                </div>
+            </div>
 
             <div class="dropdown" style="float:right;">
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:10px;"></i></a>

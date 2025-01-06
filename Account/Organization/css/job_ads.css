@@ -566,6 +566,23 @@ nav .login-btn:hover {
 
 .notifi-item:hover {
   background-color: rgba(0, 0, 0, 0.1);
+  margin-left: -5px;
+}
+
+.see-more {
+  text-align: center;
+  color: #007bff;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
+.extra-notifications {
+  display: none;
 }
 
 .foot {
