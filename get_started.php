@@ -121,8 +121,8 @@ function getSchoolList($conn)
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
     <title>Set Up Account</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="stylesheet" type="text/css" href="../css/header_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/loginform_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/get_start_log.css">
@@ -161,9 +161,9 @@ function getSchoolList($conn)
             <div class="row">
                 <div id="register-form" class="colm-form">
                     <!-- ---------------------------------Logo ---------------------- -->
-                    <!-- <img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo"> -->
+                    <img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo">
 
-                    <img class="logo-login" src="../img/WORKIFYTEXTLOGO.svg" alt="Logo">
+                    <!-- <img class="logo-login" src="../img/WORKIFYTEXTLOGO.svg" alt="Logo"> -->
 
                     <div class="form-container">
                         <form id="setupForm" action="/backend/php/setup_account.php" method="POST"
@@ -365,7 +365,7 @@ function getSchoolList($conn)
 
         </div>
         <!-- <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>        
+        <p>&copy; 2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School</p>        
     </footer> -->
     </div>
 </body>

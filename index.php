@@ -77,9 +77,10 @@ function generateJobCards($jobOffers)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Work Immersion Search | Workify</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <title>Work Immersion Search | Workify</title> -->
+    <title>Work Immersion Search | DRDSNHS</title>
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/modal.css">
@@ -102,9 +103,9 @@ function generateJobCards($jobOffers)
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
-                <img src="img/WORKIFY-LOGO.svg" alt="Logo">
+                <!-- <img src="img/WORKIFY-LOGO.svg" alt="Logo"> -->
                 <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
-                <!-- <img src="img/drdsnhs.svg" alt="Logo"> -->
+                <img src="img/drdsnhs.svg" alt="Logo">
             </a>
             <nav class="dash-middle">
                 <!-- <a class="active-header" href="index.php">Home</a>

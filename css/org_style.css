@@ -577,7 +577,7 @@ input::placeholder {
 }
 
 header {
-    background-color: #fff;
+    background-color: #016435;
     color: #fff;
     padding-top: 5px;
     padding-right: 100px;
@@ -619,7 +619,7 @@ header {
 }
 
 nav a {
-    color: #555 !important;
+    color: #fff !important;
     text-decoration: none;
     padding: 10px 20px;
     margin: 0 10px;
@@ -632,7 +632,7 @@ nav a {
 
 /* ----------------------------workify css--------------------- */
 
-.login-btn:hover {
+/* .login-btn:hover {
     color: #172738;
 }
 
@@ -652,23 +652,20 @@ nav a {
     transform: scaleX(0);
     transform-origin: bottom right;
     transition: transform 0.3s;
-}
+} */
 
 /* //////////////////////END ///////////////////////////////////////*/
 
 /* ------------------------------drdsnhs css ---------------------------- */
 
-/* nav .login-btn:hover {
+.login-btn:hover {
     color: #fff;
 }
 
-nav a:hover {
-    color: rgb(24, 97, 59, 0.7);
+.com-btn:hover {
+    color: #d4b346 !important;
+    text-decoration: none !important;
 }
-
-/* .active-header {
-  color: #1bbc9b;
-} */
 
 nav a::after {
     content: "";
@@ -683,7 +680,6 @@ nav a::after {
     transition: transform 0.3s;
 }
 
-*/
 /* //////////////////////END ///////////////////////////////////////*/
 
 nav a:hover::after {

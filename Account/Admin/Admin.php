@@ -264,7 +264,7 @@
     </script>
 
     <script>
-        $(".box").click(function (e) {
+        $(".box").click(function(e) {
             e.preventDefault();
             $(".content").removeClass("active");
             var content_id = $(this).attr("id");
@@ -276,7 +276,7 @@
 
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
+        <p>&copy; 2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School</p>
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>

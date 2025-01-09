@@ -1,145 +1,119 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+
+
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+};
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
+
+$student_id = $_SESSION['user_id'];
+$firstName = $_SESSION['first_name'];
+$middleName = $_SESSION['middle_name'];
+$lastName = $_SESSION['last_name'];
+$school = $_SESSION['school'];
+$gradeLevel = $_SESSION['grade_level'];
+$strand = strtoupper($_SESSION['strand']);
+// $stars = $_SESSION['stars'];
+$currentWork = $_SESSION['current_work'];
+$email = $_SESSION['email'];
+$profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
+$cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/logov3.jpg' : $_SESSION['cover_image'];
+
+
+$profile_divv = '<header class="nav-header">
+        <div class="logo">
+            <a href="Company_Area.php"> 
+                <img src="image/drdsnhs.svg" alt="Logo">
+            </a>
+         
+            
+        </div>
+        <nav class="by">
+
+ 
+ <div class="menu">
+  <div class="item">
+    <a class="link">
+      <span class="firstname"> <span class="username">Welcome </span> ' . $firstName . ' </span>
+      <svg viewBox="0 0 360 360" xml:space="preserve">
+        <g id="SVGRepo_iconCarrier">
+          <path
+            id="XMLID_225_"
+            d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
+          ></path>
+        </g>
+      </svg>
+    </a>
+    <div class="submenu">
+
+      <a class="logout"  href="' . '/backend/php/logout.php' . '">
+      
+      <div class="submenu-item ">
+       Log out
+      
+      </div>
+      
+      </a>
+    
+     
+    </div>
+  </div>
+</div>
+        
+        </nav>
+
+    </header>
+
+    ';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
-    <title>Woriky Verification</title>
-    <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+  <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+  <title>Verification</title>
+  <link rel="stylesheet" href="css/verify.css">
 
-    .wait {
-        margin-bottom: 20px;
-        color: #333;
-        margin-top: 40%;
-    }
-
-    .message {
-        font-size: 20px;
-        color: #555;
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    .nav-header {
-        background-color: #fff;
-        color: #fff;
-        padding-right: 20px;
-        padding-left: 100px;
-        text-align: center;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-    }
-
-    .logo img {
-        width: 220px;
-        margin-right: 30px;
-    }
-
-    .logo h1 {
-        margin: 0;
-        font-size: 24px;
-    }
-
-    .user-info {
-        display: flex;
-        align-items: center;
-        font-size: 16px;
-        position: relative;
-        margin-right: 100px;
-    }
-
-    .user-info img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-
-    .user-info .username {
-        font-weight: bold;
-        color: #333;
-    }
-
-    /* Dropdown Styles */
-    .dropdown {
-        display: none;
-        position: absolute;
-        top: 35px;
-        /* Position dropdown below the user icon */
-        right: 0;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-        z-index: 100;
-        width: 150px;
-        padding: 10px;
-    }
-
-    .dropdown a {
-        display: block;
-        padding: 8px;
-        text-decoration: none;
-        color: #333;
-        font-size: 14px;
-    }
-
-    .dropdown a:hover {
-        background-color: #f0f0f0;
-    }
-
-    /* Show the dropdown when hovering over the user-info */
-    .user-info:hover .dropdown {
-        display: block;
-    }
-    </style>
+  <style>
+  </style>
 </head>
 
 <body>
-    <header class="nav-header">
+  <!-- <header class="nav-header">
         <div class="logo">
             <a href="#">
-                <!-- <img src="image/header.png" alt="Logo"> -->
+                <img src="image/header.png" alt="Logo">
                 <img src="image/logov3.jpg" alt="Logo">
             </a>
         </div>
 
-        <!-- User info on the right side -->
+     
         <div class="user-info">
-            <img src="https://i.postimg.cc/TWZK3Jg1/user-icon.png" alt="User Avatar">
+
             <span class="username">Welcome</span>
 
-            <!-- Dropdown menu -->
+          
             <div class="dropdown">
-                <!-- <a href="Profile.php">Profile</a>
-                <a href="Settings.php">Settings</a> -->
+                
                 <a href="../../index.php">Logout</a>
             </div>
         </div>
-    </header>
+    </header> -->
+  <?php echo $profile_divv; ?>
 
-    <div class="wame">
-        <h1 class="wait">Wait for Your Account Verification</h1>
-        <div class="message">Please wait for the verification of your account.</div>
-    </div>
+  <div class="wame">
+    <h1 class="wait">Wait for Your Account Verification</h1>
+    <div class="message">Please wait for the verification of your account.</div>
+  </div>
 </body>
 
 </html>
