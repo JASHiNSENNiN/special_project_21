@@ -392,116 +392,15 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
             avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
             avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
             avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
-        const averages = {
-            avgPunctual: <?= json_encode($avgPunctual) ?>,
-            avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
-            avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
-            avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
-            avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
-            avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
-            avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
-            avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
-            avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
-            avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
-            avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
-            avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
-            avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
-            avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
-            avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
-            avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
-            avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
-            avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+        };
 
-        };
-        const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
-        console.log(dailyPerformance);
-        };
         const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
         console.log(dailyPerformance);
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
     <style>
-        @media print {
-            body {
-        @media print {
-            body {
 
-                -webkit-print-color-adjust: exact;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                height: 100% !important;
-            }
-                -webkit-print-color-adjust: exact;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                height: 100% !important;
-            }
-
-            .column-profile {
-                float: left;
-                width: auto;
-                padding: 10px;
-                height: 300px;
-            }
-            .column-profile {
-                float: left;
-                width: auto;
-                padding: 10px;
-                height: 300px;
-            }
-
-            .row-profile:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-            .row-profile:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-
-
-            .print-btn,
-            .docu,
-            .edit-button,
-            .nav-header,
-            footer {
-                display: none;
-            }
-            .print-btn,
-            .docu,
-            .edit-button,
-            .nav-header,
-            footer {
-                display: none;
-            }
-
-            /* #piechart_3d,
-            /* #piechart_3d,
-            #dp_chart_div {
-                width: auto;
-                height: 200%;
-                padding-bottom: 50px;
-
-
-            } */
-
-            /* main,
-            /* main,
-            .app-content__widget,
-            .eval-graph,
-            .dp-graph {
-                
-                
-
-            } */
-
-        }
-        }
     </style>
 
 
@@ -678,24 +577,11 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
         <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student'): ?>
             <div class="dashboard-body docu">
-            <div class="dashboard-body docu">
-
                 <main class="dashboard__main app-content">
-                <main class="dashboard__main app-content">
-
                     <article class="app-content__widget app-content__widget--primary">
                         <hr>
                         <h2 class="title-resume">Application Documents</h2>
-                        <!-- <span class="description-resume">Please upload the required documents for your work immersion
-                    <article class="app-content__widget app-content__widget--primary">
-                        <hr>
-                        <h2 class="title-resume">Application Documents</h2>
-                        <!-- <span class="description-resume">Please upload the required documents for your work immersion
-                        application: resume, application letter, barangay clearance, police clearance, mayor's
-                        clearance, and medical certificate. </span> -->
                         <div id="content-cover">
-                        <div id="content-cover">
-
                             <table class="table" id="sortableTable-docu">
                                 <thead>
                                     <tr>
@@ -706,22 +592,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                 <tbody>
                                     <?php foreach ($unique_documents as $document_name): ?>
                                         <tr>
-                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                            <table class="table" id="sortableTable-docu">
-                                <thead>
-                                    <tr>
-                                        <th class="th-name">Document Name</th>
-                                        <th class="th-date">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($unique_documents as $document_name): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
-                                            </td>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?></td>
                                             <td>
                                                 <?php
                                                 // Check for the document URL and existence of file
@@ -739,17 +610,6 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                                             href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
                                                             Download
                                                         </a>
-                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                                    <?php else: ?>
-                                                        <button disabled>File Not Available</button>
-                                                    <?php endif;
-                                                        <a class="btn btn-download btn-success"
-                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
-                                                            Download
-                                                        </a>
-                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
                                                     <?php else: ?>
                                                         <button disabled>File Not Available</button>
                                                     <?php endif;
@@ -761,86 +621,22 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                            <!-- <div class="one_col file-upload">
-                                                    <button disabled>No Document Found</button>
-                                                <?php } ?>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <!-- <div class="one_col file-upload">
-                                <label for="documentType">Document Type:</label>
-                                <select id="documentType" name="documentType">
-                                    <option value="">--Select--</option>
-                                    <option value="Resume">Resume</option>
-                                    <option value="Application-letter ">Application letter </option>
-                                    <option value="Barangay">Barangay</option>
-                                    <option value="Police-Clearance ">Police Clearance </option>
-                                    <option value="Mayors-Clearance ">Mayor's Clearance </option>
-                                    <option value="Medical-Certificate">Medical Certificate</option>
-                                </select>
-                                <div id="file">
-                                    <ul id="image-list">
-                                    </ul>
-                                </div>
-                                <input type="file" class="file" name="images" id="uploadFile" multiple />
-                                <span class="error"></span>
-                            </div> -->
-                            <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
-                            <!-- <button class="btn btn-add btn-primary" disabled="disabled">Add New</button> -->
-
-                            <!-- <span class="successfully-saved">
-                            <!-- <span class="successfully-saved">
-                                <i class="fa fa-thumbs-up"></i> Saved!
-                            </span> -->
-
-
-
-
-
-                        </div>
-                        <hr>
-                        <h2 class="title-resume">Daily Insight</h2>
-                        <span class="description-resume">The line chart analyzes student daily performance in work
-                            immersion, and the pie chart displays the distribution of performance levels.</span>
                         </div>
                         <hr>
                         <h2 class="title-resume">Daily Insight</h2>
                         <span class="description-resume">The line chart analyzes student daily performance in work
                             immersion, and the pie chart displays the distribution of performance levels.</span>
 
-
                         <div class="container-grap">
                             <div class="dp-graph" id="piechart_3d"></div>
                         </div>
                         <div class="container-grap">
-                            <div class="dp-graph" id="piechart_3d"></div>
-                        </div>
-
-
-
-                        <div class="container-grap">
                             <div class="dp-graph" id="dp_chart_div"></div>
-                        <div class="container-grap">
-                            <div class="dp-graph" id="dp_chart_div"></div>
-
                         </div>
                     </article>
-                        </div>
-                    </article>
-
-                    <!-- /////////////////////////////////////////side column ////////////////////////////// -->
-                    <!-- /////////////////////////////////////////side column ////////////////////////////// -->
-
-
-
-                </main>
-            </div>
                 </main>
             </div>
         <?php endif; ?>
-
 
 
         <div class="dashboard-body">
