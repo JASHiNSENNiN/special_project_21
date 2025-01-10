@@ -607,19 +607,13 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
-                                        <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
-                                            Download
-                                        </a>
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                        <?php else: ?>
-                                        <button disabled>File Not Available</button>
-                                        <?php endif;
                                                         <a class="btn btn-download btn-success"
                                                             href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
                                                             Download
                                                         </a>
+                                                        <!-- Uncomment the button below to enable viewing functionality -->
+                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
                                                     <?php else: ?>
                                                         <button disabled>File Not Available</button>
                                                     <?php endif;
@@ -822,9 +816,9 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-    document.getElementById('refreshButton').addEventListener('click', function() {
-        location.reload("card-graph");
-    });
+        document.getElementById('refreshButton').addEventListener('click', function() {
+            location.reload("card-graph");
+        });
     </script>
 
 
