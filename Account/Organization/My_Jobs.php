@@ -180,7 +180,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/My_Jobs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -194,10 +194,6 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
-
             html {
                 display: none;
             }
@@ -245,17 +241,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
             modal.style.display = "block";
         }
-        // Open the modal for the specific job
-        function openModal(jobId) {
-            var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
-            modal.style.display = "block";
-        }
 
-        // Close the modal for the specific job
-        function closeModal(jobId) {
-            var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
-            modal.style.display = "none";
-        }
         // Close the modal for the specific job
         function closeModal(jobId) {
             var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
@@ -283,8 +269,6 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
                 // Set the current description in the editor for each job modal
                 quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
-                // Set the current description in the editor for each job modal
-                quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
 
                 // When submitting the form, save the content from the editor
                 var form = document.querySelector("#myModal-job<?php echo $job['id']; ?> form");
@@ -301,10 +285,6 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         function myFunction() {
             confirm("Are you Sure?");
         }
-
-        function myFunction() {
-            confirm("Are you Sure?");
-        }
     </script>
     <script type="text/javascript" src="css/doc.js"></script>
 
@@ -313,18 +293,6 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             const extraNotifications = document.querySelector('.extra-notifications');
             const seeMoreLink = document.querySelector('.see-more');
 
-            function toggleNotifications() {
-                const extraNotifications = document.querySelector('.extra-notifications');
-                const seeMoreLink = document.querySelector('.see-more');
-
-                if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
-                    extraNotifications.style.display = 'block';
-                    seeMoreLink.textContent = 'See Less';
-                } else {
-                    extraNotifications.style.display = 'none';
-                    seeMoreLink.textContent = 'See More';
-                }
-            }
             if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
                 extraNotifications.style.display = 'block';
                 seeMoreLink.textContent = 'See Less';

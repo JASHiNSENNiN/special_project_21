@@ -155,7 +155,7 @@ $profile_divv = '<header class="nav-header">
     <link rel="stylesheet" type="text/css" href="css/Profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
 
 
 
@@ -176,8 +176,7 @@ $profile_divv = '<header class="nav-header">
         <ul>
 
             <li>
-                <a href="<?php //echo $_SERVER['HTTP_REFERER']; 
-                            ?>" onclick="window.location.href = document.referrer;">
+                <a href="<?php //echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
                     <i class=" fa fa-sign-out-alt fa-2x"></i>
                 </a>
             </li>
