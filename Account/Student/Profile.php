@@ -625,6 +625,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            </table>
                         </div>
                         <hr>
                         <h2 class="title-resume">Daily Insight</h2>
