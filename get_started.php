@@ -122,7 +122,7 @@ function getSchoolList($conn)
     <meta charset="UTF-8">
     <title>Set Up Account</title>
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="stylesheet" type="text/css" href="../css/header_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/loginform_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/get_start_log.css">

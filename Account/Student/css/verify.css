@@ -5,6 +5,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url("/Account/Student/image/DrRamonv2.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .wait {
@@ -98,7 +101,6 @@ body {
     margin-left: -15em;
     position: fixed;
     width: 33em;
-    height: 18em;
 }
 
 .nav-header {
