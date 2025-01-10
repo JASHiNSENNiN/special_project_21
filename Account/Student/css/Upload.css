@@ -189,7 +189,7 @@ input::placeholder {
 }
 
 .nav-header {
-  background-color: #fff;
+  background-color: #016435;
   color: #fff;
   padding-top: 5px;
   /* padding-right: 20px; */
@@ -271,15 +271,15 @@ nav .login-btn:hover {
 
 .active {
   color: #fff;
-  /* background-color: rgba(52, 121, 40, 0.9); */
-  background-color: rgba(27, 188, 155, 0.9);
+  background-color: #016435;
+  /* background-color: rgba(27, 188, 155, 0.9); */
   font-weight: bold;
 }
 
 .bt a:hover {
   color: #000;
   /* background-color: rgb(37, 216, 180); */
-  background-color: rgba(27, 188, 155, 0.1);
+  /* background-color: rgba(27, 188, 155, 0.1); */
 
   font-weight: bold;
 }
@@ -287,8 +287,8 @@ nav .login-btn:hover {
 /* rgba(52, 121, 40, 0.9) */
 
 .by a:hover {
-  color: #199c81;
-  /* color: #347928; */
+  /* color: #199c81; */
+  color: 016435;
   background-color: rgba(27, 188, 155, 0.1);
   font-weight: bold;
 }
@@ -298,7 +298,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #199c81;
+  background-color: #016435;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -311,7 +311,7 @@ nav .login-btn:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #199c81;
+  background-color: #016435;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -561,7 +561,7 @@ nav a:hover::after {
   object-fit: cover;
   margin-left: 21%;
   margin-top: -90px;
-  border: 5px solid #fff;
+  border: 2px solid #fff;
 }
 
 .name {

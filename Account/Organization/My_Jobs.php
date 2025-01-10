@@ -197,14 +197,18 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             html {
                 display: none;
             }
+
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="<?= $home ?>">
-                <img src="../../img/logov3.jpg" alt="Logo">
-                <!-- <img src="image/drdsnhs.svg" alt="Logo"> -->
+                <!-- <img src="../../img/logov3.jpg" alt="Logo"> -->
+                <img src="image/drdsnhs.svg" alt="Logo">
             </a>
             <nav class="dash-middle">
 
@@ -213,11 +217,11 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         <nav class="nav-log">
 
             <div class="css-1ld7x2h eu4oa1w0"></div>
-            <a class="com-btn" href="<?= $home ?>"> Back</a>
+            <a class="com-btn" href="<?= $home ?>" style="font-size:40px; color:#fff;margin-top: -10px;"> &#8594</a>
         </nav>
     </header>
 
-    <div class="container" id="container_modal" style=" width:auto;">
+    <div class=" container" id="container_modal" style=" width:auto;">
 
         <div class="searched-jobs">
             <ul class="globalTargetList" style="list-style-type: none;">
@@ -241,7 +245,17 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
             modal.style.display = "block";
         }
+        // Open the modal for the specific job
+        function openModal(jobId) {
+            var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
+            modal.style.display = "block";
+        }
 
+        // Close the modal for the specific job
+        function closeModal(jobId) {
+            var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
+            modal.style.display = "none";
+        }
         // Close the modal for the specific job
         function closeModal(jobId) {
             var modal = document.getElementById("myModal-job" + jobId); // Get the modal based on job ID
@@ -269,6 +283,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
                 // Set the current description in the editor for each job modal
                 quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
+                // Set the current description in the editor for each job modal
+                quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
 
                 // When submitting the form, save the content from the editor
                 var form = document.querySelector("#myModal-job<?php echo $job['id']; ?> form");
@@ -285,6 +301,10 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         function myFunction() {
             confirm("Are you Sure?");
         }
+
+        function myFunction() {
+            confirm("Are you Sure?");
+        }
     </script>
     <script type="text/javascript" src="css/doc.js"></script>
 
@@ -293,6 +313,18 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             const extraNotifications = document.querySelector('.extra-notifications');
             const seeMoreLink = document.querySelector('.see-more');
 
+            function toggleNotifications() {
+                const extraNotifications = document.querySelector('.extra-notifications');
+                const seeMoreLink = document.querySelector('.see-more');
+
+                if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+                    extraNotifications.style.display = 'block';
+                    seeMoreLink.textContent = 'See Less';
+                } else {
+                    extraNotifications.style.display = 'none';
+                    seeMoreLink.textContent = 'See More';
+                }
+            }
             if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
                 extraNotifications.style.display = 'block';
                 seeMoreLink.textContent = 'See Less';

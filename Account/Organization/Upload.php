@@ -251,7 +251,7 @@ require_once 'show_profile.php';
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a class="active" href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
+            <a href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
             <a href="Job_request.php"><i class="fa fa-user-plus"></i> Job Request</a>
             <a href="Faculty_report.php"><i class='fas fa-tasks'></i> Student Evaluation</a>
             <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
@@ -268,6 +268,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Business Permit
                         <?php if (isDocumentUploaded("business_permit")): ?>
+                            <div class="check-icon"></div>
                             <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
@@ -293,6 +294,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Memorandum of Agreement
                         <?php if (isDocumentUploaded("memorandum_of_agreement")): ?>
+                            <div class="check-icon"></div>
                             <div class="check-icon"></div>
                         <?php endif; ?>
 
@@ -334,6 +336,26 @@ require_once 'show_profile.php';
         var sticky = header.offsetTop;
         var header = document.getElementById("myHeader-sticky");
         var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
+        var header = document.getElementById("myHeader-sticky");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
+        }
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("stickyhead");
+            } else {
+                header.classList.remove("stickyhead");
+            }
+        }
 
         function myFunction() {
             if (window.pageYOffset > sticky) {
@@ -354,35 +376,61 @@ require_once 'show_profile.php';
 
     <script type="text/javascript">
         const dropBoxes = document.querySelectorAll(".drop_box");
+        const dropBoxes = document.querySelectorAll(".drop_box");
 
 
         dropBoxes.forEach(dropBox => {
-            const button = dropBox.querySelector("button");
-            const input = dropBox.querySelector("input");
-            const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
-            dropBoxes.forEach(dropBox => {
-                const button = dropBox.querySelector("button");
-                const input = dropBox.querySelector("input");
-                const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
+                    const button = dropBox.querySelector("button");
+                    const input = dropBox.querySelector("input");
+                    const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
+                    dropBoxes.forEach(dropBox => {
+                                const button = dropBox.querySelector("button");
+                                const input = dropBox.querySelector("input");
+                                const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
+                                dropBoxes.forEach(dropBox => {
+                                            const button = dropBox.querySelector("button");
+                                            const input = dropBox.querySelector("input");
+                                            const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
+                                            dropBoxes.forEach(dropBox => {
+                                                        const button = dropBox.querySelector("button");
+                                                        const input = dropBox.querySelector("input");
+                                                        const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
 
-                button.onclick = () => {
-                    input.click();
-                };
-                button.onclick = () => {
-                    input.click();
-                };
+                                                        button.onclick = () => {
+                                                            input.click();
+                                                        };
+                                                        button.onclick = () => {
+                                                            input.click();
+                                                        };
+                                                        button.onclick = () => {
+                                                            input.click();
+                                                        };
+                                                        button.onclick = () => {
+                                                            input.click();
+                                                        };
 
-                input.addEventListener("change", function(e) {
-                    const files = e.target.files; // Get the selected files
-                    fileListElement.innerHTML = ''; // Clear the previous file list
+                                                        input.addEventListener("change", function(e) {
+                                                                    const files = e.target.files; // Get the selected files
+                                                                    fileListElement.innerHTML = ''; // Clear the previous file list
 
+                                                                    // Display each selected file
+                                                                    Array.from(files).forEach(file => {
+                                                                                let fileItem = document.createElement('li');
+                                                                                fileItem.innerHTML = `
                     // Display each selected file
                     Array.from(files).forEach(file => {
                         let fileItem = document.createElement('li');
-                        fileItem.innerHTML = `
-                    <h4>${file.name}</h4>
-                    
-                `;
+                        fileItem.innerHTML = ` <
+                                                                                    h4 > $ {
+                                                                                        file.name
+                                                                                    } < /h4>
+
+                                                                                `;
+                        fileListElement.appendChild(fileItem);
+                    });
+                });
+            });
+        });
                         fileListElement.appendChild(fileItem);
                     });
                 });
@@ -392,8 +440,8 @@ require_once 'show_profile.php';
 
 
     <footer>
-        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
-        ©2024 Your Website. All rights reserved. | Junior Philippines Computer
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- ©2024 Your Website. All rights reserved. | Junior Philippines Computer -->
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>
@@ -405,6 +453,18 @@ require_once 'show_profile.php';
             const extraNotifications = document.querySelector('.extra-notifications');
             const seeMoreLink = document.querySelector('.see-more');
 
+            function toggleNotifications() {
+                const extraNotifications = document.querySelector('.extra-notifications');
+                const seeMoreLink = document.querySelector('.see-more');
+
+                if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+                    extraNotifications.style.display = 'block';
+                    seeMoreLink.textContent = 'See Less';
+                } else {
+                    extraNotifications.style.display = 'none';
+                    seeMoreLink.textContent = 'See More';
+                }
+            }
             if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
                 extraNotifications.style.display = 'block';
                 seeMoreLink.textContent = 'See Less';

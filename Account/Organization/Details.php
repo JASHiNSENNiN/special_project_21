@@ -197,6 +197,7 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
 ?>
 <script>
     var dailyPerformance = <?php echo $dailyPerformance; ?>;
+    var dailyPerformance = <?php echo $dailyPerformance; ?>;
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -330,7 +331,35 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
                                     <?php echo isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0; ?>;
                             </script>
                         <?php endforeach; ?>
+                        <?php foreach ($jobOffers as $job): ?>
+                            <tr class="job_title">
+                                <td>
+                                    <a
+                                        href="../../org.php?job_id=<?php echo urlencode(base64_encode(encrypt_url_parameter((string) $job['id']))); ?>">
+                                        <?php echo htmlspecialchars($job['work_title'], ENT_QUOTES, 'UTF-8'); ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="stars-outer">
+                                        <div class="stars-inner"
+                                            style="width: <?php echo (isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0) / 5 * 100; ?>%;">
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="number-rating"><?php echo number_format(isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0, 1); ?></span>
+                                </td>
+                                <td><?php echo (int) $job['total_students']; ?></td>
+                            </tr>
+                            <script>
+                                // Add the average rating for this job offer
+                                ratings['job_title_<?php echo $job['id']; ?>'] =
+                                    <?php echo isset($job['avg_quality_of_experience']) ? $job['avg_quality_of_experience'] : 0; ?>;
+                            </script>
+                        <?php endforeach; ?>
                     <?php else: ?>
+                        <tr>
+                            <td colspan="3">No job offers available.</td>
+                        </tr>
                         <tr>
                             <td colspan="3">No job offers available.</td>
                         </tr>
@@ -351,35 +380,59 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
     <script>
         // Total Stars
         const starsTotal = 5;
+        // Total Stars
+        const starsTotal = 5;
 
         // Get ratings
         function getRatings() {
             const jobTitles = document.querySelectorAll('.job_title'); // Get all job titles
+            // Get ratings
+            function getRatings() {
+                const jobTitles = document.querySelectorAll('.job_title'); // Get all job titles
 
-            jobTitles.forEach((job) => {
-                const ratingElement = job.querySelector('.number-rating');
+                jobTitles.forEach((job) => {
+                        const ratingElement = job.querySelector('.number-rating');
+                        jobTitles.forEach((job) => {
+                                const ratingElement = job.querySelector('.number-rating');
 
-                if (ratingElement) {
-                    const ratingValue = parseFloat(ratingElement.innerHTML);
-                    // Get percentage
-                    const starPercentage = (ratingValue / starsTotal) * 100;
+                                if (ratingElement) {
+                                    const ratingValue = parseFloat(ratingElement.innerHTML);
+                                    // Get percentage
+                                    const starPercentage = (ratingValue / starsTotal) * 100;
+                                    if (ratingElement) {
+                                        const ratingValue = parseFloat(ratingElement.innerHTML);
+                                        // Get percentage
+                                        const starPercentage = (ratingValue / starsTotal) * 100;
 
-                    // Round to nearest 10
-                    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-                    const starsInnerElement = job.querySelector('.stars-inner');
+                                        // Round to nearest 10
+                                        const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+                                        const starsInnerElement = job.querySelector('.stars-inner');
+                                        // Round to nearest 10
+                                        const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+                                        const starsInnerElement = job.querySelector('.stars-inner');
 
-                    if (starsInnerElement) {
-                        starsInnerElement.style.width = starPercentageRounded;
+                                        if (starsInnerElement) {
+                                            starsInnerElement.style.width = starPercentageRounded;
+                                        }
+                                    }
+                                });
+                        }
+                        if (starsInnerElement) {
+                            starsInnerElement.style.width = starPercentageRounded;
+                        }
                     }
-                }
-            });
+                });
         }
 
+        // Run getRatings when DOM loads
+        document.addEventListener('DOMContentLoaded', getRatings);
         // Run getRatings when DOM loads
         document.addEventListener('DOMContentLoaded', getRatings);
     </script>
 
     <script>
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
@@ -389,6 +442,8 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
     </script>
 
     <script>
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
@@ -411,6 +466,20 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
             const table = document.getElementById('job-title');
             const tr = table.getElementsByTagName('tr');
 
+            function filterTable() {
+                const input = document.getElementById('searchInput');
+                const filter = input.value.toLowerCase();
+                const table = document.getElementById('job-title');
+                const tr = table.getElementsByTagName('tr');
+
+                for (let i = 1; i < tr.length; i++) {
+                    const td = tr[i].getElementsByTagName('td')[0];
+                    if (td) {
+                        const txtValue = td.textContent || td.innerText;
+                        tr[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+                    }
+                }
+            }
             for (let i = 1; i < tr.length; i++) {
                 const td = tr[i].getElementsByTagName('td')[0];
                 if (td) {
@@ -426,6 +495,18 @@ $jobOffers = getJobOffers($_SESSION['user_id']);
             const extraNotifications = document.querySelector('.extra-notifications');
             const seeMoreLink = document.querySelector('.see-more');
 
+            function toggleNotifications() {
+                const extraNotifications = document.querySelector('.extra-notifications');
+                const seeMoreLink = document.querySelector('.see-more');
+
+                if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+                    extraNotifications.style.display = 'block';
+                    seeMoreLink.textContent = 'See Less';
+                } else {
+                    extraNotifications.style.display = 'none';
+                    seeMoreLink.textContent = 'See More';
+                }
+            }
             if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
                 extraNotifications.style.display = 'block';
                 seeMoreLink.textContent = 'See Less';
