@@ -231,6 +231,8 @@ require_once 'show_profile.php';
     <title>Student Dashboard</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <link rel="stylesheet" type="text/css" href="css/Upload.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <!-- <link rel="stylesheet" type="text/css" href="css/modal.css"> -->
@@ -251,7 +253,7 @@ require_once 'show_profile.php';
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
+            <a class="active" href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
             <a href="Job_request.php"><i class="fa fa-user-plus"></i> Job Request</a>
             <a href="Faculty_report.php"><i class='fas fa-tasks'></i> Student Evaluation</a>
             <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
@@ -392,8 +394,8 @@ require_once 'show_profile.php';
 
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
-        <!-- ©2024 Your Website. All rights reserved. | Junior Philippines Computer -->
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        ©2024 Your Website. All rights reserved. | Junior Philippines Computer
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>

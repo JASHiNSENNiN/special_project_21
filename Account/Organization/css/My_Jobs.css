@@ -55,7 +55,7 @@ input[type="submit"]:hover {
 
 header {
   /* background-color: #016435; */
-  background-color: #016435;
+  background-color: #fff;
   color: #fff;
   padding-top: 5px;
   padding-right: 20px;
@@ -101,7 +101,7 @@ nav a {
   /* color: rgba(0, 0, 0, 0.6); */
   text-decoration: none;
   padding: 10px 20px;
-  /* margin: 0 10px; */
+  margin: 0 10px;
   border-radius: 5px;
   position: relative;
   transition: background-color 0.3s;
@@ -114,9 +114,8 @@ nav .login-btn:hover {
 }
 
 nav a:hover {
-  color: #016435;
+  color: #1bbc9b;
   /* color: #347928; */
-  /* margin-top: -10px; */
   text-decoration: none !important;
 }
 
@@ -132,7 +131,6 @@ nav a::after {
   background-color: #1bbc9b;
   bottom: -17px;
   left: 0;
-  top: -100px;
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s;
@@ -1122,12 +1120,11 @@ html {
     margin-right: 5px;
   }
   .dash-middle,
-  .com-btn,
   .css-1ld7x2h,
+  .com-btn,
   .sub-btn {
     display: none !important;
   }
-
   .login-btn {
     font-size: 16px !important;
   }

@@ -11,7 +11,9 @@ require_once 'show_profile.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization Dashboard</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
     <link rel="stylesheet" type="text/css" href="css/job_ads.css">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
 
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
@@ -145,8 +147,8 @@ require_once 'show_profile.php';
     <script type="text/javascript" src="css/doc.js"></script>
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
-        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer </p> -->
+        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer </p>
     </footer>
 
     <!-- <script>

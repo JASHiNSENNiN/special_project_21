@@ -49,7 +49,7 @@ img {
   object-fit: cover;
   margin-left: 21%;
   margin-top: -90px;
-  border: 2px solid #fff;
+  /* border: 5px solid #fff; */
 }
 
 .name {
@@ -148,7 +148,7 @@ h1 {
 }
 
 .nav-header {
-  background-color: #016435;
+  background-color: #fff;
   color: #fff;
   padding-top: 5px;
   /* padding-right: 20px; */
@@ -255,8 +255,8 @@ nav a:hover {
 
 .active {
   color: #fff;
-  background-color: #016435;
-  /* background-color: rgba(27, 188, 155, 0.9); */
+  /* background-color: rgba(27, 121, 40, 0.9); */
+  background-color: rgba(27, 188, 155, 0.9);
   font-weight: bold;
 }
 
@@ -269,7 +269,7 @@ nav a:hover {
 
 .by a:hover {
   /* color: #347928; */
-  color: #016435;
+  color: #1bbc9b;
   /* background-color: rgba(27, 188, 155, 0.4); */
   font-weight: bold;
 }
@@ -279,7 +279,7 @@ nav a:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #016435;
+  background-color: #1bbc9b;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -292,7 +292,7 @@ nav a:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #016435;
+  background-color: #1bbc9b;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -303,7 +303,7 @@ nav a:hover {
 .dropdown {
   position: relative;
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .dropdown-content {
@@ -509,7 +509,7 @@ nav a:hover::after {
     margin: 0;
   }
   .dropdown {
-    margin-top: 17px;
+    margin-top: 9px;
   }
 }
 

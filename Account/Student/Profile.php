@@ -164,7 +164,7 @@ $dailyPerformance = getDailyPerformance($user_id, $pdo);
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="../../Account/' . $_SESSION['account_type'] . '"> 
-                <img src="image/drdsnhs.svg" alt="Logo">
+                <img src="image/logov3.jpg" alt="Logo">
             </a>
            
             
@@ -172,7 +172,7 @@ $profile_divv = '<header class="nav-header">
         <nav class="by">
 
  
- <a class="btn-home" style="color:#fff; font-weight: 600; text-decoration:none;" href="../../Account/' . $_SESSION['account_type'] . '"> Back &#8594; </a>
+ <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/' . $_SESSION['account_type'] . '"> Back </a>
   
 </div>
         
@@ -606,6 +606,15 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
+                                        <a class="btn btn-download btn-success"
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                            Download
+                                        </a>
+                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                        <?php else: ?>
+                                        <button disabled>File Not Available</button>
+                                        <?php endif;
                                                         <a class="btn btn-download btn-success"
                                                             href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
                                                             Download
@@ -812,7 +821,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript"></script>
 
-    <!-- -------------------------------------------------END ----------------- ------------------------------------- -->
+    <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
         document.getElementById('refreshButton').addEventListener('click', function() {
             location.reload("card-graph");

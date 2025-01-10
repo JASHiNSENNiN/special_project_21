@@ -58,13 +58,13 @@ $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="Company_Area.php">
-                <img src="image/drdsnhs.svg" alt="Logo">
+                <img src="image/logov3.jpg" alt="Logo">
             </a>
         </div>
         <nav class="by">
 
  <div class="dropdowntf" style="float:right;">
-                <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px; color:#fff;"></i><span
+                <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
                         class="badge">2</span></a>
                 <div class="dropdowntf-content" id="box">
                     <label  class="notif">Notification</label>
@@ -126,7 +126,7 @@ $profile_div = '<header class="nav-header">
 
 
             <div class="dropdown" style="float:right;">
-                <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;color:#fff;"></i></a>
+                <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
                     <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My
