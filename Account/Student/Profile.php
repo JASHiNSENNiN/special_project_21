@@ -345,6 +345,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
     <title>Student Dashboard</title>
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
 
 
     <!-- FontAwesome 5 -->
@@ -606,6 +607,15 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
+                                        <a class="btn btn-download btn-success"
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                            Download
+                                        </a>
+                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                        <?php else: ?>
+                                        <button disabled>File Not Available</button>
+                                        <?php endif;
                                                         <a class="btn btn-download btn-success"
                                                             href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
                                                             Download
@@ -812,9 +822,9 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
-            location.reload("card-graph");
-        });
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        location.reload("card-graph");
+    });
     </script>
 
 
