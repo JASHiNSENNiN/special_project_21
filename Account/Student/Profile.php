@@ -606,15 +606,6 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
-                                        <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
-                                            Download
-                                        </a>
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                        <?php else: ?>
-                                        <button disabled>File Not Available</button>
-                                        <?php endif;
                                                         <a class="btn btn-download btn-success"
                                                             href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
                                                             Download
@@ -633,8 +624,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                         </div>
                         <hr>
                         <h2 class="title-resume">Daily Insight</h2>
-                        <span class="description-resume">The line chart analyzes student daily performance in work
-                            immersion, and the pie chart displays the distribution of performance levels.</span>
+                        <span class="description-resume">The line chart analyzes student daily performance in work immersion, and the pie chart displays the distribution of performance levels.</span>
 
                         <div class="container-grap">
                             <div class="dp-graph" id="piechart_3d"></div>
@@ -646,7 +636,6 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                 </main>
             </div>
         <?php endif; ?>
-
 
         <div class="dashboard-body">
 
