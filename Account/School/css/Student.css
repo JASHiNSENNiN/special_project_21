@@ -148,7 +148,7 @@ h3 {
 }
 
 .nav-header {
-  background-color: #fff;
+  background-color: #016435;
   color: #fff;
   padding-top: 5px;
   /* padding-right: 20px; */
@@ -250,8 +250,8 @@ nav a:hover {
 
 .active1 {
   color: #fff;
-  background-color: rgba(30, 189, 156, 0.8);
-  /* background-color: rgba(52, 121, 40, 0.9); */
+  /* background-color: rgba(30, 189, 156, 0.8); */
+  background-color: #016435;
   font-weight: bold;
 }
 
@@ -262,8 +262,8 @@ nav a:hover {
 }
 
 .by a:hover {
-  color: #1ebd9c;
-  /* color: #347928; */
+  /* color: #1ebd9c; */
+  color: #347928;
   /* background-color: rgba(27, 188, 155, 0.1); */
   font-weight: bold;
 }
@@ -273,7 +273,7 @@ nav a:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1ebd9c;
+  background-color: #347928;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -286,7 +286,7 @@ nav a:hover {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #1ebd9c;
+  background-color: #fff;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
@@ -529,7 +529,7 @@ nav a:hover::after {
 }
 
 .box:hover {
-  background-color: #0095e5;
+  background-color: rgb(1, 100, 53, 0.8);
   color: white;
 }
 
