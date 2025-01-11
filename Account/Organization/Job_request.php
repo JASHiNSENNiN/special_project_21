@@ -252,8 +252,6 @@ function revertToOngoing($applicant_id)
                 <?php foreach ($applicants as $job_id => $applicant_list) { ?>
                     <?php foreach ($applicant_list as $applicant) { ?>
                         <?php
-                    <?php foreach ($applicant_list as $applicant) { ?>
-                        <?php
                         $student_id = $applicant['student_id'];
                         $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
                         $student_row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
@@ -262,13 +260,6 @@ function revertToOngoing($applicant_id)
                         $job_row = mysqli_fetch_assoc(mysqli_query($conn, $job_title_query));
                         $job_title = $job_row['work_title'] ?? 'N/A'; // Use 'N/A' if no job title found
                         ?>
-                        <tr>
-                            <td><?= $applicant['id'] ?></td>
-                            <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
-                            <td><?= $student_row['strand'] ?></td>
-                            <td><?= $job_title ?></td>
-                            <td>
-                                <?php
                         <tr>
                             <td><?= $applicant['id'] ?></td>
                             <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
@@ -294,27 +285,8 @@ function revertToOngoing($applicant_id)
                                 }
                                 ?>
                             </td>
-                            </td>
 
 
-                            <td>
-                                <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
-                                    <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
-                                    <?php if ($applicant['status'] === 'completed') { ?>
-                                        <!-- Do not show any buttons if the status is 'completed' -->
-                                        <!-- <input type="text" value="Completed!" readonly> -->
-                                    <?php } elseif ($applicant['status'] === 'accepted') { ?>
-                                        <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button><br>
-                                    <?php } else { ?>
-                                        <button type="submit" class="button-9" name="accept_applicant" onclick="updateStatus(this)"
-                                            autofocus>Accept</button>
-                                    <?php } ?>
-                                </form>
-                                <a
-                                    href="<?php echo $ProfileViewURL; ?>?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
-                                    <button type="button" class="button-4">Details</button> <br>
-                                </a>
-                                <?php
                             <td>
                                 <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
                                     <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
@@ -334,13 +306,13 @@ function revertToOngoing($applicant_id)
                                 </a>
                                 <?php
                                 switch ($applicant['status']) {
-                                        //     case 'applied':
-                                        //         echo '
-                                        //   <form method="POST" style="display:inline;">
-                                        //       <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
-                                        //       <button type="submit" class="button-9" name="accept_applicant" style="padding: 0 13px;">Accept</button>
-                                        //   </form>';
-                                        //         break;
+                                    case 'applied':
+                                        echo '
+                                  <form method="POST" style="display:inline;">
+                                      <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
+                                      <button type="submit" class="button-9" name="accept_applicant" style="padding: 0 13px;">Accept</button>
+                                  </form>';
+                                        break;
                                     case 'accepted':
                                         echo '
                                   <form method="POST" style="display:inline;">
@@ -359,9 +331,6 @@ function revertToOngoing($applicant_id)
                                         break;
                                 }
                                 ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>
@@ -402,8 +371,8 @@ function revertToOngoing($applicant_id)
                 row.style.display = found ? '' : 'none';
             });
         });
-                row.style.display = found ? '' : 'none';
-            });
+        row.style.display = found ? '' : 'none';
+        });
         });
     </script>
 
@@ -442,18 +411,19 @@ function revertToOngoing($applicant_id)
         function toggleNotifications() {
             const extraNotifications = document.querySelector('.extra-notifications');
             const seeMoreLink = document.querySelector('.see-more');
-        function toggleNotifications() {
-            const extraNotifications = document.querySelector('.extra-notifications');
-            const seeMoreLink = document.querySelector('.see-more');
 
-            if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
-                extraNotifications.style.display = 'block';
-                seeMoreLink.textContent = 'See Less';
-            } else {
-                extraNotifications.style.display = 'none';
-                seeMoreLink.textContent = 'See More';
+            function toggleNotifications() {
+                const extraNotifications = document.querySelector('.extra-notifications');
+                const seeMoreLink = document.querySelector('.see-more');
+
+                if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+                    extraNotifications.style.display = 'block';
+                    seeMoreLink.textContent = 'See Less';
+                } else {
+                    extraNotifications.style.display = 'none';
+                    seeMoreLink.textContent = 'See More';
+                }
             }
-        }
             if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
                 extraNotifications.style.display = 'block';
                 seeMoreLink.textContent = 'See Less';
