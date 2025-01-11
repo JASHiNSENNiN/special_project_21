@@ -2,6 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 };
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -983,7 +984,6 @@ require_once 'show_profile.php';
                         let fileItem = document.createElement('li');
                         fileItem.innerHTML = `
                     <h4>${file.name}</h4>
-                    
                 `;
                         fileListElement.appendChild(fileItem);
                     });

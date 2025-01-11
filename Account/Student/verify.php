@@ -79,7 +79,7 @@ $profile_divv = '<header class="nav-header">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-  <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+  <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
   <title>Verification</title>
   <link rel="stylesheet" href="css/verify.css">
 
@@ -109,13 +109,11 @@ $profile_divv = '<header class="nav-header">
         </div>
     </header> -->
   <?php echo $profile_divv; ?>
-  <div class="bg-verify">
-    <div class="wame">
-      <h1 class="wait">Wait for Your Account Verification</h1>
-      <div class="message">Please wait for the verification of your account.</div>
-    </div>
-  </div>
 
+  <div class="wame">
+    <h1 class="wait">Wait for Your Account Verification</h1>
+    <div class="message">Please wait for the verification of your account.</div>
+  </div>
 </body>
 
 </html>

@@ -59,25 +59,27 @@ if ($result) {
 
 if (isset($_POST['job_id'])) {
     // Collect the form data
-    $job_id = intval($_POST['job_id']);
+    $job_id = intval($_POST['job_id']); 
     $work_title = htmlspecialchars($_POST['work_title']);
-    $strands = json_encode($_POST['strand']);
+    $strands = json_encode($_POST['strand']); 
     $description = htmlspecialchars($_POST['description']);
-
+    
     $sql = "UPDATE job_offers 
             SET work_title = ?, strands = ?, description = ? 
             WHERE id = ?";
-
+    
     $stmt = $conn->prepare($sql);
-
+    
     $stmt->bind_param("sssi", $work_title, $strands, $description, $job_id);
-
+    
     if ($stmt->execute()) {
         header("Location: " . $_SERVER['PHP_SELF'] . "?job_id=" . $jobIdParam);
         exit();
     } else {
         echo "<script>alert('Error updating job data: " . $stmt->error . "');</script>";
     }
+    
+  
 }
 
 
@@ -117,7 +119,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/My_Jobs.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -136,9 +138,9 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 <body>
     <noscript>
         <style>
-            html {
-                display: none;
-            }
+        html {
+            display: none;
+        }
         </style>
         <meta http-equiv="refresh" content="0.0;url=message.php">
     </noscript>
@@ -169,87 +171,87 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
             <!-- <div class="title">Student List <div class="icon"><i class="bx bx-user-plus"></i> </div> </div> -->
 
             <?php
-            // Assuming $jobOffers contains the job data from your previous query
-            if (!empty($jobOffers)) {
-                $job = $jobOffers[0]; // Get the first (and likely only) job record
-            ?>
-                <form method="post" action="" id="jobForm">
-                    <input type="hidden" name="job_id" value="<?php echo htmlspecialchars($job['id']); ?>">
-                    <div class="container">
-                        <h1 class="ti">EDIT POST JOB AD</h1>
-                        <p class="ti">Please update the job details.</p>
+// Assuming $jobOffers contains the job data from your previous query
+if (!empty($jobOffers)) {
+    $job = $jobOffers[0]; // Get the first (and likely only) job record
+?>
+            <form method="post" action="" id="jobForm">
+                <input type="hidden" name="job_id" value="<?php echo htmlspecialchars($job['id']); ?>">
+                <div class="container">
+                    <h1 class="ti">EDIT POST JOB AD</h1>
+                    <p class="ti">Please update the job details.</p>
 
-                        <div class="box">
-                            <label for="worktitle"><b>Work Title</b></label>
-                            <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle"
-                                value="<?php echo htmlspecialchars($job['work_title']); ?>" required>
+                    <div class="box">
+                        <label for="worktitle"><b>Work Title</b></label>
+                        <input type="text" placeholder="Enter Work Title" name="work_title" id="worktitle"
+                            value="<?php echo htmlspecialchars($job['work_title']); ?>" required>
 
-                            <label for=""><b>Choose a Strand:</b></label><br><br>
-                            <?php
-                            // Decode the JSON strands
-                            $selectedStrands = json_decode($job['strands'], true);
-                            $strands = ['STEM', 'GAS', 'HUMSS', 'TVL', 'ABM'];
+                        <label for=""><b>Choose a Strand:</b></label><br><br>
+                        <?php 
+            // Decode the JSON strands
+            $selectedStrands = json_decode($job['strands'], true);
+            $strands = ['STEM', 'GAS', 'HUMSS', 'TVL', 'ABM'];
+            
+            foreach ($strands as $strand): ?>
+                        <label class="con"><?php echo $strand; ?>
+                            <input type="checkbox" name="strand[]" value="<?php echo $strand; ?>"
+                                <?php echo (in_array($strand, $selectedStrands) ? 'checked' : ''); ?>>
+                            <span class="checkmark"></span>
+                        </label>
+                        <?php endforeach; ?>
 
-                            foreach ($strands as $strand): ?>
-                                <label class="con"><?php echo $strand; ?>
-                                    <input type="checkbox" name="strand[]" value="<?php echo $strand; ?>"
-                                        <?php echo (in_array($strand, $selectedStrands) ? 'checked' : ''); ?>>
-                                    <span class="checkmark"></span>
-                                </label>
-                            <?php endforeach; ?>
-
-                            <h1>Job Description</h1>
-                            <input type="hidden" name="description" id="description">
-                            <div id="editor-container">
-                                <?php echo html_entity_decode($job['description']); ?>
-                            </div>
-
-                            <div class="container__nav">
-                                <small>By clicking 'Check box' you are agreeing to our <a
-                                        href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
-                                <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
-                            </div>
-                            <button class="button-9-save" id="show-modal" role="button" type="submit"
-                                autofocus>Update</button>
+                        <h1>Job Description</h1>
+                        <input type="hidden" name="description" id="description">
+                        <div id="editor-container">
+                            <?php echo html_entity_decode($job['description']); ?>
                         </div>
+
+                        <div class="container__nav">
+                            <small>By clicking 'Check box' you are agreeing to our <a
+                                    href="../../Term_and_Privacy.php">Terms & Privacy</a></small>
+                            <input class="required" type="checkbox" id="agree" name="agree" value="agree" required>
+                        </div>
+                        <button class="button-9-save" id="show-modal" role="button" type="submit"
+                            autofocus>Update</button>
                     </div>
-                </form>
-            <?php
-            } else {
-                echo "No job found.";
-            }
-            ?>
+                </div>
+            </form>
+            <?php 
+} else {
+    echo "No job found.";
+}
+?>
         </div>
     </div>
 
 
 
     <script>
-        // Initialize Quill editor for each modal dynamically
-        document.addEventListener("DOMContentLoaded", function() {
-            <?php foreach ($jobOffers as $job): ?>
-                var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
-                    theme: 'snow'
-                });
-
-                // Set the current description in the editor for each job modal
-                quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
-
-                // When submitting the form, save the content from the editor
-                var form = document.querySelector("#myModal-job<?php echo $job['id']; ?> form");
-                form.addEventListener("submit", function() {
-                    document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
-                        .innerHTML;
-                });
-            <?php endforeach; ?>
+    // Initialize Quill editor for each modal dynamically
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php foreach ($jobOffers as $job): ?>
+        var quill = new Quill('#editor-container_<?php echo $job['id']; ?>', {
+            theme: 'snow'
         });
+
+        // Set the current description in the editor for each job modal
+        quill.root.innerHTML = '<?php echo htmlspecialchars($job['description']); ?>';
+
+        // When submitting the form, save the content from the editor
+        var form = document.querySelector("#myModal-job<?php echo $job['id']; ?> form");
+        form.addEventListener("submit", function() {
+            document.getElementById("description_<?php echo $job['id']; ?>").value = quill.root
+                .innerHTML;
+        });
+        <?php endforeach; ?>
+    });
     </script>
 
 
     <script>
-        function myFunction() {
-            confirm("Are you Sure?");
-        }
+    function myFunction() {
+        confirm("Are you Sure?");
+    }
     </script>
     <script type="text/javascript" src="css/doc.js"></script>
 

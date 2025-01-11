@@ -12,7 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- <title>Log in | Workify</title> -->
     <title>Log in | DRDSNHS</title>
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/loginform.css">
     <script src="/backend/js/register.js"></script>
