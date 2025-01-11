@@ -191,27 +191,27 @@ function getSchoolList($conn)
                                     <option value="Sunshine Preparatory School">Sunshine Preparatory School</option>
                                 </select> -->
                                 <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn"
-                                    oninput="validateLRN()">
-                                <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
+                                    oninput="validateLRN()" required>
+                                <input value="" type="text" placeholder="First Name" id="first-name" name="first-name" required>
                                 <input value="" type="text" placeholder="Middle Name" id="middle-name"
-                                    name="middle-name">
-                                <input value="" type="text" placeholder="Last Name" id="last-name" name="last-name">
-                                <select id="student-school-name" name="studentSchoolName">
+                                    name="middle-name" required>
+                                <input value="" type="text" placeholder="Last Name" id="last-name" name="last-name" required>
+                                <select id="student-school-name" name="studentSchoolName" required>
                                     <option value="">Select School Name</option>
                                     <?php if (!empty($schools)): ?>
                                         <?php foreach ($schools as $schoolName): ?>
-                                            <option value="<?php echo htmlspecialchars($schoolName); ?>">
+                                            <option value="<?php echo htmlspecialchars($schoolName); ?>" required>
                                                 <?php echo htmlspecialchars($schoolName); ?>
                                             </option>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
-                                <select name="grade-level" id="grade-level">
+                                <select name="grade-level" id="grade-level" required>
                                     <option value class="null-type">Grade Level:</option>
                                     <option value="11">11</option>
                                     <option value="12">12</option>
                                 </select>
-                                <select name="strand" id="strand">
+                                <select name="strand" id="strand" required>
                                     <option value="" selected disabled hidden class="null-type">Strand:</option>
                                     <option value="STEM">STEM</option>
                                     <option value="HUMSS">HUMSS</option>

@@ -460,7 +460,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
 
 
-                            <a href="print_profile.php" target="_blank" style="text-decoration:none;"> <button
+                            <a href="print_profile.php?student_id=<?php echo $IdParam ?>" target="_blank" style="text-decoration:none;"> <button
                                     class="print-btn">
                                     <span class="printer-wrapper">
                                         <span class="printer-container">
@@ -690,7 +690,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
                     <span class="description-resume">Daily journaling after work immersion boosts learning and
                         reflection for growth.</span>
-
+                    <br>
                     <a href="Journal.php">
                         <button class="btn-create">
                             <span>
@@ -704,14 +704,12 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
 
                 </article>
-                <article class="app-content__widget app-content__widget--secondary">
-                    <!-- widget - secondary
-                    <hr> -->
+                <!-- <article class="app-content__widget app-content__widget--secondary">
+                    
                 </article>
                 <article class="app-content__widget app-content__widget--tertiary">
-                    <!-- widget - tertiary
-                    <hr> -->
-                </article>
+                    
+                </article> -->
             </main>
         </div>
 

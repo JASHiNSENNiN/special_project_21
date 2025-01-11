@@ -5,6 +5,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url("/Account/Student/image/DrRamonv2.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .wait {
