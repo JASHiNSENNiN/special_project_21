@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -251,7 +252,7 @@ require_once 'show_profile.php';
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a class="active" href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
+            <a href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
             <a href="Job_request.php"><i class="fa fa-user-plus"></i> Job Request</a>
             <a href="Faculty_report.php"><i class='fas fa-tasks'></i> Student Evaluation</a>
             <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
@@ -323,10 +324,10 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
+        window.onscroll = function () {
             myFunction();
         };
-        window.onscroll = function() {
+        window.onscroll = function () {
             myFunction();
         };
 
@@ -372,7 +373,7 @@ require_once 'show_profile.php';
                     input.click();
                 };
 
-                input.addEventListener("change", function(e) {
+                input.addEventListener("change", function (e) {
                     const files = e.target.files; // Get the selected files
                     fileListElement.innerHTML = ''; // Clear the previous file list
 
@@ -392,8 +393,8 @@ require_once 'show_profile.php';
 
 
     <footer>
-        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
-        ©2024 Your Website. All rights reserved. | Junior Philippines Computer
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
+        <!-- ©2024 Your Website. All rights reserved. | Junior Philippines Computer -->
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>

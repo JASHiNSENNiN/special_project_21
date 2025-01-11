@@ -164,7 +164,7 @@ $dailyPerformance = getDailyPerformance($user_id, $pdo);
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="../../Account/' . $_SESSION['account_type'] . '"> 
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/drdsnhs.svg" alt="Logo">
             </a>
            
             
@@ -172,7 +172,7 @@ $profile_divv = '<header class="nav-header">
         <nav class="by">
 
  
- <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/' . $_SESSION['account_type'] . '"> Back </a>
+ <a class="btn-home" style="color:#fff; font-weight: 600; text-decoration:none;" href="../../Account/' . $_SESSION['account_type'] . '"> Back &#8594; </a>
   
 </div>
         
@@ -593,7 +593,8 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                 <tbody>
                                     <?php foreach ($unique_documents as $document_name): ?>
                                         <tr>
-                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?></td>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
+                                            </td>
                                             <td>
                                                 <?php
                                                 // Check for the document URL and existence of file
@@ -629,7 +630,8 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                         </div>
                         <hr>
                         <h2 class="title-resume">Daily Insight</h2>
-                        <span class="description-resume">The line chart analyzes student daily performance in work immersion, and the pie chart displays the distribution of performance levels.</span>
+                        <span class="description-resume">The line chart analyzes student daily performance in work
+                            immersion, and the pie chart displays the distribution of performance levels.</span>
 
                         <div class="container-grap">
                             <div class="dp-graph" id="piechart_3d"></div>
@@ -817,7 +819,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
+        document.getElementById('refreshButton').addEventListener('click', function () {
             location.reload("card-graph");
         });
     </script>

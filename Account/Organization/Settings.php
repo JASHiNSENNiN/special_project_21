@@ -160,8 +160,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/Settings.css">
     <title>Settings</title>
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
@@ -255,7 +255,7 @@ $conn->close();
 
                                                 if (file) {
                                                     const reader = new FileReader();
-                                                    reader.onload = function(e) {
+                                                    reader.onload = function (e) {
                                                         img.src = e.target.result;
                                                     }
                                                     reader.readAsDataURL(file);

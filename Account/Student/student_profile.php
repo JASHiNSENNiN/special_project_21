@@ -22,10 +22,15 @@ $cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/logov3.jpg
 
 $profile_divv = '<header class="nav-header">
         <div class="logo">
+        <a href="../../Account/' . $_SESSION['account_type'] . '" style="text-decoration:none;font-size: 40px;
+    color: white;
+    margin-left: -60px;
+    margin-right: 50px;
+    margin-top: -16px;">&larr;</a>
             <a href="Company_Area.php"> 
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/drdsnhs.svg" alt="Logo">
             </a>
-           <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/' . $_SESSION['account_type'] . '"> Home </a>
+           
             
         </div>
         <nav class="by">
@@ -34,7 +39,7 @@ $profile_divv = '<header class="nav-header">
  <div class="menu">
   <div class="item">
     <a class="link">
-      <span class="firstname"> ' . $firstName . ' </span>
+      <span class="firstname" style="color:#fff;"> ' . $firstName . ' </span>
       <svg viewBox="0 0 360 360" xml:space="preserve">
         <g id="SVGRepo_iconCarrier">
           <path
@@ -82,7 +87,7 @@ $profile_divv = '<header class="nav-header">
 $profile_div_non_student = '<header class="nav-header">
         <div class="logo">
             <a href="../../Account/' . $_SESSION['account_type'] . '"> 
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/drdsnhs.svg" alt="Logo">
             </a>
            
             
