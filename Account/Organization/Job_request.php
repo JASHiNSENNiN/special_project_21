@@ -192,8 +192,8 @@ function revertToOngoing($applicant_id)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization Dashboard</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <link rel="stylesheet" type="text/css" href="css/Job_request.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -252,6 +252,8 @@ function revertToOngoing($applicant_id)
                 <?php foreach ($applicants as $job_id => $applicant_list) { ?>
                     <?php foreach ($applicant_list as $applicant) { ?>
                         <?php
+                    <?php foreach ($applicant_list as $applicant) { ?>
+                        <?php
                         $student_id = $applicant['student_id'];
                         $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
                         $student_row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
@@ -260,6 +262,13 @@ function revertToOngoing($applicant_id)
                         $job_row = mysqli_fetch_assoc(mysqli_query($conn, $job_title_query));
                         $job_title = $job_row['work_title'] ?? 'N/A'; // Use 'N/A' if no job title found
                         ?>
+                        <tr>
+                            <td><?= $applicant['id'] ?></td>
+                            <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
+                            <td><?= $student_row['strand'] ?></td>
+                            <td><?= $job_title ?></td>
+                            <td>
+                                <?php
                         <tr>
                             <td><?= $applicant['id'] ?></td>
                             <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
@@ -285,8 +294,27 @@ function revertToOngoing($applicant_id)
                                 }
                                 ?>
                             </td>
+                            </td>
 
 
+                            <td>
+                                <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
+                                    <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
+                                    <?php if ($applicant['status'] === 'completed') { ?>
+                                        <!-- Do not show any buttons if the status is 'completed' -->
+                                        <!-- <input type="text" value="Completed!" readonly> -->
+                                    <?php } elseif ($applicant['status'] === 'accepted') { ?>
+                                        <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button><br>
+                                    <?php } else { ?>
+                                        <button type="submit" class="button-9" name="accept_applicant" onclick="updateStatus(this)"
+                                            autofocus>Accept</button>
+                                    <?php } ?>
+                                </form>
+                                <a
+                                    href="<?php echo $ProfileViewURL; ?>?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
+                                    <button type="button" class="button-4">Details</button> <br>
+                                </a>
+                                <?php
                             <td>
                                 <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
                                     <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
@@ -334,6 +362,9 @@ function revertToOngoing($applicant_id)
                             </td>
                         </tr>
                     <?php } ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 <?php } ?>
             </table>
 
@@ -361,7 +392,16 @@ function revertToOngoing($applicant_id)
                 ) {
                     found = true;
                 }
+                if (
+                    nameCell.textContent.toLowerCase().indexOf(searchValue) > -1 ||
+                    jobCell.textContent.toLowerCase().indexOf(searchValue) > -1
+                ) {
+                    found = true;
+                }
 
+                row.style.display = found ? '' : 'none';
+            });
+        });
                 row.style.display = found ? '' : 'none';
             });
         });
@@ -371,11 +411,13 @@ function revertToOngoing($applicant_id)
 
 
     <footer>
-        <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p>
-        <!-- <p>&copy;2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p> -->
+        <!-- <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p> -->
+        <p>&copy;2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
     </footer>
 
     <script>
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
@@ -385,6 +427,8 @@ function revertToOngoing($applicant_id)
     </script>
 
     <script>
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
@@ -398,7 +442,18 @@ function revertToOngoing($applicant_id)
         function toggleNotifications() {
             const extraNotifications = document.querySelector('.extra-notifications');
             const seeMoreLink = document.querySelector('.see-more');
+        function toggleNotifications() {
+            const extraNotifications = document.querySelector('.extra-notifications');
+            const seeMoreLink = document.querySelector('.see-more');
 
+            if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+                extraNotifications.style.display = 'block';
+                seeMoreLink.textContent = 'See Less';
+            } else {
+                extraNotifications.style.display = 'none';
+                seeMoreLink.textContent = 'See More';
+            }
+        }
             if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
                 extraNotifications.style.display = 'block';
                 seeMoreLink.textContent = 'See Less';

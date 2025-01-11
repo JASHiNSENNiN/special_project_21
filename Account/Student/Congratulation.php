@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" type="text/css" href="css/Congratulatio.css">
     <title>Woriky Verification</title>
 </head>
@@ -13,7 +14,7 @@
     <header class="nav-header">
         <div class="logo">
             <a href="#">
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/drdsnhs.svg" alt="Logo">
             </a>
         </div>
     </header>
@@ -28,7 +29,7 @@
             <!-- <button class="go-home-button" style="margin-top:50px; cursor:pointer;" onclick="goHome()">View
                 Result</button> -->
 
-            <p id="countdown" class="message" style="margin-top:15px;">Redirecting to your Result in <span
+            <p id="countdown" class="message" style="margin-top:15px;">Redirecting to your Result <br> <span
                     id="timer">15</span>
                 seconds.</p>
         </div>
