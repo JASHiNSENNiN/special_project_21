@@ -282,18 +282,18 @@ l                           ist" href="#account-info">Info</a> -->
 
 
     <footer>
-        2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
+        2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School
     </footer>
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    let profilePic = document.getElementById("profile-pic");
-    let inputfile = document.getElementById("input-file");
-    inputfile.onchange = function() {
-        profilePic.src = URL.createObjectURL(inputfile.files[0]);
-    }
+        let profilePic = document.getElementById("profile-pic");
+        let inputfile = document.getElementById("input-file");
+        inputfile.onchange = function() {
+            profilePic.src = URL.createObjectURL(inputfile.files[0]);
+        }
     </script>
 
 </body>

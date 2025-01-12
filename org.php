@@ -377,11 +377,10 @@ if (isset($_SESSION['account_type'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Work Immersion | Workify</title>
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
-    <!-- <title>Work Immersion | DRDSNHS</title> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
+    <!-- <title>Work Immersion | Workify</title> -->
+    <title>Work Immersion | DRDSNHS</title>
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <link rel="stylesheet" type="text/css" href="css/org_style.css">
     <!-- <link rel="stylesheet" type="text/scss" href="css/reboot.css"> -->
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -491,8 +490,8 @@ if (isset($_SESSION['account_type'])) {
     <header id="myHeader-sticky">
         <div class="logo">
             <a href="index.php">
-                <img src="img/logov3.jpg" alt="Logo">
-                <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                <!-- <img src="img/logov3.jpg" alt="Logo"> -->
+                <img src="img/drdsnhs.svg" alt="Logo">
             </a>
             <nav class="dash-middle">
 
@@ -500,19 +499,26 @@ if (isset($_SESSION['account_type'])) {
         </div>
         <nav class="nav-log">
 
-
             <?php
-            session_start();
+
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+
+
+            $link = "./";
+
 
             if (isset($_SESSION['account_type'])) {
-                $account_type = ucfirst($_SESSION['account_type']);
+
+                $account_type = ucfirst(htmlspecialchars($_SESSION['account_type'], ENT_QUOTES, 'UTF-8'));
                 $link = "/Account/$account_type";
-            } else {
-                $link = "./";
             }
             ?>
+
             <div class="css-1ld7x2h eu4oa1w0"></div>
-            <a class="com-btn" href="<?php echo htmlspecialchars($link); ?>">Back </a>
+            <a class="com-btn" href="<?php echo htmlspecialchars($link, ENT_QUOTES, 'UTF-8'); ?>">Back</a>
+
         </nav>
 
     </header>
@@ -533,8 +539,8 @@ if (isset($_SESSION['account_type'])) {
             <div class="container">
                 <div class="row" style=" gap: 120px !important;">
                     <a href="index.php">
-                        <img src="img/WORKIFY-LOGO.svg" alt="Logo">
-                        <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                        <!-- <img src="img/WORKIFY-LOGO.svg" alt="Logo">/ -->
+                        <img src="img/DrRamonLOGO.svg" alt="Logo">
                     </a>
 
                 </div>
@@ -548,9 +554,9 @@ if (isset($_SESSION['account_type'])) {
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-sm-7">
-                        <p class="mb-0 f_400">© 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer
-                            Society Students</p>
-                        <!-- <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p> -->
+                        <!-- <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Junior Philippines Computer
+                            Society Students</p> -->
+                        <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p>
                     </div>
                     <!-- <div class="col-lg-6 col-sm-5 text-right">
                         <p>Made with <i class="icon_heart"></i> in <a href="#" target="_blank">JPCS</a></p>

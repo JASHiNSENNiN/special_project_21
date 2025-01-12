@@ -121,8 +121,8 @@ function getSchoolList($conn)
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
     <title>Set Up Account</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="stylesheet" type="text/css" href="../css/header_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/loginform_landing.css">
     <link rel="stylesheet" type="text/css" href="../css/get_start_log.css">
@@ -161,9 +161,9 @@ function getSchoolList($conn)
             <div class="row">
                 <div id="register-form" class="colm-form">
                     <!-- ---------------------------------Logo ---------------------- -->
-                    <!-- <img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo"> -->
+                    <img class="logo-login" src="../img/DrRamonLOGO.svg" alt="Logo">
 
-                    <img class="logo-login" src="../img/WORKIFYTEXTLOGO.svg" alt="Logo">
+                    <!-- <img class="logo-login" src="../img/WORKIFYTEXTLOGO.svg" alt="Logo"> -->
 
                     <div class="form-container">
                         <form id="setupForm" action="/backend/php/setup_account.php" method="POST"
@@ -191,27 +191,29 @@ function getSchoolList($conn)
                                     <option value="Sunshine Preparatory School">Sunshine Preparatory School</option>
                                 </select> -->
                                 <input value="" type="number" placeholder="LRN" id="input-lrn" name="input-lrn"
-                                    oninput="validateLRN()">
-                                <input value="" type="text" placeholder="First Name" id="first-name" name="first-name">
+                                    oninput="validateLRN()" required>
+                                <input value="" type="text" placeholder="First Name" id="first-name" name="first-name"
+                                    required>
                                 <input value="" type="text" placeholder="Middle Name" id="middle-name"
-                                    name="middle-name">
-                                <input value="" type="text" placeholder="Last Name" id="last-name" name="last-name">
-                                <select id="student-school-name" name="studentSchoolName">
+                                    name="middle-name" required>
+                                <input value="" type="text" placeholder="Last Name" id="last-name" name="last-name"
+                                    required>
+                                <select id="student-school-name" name="studentSchoolName" required>
                                     <option value="">Select School Name</option>
                                     <?php if (!empty($schools)): ?>
                                     <?php foreach ($schools as $schoolName): ?>
-                                    <option value="<?php echo htmlspecialchars($schoolName); ?>">
+                                    <option value="<?php echo htmlspecialchars($schoolName); ?>" required>
                                         <?php echo htmlspecialchars($schoolName); ?>
                                     </option>
                                     <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
-                                <select name="grade-level" id="grade-level">
+                                <select name="grade-level" id="grade-level" required>
                                     <option value class="null-type">Grade Level:</option>
                                     <option value="11">11</option>
                                     <option value="12">12</option>
                                 </select>
-                                <select name="strand" id="strand">
+                                <select name="strand" id="strand" required>
                                     <option value="" selected disabled hidden class="null-type">Strand:</option>
                                     <option value="STEM">STEM</option>
                                     <option value="HUMSS">HUMSS</option>
@@ -365,7 +367,7 @@ function getSchoolList($conn)
 
         </div>
         <!-- <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>        
+        <p>&copy; 2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School</p>        
     </footer> -->
     </div>
 </body>

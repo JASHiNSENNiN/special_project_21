@@ -323,9 +323,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
   -moz-appearance: none;
   appearance: none;
   border-radius: 0.35rem;
-  transition:
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .col-xl-4,
@@ -390,7 +388,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .nav-header {
-  background-color: #fff;
+  background-color: #016435;
   color: #fff;
   padding-top: 5px;
   padding-right: 100px;
@@ -489,7 +487,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .menu .link svg {
   width: 14px;
   height: 14px;
-  fill: #000000;
+  fill: #fff;
   transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
 }
 

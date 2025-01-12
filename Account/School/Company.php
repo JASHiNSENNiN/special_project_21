@@ -832,15 +832,15 @@ require_once 'show_profile.php';
 
     </div>
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
+        <p>&copy; 2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School</p>
     </footer>
     <!-- <div class="sub-footer">
-        2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
+        2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School
     </div> -->
 
     </footer>
     <!-- <div class="sub-footer">
-        2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
+        2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School
     </div> -->
 
 

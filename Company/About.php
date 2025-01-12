@@ -164,7 +164,7 @@
     </div>
     <br>
     <footer>
-        <p>&copy; 2024 WorkifyPH. All rights reserved. | Junior Philippines Computer Society Students</p>
+        <p>&copy; 2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School</p>
     </footer>
     <script src="hide-show.js"></script>
 

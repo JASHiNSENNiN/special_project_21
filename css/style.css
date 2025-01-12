@@ -2,10 +2,10 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  /* background-color: #f4f4f4; */
+  background-color: #f4f4f4;
   /* background-image: url("../img/frontpage.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; */
+  background-size: cover;
+  background-repeat: no-repeat; */
 }
 
 .globalTargetList li {
@@ -27,7 +27,7 @@ body {
   margin-top: 25px;
 }
 
-.bg-search {
+/* .bg-search {
   width: 100%;
   height: 173px;
   background-image: url("/img/bg-dr-workify-v2.svg");
@@ -35,9 +35,8 @@ body {
   background-size: cover;
   left: 0;
   right: 0;
-  /* z-index: -1px; */
   position: absolute;
-}
+} */
 
 section {
   max-width: 800px;
@@ -72,7 +71,8 @@ section {
 }
 
 .active {
-  color: #fff;
+  color: #000;
+  /* color: #fff; */
   /* background-color: rgba(27, 188, 155, 0.3); */
   font-weight: bold;
 }
@@ -214,8 +214,8 @@ input::placeholder {
 }
 
 header {
-  background-color: #fff;
-  /* background-color: #016435; */
+  /* background-color: #fff; */
+  background-color: #016435;
   color: #fff;
   padding-top: 5px;
   padding-right: 20px;
@@ -253,14 +253,15 @@ nav {
 nav a {
   padding-top: 15px !important;
   padding-bottom: 15px !important;
-  color: #172738;
+  /* color: #172738; */
+  color: #fff;
   text-decoration: none;
   margin: 0 10px;
   border-radius: 5px;
   position: relative;
   transition: background-color 0.3s;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 nav .login-btn:hover {
@@ -268,13 +269,13 @@ nav .login-btn:hover {
 }
 
 nav a:hover {
-  color: rgb(27, 188, 155, 0.7);
-  /* color: rgb(243, 206, 82, 0.7); */
+  /* color: rgb(27, 188, 155, 0.7); */
+  color: rgb(243, 205, 82);
 }
 
 .active-header {
-  color: rgb(27, 188, 155, 0.9);
-  /* color: rgb(243, 206, 82, 0.9); */
+  /* color: rgb(27, 188, 155, 0.9); */
+  color: rgb(243, 206, 82, 0.9);
 }
 
 nav a::after {
@@ -282,8 +283,8 @@ nav a::after {
   position: absolute;
   width: 100%;
   height: 2px;
-  /* background-color: rgb(243, 206, 82, 0.9); */
-  background-color: rgb(27, 188, 155, 0.7);
+  background-color: rgb(243, 206, 82, 0.9);
+  /* background-color: rgb(27, 188, 155, 0.7); */
   bottom: -17px;
   left: 0;
   transform: scaleX(0);
@@ -336,15 +337,15 @@ nav a:hover::after {
         } */
 
 .login-btn {
-  font-weight: 700;
+  font-weight: 500;
   margin-right: 10px;
   display: inline-block;
   padding: 0.9rem 1.8rem;
   font-size: 14px;
-  color: #172738;
-  /* color: #fff; */
-  /* border: 1px solid rgb(243, 206, 82); */
-  border: 1px solid rgb(23, 39, 56);
+  /* color: #172738; */
+  color: #fff;
+  border: 1px solid #fff;
+  /* border: 1px solid rgb(23, 39, 56); */
   cursor: pointer;
   position: relative;
   background-color: transparent;
@@ -362,8 +363,8 @@ nav a:hover::after {
   top: 0;
   width: 100%;
   height: 100%;
-  /* background-color: rgb(243, 206, 82); */
-  background-color: rgb(27, 188, 155, 0.7);
+  background-color: rgb(212, 179, 70);
+  /* background-color: rgb(27, 188, 155, 0.7); */
   transform: translateX(-100%);
   transition: all 0.3s;
   z-index: -1;
@@ -373,10 +374,6 @@ nav a:hover::after {
 .login-btn:hover::before {
   transform: translateX(0);
   color: #fff;
-}
-
-.login-btn:hover {
-  font-weight: 700;
 }
 
 /* .css-1ld7x2h {
@@ -1339,13 +1336,22 @@ html {
   margin-top: 8px;
   font-weight: 400 !important;
   color: #6f6f6f;
-  font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family:
+    Noto Sans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
   box-sizing: initial;
   font-size: 0.75rem;
 }
 
 .job-card-subtitle ul li {
   list-style-type: circle;
+}
+
+.fas {
+  color: #016435 !important;
 }
 
 .job-card-title-location .fas {

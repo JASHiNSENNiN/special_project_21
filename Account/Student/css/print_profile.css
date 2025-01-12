@@ -90,6 +90,7 @@ h2 {
     /* padding-left: 2.25rem !important; */
     padding-right: 2.25rem !important;
     padding-left: 5px !important;
+    max-width: 28rem;
 }
 
 .fa {
@@ -99,18 +100,19 @@ h2 {
 
 .LRN {
     color: grey;
+    font-size: 1.2rem;
 }
 
 .fullname {
     color: #fff;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 32px;
 }
 
 .other-info {
     color: #fff;
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 img {
@@ -158,7 +160,6 @@ img {
     font-size: 16px;
     font-weight: 400;
 }
-
 
 /* .eval-graph {
     width: 100%;

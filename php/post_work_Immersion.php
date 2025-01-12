@@ -116,7 +116,7 @@
     </div>
     <footer>
         <div class="sub-footer">
-            2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students
+            2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School
         </div>
     </footer>
     <script>

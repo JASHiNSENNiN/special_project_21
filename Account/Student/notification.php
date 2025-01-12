@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once 'show_profile.php';
 ?>
@@ -60,7 +59,7 @@ require_once 'show_profile.php';
 
 
     <footer>
-        <p>&copy; 2024 Your Website. All rights reserved. | Junior Philippines Computer Society Students</p>
+        <p>&copy; 2024 Your Website. All rights reserved. |Dr Ramon De Santos National High School</p>
         <!-- <p>By using Workify you agrree to new <a href="#"></a></p> -->
 
     </footer>

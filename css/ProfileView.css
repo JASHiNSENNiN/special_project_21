@@ -497,7 +497,8 @@ footer {
     column-count: 1;
     column-gap: 40px;
     padding: 20px;
-    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     height: auto;
 }
 

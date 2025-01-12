@@ -718,30 +718,25 @@ canvas {
 
 #top_x_div_wh {
   width: 100% !important;
-  /* Make the chart container take full width */
-  height: 100% !important;
-  /* Set a fixed height or use a percentage */
-  position: inherit;
+  height: auto !important;
+  min-height: 150px;
 }
 
 @media (max-width: 600px) {
   #top_x_div_wh {
-    height: 300px !important;
-    /* Adjust height for smaller screens */
+    height: auto !important;
   }
 }
 
 #top_x_div_ws {
   width: 100% !important;
-  /* Make the chart container take full width */
-  height: 100% !important;
-  /* Set a fixed height or use a percentage */
-  position: inherit;
+  height: auto !important;
+  min-height: 150px;
 }
 
 @media (max-width: 600px) {
   #top_x_div_ws {
-    height: 300px !important;
+    height: auto !important;
     /* Adjust height for smaller screens */
   }
 }
@@ -749,13 +744,13 @@ canvas {
 #top_x_div_tp {
   width: 100% !important;
   /* Make the chart container take full width */
-  height: 130% !important;
-  position: relative;
+  height: auto !important;
+  min-height: 350px;
 }
 
 @media (max-width: 600px) {
   #top_x_div_tp {
-    height: 300px !important;
+    height: auto !important;
     /* Adjust height for smaller screens */
   }
 }

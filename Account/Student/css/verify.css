@@ -1,0 +1,348 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("/Account/Student/image/DrRamonv2.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wait {
+  color: #333;
+}
+
+.message {
+  font-size: 1.25rem;
+  /* 20px */
+  color: #555;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  /* 40px */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 15vw;
+  /* Adjusts with viewport width */
+  max-width: 220px;
+  /* Maximum size */
+  margin-right: 2rem;
+  /* 30px */
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  /* 24px */
+}
+
+.username {
+  font-weight: 700;
+  color: #d4b346;
+  cursor: pointer;
+}
+
+/* Dropdown Styles */
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 2.1875rem;
+  /* 35px */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  width: 10rem;
+  /* 150px */
+  padding: 0.625rem;
+  /* 10px */
+}
+
+.dropdown a {
+  display: block;
+  padding: 0.5rem;
+  /* 8px */
+  text-decoration: none;
+  color: #333;
+  font-size: 0.875rem;
+  /* 14px */
+}
+
+.dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show the dropdown when hovering over the user-info */
+
+.user-info:hover .dropdown {
+  display: block;
+}
+
+.firstname {
+  text-align: left;
+  margin-left: 0.625rem;
+  /* 10px */
+  color: #fff;
+}
+
+.wame {
+  top: 50%;
+  left: 50%;
+  margin-top: -9em;
+  margin-left: -15em;
+  position: fixed;
+  width: 33em;
+  height: 18em;
+}
+
+.nav-header {
+  width: 100%;
+  background-color: #016435;
+  color: #fff;
+  /* padding-top: 1rem; */
+  /* 5px */
+  /* padding: 1rem; */
+  padding-bottom: 0px !important;
+  /* 20px for left/right and 5px for top/bottom */
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  gap: 30rem;
+}
+
+.logo .btn-home {
+  text-decoration-line: none;
+}
+
+@media only screen and (max-width: 1085px) {
+  .header {
+    padding-left: 1rem !important;
+    /* 20px */
+    padding-bottom: 0.5rem !important;
+    /* 5px */
+  }
+  .logo img {
+    width: 10vw !important;
+    /* Smaller size */
+    max-width: 160px !important;
+    /* Limit max width */
+    margin-right: 1rem !important;
+    /* 15px */
+  }
+  nav a {
+    margin: 0 0.625rem !important;
+    /* 10px */
+    font-size: 0.875rem !important;
+    /* 14px */
+  }
+  nav {
+    margin: 0;
+  }
+}
+
+.menu {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #000000;
+  width: fit-content;
+  display: flex;
+  list-style: none;
+}
+
+.menu a {
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.menu .link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  /* 12px */
+  padding: 0.75rem 2rem;
+  /* 12px 36px */
+  border-radius: 1rem;
+  /* 16px */
+  overflow: hidden;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu .link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu .link svg {
+  width: 0.875rem;
+  /* 14px */
+  height: 0.875rem;
+  /* 14px */
+  fill: #fff;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu .item {
+  position: relative;
+}
+
+.menu .item .submenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  /* Allow to overflow */
+  overflow: hidden;
+  border: 1px solid #cccccc;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+  pointer-events: none;
+  list-style: none;
+}
+
+.menu .item:hover .submenu {
+  background-color: #fff;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  border-top: transparent;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.menu .item:hover .link {
+  color: #ffffff;
+  border-radius: 1rem 1rem 0 0;
+  /* Top rounded corners */
+}
+
+.menu .item:hover .link::after {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+
+.menu .item:hover .link svg {
+  transform: rotate(-180deg);
+}
+
+.submenu-item a:hover {
+  width: auto;
+  text-decoration-line: none;
+  color: #000;
+}
+
+.submenu-item:hover {
+  background-color: #1bbc9c8e;
+}
+
+.submenu .submenu-item {
+  padding: 0.625rem;
+  /* 10px */
+  padding-left: 1.25rem;
+  /* 20px */
+  padding-right: 1.25rem;
+  /* 20px */
+  width: 100%;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.submenu .submenu-link {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  /* 12px 24px */
+  width: 100%;
+  position: relative;
+  text-align: center;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.submenu .submenu-item:last-child .submenu-link {
+  border-bottom: none;
+}
+
+.submenu .submenu-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transform-origin: left;
+  transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.submenu .submenu-link:hover:before {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+
+.logout {
+  color: red !important;
+}
+
+.logout :hover {
+  background-color: rgba(255, 0, 0, 0.144) !important;
+  text-decoration-line: none !important;
+}
+
+.active-text-setting {
+  font-weight: 600;
+  background-color: #cccbc93a;
+}
+
+.fa {
+  color: red;
+}
+
+/* Additional Media Queries for smaller devices */
+
+@media only screen and (max-width: 768px) {
+  .wait,
+  .message {
+    font-size: 1rem;
+    /* Smaller font size for mobile */
+  }
+  .user-info {
+    margin-right: 2rem;
+    /* Reduce margin on mobile */
+  }
+  .logo img {
+    margin-right: 0.5rem;
+    /* Reduce space in logo */
+  }
+  .menu .link {
+    padding: 0.5rem 1rem;
+    /* Smaller link padding */
+  }
+}
