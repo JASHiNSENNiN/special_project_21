@@ -36,10 +36,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 if (isset($_POST['remove_applicant'])) {
     $applicant_id = $_POST['applicant_id'];
-    removeApplicant($applicant_id);
+    removeApplicant($applicant_id, $_POST['work']);
 }
 
-function removeApplicant($applicant_id)
+function removeApplicant($applicant_id, $work)
 {
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
@@ -47,27 +47,55 @@ function removeApplicant($applicant_id)
     $database = $_ENV['MYSQL_DBNAME'];
     $conn = new mysqli($host, $username, $password, $database);
 
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    
     $sql = "UPDATE applicants SET status = 'rejected' WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
+    $stmt->close(); 
 
     $sql = "UPDATE student_profiles SET current_work = NULL WHERE user_id = (SELECT student_id FROM applicants WHERE id = ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
-
     $stmt->close();
+
+    $user_id = null;
+    $sql = "SELECT student_id FROM applicants WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $applicant_id);
+    $stmt->execute();
+    
+    $stmt->bind_result($user_id);
+    $stmt->fetch();
+    $stmt->close(); 
+
+    if ($user_id) {
+        $message = "You have been removed from your work, " . $work;
+        $notificationQuery = "INSERT INTO notifications (user_id, message) VALUES (?, ?)";
+        $notificationStmt = $conn->prepare($notificationQuery);
+        $notificationStmt->bind_param("is", $user_id, $message);
+        $notificationStmt->execute();
+        $notificationStmt->close(); 
+    }
+
     $conn->close();
+
     header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
 }
 
 if (isset($_POST['accept_applicant'])) {
     $applicant_id = $_POST['applicant_id'];
-    acceptApplicant($applicant_id);
+    $work = $_POST['work'];
+    acceptApplicant($applicant_id, $work);
 }
 
-function acceptApplicant($applicant_id)
+function acceptApplicant($applicant_id, $work)
 {
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
@@ -87,7 +115,6 @@ function acceptApplicant($applicant_id)
     $row = $result->fetch_assoc();
 
     if (!$row) {
-
         echo "No applicant found with the given ID.";
         return;
     }
@@ -105,6 +132,13 @@ function acceptApplicant($applicant_id)
     $stmt->bind_param("ii", $job_offer_id, $student_id);
     $stmt->execute();
 
+    $message = "Congratulations! You have been accepted for the work " . $work;
+    $notificationQuery = "INSERT INTO notifications (user_id, message) VALUES (?, ?)";
+    $notificationStmt = $conn->prepare($notificationQuery);
+    $notificationStmt->bind_param("is", $student_id, $message);
+    $notificationStmt->execute();
+    $notificationStmt->close(); 
+
     $stmt->close();
     $conn->close();
 
@@ -113,25 +147,13 @@ function acceptApplicant($applicant_id)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 if (isset($_POST['complete_applicant'])) {
     $applicant_id = $_POST['applicant_id'];
-    completeApplicant($applicant_id);
+    $work = $_POST['work'];
+    completeApplicant($applicant_id, $work);
 }
 
-function completeApplicant($applicant_id)
+function completeApplicant($applicant_id, $work)
 {
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
@@ -147,8 +169,27 @@ function completeApplicant($applicant_id)
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
-
     $stmt->close();
+
+    $user_id = null; 
+    $sql = "SELECT student_id FROM applicants WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $applicant_id);
+    $stmt->execute();
+    
+    $stmt->bind_result($user_id);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($user_id) {
+        $message = "Congratulations! You have been marked as completed for your work, " . $work;
+        $notificationQuery = "INSERT INTO notifications (user_id, message) VALUES (?, ?)";
+        $notificationStmt = $conn->prepare($notificationQuery);
+        $notificationStmt->bind_param("is", $user_id, $message);
+        $notificationStmt->execute();
+        $notificationStmt->close(); 
+    }
+
     $conn->close();
 
     header("Location: " . $_SERVER['PHP_SELF']);
@@ -157,10 +198,11 @@ function completeApplicant($applicant_id)
 
 if (isset($_POST['ongoing_applicant'])) {
     $applicant_id = $_POST['applicant_id'];
-    revertToOngoing($applicant_id);
+    $work = $_POST['work'];
+    revertToOngoing($applicant_id, $work);
 }
 
-function revertToOngoing($applicant_id)
+function revertToOngoing($applicant_id, $work)
 {
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
@@ -177,7 +219,25 @@ function revertToOngoing($applicant_id)
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
 
-    $stmt->close();
+    $student_id = null; 
+    $sql = "SELECT student_id FROM applicants WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $applicant_id);
+    $stmt->execute();
+    
+    $stmt->bind_result($student_id);
+    $stmt->fetch();
+    $stmt->close(); 
+
+    if ($student_id) {
+        $message = "Your status for the work " . $work . " has been reverted to ongoing.";
+        $notificationQuery = "INSERT INTO notifications (user_id, message) VALUES (?, ?)";
+        $notificationStmt = $conn->prepare($notificationQuery);
+        $notificationStmt->bind_param("is", $student_id, $message);
+        $notificationStmt->execute();
+        $notificationStmt->close(); 
+    }
+
     $conn->close();
 
     header("Location: " . $_SERVER['PHP_SELF']);

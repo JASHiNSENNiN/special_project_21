@@ -170,6 +170,15 @@ CREATE TABLE IF NOT EXISTS uploaded_documents (
     upload_date DATE DEFAULT CURRENT_DATE, 
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE notifications (
+    notification_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    message TEXT NOT NULL,
+    is_read BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
 ";
 
 if (mysqli_multi_query($conn, $sql)) {

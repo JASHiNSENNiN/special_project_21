@@ -55,6 +55,40 @@ if ($sqlCheck->fetch()) {
 $storedUserId = $_SESSION['user_id'];
 $_SESSION['email'] = $email;
 
+function addNotification($firstName, $lastName, $schoolName) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Get the school user ID
+    $schoolUserId = null; 
+    $schoolQuery = "SELECT user_id FROM school_profiles WHERE school_name = ?";
+    $schoolStmt = $conn->prepare($schoolQuery);
+    $schoolStmt->bind_param("s", $schoolName);
+    $schoolStmt->execute();
+    $schoolStmt->bind_result($schoolUserId);
+    $schoolStmt->fetch();
+    $schoolStmt->close(); 
+
+    if ($schoolUserId) {
+        $notificationMessage = "A new student has registered at your school: " . $firstName . " " . $lastName;
+
+        $notificationQuery = "INSERT INTO notifications (user_id, message) VALUES (?, ?)";
+        $notificationStmt = $conn->prepare($notificationQuery);
+        $notificationStmt->bind_param("is", $schoolUserId, $notificationMessage);
+        $notificationStmt->execute();
+        $notificationStmt->close();
+    }
+
+    $conn->close();
+}
+
 switch ($accountType) {
     case "Student":
         $accType = "Student";
@@ -65,6 +99,8 @@ switch ($accountType) {
         $schoolName = $_POST["studentSchoolName"];
         $gradeLevel = $_POST["grade-level"];
         $strand = $_POST["strand"];
+
+        addNotification($firstName, $lastName, $schoolName);
 
         $stmt = $conn->prepare("INSERT INTO student_profiles (first_name, middle_name, last_name, lrn, school, grade_level, strand, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssssi", $firstName, $middleName, $lastName, $lrn, $schoolName, $gradeLevel, $strand, $userId);

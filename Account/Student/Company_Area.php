@@ -34,6 +34,28 @@ if ($result->num_rows > 0) {
 }
 
 
+$student_id = $_SESSION['user_id'];
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT status FROM applicants WHERE student_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $student_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    if ($row['status'] === 'completed') {
+        header("Location: Congratulation.php");
+        exit(); 
+    }
+}
+
+$stmt->close();
 $conn->close();
 
 function generateJobCards($jobOffers)
@@ -215,20 +237,20 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
 
     <footer>

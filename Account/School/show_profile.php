@@ -2,10 +2,12 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 if (session_status() == PHP_SESSION_NONE) {
-  session_start();
+    session_start();
 }
+
 $schoolName = $_SESSION['school_name'];
 $email = $_SESSION['email'];
+$student_id = $_SESSION['user_id'];
 
 $host = "localhost";
 $username = $_ENV['MYSQL_USERNAME'];
@@ -14,57 +16,168 @@ $database = $_ENV['MYSQL_DBNAME'];
 
 $conn = new mysqli($host, $username, $password, $database);
 
-function get_user_images($email)
-{
-
-  $host = "localhost";
-  $username = $_ENV['MYSQL_USERNAME'];
-  $password = $_ENV['MYSQL_PASSWORD'];
-  $database = $_ENV['MYSQL_DBNAME'];
-
-  $conn = new mysqli($host, $username, $password, $database);
-
-  if ($conn->connect_error) {
+if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-  }
+}
 
-  $stmt = $conn->prepare("SELECT profile_image, cover_image FROM users WHERE email = ?");
-  $stmt->bind_param("s", $email);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notification_id'])) {
+    $notificationId = $_POST['notification_id'];
+    $updateQuery = "UPDATE notifications SET is_read = 1 WHERE notification_id = ?";
+    $updateStmt = $conn->prepare($updateQuery);
+    $updateStmt->bind_param("i", $notificationId);
+    $updateStmt->execute();
+    $updateStmt->close();
+    
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
 
-  $stmt->execute();
+$notifications = [];
+$notificationQuery = "
+    (SELECT notification_id, message, created_at, is_read 
+     FROM notifications 
+     WHERE user_id = ? AND is_read = 0 
+     ORDER BY created_at DESC)
+    UNION ALL
+    (SELECT notification_id, message, created_at, is_read 
+     FROM notifications 
+     WHERE user_id = ? AND is_read = 1 
+     ORDER BY created_at DESC)";
 
-  $result = $stmt->get_result();
+$notificationStmt = $conn->prepare($notificationQuery);
+$notificationStmt->bind_param("ii", $student_id, $student_id);
+$notificationStmt->execute();
+$result = $notificationStmt->get_result();
 
-  $defaultProfileImage = 'uploads/default.png';
-  $defaultCoverImage = 'uploads/cover.png';
+while ($row = $result->fetch_assoc()) {
+    $notifications[] = [
+        'id' => $row['notification_id'],
+        'message' => $row['message'],
+        'created_at' => $row['created_at'],
+        'is_read' => $row['is_read']
+    ];
+}
+$notificationStmt->close();
 
-  $images = [
-    'profile_image' => $defaultProfileImage,
-    'cover_image' => $defaultCoverImage,
-  ];
+// Get user images function
+function get_user_images($email) {
+    global $host, $username, $password, $database;
+    $conn = new mysqli($host, $username, $password, $database);
+    $defaultProfileImage = 'uploads/default.png';
+    $defaultCoverImage = 'uploads/cover.png';
 
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
+    $images = [
+        'profile_image' => $defaultProfileImage,
+        'cover_image' => $defaultCoverImage,
+    ];
 
-    if (!empty($row['profile_image']) && file_exists('uploads/' . $row['profile_image'])) {
-      $images['profile_image'] = 'uploads/' . $row['profile_image'];
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    if (!empty($row['cover_image']) && file_exists('uploads/' . $row['cover_image'])) {
-      $images['cover_image'] = 'uploads/' . $row['cover_image'];
+    $stmt = $conn->prepare("SELECT profile_image, cover_image FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if (!empty($row['profile_image']) && file_exists('uploads/' . $row['profile_image'])) {
+            $images['profile_image'] = 'uploads/' . $row['profile_image'];
+        }
+        if (!empty($row['cover_image']) && file_exists('uploads/' . $row['cover_image'])) {
+            $images['cover_image'] = 'uploads/' . $row['cover_image'];
+        }
     }
-  }
 
-  $stmt->close();
-  $conn->close();
-
-  return $images;
+    $stmt->close();
+    $conn->close();
+    return $images;
 }
 
 $userImages = get_user_images($email);
-
 $profileImageSrc = $userImages['profile_image'];
 $coverImageSrc = $userImages['cover_image'];
+
+$notificationHTML = '';
+$unreadNotifications = array_filter($notifications, function($n) { return !$n['is_read']; });
+if (!empty($unreadNotifications)) {
+  foreach ($unreadNotifications as $notif) {
+      $notificationHTML .= '
+          <form method="POST" style="margin: 0;">
+              <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
+              <button type="submit" style="width: 100%; text-align: left; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin-bottom: 2px;" title="Click to mark as read">
+                  <div class="notifi-item">
+                      <img src="https://via.placeholder.com/50" alt="img">
+                      <div class="text" style="font-weight: bold;">
+                          <h4 style="margin: 0;">New Notification</h4>
+                          <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
+                          <small style="color: #666;">' . date('M j, Y g:i A', strtotime($notif['created_at'])) . '</small>
+                      </div>
+                  </div>
+              </button>
+          </form>';
+  }
+}
+
+$readNotifications = array_filter($notifications, function($n) { return $n['is_read']; });
+if (!empty($readNotifications)) {
+    foreach ($readNotifications as $notif) {
+        $notificationHTML .= '
+            <div class="notifi-item">
+                <img src="https://via.placeholder.com/50" alt="img">
+                <div class="text">
+                    <h4 style="margin: 0;">Notification</h4>
+                    <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
+                    <small style="color: #666;">' . date('M j, Y g:i A', strtotime($notif['created_at'])) . '</small>
+                </div>
+            </div>';
+    }
+}
+
+if (empty($notifications)) {
+    $notificationHTML .= '<p>No notifications</p>';
+}
+
+$unreadCount = count($unreadNotifications);
+$badgeHTML = $unreadCount > 0 ? '<span class="badge">' . $unreadCount . '</span>' : '';
+
+$profile_div = '<header class="nav-header">
+    <div class="logo">
+        <a href="#">
+            <img src="image/logov3.jpg" alt="Logo">
+        </a>
+    </div>
+    <nav class="by">
+        <div class="dropdowntf" style="float:right;">
+            <a href="#" class="notification">
+                <i class="fas fa-bell" style="font-size:24px;"></i>
+                ' . $badgeHTML . '
+            </a>
+            <div class="dropdowntf-content" id="box">
+                <label for="" class="notif">Notification</label>
+                <hr style="width: 100%;">
+                ' . $notificationHTML . '
+            </div>
+        </div>
+        <div class="dropdown" style="float:right;">
+            <a href=""><i class="fas fa-user-alt" style="font-size:24px; margin-top:10px;"></i></a>
+            <div class="dropdown-content">
+                <div class="email">' . $email . '</div>
+                <a href="../../weather_page.php"><i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i> Weather Update</a>
+                <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Settings</a>
+                <hr>
+                <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px"></i> Log out</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<img class="logoimg" id="cover-pic" src="' . $coverImageSrc . '" alt="" height="300" width="200">
+<div class="profile">
+    <img id="profile-pic" src="' . $profileImageSrc . '" alt="">
+    <div class="name">' . $schoolName . '</div>
+</div>';
+
 
 $navbar_div = '<header class="nav-header">
         <div class="logo">
@@ -118,106 +231,4 @@ $navbar_div = '<header class="nav-header">
         </nav>
 
     </header>';
-
-$profile_div = '<header class="nav-header">
-        <div class="logo">
-            <a href="#">
-                <img src="image/logov3.jpg" alt="Logo">
-            </a>
-        </div>
-
-
-        <nav class="by">
-           
-
-    <div class="dropdowntf" style="float:right;">
-                <a href="#" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
-                        class="badge">2</span></a>
-                <div class="dropdowntf-content" id="box">
-                    <label for="" class="notif">Notification</label>
-                    <hr style="width: 100%;">
-                    <div class="notifi-item">
-                        <img src="../Student/uploads/6777a3cc3e0d80.79792922.jpg" alt="img">
-                        <div class="text">
-                            <h4>Miguel Von Aldea</h4>
-                            <p>Miguel sent request to verify account</p>
-                        </div>
-                    </div>
-                    <div class="notifi-item">
-                        <img src="../Organization/image/NIA.png" alt="img">
-                        <div class="text">
-                            <h4>NIA</h4>
-                            <p>New account organization</p>
-                        </div>
-                    </div>
-                    
-    <div class="notifi-item">
-      <img src="https://via.placeholder.com/50" alt="img">
-      <div class="text">
-        <h4>Notification 3</h4>
-        <p>Some message here</p>
-      </div>
-    </div>
-
-   
-    <div class="notifi-item">
-      <img src="https://via.placeholder.com/50" alt="img">
-      <div class="text">
-        <h4>Notification 4</h4>
-        <p>Another message</p>
-      </div>
-    </div>
-
-    
-    <div class="extra-notifications">
-      <div class="notifi-item">
-        <img src="https://via.placeholder.com/50" alt="img">
-        <div class="text">
-          <h4>Notification 5</h4>
-          <p>Extra notification 1</p>
-        </div>
-      </div>
-      <div class="notifi-item">
-        <img src="https://via.placeholder.com/50" alt="img">
-        <div class="text">
-          <h4>Notification 6</h4>
-          <p>Extra notification 2</p>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="see-more" onclick="toggleNotifications()">See More</div>
-  </div>
-                </div>
-            </div>
-
-            <div class="dropdown" style="float:right;">
-                <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:10px;"></i></a>
-                <div class="dropdown-content">
-                    <div class="email">' . $email . '</div>
-                    
-                    <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i>
-                        Weather Update</a>
-                    
-                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Settings</a>
-                    <hr>
-                    <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px"></i> Log out</a>
-                </div>
-            </div>
-            <div class="css-1ld7x2h eu4oa1w0"></div>
-            <!-- <a class="login-btn" href="#" style="margin-left: 20px;">Log out</a> -->
-        </nav>
-    </header>
-
-
-    <img class="logoimg" id="cover-pic" src="' . $coverImageSrc . '" alt="" height="300" width="200">
-    
-
-    <div class="profile">
-        <img id="profile-pic" src="' . $profileImageSrc . '" alt="">
-        <div class="name">' . $schoolName . '</div>
-
-
-        
-    </div>';
+?>
