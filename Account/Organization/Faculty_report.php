@@ -114,104 +114,75 @@ $applicants = getApplicants($conn, $org_id);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     $has_evaluation_today = $result['eval_count'] > 0;
                     ?>
-                    <tr>
-                        <td data-th="#"><?= $index + 1 ?></td>
-                        <td data-th="ID Picture">
-                            <img class="idpic"
-                                src="<?= !empty($applicant['profile_image']) ? $profile_image : '../Student/image/Default.png' ?>"
-                                alt="Profile Picture">
-                        </td>
-                        <td data-th="Student Name"><?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
-                        <!-- <td data-th="Result">
+                <tr>
+                    <td data-th="#"><?= $index + 1 ?></td>
+                    <td data-th="ID Picture">
+                        <img class="idpic"
+                            src="<?= !empty($applicant['profile_image']) ? $profile_image : '../Student/image/Default.png' ?>"
+                            alt="Profile Picture">
+                    </td>
+                    <td data-th="Student Name"><?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
+                    <!-- <td data-th="Result">
                         <div class="container3">
                             <div class="circular-progress">
                                 <span class="progress-value">9%</span>
                             </div>
                         </div>
                     </td> -->
-                        <td data-th="Action">
-                            <a
-                                href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
-                                <?php if ($has_evaluation_today): ?>
-                                    <button type="button" class="btn_next" disabled>
-                                        <span class="time-remaining" id="timer-<?= $index ?>">Timer Starting...</span>
-                                    </button>
-                                    <script>
-                                        function startCountdown(index) {
-                                            const now = new Date();
-                                            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-                                            let countdown = Math.floor((midnight - now) / 1000);
-                                            const countdownElement = document.getElementById("timer-" + index);
+                    <td data-th="Action">
+                        <a
+                            href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
 
-                                            function updateCountdown() {
-                                                let hours = Math.floor(countdown / 3600);
-                                                let minutes = Math.floor((countdown % 3600) / 60);
-                                                let seconds = countdown % 60;
-                                                countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
-                                                countdown--;
+                            <button class="button-9" role="button">Evaluate</button>
 
-                                                if (countdown < 0) {
-                                                    location.reload();
-                                                }
-                                            }
-
-                                            setInterval(updateCountdown, 1000);
-                                        }
-
-                                        // Start the countdown for the current applicant
-                                        startCountdown(<?= $index ?>);
-                                    </script>
-                                <?php else: ?>
-                                    <button class="button-9" role="button">Evaluate</button>
-                                <?php endif; ?>
-                            </a>
-                        </td>
-                    </tr>
+                        </a>
+                    </td>
+                </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
 
     <script>
-        // Function to set progress value
-        function setProgress(progress) {
-            // Limit progress between 0 and 100
-            progress = Math.max(0, Math.min(100, progress));
+    // Function to set progress value
+    function setProgress(progress) {
+        // Limit progress between 0 and 100
+        progress = Math.max(0, Math.min(100, progress));
 
-            // Update the progress value in the span
-            const progressValue = document.querySelector('.progress-value');
-            progressValue.textContent = `${progress}%`;
+        // Update the progress value in the span
+        const progressValue = document.querySelector('.progress-value');
+        progressValue.textContent = `${progress}%`;
 
-            // Update the CSS variable for the circular progress
-            const circularProgress = document.querySelector('.circular-progress');
-            circularProgress.style.setProperty('--progress', progress);
+        // Update the CSS variable for the circular progress
+        const circularProgress = document.querySelector('.circular-progress');
+        circularProgress.style.setProperty('--progress', progress);
+    }
+
+    // Example of animating the progress from 0 to 100
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 1;
+        setProgress(progress);
+        if (progress >= 100) {
+            clearInterval(interval);
         }
-
-        // Example of animating the progress from 0 to 100
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += 1;
-            setProgress(progress);
-            if (progress >= 100) {
-                clearInterval(interval);
-            }
-        }, 50); // Update every 50ms
+    }, 50); // Update every 50ms
     </script>
 
 
     <script type="text/javascript">
-        function toggleNotifications() {
-            const extraNotifications = document.querySelector('.extra-notifications');
-            const seeMoreLink = document.querySelector('.see-more');
+    function toggleNotifications() {
+        const extraNotifications = document.querySelector('.extra-notifications');
+        const seeMoreLink = document.querySelector('.see-more');
 
-            if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
-                extraNotifications.style.display = 'block';
-                seeMoreLink.textContent = 'See Less';
-            } else {
-                extraNotifications.style.display = 'none';
-                seeMoreLink.textContent = 'See More';
-            }
+        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+            extraNotifications.style.display = 'block';
+            seeMoreLink.textContent = 'See Less';
+        } else {
+            extraNotifications.style.display = 'none';
+            seeMoreLink.textContent = 'See More';
         }
+    }
     </script>
 
     <footer>

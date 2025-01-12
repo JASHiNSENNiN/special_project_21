@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS Student_Evaluation (
     evaluation_id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
     evaluator_id INT,
-    
+
     punctual INT CHECK (punctual BETWEEN 0 AND 5),
     reports_regularly INT CHECK (reports_regularly BETWEEN 0 AND 5),
     performs_tasks_independently INT CHECK (performs_tasks_independently BETWEEN 0 AND 5),
@@ -121,8 +121,11 @@ CREATE TABLE IF NOT EXISTS Student_Evaluation (
     shows_gratitude INT CHECK (shows_gratitude BETWEEN 0 AND 5),
     poise_and_self_confidence INT CHECK (poise_and_self_confidence BETWEEN 0 AND 5),
     emotional_maturity INT CHECK (emotional_maturity BETWEEN 0 AND 5),
+
+    evaluation_date DATE DEFAULT,
     
-    evaluation_date DATE DEFAULT CURRENT_TIMESTAMP,
+    day ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'),
+
     FOREIGN KEY (student_id) REFERENCES student_profiles(user_id)
 );
 

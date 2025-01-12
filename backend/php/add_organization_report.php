@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $evaluationData = json_decode($json, true);
 
     if ($evaluationData) {
-
         if (isset($evaluationData['student_id'])) {
             $encrypted_student_id = $evaluationData['student_id'];
             $student_id = decrypt_url_parameter(base64_decode($encrypted_student_id)); 
@@ -28,70 +27,112 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
 
-        // Get the current user (evaluator) ID from session
         $evaluator_id = $_SESSION['user_id'] ?? null;
         if (!$evaluator_id) {
             echo json_encode(['status' => 'error', 'message' => 'Evaluator not authenticated']);
             exit;
         }
 
+        $date = $evaluationData['date'];
+        $day = $evaluationData['day'];
+
         // Work Habits
-        $punctual = $evaluationData["question1"];  // Punctuality
-        $reports_regularly = $evaluationData["question2"];  // Willingness to learn (reporting)
-        $performs_tasks_independently = $evaluationData["question3"];  // Initiative
-        $self_discipline = $evaluationData["question4"];  // Self-motivation
-        $dedication_commitment = $evaluationData["question5"];  // Commitment
+        $punctual = $evaluationData["question1"];
+        $reports_regularly = $evaluationData["question2"];
+        $performs_tasks_independently = $evaluationData["question3"];
+        $self_discipline = $evaluationData["question4"];
+        $dedication_commitment = $evaluationData["question5"];
 
         // Work Skills
-        $ability_to_operate_machines = $evaluationData["question6"];  // Knowledge application
-        $handles_details = $evaluationData["question7"];  // Attention to detail
-        $shows_flexibility = $evaluationData["question8"];  // Adaptability
-        $thoroughness_attention_to_detail = $evaluationData["question9"];  // Attention to detail (repeated)
-        $understands_task_linkages = $evaluationData["question10"];  // Team participation
-        $offers_suggestions = $evaluationData["question11"];  // Problem-solving skills
+        $ability_to_operate_machines = $evaluationData["question6"];
+        $handles_details = $evaluationData["question7"];
+        $shows_flexibility = $evaluationData["question8"];
+        $thoroughness_attention_to_detail = $evaluationData["question9"];
+        $understands_task_linkages = $evaluationData["question10"];
+        $offers_suggestions = $evaluationData["question11"];
 
         // Social Skills
-        $tact_in_dealing_with_people = $evaluationData["question12"];  // Communication skills
-        $respect_and_courtesy = $evaluationData["question13"];  // Respectfulness
-        $helps_others = $evaluationData["question14"];  // Supportiveness
-        $learns_from_co_workers = $evaluationData["question15"];  // Application of feedback
-        $shows_gratitude = $evaluationData["question16"];  // Contribution
-        $poise_and_self_confidence = $evaluationData["question17"];  // Skill development
-        $emotional_maturity = $evaluationData["question18"];  // Conflict resolution
+        $tact_in_dealing_with_people = $evaluationData["question12"];
+        $respect_and_courtesy = $evaluationData["question13"];
+        $helps_others = $evaluationData["question14"];
+        $learns_from_co_workers = $evaluationData["question15"];
+        $shows_gratitude = $evaluationData["question16"];
+        $poise_and_self_confidence = $evaluationData["question17"];
+        $emotional_maturity = $evaluationData["question18"];
 
         $conn = new mysqli($host, $username, $password, $database);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO Student_Evaluation (
-            student_id, evaluator_id,
-            punctual, reports_regularly, performs_tasks_independently, self_discipline, dedication_commitment,
-            ability_to_operate_machines, handles_details, shows_flexibility, 
-            thoroughness_attention_to_detail, understands_task_linkages, offers_suggestions,
-            tact_in_dealing_with_people, respect_and_courtesy, helps_others, 
-            learns_from_co_workers, shows_gratitude, poise_and_self_confidence, 
-            emotional_maturity
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        
+        $checkStmt = $conn->prepare("SELECT student_id FROM Student_Evaluation WHERE student_id = ? AND day = ?");
+        $checkStmt->bind_param("ii", $student_id, $day);
+        $checkStmt->execute();
+        $checkStmt->store_result();
 
-        $stmt->bind_param("iiiiiiiiiiiiiiiiiiii",
-            $student_id, $evaluator_id,
-            $punctual, $reports_regularly, $performs_tasks_independently, $self_discipline, $dedication_commitment,
-            $ability_to_operate_machines, $handles_details, $shows_flexibility, 
-            $thoroughness_attention_to_detail, $understands_task_linkages, $offers_suggestions,
-            $tact_in_dealing_with_people, $respect_and_courtesy, $helps_others, 
-            $learns_from_co_workers, $shows_gratitude, $poise_and_self_confidence, 
-            $emotional_maturity
-        );
+        if ($checkStmt->num_rows > 0) {
+           
+            $updateStmt = $conn->prepare("UPDATE Student_Evaluation SET
+                evaluator_id = ?, punctual = ?, reports_regularly = ?, performs_tasks_independently = ?, 
+                self_discipline = ?, dedication_commitment = ?, ability_to_operate_machines = ?, handles_details = ?, 
+                shows_flexibility = ?, thoroughness_attention_to_detail = ?, understands_task_linkages = ?, 
+                offers_suggestions = ?, tact_in_dealing_with_people = ?, respect_and_courtesy = ?, helps_others = ?, 
+                learns_from_co_workers = ?, shows_gratitude = ?, poise_and_self_confidence = ?, emotional_maturity = ?, 
+                evaluation_date = ? 
+            WHERE student_id = ? AND day = ?");
 
-        if ($stmt->execute()) {
-            header('Content-Type: application/json');
-            echo json_encode(['status' => 'success', 'message' => 'Evaluation processed successfully']);
+            $updateStmt->bind_param("iiiiiiiiiiiiiiiiiiisii",
+                            $evaluator_id, $punctual, $reports_regularly, $performs_tasks_independently, $self_discipline, $dedication_commitment,
+                            $ability_to_operate_machines, $handles_details, $shows_flexibility, $thoroughness_attention_to_detail, $understands_task_linkages,
+                            $offers_suggestions, $tact_in_dealing_with_people, $respect_and_courtesy, $helps_others, $learns_from_co_workers,
+                            $shows_gratitude, $poise_and_self_confidence, $emotional_maturity, $date,
+                            $student_id, $day
+                        );
+
+
+
+
+            if ($updateStmt->execute()) {
+                echo json_encode(['status' => 'success', 'message' => 'Evaluation updated successfully']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Failed to update data: ' . $updateStmt->error]);
+            }
+            $updateStmt->close();
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Failed to insert data: ' . $stmt->error]);
+           
+            $stmt = $conn->prepare("INSERT INTO Student_Evaluation (
+                student_id, evaluator_id,
+                punctual, reports_regularly, performs_tasks_independently, self_discipline, dedication_commitment,
+                ability_to_operate_machines, handles_details, shows_flexibility, 
+                thoroughness_attention_to_detail, understands_task_linkages, offers_suggestions,
+                tact_in_dealing_with_people, respect_and_courtesy, helps_others, 
+                learns_from_co_workers, shows_gratitude, poise_and_self_confidence, 
+                emotional_maturity, evaluation_date, day
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            $stmt->bind_param("iiiiiiiiiiiiiiiiiiiisi",
+                $student_id, $evaluator_id,
+                $punctual, $reports_regularly, $performs_tasks_independently, $self_discipline, $dedication_commitment,
+                $ability_to_operate_machines, $handles_details, $shows_flexibility, 
+                $thoroughness_attention_to_detail, $understands_task_linkages, $offers_suggestions,
+                $tact_in_dealing_with_people, $respect_and_courtesy, $helps_others, 
+                $learns_from_co_workers, $shows_gratitude, $poise_and_self_confidence, 
+                $emotional_maturity,
+                $date, 
+                $day   
+            );
+
+            if ($stmt->execute()) {
+                echo json_encode(['status' => 'success', 'message' => 'Evaluation processed successfully']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Failed to insert data: ' . $stmt->error]);
+            }
+
+            $stmt->close();
         }
 
-        $stmt->close();
+        $checkStmt->close();
         $conn->close();
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Error: No data received.']);
