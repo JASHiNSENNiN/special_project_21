@@ -371,9 +371,6 @@ function revertToOngoing($applicant_id)
                 row.style.display = found ? '' : 'none';
             });
         });
-        row.style.display = found ? '' : 'none';
-        });
-        });
     </script>
 
 
@@ -387,8 +384,6 @@ function revertToOngoing($applicant_id)
     <script>
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
 
         inputFile1.onchange = function() {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
@@ -396,8 +391,6 @@ function revertToOngoing($applicant_id)
     </script>
 
     <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
