@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS Student_Evaluation (
     poise_and_self_confidence INT CHECK (poise_and_self_confidence BETWEEN 0 AND 5),
     emotional_maturity INT CHECK (emotional_maturity BETWEEN 0 AND 5),
 
-    evaluation_date DATE DEFAULT,
+    evaluation_date DATE,
     
     day ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'),
 
