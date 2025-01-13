@@ -109,9 +109,14 @@ function validateSetupForm() {
     return false;
   }
 
-  if (accountType === "student") {
+  if (accountType === "Student") {
     const nameRegex = /^[A-Za-z\s]{2,}$/;
-
+    const lrnRegex = /^\d{12}$/;
+    if (!lrnRegex.test(lrn)) {
+      lrnInput.setCustomValidity("LRN must be a 12-digit number");
+      lrnInput.reportValidity();
+      return false;
+    }
     if (
       !nameRegex.test(firstName) ||
       !nameRegex.test(middleName) ||
@@ -139,10 +144,9 @@ function validateSetupForm() {
 
       return false;
     }
-    const lrnRegex = /^\d{12}$/;
-    if (!lrnRegex.test(lrn)) {
-      lrnInput.setCustomValidity("LRN must be a 12-digit number");
-      lrnInput.reportValidity();
+    if (studentSchoolName === "") {
+      studentSchoolInput.setCustomValidity("Please select a school name");
+      studentSchoolInput.reportValidity();
       return false;
     }
     if (gradeLevel === "") {
@@ -155,11 +159,7 @@ function validateSetupForm() {
       strandInput.reportValidity();
       return false;
     }
-    if (studentSchoolName === "") {
-      studentSchoolInput.setCustomValidity("Please select a school name");
-      studentSchoolInput.reportValidity();
-      return false;
-    }
+
     try {
       const exists = checkNameExists(schoolName, accountType);
       if (exists) {
@@ -173,7 +173,7 @@ function validateSetupForm() {
       console.error("Error:", error);
     }
   }
-  if (accountType === "school") {
+  if (accountType === "School") {
     const schoolRegex = /^[A-Za-z\s]{3,}$/;
     if (!schoolRegex.test(schoolName)) {
       schoolNameInput.setCustomValidity("Please enter a valid school name");
@@ -181,7 +181,7 @@ function validateSetupForm() {
       return false;
     }
   }
-  if (accountType === "organization") {
+  if (accountType === "Organization") {
     const nameRegex = /^[A-Za-z\s]{3,}$/;
     if (!nameRegex.test(organizationName)) {
       organizationNameInput.setCustomValidity(
@@ -257,9 +257,3 @@ window.onload = function () {
     });
   }
 };
-
-const emailInput = document.getElementById("email");
-
-emailInput.addEventListener("input", function () {
-  emailInput.setCustomValidity("");
-});
