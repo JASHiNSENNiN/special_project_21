@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notification_id'])) {
     $updateStmt->bind_param("i", $notificationId);
     $updateStmt->execute();
     $updateStmt->close();
-    
+
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -60,7 +60,8 @@ while ($row = $result->fetch_assoc()) {
 $notificationStmt->close();
 
 // Get user images function
-function get_user_images($email) {
+function get_user_images($email)
+{
     global $host, $username, $password, $database;
     $conn = new mysqli($host, $username, $password, $database);
     $defaultProfileImage = 'uploads/default.png';
@@ -100,10 +101,12 @@ $profileImageSrc = $userImages['profile_image'];
 $coverImageSrc = $userImages['cover_image'];
 
 $notificationHTML = '';
-$unreadNotifications = array_filter($notifications, function($n) { return !$n['is_read']; });
+$unreadNotifications = array_filter($notifications, function ($n) {
+    return !$n['is_read'];
+});
 if (!empty($unreadNotifications)) {
-  foreach ($unreadNotifications as $notif) {
-      $notificationHTML .= '
+    foreach ($unreadNotifications as $notif) {
+        $notificationHTML .= '
           <form method="POST" style="margin: 0;">
               <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
               <button type="submit" style="width: 100%; text-align: left; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin-bottom: 2px;" title="Click to mark as read">
@@ -117,10 +120,12 @@ if (!empty($unreadNotifications)) {
                   </div>
               </button>
           </form>';
-  }
+    }
 }
 
-$readNotifications = array_filter($notifications, function($n) { return $n['is_read']; });
+$readNotifications = array_filter($notifications, function ($n) {
+    return $n['is_read'];
+});
 if (!empty($readNotifications)) {
     foreach ($readNotifications as $notif) {
         $notificationHTML .= '
@@ -145,13 +150,13 @@ $badgeHTML = $unreadCount > 0 ? '<span class="badge">' . $unreadCount . '</span>
 $profile_div = '<header class="nav-header">
     <div class="logo">
         <a href="#">
-            <img src="image/logov3.jpg" alt="Logo">
+            <img src="image/drdsnhs.svg" alt="Logo">
         </a>
     </div>
     <nav class="by">
-        <div class="dropdowntf" style="float:right;">
+        <div class="dropdowntf" style="float:right; ">
             <a href="#" class="notification">
-                <i class="fas fa-bell" style="font-size:24px;"></i>
+                <i class="fas fa-bell" style="font-size:24px;color:#fff;"></i>
                 ' . $badgeHTML . '
             </a>
             <div class="dropdowntf-content" id="box">
@@ -161,7 +166,7 @@ $profile_div = '<header class="nav-header">
             </div>
         </div>
         <div class="dropdown" style="float:right;">
-            <a href=""><i class="fas fa-user-alt" style="font-size:24px; margin-top:10px;"></i></a>
+            <a href=""><i class="fas fa-user-alt" style="font-size:24px; margin-top:10px; color:#fff;"></i></a>
             <div class="dropdown-content">
                 <div class="email">' . $email . '</div>
                 <a href="../../weather_page.php"><i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i> Weather Update</a>

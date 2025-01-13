@@ -152,29 +152,6 @@ $tvl_students = get_students_by_strand('tvl');
 <body>
 
 
-    <!-- <div class="dropdowntf" style="float:right;">
-        <a href="" class="notification"><i class="fas fa-bell" style="font-size:24px;"></i><span
-                class="badge">2</span></a>
-        <div class="dropdowntf-content" id="box">
-            <label for="" class="notif">Notification</label>
-            <hr style="width: 100%;">
-            <div class="notifi-item">
-                <img src="../Organization/image/NIA.png" alt="img">
-                <div class="text">
-                    <h4>NIA</h4>
-                    <p>sent report for Revira, Joshua</p>
-                </div>
-            </div>
-            <div class="notifi-item">
-                <img src="../Organization/image/NIA.png" alt="img">
-                <div class="text">
-                    <h4>NIA</h4>
-                    <p>sent report for Diaz, Ronald</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <?php echo $profile_div; ?>
     <br><br>
     <hr>
@@ -233,42 +210,6 @@ $tvl_students = get_students_by_strand('tvl');
     </div>
 
 
-    <!-- <div class="butts">
-        <button class="button-66" id="modal-btn" role="button"><i class='fas fa-user-plus'
-                style='font-size:15px; margin-right:10px'></i>ADD STUDENT</button>
-    </div> -->
-
-    <!-- <div id="my-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h1 class="AddStudent">Add Student</h1>
-            </div>
-            <div class="modal-body">
-                <div class="container4">
-
-
-                    <form class="formSub" action="/submit" method="post">
-                        <label class="StudentLabel" for="student">Choose a student:</label>
-                        <select class="StudentSelect" id="student" name="student" required>
-                            <option value="" disabled selected>Select a student</option>
-                            <option value="john_doe">John Doe</option>
-                            <option value="jane_smith">Jane Smith</option>
-                            <option value="sam_brown">Sam Brown</option>
-                            <option value="lisa_white">Lisa White</option>
-                            <option value="mike_green">Mike Green</option>
-                        </select>
-                        
-
-                        <button type="submit" class="submit-btn"><i class='fas fa-user-plus'
-                                style='margin-right:10px;'></i>Add
-                            Student</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div id="content_container">
         <div id="humss" class="content active">
             <h1 style="margin-bottom: 50px; margin-top:50px">HUMSS</h1>
@@ -286,6 +227,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
+                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -296,6 +238,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Organization'>N/A</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -335,6 +278,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
+                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -345,6 +289,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Organization'>N/A</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -383,6 +328,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
+                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -393,6 +339,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Organization'>N/A</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -430,6 +377,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
+                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -440,6 +388,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Organization'>N/A</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -477,6 +426,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>#</th>
                             <th>ID Picture</th>
                             <th>Student Name</th>
+                            <th>Organization</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -487,6 +437,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
+                            echo "<td data-th='Organization'>N/A</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";

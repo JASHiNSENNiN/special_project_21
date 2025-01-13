@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notification_id'])) {
     $updateStmt->bind_param("i", $notificationId);
     $updateStmt->execute();
     $updateStmt->close();
-    
+
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -96,19 +96,21 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 $profile_image = (isset($profile_data['profile_image']) && file_exists($profile_image_path)) ? $profile_image_path : 'uploads/default.png';
 $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_path)) ? $cover_image_path : 'uploads/cover.png';
 
-$unreadCount = count(array_filter($notifications, function($n) { return !$n['is_read']; }));
+$unreadCount = count(array_filter($notifications, function ($n) {
+    return !$n['is_read'];
+}));
 $badgeHTML = $unreadCount > 0 ? '<span class="badge">' . $unreadCount . '</span>' : '';
 
 $profile_div = '<header class="nav-header">
     <div class="logo">
         <a href="Company_Area.php">
-            <img src="image/logov3.jpg" alt="Logo">
+            <img src="image/drdsnhs.svg" alt="Logo">
         </a>
     </div>
     <nav class="by">
         <div class="dropdowntf" style="float:right;">
             <a href="" class="notification">
-                <i class="fas fa-bell" style="font-size:24px;"></i>
+                <i class="fas fa-bell" style="font-size:24px;color:#fff;"></i>
                 ' . $badgeHTML . '
             </a>
             <div class="dropdowntf-content" id="box">
@@ -116,11 +118,13 @@ $profile_div = '<header class="nav-header">
                 <hr style="width: 100%;">
                 ';
 
-$unreadNotifications = array_filter($notifications, function($n) { return !$n['is_read']; });
+$unreadNotifications = array_filter($notifications, function ($n) {
+    return !$n['is_read'];
+});
 if (!empty($unreadNotifications)) {
-  $profile_div .= '';
-  foreach ($unreadNotifications as $notif) {
-      $profile_div .= '
+    $profile_div .= '';
+    foreach ($unreadNotifications as $notif) {
+        $profile_div .= '
           <form method="POST" style="margin: 0;">
               <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
               <button type="submit" style="width: 100%; text-align: left; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin-bottom: 2px;" title="Click to mark as read">
@@ -134,10 +138,12 @@ if (!empty($unreadNotifications)) {
                   </div>
               </button>
           </form>';
-  }
+    }
 }
 
-$readNotifications = array_filter($notifications, function($n) { return $n['is_read']; });
+$readNotifications = array_filter($notifications, function ($n) {
+    return $n['is_read'];
+});
 if (!empty($readNotifications)) {
     $profile_div .= '';
     foreach ($readNotifications as $notif) {
@@ -163,7 +169,7 @@ $profile_div .= '
                 </div>
             </div>
             <div class="dropdown" style="float:right;">
-                <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
+                <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;color:#fff;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
                     <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My Profile</a>

@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notification_id'])) {
     $updateStmt->bind_param("i", $notificationId);
     $updateStmt->execute();
     $updateStmt->close();
-    
+
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -66,7 +66,9 @@ $notificationStmt->close();
 
 // Build notifications HTML
 $notificationHTML = '';
-$unreadNotifications = array_filter($notifications, function($n) { return !$n['is_read']; });
+$unreadNotifications = array_filter($notifications, function ($n) {
+    return !$n['is_read'];
+});
 if (!empty($unreadNotifications)) {
     foreach ($unreadNotifications as $notif) {
         $notificationHTML .= '
@@ -86,7 +88,9 @@ if (!empty($unreadNotifications)) {
     }
 }
 
-$readNotifications = array_filter($notifications, function($n) { return $n['is_read']; });
+$readNotifications = array_filter($notifications, function ($n) {
+    return $n['is_read'];
+});
 if (!empty($readNotifications)) {
     foreach ($readNotifications as $notif) {
         $notificationHTML .= '
@@ -158,13 +162,13 @@ $badgeHTML = count($unreadNotifications) > 0 ? '<span class="badge">' . count($u
 $profile_div = '<header class="nav-header">
         <div class="logo">
             <a href="#">
-                 <img src="image/logov3.jpg" alt="Logo">
+                 <img src="image/drdsnhs.svg" alt="Logo">
             </a>
         </div>
         <nav class="by">
             <div class="dropdowntf" style="float:right;">
                 <a href="#" class="notification">
-                    <i class="fas fa-bell" style="font-size:24px;"></i>
+                    <i class="fas fa-bell" style="font-size:24px; color:#fff;"></i>
                     ' . $badgeHTML . '
                 </a>
                 <div class="dropdowntf-content" id="box">
@@ -174,7 +178,7 @@ $profile_div = '<header class="nav-header">
                 </div>
             </div>
             <div class="dropdown" style="float:right; margin-bottom:24px;">
-                <a href=""><i class="fas fa-user-alt" style="font-size:24px; margin-top:10px;"></i></a>
+                <a href=""><i class="fas fa-user-alt" style="font-size:24px; margin-top:10px;color:#fff;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
                     <a href="My_Jobs.php"><i class="fas fa-bookmark" style="font-size:24px; margin-right:10px;"></i> My Jobs</a>
