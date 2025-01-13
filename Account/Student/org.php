@@ -216,7 +216,7 @@ function getApplicantsCountByStrand($jobId, $pdo)
 
     foreach ($results as $row) {
         if (isset($strandCounts[$row['strand']])) {
-            $strandCounts[$row['strand']] = (int)$row['count'];
+            $strandCounts[$row['strand']] = (int) $row['count'];
         }
     }
 
@@ -275,7 +275,7 @@ function generateJobCard()
                     
                     <div class="content">
                         <h4>
-                            <a href="#"> <strong>' . htmlspecialchars($job['work_title'])  .
+                            <a href="#"> <strong>' . htmlspecialchars($job['work_title']) .
         '</strong>
                             </a>
                             
@@ -330,7 +330,7 @@ function generateJobCard()
   <div class="flex-left">
     <div id="top_x_div_rating"></div>
     <div class="rating-users">
-      <i class="fa fa-user" aria-hidden="true"></i><span>' . $totalApplicants  . '</span> total students
+      <i class="fa fa-user" aria-hidden="true"></i><span>' . $totalApplicants . '</span> total students
     </div>
   </div>
   <div class="flex-right">
@@ -611,8 +611,8 @@ if (isset($_POST['action'])) {
             <div class="container">
                 <div class="row" style=" gap: 120px !important;">
                     <a href="index.php">
-                        <img src="../../img/WORKIFY-LOGO.svg" alt="Logo">
-                        <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
+                        <!-- <img src="../../img/WORKIFY-LOGO.svg" alt="Logo"> -->
+                        <img src="image/header.png" alt="Logo">
                     </a>
 
 
@@ -629,8 +629,8 @@ if (isset($_POST['action'])) {
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-sm-7">
-                        <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Junior Philippines Computer
-                            Society Students</p>
+                        <p class="mb-0 f_400">&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos
+                            National High School</p>
                     </div>
                     <!-- <div class="col-lg-6 col-sm-5 text-right">
                         <p>Made with <i class="icon_heart"></i> in <a href="#" target="_blank">JPCS</a></p>
@@ -643,7 +643,7 @@ if (isset($_POST['action'])) {
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
+        window.onscroll = function () {
             myFunction();
         };
 

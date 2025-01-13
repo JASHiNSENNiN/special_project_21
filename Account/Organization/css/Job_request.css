@@ -51,7 +51,7 @@ img {
   object-fit: cover;
   margin-left: 21%;
   margin-top: -90px;
-  border: 5px solid #fff;
+  border: 1px solid #fff;
 }
 
 .name {
@@ -484,6 +484,7 @@ textarea[type="textarea"] {
   background: transparent;
   border-radius: 10px;
   text-decoration: none;
+  text-align: center;
 }
 
 #searchInput {
