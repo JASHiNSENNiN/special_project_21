@@ -51,12 +51,12 @@ function removeApplicant($applicant_id, $work)
         die("Connection failed: " . $conn->connect_error);
     }
 
-    
+
     $sql = "UPDATE applicants SET status = 'rejected' WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
-    $stmt->close(); 
+    $stmt->close();
 
     $sql = "UPDATE student_profiles SET current_work = NULL WHERE user_id = (SELECT student_id FROM applicants WHERE id = ?)";
     $stmt = $conn->prepare($sql);
@@ -69,10 +69,10 @@ function removeApplicant($applicant_id, $work)
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
-    
+
     $stmt->bind_result($user_id);
     $stmt->fetch();
-    $stmt->close(); 
+    $stmt->close();
 
     if ($user_id) {
         $message = "You have been removed from your work, " . $work;
@@ -80,7 +80,7 @@ function removeApplicant($applicant_id, $work)
         $notificationStmt = $conn->prepare($notificationQuery);
         $notificationStmt->bind_param("is", $user_id, $message);
         $notificationStmt->execute();
-        $notificationStmt->close(); 
+        $notificationStmt->close();
     }
 
     $conn->close();
@@ -137,7 +137,7 @@ function acceptApplicant($applicant_id, $work)
     $notificationStmt = $conn->prepare($notificationQuery);
     $notificationStmt->bind_param("is", $student_id, $message);
     $notificationStmt->execute();
-    $notificationStmt->close(); 
+    $notificationStmt->close();
 
     $stmt->close();
     $conn->close();
@@ -171,12 +171,12 @@ function completeApplicant($applicant_id, $work)
     $stmt->execute();
     $stmt->close();
 
-    $user_id = null; 
+    $user_id = null;
     $sql = "SELECT student_id FROM applicants WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
-    
+
     $stmt->bind_result($user_id);
     $stmt->fetch();
     $stmt->close();
@@ -187,7 +187,7 @@ function completeApplicant($applicant_id, $work)
         $notificationStmt = $conn->prepare($notificationQuery);
         $notificationStmt->bind_param("is", $user_id, $message);
         $notificationStmt->execute();
-        $notificationStmt->close(); 
+        $notificationStmt->close();
     }
 
     $conn->close();
@@ -219,15 +219,15 @@ function revertToOngoing($applicant_id, $work)
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
 
-    $student_id = null; 
+    $student_id = null;
     $sql = "SELECT student_id FROM applicants WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $applicant_id);
     $stmt->execute();
-    
+
     $stmt->bind_result($student_id);
     $stmt->fetch();
-    $stmt->close(); 
+    $stmt->close();
 
     if ($student_id) {
         $message = "Your status for the work " . $work . " has been reverted to ongoing.";
@@ -235,7 +235,7 @@ function revertToOngoing($applicant_id, $work)
         $notificationStmt = $conn->prepare($notificationQuery);
         $notificationStmt->bind_param("is", $student_id, $message);
         $notificationStmt->execute();
-        $notificationStmt->close(); 
+        $notificationStmt->close();
     }
 
     $conn->close();
@@ -366,13 +366,13 @@ function revertToOngoing($applicant_id, $work)
                                 </a>
                                 <?php
                                 switch ($applicant['status']) {
-                                    case 'applied':
-                                        echo '
-                                  <form method="POST" style="display:inline;">
-                                      <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
-                                      <button type="submit" class="button-9" name="accept_applicant" style="padding: 0 13px;">Accept</button>
-                                  </form>';
-                                        break;
+                                        //     case 'applied':
+                                        //         echo '
+                                        //   <form method="POST" style="display:inline;">
+                                        //       <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
+                                        //       <button type="submit" class="button-9" name="accept_applicant" style="padding: 0 13px;">Accept</button>
+                                        //   </form>';
+                                        // break;
                                     case 'accepted':
                                         echo '
                                   <form method="POST" style="display:inline;">

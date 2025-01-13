@@ -129,7 +129,7 @@ if (!empty($unreadNotifications)) {
               <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
               <button type="submit" style="width: 100%; text-align: left; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin-bottom: 2px;" title="Click to mark as read">
                   <div class="notifi-item">
-                      <img src="https://via.placeholder.com/50" alt="img">
+                     <img src="' . $profile_image . '" alt="img" style="width: 50px; height: 50px;">
                       <div class="text" style="font-weight: bold;">
                           <h4 style="margin: 0;">New Notification</h4>
                           <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
@@ -150,7 +150,7 @@ if (!empty($readNotifications)) {
         $profile_div .= '
             <div style="background: #ffffff; padding: 10px; opacity: 0.7; margin-bottom: 2px;">
                 <div class="notifi-item">
-                    <img src="https://via.placeholder.com/50" alt="img">
+                    <img src="' . $profile_image . '" alt="img" style="width: 50px; height: 50px;">
                     <div class="text">
                         <h4 style="margin: 0;">Notification</h4>
                         <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
@@ -190,4 +190,3 @@ $profile_div .= '
         <div class="name">' . $firstName . ' ' . $middleName . ' ' . $lastName . '</div>
         <label class="strand" for="">' . $strand . '</label>
     </div>';
-?>

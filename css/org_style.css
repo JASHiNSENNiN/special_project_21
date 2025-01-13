@@ -11,6 +11,7 @@ body {
     list-style: none;
 }
 
+
 /* .line_bottom {
   width: 100% !important;
   height: 1px;
@@ -27,7 +28,9 @@ body {
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
 }
 
+
 /* ---------------------------------------------company-info-box----------------------------------- */
+
 
 /* .company-info-box {
   display: flex;
@@ -326,14 +329,18 @@ body .job-overview {
     }
 }
 
+
 /* ---------------------------------------------end company-info-box--------------------------------- */
+
 
 /* .active {
   color: #000000;
   font-weight: bold;
 } */
 
+
 /* -----------------------------section----------------------------------------- */
+
 
 /* section {
   max-width: 800px;
@@ -345,6 +352,7 @@ body .job-overview {
   padding-left: 1rem;
   padding-right: 1rem;
 } */
+
 
 /* .line-search {
   border: 1px solid rgb(0, 0, 0);
@@ -441,7 +449,7 @@ form {
 }
 
 span.full-time {
-    background-color: #186fc9;
+    background-color: #016435;
     margin-left: 10px;
     padding: 8px 8px;
     position: relative;
@@ -490,7 +498,9 @@ span.full-time {
     }
 }
 
+
 /* -----------------------------end section ------------------------------------ */
+
 
 /* Icon styles */
 
@@ -504,6 +514,7 @@ h2,
 h3 {
     color: #333;
 }
+
 
 /* .sfa {
     color: #172738;
@@ -542,6 +553,7 @@ input {
     outline: none;
     transition: 200ms ease-in;
 }
+
 
 /* 
 input:focus {
@@ -630,7 +642,9 @@ nav a {
     font-weight: 500;
 }
 
+
 /* ----------------------------workify css--------------------- */
+
 
 /* .login-btn:hover {
     color: #172738;
@@ -654,7 +668,9 @@ nav a {
     transition: transform 0.3s;
 } */
 
+
 /* //////////////////////END ///////////////////////////////////////*/
+
 
 /* ------------------------------drdsnhs css ---------------------------- */
 
@@ -680,12 +696,14 @@ nav a::after {
     transition: transform 0.3s;
 }
 
+
 /* //////////////////////END ///////////////////////////////////////*/
 
 nav a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
 
 /* .login-btn {
             background-color: #1bbc9b;
@@ -745,6 +763,7 @@ nav a:hover::after {
     font-weight: 700;
 }
 
+
 /* .css-1ld7x2h {
     box-sizing: border-box;
     height: 2rem;
@@ -790,6 +809,7 @@ nav a:hover::after {
     text-align: center;
 }
 
+
 /* -------------------------line button----------------------------- */
 
 .css-1ld7x2h {
@@ -803,6 +823,7 @@ nav a:hover::after {
     min-width: 0;
     width: 0.0625rem;
 }
+
 
 /* ------------------------Job List----------------------- */
 
@@ -1086,7 +1107,7 @@ html {
         align-items: center;
         cursor: pointer;
     }
-    & + & {
+    &+& {
         margin-top: 10px;
     }
 }
@@ -1105,7 +1126,7 @@ html {
     display: none;
 }
 
-.job-style + label:before {
+.job-style+label:before {
     content: "";
     margin-right: 10px;
     width: 16px;
@@ -1115,7 +1136,7 @@ html {
     cursor: pointer;
 }
 
-.job-style:checked + label:before {
+.job-style:checked+label:before {
     background-color: var(--active-color);
     border-color: var(--active-color);
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3e%3cpath d='M20 6L9 17l-5-5'/%3e%3c/svg%3e");
@@ -1124,7 +1145,7 @@ html {
     background-repeat: no-repeat;
 }
 
-.job-style:checked + label + span {
+.job-style:checked+label+span {
     background-color: var(--active-light-color);
     color: var(--active-color);
 }
@@ -1264,7 +1285,7 @@ html {
         height: 100%;
         flex-shrink: 0;
     }
-    &-card + &-card {
+    &-card+&-card {
         margin-top: 20px;
     }
     &-buttons {
@@ -1387,7 +1408,7 @@ html {
         color: var(--subtitle-color);
         border-radius: 8px;
         padding: 6px;
-        & + svg {
+        &+svg {
             margin-left: 12px;
         }
     }
@@ -1471,7 +1492,7 @@ html {
     }
     &-contents {
         height: 66px;
-        & + & {
+        &+& {
             border-left: 1px solid var(--border-color);
             padding-left: 16px;
         }
@@ -1492,7 +1513,7 @@ html {
         font-size: 13px;
         position: relative;
         display: flex;
-        & + & {
+        &+& {
             margin-top: 20px;
         }
         &:before {
@@ -1537,11 +1558,11 @@ html {
     .explain-contents {
         width: 50%;
     }
-    .explain-contents + .explain-contents {
+    .explain-contents+.explain-contents {
         padding: 0;
         border: 0;
     }
-    .explain-contents:nth-child(2) ~ .explain-contents {
+    .explain-contents:nth-child(2)~.explain-contents {
         margin-top: 16px;
         border-top: 1px solid var(--border-color);
     }
@@ -1634,7 +1655,7 @@ html {
         width: 100%;
         margin: 0;
     }
-    .explain-contents:nth-child(2) ~ .explain-contents {
+    .explain-contents:nth-child(2)~.explain-contents {
         margin: 0;
         border: 0;
     }
@@ -1693,12 +1714,7 @@ html {
     margin-top: 8px;
     font-weight: 400 !important;
     color: #6f6f6f;
-    font-family:
-        Noto Sans,
-        Helvetica Neue,
-        Helvetica,
-        Arial,
-        sans-serif;
+    font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
     box-sizing: initial;
     font-size: 0.75rem;
 }
@@ -1711,6 +1727,7 @@ html {
     color: rgb(118, 118, 118);
     margin: 8px;
 }
+
 
 /* -------------------------------recent Search --------------- */
 
@@ -1750,6 +1767,7 @@ html {
     cursor: not-allowed;
 }
 
+
 /* --------------------------------------Header Sticky--------------------------- */
 
 .stickyhead {
@@ -1759,11 +1777,13 @@ html {
     z-index: 99;
 }
 
-.stickyhead + .content-sticky {
+.stickyhead+.content-sticky {
     padding-top: 102px;
 }
 
+
 /* ---------------------------------search not found-------------------------------- */
+
 
 /* footer {
     width: 100% !important;
@@ -1927,7 +1947,7 @@ button:focus {
     color: white;
 }
 
-.new_footer_top .f_social_icon a + a {
+.new_footer_top .f_social_icon a+a {
     margin-left: 4px;
 }
 
@@ -1960,15 +1980,13 @@ h6 {
 .new_footer_top .footer_bg {
     position: absolute;
     bottom: 0;
-    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82yw0R7LgACQ2IhZaTY0hhmGi0gYp_Ynb49CVzfmXtYHUVKgXXpWvJ_oYT8cB4vzsnJLe3iCwuzj-w6PeYq_JaHmy_CoGoa6nw0FBo-2xLdOPvsLTh_fmYH2xhkaZ-OGQ/s16000/footer_bg.png")
-        no-repeat scroll center 0;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82yw0R7LgACQ2IhZaTY0hhmGi0gYp_Ynb49CVzfmXtYHUVKgXXpWvJ_oYT8cB4vzsnJLe3iCwuzj-w6PeYq_JaHmy_CoGoa6nw0FBo-2xLdOPvsLTh_fmYH2xhkaZ-OGQ/s16000/footer_bg.png") no-repeat scroll center 0;
     width: 100%;
     height: 266px;
 }
 
 .new_footer_top .footer_bg .footer_bg_one {
-    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia0PYPxwT5ifToyP3SNZeQWfJEWrUENYA5IXM6sN5vLwAKvaJS1pQVu8mOFFUa_ET4JuHNTFAxKURFerJYHDUWXLXl1vDofYXuij45JZelYOjEFoCOn7E6Vxu0fwV7ACPzArcno1rYuVxGB7JY6G7__e4_KZW4lTYIaHSLVaVLzklZBLZnQw047oq5-Q/s16000/volks.gif")
-        no-repeat center center;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia0PYPxwT5ifToyP3SNZeQWfJEWrUENYA5IXM6sN5vLwAKvaJS1pQVu8mOFFUa_ET4JuHNTFAxKURFerJYHDUWXLXl1vDofYXuij45JZelYOjEFoCOn7E6Vxu0fwV7ACPzArcno1rYuVxGB7JY6G7__e4_KZW4lTYIaHSLVaVLzklZBLZnQw047oq5-Q/s16000/volks.gif") no-repeat center center;
     width: 330px;
     height: 105px;
     background-size: 100%;
@@ -1980,8 +1998,7 @@ h6 {
 }
 
 .new_footer_top .footer_bg .footer_bg_two {
-    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif")
-        no-repeat center center;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif") no-repeat center center;
     width: 88px;
     height: 100px;
     background-size: 100%;
@@ -1995,6 +2012,7 @@ h6 {
 .col-lg-3 img {
     transform: translateY(63%);
 }
+
 
 /* .col-lg-6 p {
     transform: translateX(63%);
@@ -2027,7 +2045,9 @@ h6 {
     }
 }
 
+
 /*************footer End*****************/
+
 
 /* ----------------------------------------rating graph ----------------------------------------- */
 
@@ -2134,6 +2154,7 @@ h6 {
     background-color: #ff0000;
 }
 
+
 /* -------------------------------------------graph evaluation ------------------------ */
 
 .tab-pane {
@@ -2209,7 +2230,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     background: transparent !important;
 }
 
-.account-settings-multiselect ~ .select2-container {
+.account-settings-multiselect~.select2-container {
     width: 100% !important;
 }
 
@@ -2253,11 +2274,13 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     margin-bottom: 30px !important;
 }
 
+
 /* @media (min-width: 1200px) {
   .container {
     max-width: 1117.5px !important;
   }
 } */
+
 
 /* /////////////////////////////////////////////bar rating graph and pie chart///////////////////// */
 
@@ -2317,6 +2340,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     /* Minimum height */
 }
 
+
 /* ///////////////////////////////////rating //////////////////////////////////////////////////////// */
 
 .clearfix::after {
@@ -2346,6 +2370,7 @@ h3 {
     color: #252525;
     margin-bottom: 20px;
 }
+
 
 /* .row {
     margin: 0 -15px;

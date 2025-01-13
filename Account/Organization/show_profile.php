@@ -63,6 +63,10 @@ while ($row = $result->fetch_assoc()) {
     ];
 }
 $notificationStmt->close();
+// Get user images
+$userImages = get_user_images($email);
+$profileImageSrc = $userImages['profile_image'];
+$coverImageSrc = $userImages['cover_image'];
 
 // Build notifications HTML
 $notificationHTML = '';
@@ -76,7 +80,7 @@ if (!empty($unreadNotifications)) {
                 <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
                 <button type="submit" style="width: 100%; text-align: left; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin-bottom: 2px; title="Click to mark as read"">
                     <div class="notifi-item">
-                        <img src="https://via.placeholder.com/50" alt="img">
+                        <img src="' . $profileImageSrc . '" alt="img" style"width: 50px; height: 50px;">
                         <div class="text" style="font-weight: bold;">
                             <h4 style="margin: 0;">New Notification</h4>
                             <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
@@ -95,7 +99,7 @@ if (!empty($readNotifications)) {
     foreach ($readNotifications as $notif) {
         $notificationHTML .= '
             <div class="notifi-item">
-                <img src="https://via.placeholder.com/50" alt="img">
+                <img src="' . $profileImageSrc . '" alt="img" style"width: 50px; height: 50px;">
                 <div class="text">
                     <h4 style="margin: 0;">Notification</h4>
                     <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
@@ -152,10 +156,6 @@ function get_user_images($email)
     return $images;
 }
 
-// Get user images
-$userImages = get_user_images($email);
-$profileImageSrc = $userImages['profile_image'];
-$coverImageSrc = $userImages['cover_image'];
 
 $badgeHTML = count($unreadNotifications) > 0 ? '<span class="badge">' . count($unreadNotifications) . '</span>' : '';
 
@@ -198,4 +198,3 @@ $profile_div .= '<div class="profile">
         <div class="name">' . $organizationName . '</div>
         <label class="strand" for="">' . $strandFocus . '</label>
     </div>';
-?>

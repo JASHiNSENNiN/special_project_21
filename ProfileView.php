@@ -164,7 +164,7 @@ $dailyPerformance = getDailyPerformance($user_id, $pdo);
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="/Account/' . $_SESSION['account_type'] . '"> 
-                <img src="/Account/Student/image/logov3.jpg" alt="Logo">
+                <img src="img/drdsnhs.svg" alt="Logo">
             </a>
            
             
@@ -172,7 +172,7 @@ $profile_divv = '<header class="nav-header">
         <nav class="by">
 
  
- <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/' . $_SESSION['account_type'] . '"> Back </a>
+ <a class="btn-home" style="color:#fff; font-weight: 600;" href="../../Account/' . $_SESSION['account_type'] . '"> Back </a>
   
 </div>
         
@@ -344,8 +344,8 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
 
     <title>Student Dashboard</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
 
 
     <!-- FontAwesome 5 -->
