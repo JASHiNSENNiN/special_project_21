@@ -38,7 +38,7 @@ ul {
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     padding: 2rem;
     background-color: #eee;
 }
@@ -55,13 +55,19 @@ ul {
     box-shadow: 0rem 1rem 2rem -0.25rem rgba(0, 0, 0, 0.25);
 }
 
+.container {
+    width: 100%;
+    padding-right: 50px !important;
+    padding-left: 50px !important;
+}
+
 .container__heading {
     padding: 1rem 0;
     border-bottom: 1px solid #ccc;
     text-align: center;
 }
 
-.container__heading > h2 {
+.container__heading>h2 {
     font-size: 1.75rem;
     line-height: 1.75rem;
     margin: 0;
@@ -69,35 +75,88 @@ ul {
 
 .container__content {
     flex-grow: 1;
-    overflow-y: scroll;
     margin-top: 20px;
 }
 
 .container__nav {
     border-top: 1px solid #ccc;
-    text-align: right;
+    text-align: center;
     padding: 2rem 0 1rem;
 }
 
-.container__nav > .button {
+.container__nav>.button {
     background-color: #128f76;
-    /* box-shadow: 0rem 0.5rem 1rem -0.125rem rgba(0, 0, 0, 0.25); */
     padding: 0.8rem 2rem;
     border-radius: 0.5rem;
     color: #fff;
     text-decoration: none;
     font-size: 0.9rem;
-    transition:
-        transform 0.25s,
-        box-shadow 0.25s;
+    transition: transform 0.25s, box-shadow 0.25s;
 }
 
-.container__nav > .button:hover {
+.container__nav>.button:hover {
     box-shadow: 0rem 0rem 1rem -0.125rem rgba(0, 0, 0, 0.25);
     transform: translateY(-0.5rem);
 }
 
-.container__nav > small {
+.container__nav>small {
     color: #777;
     margin-right: 1rem;
+}
+
+
+/* //////////////////////////header profile //////////////////////////////////////// */
+
+.nav-header {
+    background-color: #016435;
+    color: #fff;
+    padding-top: 5px;
+    padding-right: 100px;
+    padding-left: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+a.btn-home:hover {
+    text-decoration-line: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 220px;
+    /* Adjust the width as needed */
+    /* height: 50px; Adjust the height as needed */
+    margin-right: 30px;
+}
+
+@media only screen and (max-width: 1085px) {
+    .header {
+        padding-left: 20px !important;
+        padding-bottom: 5px !important;
+    }
+    .logo img {
+        width: 160px !important;
+        /* Adjust the width as needed */
+        margin-right: 15px !important;
+    }
+    nav a {
+        /* padding: 5px 10px !important; */
+        margin: 0 10px !important;
+        font-size: 14px !important;
+    }
+    nav {
+        margin: 0;
+    }
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #7f8c8d;
 }

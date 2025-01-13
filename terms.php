@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="register.php"> 
-                <img src="/img/logov3.jpg" alt="Logo">
+                <img src="img/drdsnhs.svg" alt="Logo">
             </a>
            
             
@@ -13,7 +13,7 @@ $profile_divv = '<header class="nav-header">
         <nav class="by">
 
  
- <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="register.php"> Back </a>
+ <a class="btn-home" style="color:#fff; font-weight: 600;" href="register.php"> Back </a>
   
 </div>
         
@@ -30,10 +30,10 @@ $profile_divv = '<header class="nav-header">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> Terms | Workify</title>
+    <title> Terms | DRDSNHS</title>
 
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="/img/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="/img/W.png"> -->
 
     <link rel="stylesheet" type="text/css" href="css/terms.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -59,10 +59,13 @@ $profile_divv = '<header class="nav-header">
     </noscript>
     <main class="wrap">
         <section class="container">
+            <div class="container__heading">
+                <h2>Registration Terms for DRDSNHS</h2>
+            </div>
             <div class="container__content">
 
 
-                <h1>Registration Terms for Workify</h1>
+
                 <p><strong>Last Updated: 9/01/2024 </strong></p>
 
                 <h2>1. Eligibility</h2>
@@ -101,11 +104,11 @@ $profile_divv = '<header class="nav-header">
                 </ul>
 
                 <h2>Legal Framework</h2>
-                <p>The registration and operation of Workify are guided by Republic Act No. 10917, which amends the Special Program for Employment of Students (SPES). This law outlines the rights of student workers, the responsibilities of employers, and the necessary conditions for student employment in the Philippines.</p>
+                <p>The registration and operation of DRDSNHS are guided by Republic Act No. 10917, which amends the Special Program for Employment of Students (SPES). This law outlines the rights of student workers, the responsibilities of employers, and the necessary conditions for student employment in the Philippines.</p>
             </div>
             <div class="container__nav">
                 <footer>
-                    <p>By adhering to these terms, students can ensure a productive and legally compliant work immersion experience through Workify.</p>
+                    <p>By adhering to these terms, students can ensure a productive and legally compliant work immersion experience through DRDSNHS.</p>
                 </footer>
 
             </div>

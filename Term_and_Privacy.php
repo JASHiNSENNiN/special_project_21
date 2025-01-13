@@ -1,3 +1,28 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$profile_divv = '<header class="nav-header">
+        <div class="logo">
+            <a href="register.php"> 
+                <img src="img/drdsnhs.svg" alt="Logo">
+            </a>
+           
+            
+        </div>
+        <nav class="by">
+
+ 
+ <a class="btn-home" style="color:#fff; font-weight: 600;" href="Account/Organization/Job_ads.php"> Back </a>
+  
+</div>
+        
+        </nav>
+
+    </header>
+
+    ';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +30,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> Term & Privacy | Workify</title>
+    <title> Term & Privacy | DRDSNHS</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <!-- <link rel="stylesheet" type="text/css" href="css/org_style.css">
@@ -24,6 +49,7 @@
 </style>
 
 <body>
+    <?php echo $profile_divv; ?>
     <noscript>
         <style>
             html {
@@ -42,11 +68,11 @@
                 <h1>Terms of Service and Privacy Policy for Job Ads</h1>
                 <p><strong>Last Updated: 10/18/2024 </strong></p>
 
-                <p>Welcome to Workify! By logging into and using our platform, you agree to comply with these Terms and
+                <p>Welcome to DRDSNHS! By logging into and using our platform, you agree to comply with these Terms and
                     Privacy. If you do not agree, please do not log in or use our services.</p>
 
                 <h2>1. Acceptance of Terms</h2>
-                <p>Welcome to Workify. By creating job ads on our platform, partner organizations agree to comply with
+                <p>Welcome to DRDSNHS. By creating job ads on our platform, partner organizations agree to comply with
                     these Terms of Service and Privacy Policy.</p>
 
                 <h2>2. Acceptance of Terms</h2>
@@ -94,7 +120,7 @@
 
                 <h2>7. Limitation of Liability</h2>
                 <ul>
-                    <li>Workify is not liable for any direct, indirect, incidental, or consequential damages that arise
+                    <li>DRDSNHS is not liable for any direct, indirect, incidental, or consequential damages that arise
                         from your use of our services or the content of job ads.</li>
                 </ul>
 
@@ -107,9 +133,21 @@
 
                 <h2>9. Contact us</h2>
                 <p>For questions about these Terms, please contact us at <a href="#">JPCS@workify.com</a>.</p>
+
+                <h2>10. Governing Law and References</h2>
+                <p>This Terms and Privacy Policy shall be governed by and construed in accordance with the laws of the Republic of the Philippines. In particular, we adhere to the following laws and regulations:</p>
+                <ul>
+                    <li><b>Data Privacy Act of 2012 (Republic Act No. 10173):</b> This law governs the collection, handling, and protection of personal information in the Philippines, ensuring that your privacy and rights as a data subject are respected and protected.</li>
+                    <li><b>Labor Code of the Philippines:</b> All job ads posted on our platform must comply with the provisions of the Labor Code to promote fair employment practices.</li>
+                    <li><b>Anti-Discrimination provisions:</b> All job ads must adhere to applicable laws regarding non-discrimination in employment, ensuring fairness in job advertisements and hiring practices.</li>
+                </ul>
+
             </div>
             <div class="container__nav">
-                <a class="button" href="Account/Organization/Job_ads.php">Back&#8594;</a>
+
+                <footer>
+                    <p>By using our services, you acknowledge and agree to comply with these laws as they relate to your use of DRDSNHS.</p>
+                </footer>
             </div>
         </section>
     </main>

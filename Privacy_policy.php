@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="register.php"> 
-                <img src="/img/logov3.jpg" alt="Logo">
+                <img src="img/drdsnhs.svg" alt="Logo">
             </a>
            
             
@@ -13,7 +13,7 @@ $profile_divv = '<header class="nav-header">
         <nav class="by">
 
  
- <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="register.php"> Back </a>
+ <a class="btn-home" style="color:#fff; font-weight: 600;" href="register.php"> Back </a>
   
 </div>
         
@@ -30,10 +30,10 @@ $profile_divv = '<header class="nav-header">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> Privacy Policy | Workify</title>
+    <title> Privacy Policy | DRDSNHS</title>
 
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="/img/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="/img/W.png"> -->
 
     <link rel="stylesheet" type="text/css" href="css/terms.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -59,13 +59,14 @@ $profile_divv = '<header class="nav-header">
     </noscript>
     <main class="wrap">
         <section class="container">
+            <div class="container__heading">
+                <h2>Privacy Policy for DRDSNHS</h2>
+            </div>
             <div class="container__content">
-
-
-                <h1>Privacy Policy for Workify</h1>
+                <h1>Privacy Policy for DRDSNHS</h1>
 
                 <h2>Introduction</h2>
-                <p>Workify is committed to protecting the privacy of our users, particularly senior high school students seeking work immersion opportunities. This Privacy Policy outlines how we collect, use, and protect your personal information in compliance with applicable laws in the Philippines.</p>
+                <p>DRDSNHS is committed to protecting the privacy of our users, particularly senior high school students seeking work immersion opportunities. This Privacy Policy outlines how we collect, use, and protect your personal information in compliance with applicable laws in the Philippines.</p>
 
                 <h2>Information We Collect</h2>
 
@@ -121,7 +122,7 @@ $profile_divv = '<header class="nav-header">
                 <h2>Use of Information</h2>
                 <p>We use the collected information for the following purposes:</p>
                 <ul>
-                    <li>To create and manage your account on Workify.</li>
+                    <li>To create and manage your account on DRDSNHS.</li>
                     <li>To match you with suitable work immersion opportunities.</li>
                     <li>To communicate with you regarding your application and other relevant updates.</li>
                     <li>To evaluate your performance and provide feedback.</li>
