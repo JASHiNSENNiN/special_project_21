@@ -391,7 +391,9 @@ nav .login-btn:hover {
 
 .dropdowntf-content img {
   display: block;
-  width: 50px;
+  margin-top: 0.5em;
+  width: 5rem;
+  height: 4rem;
   margin-right: 10px;
   border-radius: 50%;
 }
