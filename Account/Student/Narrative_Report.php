@@ -115,8 +115,8 @@ if ($is_completed) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="image/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <link rel="stylesheet" href="css/Narrative.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -782,8 +782,8 @@ if ($is_completed) {
 
 
     <footer>
-        <!-- <p>&copy; 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p> -->
-        ©2024 Your Website. All rights reserved. | Junior Philippines Computer
+        <p>&copy; 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p>
+        <!-- ©2024 Your Website. All rights reserved. | Junior Philippines Computer -->
     </footer>
 
     <script>
@@ -845,7 +845,23 @@ if ($is_completed) {
     </script>
 
 
+    <script>
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
 
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
+    </script>
+
+    <script>
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
+
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
+    </script>
 
     <script>
     var form_1 = document.querySelector(".form_1");
@@ -966,9 +982,6 @@ if ($is_completed) {
 
     btn_done.addEventListener("click", function() {
         // Get the radio button values
-        const dateInput = document.getElementById('date');
-        const dayInput = document.getElementById('day');
-
         const answers = [];
 
         // Form 1

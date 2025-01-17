@@ -27,7 +27,6 @@ body {
     margin-top: 25px;
 }
 
-
 /* .bg-search {
   width: 100%;
   height: 173px;
@@ -48,6 +47,7 @@ body {
     left: 0;
     right: 0;
     position: absolute;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 section {
@@ -135,7 +135,6 @@ section {
     transition: background-color 0.3s ease;
 }
 
-
 /* Icon styles */
 
 .fa-search,
@@ -148,7 +147,6 @@ h2,
 h3 {
     color: #000b26;
 }
-
 
 /* .sfa {
     color: #172738;
@@ -193,7 +191,6 @@ input {
     outline: none;
     transition: 200ms ease-in;
 }
-
 
 /* 
 input:focus {
@@ -307,9 +304,7 @@ nav a::after {
     transition: transform 0.3s;
 }
 
-
 /* //////////////////////// Workify css////////////////// */
-
 
 /* nav a:hover {
   color: rgb(27, 188, 155, 0.7);
@@ -336,7 +331,6 @@ nav a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-
 
 /* .login-btn {
             background-color: #1bbc9b;
@@ -394,7 +388,6 @@ nav a:hover::after {
     color: #fff;
 }
 
-
 /* .css-1ld7x2h {
     box-sizing: border-box;
     height: 2rem;
@@ -440,7 +433,6 @@ nav a:hover::after {
     text-align: center;
 }
 
-
 /* -------------------------line button----------------------------- */
 
 .css-1ld7x2h {
@@ -454,7 +446,6 @@ nav a:hover::after {
     min-width: 0;
     width: 0.0625rem;
 }
-
 
 /* ------------------------Job List----------------------- */
 
@@ -740,7 +731,7 @@ html {
         align-items: center;
         cursor: pointer;
     }
-    &+& {
+    & + & {
         margin-top: 10px;
     }
 }
@@ -759,7 +750,7 @@ html {
     display: none;
 }
 
-.job-style+label:before {
+.job-style + label:before {
     content: "";
     margin-right: 10px;
     width: 16px;
@@ -769,7 +760,7 @@ html {
     cursor: pointer;
 }
 
-.job-style:checked+label:before {
+.job-style:checked + label:before {
     background-color: var(--active-color);
     border-color: var(--active-color);
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3e%3cpath d='M20 6L9 17l-5-5'/%3e%3c/svg%3e");
@@ -778,7 +769,7 @@ html {
     background-repeat: no-repeat;
 }
 
-.job-style:checked+label+span {
+.job-style:checked + label + span {
     background-color: var(--active-light-color);
     color: var(--active-color);
 }
@@ -928,7 +919,7 @@ html {
         height: 100%;
         flex-shrink: 0;
     }
-    &-card+&-card {
+    &-card + &-card {
         margin-top: 20px;
     }
     &-buttons {
@@ -1051,7 +1042,7 @@ html {
         color: var(--subtitle-color);
         border-radius: 8px;
         padding: 6px;
-        &+svg {
+        & + svg {
             margin-left: 12px;
         }
     }
@@ -1135,7 +1126,7 @@ html {
     }
     &-contents {
         height: 66px;
-        &+& {
+        & + & {
             border-left: 1px solid var(--border-color);
             padding-left: 16px;
         }
@@ -1156,7 +1147,7 @@ html {
         font-size: 13px;
         position: relative;
         display: flex;
-        &+& {
+        & + & {
             margin-top: 20px;
         }
         &:before {
@@ -1201,11 +1192,11 @@ html {
     .explain-contents {
         width: 50%;
     }
-    .explain-contents+.explain-contents {
+    .explain-contents + .explain-contents {
         padding: 0;
         border: 0;
     }
-    .explain-contents:nth-child(2)~.explain-contents {
+    .explain-contents:nth-child(2) ~ .explain-contents {
         margin-top: 16px;
         border-top: 1px solid var(--border-color);
     }
@@ -1298,7 +1289,7 @@ html {
         width: 100%;
         margin: 0;
     }
-    .explain-contents:nth-child(2)~.explain-contents {
+    .explain-contents:nth-child(2) ~ .explain-contents {
         margin: 0;
         border: 0;
     }
@@ -1357,7 +1348,12 @@ html {
     margin-top: 8px;
     font-weight: 400 !important;
     color: #6f6f6f;
-    font-family: Noto Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family:
+        Noto Sans,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
     box-sizing: initial;
     font-size: 0.75rem;
 }
@@ -1374,7 +1370,6 @@ html {
     color: rgb(118, 118, 118);
     margin: 8px;
 }
-
 
 /* -------------------------------recent Search --------------- */
 
@@ -1414,9 +1409,7 @@ html {
     cursor: not-allowed;
 }
 
-
 /* --------------------------------------Header Sticky--------------------------- */
-
 
 /* .stickyhead {
   position: fixed;
@@ -1429,7 +1422,6 @@ html {
   padding-top: 102px;
 } */
 
-
 /* ---------------------------------search not found-------------------------------- */
 
 .globalSearchResultNoFoundFeedback {
@@ -1441,7 +1433,6 @@ html {
     background: #f6f7f9;
     border-radius: 5px;
 }
-
 
 /* Responsive styles for larger devices */
 
