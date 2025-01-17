@@ -159,7 +159,8 @@ CREATE TABLE IF NOT EXISTS Organization_Evaluation (
     resilience_to_challenges INT CHECK (resilience_to_challenges BETWEEN 0 AND 5),
     commitment_to_experience INT CHECK (commitment_to_experience BETWEEN 0 AND 5),
     self_motivation_levels INT CHECK (self_motivation_levels BETWEEN 0 AND 5),
-    evaluation_date DATE DEFAULT CURRENT_DATE,
+    evaluation_date DATE DEFAULT,
+    day ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'),
     FOREIGN KEY (organization_id) REFERENCES partner_profiles(id),
     FOREIGN KEY (job_id) REFERENCES job_offers(id)
 );
