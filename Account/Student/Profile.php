@@ -629,7 +629,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                             </table>
                         </div>
                         <hr>
-                        <h2 class="title-resume">Daily Insight</h2>
+                        <h2 class="title-resume">Insight</h2>
                         <span class="description-resume">The line chart analyzes student daily performance in work
                             immersion, and the pie chart displays the distribution of performance levels.</span>
 
@@ -736,16 +736,58 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
 
                 </article>
-                <article class="app-content__widget app-content__widget--secondary">
-                    <!-- widget - secondary
-                    <hr> -->
+                <!-- <article class="app-content__widget app-content__widget--secondary">
+                    
                 </article>
                 <article class="app-content__widget app-content__widget--tertiary">
-                    <!-- widget - tertiary
-                    <hr> -->
-                </article>
+                   
+                </article> -->
             </main>
         </div>
+
+
+
+
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">Daily Evaluation Insight</h2>
+                    <span class="description-resume">This report assesses senior high school students' work immersion from Day 1 to Day 10, highlighting key performance metrics and growth trends to identify areas for improvement in the program.</span>
+                    <br>
+                    <select id="dayDropdown">
+                        <option value="Day 1">Day 1</option>
+                        <option value="Day 2">Day 2</option>
+                        <option value="Day 3">Day 3</option>
+                        <option value="Day 4">Day 4</option>
+                        <option value="Day 5">Day 5</option>
+                        <option value="Day 6">Day 6</option>
+                        <option value="Day 7">Day 7</option>
+                        <option value="Day 8">Day 8</option>
+                        <option value="Day 9">Day 9</option>
+                        <option value="Day 10">Day 10</option>
+                    </select>
+
+                    <div class="daily-graph eval-graph" id="chart_div_daily" style="width: 100%; height: 400px;"></div>
+
+
+
+
+                </article>
+                <!-- <article class="app-content__widget app-content__widget--secondary">
+                    
+                </article>
+                <article class="app-content__widget app-content__widget--tertiary">
+                   
+                </article> -->
+            </main>
+        </div>
+
+
+
+
     </div>
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
@@ -809,7 +851,6 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
     </div> -->
 
 
-
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -817,14 +858,11 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function () {
+        document.getElementById('refreshButton').addEventListener('click', function() {
             location.reload("card-graph");
         });
     </script>
-
-
-
-
+    <script type="text/javascript" src="css/eval_daily.js"></script>
 
     <!-- End -->
     <footer>
