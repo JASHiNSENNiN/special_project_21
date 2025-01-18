@@ -129,19 +129,19 @@ if (!empty($unreadNotifications)) {
     $profile_div .= '';
     foreach ($unreadNotifications as $notif) {
         $profile_div .= '
-          <form method="POST" style="margin: 0;">
-              <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
-              <button type="submit" style="width: 100%; text-align: left; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin-bottom: 2px;" title="Click to mark as read">
-                  <div class="notifi-item">
-                     <img src="' . $profile_image . '" alt="img" style="width: 50px; height: 50px;">
-                      <div class="text" style="font-weight: bold;">
-                          <h4 style="margin: 0;">New Notification</h4>
-                          <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
-                          <small style="color: #666;">' . date('M j, Y g:i A', strtotime($notif['created_at'])) . '</small>
-                      </div>
-                  </div>
-              </button>
-          </form>';
+        <form method="POST" style="margin: 0; display: block;">
+            <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
+            <button type="submit" style="border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin: 0 5px; display: inline-flex; align-items: center; width: 100%;" title="Click to mark as read">
+                <div class="notifi-item" style="display: inline-flex; align-items: center;">
+                    <img src="' . $profile_image . '" alt="img" style="width: 50px; height: 50px; margin-right: 10px;">
+                    <div class="text" style="font-weight: bold;">
+                        <h4 style="margin: 0;">New Notification</h4>
+                        <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
+                        <small style="color: #666;">' . date('M j, Y g:i A', strtotime($notif['created_at'])) . '</small>
+                    </div>
+                </div>
+            </button>
+        </form>';
     }
 }
 

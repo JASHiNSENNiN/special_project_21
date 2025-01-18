@@ -434,6 +434,7 @@ if (isset($_POST['action'])) {
             die("Query failed: " . $conn->error);
         }
 
+        
 
         $message = $firstName . " " . $middleName . " " . $lastName . " " . "has applied to the job: " . htmlspecialchars($job['work_title']);
 

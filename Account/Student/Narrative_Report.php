@@ -722,21 +722,21 @@ if ($is_completed) {
                 $is_completed;
 
                 if ($is_completed): ?>
-                    <div class="work-completion-message">
-                        Work Immersion Complete
-                    </div>
+                <div class="work-completion-message">
+                    Work Immersion Complete
+                </div>
                 <?php else: ?>
-                    <?php if ($has_evaluation_today): ?>
-                        <button type="button" class="btn_next" disabled>
-                            <span class="time-remaining"></span>
-                        </button>
-                    <?php else: ?>
-                        <button type="button" class="btn_next">Next <span class="icon">
-                                <span class="icon">
-                                    <ion-icon name="arrow-forward-sharp"></ion-icon>
-                                </span>
-                        </button>
-                    <?php endif; ?>
+                <?php if ($has_evaluation_today): ?>
+                <button type="button" class="btn_next" disabled>
+                    <span class="time-remaining"></span>
+                </button>
+                <?php else: ?>
+                <button type="button" class="btn_next">Next <span class="icon">
+                        <span class="icon">
+                            <ion-icon name="arrow-forward-sharp"></ion-icon>
+                        </span>
+                </button>
+                <?php endif; ?>
                 <?php endif; ?>
             </div>
             <div class="common_btns form_2_btns" style="display: none;">
@@ -792,456 +792,461 @@ if ($is_completed) {
     </footer>
 
     <script>
-        <?php if ($has_evaluation_today): ?>
+    <?php if ($has_evaluation_today): ?>
 
-            const now = new Date();
-            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-            let countdown = Math.floor((midnight - now) / 1000);
+    const now = new Date();
+    const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    let countdown = Math.floor((midnight - now) / 1000);
 
-            let countdownElement = document.querySelector('.time-remaining');
+    let countdownElement = document.querySelector('.time-remaining');
 
-            function updateCountdown() {
-                let hours = Math.floor(countdown / 3600);
-                let minutes = Math.floor((countdown % 3600) / 60);
-                let seconds = countdown % 60;
-                countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
-                countdown--;
+    function updateCountdown() {
+        let hours = Math.floor(countdown / 3600);
+        let minutes = Math.floor((countdown % 3600) / 60);
+        let seconds = countdown % 60;
+        countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+        countdown--;
 
-                if (countdown < 0) {
+        if (countdown < 0) {
 
-                    location.reload();
-                }
-            }
+            location.reload();
+        }
+    }
 
-            setInterval(updateCountdown, 1000);
-        <?php endif; ?>
+    setInterval(updateCountdown, 1000);
+    <?php endif; ?>
     </script>
 
     <script>
-        $("input:checkbox").on('click', function () {
+    $("input:checkbox").on('click', function() {
 
-            var $box = $(this);
-            if ($box.is(":checked")) {
-                var group = "input:checkbox[name='" + $box.attr("name") + "']";
-                $(group).prop("checked", false);
-                $box.prop("checked", true);
-            } else {
-                $box.prop("checked", false);
-            }
+        var $box = $(this);
+        if ($box.is(":checked")) {
+            var group = "input:checkbox[name='" + $box.attr("name") + "']";
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        } else {
+            $box.prop("checked", false);
+        }
+    });
+    </script>
+
+    <script>
+    let popup = document.getElementById("popup");
+
+    function openPopup() {
+
+        Swal.fire({
+            title: "Successfully send!",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2500
         });
+    }
+
+    function closePopup() {
+        popup.classList.remove("open-popup");
+    }
+    </script>
+
+
+    <script>
+    let profilePic1 = document.getElementById("cover-pic");
+    let inputFile1 = document.getElementById("input-file1");
+
+    inputFile1.onchange = function() {
+        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+    }
     </script>
 
     <script>
-        let popup = document.getElementById("popup");
+    let profilePic2 = document.getElementById("profile-pic");
+    let inputFile2 = document.getElementById("input-file2");
 
-        function openPopup() {
+    inputFile2.onchange = function() {
+        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+    }
+    </script>
 
-            Swal.fire({
-                title: "Successfully send!",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 2500
+    <script>
+    var form_1 = document.querySelector(".form_1");
+    var form_2 = document.querySelector(".form_2");
+    var form_3 = document.querySelector(".form_3");
+    var form_4 = document.querySelector(".form_4");
+    var form_5 = document.querySelector(".form_5");
+
+    var form_1_btns = document.querySelector(".form_1_btns");
+    var form_2_btns = document.querySelector(".form_2_btns");
+    var form_3_btns = document.querySelector(".form_3_btns");
+    var form_4_btns = document.querySelector(".form_4_btns");
+    var form_5_btns = document.querySelector(".form_5_btns");
+
+    var form_1_next_btn = document.querySelector(".form_1_btns .btn_next");
+    var form_2_back_btn = document.querySelector(".form_2_btns .btn_back");
+    var form_2_next_btn = document.querySelector(".form_2_btns .btn_next");
+    var form_3_back_btn = document.querySelector(".form_3_btns .btn_back");
+    var form_3_next_btn = document.querySelector(".form_3_btns .btn_next");
+    var form_4_back_btn = document.querySelector(".form_4_btns .btn_back");
+    var form_4_next_btn = document.querySelector(".form_4_btns .btn_next");
+    var form_5_back_btn = document.querySelector(".form_5_btns .btn_back");
+
+    var form_2_progessbar = document.querySelector(".form_2_progessbar");
+    var form_3_progessbar = document.querySelector(".form_3_progessbar");
+    var form_4_progessbar = document.querySelector(".form_4_progessbar");
+    var form_5_progessbar = document.querySelector(".form_5_progessbar");
+
+    var btn_done = document.querySelector(".btn_done");
+    var modal_wrapper = document.querySelector(".modal_wrapper");
+    var shadow = document.querySelector(".shadow");
+
+    form_1_next_btn.addEventListener("click", function() {
+        form_1.style.display = "none";
+        form_2.style.display = "block";
+
+        form_1_btns.style.display = "none";
+        form_2_btns.style.display = "flex";
+
+        form_2_progessbar.classList.add("active");
+    });
+
+    form_2_back_btn.addEventListener("click", function() {
+        form_1.style.display = "block";
+        form_2.style.display = "none";
+
+        form_1_btns.style.display = "flex";
+        form_2_btns.style.display = "none";
+
+        form_2_progessbar.classList.remove("active");
+    });
+
+    form_2_next_btn.addEventListener("click", function() {
+        form_2.style.display = "none";
+        form_3.style.display = "block";
+
+        form_3_btns.style.display = "flex";
+        form_2_btns.style.display = "none";
+
+        form_3_progessbar.classList.add("active");
+    });
+
+    form_3_back_btn.addEventListener("click", function() {
+        form_2.style.display = "block";
+        form_3.style.display = "none";
+
+        form_3_btns.style.display = "none";
+        form_2_btns.style.display = "flex";
+
+        form_3_progessbar.classList.remove("active");
+    });
+
+    form_3_next_btn.addEventListener("click", function() {
+        form_3.style.display = "none";
+        form_4.style.display = "block";
+
+        form_4_btns.style.display = "flex";
+        form_3_btns.style.display = "none";
+
+        form_4_progessbar.classList.add("active");
+    });
+
+    form_4_back_btn.addEventListener("click", function() {
+        form_3.style.display = "block";
+        form_4.style.display = "none";
+
+        form_4_btns.style.display = "none";
+        form_3_btns.style.display = "flex";
+
+        form_4_progessbar.classList.remove("active");
+    });
+
+    form_4_next_btn.addEventListener("click", function() {
+        form_4.style.display = "none";
+        form_5.style.display = "block";
+
+        form_5_btns.style.display = "flex";
+        form_4_btns.style.display = "none";
+
+        form_5_progessbar.classList.add("active");
+    });
+
+    form_5_back_btn.addEventListener("click", function() {
+        form_4.style.display = "block";
+        form_5.style.display = "none";
+
+        form_5_btns.style.display = "none";
+        form_4_btns.style.display = "flex";
+
+        form_5_progessbar.classList.remove("active");
+    });
+
+    var form1 = document.getElementById('inputs');
+    var form2 = document.getElementById('inputs1');
+    var form3 = document.getElementById('inputs2');
+    var form4 = document.getElementById('inputs3');
+    var form5 = document.getElementById('inputs4');
+
+    btn_done.addEventListener("click", function() {
+
+        if (!dateInput.value || !dayInput.value) {
+            alert("Please select an entry for the date and day");
+            return;
+        }
+        // Get the radio button values
+        const answers = [];
+
+        // Form 1
+        for (let i = 1; i <= 5; i++) {
+            const radioButtons = form1.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
             });
         }
 
-        function closePopup() {
-            popup.classList.remove("open-popup");
+        // Form 2
+        for (let i = 6; i <= 10; i++) {
+            const radioButtons = form2.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
         }
-    </script>
 
-
-    <script>
-        let profilePic1 = document.getElementById("cover-pic");
-        let inputFile1 = document.getElementById("input-file1");
-
-        inputFile1.onchange = function () {
-            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        // Form 3
+        for (let i = 11; i <= 15; i++) {
+            const radioButtons = form3.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
         }
-    </script>
 
-    <script>
-        let profilePic2 = document.getElementById("profile-pic");
-        let inputFile2 = document.getElementById("input-file2");
-
-        inputFile2.onchange = function () {
-            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        // Form 4
+        for (let i = 16; i <= 20; i++) {
+            const radioButtons = form4.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
         }
-    </script>
 
-    <script>
-        var form_1 = document.querySelector(".form_1");
-        var form_2 = document.querySelector(".form_2");
-        var form_3 = document.querySelector(".form_3");
-        var form_4 = document.querySelector(".form_4");
-        var form_5 = document.querySelector(".form_5");
+        // Form 5
+        for (let i = 21; i <= 25; i++) {
+            const radioButtons = form5.querySelectorAll(`[name="question${i}"]`);
+            radioButtons.forEach((radioButton) => {
+                if (radioButton.checked) {
+                    answers.push(radioButton.value);
+                }
+            });
+        }
 
-        var form_1_btns = document.querySelector(".form_1_btns");
-        var form_2_btns = document.querySelector(".form_2_btns");
-        var form_3_btns = document.querySelector(".form_3_btns");
-        var form_4_btns = document.querySelector(".form_4_btns");
-        var form_5_btns = document.querySelector(".form_5_btns");
+        const jsonData = {};
+        for (let i = 0; i < answers.length; i++) {
+            jsonData[`question${i + 1}`] = answers[i];
+        }
+        jsonData.date = dateInput.value;
+        jsonData.day = dayInput.value;
+        console.log(jsonData);
+        console.log('<?php echo $_SERVER['PHP_SELF']; ?>');
 
-        var form_1_next_btn = document.querySelector(".form_1_btns .btn_next");
-        var form_2_back_btn = document.querySelector(".form_2_btns .btn_back");
-        var form_2_next_btn = document.querySelector(".form_2_btns .btn_next");
-        var form_3_back_btn = document.querySelector(".form_3_btns .btn_back");
-        var form_3_next_btn = document.querySelector(".form_3_btns .btn_next");
-        var form_4_back_btn = document.querySelector(".form_4_btns .btn_back");
-        var form_4_next_btn = document.querySelector(".form_4_btns .btn_next");
-        var form_5_back_btn = document.querySelector(".form_5_btns .btn_back");
-
-        var form_2_progessbar = document.querySelector(".form_2_progessbar");
-        var form_3_progessbar = document.querySelector(".form_3_progessbar");
-        var form_4_progessbar = document.querySelector(".form_4_progessbar");
-        var form_5_progessbar = document.querySelector(".form_5_progessbar");
-
-        var btn_done = document.querySelector(".btn_done");
-        var modal_wrapper = document.querySelector(".modal_wrapper");
-        var shadow = document.querySelector(".shadow");
-
-        form_1_next_btn.addEventListener("click", function () {
-            form_1.style.display = "none";
-            form_2.style.display = "block";
-
-            form_1_btns.style.display = "none";
-            form_2_btns.style.display = "flex";
-
-            form_2_progessbar.classList.add("active");
-        });
-
-        form_2_back_btn.addEventListener("click", function () {
-            form_1.style.display = "block";
-            form_2.style.display = "none";
-
-            form_1_btns.style.display = "flex";
-            form_2_btns.style.display = "none";
-
-            form_2_progessbar.classList.remove("active");
-        });
-
-        form_2_next_btn.addEventListener("click", function () {
-            form_2.style.display = "none";
-            form_3.style.display = "block";
-
-            form_3_btns.style.display = "flex";
-            form_2_btns.style.display = "none";
-
-            form_3_progessbar.classList.add("active");
-        });
-
-        form_3_back_btn.addEventListener("click", function () {
-            form_2.style.display = "block";
-            form_3.style.display = "none";
-
-            form_3_btns.style.display = "none";
-            form_2_btns.style.display = "flex";
-
-            form_3_progessbar.classList.remove("active");
-        });
-
-        form_3_next_btn.addEventListener("click", function () {
-            form_3.style.display = "none";
-            form_4.style.display = "block";
-
-            form_4_btns.style.display = "flex";
-            form_3_btns.style.display = "none";
-
-            form_4_progessbar.classList.add("active");
-        });
-
-        form_4_back_btn.addEventListener("click", function () {
-            form_3.style.display = "block";
-            form_4.style.display = "none";
-
-            form_4_btns.style.display = "none";
-            form_3_btns.style.display = "flex";
-
-            form_4_progessbar.classList.remove("active");
-        });
-
-        form_4_next_btn.addEventListener("click", function () {
-            form_4.style.display = "none";
-            form_5.style.display = "block";
-
-            form_5_btns.style.display = "flex";
-            form_4_btns.style.display = "none";
-
-            form_5_progessbar.classList.add("active");
-        });
-
-        form_5_back_btn.addEventListener("click", function () {
-            form_4.style.display = "block";
-            form_5.style.display = "none";
-
-            form_5_btns.style.display = "none";
-            form_4_btns.style.display = "flex";
-
-            form_5_progessbar.classList.remove("active");
-        });
-
-        var form1 = document.getElementById('inputs');
-        var form2 = document.getElementById('inputs1');
-        var form3 = document.getElementById('inputs2');
-        var form4 = document.getElementById('inputs3');
-        var form5 = document.getElementById('inputs4');
-
-        btn_done.addEventListener("click", function () {
-            // Get the radio button values
-            const answers = [];
-
-            // Form 1
-            for (let i = 1; i <= 5; i++) {
-                const radioButtons = form1.querySelectorAll(`[name="question${i}"]`);
-                radioButtons.forEach((radioButton) => {
-                    if (radioButton.checked) {
-                        answers.push(radioButton.value);
-                    }
-                });
-            }
-
-            // Form 2
-            for (let i = 6; i <= 10; i++) {
-                const radioButtons = form2.querySelectorAll(`[name="question${i}"]`);
-                radioButtons.forEach((radioButton) => {
-                    if (radioButton.checked) {
-                        answers.push(radioButton.value);
-                    }
-                });
-            }
-
-            // Form 3
-            for (let i = 11; i <= 15; i++) {
-                const radioButtons = form3.querySelectorAll(`[name="question${i}"]`);
-                radioButtons.forEach((radioButton) => {
-                    if (radioButton.checked) {
-                        answers.push(radioButton.value);
-                    }
-                });
-            }
-
-            // Form 4
-            for (let i = 16; i <= 20; i++) {
-                const radioButtons = form4.querySelectorAll(`[name="question${i}"]`);
-                radioButtons.forEach((radioButton) => {
-                    if (radioButton.checked) {
-                        answers.push(radioButton.value);
-                    }
-                });
-            }
-
-            // Form 5
-            for (let i = 21; i <= 25; i++) {
-                const radioButtons = form5.querySelectorAll(`[name="question${i}"]`);
-                radioButtons.forEach((radioButton) => {
-                    if (radioButton.checked) {
-                        answers.push(radioButton.value);
-                    }
-                });
-            }
-
-            const jsonData = {};
-            for (let i = 0; i < answers.length; i++) {
-                jsonData[`question${i + 1}`] = answers[i];
-            }
-            jsonData.date = dateInput.value;
-            jsonData.day = dayInput.value;
-            console.log(jsonData);
-            console.log('<?php echo $_SERVER['PHP_SELF']; ?>');
-
-            const url = '../../backend/php/add_student_report.php';
-            fetch(url, {
+        const url = '../../backend/php/add_student_report.php';
+        fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(jsonData)
             })
-                .then(response => {
-                    // Check if response is OK (status in the range 200-299)
-                    if (!response.ok) {
-                        // Log the raw response even for non 200 status
-                        return response.text().then(text => {
-                            console.error('Error response:', text); // Log the entire response
-                            throw new Error('Network response was not ok: ' + response.statusText);
-                        });
-                    }
+            .then(response => {
+                // Check if response is OK (status in the range 200-299)
+                if (!response.ok) {
+                    // Log the raw response even for non 200 status
+                    return response.text().then(text => {
+                        console.error('Error response:', text); // Log the entire response
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    });
+                }
 
-                    return response.text(); // Get response as text if it's OK
-                })
-                .then(data => {
-                    try {
-                        // Try to parse the response as JSON
-                        const jsonData = JSON.parse(data);
+                return response.text(); // Get response as text if it's OK
+            })
+            .then(data => {
+                try {
+                    // Try to parse the response as JSON
+                    const jsonData = JSON.parse(data);
 
-                        // Check if jsonData.status exists and is 'success'
-                        if (jsonData.status === 'success') {
-                            window.location.reload();
-                        } else {
-                            console.error('Operation failed:', jsonData);
-                        }
-
-                        console.log(jsonData); // Log JSON data
-                    } catch (e) {
-                        // Log the error if JSON parsing fails
-                        console.error('Parsing error:', e);
-                        console.log('Response data:', data); // Log the raw data for inspection
-                    }
-                })
-                .catch(error => {
-                    // Catch network errors or parsing errors
-                    console.error('Error:', error);
-                });
-        });
-
-        shadow.addEventListener("click", function () {
-            modal_wrapper.classList.remove("active");
-        });
-    </script>
-
-    <script>
-        const form = document.querySelector('form');
-        form.addEventListener('submit', event => {
-            const formData = new FormData(event.target);
-            const rating = formData.get('rating');
-            console.log(rating);
-            event.preventDefault();
-        });
-    </script>
-
-    <script>
-        var inputsForm = document.querySelector("#inputs");
-        inputsForm.onchange = function (e) {
-            if (e.target.type = "radio") {
-                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-                for (var i = 0; i < stars.length; i++) {
-                    if (i < e.target.value) {
-                        stars[i].parentElement.classList.replace("empty", "green");
+                    // Check if jsonData.status exists and is 'success'
+                    if (jsonData.status === 'success') {
+                        window.location.reload();
                     } else {
-                        stars[i].parentElement.classList.replace("green", "empty");
+                        console.error('Operation failed:', jsonData);
                     }
+
+                    console.log(jsonData); // Log JSON data
+                } catch (e) {
+                    // Log the error if JSON parsing fails
+                    console.error('Parsing error:', e);
+                    console.log('Response data:', data); // Log the raw data for inspection
+                }
+            })
+            .catch(error => {
+                // Catch network errors or parsing errors
+                console.error('Error:', error);
+            });
+    });
+
+    shadow.addEventListener("click", function() {
+        modal_wrapper.classList.remove("active");
+    });
+    </script>
+
+    <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', event => {
+        const formData = new FormData(event.target);
+        const rating = formData.get('rating');
+        console.log(rating);
+        event.preventDefault();
+    });
+    </script>
+
+    <script>
+    var inputsForm = document.querySelector("#inputs");
+    inputsForm.onchange = function(e) {
+        if (e.target.type = "radio") {
+            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+            for (var i = 0; i < stars.length; i++) {
+                if (i < e.target.value) {
+                    stars[i].parentElement.classList.replace("empty", "green");
+                } else {
+                    stars[i].parentElement.classList.replace("green", "empty");
                 }
             }
         }
+    }
     </script>
 
     <script>
-        var inputsForm = document.querySelector("#inputs1");
-        inputsForm.onchange = function (e) {
-            if (e.target.type = "radio") {
-                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-                for (var i = 0; i < stars.length; i++) {
-                    if (i < e.target.value) {
-                        stars[i].parentElement.classList.replace("empty", "green");
-                    } else {
-                        stars[i].parentElement.classList.replace("green", "empty");
-                    }
+    var inputsForm = document.querySelector("#inputs1");
+    inputsForm.onchange = function(e) {
+        if (e.target.type = "radio") {
+            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+            for (var i = 0; i < stars.length; i++) {
+                if (i < e.target.value) {
+                    stars[i].parentElement.classList.replace("empty", "green");
+                } else {
+                    stars[i].parentElement.classList.replace("green", "empty");
                 }
             }
         }
+    }
 
-        inputsForm.onsubmit = function () {
-            console.log(
-                ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
-            );
-            return false;
-        }
+    inputsForm.onsubmit = function() {
+        console.log(
+            ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
+        );
+        return false;
+    }
     </script>
 
     <script>
-        var inputsForm = document.querySelector("#inputs2");
-        inputsForm.onchange = function (e) {
-            if (e.target.type = "radio") {
-                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-                for (var i = 0; i < stars.length; i++) {
-                    if (i < e.target.value) {
-                        stars[i].parentElement.classList.replace("empty", "green");
-                    } else {
-                        stars[i].parentElement.classList.replace("green", "empty");
-                    }
+    var inputsForm = document.querySelector("#inputs2");
+    inputsForm.onchange = function(e) {
+        if (e.target.type = "radio") {
+            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+            for (var i = 0; i < stars.length; i++) {
+                if (i < e.target.value) {
+                    stars[i].parentElement.classList.replace("empty", "green");
+                } else {
+                    stars[i].parentElement.classList.replace("green", "empty");
                 }
             }
         }
+    }
 
-        // just for showing the values (not required only for testing)
-        inputsForm.onsubmit = function () {
-            console.log(
-                ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
-            );
-            return false;
-        }
+    // just for showing the values (not required only for testing)
+    inputsForm.onsubmit = function() {
+        console.log(
+            ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
+        );
+        return false;
+    }
     </script>
 
     <script>
-        var inputsForm = document.querySelector("#inputs3");
-        inputsForm.onchange = function (e) {
-            if (e.target.type = "radio") {
-                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-                for (var i = 0; i < stars.length; i++) {
-                    if (i < e.target.value) {
-                        stars[i].parentElement.classList.replace("empty", "green");
-                    } else {
-                        stars[i].parentElement.classList.replace("green", "empty");
-                    }
+    var inputsForm = document.querySelector("#inputs3");
+    inputsForm.onchange = function(e) {
+        if (e.target.type = "radio") {
+            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+            for (var i = 0; i < stars.length; i++) {
+                if (i < e.target.value) {
+                    stars[i].parentElement.classList.replace("empty", "green");
+                } else {
+                    stars[i].parentElement.classList.replace("green", "empty");
                 }
             }
         }
+    }
 
-        // just for showing the values (not required only for testing)
-        inputsForm.onsubmit = function () {
-            console.log(
-                ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
-            );
-            return false;
-        }
+    // just for showing the values (not required only for testing)
+    inputsForm.onsubmit = function() {
+        console.log(
+            ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
+        );
+        return false;
+    }
     </script>
 
     <script>
-        var inputsForm = document.querySelector("#inputs4");
-        inputsForm.onchange = function (e) {
-            if (e.target.type = "radio") {
-                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-                for (var i = 0; i < stars.length; i++) {
-                    if (i < e.target.value) {
-                        stars[i].parentElement.classList.replace("empty", "green");
-                    } else {
-                        stars[i].parentElement.classList.replace("green", "empty");
-                    }
+    var inputsForm = document.querySelector("#inputs4");
+    inputsForm.onchange = function(e) {
+        if (e.target.type = "radio") {
+            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+            for (var i = 0; i < stars.length; i++) {
+                if (i < e.target.value) {
+                    stars[i].parentElement.classList.replace("empty", "green");
+                } else {
+                    stars[i].parentElement.classList.replace("green", "empty");
                 }
             }
         }
+    }
 
 
-        inputsForm.onsubmit = function () {
-            console.log(
-                ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
-            );
-            return false;
-        }
+    inputsForm.onsubmit = function() {
+        console.log(
+            ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
+        );
+        return false;
+    }
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var dateInput = document.getElementById('date');
-            var today = new Date();
+    document.addEventListener('DOMContentLoaded', function() {
+        var dateInput = document.getElementById('date');
+        var today = new Date();
 
 
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0');
-            var yyyy = today.getFullYear();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
 
-            today = yyyy + '-' + mm + '-' + dd;
+        today = yyyy + '-' + mm + '-' + dd;
 
 
-            dateInput.setAttribute('min', today);
-        });
+        dateInput.setAttribute('min', today);
+    });
     </script>
 
 
     <script>
-        document.getElementById('menu-icon').addEventListener('click', function () {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        });
+    document.getElementById('menu-icon').addEventListener('click', function() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    });
     </script>
 
 

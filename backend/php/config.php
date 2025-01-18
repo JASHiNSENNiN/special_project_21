@@ -175,12 +175,13 @@ CREATE TABLE IF NOT EXISTS uploaded_documents (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE notifications (
+CREATE TABLE IF NOT EXISTS notifications (
     notification_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     message TEXT NOT NULL,
     is_read BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    source_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 ";
