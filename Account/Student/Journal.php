@@ -222,6 +222,30 @@ $conn->close();
         document.getElementById("current-year").textContent = currentYear;
     </script>
 
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dateInput = document.getElementById('date');
+            var today = new Date();
+
+
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+
+            today = yyyy + '-' + mm + '-' + dd;
+
+
+            dateInput.setAttribute('min', today);
+        });
+    </script> -->
+
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function () {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        });
+    </script>
+
 </body>
 
 </html>

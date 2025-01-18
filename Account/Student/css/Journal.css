@@ -160,6 +160,27 @@ h1 {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
+@media (min-width: 768px) {
+  .nav-header {
+    padding-left: 100px;
+    padding-top: 5px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav-header {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-header {
+    /* flex-direction: column; */
+    padding: 1rem;
+    /* text-align: center;  */
+  }
+}
+
 .checkbtn {
   font-size: 30px;
   color: #000;
@@ -527,6 +548,45 @@ nav a:hover::after {
   width: 0.0625rem;
 }
 
+@media only screen and (max-width: 1085px) {
+  .header {
+    padding-left: 20px !important;
+    padding-bottom: 5px !important;
+  }
+  .logo img {
+    width: 160px !important;
+    /* Adjust the width as needed */
+    margin-right: 15px !important;
+  }
+  nav a {
+    /* padding: 5px 10px !important; */
+    margin: 0 10px !important;
+    font-size: 14px !important;
+    /* display: none; */
+  }
+  #none {
+    display: none;
+  }
+  .dropdown {
+    display: none;
+  }
+  .login-btn {
+    /* width: 10% !important; */
+    height: 10% !important;
+    padding: 10px !important;
+  }
+  .logoimg {
+    width: 100% !important;
+  }
+  .css-1ld7x2h {
+    /* margin: 5px 0 0 !important; */
+    display: none;
+  }
+  nav {
+    margin: 0;
+  }
+}
+
 /*--------header end---------- */
 
 /* ------table------- */
@@ -638,7 +698,7 @@ nav a:hover::after {
 
 h1 {
   text-align: center;
-  font-size: 2.4em;
+  font-size: 1.4em;
   color: #000000;
 }
 
@@ -994,11 +1054,11 @@ h3:after {
 
 /* Start Archive */
 
-ol,
+/* ol,
 ul {
-  margin-left: -1em;
+  margin-left: 1em;
   margin-right: 1em;
-}
+} */
 
 li {
   margin-bottom: 0.5em;
@@ -1012,9 +1072,9 @@ ul ol {
 }
 
 .page-wrapper {
-  margin: 0 auto;
-  width: 80%;
-  min-width: 60em;
+  margin: auto;
+  width: 140%;
+  /* min-width: 60em; */
   background: white;
   padding: 1em 0;
 }
@@ -1072,8 +1132,114 @@ ol {
   text-transform: uppercase;
 }
 
+@media (max-width: 1024px) {
+  .page-wrapper {
+    width: 90%;
+  }
+
+  .container2 {
+    width: 70%;
+  }
+
+  .years li {
+    padding: 2em;
+  }
+
+  .year {
+    width: 100%;
+  }
+
+  .year > a {
+    font-size: 16px;
+  }
+
+  .month > a {
+    font-size: 14px;
+  }
+
+  .years li li {
+    padding: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    width: 95%;
+    /* padding: 10px; */
+  }
+
+  .container2 {
+    width: 100%;
+  }
+
+  .years li {
+    padding: 1.5em;
+    margin: 0;
+  }
+
+  .year {
+    width: 100%;
+    padding: 1em;
+  }
+
+  .year > a {
+    font-size: 14px;
+  }
+
+  .month > a {
+    font-size: 12px;
+  }
+
+  .years li li {
+    padding: 1em;
+  }
+
+  .year.expanded > ol,
+  .month.expanded > ol {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-wrapper {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .container2 {
+    width: 100%;
+  }
+
+  .years li {
+    /* padding: 1em; */
+    margin-bottom: 0.5rem;
+  }
+
+  .year {
+    width: 100%;
+    padding: 0.8em;
+  }
+
+  .year > a {
+    font-size: 12px;
+  }
+
+  .month > a {
+    font-size: 10px;
+  }
+
+  .years li li {
+    padding: 0.8em;
+  }
+
+  .year.expanded > ol,
+  .month.expanded > ol {
+    display: block;
+  }
+}
+
 .container3 {
-  max-width: 600px;
+  /* max-width: 600px; */
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
@@ -1122,12 +1288,168 @@ textarea {
 .check-circle {
   width: 50px;
   height: 50px;
-  border-radius: 50%; /* Makes it a circle */
-  background-color: 45a049; /* Circle's background color */
+  border-radius: 50%;
+  background-color: 45a049;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
+}
+@media (max-width: 1024px) {
+  .container3 {
+    width: 90%;
+    padding: 1rem;
+    margin: 0;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  input,
+  textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .sub {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .check-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container3 {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  input,
+  textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .sub {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .check-circle {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+}
+
+.menu {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu li a {
+  color: #000;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: rgb(255, 255, 255, 0.8);
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .menu li {
+    margin-bottom: 10px;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .menu.active {
+    display: flex;
+    margin-top: 2.2rem;
+  }
+
+  .dropdowntf {
+    margin-right: -5rem;
+  }
+  .dropdowntf-content {
+    right: -3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .DateDay {
+    margin-top: 1.5rem;
+  }
+
+  .form-group {
+    margin: auto;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .inp {
+    width: 91%;
+    text-align: center;
+  }
+
+  label {
+    font-size: 14px;
+  }
+  .sr {
+    display: flex;
+    margin: 1rem 0 0px -77px;
+  }
+  .star {
+    margin: 1rem;
+  }
+  .profile img {
+    margin: auto;
+    width: 150px;
+    display: block;
+    margin-top: -5rem;
+  }
+  .name {
+    text-align: center;
+    margin: 0;
+  }
+  .strand {
+    margin-left: 24%;
+  }
 }

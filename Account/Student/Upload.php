@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
@@ -926,10 +927,10 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
+        window.onscroll = function () {
             myFunction();
         };
-        window.onscroll = function() {
+        window.onscroll = function () {
             myFunction();
         };
 
@@ -975,7 +976,7 @@ require_once 'show_profile.php';
                     input.click();
                 };
 
-                input.addEventListener("change", function(e) {
+                input.addEventListener("change", function (e) {
                     const files = e.target.files; // Get the selected files
                     fileListElement.innerHTML = ''; // Clear the previous file list
 
@@ -989,6 +990,13 @@ require_once 'show_profile.php';
                     });
                 });
             });
+        });
+    </script>
+
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function () {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
         });
     </script>
 

@@ -102,11 +102,15 @@ $unreadCount = count(array_filter($notifications, function ($n) {
 $badgeHTML = $unreadCount > 0 ? '<span class="badge">' . $unreadCount . '</span>' : '';
 
 $profile_div = '<header class="nav-header">
+        
     <div class="logo">
         <a href="Company_Area.php">
             <img src="image/drdsnhs.svg" alt="Logo">
         </a>
     </div>
+
+    
+        
     <nav class="by">
         <div class="dropdowntf" style="float:right;">
             <a href="" class="notification">
@@ -169,7 +173,7 @@ $profile_div .= '
                 </div>
             </div>
             <div class="dropdown" style="float:right;">
-                <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;color:#fff;"></i></a>
+                <a href=""><i  id="none" class="fas fa-user-alt" style="font-size:24px;margin-top:5px;color:#fff;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
                     <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My Profile</a>
@@ -183,6 +187,18 @@ $profile_div .= '
             </div>
             <div class="css-1ld7x2h eu4oa1w0"></div>
         </nav>
+        <div class="menu-icon" id="menu-icon">
+            &#9776; <!-- This is the burger icon -->
+        </div>
+        <ul class="menu" id="menu">
+            <li><a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '">Profile</a></li>
+            <li><a href="../../weather_page.php">Weather</a></li>
+            <li><a href="Journal.php">Journal</a></li>
+            <li><a href="Upload.php">Files</a></li>
+            <li><a href="Settings.php">Settings</a></li>
+            <hr>
+            <li><a href="' . '/backend/php/logout.php' . '">Logout</a></li>
+        </ul>
     </header>
     <img class="logoimg" id="cover-pic" src="' . $cover_image . '" alt="" width="200" height="300">
     <div class="profile">
