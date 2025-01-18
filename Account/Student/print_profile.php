@@ -345,6 +345,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
                 <div class="column-profile ">
                     <div class="card-body">
                         <span class="fullname"><?= $fullName ?></span>
+                        <br>
                         <span class="LRN">LRN: <?= $lrn ?></span>
                         <br>
 
@@ -376,7 +377,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
         <div class="student-graph">
             <hr>
-            <h2 class="title-resume">Daily Insight</h2>
+            <h2 class="title-resume">Insight</h2>
             <span class="description-resume">The line chart analyzes student daily performance in work
                 immersion, and the pie chart displays the distribution of performance levels.</span>
 
@@ -429,340 +430,340 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
     <!-- <button onclick="window.print()">Print this page</button> -->
 </body>
 <script type="text/javascript">
-const averages = {
-    avgPunctual: <?= json_encode($avgPunctual) ?>,
-    avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
-    avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
-    avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
-    avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
-    avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
-    avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
-    avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
-    avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
-    avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
-    avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
-    avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
-    avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
-    avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
-    avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
-    avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
-    avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
-    avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+    const averages = {
+        avgPunctual: <?= json_encode($avgPunctual) ?>,
+        avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
+        avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
+        avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
+        avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
+        avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
+        avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
+        avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
+        avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
+        avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
+        avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
+        avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
+        avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
+        avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
+        avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
+        avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
+        avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
+        avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
 
-};
-const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
-console.log(dailyPerformance);
+    };
+    const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
+    console.log(dailyPerformance);
 </script>
 
 <script>
-google.charts.load("current", {
-    packages: ["corechart"]
-});
-google.charts.setOnLoadCallback(drawChart);
+    google.charts.load("current", {
+        packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-var totalWorkHabits =
-    Number(averages.avgPunctual || 0) +
-    Number(averages.avgReportsRegularly || 0) +
-    Number(averages.avgPerformsTasksIndependently || 0) +
-    Number(averages.avgSelfDiscipline || 0) +
-    Number(averages.avgDedicationCommitment || 0);
+    var totalWorkHabits =
+        Number(averages.avgPunctual || 0) +
+        Number(averages.avgReportsRegularly || 0) +
+        Number(averages.avgPerformsTasksIndependently || 0) +
+        Number(averages.avgSelfDiscipline || 0) +
+        Number(averages.avgDedicationCommitment || 0);
 
-var totalWorkSkills =
-    Number(averages.avgAbilityToOperateMachines || 0) +
-    Number(averages.avgHandlesDetails || 0) +
-    Number(averages.avgShowsFlexibility || 0) +
-    Number(averages.avgThoroughnessAttentionToDetail || 0) +
-    Number(averages.avgUnderstandsTaskLinkages || 0) +
-    Number(averages.avgOffersSuggestions || 0);
+    var totalWorkSkills =
+        Number(averages.avgAbilityToOperateMachines || 0) +
+        Number(averages.avgHandlesDetails || 0) +
+        Number(averages.avgShowsFlexibility || 0) +
+        Number(averages.avgThoroughnessAttentionToDetail || 0) +
+        Number(averages.avgUnderstandsTaskLinkages || 0) +
+        Number(averages.avgOffersSuggestions || 0);
 
-var totalSocialSkills =
-    Number(averages.avgTactInDealingWithPeople || 0) +
-    Number(averages.avgRespectAndCourtesy || 0) +
-    Number(averages.avgHelpsOthers || 0) +
-    Number(averages.avgLearnsFromCoWorkers || 0) +
-    Number(averages.avgShowsGratitude || 0) +
-    Number(averages.avgPoiseAndSelfConfidence || 0) +
-    Number(averages.avgEmotionalMaturity || 0);
+    var totalSocialSkills =
+        Number(averages.avgTactInDealingWithPeople || 0) +
+        Number(averages.avgRespectAndCourtesy || 0) +
+        Number(averages.avgHelpsOthers || 0) +
+        Number(averages.avgLearnsFromCoWorkers || 0) +
+        Number(averages.avgShowsGratitude || 0) +
+        Number(averages.avgPoiseAndSelfConfidence || 0) +
+        Number(averages.avgEmotionalMaturity || 0);
 
-function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ["Category", "Score"],
-        ["Work Habits", totalWorkHabits],
-        ["Work Skills", totalWorkSkills],
-        ["Social Skills", totalSocialSkills],
-    ]);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ["Category", "Score"],
+            ["Work Habits", totalWorkHabits],
+            ["Work Skills", totalWorkSkills],
+            ["Social Skills", totalSocialSkills],
+        ]);
 
-    var options = {
-        title: "Total Work Performance",
-        height: "50%",
-        width: "50%",
-        is3D: true,
-    };
+        var options = {
+            title: "Total Work Performance",
+            height: "50%",
+            width: "50%",
+            is3D: true,
+        };
 
-    var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-    chart.draw(data, options);
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+        window.addEventListener("resize", function() {
+            if (chart) {
+                drawChart();
+            }
+        });
+
+    }
+
+
+    ////////////////////////////////////////////////////DAILY PERFORMANCE ////////////////////////////////////
+
+    google.charts.load("current", {
+        packages: ["corechart", "line"]
+    });
+    google.charts.setOnLoadCallback(drawBasic);
+
+    // function drawDailyPerformanceChart() {
+    //     var dp_data = new google.visualization.DataTable();
+    //     dp_data.addColumn("string", "Date");
+    //     dp_data.addColumn("number", "Performance Rating");
+
+
+    //     dailyPerformance.forEach(function(entry) {
+    //         dp_data.addRow([entry.date, entry.score]); 
+    //     });
+    function drawBasic() {
+
+        var dp_data = new google.visualization.DataTable();
+        dp_data.addColumn("string", "Date"); // X-axis as Date
+        dp_data.addColumn("number", "Performance Rating"); // Y-axis as Performance Rating
+
+        // Convert dailyPerformance data to DataTable rows
+        dailyPerformance.forEach(function(entry) {
+            dp_data.addRow([entry.date, entry.score]); // Add each entry as a new row
+        });
+
+
+        var options = {
+            title: "Daily Performance",
+            height: "100%",
+            width: "100%",
+            // hAxis: {
+            //     title: "Date",
+            //     format: "MMM dd",
+            // },
+            vAxis: {
+                title: "Performance Rating",
+                minValue: 0,
+                maxValue: 5,
+            },
+            legend: {
+                position: "bottom"
+            },
+        };
+
+        var dp_chart = new google.visualization.LineChart(
+            document.getElementById("dp_chart_div")
+        );
+        dp_chart.draw(dp_data, options);
+    }
+
+    // Redraw the chart on window resize
     window.addEventListener("resize", function() {
-        if (chart) {
-            drawChart();
-        }
+        drawDailyPerformanceChart();
     });
 
-}
-
-
-////////////////////////////////////////////////////DAILY PERFORMANCE ////////////////////////////////////
-
-google.charts.load("current", {
-    packages: ["corechart", "line"]
-});
-google.charts.setOnLoadCallback(drawBasic);
-
-// function drawDailyPerformanceChart() {
-//     var dp_data = new google.visualization.DataTable();
-//     dp_data.addColumn("string", "Date");
-//     dp_data.addColumn("number", "Performance Rating");
-
-
-//     dailyPerformance.forEach(function(entry) {
-//         dp_data.addRow([entry.date, entry.score]); 
-//     });
-function drawBasic() {
-
-    var dp_data = new google.visualization.DataTable();
-    dp_data.addColumn("string", "Date"); // X-axis as Date
-    dp_data.addColumn("number", "Performance Rating"); // Y-axis as Performance Rating
-
-    // Convert dailyPerformance data to DataTable rows
-    dailyPerformance.forEach(function(entry) {
-        dp_data.addRow([entry.date, entry.score]); // Add each entry as a new row
+    /////////////////////////////////////////////// WORK HABITS CHART ///////////////////////////////////////
+    google.charts.load("current", {
+        packages: ["bar"],
     });
+    google.charts.setOnLoadCallback(drawWorkHabitsChart);
 
+    // function drawWorkHabitsChart() {
+    //     var data = new google.visualization.arrayToDataTable([
+    //         ["Category", "Performance"],
+    //         ["Punctuality", averages.avgPunctual || 0],
+    //         ["Reports Regularly", averages.avgReportsRegularly || 0],
+    //         [
+    //             "Performs Tasks Independently",
+    //             averages.avgPerformsTasksIndependently || 0,
+    //         ],
+    //         ["Self Discipline", averages.avgSelfDiscipline || 0],
+    //         ["Dedication & Commitment", averages.avgDedicationCommitment || 0],
+    //     ]);
+    function drawWorkHabitsChart() {
 
-    var options = {
-        title: "Daily Performance",
-        height: "100%",
-        width: "100%",
-        // hAxis: {
-        //     title: "Date",
-        //     format: "MMM dd",
-        // },
-        vAxis: {
-            title: "Performance Rating",
-            minValue: 0,
-            maxValue: 5,
-        },
-        legend: {
-            position: "bottom"
-        },
-    };
+        var data = new google.visualization.arrayToDataTable([
+            ["Category", "Performance"],
+            ["Punctuality", averages.avgPunctual || 0],
+            ["Reports Regularly", averages.avgReportsRegularly || 0],
+            [
+                "Performs Tasks Independently",
+                averages.avgPerformsTasksIndependently || 0,
+            ],
+            ["Self Discipline", averages.avgSelfDiscipline || 0],
+            ["Dedication & Commitment", averages.avgDedicationCommitment || 0],
+        ]);
 
-    var dp_chart = new google.visualization.LineChart(
-        document.getElementById("dp_chart_div")
-    );
-    dp_chart.draw(dp_data, options);
-}
-
-// Redraw the chart on window resize
-window.addEventListener("resize", function() {
-    drawDailyPerformanceChart();
-});
-
-/////////////////////////////////////////////// WORK HABITS CHART ///////////////////////////////////////
-google.charts.load("current", {
-    packages: ["bar"],
-});
-google.charts.setOnLoadCallback(drawWorkHabitsChart);
-
-// function drawWorkHabitsChart() {
-//     var data = new google.visualization.arrayToDataTable([
-//         ["Category", "Performance"],
-//         ["Punctuality", averages.avgPunctual || 0],
-//         ["Reports Regularly", averages.avgReportsRegularly || 0],
-//         [
-//             "Performs Tasks Independently",
-//             averages.avgPerformsTasksIndependently || 0,
-//         ],
-//         ["Self Discipline", averages.avgSelfDiscipline || 0],
-//         ["Dedication & Commitment", averages.avgDedicationCommitment || 0],
-//     ]);
-function drawWorkHabitsChart() {
-
-    var data = new google.visualization.arrayToDataTable([
-        ["Category", "Performance"],
-        ["Punctuality", averages.avgPunctual || 0],
-        ["Reports Regularly", averages.avgReportsRegularly || 0],
-        [
-            "Performs Tasks Independently",
-            averages.avgPerformsTasksIndependently || 0,
-        ],
-        ["Self Discipline", averages.avgSelfDiscipline || 0],
-        ["Dedication & Commitment", averages.avgDedicationCommitment || 0],
-    ]);
-
-    var options = {
-        title: "Work Habits",
-        height: "100%", // Set height to 100%
-        width: "100%", // Set width to 100%
-        legend: {
-            position: "none"
-        },
-        chart: {
+        var options = {
             title: "Work Habits",
-            subtitle: "Student work habits from the work immersion",
-        },
-        bars: "horizontal", // Required for Material Bar Charts.
-        axes: {
-            x: {
-                0: {
-                    side: "top",
-                    label: "Performance"
-                }, // Top x-axis.
+            height: "100%", // Set height to 100%
+            width: "100%", // Set width to 100%
+            legend: {
+                position: "none"
             },
-        },
-        bar: {
-            groupWidth: "90%"
-        },
-    };
+            chart: {
+                title: "Work Habits",
+                subtitle: "Student work habits from the work immersion",
+            },
+            bars: "horizontal", // Required for Material Bar Charts.
+            axes: {
+                x: {
+                    0: {
+                        side: "top",
+                        label: "Performance"
+                    }, // Top x-axis.
+                },
+            },
+            bar: {
+                groupWidth: "90%"
+            },
+        };
 
-    var chart = new google.charts.Bar(document.getElementById("wp-top-x-div"));
-    chart.draw(data, options);
-}
+        var chart = new google.charts.Bar(document.getElementById("wp-top-x-div"));
+        chart.draw(data, options);
+    }
 
-// Redraw chart on window resize
-window.addEventListener("resize", function() {
-    drawWorkHabitsChart();
-});
-/////////////////////////////////////////////// WORK SKILLS CHART ///////////////////////////////////////
-google.charts.load("current", {
-    packages: ["bar"]
-});
-google.charts.setOnLoadCallback(drawWorkSkillsChart);
+    // Redraw chart on window resize
+    window.addEventListener("resize", function() {
+        drawWorkHabitsChart();
+    });
+    /////////////////////////////////////////////// WORK SKILLS CHART ///////////////////////////////////////
+    google.charts.load("current", {
+        packages: ["bar"]
+    });
+    google.charts.setOnLoadCallback(drawWorkSkillsChart);
 
-// function drawWorkSkillsChart() {
-//     var data = new google.visualization.arrayToDataTable([
-//         ["Category", "Performance"],
-//         ["Ability to Operate Machines", averages.avgAbilityToOperateMachines || 0],
-//         ["Handles Details", averages.avgHandlesDetails || 0],
-//         ["Shows Flexibility", averages.avgShowsFlexibility || 0],
-//         [
-//             "Thoroughness & Attention to Detail",
-//             averages.avgThoroughnessAttentionToDetail || 0,
-//         ],
-//         ["Understands Task Linkages", averages.avgUnderstandsTaskLinkages || 0],
-//         ["Offers Suggestions", averages.avgOffersSuggestions || 0],
-//     ]);
-function drawWorkSkillsChart() {
+    // function drawWorkSkillsChart() {
+    //     var data = new google.visualization.arrayToDataTable([
+    //         ["Category", "Performance"],
+    //         ["Ability to Operate Machines", averages.avgAbilityToOperateMachines || 0],
+    //         ["Handles Details", averages.avgHandlesDetails || 0],
+    //         ["Shows Flexibility", averages.avgShowsFlexibility || 0],
+    //         [
+    //             "Thoroughness & Attention to Detail",
+    //             averages.avgThoroughnessAttentionToDetail || 0,
+    //         ],
+    //         ["Understands Task Linkages", averages.avgUnderstandsTaskLinkages || 0],
+    //         ["Offers Suggestions", averages.avgOffersSuggestions || 0],
+    //     ]);
+    function drawWorkSkillsChart() {
 
-    var data = new google.visualization.arrayToDataTable([
-        ["Category", "Performance"],
-        ["Ability to Operate Machines", averages.avgAbilityToOperateMachines || 0],
-        ["Handles Details", averages.avgHandlesDetails || 0],
-        ["Shows Flexibility", averages.avgShowsFlexibility || 0],
-        [
-            "Thoroughness & Attention to Detail",
-            averages.avgThoroughnessAttentionToDetail || 0,
-        ],
-        ["Understands Task Linkages", averages.avgUnderstandsTaskLinkages || 0],
-        ["Offers Suggestions", averages.avgOffersSuggestions || 0],
-    ]);
+        var data = new google.visualization.arrayToDataTable([
+            ["Category", "Performance"],
+            ["Ability to Operate Machines", averages.avgAbilityToOperateMachines || 0],
+            ["Handles Details", averages.avgHandlesDetails || 0],
+            ["Shows Flexibility", averages.avgShowsFlexibility || 0],
+            [
+                "Thoroughness & Attention to Detail",
+                averages.avgThoroughnessAttentionToDetail || 0,
+            ],
+            ["Understands Task Linkages", averages.avgUnderstandsTaskLinkages || 0],
+            ["Offers Suggestions", averages.avgOffersSuggestions || 0],
+        ]);
 
-    var options = {
-        title: "Work Skills",
-        height: "100%",
-        width: "100%",
-        legend: {
-            position: "none"
-        },
-        chart: {
+        var options = {
             title: "Work Skills",
-            subtitle: "Student work skills from the work immersion",
-        },
-        bars: "horizontal",
-        axes: {
-            x: {
-                0: {
-                    side: "top",
-                    label: "Performance"
+            height: "100%",
+            width: "100%",
+            legend: {
+                position: "none"
+            },
+            chart: {
+                title: "Work Skills",
+                subtitle: "Student work skills from the work immersion",
+            },
+            bars: "horizontal",
+            axes: {
+                x: {
+                    0: {
+                        side: "top",
+                        label: "Performance"
+                    },
                 },
             },
-        },
-        bar: {
-            groupWidth: "90%"
-        },
-    };
+            bar: {
+                groupWidth: "90%"
+            },
+        };
 
-    var chart = new google.charts.Bar(document.getElementById("pro-top-x-div"));
-    chart.draw(data, options);
-}
+        var chart = new google.charts.Bar(document.getElementById("pro-top-x-div"));
+        chart.draw(data, options);
+    }
 
-// Redraw chart on window resize
-window.addEventListener("resize", function() {
-    drawWorkSkillsChart();
-});
+    // Redraw chart on window resize
+    window.addEventListener("resize", function() {
+        drawWorkSkillsChart();
+    });
 
 
-/////////////////////////////////////////////// Social Skills CHART ///////////////////////////////////////
-google.charts.load("current", {
-    packages: ["bar"]
-});
-google.charts.setOnLoadCallback(drawSocialSkillsChart);
+    /////////////////////////////////////////////// Social Skills CHART ///////////////////////////////////////
+    google.charts.load("current", {
+        packages: ["bar"]
+    });
+    google.charts.setOnLoadCallback(drawSocialSkillsChart);
 
-// function drawSocialSkillsChart() {
-//     var data = new google.visualization.arrayToDataTable([
-//         ["Category", "Performance"],
-//         ["Tact in Dealing with People", averages.avgTactInDealingWithPeople || 0],
-//         ["Respect and Courtesy", averages.avgRespectAndCourtesy || 0],
-//         ["Helps Others", averages.avgHelpsOthers || 0],
-//         ["Learns from Co-Workers", averages.avgLearnsFromCoWorkers || 0],
-//         ["Shows Gratitude", averages.avgShowsGratitude || 0],
-//         ["Poise and Self Confidence", averages.avgPoiseAndSelfConfidence || 0],
-//         ["Emotional Maturity", averages.avgEmotionalMaturity || 0],
-//     ]);
-function drawSocialSkillsChart() {
+    // function drawSocialSkillsChart() {
+    //     var data = new google.visualization.arrayToDataTable([
+    //         ["Category", "Performance"],
+    //         ["Tact in Dealing with People", averages.avgTactInDealingWithPeople || 0],
+    //         ["Respect and Courtesy", averages.avgRespectAndCourtesy || 0],
+    //         ["Helps Others", averages.avgHelpsOthers || 0],
+    //         ["Learns from Co-Workers", averages.avgLearnsFromCoWorkers || 0],
+    //         ["Shows Gratitude", averages.avgShowsGratitude || 0],
+    //         ["Poise and Self Confidence", averages.avgPoiseAndSelfConfidence || 0],
+    //         ["Emotional Maturity", averages.avgEmotionalMaturity || 0],
+    //     ]);
+    function drawSocialSkillsChart() {
 
-    var data = new google.visualization.arrayToDataTable([
-        ["Category", "Performance"],
-        ["Tact in Dealing with People", averages.avgTactInDealingWithPeople || 0],
-        ["Respect and Courtesy", averages.avgRespectAndCourtesy || 0],
-        ["Helps Others", averages.avgHelpsOthers || 0],
-        ["Learns from Co-Workers", averages.avgLearnsFromCoWorkers || 0],
-        ["Shows Gratitude", averages.avgShowsGratitude || 0],
-        ["Poise and Self Confidence", averages.avgPoiseAndSelfConfidence || 0],
-        ["Emotional Maturity", averages.avgEmotionalMaturity || 0],
-    ]);
-    var options = {
-        title: "Social Skills",
-        height: "100%",
-        width: "100%",
-        legend: {
-            position: "none"
-        },
-        chart: {
+        var data = new google.visualization.arrayToDataTable([
+            ["Category", "Performance"],
+            ["Tact in Dealing with People", averages.avgTactInDealingWithPeople || 0],
+            ["Respect and Courtesy", averages.avgRespectAndCourtesy || 0],
+            ["Helps Others", averages.avgHelpsOthers || 0],
+            ["Learns from Co-Workers", averages.avgLearnsFromCoWorkers || 0],
+            ["Shows Gratitude", averages.avgShowsGratitude || 0],
+            ["Poise and Self Confidence", averages.avgPoiseAndSelfConfidence || 0],
+            ["Emotional Maturity", averages.avgEmotionalMaturity || 0],
+        ]);
+        var options = {
             title: "Social Skills",
-            subtitle: "Student social skills from the work immersion",
-        },
-        bars: "horizontal",
-        axes: {
-            x: {
-                0: {
-                    side: "top",
-                    label: "Performance"
+            height: "100%",
+            width: "100%",
+            legend: {
+                position: "none"
+            },
+            chart: {
+                title: "Social Skills",
+                subtitle: "Student social skills from the work immersion",
+            },
+            bars: "horizontal",
+            axes: {
+                x: {
+                    0: {
+                        side: "top",
+                        label: "Performance"
+                    },
                 },
             },
-        },
-        bar: {
-            groupWidth: "90%"
-        },
-    };
+            bar: {
+                groupWidth: "90%"
+            },
+        };
 
-    var chart = new google.charts.Bar(document.getElementById("ld-top-x-div"));
-    chart.draw(data, options);
-}
+        var chart = new google.charts.Bar(document.getElementById("ld-top-x-div"));
+        chart.draw(data, options);
+    }
 
-// Redraw chart on window resize
-window.addEventListener("resize", function() {
-    drawSocialSkillsChart();
-});
+    // Redraw chart on window resize
+    window.addEventListener("resize", function() {
+        drawSocialSkillsChart();
+    });
 </script>
 
 </html>

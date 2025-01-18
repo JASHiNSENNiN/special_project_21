@@ -770,7 +770,11 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                         <option value="Day 10">Day 10</option>
                     </select>
 
-                    <div class="daily-graph eval-graph" id="chart_div_daily" style="width: 100%; height: 400px;"></div>
+                    <!-- <div class="daily-graph eval-graph" id="chart_div_daily" style="width: 100%; height: 400px;"></div> -->
+
+                    <div class="daily-graph eval-graph" id="chart_div_daily1" style="height: 400px; width: 100%;"></div>
+                    <div class="daily-graph eval-graph" id="chart_div_daily2" style="height: 400px; width: 100%;"></div>
+                    <div class="daily-graph eval-graph" id="chart_div_daily3" style="height: 400px; width: 100%;"></div>
 
 
 
