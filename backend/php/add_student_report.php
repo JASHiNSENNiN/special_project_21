@@ -33,11 +33,24 @@ $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+// First, let's add a unique constraint if it doesn't exist
+$alterTableSQL = "
+    ALTER TABLE Organization_Evaluation 
+    ADD UNIQUE KEY unique_evaluation (job_id, evaluator_id, day);
+";
+try {
+    $conn->query($alterTableSQL);
+} catch (Exception $e) {
+    // Constraint might already exist, continue
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $json = file_get_contents('php://input');
     $radioButtonData = json_decode($json, true);
 
     if ($radioButtonData) {
+        // Extract all the evaluation data
         $quality_of_experience = $radioButtonData["question1"];
         $productivity_of_tasks = $radioButtonData["question2"];
         $problem_solving_opportunities = $radioButtonData["question3"];
@@ -64,48 +77,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $commitment_to_experience = $radioButtonData["question24"];
         $self_motivation_levels = $radioButtonData["question25"];
         $work_id = $_SESSION['current_work'];
+        $date = $radioButtonData['date'];
+        $day = $radioButtonData['day'];
 
-        $stmt = $conn->prepare("INSERT INTO Organization_Evaluation (
-            organization_id, evaluator_id, job_id, quality_of_experience, productivity_of_tasks, 
-            problem_solving_opportunities, attention_to_detail_in_guidance, 
-            initiative_encouragement, punctuality_expectations, 
-            professional_appearance_standards, communication_training, 
-            respectfulness_environment, adaptability_challenges, 
-            willingness_to_learn_encouragement, feedback_application_opportunities, 
-            self_improvement_support, skill_development_assessment, 
-            knowledge_application_in_practice, team_participation_opportunities, 
-            cooperation_among_peers, conflict_resolution_guidance, 
-            supportiveness_among_peers, contribution_to_team_success, 
-            enthusiasm_for_tasks, drive_to_achieve_goals, 
-            resilience_to_challenges, commitment_to_experience, 
-            self_motivation_levels) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        // Prepare the INSERT ... ON DUPLICATE KEY UPDATE statement
+        $sql = "INSERT INTO Organization_Evaluation (
+            organization_id, evaluator_id, job_id, quality_of_experience, productivity_of_tasks,
+            problem_solving_opportunities, attention_to_detail_in_guidance,
+            initiative_encouragement, punctuality_expectations,
+            professional_appearance_standards, communication_training,
+            respectfulness_environment, adaptability_challenges,
+            willingness_to_learn_encouragement, feedback_application_opportunities,
+            self_improvement_support, skill_development_assessment,
+            knowledge_application_in_practice, team_participation_opportunities,
+            cooperation_among_peers, conflict_resolution_guidance,
+            supportiveness_among_peers, contribution_to_team_success,
+            enthusiasm_for_tasks, drive_to_achieve_goals,
+            resilience_to_challenges, commitment_to_experience,
+            self_motivation_levels, evaluation_date, day
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+            quality_of_experience = VALUES(quality_of_experience),
+            productivity_of_tasks = VALUES(productivity_of_tasks),
+            problem_solving_opportunities = VALUES(problem_solving_opportunities),
+            attention_to_detail_in_guidance = VALUES(attention_to_detail_in_guidance),
+            initiative_encouragement = VALUES(initiative_encouragement),
+            punctuality_expectations = VALUES(punctuality_expectations),
+            professional_appearance_standards = VALUES(professional_appearance_standards),
+            communication_training = VALUES(communication_training),
+            respectfulness_environment = VALUES(respectfulness_environment),
+            adaptability_challenges = VALUES(adaptability_challenges),
+            willingness_to_learn_encouragement = VALUES(willingness_to_learn_encouragement),
+            feedback_application_opportunities = VALUES(feedback_application_opportunities),
+            self_improvement_support = VALUES(self_improvement_support),
+            skill_development_assessment = VALUES(skill_development_assessment),
+            knowledge_application_in_practice = VALUES(knowledge_application_in_practice),
+            team_participation_opportunities = VALUES(team_participation_opportunities),
+            cooperation_among_peers = VALUES(cooperation_among_peers),
+            conflict_resolution_guidance = VALUES(conflict_resolution_guidance),
+            supportiveness_among_peers = VALUES(supportiveness_among_peers),
+            contribution_to_team_success = VALUES(contribution_to_team_success),
+            enthusiasm_for_tasks = VALUES(enthusiasm_for_tasks),
+            drive_to_achieve_goals = VALUES(drive_to_achieve_goals),
+            resilience_to_challenges = VALUES(resilience_to_challenges),
+            commitment_to_experience = VALUES(commitment_to_experience),
+            self_motivation_levels = VALUES(self_motivation_levels),
+            evaluation_date = VALUES(evaluation_date)";
 
-        $stmt->bind_param("iiisssssssssssssssssssssssss", 
-            $partner_profile_id,  $_SESSION['user_id'], $work_id, $quality_of_experience, $productivity_of_tasks, 
-            $problem_solving_opportunities, $attention_to_detail_in_guidance, 
-            $initiative_encouragement, $punctuality_expectations, 
-            $professional_appearance_standards, $communication_training, 
-            $respectfulness_environment, $adaptability_challenges, 
-            $willingness_to_learn_encouragement, $feedback_application_opportunities, 
-            $self_improvement_support, $skill_development_assessment, 
-            $knowledge_application_in_practice, $team_participation_opportunities, 
-            $cooperation_among_peers, $conflict_resolution_guidance, 
-            $supportiveness_among_peers, $contribution_to_team_success, 
-            $enthusiasm_for_tasks, $drive_to_achieve_goals, 
-            $resilience_to_challenges, $commitment_to_experience, 
-            $self_motivation_levels);
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iiissssssssssssssssssssssssssi", 
+            $partner_profile_id, $_SESSION['user_id'], $work_id, 
+            $quality_of_experience, $productivity_of_tasks,
+            $problem_solving_opportunities, $attention_to_detail_in_guidance,
+            $initiative_encouragement, $punctuality_expectations,
+            $professional_appearance_standards, $communication_training,
+            $respectfulness_environment, $adaptability_challenges,
+            $willingness_to_learn_encouragement, $feedback_application_opportunities,
+            $self_improvement_support, $skill_development_assessment,
+            $knowledge_application_in_practice, $team_participation_opportunities,
+            $cooperation_among_peers, $conflict_resolution_guidance,
+            $supportiveness_among_peers, $contribution_to_team_success,
+            $enthusiasm_for_tasks, $drive_to_achieve_goals,
+            $resilience_to_challenges, $commitment_to_experience,
+            $self_motivation_levels, $date, $day);
 
-        // Execute the prepared statement
-        $stmt->execute();
+        if ($stmt->execute()) {
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'success', 'message' => 'Data processed successfully']);
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'error', 'message' => 'Error processing data: ' . $stmt->error]);
+        }
 
-        // Close the statement and connection
         $stmt->close();
         $conn->close();
-
-        
-        header('Content-Type: application/json');
-        echo json_encode(['status' => 'success', 'message' => 'Data processed successfully']);
-        exit; 
+        exit;
     } else {
         echo "Error: No data received.";
     }
