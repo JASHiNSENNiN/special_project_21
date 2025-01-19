@@ -188,7 +188,7 @@ $profile_div .= '
             <div class="css-1ld7x2h eu4oa1w0"></div>
         </nav>
         <div class="menu-icon" id="menu-icon">
-            &#9776; <!-- This is the burger icon -->
+            &#9776; 
         </div>
         <ul class="menu" id="menu">
             <li><a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '">Profile</a></li>

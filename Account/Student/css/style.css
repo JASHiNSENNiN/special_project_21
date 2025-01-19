@@ -201,6 +201,27 @@ input::placeholder {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
+@media (min-width: 768px) {
+  .nav-header {
+    padding-left: 100px;
+    padding-top: 5px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav-header {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-header {
+    /* flex-direction: column; */
+    padding: 1rem;
+    /* text-align: center;  */
+  }
+}
+
 .cam {
   display: none;
 }
@@ -508,6 +529,13 @@ nav a:hover::after {
     margin: 0 10px !important;
     font-size: 14px !important;
   }
+
+  #none {
+    display: none;
+  }
+  .dropdown {
+    display: none;
+  }
   .login-btn {
     /* width: 10% !important; */
     height: 10% !important;
@@ -518,6 +546,7 @@ nav a:hover::after {
   }
   .css-1ld7x2h {
     margin: 5px 0 0 !important;
+    display: none;
   }
   nav {
     margin: 0;
@@ -1716,4 +1745,104 @@ input[type="file"] {
   background: #f6f7f9;
   border-radius: 5px;
   display: none;
+}
+
+.menu {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu li a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: rgb(255, 255, 255, 0.8);
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .menu li {
+    margin-bottom: 10px;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .menu.active {
+    display: flex;
+    margin-top: 2.2rem;
+  }
+
+  .dropdowntf {
+    margin-right: -5rem;
+  }
+  .dropdowntf-content {
+    right: -3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .DateDay {
+    margin-top: 1.5rem;
+  }
+
+  .form-group {
+    margin: auto;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .inp {
+    width: 91%;
+    text-align: center;
+  }
+
+  label {
+    font-size: 14px;
+  }
+  .sr {
+    display: flex;
+    margin: 1rem 0 0px -77px;
+  }
+  .star {
+    margin: 1rem;
+  }
+  .profile img {
+    margin: auto;
+    width: 150px;
+    display: block;
+    margin-top: -5rem;
+  }
+  .name {
+    text-align: center;
+    margin: 0;
+  }
+  .strand {
+    margin-left: 24%;
+  }
 }

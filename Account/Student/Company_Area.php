@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if ($row['status'] === 'completed') {
         header("Location: Congratulation.php");
-        exit(); 
+        exit();
     }
 }
 
@@ -252,6 +252,13 @@ require_once 'show_profile.php';
             header.classList.remove("stickyhead");
         }
     }
+    </script>
+
+    <script>
+    document.getElementById('menu-icon').addEventListener('click', function() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    });
     </script>
 
     <footer>
