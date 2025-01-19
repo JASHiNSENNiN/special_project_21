@@ -120,6 +120,56 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
+function getStudentEvaluationsByDay($conn, $user_id)
+{
+    $evaluations = array_fill(1, 10, null); // Initialize array for all 10 days
+
+    $query = "SELECT * FROM Student_Evaluation 
+              WHERE student_id = ? 
+              ORDER BY day";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+        $day = intval($row['day']);
+
+        $evaluations[$day] = [
+            'evaluation_id' => $row['evaluation_id'],
+            'evaluation_date' => $row['evaluation_date'],
+            'work_habits' => [
+                'punctual' => $row['punctual'],
+                'reports_regularly' => $row['reports_regularly'],
+                'performs_tasks_independently' => $row['performs_tasks_independently'],
+                'self_discipline' => $row['self_discipline'],
+                'dedication_commitment' => $row['dedication_commitment']
+            ],
+            'technical_skills' => [
+                'ability_to_operate_machines' => $row['ability_to_operate_machines'],
+                'handles_details' => $row['handles_details'],
+                'shows_flexibility' => $row['shows_flexibility'],
+                'thoroughness_attention_to_detail' => $row['thoroughness_attention_to_detail'],
+                'understands_task_linkages' => $row['understands_task_linkages'],
+                'offers_suggestions' => $row['offers_suggestions']
+            ],
+            'interpersonal_skills' => [
+                'tact_in_dealing_with_people' => $row['tact_in_dealing_with_people'],
+                'respect_and_courtesy' => $row['respect_and_courtesy'],
+                'helps_others' => $row['helps_others'],
+                'learns_from_co_workers' => $row['learns_from_co_workers'],
+                'shows_gratitude' => $row['shows_gratitude'],
+                'poise_and_self_confidence' => $row['poise_and_self_confidence'],
+                'emotional_maturity' => $row['emotional_maturity']
+            ]
+        ];
+    }
+
+    $stmt->close();
+    return $evaluations;
+}
+
 function getDailyPerformance($student_id, $pdo)
 {
     $sql = "SELECT 
@@ -294,6 +344,11 @@ $document_name_mapping = [
 
 
 $conn = new mysqli($host, $username, $password, $database);
+$evaluations = getStudentEvaluationsByDay($conn, $user_id);
+
+$cleaned_evaluations = array_filter($evaluations, function ($value) {
+    return $value !== null;
+});
 
 $profile_data = null;
 if (isset($user_id)) {
@@ -646,9 +701,6 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
                     <article class="app-content__widget app-content__widget--primary">
                         <hr>
                         <h2 class="title-resume">Application Documents</h2>
-                        <!-- <span class="description-resume">Please upload the required documents for your work immersion
-                        application: resume, application letter, barangay clearance, police clearance, mayor's
-                        clearance, and medical certificate. </span> -->
                         <div id="content-cover">
 
                             <table class="table" id="sortableTable-docu">
@@ -821,67 +873,105 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
                 </article>
             </main>
         </div>
+
+        <script>
+            const studentEvaluations = <?php echo json_encode($cleaned_evaluations, JSON_PRETTY_PRINT); ?>;
+
+            console.log('Student Evaluations:', studentEvaluations);
+
+            function getEvaluationForDay(day) {
+                return studentEvaluations[day] || null;
+            }
+
+            function calculateAverages() {
+                let totals = {
+                    work_habits: {},
+                    technical_skills: {},
+                    interpersonal_skills: {}
+                };
+
+                let counts = {
+                    work_habits: {},
+                    technical_skills: {},
+                    interpersonal_skills: {}
+                };
+
+                // Sum up all scores
+                Object.values(studentEvaluations).forEach(evaluation => {
+                    for (let category in evaluation) {
+                        if (typeof evaluation[category] === 'object') {
+                            for (let metric in evaluation[category]) {
+                                if (!totals[category][metric]) {
+                                    totals[category][metric] = 0;
+                                    counts[category][metric] = 0;
+                                }
+                                totals[category][metric] += evaluation[category][metric];
+                                counts[category][metric]++;
+                            }
+                        }
+                    }
+                });
+
+                let averages = {
+                    work_habits: {},
+                    technical_skills: {},
+                    interpersonal_skills: {}
+                };
+
+                for (let category in totals) {
+                    for (let metric in totals[category]) {
+                        averages[category][metric] = totals[category][metric] / counts[category][metric];
+                    }
+                }
+                return averages;
+            }
+        </script>
+
+
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">Daily Evaluation Insight</h2>
+                    <span class="description-resume">This report assesses senior high school students' work immersion
+                        from Day 1 to Day 10, highlighting key performance metrics and growth trends to identify areas
+                        for improvement in the program.</span>
+                    <br>
+                    <select id="dayDropdown">
+                        <option value="Day 1">Day 1</option>
+                        <option value="Day 2">Day 2</option>
+                        <option value="Day 3">Day 3</option>
+                        <option value="Day 4">Day 4</option>
+                        <option value="Day 5">Day 5</option>
+                        <option value="Day 6">Day 6</option>
+                        <option value="Day 7">Day 7</option>
+                        <option value="Day 8">Day 8</option>
+                        <option value="Day 9">Day 9</option>
+                        <option value="Day 10">Day 10</option>
+                    </select>
+
+                    <!-- <div class="daily-graph eval-graph" id="chart_div_daily" style="width: 100%; height: 400px;"></div> -->
+
+                    <div class="daily-graph eval-graph" id="chart_div_daily1" style="height: 400px; width: 100%;"></div>
+                    <div class="daily-graph eval-graph" id="chart_div_daily2" style="height: 400px; width: 100%;"></div>
+                    <div class="daily-graph eval-graph" id="chart_div_daily3" style="height: 400px; width: 100%;"></div>
+
+
+
+
+                </article>
+
+            </main>
+        </div>
+
+
     </div>
     <!-- -------------------------------------END ------------------------------------------------- -->
     <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
-    <!-- <div class="container light-style flex-grow-1 container-p-y"
-        style="padding-left: 0px; padding-right: 0px; max-height: 463px;">
-        <div class="header-title">
-            <h4 class="font-weight-bold py-3 mb-4" style=" color:#fff; padding-left: 10px; padding-right: 10px;">
-                Evaluation Insight
-            </h4>
-            <a id="refreshButton">
-                <i style="font-size:24px; cursor:pointer;" class="fa">&#xf021;</i>
-            </a>
-        </div>
 
-        <div class="card-graph overflow-hidden">
-            <div class="row no-gutters row-bordered row-border-light">
-                <div class="col-md-3 pt-0">
-                    <div class="list-group list-group-flush account-settings-links">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list"
-                            href="#wp-top-x-div-sel">Work habits</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#pro-top-x-div-sel">Work skills</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#ld-top-x-div-sel">Social skills</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#tc-top-x-div-sel">Team Work and Collaboration</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#am-top-x-div-sel">Attitude and Motivation</a>
-
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade active show" id="wp-top-x-div-sel">
-                            <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-
-                        </div>
-
-                        <div class="tab-pane fade active" id="pro-top-x-div-sel">
-                            <div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div>
-
-                        <div class="tab-pane fade active" id="ld-top-x-div-sel">
-                            <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div>
-
-                        <div class="tab-pane fade active " id="tc-top-x-div-sel">
-                            <div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div>
-
-                        <div class="tab-pane fade active" id="am-top-x-div-sel">
-                            <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 
 
@@ -896,7 +986,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
             location.reload("card-graph");
         });
     </script>
-
+    <script type="text/javascript" src="/Account/Student/css/eval_daily.js"></script>
 
 
     <script>

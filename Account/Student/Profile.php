@@ -120,21 +120,22 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-function getStudentEvaluationsByDay($conn, $user_id) {
+function getStudentEvaluationsByDay($conn, $user_id)
+{
     $evaluations = array_fill(1, 10, null); // Initialize array for all 10 days
-    
+
     $query = "SELECT * FROM Student_Evaluation 
               WHERE student_id = ? 
               ORDER BY day";
-              
+
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     while ($row = $result->fetch_assoc()) {
         $day = intval($row['day']);
-        
+
         $evaluations[$day] = [
             'evaluation_id' => $row['evaluation_id'],
             'evaluation_date' => $row['evaluation_date'],
@@ -164,7 +165,7 @@ function getStudentEvaluationsByDay($conn, $user_id) {
             ]
         ];
     }
-    
+
     $stmt->close();
     return $evaluations;
 }
@@ -356,7 +357,7 @@ $conn = new mysqli($host, $username, $password, $database);
 
 $evaluations = getStudentEvaluationsByDay($conn, $user_id);
 
-$cleaned_evaluations = array_filter($evaluations, function($value) {
+$cleaned_evaluations = array_filter($evaluations, function ($value) {
     return $value !== null;
 });
 
@@ -429,29 +430,29 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
     <!-- ---------------------------script ---------------------- -->
     <script type="text/javascript">
-    const averages = {
-        avgPunctual: <?= json_encode($avgPunctual) ?>,
-        avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
-        avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
-        avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
-        avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
-        avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
-        avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
-        avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
-        avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
-        avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
-        avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
-        avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
-        avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
-        avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
-        avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
-        avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
-        avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
-        avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
-    };
+        const averages = {
+            avgPunctual: <?= json_encode($avgPunctual) ?>,
+            avgReportsRegularly: <?= json_encode($avgReportsRegularly) ?>,
+            avgPerformsTasksIndependently: <?= json_encode($avgPerformsTasksIndependently) ?>,
+            avgSelfDiscipline: <?= json_encode($avgSelfDiscipline) ?>,
+            avgDedicationCommitment: <?= json_encode($avgDedicationCommitment) ?>,
+            avgAbilityToOperateMachines: <?= json_encode($avgAbilityToOperateMachines) ?>,
+            avgHandlesDetails: <?= json_encode($avgHandlesDetails) ?>,
+            avgShowsFlexibility: <?= json_encode($avgShowsFlexibility) ?>,
+            avgThoroughnessAttentionToDetail: <?= json_encode($avgThoroughnessAttentionToDetail) ?>,
+            avgUnderstandsTaskLinkages: <?= json_encode($avgUnderstandsTaskLinkages) ?>,
+            avgOffersSuggestions: <?= json_encode($avgOffersSuggestions) ?>,
+            avgTactInDealingWithPeople: <?= json_encode($avgTactInDealingWithPeople) ?>,
+            avgRespectAndCourtesy: <?= json_encode($avgRespectAndCourtesy) ?>,
+            avgHelpsOthers: <?= json_encode($avgHelpsOthers) ?>,
+            avgLearnsFromCoWorkers: <?= json_encode($avgLearnsFromCoWorkers) ?>,
+            avgShowsGratitude: <?= json_encode($avgShowsGratitude) ?>,
+            avgPoiseAndSelfConfidence: <?= json_encode($avgPoiseAndSelfConfidence) ?>,
+            avgEmotionalMaturity: <?= json_encode($avgEmotionalMaturity) ?>
+        };
 
-    const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
-    console.log(dailyPerformance);
+        const dailyPerformance = <?= getDailyPerformance($user_id, $pdo) ?>;
+        console.log(dailyPerformance);
     </script>
     <script type="text/javascript" src="css/eval_graph.js"></script>
 
@@ -632,26 +633,26 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
         </div> -->
 
         <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student'): ?>
-        <div class="dashboard-body docu">
-            <main class="dashboard__main app-content">
-                <article class="app-content__widget app-content__widget--primary">
-                    <hr>
-                    <h2 class="title-resume">Application Documents</h2>
-                    <div id="content-cover">
-                        <table class="table" id="sortableTable-docu">
-                            <thead>
-                                <tr>
-                                    <th class="th-name">Document Name</th>
-                                    <th class="th-date">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($unique_documents as $document_name): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
-                                    </td>
-                                    <td>
-                                        <?php
+            <div class="dashboard-body docu">
+                <main class="dashboard__main app-content">
+                    <article class="app-content__widget app-content__widget--primary">
+                        <hr>
+                        <h2 class="title-resume">Application Documents</h2>
+                        <div id="content-cover">
+                            <table class="table" id="sortableTable-docu">
+                                <thead>
+                                    <tr>
+                                        <th class="th-name">Document Name</th>
+                                        <th class="th-date">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($unique_documents as $document_name): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
+                                            </td>
+                                            <td>
+                                                <?php
                                                 // Check for the document URL and existence of file
                                                 $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
                                                 $stmt = $pdo->prepare($sql);
@@ -663,40 +664,40 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
-                                        <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
-                                            Download
-                                        </a>
-                                        <!-- Uncomment the button below to enable viewing functionality -->
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                        <?php else: ?>
-                                        <button disabled>File Not Available</button>
-                                        <?php endif;
+                                                        <a class="btn btn-download btn-success"
+                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                                            Download
+                                                        </a>
+                                                        <!-- Uncomment the button below to enable viewing functionality -->
+                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                                    <?php else: ?>
+                                                        <button disabled>File Not Available</button>
+                                                    <?php endif;
                                                 } else { ?>
-                                        <button disabled>No Document Found</button>
-                                        <?php } ?>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                        </table>
-                    </div>
-                    <hr>
-                    <h2 class="title-resume">Insight</h2>
-                    <span class="description-resume">The line chart analyzes student daily performance in work
-                        immersion, and the pie chart displays the distribution of performance levels.</span>
+                                                    <button disabled>No Document Found</button>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            </table>
+                        </div>
+                        <hr>
+                        <h2 class="title-resume">Insight</h2>
+                        <span class="description-resume">The line chart analyzes student daily performance in work
+                            immersion, and the pie chart displays the distribution of performance levels.</span>
 
-                    <div class="container-grap">
-                        <div class="dp-graph" id="piechart_3d"></div>
-                    </div>
-                    <div class="container-grap">
-                        <div class="dp-graph" id="dp_chart_div"></div>
-                    </div>
-                </article>
-            </main>
-        </div>
+                        <div class="container-grap">
+                            <div class="dp-graph" id="piechart_3d"></div>
+                        </div>
+                        <div class="container-grap">
+                            <div class="dp-graph" id="dp_chart_div"></div>
+                        </div>
+                    </article>
+                </main>
+            </div>
         <?php endif; ?>
 
         <div class="dashboard-body">
@@ -802,56 +803,56 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
 
         <script>
-        const studentEvaluations = <?php echo json_encode($cleaned_evaluations, JSON_PRETTY_PRINT); ?>;
+            const studentEvaluations = <?php echo json_encode($cleaned_evaluations, JSON_PRETTY_PRINT); ?>;
 
-        console.log('Student Evaluations:', studentEvaluations);
+            console.log('Student Evaluations:', studentEvaluations);
 
-        function getEvaluationForDay(day) {
-            return studentEvaluations[day] || null;
-        }
+            function getEvaluationForDay(day) {
+                return studentEvaluations[day] || null;
+            }
 
-        function calculateAverages() {
-            let totals = {
-                work_habits: {},
-                technical_skills: {},
-                interpersonal_skills: {}
-            };
+            function calculateAverages() {
+                let totals = {
+                    work_habits: {},
+                    technical_skills: {},
+                    interpersonal_skills: {}
+                };
 
-            let counts = {
-                work_habits: {},
-                technical_skills: {},
-                interpersonal_skills: {}
-            };
+                let counts = {
+                    work_habits: {},
+                    technical_skills: {},
+                    interpersonal_skills: {}
+                };
 
-            // Sum up all scores
-            Object.values(studentEvaluations).forEach(evaluation => {
-                for (let category in evaluation) {
-                    if (typeof evaluation[category] === 'object') {
-                        for (let metric in evaluation[category]) {
-                            if (!totals[category][metric]) {
-                                totals[category][metric] = 0;
-                                counts[category][metric] = 0;
+                // Sum up all scores
+                Object.values(studentEvaluations).forEach(evaluation => {
+                    for (let category in evaluation) {
+                        if (typeof evaluation[category] === 'object') {
+                            for (let metric in evaluation[category]) {
+                                if (!totals[category][metric]) {
+                                    totals[category][metric] = 0;
+                                    counts[category][metric] = 0;
+                                }
+                                totals[category][metric] += evaluation[category][metric];
+                                counts[category][metric]++;
                             }
-                            totals[category][metric] += evaluation[category][metric];
-                            counts[category][metric]++;
                         }
                     }
-                }
-            });
+                });
 
-            let averages = {
-                work_habits: {},
-                technical_skills: {},
-                interpersonal_skills: {}
-            };
+                let averages = {
+                    work_habits: {},
+                    technical_skills: {},
+                    interpersonal_skills: {}
+                };
 
-            for (let category in totals) {
-                for (let metric in totals[category]) {
-                    averages[category][metric] = totals[category][metric] / counts[category][metric];
+                for (let category in totals) {
+                    for (let metric in totals[category]) {
+                        averages[category][metric] = totals[category][metric] / counts[category][metric];
+                    }
                 }
+                return averages;
             }
-            return averages;
-        }
         </script>
 
 
@@ -903,66 +904,6 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
     </div>
     <!-- -------------------------------------END ------------------------------------------------- -->
-    <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
-
-    <!-- <div class="container light-style flex-grow-1 container-p-y"
-        style="padding-left: 0px; padding-right: 0px; max-height: 463px;">
-        <div class="header-title">
-            <h4 class="font-weight-bold py-3 mb-4" style=" color:#fff; padding-left: 10px; padding-right: 10px;">
-                Evaluation Insight
-            </h4>
-            <a id="refreshButton">
-                <i style="font-size:24px; cursor:pointer;" class="fa">&#xf021;</i>
-            </a>
-        </div>
-
-        <div class="card-graph overflow-hidden">
-            <div class="row no-gutters row-bordered row-border-light">
-                <div class="col-md-3 pt-0">
-                    <div class="list-group list-group-flush account-settings-links">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list"
-                            href="#wp-top-x-div-sel">Work habits</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#pro-top-x-div-sel">Work skills</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#ld-top-x-div-sel">Social skills</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#tc-top-x-div-sel">Team Work and Collaboration</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#am-top-x-div-sel">Attitude and Motivation</a>
-
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade active show" id="wp-top-x-div-sel">
-                            <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 400px;"></div>
-
-                        </div>
-
-                        <div class="tab-pane fade active" id="pro-top-x-div-sel">
-                            <div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div>
-
-                        <div class="tab-pane fade active" id="ld-top-x-div-sel">
-                            <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div>
-
-                        <div class="tab-pane fade active " id="tc-top-x-div-sel">
-                            <div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div>
-
-                        <div class="tab-pane fade active" id="am-top-x-div-sel">
-                            <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 400px;"></div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -971,9 +912,9 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-    document.getElementById('refreshButton').addEventListener('click', function() {
-        location.reload("card-graph");
-    });
+        document.getElementById('refreshButton').addEventListener('click', function() {
+            location.reload("card-graph");
+        });
     </script>
     <script type="text/javascript" src="css/eval_daily.js"></script>
 

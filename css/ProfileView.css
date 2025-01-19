@@ -12,7 +12,6 @@ body {
     /* overflow: hidden; */
 }
 
-
 /* NavbarTop */
 
 .navbar-top {
@@ -69,7 +68,6 @@ body {
     float: left;
 }
 
-
 /* li {
   list-style: none;
 } */
@@ -91,9 +89,7 @@ body {
     position: relative;
 }
 
-
 /* End */
-
 
 /* Sidenav */
 
@@ -136,7 +132,6 @@ body {
     padding-top: 10px;
 }
 
-
 /* .url,
 hr {
   text-align: center;
@@ -165,9 +160,7 @@ hr {
   width: 65%;
 } */
 
-
 /* End */
-
 
 /* Main */
 
@@ -196,14 +189,12 @@ hr {
     border: solid grey 1px;
 }
 
-
 /* .main .card table {
   border: none;
   font-size: 16px;
   height: 270px;
   width: 80%;
 } */
-
 
 /* End */
 
@@ -232,7 +223,6 @@ footer {
     padding: 20px;
     /* add some padding to make the div more visible */
 }
-
 
 /* -----------------------------------wp_chart--------------------------------------------  */
 
@@ -328,9 +318,7 @@ footer {
     }
 }
 
-
 /* ----------------------------------top graph-------------------------------- */
-
 
 /* Create two equal columns that floats next to each other */
 
@@ -362,7 +350,6 @@ footer {
     }
 }
 
-
 /* Clear floats after the columns */
 
 .row-graph:after {
@@ -370,7 +357,6 @@ footer {
     display: table;
     clear: both;
 }
-
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 
@@ -396,7 +382,6 @@ footer {
     font-size: 12px;
     padding: 5px 10px 0px 10px;
 }
-
 
 /* -------------------------------------column profile ---------------------------- */
 
@@ -517,7 +502,6 @@ footer {
     height: auto;
 }
 
-
 /* -------------------------------------------graph evaluation ------------------------ */
 
 .ui-w-80 {
@@ -585,7 +569,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     background: transparent !important;
 }
 
-.account-settings-multiselect~.select2-container {
+.account-settings-multiselect ~ .select2-container {
     width: 100% !important;
 }
 
@@ -726,7 +710,6 @@ img {
     /* font-weight: bold; */
     color: #000;
 }
-
 
 /* //////////////////////////////////////////drop down css////////////////////////////////// */
 
@@ -892,16 +875,25 @@ img {
     background-color: #cccbc93a;
 }
 
-
 /* ///////////////////////////////////////////end //////////////////////////////////// */
-
 
 /* ///////////////////////////////////////Strong profile///////////////////////////// */
 
 .card-strong-profile {
     --main-color: #172738;
     --bg-color: #fff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
     width: 100%;
     padding: 25px;
     background: var(--bg-color);
@@ -1009,15 +1001,24 @@ img {
 }
 
 .form-control {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
     min-height: 254px;
     max-height: 254px;
     margin-bottom: 20px;
 }
 
-
 /* //////////////////////////////////////////END ////////////////////////////////// */
-
 
 /*//////////////////////////////////////////upload csss//////////////////////////// */
 
@@ -1074,7 +1075,6 @@ table .th-date {
 .btn-primary:hover {
     background-color: #17273811;
 }
-
 
 /* //////////////////////////////end///////////////////////////////////////////////// */
 
@@ -1302,7 +1302,6 @@ span .subtitle-resume {
     background-color: rgb(239, 239, 239);
 }
 
-
 /*----------------------- Journal --------------------------*/
 
 .content-box {
@@ -1370,4 +1369,32 @@ span .subtitle-resume {
 .fas:before {
     position: absolute !important;
     transform: translate(-50%, -50%) !important;
+}
+
+#dayDropdown {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+    margin-top: 20px;
+}
+
+#dayDropdown:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+#dayDropdown option {
+    padding: 10px;
+}
+
+#dayDropdown option:hover {
+    background-color: #eee;
 }

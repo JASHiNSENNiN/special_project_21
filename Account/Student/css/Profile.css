@@ -1342,6 +1342,7 @@ span .subtitle-resume {
     margin: 10px;
     border-radius: 10px;
     background-color: #f9f9f9;
+    text-align: center;
 }
 
 .content-box .day {
