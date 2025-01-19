@@ -102,18 +102,15 @@ $unreadCount = count(array_filter($notifications, function ($n) {
 $badgeHTML = $unreadCount > 0 ? '<span class="badge">' . $unreadCount . '</span>' : '';
 
 $profile_div = '<header class="nav-header">
-        
     <div class="logo">
         <a href="Company_Area.php">
             <img src="image/drdsnhs.svg" alt="Logo">
         </a>
     </div>
-
-    
         
     <nav class="by">
         <div class="dropdowntf" style="float:right;">
-            <a href="" class="notification">
+            <a href="javascript:void(0);" class="notification">
                 <i class="fas fa-bell" style="font-size:24px;color:#fff;"></i>
                 ' . $badgeHTML . '
             </a>
@@ -122,39 +119,31 @@ $profile_div = '<header class="nav-header">
                 <hr style="width: 100%;">
                 ';
 
-$unreadNotifications = array_filter($notifications, function ($n) {
-    return !$n['is_read'];
-});
-if (!empty($unreadNotifications)) {
-    $profile_div .= '';
-    foreach ($unreadNotifications as $notif) {
-        $profile_div .= '
-        <form method="POST" style="margin: 0; display: block;">
-            <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
-            <button type="submit" style="border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin: 0 5px; display: inline-flex; align-items: center; width: 100%;" title="Click to mark as read">
-                <div class="notifi-item" style="display: inline-flex; align-items: center;">
-                    <img src="' . $profile_image . '" alt="img" style="width: 50px; height: 50px; margin-right: 10px;">
-                    <div class="text" style="font-weight: bold;">
-                        <h4 style="margin: 0;">New Notification</h4>
-                        <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
-                        <small style="color: #666;">' . date('M j, Y g:i A', strtotime($notif['created_at'])) . '</small>
-                    </div>
-                </div>
-            </button>
-        </form>';
-    }
-}
-
-$readNotifications = array_filter($notifications, function ($n) {
-    return $n['is_read'];
-});
-if (!empty($readNotifications)) {
-    $profile_div .= '';
-    foreach ($readNotifications as $notif) {
-        $profile_div .= '
+if (empty($notifications)) {
+    $profile_div .= '<p>No notifications</p>';
+} else {
+    foreach ($notifications as $notif) {
+        if (!$notif['is_read']) {
+            // Modified structure for unread notifications
+            $profile_div .= '
+            <div style="display: block; width: 100%;">
+                <form method="POST" style="margin: 0; padding: 0;">
+                    <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
+                    <button type="submit" style="width: 100%; display: block; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; text-align: left;">
+                        <div class="notifi-item">
+                            <div class="text">
+                                <h4 style="margin: 0;">New Notification</h4>
+                                <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
+                                <small style="color: #666;">' . date('M j, Y g:i A', strtotime($notif['created_at'])) . '</small>
+                            </div>
+                        </div>
+                    </button>
+                </form>
+            </div>';
+        } else {
+            $profile_div .= '
             <div style="background: #ffffff; padding: 10px; opacity: 0.7; margin-bottom: 2px;">
                 <div class="notifi-item">
-                    <img src="' . $profile_image . '" alt="img" style="width: 50px; height: 50px;">
                     <div class="text">
                         <h4 style="margin: 0;">Notification</h4>
                         <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
@@ -162,18 +151,14 @@ if (!empty($readNotifications)) {
                     </div>
                 </div>
             </div>';
+        }
     }
 }
 
-if (empty($notifications)) {
-    $profile_div .= '<p>No notifications</p>';
-}
-
-$profile_div .= '    
-                </div>
-            </div>
+$profile_div .= '</div>
+        </div>
             <div class="dropdown" style="float:right;">
-                <a href=""><i  id="none" class="fas fa-user-alt" style="font-size:24px;margin-top:5px;color:#fff;"></i></a>
+                <a href="#"><i id="none" class="fas fa-user-alt" style="font-size:24px;margin-top:5px;color:#fff;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
                     <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My Profile</a>
@@ -200,6 +185,21 @@ $profile_div .= '
             <li><a href="' . '/backend/php/logout.php' . '">Logout</a></li>
         </ul>
     </header>
+
+    <!-- Add this small script right after your header -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Ensure all notification buttons are clickable
+        const notifButtons = document.querySelectorAll(".dropdowntf-content button");
+        notifButtons.forEach(button => {
+            button.addEventListener("click", function(e) {
+                e.stopPropagation();
+                this.closest("form").submit();
+            });
+        });
+    });
+    </script>
+
     <img class="logoimg" id="cover-pic" src="' . $cover_image . '" alt="" width="200" height="300">
     <div class="profile">
         <img src="' . $profile_image . '" alt="profile picture">

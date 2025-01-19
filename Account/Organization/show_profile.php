@@ -80,7 +80,7 @@ if (!empty($unreadNotifications)) {
                 <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
                 <button type="submit" style="width: 100%; text-align: left; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin-bottom: 2px; title="Click to mark as read"">
                     <div class="notifi-item">
-                        <img src="' . $profileImageSrc . '" alt="img" style"width: 50px; height: 50px;">
+                        
                         <div class="text" style="font-weight: bold;">
                             <h4 style="margin: 0;">New Notification</h4>
                             <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
@@ -99,7 +99,7 @@ if (!empty($readNotifications)) {
     foreach ($readNotifications as $notif) {
         $notificationHTML .= '
             <div class="notifi-item">
-                <img src="' . $profileImageSrc . '" alt="img" style"width: 50px; height: 50px;">
+                
                 <div class="text">
                     <h4 style="margin: 0;">Notification</h4>
                     <p style="margin: 5px 0;">' . htmlspecialchars($notif['message']) . '</p>
