@@ -7,43 +7,42 @@ $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
 $ProfileViewURL = "../../ProfileView.php";
+
 function get_students_by_strand($strand)
 {
-    // Database connection parameters
+    
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
     $database = $_ENV['MYSQL_DBNAME'];
 
-    // Create a new MySQLi connection
     $conn = new mysqli($host, $username, $password, $database);
 
-    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Check if school_name is set in the session
     if (!isset($_SESSION['school_name'])) {
         die("Error: School name is not set in the session.");
     }
     $schoolName = $_SESSION['school_name'];
 
-    // Prepare the SQL statement
-    $stmt = $conn->prepare("SELECT sp.*, u.* 
-                             FROM student_profiles AS sp 
-                             JOIN users AS u ON sp.user_id = u.id 
-                             WHERE sp.strand = ? AND sp.school = ?");
-    // Bind parameters
-    $stmt->bind_param("ss", $strand, $schoolName); // 'ss' indicates that both parameters are strings
+    $stmt = $conn->prepare("
+        SELECT sp.*, 
+               u.*, 
+               COALESCE(jo.organization_name, 'N/A') AS organization_name 
+        FROM student_profiles AS sp 
+        JOIN users AS u ON sp.user_id = u.id 
+        LEFT JOIN job_offers AS jo ON sp.current_work = jo.id 
+        WHERE sp.strand = ? AND sp.school = ?
+    ");
+    
+    $stmt->bind_param("ss", $strand, $schoolName); 
 
-    // Execute the statement
     $stmt->execute();
 
-    // Get the result
     $result = $stmt->get_result();
 
-    // Fetch the students into an array
     $students = [];
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -51,7 +50,6 @@ function get_students_by_strand($strand)
         }
     }
 
-    // Close the prepared statement and the connection
     $stmt->close();
     $conn->close();
 
@@ -238,7 +236,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>N/A</td>";
+                            echo "<td data-th='Organization'>" . $student['organization_name'] ."</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -289,7 +287,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>N/A</td>";
+                            echo "<td data-th='Organization'>" . $student['organization_name'] ."</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -339,7 +337,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>N/A</td>";
+                            echo "<td data-th='Organization'>" . $student['organization_name'] ."</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -388,7 +386,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>N/A</td>";
+                            echo "<td data-th='Organization'>" . $student['organization_name'] ."</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -437,7 +435,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
-                            echo "<td data-th='Organization'>N/A</td>";
+                            echo "<td data-th='Organization'>" . $student['organization_name'] ."</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
