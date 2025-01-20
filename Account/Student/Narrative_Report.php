@@ -1050,8 +1050,8 @@ if ($is_completed) {
         }
         jsonData.date = dateInput.value;
         jsonData.day = dayInput.value;
-        console.log(jsonData);
-        console.log('<?php echo $_SERVER['PHP_SELF']; ?>');
+        // console.log(jsonData);
+
 
         const url = '../../backend/php/add_student_report.php';
         fetch(url, {
@@ -1085,11 +1085,11 @@ if ($is_completed) {
                         console.error('Operation failed:', jsonData);
                     }
 
-                    console.log(jsonData); // Log JSON data
+                    // console.log(jsonData); // Log JSON data
                 } catch (e) {
                     // Log the error if JSON parsing fails
-                    console.error('Parsing error:', e);
-                    console.log('Response data:', data); // Log the raw data for inspection
+                    // console.error('Parsing error:', e);
+                    // console.log('Response data:', data); // Log the raw data for inspection
                 }
             })
             .catch(error => {
@@ -1108,7 +1108,7 @@ if ($is_completed) {
     form.addEventListener('submit', event => {
         const formData = new FormData(event.target);
         const rating = formData.get('rating');
-        console.log(rating);
+        // console.log(rating);
         event.preventDefault();
     });
     </script>
@@ -1145,9 +1145,9 @@ if ($is_completed) {
     }
 
     inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
-        );
+        // console.log(
+        //     ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
+        // );
         return false;
     }
     </script>
@@ -1169,9 +1169,9 @@ if ($is_completed) {
 
     // just for showing the values (not required only for testing)
     inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
-        );
+        // console.log(
+        //     ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
+        // );
         return false;
     }
     </script>
@@ -1193,9 +1193,9 @@ if ($is_completed) {
 
     // just for showing the values (not required only for testing)
     inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
-        );
+        // console.log(
+        //     ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
+        // );
         return false;
     }
     </script>
@@ -1217,9 +1217,9 @@ if ($is_completed) {
 
 
     inputsForm.onsubmit = function() {
-        console.log(
-            ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
-        );
+        // console.log(
+        //     ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
+        // );
         return false;
     }
     </script>

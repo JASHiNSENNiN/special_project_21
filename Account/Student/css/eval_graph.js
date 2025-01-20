@@ -273,9 +273,9 @@ function drawChart() {
     ["Social Skills", totalSocialSkills],
   ]);
 
-  console.log("Total Work Habits:", totalWorkHabits);
-  console.log("Total Work Skills:", totalWorkSkills);
-  console.log("Total Social Skills:", totalSocialSkills);
+  // console.log("Total Work Habits:", totalWorkHabits);
+  // console.log("Total Work Skills:", totalWorkSkills);
+  // console.log("Total Social Skills:", totalSocialSkills);
 
   var options = {
     title: "Total Work Performance",

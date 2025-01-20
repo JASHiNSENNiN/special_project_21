@@ -44,7 +44,7 @@ fetch("../../../backend/php/get_student_strand_num.php?chart_data=true")
     return response.text(); // Change to text to see raw response
   })
   .then((data) => {
-    console.log("Strand numbers: ", data); // Log the raw response
+    // console.log("Strand numbers: ", data); // Log the raw response
     try {
       const jsonData = JSON.parse(data); // Attempt to parse JSON
       var chartData = [["Strand", "Count"]]; // Initialize with header row

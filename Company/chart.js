@@ -18,7 +18,7 @@ function updateValues() {
     let valueBox = rateBox[rateBox.indexOf(box)].querySelector(".value");
     let countBox = rateBox[rateBox.indexOf(box)].querySelector(".count");
     let progress = rateBox[rateBox.indexOf(box)].querySelector(".progress");
-    console.log(typeof reviews[valueBox.innerHTML]);
+    // console.log(typeof reviews[valueBox.innerHTML]);
     countBox.innerHTML = nFormat(reviews[valueBox.innerHTML]);
 
     let progressValue = Math.round(

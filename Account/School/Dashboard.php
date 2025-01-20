@@ -618,14 +618,14 @@ if (isset($_SESSION['school_name'])) {
     <br>
     <script>
     let strands = <?php echo json_encode($strandCounts); ?>;
-    console.log("<?php echo $schoolName; ?>");
+
     let humss = strands.humss;
     let stem = strands.stem;
     let gas = strands.gas;
     let techVoc = strands.tvl;
     let abm = strands.abm;
 
-    console.log(strands);
+    // console.log(strands);
 
 
 
