@@ -1,12 +1,12 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
-  session_start();
+    session_start();
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 
 if (session_status() == PHP_SESSION_NONE) {
-  session_start();
+    session_start();
 }
 ;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
@@ -113,10 +113,7 @@ $profile_divv = '<header class="nav-header">
 
     <div class="wame">
         <h1 class="wait">Wait for Your Account Verification</h1>
-        <div class="message">Please wait for the verification of your account and upload all requirements <a
-                href="File.php">here</a>.</div>
+        <div class="message">Please upload all requirements to verify your account <a href="File.php">here</a>.</div>
         <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
     </div>
-</body>
-
-</html>
+</body></html>

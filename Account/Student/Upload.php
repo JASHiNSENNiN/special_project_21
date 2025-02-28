@@ -716,7 +716,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Resume
                         <?php if (isDocumentUploaded("resume")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -741,7 +741,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Application Letter
                         <?php if (isDocumentUploaded("application_letter")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
 
                     </h3>
@@ -768,7 +768,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Parents Consent
                         <?php if (isDocumentUploaded("parents_consent")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -794,7 +794,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Barangay Clearance
                         <?php if (isDocumentUploaded("barangay_clearance")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -819,7 +819,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Mayor's Permit
                         <?php if (isDocumentUploaded("mayors_permit")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -845,7 +845,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Police Clearance
                         <?php if (isDocumentUploaded("police_clearance")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -871,7 +871,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Medical Certificate
                         <?php if (isDocumentUploaded("medical_certificate")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -898,7 +898,7 @@ require_once 'show_profile.php';
                 <div class="card">
                     <h3>Insurance Policy
                         <?php if (isDocumentUploaded("insurance_policy")): ?>
-                            <div class="check-icon"></div>
+                        <div class="check-icon"></div>
                         <?php endif; ?>
                     </h3>
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -927,77 +927,77 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function () {
-            myFunction();
-        };
-        window.onscroll = function () {
-            myFunction();
-        };
+    window.onscroll = function() {
+        myFunction();
+    };
+    window.onscroll = function() {
+        myFunction();
+    };
 
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
-        var header = document.getElementById("myHeader-sticky");
-        var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
+    var header = document.getElementById("myHeader-sticky");
+    var sticky = header.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("stickyhead");
-            } else {
-                header.classList.remove("stickyhead");
-            }
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("stickyhead");
+        } else {
+            header.classList.remove("stickyhead");
         }
+    }
     </script>
 
     <script type="text/javascript">
-        const dropBoxes = document.querySelectorAll(".drop_box");
+    const dropBoxes = document.querySelectorAll(".drop_box");
 
 
+    dropBoxes.forEach(dropBox => {
+        const button = dropBox.querySelector("button");
+        const input = dropBox.querySelector("input");
+        const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
         dropBoxes.forEach(dropBox => {
             const button = dropBox.querySelector("button");
             const input = dropBox.querySelector("input");
             const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
-            dropBoxes.forEach(dropBox => {
-                const button = dropBox.querySelector("button");
-                const input = dropBox.querySelector("input");
-                const fileListElement = dropBox.nextElementSibling; // Get the corresponding file list
 
-                button.onclick = () => {
-                    input.click();
-                };
-                button.onclick = () => {
-                    input.click();
-                };
+            button.onclick = () => {
+                input.click();
+            };
+            button.onclick = () => {
+                input.click();
+            };
 
-                input.addEventListener("change", function (e) {
-                    const files = e.target.files; // Get the selected files
-                    fileListElement.innerHTML = ''; // Clear the previous file list
+            input.addEventListener("change", function(e) {
+                const files = e.target.files; // Get the selected files
+                fileListElement.innerHTML = ''; // Clear the previous file list
 
-                    // Display each selected file
-                    Array.from(files).forEach(file => {
-                        let fileItem = document.createElement('li');
-                        fileItem.innerHTML = `
+                // Display each selected file
+                Array.from(files).forEach(file => {
+                    let fileItem = document.createElement('li');
+                    fileItem.innerHTML = `
                     <h4>${file.name}</h4>
                 `;
-                        fileListElement.appendChild(fileItem);
-                    });
+                    fileListElement.appendChild(fileItem);
                 });
             });
         });
+    });
     </script>
 
     <script>
-        document.getElementById('menu-icon').addEventListener('click', function () {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        });
+    document.getElementById('menu-icon').addEventListener('click', function() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    });
     </script>
 
 

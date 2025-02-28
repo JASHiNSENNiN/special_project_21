@@ -389,3 +389,300 @@ body {
   width: 148px;
   font-weight: bold;
 }
+
+/* ---------------------------------Uploadfile-------------------------------- */
+.container {
+  height: 350px;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  /* background-color: #fcfcfc; */
+  /* margin-top: 5rem; */
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  width: 600px;
+  height: auto;
+  background-color: #ffffff00;
+  padding: 10px 30px 40px;
+}
+
+.card h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.drop_box {
+  margin: 10px 0;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 3px dotted #a3a3a3;
+  border-radius: 5px;
+}
+
+.drop_box h4 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2e2e2e;
+}
+
+.drop_box p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #a3a3a3;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #005af0;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #005af0;
+  padding: 10px 20px;
+  border: none;
+  outline: 1px solid #010101;
+}
+.form input {
+  margin: 10px 0;
+  width: 100%;
+  background-color: #e2e2e2;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+.file-list {
+  margin-top: 20px;
+  list-style: none;
+}
+
+.file-list li {
+  margin-bottom: 10px;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  text-align: center;
+  justify-content: center;
+  float: left;
+  width: 50%;
+  margin-top: 50px;
+  /* padding: 10px; */
+  height: auto; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Container for the circle */
+.check-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #00c09d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid #fff;
+  margin: auto;
+}
+
+/* Checkmark style */
+.check-icon::before {
+  content: "";
+  width: 10px;
+  height: 5px;
+  border-left: 4px solid white;
+  border-bottom: 4px solid white;
+  transform: rotate(-45deg);
+  position: absolute;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    height: auto;
+  }
+
+  .card {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .drop_box {
+    padding: 20px;
+  }
+
+  .column {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  .file-list {
+    margin-top: 10px;
+  }
+
+  .form input {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+    height: auto;
+  }
+
+  .card {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .drop_box {
+    padding: 15px;
+  }
+
+  .column {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 15px 20px;
+  }
+
+  .file-list {
+    margin-top: 5px;
+  }
+
+  .form input {
+    padding: 10px 15px;
+  }
+}
+
+/* .menu {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu li a {
+  color: #000;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+} */
+
+@media (max-width: 768px) {
+  /* .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: rgb(255, 255, 255, 0.8);
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .menu li {
+    margin-bottom: 10px;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .menu.active {
+    display: flex;
+    margin-top: 2.2rem;
+  } */
+
+  .dropdowntf {
+    margin-right: -5rem;
+  }
+  .dropdowntf-content {
+    right: -3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .DateDay {
+    margin-top: 1.5rem;
+  }
+
+  .form-group {
+    margin: auto;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .inp {
+    width: 91%;
+    text-align: center;
+  }
+
+  label {
+    font-size: 14px;
+  }
+  .sr {
+    display: flex;
+    margin: 1rem 0 0px -77px;
+  }
+  .star {
+    margin: 1rem;
+  }
+  .profile img {
+    margin: auto;
+    width: 150px;
+    display: block;
+    margin-top: -5rem;
+  }
+  .name {
+    text-align: center;
+    margin: 0;
+  }
+  .strand {
+    margin-left: 24%;
+  }
+}
