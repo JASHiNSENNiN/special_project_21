@@ -77,19 +77,19 @@ $profile_divv = '<header class="nav-header">
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
-    <title>Verification</title>
-    <link rel="stylesheet" href="css/verify.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+  <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+  <title>Verification</title>
+  <link rel="stylesheet" href="css/verify.css">
 
-    <style>
-    </style>
+  <style>
+  </style>
 </head>
 
 <body>
-    <!-- <header class="nav-header">
+  <!-- <header class="nav-header">
         <div class="logo">
             <a href="#">
                 <img src="image/header.png" alt="Logo">
@@ -109,14 +109,16 @@ $profile_divv = '<header class="nav-header">
             </div>
         </div>
     </header> -->
-    <?php echo $profile_divv; ?>
+  <?php echo $profile_divv; ?>
 
+  <div id="background">
     <div class="wame">
-        <h1 class="wait">Wait for Your Account Verification</h1>
-        <div class="message">Please wait for the verification of your account and upload all requirements <a
-                href="File.php">here</a>.</div>
-        <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
+      <h1 class="wait">Wait for Your Account Verification</h1>
+      <div class="message">Please wait for the verification of your account and upload all requirements <a
+          href="File.php">here</a>.</div>
+      <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
     </div>
+  </div>
 </body>
 
 </html>

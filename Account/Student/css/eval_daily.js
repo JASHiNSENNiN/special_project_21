@@ -178,3 +178,56 @@ function getChartData3(day) {
     ["Emotional Maturity", evaluation.interpersonal_skills.emotional_maturity],
   ];
 }
+// ///////////////////////////////////PHOTO UPLOAD///////////////////////////////
+document
+  .getElementById("file-input")
+  .addEventListener("change", function (event) {
+    const files = event.target.files;
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = ""; // Clear current gallery
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.alt = file.name;
+
+        // Click event for the image
+        img.addEventListener("click", function () {
+          openModal(e.target.result, file.name);
+        });
+
+        gallery.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+// Modal functionality
+function openModal(src, name) {
+  const modal = document.getElementById("image-modal");
+  const modalImg = document.getElementById("modal-img");
+  const captionText = document.getElementById("caption");
+  const downloadBtn = document.getElementById("download-btn");
+
+  modal.style.display = "flex";
+  modalImg.src = src;
+  captionText.innerHTML = name;
+  downloadBtn.style.display = "block";
+  downloadBtn.onclick = function () {
+    const a = document.createElement("a");
+    a.href = src;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+}
+
+// Close modal when clicking on (x)
+document.getElementById("close-modal").onclick = function () {
+  document.getElementById("image-modal").style.display = "none";
+};
