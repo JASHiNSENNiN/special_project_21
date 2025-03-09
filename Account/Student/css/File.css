@@ -419,6 +419,7 @@ body {
 
 /* ---------------------------------Uploadfile-------------------------------- */
 .container {
+  margin: 1rem;
   height: 350px;
   width: 100%;
   align-items: center;

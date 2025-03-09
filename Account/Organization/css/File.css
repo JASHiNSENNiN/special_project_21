@@ -123,6 +123,21 @@ body {
   gap: 30rem;
 }
 
+@media (max-width: 768px) {
+  .nav-header {
+    /* flex-direction: column; */
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-header {
+    padding: 0.5rem 1rem;
+    gap: 1.5rem;
+  }
+}
+
 .logo .btn-home {
   text-decoration-line: none;
 }
@@ -135,7 +150,7 @@ body {
     /* 5px */
   }
   .logo img {
-    width: 10vw !important;
+    width: 10rem !important;
     /* Smaller size */
     max-width: 160px !important;
     /* Limit max width */
@@ -404,9 +419,10 @@ body {
 .card {
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-  width: 600px;
+  width: 20rem;
+  margin: 1rem;
   height: auto;
-  background-color: #ffffff00;
+  background-color: #fff;
   padding: 10px 30px 40px;
 }
 

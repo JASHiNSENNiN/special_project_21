@@ -342,6 +342,7 @@ $conn->close();
                                                                 title="LRN must be exactly 12 number digits">
                                                         </div>
                                                     </div>
+
                                                     <div class="row gx-3 mb-3">
                                                         <div class="col-md-6">
                                                             <label class="small mb-1" for="inputSchool">School name</label>
@@ -377,6 +378,7 @@ $conn->close();
                                                             </select>
                                                         </div>
                                                     </div>
+
                                                     <div class="text-right mt-3">
                                                         <button type="submit" class="btn btn-primary">Save
                                                             changes</button>&nbsp;

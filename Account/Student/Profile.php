@@ -816,7 +816,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                                     <path d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
                                 </svg>
-                                Add Photo
+                                Upload Photo
                             </span></label>
                     </div>
 
