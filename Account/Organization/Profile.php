@@ -13,8 +13,8 @@ $currentUrl = $_SERVER['REQUEST_URI'];
 $urlParts = parse_url($currentUrl);
 if (isset($urlParts['query'])) {
     parse_str($urlParts['query'], $queryParameters);
-    if (isset($queryParameters['organization_id'])) {
-        $IdParam = $queryParameters['organization_id'];
+    if (isset($queryParameters['partner_id'])) {
+        $IdParam = $queryParameters['partner_id'];
     }
 } else {
     echo "Query string parameter not found.";
@@ -29,25 +29,52 @@ global $database;
 global $conn;
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT * FROM partner_profiles WHERE id = :user_id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':user_id', $user_id);
-    $stmt->execute();
-    $partner_profile = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Ensure user_id is defined and is valid
+        if (!isset($user_id) || !is_numeric($user_id)) {
+            throw new Exception('Invalid user ID');
+        }
 
-    $sql = "SELECT * FROM users WHERE id = :user_id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':user_id', $user_id);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM partner_profiles WHERE id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $partner_profiles = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $organizationName = $partner_profile['organization_name'];
-    $strand = strtoupper($partner_profile['strand']);
-    $email = $user['email'];
-    $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
+        if ($partner_profiles === false) {
+            throw new Exception('No partner profile found for the given user ID');
+        }
+
+        $sql = "SELECT * FROM users WHERE id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user === false) {
+            throw new Exception('No user found for the given user ID');
+        }
+
+        // Get values with a check to ensure they exist
+        $organizationName = $partner_profiles['organization_name'] ?? 'Unknown Organization';
+        $strand = isset($partner_profiles['strand']) ? strtoupper($partner_profiles['strand']) : 'UNKNOWN';
+        $email = $user['email'] ?? 'No email provided';
+
+        // Check for the $_SESSION variable and fallback to default if necessary
+        $profile_image = !empty($_SESSION['profile_image']) && $_SESSION['profile_image'] !== './uploads/'
+            ? $_SESSION['profile_image']
+            : './image/default.png';
+
+    } catch (PDOException $e) {
+        // Handle PDO exceptions
+        echo 'Database error: ' . $e->getMessage();
+    } catch (Exception $e) {
+        // Handle general exceptions
+        echo 'An error occurred: ' . $e->getMessage();
+    }
 
     $sql = "SELECT 
                 AVG(quality_of_experience) AS avg_quality_of_experience,
@@ -126,7 +153,7 @@ try {
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="../../Account/' . ucfirst($_SESSION['account_type']) . '"> 
-                <img src="image/logov3.jpg" alt="Logo">
+                <img src="image/drdsnhs.svg" alt="Logo">
             </a>
            
             
@@ -134,7 +161,7 @@ $profile_divv = '<header class="nav-header">
         <nav class="by">
 
  
- <a class="btn-home" style="color:#1bbc9b; font-weight: 600;" href="../../Account/' . ucfirst($_SESSION['account_type']) . '"> Back </a>
+ <a class="btn-home" style="color:#fff; font-weight: 600; text-decoration:none;" href="../../Account/' . ucfirst($_SESSION['account_type']) . '"> Back &#8594; </a>
   
 </div>
         
@@ -143,6 +170,30 @@ $profile_divv = '<header class="nav-header">
     </header>
 
     ';
+$profile_image_path = './uploads/' . $user['profile_image'];
+
+$get_profile_image = file_exists($profile_image_path) ? $profile_image_path : './image/default.png';
+
+$profile_data = null;
+if (isset($user_id)) {
+    $sql = "SELECT sp.*, u.profile_image, u.cover_image
+FROM partner_profiles sp
+JOIN users u ON sp.user_id = u.id
+WHERE sp.user_id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $profile_data = $result->fetch_assoc();
+}
+$stmt->close();
+$conn->close();
+
+$profile_image_path = 'uploads/' . $profile_data['profile_image'];
+$cover_image_path = 'uploads/' . $profile_data['cover_image'];
+
+
 
 ?>
 <!DOCTYPE html>
@@ -154,13 +205,14 @@ $profile_divv = '<header class="nav-header">
     <title>Company Profile</title>
     <link rel="stylesheet" type="text/css" href="css/Profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png"> -->
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png">
+    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
 
 
 
     <!-- FontAwesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -190,27 +242,45 @@ $profile_divv = '<header class="nav-header">
     <!-- Sidenav -->
 
     <div class="row-graph-profile">
-
-
         <div class="column-graph-profile-right">
+
             <div class="container-grap-right">
-
-                <div class="card-body">
-                    <span class="fullname"><?= $organizationName ?></span>
-                    <br>
-                    <i class="fa fa-bullseye" aria-hidden="true"></i><span class="other-info"><?= $strand ?></span>
-                    <br>
-                    <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info"><?= $email  ?></span>
-                    <!-- 
-                <br>
-                <i class="fa fa-house" aria-hidden="true"></i><span class="other-info"><?= $school  ?></span>
-                <br>
-                <i class="fa fa-briefcase" aria-hidden="true"></i><span class="other-info"><?= $currentWork   ?></span> -->
+                <div class="print-left">
 
 
+                </div>
+
+
+                <div class="row-profile" id="row_profile">
+
+                    <div class="column-profile column-side profile-pic">
+                        <img class="img-account-profile rounded-circle mb-2" id="profile-image"
+                            src="<?php echo $profile_data['profile_image'] ? 'uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
+                            alt="Profile Image Preview" style="width: 16rem;  object-fit: cover;">
 
 
 
+                    </div>
+                    <div class="column-profile ">
+                        <div class="card-body">
+                            <span class="fullname"><?= $organizationName ?></span>
+                            <br>
+                            <i class="fa fa-bullseye" aria-hidden="true"></i><span class="other-info">STEM SAMPLE
+                            </span>
+                            <br>
+                            <i class="fa fa-envelope" aria-hidden="true"></i><span
+                                class="other-info"><?= $email ?></span>
+                            <br>
+                            <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info">09 SAMPLE </span>
+                            <br>
+                            <a href="https://www.google.com/maps/search/?api=1&query=NUEVA+ECIJA" target="_blank"
+                                style="text-decoration: none;">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <span class="other-info">NUEVA ECIJA</span>
+                            </a>
+                        </div>
+
+                    </div>
                     <a style=" text-decoration: none; display:contents ;" href="Settings.php">
                         <button class="edit-button">
                             <svg class="edit-svgIcon" viewBox="0 0 512 512">
@@ -220,71 +290,369 @@ $profile_divv = '<header class="nav-header">
                             </svg>
                         </button>
                     </a>
-
                 </div>
-            </div>
 
+
+
+
+
+            </div>
         </div>
+
     </div>
     <br>
 
-
-
     <div class="row-graph">
-        <div class="main">
-            <h2>Map</h2>
-            <!-- <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1920.8544297966187!2d120.7673922211044!3d15.660484473847125!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33912cdb2318296d%3A0xe4e2117e97dfc92e!2sOur%20Lady%20of%20The%20Sacred%20Heart%20College!5e0!3m2!1sen!2sph!4v1716015242226!5m2!1sen!2sph"
-            width="850" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+        <!-- <div class="dashboard-body">
 
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4180.818006163703!2d120.70824703813983!3d15.714406648857958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391320a99919993%3A0x9be48d66ed4cad27!2sDr%20Ramon%20De%20Santos%20National%20High%20School!5e1!3m2!1sen!2sph!4v1728567463175!5m2!1sen!2sph"
-                width="780" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <main class="dashboard__main app-content">
+
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <h2 class="title-resume">Personal Summary</h2>
+                    <span class="description-resume">Introduce yourself and explain your goals and interest in work
+                        immersion. </span>
+                    <form class="txt-Personal-summary">
+                        <div>
+                            <textarea class="form-control" rows="10" placeholder=""></textarea>
+                            <span class="description-resume subtitle-resume">Stay safe. Don’t include sensitive personal
+                                information such as identity documents, health, race, religion or financial data.
+                            </span>
+                        </div>
+
+                        <button class="btn-save">Save Summary</button>
+
+                    </form>
+
+ 
+                </article>
+
+                <article class="app-content__widget app-content__widget--secondary">
+
+                    <div class="card-strong-profile">
+                        <h1 class="title-resume">Profile Strength</h1>
+                        <div class="card__indicator">
+
+                            <span class="card__indicator-percentage">20%</span>
+                        </div>
+                        <div class="card__progress"><progress max="100" value="20"></progress></div>
+
+                    </div>
+
+
+                    <div class="slideshow-container">
+                        <div class="mySlides fade-text">
+                            <div class="card__subtitle ">
+                                Showcase relevant skills and projects in your resume and cover letter
+                            </div>
+                        </div>
+                        <div class="mySlides fade-text " style="display: none;">
+                            <div class="card__subtitle">
+                                Introduce yourself and explain your goals and interest in work immersion.
+                            </div>
+                        </div>
+                        <div class="mySlides fade-text" style="display: none;">
+                            <div class="card__subtitle">
+                                Fill in accurate personal information, and interests.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="next" onclick="nextSlide()">Next tip &#8594;</button>
+
+                </article>
+
+
+            </main>
+        </div> -->
+
+        <?php if (
+            isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student' || $_SESSION['account_type'] === '	
+Organization' || $_SESSION['account_type'] === '	
+School'
+        ): ?>
+            <div class="dashboard-body docu">
+                <main class="dashboard__main app-content">
+                    <article class="app-content__widget app-content__widget--primary">
+                        <hr>
+                        <h2 class="title-resume">Application Documents</h2>
+                        <div id="content-cover">
+                            <table class="table" id="sortableTable-docu">
+                                <thead>
+                                    <tr>
+                                        <th class="th-name">Document Name</th>
+                                        <th class="th-date">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($unique_documents as $document_name): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                // Check for the document URL and existence of file
+                                                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                                $stmt = $pdo->prepare($sql);
+                                                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                                $stmt->execute();
+                                                $document_url = $stmt->fetchColumn();
+
+                                                if ($document_url) {
+                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                                    if (file_exists($file_path)): ?>
+                                                        <a class="btn btn-download btn-success"
+                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                                            Download
+                                                        </a>
+                                                        <!-- Uncomment the button below to enable viewing functionality -->
+                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                                    <?php else: ?>
+                                                        <button disabled>File Not Available</button>
+                                                    <?php endif;
+                                                } else { ?>
+                                                    <button disabled>No Document Found</button>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            </table>
+                        </div>
+                        <hr>
+                        <h2 class="title-resume">Insight</h2>
+                        <span class="description-resume">The line chart analyzes student daily performance in work
+                            immersion, and the pie chart displays the distribution of performance levels.</span>
+
+                        <div class="container-grap">
+                            <div class="dp-graph" id="piechart_3d"></div>
+                        </div>
+                        <div class="container-grap">
+                            <div class="dp-graph" id="dp_chart_div"></div>
+                        </div>
+                    </article>
+                </main>
+            </div>
+        <?php endif; ?>
+
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">About Us</h2>
+
+                    <div class="DailyJournal">
+                        <div class="editable-container">
+                            <textarea id="about-us-edit-textarea" placeholder="Tell us about your company"
+                                readonly></textarea>
+                            <?php if (
+                                isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'
+                            ): ?>
+                                <span class="edit-icon" onclick="toggleEdit('about-us-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+
+
+                </article>
+
+            </main>
+        </div>
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">Corporate Mission</h2>
+
+                    <div class="DailyJournal">
+                        <div class="editable-container">
+                            <textarea id="mission-edit-textarea" placeholder="State your mission" readonly></textarea>
+                            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+
+                                <span class="edit-icon" onclick="toggleEdit('mission-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
+
+
+
+                </article>
+
+            </main>
         </div>
 
 
-        <!-- <h2>SOCIAL MEDIA</h2>
-        <div class="card">
-            <div class="card-body">
-                <i class="fa fa-pen fa-xs edit"></i>
-                <div class="social-media">
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-invision fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="fa-stack fa-sm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-            </div>
-        </div> -->
-        <!-- End -->
-        <footer>
-            2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School
-        </footer>
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">Corporate Vision</h2>
+
+                    <div class="DailyJournal">
+                        <div class="editable-container">
+                            <textarea id="vision-edit-textarea" placeholder="State your vision" readonly></textarea>
+                            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                                <span class="edit-icon" onclick="toggleEdit('vision-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
+
+
+
+                </article>
+
+            </main>
+        </div>
+
+
+
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">Our Principles</h2>
+
+                    <div class="DailyJournal">
+                        <div class="editable-container">
+                            <textarea id="principles-edit-textarea" placeholder="State your principles"
+                                readonly></textarea>
+                            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                                <span class="edit-icon" onclick="toggleEdit('principles-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
+
+
+
+                </article>
+
+            </main>
+        </div>
+
+
+
+
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">Our Philosophy</h2>
+
+                    <div class="DailyJournal">
+                        <div class="editable-container">
+                            <textarea id="philosophy-edit-textarea" placeholder="State your philosophy"
+                                readonly></textarea>
+                            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                                <span class="edit-icon" onclick="toggleEdit('philosophy-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
+
+
+
+                </article>
+
+            </main>
+        </div>
+
+
+
+
+        <div class="dashboard-body">
+
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+
+                    <hr>
+                    <h2 class="title-resume">Event Highlights</h2>
+
+                    <div class="DailyJournal">
+                        <div class="container-gallery">
+
+
+
+
+                            <div id="gallery" class="gallery"></div>
+                        </div>
+
+                        <div id="image-modal" class="modal">
+
+                            <button class="download-button">
+                                <i class="fas fa-download"></i>
+                            </button>
+
+                            <span class="close" id="close-modal">&times;</span>
+                            <img class="modal-content" id="modal-img">
+                            <div id="caption"></div>
+
+                        </div>
+
+
+                    </div>
+                    <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                        <hr>
+
+                        <span class="description-resume">Upload a clear, well-oriented photo for your profile to ensure
+                            accurate representation.</span>
+                        <br>
+
+                        <div class="file-upload">
+                            <input type="file" id="file-input" multiple accept="image/*">
+                            <label for="file-input"> <span>
+                                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
+                                    </svg>
+                                    Upload Photo
+                                </span></label>
+                        </div>
+
+                    <?php endif; ?>
+
+
+                </article>
+
+            </main>
+        </div>
+
+
+
+    </div>
+
+
+
+    <footer>
+        2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School
+    </footer>
+
+    <script src="js/profile.js"></script>
 </body>
 
 </html>
