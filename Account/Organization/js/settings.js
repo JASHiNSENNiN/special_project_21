@@ -5,7 +5,7 @@ document
 
     // Gather data from the form
     const phone = document.getElementById("phoneInput").value;
-    const zipcode = document.getElementById("zipcodeInput").value;
+    const zipcode = document.getElementById("zipcodenum").value;
     const address = document.getElementById("inputAddressInput").value;
     const city = document.getElementById("cityInput").value;
     const province = document.getElementById("provinces").value;

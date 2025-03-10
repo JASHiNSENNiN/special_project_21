@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-};
+}
+;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
 
@@ -110,11 +111,11 @@ function getSchoolList($conn)
 
 <head>
     <script>
-    window.onload = function() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/backend/php/ajax/checkAccType.php', true);
-        xhr.send();
-    };
+        window.onload = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/backend/php/ajax/checkAccType.php', true);
+            xhr.send();
+        };
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -140,9 +141,9 @@ function getSchoolList($conn)
 <body>
     <noscript>
         <style>
-        html {
-            display: none;
-        }
+            html {
+                display: none;
+            }
         </style>
         <meta http-equiv="refresh" content="0.0;url=https://www.workifyph.online/message.php">
     </noscript>
@@ -190,11 +191,11 @@ function getSchoolList($conn)
                                 <select id="student-school-name" name="studentSchoolName">
                                     <option value="">Select School Name</option>
                                     <?php if (!empty($schools)): ?>
-                                    <?php foreach ($schools as $schoolName): ?>
-                                    <option value="<?php echo htmlspecialchars($schoolName); ?>">
-                                        <?php echo htmlspecialchars($schoolName); ?>
-                                    </option>
-                                    <?php endforeach; ?>
+                                        <?php foreach ($schools as $schoolName): ?>
+                                            <option value="<?php echo htmlspecialchars($schoolName); ?>">
+                                                <?php echo htmlspecialchars($schoolName); ?>
+                                            </option>
+                                        <?php endforeach; ?>
                                     <?php endif; ?>
                                 </select>
                                 <select name="grade-level" id="grade-level">
@@ -220,7 +221,7 @@ function getSchoolList($conn)
                             <div id="partner-fields" style="display: none;">
                                 <input value="" type="text" placeholder="Organization Name" id="organization-name"
                                     name="organization-name">
-                                <select name="strand-focus" id="strand-focus">
+                                <select name="strand-focus" id="strand-focus" style="margin-bottom: 10px;">
                                     <option value="" selected disabled hidden class="null-type">Strand:</option>
                                     <option value="STEM">STEM</option>
                                     <option value="HUMSS">HUMSS</option>
@@ -228,6 +229,117 @@ function getSchoolList($conn)
                                     <option value="GAS">GAS</option>
                                     <option value="TVL">TVL</option>
                                 </select>
+
+                                <input class="form-control" type="number" id="numberInput" name="numberInput"
+                                    placeholder="Enter phone number" required>
+
+                                <input class="form-control" type="number" id="zipcodenum" name="numberInput"
+                                    placeholder="ZIPCODE" required>
+
+                                <input class="form-control" id="inputAddressInput" name="Address" type="text"
+                                    placeholder="Street Name, House No., Barangay" required>
+
+                                <input class="form-control" type="text" id="cityInput" name="numberInput"
+                                    placeholder="Enter city/towns" required>
+
+                                <select class="form-control" id="provinces" name="provinces"
+                                    style="margin-bottom: 10px;">
+                                    <option value="">--Select a Province--</option>
+                                    <option value="abra">Abra</option>
+                                    <option value="agusan_del_norte">Agusan del Norte
+                                    </option>
+                                    <option value="agusan_del_sur">Agusan del Sur</option>
+                                    <option value="albay">Albay</option>
+                                    <option value="antique">Antique</option>
+                                    <option value="apayao">Apayao</option>
+                                    <option value="aurora">Aurora</option>
+                                    <option value="bataan">Bataan</option>
+                                    <option value="batanes">Batanes</option>
+                                    <option value="batangas">Batangas</option>
+                                    <option value="binguet">Benguet</option>
+                                    <option value="bohol">Bohol</option>
+                                    <option value="bukidnon">Bukidnon</option>
+                                    <option value="bulacan">Bulacan</option>
+                                    <option value="cagayan">Cagayan</option>
+                                    <option value="camarines_norte">Camarines Norte</option>
+                                    <option value="camarines_sur">Camarines Sur</option>
+                                    <option value="cape_buenavista">Capiz</option>
+                                    <option value="catanduanes">Catanduanes</option>
+                                    <option value="ceb">Cebu</option>
+                                    <option value="compostela_valley">Davao de Oro
+                                        (Compostela
+                                        Valley)</option>
+                                    <option value="davao_del_norte">Davao del Norte</option>
+                                    <option value="davao_del_sur">Davao del Sur</option>
+                                    <option value="davao_occidental">Davao Occidental
+                                    </option>
+                                    <option value="Eastern_samar">Eastern Samar</option>
+                                    <option value="guimaras">Guimaras</option>
+                                    <option value="ilocos_norte">Ilocos Norte</option>
+                                    <option value="ilocos_sur">Ilocos Sur</option>
+                                    <option value="iloilo">Iloilo</option>
+                                    <option value="isabela">Isabela</option>
+                                    <option value="kalinga">Kalinga</option>
+                                    <option value="kapangan">La Union</option>
+                                    <option value="laguna">Laguna</option>
+                                    <option value="lantapan">Lanao del Norte</option>
+                                    <option value="lanao_del_sur">Lanao del Sur</option>
+                                    <option value="leite">Leyte</option>
+                                    <option value="marinduque">Marinduque</option>
+                                    <option value="masbate">Masbate</option>
+                                    <option value="misamis_oriental">Misamis Oriental
+                                    </option>
+                                    <option value="misamis_occidental">Misamis Occidental
+                                    </option>
+                                    <option value="mountain_province">Mountain Province
+                                    </option>
+                                    <option value="negros_occidental">Negros Occidental
+                                    </option>
+                                    <option value="negros_oriental">Negros Oriental</option>
+                                    <option value="nueva_ecija">Nueva Ecija</option>
+                                    <option value="nueva_vizcaya">Nueva Vizcaya</option>
+                                    <option value="occidental_mindoro">Occidental Mindoro
+                                    </option>
+                                    <option value="oriente_mindoro">Oriental Mindoro
+                                    </option>
+                                    <option value="palawan">Palawan</option>
+                                    <option value="pampanga">Pampanga</option>
+                                    <option value="pangasinan">Pangasinan</option>
+                                    <option value="quezon">Quezon</option>
+                                    <option value="quiroguin">Quirino</option>
+                                    <option value="romblon">Romblon</option>
+                                    <option value="samar">Samar</option>
+                                    <option value="sarangani">Sarangani</option>
+                                    <option value="siquijor">Siquijor</option>
+                                    <option value="sorsogon">Sorsogon</option>
+                                    <option value="southern_leyn">Southern Leyte</option>
+                                    <option value="tarlac">Tarlac</option>
+                                    <option value="zambales">Zambales</option>
+                                    <option value="zamboanga_del_norte">Zamboanga del Norte
+                                    </option>
+                                    <option value="zamboanga_del_sur">Zamboanga del Sur
+                                    </option>
+                                    <option value="zamboanga_sibugay">Zamboanga Sibugay
+                                    </option>
+                                </select>
+
+
+
+
+                                <br>
+                                <textarea id="aboutUs" placeholder="Write about your compnay..."></textarea>
+                                <br>
+                                <textarea id="corporateVision"
+                                    placeholder="Write the corporate vision your compnay..."></textarea>
+                                <br>
+                                <textarea id="corporateMission"
+                                    placeholder="Write the corporate mission your compnay..."></textarea>
+                                <br>
+                                <textarea id="corporatePhilosophy"
+                                    placeholder="Write the corporate philosophy your compnay..."></textarea>
+                                <br>
+                                <textarea id="corporatePrinciples"
+                                    placeholder="Write the corporate principles your compnay..."></textarea>
                             </div>
                             <nav>
                                 <a style="text-decoration: none" href="login.php">
@@ -235,7 +347,7 @@ function getSchoolList($conn)
 
                                         <p>Back</p>
                                     </button></a>
-                                <button class="btn-new" type="submit">
+                                <button class="btn-new" id="submitBtn" type="submit">
                                     <p>Submit</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                         <path
@@ -258,50 +370,100 @@ function getSchoolList($conn)
     </footer> -->
     </div>
 </body>
-
 <script>
-function toggleFields() {
-    var accountType = document.getElementById("account-type").value;
-    var studentFields = document.getElementById("student-fields");
-    var schoolFields = document.getElementById("school-fields");
-    var partnerFields = document.getElementById("partner-fields");
-    var registerForm = document.getElementById("register-form");
+    document.getElementById('submitBtn').addEventListener('click', function () {
+        // Collect data from text areas
+        const pnumber = document.getElementById('numberInput').value;
+        const zipcode = document.getElementById('zipcodenum').value;
+        const address = document.getElementById('inputAddressInput').value;
+        const cityinput = document.getElementById('cityInput').value;
+        const provinces = document.getElementById('provinces').value;
+        const aboutUs = document.getElementById('aboutUs').value;
+        const corporateVision = document.getElementById('corporateVision').value;
+        const corporateMission = document.getElementById('corporateMission').value;
+        const corporatePhilosophy = document.getElementById('corporatePhilosophy').value;
+        const corporatePrinciples = document.getElementById('corporatePrinciples').value;
 
-    if (accountType === "Student") {
-        registerForm.style.paddingTop = "25%";
-        studentFields.style.display = "block";
-        schoolFields.style.display = "none";
-        partnerFields.style.display = "none";
-    } else if (accountType === "School") {
-        registerForm.style.paddingTop = "10%";
-        studentFields.style.display = "none";
-        schoolFields.style.display = "block";
-        partnerFields.style.display = "none";
-    } else if (accountType === "Organization") {
-        registerForm.style.paddingTop = "10%";
-        studentFields.style.display = "none";
-        schoolFields.style.display = "none";
-        partnerFields.style.display = "block";
-    } else {
-        studentFields.style.display = "none";
-        schoolFields.style.display = "none";
-        partnerFields.style.display = "none";
-    }
-}
+        // Create an object to send
+        const data = {
+            pnumber,
+            zipcode,
+            address,
+            cityinput,
+            provinces,
+            aboutUs,
+            corporateVision,
+            corporateMission,
+            corporatePhilosophy,
+            corporatePrinciples
+        };
+
+        // Convert data to JSON
+        const jsonData = JSON.stringify(data);
+
+        // Send data to PHP API
+        fetch('your-api-endpoint.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: jsonData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Data submitted successfully!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('There was an error submitting the data.');
+            });
+    });
 </script>
 
 <script>
-function showSelectedSchool() {
-    const schoolSelect = document.getElementById('schoolSelect');
-    const selectedSchool = schoolSelect.value;
-    const resultDiv = document.getElementById('selectedSchool');
+    function toggleFields() {
+        var accountType = document.getElementById("account-type").value;
+        var studentFields = document.getElementById("student-fields");
+        var schoolFields = document.getElementById("school-fields");
+        var partnerFields = document.getElementById("partner-fields");
+        var registerForm = document.getElementById("register-form");
 
-    if (selectedSchool) {
-        resultDiv.innerHTML = `<h2>You selected: ${selectedSchool}</h2>`;
-    } else {
-        resultDiv.innerHTML = "<h2>Please select a school from the list.</h2>";
+        if (accountType === "Student") {
+            registerForm.style.paddingTop = "25%";
+            studentFields.style.display = "block";
+            schoolFields.style.display = "none";
+            partnerFields.style.display = "none";
+        } else if (accountType === "School") {
+            registerForm.style.paddingTop = "10%";
+            studentFields.style.display = "none";
+            schoolFields.style.display = "block";
+            partnerFields.style.display = "none";
+        } else if (accountType === "Organization") {
+            registerForm.style.paddingTop = "10%";
+            studentFields.style.display = "none";
+            schoolFields.style.display = "none";
+            partnerFields.style.display = "block";
+        } else {
+            studentFields.style.display = "none";
+            schoolFields.style.display = "none";
+            partnerFields.style.display = "none";
+        }
     }
-}
+</script>
+
+<script>
+    function showSelectedSchool() {
+        const schoolSelect = document.getElementById('schoolSelect');
+        const selectedSchool = schoolSelect.value;
+        const resultDiv = document.getElementById('selectedSchool');
+
+        if (selectedSchool) {
+            resultDiv.innerHTML = `<h2>You selected: ${selectedSchool}</h2>`;
+        } else {
+            resultDiv.innerHTML = "<h2>Please select a school from the list.</h2>";
+        }
+    }
 </script>
 
 <!-- <script type="text/javascript">
@@ -455,119 +617,119 @@ function uploadImages() {
 </script> -->
 
 <script type="text/javascript">
-// Handling Document File Upload
-const documentInput = document.querySelector("#documentID");
-let documentFiles = [];
-const documentFileList = document.querySelector(".file-list");
+    // Handling Document File Upload
+    const documentInput = document.querySelector("#documentID");
+    let documentFiles = [];
+    const documentFileList = document.querySelector(".file-list");
 
-// documentInput.addEventListener("change", function(e) {
-//     documentFiles = e.target.files;
-//     documentFileList.innerHTML = ''; // Clear previous files
+    // documentInput.addEventListener("change", function(e) {
+    //     documentFiles = e.target.files;
+    //     documentFileList.innerHTML = ''; // Clear previous files
 
-//     Array.from(documentFiles).forEach((file, index) => {
-//         let fileItem = document.createElement('li');
-//         fileItem.innerHTML = `
-//             <h4>${file.name}</h4>
-//             <button class="remove-btn" onclick="removeDocumentFile(${index})">Remove</button>
-//         `;
-//         documentFileList.appendChild(fileItem);
-//     });
-// });
+    //     Array.from(documentFiles).forEach((file, index) => {
+    //         let fileItem = document.createElement('li');
+    //         fileItem.innerHTML = `
+    //             <h4>${file.name}</h4>
+    //             <button class="remove-btn" onclick="removeDocumentFile(${index})">Remove</button>
+    //         `;
+    //         documentFileList.appendChild(fileItem);
+    //     });
+    // });
 
-function removeDocumentFile(index) {
-    documentFiles = Array.from(documentFiles).filter((_, i) => i !== index);
-    documentFileList.innerHTML = '';
-    Array.from(documentFiles).forEach((file, index) => {
-        let fileItem = document.createElement('li');
-        fileItem.innerHTML = `
+    function removeDocumentFile(index) {
+        documentFiles = Array.from(documentFiles).filter((_, i) => i !== index);
+        documentFileList.innerHTML = '';
+        Array.from(documentFiles).forEach((file, index) => {
+            let fileItem = document.createElement('li');
+            fileItem.innerHTML = `
                 <h4>${file.name}</h4>
                 <button class="remove-btn" onclick="removeDocumentFile(${index})">Remove</button>
             `;
-        documentFileList.appendChild(fileItem);
-    });
-}
+            documentFileList.appendChild(fileItem);
+        });
+    }
 
-// Function to upload documents
-function uploadDocuments() {
-    const formData = new FormData();
-    Array.from(documentFiles).forEach(file => {
-        formData.append('documents', file);
-    });
+    // Function to upload documents
+    function uploadDocuments() {
+        const formData = new FormData();
+        Array.from(documentFiles).forEach(file => {
+            formData.append('documents', file);
+        });
 
-    fetch('YOUR_SERVER_URL_HERE', {
+        fetch('YOUR_SERVER_URL_HERE', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            alert('Documents uploaded successfully!');
-        })
-    // .catch(error => {
-    //     alert('Document upload failed. Please try again.');
-    //     console.error('Error uploading documents:', error);
+            .then(response => response.json())
+            .then(data => {
+                alert('Documents uploaded successfully!');
+            })
+        // .catch(error => {
+        //     alert('Document upload failed. Please try again.');
+        //     console.error('Error uploading documents:', error);
+        // });
+    }
+
+    // Handling Image File Upload
+    const imageInput = document.querySelector("#imageID");
+    let imageFiles = [];
+    const imagePreviewContainer = document.querySelector(".image-preview");
+
+    // imageInput.addEventListener("change", function(e) {
+    //     imageFiles = e.target.files;
+    //     imagePreviewContainer.innerHTML = ''; // Clear previous image previews
+
+    //     Array.from(imageFiles).forEach((image, index) => {
+    //         let imgPreview = document.createElement('div');
+    //         imgPreview.innerHTML = `
+    //                 <img src="${URL.createObjectURL(image)}" alt="${image.name}">
+    //                 <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
+    //             `;
+    //         imagePreviewContainer.appendChild(imgPreview);
+    //     });
     // });
-}
 
-// Handling Image File Upload
-const imageInput = document.querySelector("#imageID");
-let imageFiles = [];
-const imagePreviewContainer = document.querySelector(".image-preview");
-
-// imageInput.addEventListener("change", function(e) {
-//     imageFiles = e.target.files;
-//     imagePreviewContainer.innerHTML = ''; // Clear previous image previews
-
-//     Array.from(imageFiles).forEach((image, index) => {
-//         let imgPreview = document.createElement('div');
-//         imgPreview.innerHTML = `
-//                 <img src="${URL.createObjectURL(image)}" alt="${image.name}">
-//                 <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
-//             `;
-//         imagePreviewContainer.appendChild(imgPreview);
-//     });
-// });
-
-function removeImage(index) {
-    imageFiles = Array.from(imageFiles).filter((_, i) => i !== index);
-    imagePreviewContainer.innerHTML = '';
-    Array.from(imageFiles).forEach((image, index) => {
-        let imgPreview = document.createElement('div');
-        imgPreview.innerHTML = `
+    function removeImage(index) {
+        imageFiles = Array.from(imageFiles).filter((_, i) => i !== index);
+        imagePreviewContainer.innerHTML = '';
+        Array.from(imageFiles).forEach((image, index) => {
+            let imgPreview = document.createElement('div');
+            imgPreview.innerHTML = `
                 <img src="${URL.createObjectURL(image)}" alt="${image.name}">
                 <button class="remove-btn" onclick="removeImage(${index})">Remove</button>
             `;
-        imagePreviewContainer.appendChild(imgPreview);
-    });
-}
+            imagePreviewContainer.appendChild(imgPreview);
+        });
+    }
 
-// Function to upload images
-function uploadImages() {
-    const formData = new FormData();
-    Array.from(imageFiles).forEach(image => {
-        formData.append('images', image);
-    });
+    // Function to upload images
+    function uploadImages() {
+        const formData = new FormData();
+        Array.from(imageFiles).forEach(image => {
+            formData.append('images', image);
+        });
 
-    fetch('YOUR_SERVER_URL_HERE', {
+        fetch('YOUR_SERVER_URL_HERE', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            alert('Images uploaded successfully!');
-        })
-    // .catch(error => {
-    //     alert('Image upload failed. Please try again.');
-    //     console.error('Error uploading images:', error);
-    // });
-}
+            .then(response => response.json())
+            .then(data => {
+                alert('Images uploaded successfully!');
+            })
+        // .catch(error => {
+        //     alert('Image upload failed. Please try again.');
+        //     console.error('Error uploading images:', error);
+        // });
+    }
 </script>
 <script>
-// Function to allow only numbers (no special characters)
-function validateLRN() {
-    const input = document.getElementById('input-lrn');
-    // Remove any non-numeric characters (except for the "-" sign, if needed)
-    input.value = input.value.replace(/[^0-9]/g, '');
-}
+    // Function to allow only numbers (no special characters)
+    function validateLRN() {
+        const input = document.getElementById('input-lrn');
+        // Remove any non-numeric characters (except for the "-" sign, if needed)
+        input.value = input.value.replace(/[^0-9]/g, '');
+    }
 </script>
 
 

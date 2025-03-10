@@ -299,18 +299,19 @@ $conn->close();
                                                             <div class="col-md-6">
 
                                                                 <label class="small mb-1" for="numberInput">Zipcode</label>
-                                                                <input class="form-control" type="number" id="numberInput"
+                                                                <input class="form-control" type="number" id="zipcodenum"
                                                                     name="numberInput" placeholder="xxxx" required>
 
 
                                                             </div>
-
-                                                            <label class="small mb-1"
-                                                                for="inputOrganizationName">Address</label>
-                                                            <input class="form-control" id="inputAddressInput"
-                                                                name="Address" type="text"
-                                                                placeholder="Street Name, Building, House No., Barangay"
-                                                                required>
+                                                            <div ss="col-md-12">
+                                                                <label class="small mb-1"
+                                                                    for="inputOrganizationName">Address</label>
+                                                                <input class="form-control" id="inputAddressInput"
+                                                                    name="Address" type="text"
+                                                                    placeholder="Street Name, Building, House No., Barangay"
+                                                                    required>
+                                                            </div>
 
                                                             <div class="col-md-6">
 
