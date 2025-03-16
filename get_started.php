@@ -220,8 +220,8 @@ function getSchoolList($conn)
                             </div>
                             <div id="partner-fields" style="display: none;">
                                 <input value="" type="text" placeholder="Organization Name" id="organization-name"
-                                    name="organization-name">
-                                <select name="strand-focus" id="strand-focus" style="margin-bottom: 10px;">
+                                    name="organization_name">
+                                <select name="strand_focus" id="strand-focus" style="margin-bottom: 10px;">
                                     <option value="" selected disabled hidden class="null-type">Strand:</option>
                                     <option value="STEM">STEM</option>
                                     <option value="HUMSS">HUMSS</option>
@@ -229,18 +229,11 @@ function getSchoolList($conn)
                                     <option value="GAS">GAS</option>
                                     <option value="TVL">TVL</option>
                                 </select>
-
-                                <input class="form-control" type="number" id="numberInput" name="numberInput"
-                                    placeholder="Enter phone number" required>
-
-                                <input class="form-control" type="number" id="zipcodenum" name="numberInput"
-                                    placeholder="ZIPCODE" required>
-
-                                <input class="form-control" id="inputAddressInput" name="Address" type="text"
-                                    placeholder="Street Name, House No., Barangay" required>
-
-                                <input class="form-control" type="text" id="cityInput" name="numberInput"
-                                    placeholder="Enter city/towns" required>
+                                        
+                                <input type="text" id="numberInput" name="phone_number" placeholder="Enter phone number">
+                                <input type="text" id="zipcodenum" name="zip_code" placeholder="ZIP CODE">
+                                <input type="text" id="inputAddressInput" name="address" placeholder="Street Name, House No., Barangay">
+                                <input type="text" id="cityInput" name="city" placeholder="Enter city/town" >
 
                                 <select class="form-control" id="provinces" name="provinces"
                                     style="margin-bottom: 10px;">
@@ -326,20 +319,11 @@ function getSchoolList($conn)
 
 
 
-                                <br>
-                                <textarea id="aboutUs" placeholder="Write about your compnay..."></textarea>
-                                <br>
-                                <textarea id="corporateVision"
-                                    placeholder="Write the corporate vision your compnay..."></textarea>
-                                <br>
-                                <textarea id="corporateMission"
-                                    placeholder="Write the corporate mission your compnay..."></textarea>
-                                <br>
-                                <textarea id="corporatePhilosophy"
-                                    placeholder="Write the corporate philosophy your compnay..."></textarea>
-                                <br>
-                                <textarea id="corporatePrinciples"
-                                    placeholder="Write the corporate principles your compnay..."></textarea>
+                                <textarea id="aboutUs" name="about_us" placeholder="Write about your company..."></textarea>
+                                <textarea id="corporateVision" name="corporate_vision" placeholder="Write the corporate vision..."></textarea>
+                                <textarea id="corporateMission" name="corporate_mission" placeholder="Write the corporate mission..."></textarea>
+                                <textarea id="corporatePhilosophy" name="corporate_philosophy" placeholder="Write the corporate philosophy..."></textarea>
+                                <textarea id="corporatePrinciples" name="corporate_principles" placeholder="Write the corporate principles..."></textarea>
                             </div>
                             <nav>
                                 <a style="text-decoration: none" href="login.php">
@@ -370,7 +354,7 @@ function getSchoolList($conn)
     </footer> -->
     </div>
 </body>
-<script>
+<!-- <script>
     document.getElementById('submitBtn').addEventListener('click', function () {
         // Collect data from text areas
         const pnumber = document.getElementById('numberInput').value;
@@ -419,7 +403,7 @@ function getSchoolList($conn)
                 alert('There was an error submitting the data.');
             });
     });
-</script>
+</script> -->
 
 <script>
     function toggleFields() {

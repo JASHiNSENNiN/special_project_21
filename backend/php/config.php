@@ -58,10 +58,20 @@ CREATE TABLE IF NOT EXISTS student_profiles (
 
 CREATE TABLE IF NOT EXISTS partner_profiles (
   id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  organization_name VARCHAR(255),
   user_id INT(11),
-  strand ENUM('stem', 'humss', 'abm', 'gas', 'tvl'),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  organization_name VARCHAR(255) NOT NULL,
+  strand ENUM('STEM', 'HUMSS', 'ABM', 'GAS', 'TVL'),
+  phone_number VARCHAR(20) NOT NULL,
+  zip_code VARCHAR(10) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  city VARCHAR(100) NOT NULL,
+  province VARCHAR(100) NOT NULL,
+  about_us TEXT,
+  corporate_vision TEXT,
+  corporate_mission TEXT,
+  corporate_philosophy TEXT,
+  corporate_principles TEXT,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS job_offers (
@@ -159,7 +169,7 @@ CREATE TABLE IF NOT EXISTS Organization_Evaluation (
     resilience_to_challenges INT CHECK (resilience_to_challenges BETWEEN 0 AND 5),
     commitment_to_experience INT CHECK (commitment_to_experience BETWEEN 0 AND 5),
     self_motivation_levels INT CHECK (self_motivation_levels BETWEEN 0 AND 5),
-    evaluation_date DATE DEFAULT,
+    evaluation_date DATE DEFAULT CURRENT_DATE,
     day ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'),
     FOREIGN KEY (organization_id) REFERENCES partner_profiles(id),
     FOREIGN KEY (job_id) REFERENCES job_offers(id)
