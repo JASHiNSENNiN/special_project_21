@@ -5,9 +5,28 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("/Account/Student/image/DrRamonv2.svg");
+  /* background-image: url("/Account/Student/image/DrRamonv2.svg");
   background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+.background {
+  height: 100vh;
+  background-image: url("/Account/Student/image/DrRamonv2.svg");
+  background-position: center center;
   background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .background-image {
+    background-size: cover;
+  }
 }
 
 .wait {
@@ -421,4 +440,10 @@ body {
   touch-action: manipulation;
   width: 148px;
   font-weight: bold;
+}
+
+.exclamation {
+  color: red;
+  font-size: 70px;
+  /* margin-bottom: 20px; */
 }

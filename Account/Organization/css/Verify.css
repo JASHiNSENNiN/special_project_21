@@ -5,9 +5,28 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("/Account/Student/image/DrRamonv2.svg");
+  /* background-image: url("/Account/Student/image/DrRamonv2.svg");
   background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+.background {
+  height: 100vh;
+  background-image: url("/Account/Student/image/DrRamonv2.svg");
+  background-position: center center;
   background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .background-image {
+    background-size: cover;
+  }
 }
 
 .wait {
@@ -88,22 +107,32 @@ body {
 }
 
 .firstname {
-  text-align: left;
+  /* text-align: left; */
   margin-left: 0.625rem;
   /* 10px */
   color: #fff;
 }
 
 .wame {
-  top: 50%;
+  /* top: 50%;
   left: 50%;
   margin-top: -9em;
   margin-left: -15em;
   position: fixed;
   width: 33em;
   height: 18em;
+  text-align: center; */
+  margin: auto;
+  width: 100%;
+  margin-top: 15rem;
   text-align: center;
 }
+
+/* #background {
+  background-image: url("/Account/Student/image/DrRamonv2.svg");
+  background-repeat: no-repeat;
+  background-size: auto;
+} */
 
 .nav-header {
   width: 100%;
@@ -123,6 +152,36 @@ body {
   gap: 30rem;
 }
 
+@media (max-width: 1200px) {
+  .nav-header {
+    gap: 20rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .nav-header {
+    gap: 10rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-header {
+    /* flex-direction: column; */
+    padding: 0.5rem;
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .nav-header {
+    gap: 0.5rem;
+    padding: 0.5rem;
+    margin-left: 1rem;
+  }
+}
+
 .logo .btn-home {
   text-decoration-line: none;
 }
@@ -130,23 +189,16 @@ body {
 @media only screen and (max-width: 1085px) {
   .header {
     padding-left: 1rem !important;
-    /* 20px */
     padding-bottom: 0.5rem !important;
-    /* 5px */
   }
   .logo img {
-    width: 10vw !important;
-    /* Smaller size */
+    width: 10rem !important;
     max-width: 160px !important;
-    /* Limit max width */
     margin-right: 1rem !important;
-    /* 15px */
   }
   nav a {
     margin: 0 0.625rem !important;
-    /* 10px */
     font-size: 0.875rem !important;
-    /* 14px */
   }
   nav {
     margin: 0;
@@ -388,4 +440,10 @@ body {
   touch-action: manipulation;
   width: 148px;
   font-weight: bold;
+}
+
+.exclamation {
+  color: red;
+  font-size: 70px;
+  /* margin-bottom: 20px; */
 }

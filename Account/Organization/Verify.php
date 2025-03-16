@@ -1,12 +1,12 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
 ;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
@@ -83,6 +83,7 @@ $profile_divv = '<header class="nav-header">
     <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
     <title>Verification</title>
     <link rel="stylesheet" href="css/verify.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
     </style>
@@ -110,10 +111,17 @@ $profile_divv = '<header class="nav-header">
         </div>
     </header> -->
     <?php echo $profile_divv; ?>
-
-    <div class="wame">
-        <h1 class="wait">Wait for Your Account Verification</h1>
-        <div class="message">Please upload all requirements to verify your account <a href="File.php">here</a>.</div>
-        <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
+    <div class="background">
+        <div class="wame">
+            <div class="exclamation">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h1 class="wait">Wait for Your Account Verification</h1>
+            <div class="message">Please upload all requirements to verify your account <a href="File.php">here</a>.
+            </div>
+            <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
+        </div>
     </div>
-</body></html>
+</body>
+
+</html>
