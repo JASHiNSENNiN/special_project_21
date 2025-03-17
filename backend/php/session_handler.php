@@ -106,8 +106,19 @@ if ($user_profile['account_type'] === 'Student') {
     $_SESSION['school_name'] = $school_profile['school_name'];
 } elseif ($user_profile['account_type'] === 'Organization') {
     $partner_profile = fetch_partner_profile($user_id);
+    
     $_SESSION['organization_name'] = $partner_profile['organization_name'];
     $_SESSION['strand'] = $partner_profile['strand'];
+    $_SESSION['phone_number'] = $partner_profile['phone_number'];
+    $_SESSION['zip_code'] = $partner_profile['zip_code'];
+    $_SESSION['address'] = $partner_profile['address'];
+    $_SESSION['city'] = $partner_profile['city'];
+    $_SESSION['province'] = $partner_profile['province'];
+    $_SESSION['about_us'] = $partner_profile['about_us'];
+    $_SESSION['corporate_vision'] = $partner_profile['corporate_vision'];
+    $_SESSION['corporate_mission'] = $partner_profile['corporate_mission'];
+    $_SESSION['corporate_philosophy'] = $partner_profile['corporate_philosophy'];
+    $_SESSION['corporate_principles'] = $partner_profile['corporate_principles'];
 } else {
     header('Location: google.com');
                 

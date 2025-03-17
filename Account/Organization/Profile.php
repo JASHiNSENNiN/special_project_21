@@ -13,8 +13,8 @@ $currentUrl = $_SERVER['REQUEST_URI'];
 $urlParts = parse_url($currentUrl);
 if (isset($urlParts['query'])) {
     parse_str($urlParts['query'], $queryParameters);
-    if (isset($queryParameters['partner_id'])) {
-        $IdParam = $queryParameters['partner_id'];
+    if (isset($queryParameters['organization_id'])) {
+        $IdParam = $queryParameters['organization_id'];
     }
 } else {
     echo "Query string parameter not found.";
@@ -33,20 +33,20 @@ try {
         $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Ensure user_id is defined and is valid
         if (!isset($user_id) || !is_numeric($user_id)) {
             throw new Exception('Invalid user ID');
         }
 
-        $sql = "SELECT * FROM partner_profiles WHERE id = :user_id";
+        $sql = "SELECT * FROM partner_profiles WHERE user_id = :user_id"; 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
         $partner_profiles = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($partner_profiles === false) {
-            throw new Exception('No partner profile found for the given user ID');
+            echo 'No partner profile found for the given user ID: ' . $user_id;
         }
+
 
         $sql = "SELECT * FROM users WHERE id = :user_id";
         $stmt = $pdo->prepare($sql);
@@ -62,6 +62,17 @@ try {
         $organizationName = $partner_profiles['organization_name'] ?? 'Unknown Organization';
         $strand = isset($partner_profiles['strand']) ? strtoupper($partner_profiles['strand']) : 'UNKNOWN';
         $email = $user['email'] ?? 'No email provided';
+        $phoneNumber = $partner_profiles['phone_number'] ?? 'No phone number provided';
+        $zipCode = $partner_profiles['zip_code'] ?? 'No ZIP code provided';
+        $address = $partner_profiles['address'] ?? 'No address provided';
+        $city = $partner_profiles['city'] ?? 'No city provided';
+        $province = $partner_profiles['province'] ?? 'No province provided';
+        $aboutUs = $partner_profiles['about_us'] ?? 'No information available';
+        $corporateVision = $partner_profiles['corporate_vision'] ?? 'No vision provided';
+        $corporateMission = $partner_profiles['corporate_mission'] ?? 'No mission provided';
+        $corporatePhilosophy = $partner_profiles['corporate_philosophy'] ?? 'No philosophy provided';
+        $corporatePrinciples = $partner_profiles['corporate_principles'] ?? 'No principles provided';
+
 
         // Check for the $_SESSION variable and fallback to default if necessary
         $profile_image = !empty($_SESSION['profile_image']) && $_SESSION['profile_image'] !== './uploads/'
@@ -265,18 +276,18 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                         <div class="card-body">
                             <span class="fullname"><?= $organizationName ?></span>
                             <br>
-                            <i class="fa fa-bullseye" aria-hidden="true"></i><span class="other-info">STEM SAMPLE
+                            <i class="fa fa-bullseye" aria-hidden="true"></i><span class="other-info"><?= $strand ?>
                             </span>
                             <br>
                             <i class="fa fa-envelope" aria-hidden="true"></i><span
                                 class="other-info"><?= $email ?></span>
                             <br>
-                            <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info">09 SAMPLE </span>
+                            <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info"> <?= $phoneNumber ?> </span>
                             <br>
                             <a href="https://www.google.com/maps/search/?api=1&query=NUEVA+ECIJA" target="_blank"
                                 style="text-decoration: none;">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <span class="other-info">NUEVA ECIJA</span>
+                                <span class="other-info"><?= $address ?></span>
                             </a>
                         </div>
 
@@ -448,7 +459,7 @@ School'
                     <div class="DailyJournal">
                         <div class="editable-container">
                             <textarea id="about-us-edit-textarea" placeholder="Tell us about your company"
-                                readonly></textarea>
+                                readonly><?= htmlspecialchars($aboutUs) ?></textarea>
                             <?php if (
                                 isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'
                             ): ?>
@@ -475,7 +486,7 @@ School'
 
                     <div class="DailyJournal">
                         <div class="editable-container">
-                            <textarea id="mission-edit-textarea" placeholder="State your mission" readonly></textarea>
+                            <textarea id="mission-edit-textarea" placeholder="State your mission" readonly><?= htmlspecialchars($corporateMission) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
 
                                 <span class="edit-icon" onclick="toggleEdit('mission-edit-textarea')">
@@ -504,7 +515,7 @@ School'
 
                     <div class="DailyJournal">
                         <div class="editable-container">
-                            <textarea id="vision-edit-textarea" placeholder="State your vision" readonly></textarea>
+                            <textarea id="vision-edit-textarea" placeholder="State your vision" readonly><?= htmlspecialchars($corporateVision) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
                                 <span class="edit-icon" onclick="toggleEdit('vision-edit-textarea')">
                                     <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
@@ -534,7 +545,7 @@ School'
                     <div class="DailyJournal">
                         <div class="editable-container">
                             <textarea id="principles-edit-textarea" placeholder="State your principles"
-                                readonly></textarea>
+                                readonly><?= htmlspecialchars($corporatePrinciples) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
                                 <span class="edit-icon" onclick="toggleEdit('principles-edit-textarea')">
                                     <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
@@ -565,7 +576,7 @@ School'
                     <div class="DailyJournal">
                         <div class="editable-container">
                             <textarea id="philosophy-edit-textarea" placeholder="State your philosophy"
-                                readonly></textarea>
+                                readonly><?= htmlspecialchars($corporatePhilosophy) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
                                 <span class="edit-icon" onclick="toggleEdit('philosophy-edit-textarea')">
                                     <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>

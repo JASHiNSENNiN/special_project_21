@@ -118,14 +118,60 @@ switch ($accountType) {
         break;
 
     case "Organization":
-        $organizationName = $_POST["organization-name"];
-        $strandFocus = $_POST["strand-focus"];
         $accType = "Organization";
-        $stmt = $conn->prepare("INSERT INTO partner_profiles (organization_name, strand, user_id) VALUES (?, ?, ?)");
-        $stmt->bind_param("ssi", $organizationName, $strandFocus, $userId);
-        $stmt->execute();
+        if (!isset($userId)) {
+            die("Error: User ID is missing.");
+        }
+        $organizationName   = trim($_POST["organization_name"] ?? '');
+        $strandFocus        = trim($_POST["strand_focus"] ?? '');
+        $phoneNumber        = trim($_POST["phone_number"] ?? '');
+        $zipCode            = trim($_POST["zip_code"] ?? '');
+        $address            = trim($_POST["address"] ?? '');
+        $city               = trim($_POST["city"] ?? '');
+        $province           = trim($_POST["provinces"] ?? '');
+        $aboutUs            = trim($_POST["about_us"] ?? '');
+        $corporateVision    = trim($_POST["corporate_vision"] ?? '');
+        $corporateMission   = trim($_POST["corporate_mission"] ?? '');
+        $corporatePhilosophy= trim($_POST["corporate_philosophy"] ?? '');
+        $corporatePrinciples= trim($_POST["corporate_principles"] ?? '');
+
+        // Secure data (Extra sanitization, optional)
+        $organizationName   = mysqli_real_escape_string($conn, $organizationName);
+        $strandFocus        = mysqli_real_escape_string($conn, $strandFocus);
+        $phoneNumber        = mysqli_real_escape_string($conn, $phoneNumber);
+        $zipCode            = mysqli_real_escape_string($conn, $zipCode);
+        $address            = mysqli_real_escape_string($conn, $address);
+        $city               = mysqli_real_escape_string($conn, $city);
+        $province           = mysqli_real_escape_string($conn, $province);
+        $aboutUs            = mysqli_real_escape_string($conn, $aboutUs);
+        $corporateVision    = mysqli_real_escape_string($conn, $corporateVision);
+        $corporateMission   = mysqli_real_escape_string($conn, $corporateMission);
+        $corporatePhilosophy= mysqli_real_escape_string($conn, $corporatePhilosophy);
+        $corporatePrinciples= mysqli_real_escape_string($conn, $corporatePrinciples);
+
+        // Prepare the SQL statement
+        $stmt = $conn->prepare("INSERT INTO partner_profiles 
+            (organization_name, strand, phone_number, zip_code, address, city, province, about_us, corporate_vision, corporate_mission, corporate_philosophy, corporate_principles, user_id) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        if (!$stmt) {
+            die("Error preparing statement: " . $conn->error);
+        }
+
+        $stmt->bind_param("ssssssssssssi", 
+            $organizationName, $strandFocus, $phoneNumber, $zipCode, $address, $city, $province, 
+            $aboutUs, $corporateVision, $corporateMission, $corporatePhilosophy, $corporatePrinciples, $userId
+        );
+
+        if ($stmt->execute()) {
+            echo "Organization profile created successfully!";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
         $stmt->close();
         break;
+
 }
 
 $conn->close();
