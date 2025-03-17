@@ -77,20 +77,20 @@ $profile_divv = '<header class="nav-header">
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
-    <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
-    <title>Verification</title>
-    <link rel="stylesheet" href="css/verify.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
+  <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
+  <title>Verification</title>
+  <link rel="stylesheet" href="css/verify.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <style>
-    </style>
+  <style>
+  </style>
 </head>
 
 <body>
-    <!-- <header class="nav-header">
+  <!-- <header class="nav-header">
         <div class="logo">
             <a href="#">
                 <img src="image/header.png" alt="Logo">
@@ -110,18 +110,18 @@ $profile_divv = '<header class="nav-header">
             </div>
         </div>
     </header> -->
-    <?php echo $profile_divv; ?>
-    <div class="background">
-        <div class="wame">
-            <div class="exclamation">
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <h1 class="wait">Wait for Your Account Verification</h1>
-            <div class="message">Please upload all requirements to verify your account <a href="File.php">here</a>.
-            </div>
-            <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
-        </div>
+  <?php echo $profile_divv; ?>
+  <div class="background">
+    <div class="wame">
+      <div class="exclamation">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+      <h1 class="wait">Account Verification</h1>
+      <div class="message">Please upload all requirements to verify your account <a href="File.php">here</a>.
+      </div>
+      <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
     </div>
+  </div>
 </body>
 
 </html>

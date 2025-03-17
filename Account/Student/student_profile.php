@@ -26,7 +26,7 @@ $profile_divv = '<header class="nav-header">
     color: white;
     margin-left: -60px;
     margin-right: 50px;
-    margin-top: -16px;">&larr;</a>
+    margin-top: -16px;" hidden >&larr;</a>
             <a href="Company_Area.php"> 
                 <img src="image/drdsnhs.svg" alt="Logo">
             </a>

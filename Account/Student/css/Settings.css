@@ -438,6 +438,9 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
   nav {
     margin: 0;
   }
+  .container {
+    width: 100% !important;
+  }
 }
 
 /* //////////////////////////////////////////drop down css////////////////////////////////// */
