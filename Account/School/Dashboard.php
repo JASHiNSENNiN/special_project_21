@@ -469,10 +469,10 @@ if (isset($_SESSION['school_name'])) {
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <!-- <a href="Company.php">Work Immersion List</a> -->
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
+            <a href="Organization.php"><i class="fas fa-building"></i>Organization</a>
             <a class="active" href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
-            <!-- <a href="Reports.php"><i class="fa fa-file-text-o"></i>Reports</a> -->
+
 
 
         </nav>
@@ -617,27 +617,27 @@ if (isset($_SESSION['school_name'])) {
 
     <br>
     <script>
-    let strands = <?php echo json_encode($strandCounts); ?>;
+        let strands = <?php echo json_encode($strandCounts); ?>;
 
-    let humss = strands.humss;
-    let stem = strands.stem;
-    let gas = strands.gas;
-    let techVoc = strands.tvl;
-    let abm = strands.abm;
+        let humss = strands.humss;
+        let stem = strands.stem;
+        let gas = strands.gas;
+        let techVoc = strands.tvl;
+        let abm = strands.abm;
 
-    // console.log(strands);
+        // console.log(strands);
 
 
 
-    function updateCardData() {
-        document.querySelector('.card.blue h2').textContent = humss;
-        document.querySelector('.card.green h2').textContent = stem;
-        document.querySelector('.card.yellow h2').textContent = gas;
-        document.querySelector('.card.red h2').textContent = techVoc;
-        document.querySelector('.card.orange h2').textContent = abm;
-    }
+        function updateCardData() {
+            document.querySelector('.card.blue h2').textContent = humss;
+            document.querySelector('.card.green h2').textContent = stem;
+            document.querySelector('.card.yellow h2').textContent = gas;
+            document.querySelector('.card.red h2').textContent = techVoc;
+            document.querySelector('.card.orange h2').textContent = abm;
+        }
 
-    updateCardData();
+        updateCardData();
     </script>
 
 
@@ -656,55 +656,55 @@ if (isset($_SESSION['school_name'])) {
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function () {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
     <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
             modal.style.display = "none";
         }
-    }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 
     <script type="text/javascript">
-    function toggleNotifications() {
-        const extraNotifications = document.querySelector('.extra-notifications');
-        const seeMoreLink = document.querySelector('.see-more');
+        function toggleNotifications() {
+            const extraNotifications = document.querySelector('.extra-notifications');
+            const seeMoreLink = document.querySelector('.see-more');
 
-        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
-            extraNotifications.style.display = 'block';
-            seeMoreLink.textContent = 'See Less';
-        } else {
-            extraNotifications.style.display = 'none';
-            seeMoreLink.textContent = 'See More';
+            if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+                extraNotifications.style.display = 'block';
+                seeMoreLink.textContent = 'See Less';
+            } else {
+                extraNotifications.style.display = 'none';
+                seeMoreLink.textContent = 'See More';
+            }
         }
-    }
     </script>
 
 
@@ -720,9 +720,9 @@ if (isset($_SESSION['school_name'])) {
 
 </html>
 <script>
-var topStudentsData = <?php echo $topStudentsDataJson; ?>;
-var topStudentsDataWorkHabits = <?php echo $topStudentsDataJsonWorkHabits; ?>;
-var topStudentsDataWorkSkills = <?php echo $topStudentsDataJsonWorkSkills; ?>;
-var topStudentsDataJsonSocialSkills = <?php echo $topStudentsDataJsonSocialSkills; ?>
+    var topStudentsData = <?php echo $topStudentsDataJson; ?>;
+    var topStudentsDataWorkHabits = <?php echo $topStudentsDataJsonWorkHabits; ?>;
+    var topStudentsDataWorkSkills = <?php echo $topStudentsDataJsonWorkSkills; ?>;
+    var topStudentsDataJsonSocialSkills = <?php echo $topStudentsDataJsonSocialSkills; ?>
 </script>
 <script type="text/javascript" src="js/Dashboard.js"></script>

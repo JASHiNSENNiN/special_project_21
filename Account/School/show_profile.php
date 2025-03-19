@@ -169,7 +169,7 @@ $profile_div = '<header class="nav-header">
             <a href=""><i class="fas fa-user-alt" style="font-size:24px; margin-top:10px; color:#fff;"></i></a>
             <div class="dropdown-content">
                 <div class="email">' . $email . '</div>
-                 <a href="OrganizationList.php"><i class="fas fa-building" style="font-size:20px;margin-right:10px;" ></i> Partner Organization</a>
+                
                 <a href="../../weather_page.php"><i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i> Weather Update</a>
                 <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Settings</a>
                 <hr>

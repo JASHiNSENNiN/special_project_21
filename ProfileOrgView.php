@@ -382,26 +382,26 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 Organization' || $_SESSION['account_type'] === '	
 School'
         ): ?>
-        <div class="dashboard-body docu">
-            <main class="dashboard__main app-content">
-                <article class="app-content__widget app-content__widget--primary">
-                    <hr>
-                    <h2 class="title-resume">Application Documents</h2>
-                    <div id="content-cover">
-                        <table class="table" id="sortableTable-docu">
-                            <thead>
-                                <tr>
-                                    <th class="th-name">Document Name</th>
-                                    <th class="th-date">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($unique_documents as $document_name): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
-                                    </td>
-                                    <td>
-                                        <?php
+            <div class="dashboard-body docu">
+                <main class="dashboard__main app-content">
+                    <article class="app-content__widget app-content__widget--primary">
+                        <hr>
+                        <h2 class="title-resume">Application Documents</h2>
+                        <div id="content-cover">
+                            <table class="table" id="sortableTable-docu">
+                                <thead>
+                                    <tr>
+                                        <th class="th-name">Document Name</th>
+                                        <th class="th-date">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($unique_documents as $document_name): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
+                                            </td>
+                                            <td>
+                                                <?php
                                                 // Check for the document URL and existence of file
                                                 $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
                                                 $stmt = $pdo->prepare($sql);
@@ -413,40 +413,40 @@ School'
                                                 if ($document_url) {
                                                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
-                                        <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
-                                            Download
-                                        </a>
-                                        <!-- Uncomment the button below to enable viewing functionality -->
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                        <?php else: ?>
-                                        <button disabled>File Not Available</button>
-                                        <?php endif;
+                                                        <a class="btn btn-download btn-success"
+                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                                            Download
+                                                        </a>
+                                                        <!-- Uncomment the button below to enable viewing functionality -->
+                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                                    <?php else: ?>
+                                                        <button disabled>File Not Available</button>
+                                                    <?php endif;
                                                 } else { ?>
-                                        <button disabled>No Document Found</button>
-                                        <?php } ?>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                        </table>
-                    </div>
-                    <hr>
-                    <h2 class="title-resume">Insight</h2>
-                    <span class="description-resume">The line chart analyzes student daily performance in work
-                        immersion, and the pie chart displays the distribution of performance levels.</span>
+                                                    <button disabled>No Document Found</button>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            </table>
+                        </div>
+                        <hr>
+                        <h2 class="title-resume">Insight</h2>
+                        <span class="description-resume">The line chart analyzes student daily performance in work
+                            immersion, and the pie chart displays the distribution of performance levels.</span>
 
-                    <div class="container-grap">
-                        <div class="dp-graph" id="piechart_3d"></div>
-                    </div>
-                    <div class="container-grap">
-                        <div class="dp-graph" id="dp_chart_div"></div>
-                    </div>
-                </article>
-            </main>
-        </div>
+                        <div class="container-grap">
+                            <div class="dp-graph" id="piechart_3d"></div>
+                        </div>
+                        <div class="container-grap">
+                            <div class="dp-graph" id="dp_chart_div"></div>
+                        </div>
+                    </article>
+                </main>
+            </div>
         <?php endif; ?>
 
         <div class="dashboard-body">
@@ -464,9 +464,9 @@ School'
                             <?php if (
                                 isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'
                             ): ?>
-                            <span class="edit-icon" onclick="toggleEdit('about-us-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('about-us-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -491,9 +491,9 @@ School'
                                 readonly><?= htmlspecialchars($corporateMission) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
 
-                            <span class="edit-icon" onclick="toggleEdit('mission-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('mission-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
 
@@ -520,9 +520,9 @@ School'
                             <textarea id="vision-edit-textarea" placeholder="State your vision"
                                 readonly><?= htmlspecialchars($corporateVision) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
-                            <span class="edit-icon" onclick="toggleEdit('vision-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('vision-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
 
@@ -550,9 +550,9 @@ School'
                             <textarea id="principles-edit-textarea" placeholder="State your principles"
                                 readonly><?= htmlspecialchars($corporatePrinciples) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
-                            <span class="edit-icon" onclick="toggleEdit('principles-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('principles-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
 
@@ -581,9 +581,9 @@ School'
                             <textarea id="philosophy-edit-textarea" placeholder="State your philosophy"
                                 readonly><?= htmlspecialchars($corporatePhilosophy) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
-                            <span class="edit-icon" onclick="toggleEdit('philosophy-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('philosophy-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
 
@@ -631,22 +631,22 @@ School'
 
                     </div>
                     <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
-                    <hr>
+                        <hr>
 
-                    <span class="description-resume">Upload a clear, well-oriented photo for your profile to ensure
-                        accurate representation.</span>
-                    <br>
+                        <span class="description-resume">Upload a clear, well-oriented photo for your profile to ensure
+                            accurate representation.</span>
+                        <br>
 
-                    <div class="file-upload">
-                        <input type="file" id="file-input" multiple accept="image/*">
-                        <label for="file-input"> <span>
-                                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
-                                </svg>
-                                Upload Photo
-                            </span></label>
-                    </div>
+                        <div class="file-upload">
+                            <input type="file" id="file-input" multiple accept="image/*">
+                            <label for="file-input"> <span>
+                                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
+                                    </svg>
+                                    Upload Photo
+                                </span></label>
+                        </div>
 
                     <?php endif; ?>
 
