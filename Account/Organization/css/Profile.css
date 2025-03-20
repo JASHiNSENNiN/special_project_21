@@ -1572,6 +1572,10 @@ textarea {
   height: auto;
   box-sizing: border-box;
   padding: 10px;
-  border: 1px solid #ccc; /* Add a border */
   border-radius: 4px; /* Rounded corners */
+}
+.textarea-com-details {
+  overflow: hidden !important;
+  resize: vertical !important;
+  border: none !important;
 }

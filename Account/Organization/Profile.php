@@ -37,7 +37,7 @@ try {
             throw new Exception('Invalid user ID');
         }
 
-        $sql = "SELECT * FROM partner_profiles WHERE user_id = :user_id"; 
+        $sql = "SELECT * FROM partner_profiles WHERE user_id = :user_id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
@@ -282,7 +282,8 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                             <i class="fa fa-envelope" aria-hidden="true"></i><span
                                 class="other-info"><?= $email ?></span>
                             <br>
-                            <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info"> <?= $phoneNumber ?> </span>
+                            <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info"> <?= $phoneNumber ?>
+                            </span>
                             <br>
                             <a href="https://www.google.com/maps/search/?api=1&query=NUEVA+ECIJA" target="_blank"
                                 style="text-decoration: none;">
@@ -458,7 +459,8 @@ School'
 
                     <div class="DailyJournal">
                         <div class="editable-container">
-                            <textarea id="about-us-edit-textarea" placeholder="Tell us about your company"
+                            <textarea class="textarea-com-details" id="about-us-edit-textarea"
+                                placeholder="Tell us about your company"
                                 readonly><?= htmlspecialchars($aboutUs) ?></textarea>
                             <?php if (
                                 isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'
@@ -486,7 +488,9 @@ School'
 
                     <div class="DailyJournal">
                         <div class="editable-container">
-                            <textarea id="mission-edit-textarea" placeholder="State your mission" readonly><?= htmlspecialchars($corporateMission) ?></textarea>
+                            <textarea class="textarea-com-details" id="mission-edit-textarea"
+                                placeholder="State your mission"
+                                readonly><?= htmlspecialchars($corporateMission) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
 
                                 <span class="edit-icon" onclick="toggleEdit('mission-edit-textarea')">
@@ -515,7 +519,9 @@ School'
 
                     <div class="DailyJournal">
                         <div class="editable-container">
-                            <textarea id="vision-edit-textarea" placeholder="State your vision" readonly><?= htmlspecialchars($corporateVision) ?></textarea>
+                            <textarea class="textarea-com-details" id="vision-edit-textarea"
+                                placeholder="State your vision"
+                                readonly><?= htmlspecialchars($corporateVision) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
                                 <span class="edit-icon" onclick="toggleEdit('vision-edit-textarea')">
                                     <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
@@ -544,7 +550,8 @@ School'
 
                     <div class="DailyJournal">
                         <div class="editable-container">
-                            <textarea id="principles-edit-textarea" placeholder="State your principles"
+                            <textarea class="textarea-com-details" id="principles-edit-textarea"
+                                placeholder="State your principles"
                                 readonly><?= htmlspecialchars($corporatePrinciples) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
                                 <span class="edit-icon" onclick="toggleEdit('principles-edit-textarea')">
@@ -575,7 +582,8 @@ School'
 
                     <div class="DailyJournal">
                         <div class="editable-container">
-                            <textarea id="philosophy-edit-textarea" placeholder="State your philosophy"
+                            <textarea class="textarea-com-details" id="philosophy-edit-textarea"
+                                placeholder="State your philosophy"
                                 readonly><?= htmlspecialchars($corporatePhilosophy) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
                                 <span class="edit-icon" onclick="toggleEdit('philosophy-edit-textarea')">
@@ -592,6 +600,64 @@ School'
 
             </main>
         </div>
+
+        <div class="dashboard-body docu">
+            <main class="dashboard__main app-content">
+                <article class="app-content__widget app-content__widget--primary">
+                    <hr>
+                    <h2 class="title-resume">Application Documents</h2>
+                    <div id="content-cover">
+                        <table class="table" id="sortableTable-docu">
+                            <thead>
+                                <tr>
+                                    <th class="th-name">Document Name</th>
+                                    <th class="th-date">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        // Check for the document URL and existence of file
+                                        $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                        $stmt = $pdo->prepare($sql);
+                                        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                        $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                        $stmt->execute();
+                                        $document_url = $stmt->fetchColumn();
+
+                                        if ($document_url) {
+                                            $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                            if (file_exists($file_path)): ?>
+                                                <a class="btn btn-download btn-success"
+                                                    href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                                    Download
+                                                </a>
+                                                <!-- Uncomment the button below to enable viewing functionality -->
+                                                <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                                <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                            <?php else: ?>
+                                                <button disabled>File Not Available</button>
+                                            <?php endif;
+                                        } else { ?>
+                                            <button disabled>No Document Found</button>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        </table>
+                    </div>
+
+                </article>
+            </main>
+        </div>
+
+
 
 
 
