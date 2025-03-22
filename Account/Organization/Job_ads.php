@@ -1,7 +1,58 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
+$dotenv->load();
+
 require_once 'show_profile.php';
+
+$userId = $_SESSION['user_id'];
+
+function isDocumentUploaded($documentName)
+{
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Enable exceptions
+    } catch (PDOException $e) {
+        die("Could not connect to the database: " . $e->getMessage());
+    }
+
+    $sql = "SELECT COUNT(*) FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+
+    $stmt = $pdo->prepare($sql);
+
+    $userId = $_SESSION['user_id'];
+
+    $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindParam(':document_name', $documentName, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    $count = $stmt->fetchColumn();
+
+    return $count > 0;
+}
+
+function checkRequiredDocuments()
+{
+    $requiredDocuments = ['business_permit', 'memorandum_of_agreement'];
+    
+    foreach ($requiredDocuments as $document) {
+        if (!isDocumentUploaded($document)) {
+            header("Location: Verify.php");
+            exit();
+        }
+    }
+}
+
+checkRequiredDocuments();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -117,6 +117,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['student_id'])) {
 }
 
 $list_organization = get_students_by_strand('list');
+
+function displayPartnerOrganizations()
+{
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Fetch all partner organizations
+    $sql = "SELECT pp.user_id, pp.organization_name, u.profile_image 
+            FROM partner_profiles pp
+            JOIN users u ON pp.user_id = u.id
+            WHERE u.account_type = 'Organization'";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        echo '<table class="rwd-table" id="searchHumss">
+                <tbody>
+                    <tr>
+                        <th>#</th>
+                        <th>Profile Photo</th>
+                        <th>Organization Name</th>
+                        <th>Action</th>
+                    </tr>';
+
+        $count = 1;
+        while ($row = $result->fetch_assoc()) {
+            $encoded_id = base64_encode(encrypt_url_parameter((string) $row['user_id']));
+            $profile_image = !empty($row['profile_image']) ? "/Account/Organization/uploads/" . $row['profile_image'] : "Account/Organization/uploads/default.png";
+
+            echo "<tr>
+                    <td data-th='#'>{$count}</td>
+                    <td data-th='ID Picture'><img class='idpic' src='{$profile_image}' alt='Profile Photo'></td>
+                    <td data-th='Organization Name'>{$row['organization_name']}</td>
+                    <td data-th='Action'>
+                        <button class='button-9' role='button' 
+                            onclick=\"window.location.href='../../ProfileOrgView.php?organization_id={$encoded_id}'\">
+                            View Profile
+                        </button>
+                    </td>
+                  </tr>";
+            $count++;
+        }
+
+        echo '</tbody></table>';
+    } else {
+        echo "<p>No partner organizations found.</p>";
+    }
+
+    $conn->close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -176,42 +235,7 @@ $list_organization = get_students_by_strand('list');
                         placeholder="Search..." />
                     <button class="search-button">Search</button>
                 </div>
-                <table class="rwd-table" id="searchHumss">
-                    <tbody>
-                        <tr>
-                            <th>#</th>
-                            <th>ID Picture</th>
-                            <th>Organization Name</th>
-
-                            <th>Action</th>
-                        </tr>
-
-                        <tr>
-                            <td data-th="#">1</td>
-                            <td data-th="ID Picture"><img class="idpic" src="uploads/default.png" alt="me"></td>
-                            <td data-th="Student Name">PICC</td>
-
-                            <td data-th="Action">
-                                <button class="button-9" role="button"
-                                    onclick="window.location.href='../../ProfileOrgView.php'">View
-                                    Profile</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td data-th="#">2</td>
-                            <td data-th="ID Picture"><img class="idpic" src="uploads/default.png" alt="me"></td>
-                            <td data-th="Student Name">HYUNDAI</td>
-
-                            <td data-th="Action">
-
-                                <button class="button-9" role="button"
-                                    onclick="window.location.href='../../ProfileOrgView.php?student_id=encoded_student_id_2'">View
-                                    Profile</button>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
+                <?php displayPartnerOrganizations(); ?>
             </div>
         </div>
 

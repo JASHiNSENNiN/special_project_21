@@ -3,32 +3,24 @@ if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-
-
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
-;
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/session_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
+$dotenv->load();
 
-$student_id = $_SESSION['user_id'];
-$firstName = $_SESSION['first_name'];
-$middleName = $_SESSION['middle_name'];
-$lastName = $_SESSION['last_name'];
-$school = $_SESSION['school'];
-$gradeLevel = $_SESSION['grade_level'];
-$strand = strtoupper($_SESSION['strand']);
-// $stars = $_SESSION['stars'];
-$currentWork = $_SESSION['current_work'];
+
+
+
+
 $email = $_SESSION['email'];
+$orgName = $_SESSION['organization_name'];
 $profile_image = ($_SESSION['profile_image'] === './uploads/') ? './image/default.png' : $_SESSION['profile_image'];
 $cover_image = ($_SESSION['cover_image'] === './uploads/') ? './image/logov3.jpg' : $_SESSION['cover_image'];
 
 
 $profile_divv = '<header class="nav-header">
         <div class="logo">
-            <a href="Company_Area.php"> 
+            <a href="/Account/Organization/"> 
                 <img src="image/drdsnhs.svg" alt="Logo">
             </a>
          
@@ -40,7 +32,7 @@ $profile_divv = '<header class="nav-header">
  <div class="menu">
   <div class="item">
     <a class="link">
-      <span class="firstname"> <span class="username">Welcome </span> ' . $firstName . ' </span>
+      <span class="firstname"> <span class="username"></span> ' .  $orgName . ' </span>
       <svg viewBox="0 0 360 360" xml:space="preserve">
         <g id="SVGRepo_iconCarrier">
           <path
@@ -82,7 +74,7 @@ $profile_divv = '<header class="nav-header">
   <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
   <!-- <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/Jh2v0t5W/W.png"> -->
   <title>Verification</title>
-  <link rel="stylesheet" href="css/verify.css">
+  <link rel="stylesheet" href="css/Verify.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
@@ -117,7 +109,7 @@ $profile_divv = '<header class="nav-header">
         <i class="fas fa-exclamation-triangle"></i>
       </div>
       <h1 class="wait">Account Verification</h1>
-      <div class="message">Please upload all requirements to verify your account <a href="File.php">here</a>.
+      <div class="message">Please upload all requirements to verify your account <a href="Upload.php">here</a>.
       </div>
       <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
     </div>

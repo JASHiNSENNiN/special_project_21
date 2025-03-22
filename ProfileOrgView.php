@@ -3,6 +3,155 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+$dotenv->load();
+
+$currentUrl = $_SERVER['REQUEST_URI'];
+$urlParts = parse_url($currentUrl);
+if (isset($urlParts['query'])) {
+    parse_str($urlParts['query'], $queryParameters);
+    if (isset($queryParameters['organization_id'])) {
+        $IdParam = $queryParameters['organization_id'];
+    }
+} else {
+    echo "Query string parameter not found.";
+}
+
+$user_id = decrypt_url_parameter(base64_decode($IdParam));
+
+global $host;
+global $username;
+global $password;
+global $database;
+global $conn;
+
+try {
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        if (!isset($user_id) || !is_numeric($user_id)) {
+            throw new Exception('Invalid user ID');
+        }
+
+        $sql = "SELECT * FROM partner_profiles WHERE user_id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $partner_profiles = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($partner_profiles === false) {
+            echo 'No partner profile found for the given user ID: ' . $user_id;
+        }
+
+
+        $sql = "SELECT * FROM users WHERE id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user === false) {
+            throw new Exception('No user found for the given user ID');
+        }
+
+        // Get values with a check to ensure they exist
+        $organizationName = $partner_profiles['organization_name'] ?? 'Unknown Organization';
+        $strand = isset($partner_profiles['strand']) ? strtoupper($partner_profiles['strand']) : 'UNKNOWN';
+        $email = $user['email'] ?? 'No email provided';
+        $phoneNumber = $partner_profiles['phone_number'] ?? 'No phone number provided';
+        $zipCode = $partner_profiles['zip_code'] ?? 'No ZIP code provided';
+        $address = $partner_profiles['address'] ?? 'No address provided';
+        $city = $partner_profiles['city'] ?? 'No city provided';
+        $province = $partner_profiles['province'] ?? 'No province provided';
+        $aboutUs = $partner_profiles['about_us'] ?? 'No information available';
+        $corporateVision = $partner_profiles['corporate_vision'] ?? 'No vision provided';
+        $corporateMission = $partner_profiles['corporate_mission'] ?? 'No mission provided';
+        $corporatePhilosophy = $partner_profiles['corporate_philosophy'] ?? 'No philosophy provided';
+        $corporatePrinciples = $partner_profiles['corporate_principles'] ?? 'No principles provided';
+
+
+        // Check for the $_SESSION variable and fallback to default if necessary
+        $profile_image = !empty($_SESSION['profile_image']) && $_SESSION['profile_image'] !== './uploads/'
+            ? $_SESSION['profile_image']
+            : './image/default.png';
+
+    } catch (PDOException $e) {
+        // Handle PDO exceptions
+        echo 'Database error: ' . $e->getMessage();
+    } catch (Exception $e) {
+        // Handle general exceptions
+        echo 'An error occurred: ' . $e->getMessage();
+    }
+
+    $sql = "SELECT 
+                AVG(quality_of_experience) AS avg_quality_of_experience,
+                AVG(productivity_of_tasks) AS avg_productivity_of_tasks,
+                AVG(problem_solving_opportunities) AS avg_problem_solving_opportunities,
+                AVG(attention_to_detail_in_guidance) AS avg_attention_to_detail_in_guidance,
+                AVG(initiative_encouragement) AS avg_initiative_encouragement,
+                AVG(punctuality_expectations) AS avg_punctuality_expectations,
+                AVG(professional_appearance_standards) AS avg_professional_appearance_standards,
+                AVG(communication_training) AS avg_communication_training,
+                AVG(respectfulness_environment) AS avg_respectfulness_environment,
+                AVG(adaptability_challenges) AS avg_adaptability_challenges,
+                AVG(willingness_to_learn_encouragement) AS avg_willingness_to_learn_encouragement,
+                AVG(feedback_application_opportunities) AS avg_feedback_application_opportunities,
+                AVG(self_improvement_support) AS avg_self_improvement_support,
+                AVG(skill_development_assessment) AS avg_skill_development_assessment,
+                AVG(knowledge_application_in_practice) AS avg_knowledge_application_in_practice,
+                AVG(team_participation_opportunities) AS avg_team_participation_opportunities,
+                AVG(cooperation_among_peers) AS avg_cooperation_among_peers,
+                AVG(conflict_resolution_guidance) AS avg_conflict_resolution_guidance,
+                AVG(supportiveness_among_peers) AS avg_supportiveness_among_peers,
+                AVG(contribution_to_team_success) AS avg_contribution_to_team_success,
+                AVG(enthusiasm_for_tasks) AS avg_enthusiasm_for_tasks,
+                AVG(drive_to_achieve_goals) AS avg_drive_to_achieve_goals,
+                AVG(resilience_to_challenges) AS avg_resilience_to_challenges,
+                AVG(commitment_to_experience) AS avg_commitment_to_experience,
+                AVG(self_motivation_levels) AS avg_self_motivation_levels
+            FROM Organization_Evaluation
+            WHERE organization_id = :user_id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $averages = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $avgQualityOfExperience = $averages['avg_quality_of_experience'] ?? null;
+    $avgProductivityOfTasks = $averages['avg_productivity_of_tasks'] ?? null;
+    $avgProblemSolvingOpportunities = $averages['avg_problem_solving_opportunities'] ?? null;
+    $avgAttentionToDetailInGuidance = $averages['avg_attention_to_detail_in_guidance'] ?? null;
+    $avgInitiativeEncouragement = $averages['avg_initiative_encouragement'] ?? null;
+    $avgPunctualityExpectations = $averages['avg_punctuality_expectations'] ?? null;
+    $avgProfessionalAppearanceStandards = $averages['avg_professional_appearance_standards'] ?? null;
+    $avgCommunicationTraining = $averages['avg_communication_training'] ?? null;
+    $avgRespectfulnessEnvironment = $averages['avg_respectfulness_environment'] ?? null;
+    $avgAdaptabilityChallenges = $averages['avg_adaptability_challenges'] ?? null;
+    $avgWillingnessToLearnEncouragement = $averages['avg_willingness_to_learn_encouragement'] ?? null;
+    $avgFeedbackApplicationOpportunities = $averages['avg_feedback_application_opportunities'] ?? null;
+    $avgSelfImprovementSupport = $averages['avg_self_improvement_support'] ?? null;
+    $avgSkillDevelopmentAssessment = $averages['avg_skill_development_assessment'] ?? null;
+    $avgKnowledgeApplicationInPractice = $averages['avg_knowledge_application_in_practice'] ?? null;
+    $avgTeamParticipationOpportunities = $averages['avg_team_participation_opportunities'] ?? null;
+    $avgCooperationAmongPeers = $averages['avg_cooperation_among_peers'] ?? null;
+    $avgConflictResolutionGuidance = $averages['avg_conflict_resolution_guidance'] ?? null;
+    $avgSupportivenessAmongPeers = $averages['avg_supportiveness_among_peers'] ?? null;
+    $avgContributionToTeamSuccess = $averages['avg_contribution_to_team_success'] ?? null;
+    $avgEnthusiasmForTasks = $averages['avg_enthusiasm_for_tasks'] ?? null;
+    $avgDriveToAchieveGoals = $averages['avg_drive_to_achieve_goals'] ?? null;
+    $avgResilienceToChallenges = $averages['avg_resilience_to_challenges'] ?? null;
+    $avgCommitmentToExperience = $averages['avg_commitment_to_experience'] ?? null;
+    $avgSelfMotivationLevels = $averages['avg_self_motivation_levels'] ?? null;
+
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="/Account/' . $_SESSION['account_type'] . '"> 
@@ -23,6 +172,38 @@ $profile_divv = '<header class="nav-header">
     </header> 
 
     ';
+
+
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+    $profile_image_path = './uploads/' . $user['profile_image'];
+
+    $get_profile_image = file_exists($profile_image_path) ? $profile_image_path : './image/default.png';
+
+    $profile_data = null;
+    if (isset($user_id)) {
+        $sql = "SELECT sp.*, u.profile_image, u.cover_image
+    FROM partner_profiles sp
+    JOIN users u ON sp.user_id = u.id
+    WHERE sp.user_id = ?";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $profile_data = $result->fetch_assoc();
+    }
+    $stmt->close();
+    $conn->close();
+
+    $profile_image_path = '/Account/Organization/uploads/' . $profile_data['profile_image'];
+    $cover_image_path = '/Account/Organization/uploads/' . $profile_data['cover_image'];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +228,27 @@ $profile_divv = '<header class="nav-header">
 </head>
 
 <body>
+    <!-- Navbar top -->
     <?php echo $profile_divv; ?>
+    <!-- <div class="navbar-top">
+        <div class="title">
+            <h1>Profile</h1>
+        </div>
+        <ul>
 
+            <li>
+                <a href="<?php //echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
+                    <i class=" fa fa-sign-out-alt fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+        
+    </div> -->
+    <!-- End -->
+
+
+
+    <!-- Sidenav -->
 
     <div class="row-graph-profile">
         <div class="column-graph-profile-right">
@@ -63,7 +263,8 @@ $profile_divv = '<header class="nav-header">
                 <div class="row-profile" id="row_profile">
 
                     <div class="column-profile column-side profile-pic">
-                        <img class="img-account-profile rounded-circle mb-2" id="profile-image" src="img/default.png"
+                        <img class="img-account-profile rounded-circle mb-2" id="profile-image"
+                            src="<?php echo $profile_data['profile_image'] ? '/Account/Organization/uploads/' . $profile_data['profile_image'] : 'uploads/default.png'; ?>"
                             alt="Profile Image Preview" style="width: 16rem;  object-fit: cover;">
 
 
@@ -71,20 +272,21 @@ $profile_divv = '<header class="nav-header">
                     </div>
                     <div class="column-profile ">
                         <div class="card-body">
-                            <span class="fullname">Hyundai</span>
+                            <span class="fullname"><?= $organizationName ?></span>
                             <br>
-                            <i class="fa fa-bullseye" aria-hidden="true"></i><span class="other-info">Stemm
+                            <i class="fa fa-bullseye" aria-hidden="true"></i><span class="other-info"><?= $strand ?>
                             </span>
                             <br>
-                            <i class="fa fa-envelope" aria-hidden="true"></i><span class="other-info">@gmail.com</span>
+                            <i class="fa fa-envelope" aria-hidden="true"></i><span
+                                class="other-info"><?= $email ?></span>
                             <br>
-                            <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info"> 09712123123
+                            <i class="fa fa-phone" aria-hidden="true"></i><span class="other-info"> <?= $phoneNumber ?>
                             </span>
                             <br>
                             <a href="https://www.google.com/maps/search/?api=1&query=NUEVA+ECIJA" target="_blank"
                                 style="text-decoration: none;">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <span class="other-info">NUEVA ECIJA</span>
+                                <span class="other-info"><?= $address ?></span>
                             </a>
                         </div>
 
@@ -173,9 +375,77 @@ $profile_divv = '<header class="nav-header">
             </main>
         </div> -->
 
+        <?php if (
+            isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student' || $_SESSION['account_type'] === '	
+Organization' || $_SESSION['account_type'] === '	
+School'
+        ): ?>
+            <div class="dashboard-body docu">
+                <main class="dashboard__main app-content">
+                    <article class="app-content__widget app-content__widget--primary">
+                        <hr>
+                        <h2 class="title-resume">Application Documents</h2>
+                        <div id="content-cover">
+                            <table class="table" id="sortableTable-docu">
+                                <thead>
+                                    <tr>
+                                        <th class="th-name">Document Name</th>
+                                        <th class="th-date">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($unique_documents as $document_name): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                // Check for the document URL and existence of file
+                                                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                                $stmt = $pdo->prepare($sql);
+                                                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                                $stmt->execute();
+                                                $document_url = $stmt->fetchColumn();
 
+                                                if ($document_url) {
+                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                                    if (file_exists($file_path)): ?>
+                                                        <a class="btn btn-download btn-success"
+                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                                            Download
+                                                        </a>
+                                                        <!-- Uncomment the button below to enable viewing functionality -->
+                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                                    <?php else: ?>
+                                                        <button disabled>File Not Available</button>
+                                                    <?php endif;
+                                                } else { ?>
+                                                    <button disabled>No Document Found</button>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            </table>
+                        </div>
+                        <hr>
+                        <h2 class="title-resume">Insight</h2>
+                        <span class="description-resume">The line chart analyzes student daily performance in work
+                            immersion, and the pie chart displays the distribution of performance levels.</span>
 
-
+                        <div class="container-grap">
+                            <div class="dp-graph" id="piechart_3d"></div>
+                        </div>
+                        <div class="container-grap">
+                            <div class="dp-graph" id="dp_chart_div"></div>
+                        </div>
+                    </article>
+                </main>
+            </div>
+        <?php endif; ?>
 
         <div class="dashboard-body">
 
@@ -188,9 +458,15 @@ $profile_divv = '<header class="nav-header">
                     <div class="DailyJournal">
                         <div class="editable-container">
                             <textarea class="textarea-com-details" id="about-us-edit-textarea"
-                                placeholder="Tell us about your company" readonly>
-                                No information available
-                            </textarea>
+                                placeholder="Tell us about your company"
+                                readonly><?= htmlspecialchars($aboutUs) ?></textarea>
+                            <?php if (
+                                isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'
+                            ): ?>
+                                <span class="edit-icon" onclick="toggleEdit('about-us-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -211,9 +487,14 @@ $profile_divv = '<header class="nav-header">
                     <div class="DailyJournal">
                         <div class="editable-container">
                             <textarea class="textarea-com-details" id="mission-edit-textarea"
-                                placeholder="State your mission" readonly>
-                                No information available
-                            </textarea>
+                                placeholder="State your mission"
+                                readonly><?= htmlspecialchars($corporateMission) ?></textarea>
+                            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+
+                                <span class="edit-icon" onclick="toggleEdit('mission-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
                         </div>
 
                     </div>
@@ -237,8 +518,13 @@ $profile_divv = '<header class="nav-header">
                     <div class="DailyJournal">
                         <div class="editable-container">
                             <textarea class="textarea-com-details" id="vision-edit-textarea"
-                                placeholder="State your vision" readonly>
-                           No information available</textarea>
+                                placeholder="State your vision"
+                                readonly><?= htmlspecialchars($corporateVision) ?></textarea>
+                            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                                <span class="edit-icon" onclick="toggleEdit('vision-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
                         </div>
 
                     </div>
@@ -263,8 +549,13 @@ $profile_divv = '<header class="nav-header">
                     <div class="DailyJournal">
                         <div class="editable-container">
                             <textarea class="textarea-com-details" id="principles-edit-textarea"
-                                placeholder="State your principles" readonly>
-                           No information available</textarea>
+                                placeholder="State your principles"
+                                readonly><?= htmlspecialchars($corporatePrinciples) ?></textarea>
+                            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                                <span class="edit-icon" onclick="toggleEdit('principles-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
                         </div>
 
                     </div>
@@ -290,8 +581,13 @@ $profile_divv = '<header class="nav-header">
                     <div class="DailyJournal">
                         <div class="editable-container">
                             <textarea class="textarea-com-details" id="philosophy-edit-textarea"
-                                placeholder="State your philosophy" readonly>
-                            No information available</textarea>
+                                placeholder="State your philosophy"
+                                readonly><?= htmlspecialchars($corporatePhilosophy) ?></textarea>
+                            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                                <span class="edit-icon" onclick="toggleEdit('philosophy-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
+                            <?php endif; ?>
                         </div>
 
                     </div>
@@ -302,8 +598,6 @@ $profile_divv = '<header class="nav-header">
 
             </main>
         </div>
-
-
 
         <div class="dashboard-body docu">
             <main class="dashboard__main app-content">
@@ -324,9 +618,31 @@ $profile_divv = '<header class="nav-header">
                                     <td>
                                     </td>
                                     <td>
+                                        <?php
+                                        // Check for the document URL and existence of file
+                                        $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                        $stmt = $pdo->prepare($sql);
+                                        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                        $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                        $stmt->execute();
+                                        $document_url = $stmt->fetchColumn();
 
-                                        <button disabled>No Document Found</button>
-
+                                        if ($document_url) {
+                                            $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                            if (file_exists($file_path)): ?>
+                                                <a class="btn btn-download btn-success"
+                                                    href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                                    Download
+                                                </a>
+                                                <!-- Uncomment the button below to enable viewing functionality -->
+                                                <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                                <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                            <?php else: ?>
+                                                <button disabled>File Not Available</button>
+                                            <?php endif;
+                                        } else { ?>
+                                            <button disabled>No Document Found</button>
+                                        <?php } ?>
                                     </td>
                                 </tr>
 
@@ -338,6 +654,8 @@ $profile_divv = '<header class="nav-header">
                 </article>
             </main>
         </div>
+
+
 
 
 
@@ -376,8 +694,6 @@ $profile_divv = '<header class="nav-header">
                     <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
                         <hr>
 
-
-
                         <span class="description-resume">Upload a clear, well-oriented photo for your profile to ensure
                             accurate representation.</span>
                         <br>
@@ -392,8 +708,8 @@ $profile_divv = '<header class="nav-header">
                                     Upload Photo
                                 </span></label>
                         </div>
-                    <?php endif; ?>
 
+                    <?php endif; ?>
 
 
                 </article>
@@ -411,7 +727,7 @@ $profile_divv = '<header class="nav-header">
         2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School
     </footer>
 
-    <script src="Account/Organization/js/profile.js"></script>
+    <script src="js/profile.js"></script>
 </body>
 
 </html>

@@ -665,7 +665,7 @@ School'
         <div class="dashboard-body">
 
             <main class="dashboard__main app-content">
-                <article class="app-content__widget app-content__widget--primary">
+                <!-- <article class="app-content__widget app-content__widget--primary">
 
                     <hr>
                     <h2 class="title-resume">Event Highlights</h2>
@@ -714,7 +714,7 @@ School'
                     <?php endif; ?>
 
 
-                </article>
+                </article> -->
 
             </main>
         </div>

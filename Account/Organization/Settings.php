@@ -94,20 +94,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['change_password'])) 
         // Sanitize inputs
         $organization_name = filter_var($_POST['organization_name'], FILTER_SANITIZE_STRING);
         $strand = filter_var($_POST['strand'], FILTER_SANITIZE_STRING);
+        $phone_number = filter_var($_POST['phone_number'], FILTER_SANITIZE_STRING);
+        $zip_code = filter_var($_POST['zip_code'], FILTER_SANITIZE_STRING);
+        $address = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+        $city = filter_var($_POST['city'], FILTER_SANITIZE_STRING);
+        $province = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
+        $about_us = filter_var($_POST['about_us'], FILTER_SANITIZE_STRING);
+        $corporate_vision = filter_var($_POST['corporate_vision'], FILTER_SANITIZE_STRING);
+        $corporate_mission = filter_var($_POST['corporate_mission'], FILTER_SANITIZE_STRING);
+        $corporate_philosophy = filter_var($_POST['corporate_philosophy'], FILTER_SANITIZE_STRING);
+        $corporate_principles = filter_var($_POST['corporate_principles'], FILTER_SANITIZE_STRING);
 
         // Validate strand
-        $valid_strands = ['stem', 'humss', 'abm', 'gas', 'tvl'];
-        if (!in_array($strand, $valid_strands)) {
-            exit; // Handle invalid strands as required
+        $valid_strands = ['STEM', 'HUMSS', 'ABM', 'GAS', 'TVL'];
+        if (!in_array(strtoupper($strand), $valid_strands)) {
+            exit('Invalid strand'); // Handle invalid strands
         }
 
         // Update partner profile
         $sql = "UPDATE partner_profiles
-                SET organization_name = ?, strand = ?
+                SET organization_name = ?, strand = ?, phone_number = ?, zip_code = ?, 
+                    address = ?, city = ?, province = ?, about_us = ?, 
+                    corporate_vision = ?, corporate_mission = ?, 
+                    corporate_philosophy = ?, corporate_principles = ?
                 WHERE user_id = ?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssi", $organization_name, $strand, $user_id);
+        $stmt->bind_param(
+            "ssssssssssssi",
+            $organization_name, $strand, $phone_number, $zip_code, 
+            $address, $city, $province, $about_us, 
+            $corporate_vision, $corporate_mission, 
+            $corporate_philosophy, $corporate_principles, 
+            $user_id
+        );
+
+        if ($stmt->execute()) {
+            echo "Profile updated successfully.";
+        } else {
+            echo "Error updating profile: " . $stmt->error;
+        }
 
         if ($stmt->execute()) {
             // Update images if they exist
@@ -292,7 +318,8 @@ $conn->close();
                                                                 <label class="small mb-1" for="numberInput">Phone
                                                                     Number:</label>
                                                                 <input class="form-control" type="number" id="numberInput"
-                                                                    name="numberInput" placeholder="09x-xxx-xxxx" required>
+                                                                    name="phone_number" placeholder="09x-xxx-xxxx"  value="<?php echo htmlspecialchars($profile_data['phone_number'] ?? ''); ?>"
+                                                                    required>
 
 
                                                             </div>
@@ -300,7 +327,9 @@ $conn->close();
 
                                                                 <label class="small mb-1" for="numberInput">Zipcode</label>
                                                                 <input class="form-control" type="number" id="zipcodenum"
-                                                                    name="numberInput" placeholder="xxxx" required>
+                                                                    name="zip_code" placeholder="xxxx" 
+                                                                    value="<?php echo htmlspecialchars($profile_data['zip_code'] ?? ''); ?>"
+                                                                    required>
 
 
                                                             </div>
@@ -308,9 +337,21 @@ $conn->close();
                                                                 <label class="small mb-1"
                                                                     for="inputOrganizationName">Address</label>
                                                                 <input class="form-control" id="inputAddressInput"
-                                                                    name="Address" type="text"
+                                                                    name="address" type="text"
                                                                     placeholder="Street Name, Building, House No., Barangay"
+                                                                    value="<?php echo htmlspecialchars($profile_data['address'] ?? ''); ?>"
                                                                     required>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label class="small mb-1" for="inputStrand">Strand</label>
+                                                                <select class="form-control" id="inputStrand" name="strand" required>
+                                                                    <option value="<?php echo htmlspecialchars($profile_data['strand'] ?? ''); ?>"><?php echo htmlspecialchars($profile_data['strand'] ?? ''); ?></option>
+                                                                    <option value="STEM" <?php echo (isset($profile_data['strand']) && $profile_data['strand'] == 'STEM') ? 'selected' : ''; ?>>STEM</option>
+                                                                    <option value="HUMSS" <?php echo (isset($profile_data['strand']) && $profile_data['strand'] == 'HUMSS') ? 'selected' : ''; ?>>HUMSS</option>
+                                                                    <option value="ABM" <?php echo (isset($profile_data['strand']) && $profile_data['strand'] == 'ABM') ? 'selected' : ''; ?>>ABM</option>
+                                                                    <option value="GAS" <?php echo (isset($profile_data['strand']) && $profile_data['strand'] == 'GAS') ? 'selected' : ''; ?>>GAS</option>
+                                                                    <option value="TVL" <?php echo (isset($profile_data['strand']) && $profile_data['strand'] == 'TVL') ? 'selected' : ''; ?>>TVL</option>
+                                                                </select>
                                                             </div>
 
                                                             <div class="col-md-6">
@@ -318,7 +359,8 @@ $conn->close();
                                                                 <label class="small mb-1" for="numberInput">City /
                                                                     Municipality</label>
                                                                 <input class="form-control" type="text" id="cityInput"
-                                                                    name="numberInput" placeholder="" required>
+                                                                value="<?php echo htmlspecialchars($profile_data['city'] ?? ''); ?>"
+                                                                    name="city" placeholder="" required>
 
 
                                                             </div>
@@ -333,8 +375,8 @@ $conn->close();
                                                                     a
                                                                     Province:</label>
                                                                 <select class="form-control" id="provinces"
-                                                                    name="provinces">
-                                                                    <option value="">--Select a Province--</option>
+                                                                    name="province">
+                                                                    <option selected value=""><?php echo htmlspecialchars($profile_data['province'] ?? ''); ?></option>
                                                                     <option value="abra">Abra</option>
                                                                     <option value="agusan_del_norte">Agusan del Norte
                                                                     </option>
@@ -412,11 +454,54 @@ $conn->close();
                                                                     <option value="zamboanga_sibugay">Zamboanga Sibugay
                                                                     </option>
                                                                 </select>
-
-
+                                                            </div>
+                                                            <div ss="col-md-12">
+                                                                <label class="small mb-1"
+                                                                    for="inputOrganizationName">About Us</label>
+                                                                <input class="form-control" id="inputAddressInput"
+                                                                    name="about_us" type="text"
+                                                                    placeholder="About Us"
+                                                                    value="<?php echo htmlspecialchars($profile_data['about_us'] ?? ''); ?>"
+                                                                    required>
+                                                            </div>
+                                                            
+                                                            <div ss="col-md-12">
+                                                                <label class="small mb-1"
+                                                                    for="inputOrganizationName">Corporate Vision</label>
+                                                                <input class="form-control" id="inputAddressInput"
+                                                                    name="corporate_vision" type="text"
+                                                                    placeholder="Corporate Vision"
+                                                                    value="<?php echo htmlspecialchars($profile_data['corporate_vision'] ?? ''); ?>"
+                                                                    required>
+                                                            </div>
+                                                            <div ss="col-md-12">
+                                                                <label class="small mb-1"
+                                                                    for="inputOrganizationName">Corporate Mission</label>
+                                                                <input class="form-control" id="inputAddressInput"
+                                                                    name="corporate_mission" type="text"
+                                                                    placeholder="Corporate Vision"
+                                                                    value="<?php echo htmlspecialchars($profile_data['corporate_mission'] ?? ''); ?>"
+                                                                    required>
+                                                            </div>
+                                                            <div ss="col-md-12">
+                                                                <label class="small mb-1"
+                                                                    for="inputOrganizationName">Corporate Pholosophy</label>
+                                                                <input class="form-control" id="inputAddressInput"
+                                                                    name="corporate_philosophy" type="text"
+                                                                    placeholder="Corporate Vision"
+                                                                    value="<?php echo htmlspecialchars($profile_data['corporate_philosophy'] ?? ''); ?>"
+                                                                    required>
+                                                            </div>
+                                                            <div ss="col-md-12">
+                                                                <label class="small mb-1"
+                                                                    for="inputOrganizationName">Corporate Mission</label>
+                                                                <input class="form-control" id="inputAddressInput"
+                                                                    name="corporate_principles" type="text"
+                                                                    placeholder="Corporate Principles"
+                                                                    value="<?php echo htmlspecialchars($profile_data['corporate_principles'] ?? ''); ?>"
+                                                                    required>
                                                             </div>
                                                         </form>
-
                                                         <?php
                                                         // header('Content-Type: application/json');
                                                     
@@ -424,7 +509,7 @@ $conn->close();
                                                         $data = json_decode(file_get_contents('php://input'), true);
 
 
-                                                        if (isset($data['phone'], $data['zipcode'], $data['address'], $data['city'], $data['province'])) {
+                                                        if (isset($data['phone'], $data['zipcode'], $data['address'], $data['city'], $data['province'], $data['organization_name'], $data['strand'], $data['about_us'], $data['corporate_vision'], $data['corporate_mission'], $data['corporate_philosophy'], $data['corporate_principles'])) {
 
                                                             $response = [
                                                                 'status' => 'success',
@@ -433,7 +518,7 @@ $conn->close();
                                                             ];
                                                             echo json_encode($response);
                                                         } else {
-
+                                                            
                                                             
                                                         }
                                                         ?>
@@ -547,41 +632,9 @@ $conn->close();
                 // Prevent form submission
                 event.preventDefault();
 
-                // Get form fields
-                const firstName = document.getElementById('inputFirstName').value.trim();
-                const middleName = document.getElementById('inputMiddleName').value.trim();
-                const lastName = document.getElementById('inputLastName').value.trim();
-                const lrn = document.getElementById('inputLRN').value.trim();
-                const school = document.getElementById('inputSchool').value;
-                const strand = document.getElementById('inputStrand').value;
-
-                let errorMessages = [];
-
-                if (!firstName) {
-                    errorMessages.push("First name is required.");
-                }
-                if (!lastName) {
-                    errorMessages.push("Last name is required.");
-                }
-                if (!lrn) {
-                    errorMessages.push("LRN is required.");
-                } else if (!/^\d{12}$/.test(lrn)) {
-                    errorMessages.push("LRN must be a 12-digit numeric ID.");
-                }
-                if (!school || school === "") {
-                    errorMessages.push("You must select a school.");
-                }
-                if (!strand || strand === "") {
-                    errorMessages.push("You must select a strand.");
-                }
-
-
-                if (errorMessages.length > 0) {
-                    alert(errorMessages.join("\n"));
-                } else {
-
+                
                     document.getElementById("edit-profile-form").submit();
-                }
+                
             }
         </script>
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

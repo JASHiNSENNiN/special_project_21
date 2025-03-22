@@ -194,6 +194,14 @@ CREATE TABLE IF NOT EXISTS notifications (
     source_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS documentation (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  user_id INT(11) NOT NULL,
+  photo VARCHAR(255) NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 ";
 
 if (mysqli_multi_query($conn, $sql)) {
