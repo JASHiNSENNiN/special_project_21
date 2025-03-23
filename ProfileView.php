@@ -333,14 +333,16 @@ foreach ($documents as $doc) {
 $document_name_mapping = [
     'resume' => 'Resume',
     'application_letter' => 'Application Letter',
-    'parents_consent' => 'Parents Consent',
+    'parents_consent' => 'Parent\'s Consent',
     'barangay_clearance' => 'Barangay Clearance',
     'mayors_permit' => 'Mayor\'s Permit',
     'police_clearance' => 'Police Clearance',
     'medical_certificate' => 'Medical Certificate',
     'insurance_policy' => 'Insurance Policy',
-    'business_permit' => 'Business Permit'
+    'business_permit' => 'Business Permit',
+    'memorandum_of_agreement' => 'Memorandum of Agreement' 
 ];
+
 
 
 $conn = new mysqli($host, $username, $password, $database);
@@ -726,10 +728,10 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
                                                 $document_url = $stmt->fetchColumn();
 
                                                 if ($document_url) {
-                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
                                         <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
                                             Download
                                         </a>
                                         <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->

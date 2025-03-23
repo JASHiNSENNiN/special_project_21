@@ -161,6 +161,8 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
+
+
 $profile_divv = '<header class="nav-header">
         <div class="logo">
             <a href="../../Account/' . ucfirst($_SESSION['account_type']) . '"> 
@@ -205,6 +207,117 @@ $profile_image_path = 'uploads/' . $profile_data['profile_image'];
 $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
 
+
+
+
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+if (isset($_GET['document_name'])) {
+    $document_name = $_GET['document_name'];
+
+    $acceptable_documents = [
+        'resume',
+        'application_letter',
+        'parents_consent',
+        'barangay_clearance',
+        'mayors_permit',
+        'police_clearance',
+        'medical_certificate',
+        'insurance_policy',
+        'business_permit',
+        'memorandum_of_agreement'
+    ];
+
+    // Check if the document name is valid
+    if (!in_array($document_name, $acceptable_documents)) {
+        die("Invalid document name!");
+    }
+
+    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+    $stmt = $pdo->prepare($sql);
+
+    // Bind parameters and execute
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $document_url = $stmt->fetchColumn();
+
+    if ($document_url) {
+        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+
+        echo $file_path;
+        if (file_exists($file_path)) {
+
+            $file_extension = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+
+            $mime_types = [
+                'pdf' => 'application/pdf',
+                'doc' => 'application/msword',
+                'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'txt' => 'text/plain',
+                'png' => 'image/png',
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+
+            ];
+
+            $content_type = isset($mime_types[$file_extension]) ? $mime_types[$file_extension] : 'application/octet-stream';
+
+            header('Content-Description: File Transfer');
+            header('Content-Type: ' . $content_type);
+            header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file_path));
+
+            flush();
+            readfile($file_path);
+            exit;
+        } else {
+            die("File not found!");
+        }
+    } else {
+        die("Document URL not found in the database!");
+    }
+}
+
+$sql = "SELECT document_name FROM uploaded_documents WHERE user_id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$unique_documents = [];
+foreach ($documents as $doc) {
+    if (!empty($doc['document_name']) && !isset($unique_documents[$doc['document_name']])) {
+        $unique_documents[$doc['document_name']] = $doc['document_name'];
+    }
+}
+
+$document_name_mapping = [
+    'resume' => 'Resume',
+    'application_letter' => 'Application Letter',
+    'parents_consent' => 'Parents Consent',
+    'barangay_clearance' => 'Barangay Clearance',
+    'mayors_permit' => 'Mayor\'s Permit',
+    'police_clearance' => 'Police Clearance',
+    'medical_certificate' => 'Medical Certificate',
+    'insurance_policy' => 'Insurance Policy',
+    'business_permit' => 'Business Permit',
+    'memorandum_of_agreement' => 'Memorandum of Agreement'
+];
 
 ?>
 <!DOCTYPE html>
@@ -386,7 +499,7 @@ School'
             <main class="dashboard__main app-content">
                 <article class="app-content__widget app-content__widget--primary">
                     <hr>
-                    <h2 class="title-resume">Application Documents</h2>
+                    <h2 class="title-resume">Application Document</h2>
                     <div id="content-cover">
                         <table class="table" id="sortableTable-docu">
                             <thead>
@@ -409,12 +522,12 @@ School'
                                                 $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
                                                 $stmt->execute();
                                                 $document_url = $stmt->fetchColumn();
-
+                                       
                                                 if ($document_url) {
-                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
                                                     if (file_exists($file_path)): ?>
                                         <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
                                             Download
                                         </a>
                                         <!-- Uncomment the button below to enable viewing functionality -->
@@ -621,6 +734,19 @@ School'
                                     </td>
                                     <td>
                                         <?php
+
+                                            if (!$conn) {
+    try {
+        $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+        $conn = new PDO($dsn, $username, $password, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
+    } catch (PDOException $e) {
+        die("Database connection failed: " . $e->getMessage());
+    }
+}
+
                                         // Check for the document URL and existence of file
                                         $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
                                         $stmt = $pdo->prepare($sql);
@@ -630,7 +756,7 @@ School'
                                         $document_url = $stmt->fetchColumn();
 
                                         if ($document_url) {
-                                            $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                            $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
                                             if (file_exists($file_path)): ?>
                                         <a class="btn btn-download btn-success"
                                             href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
