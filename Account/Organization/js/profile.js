@@ -10,16 +10,29 @@ document
       const reader = new FileReader();
 
       reader.onload = function (e) {
+        const imgContainer = document.createElement("div");
         const img = document.createElement("img");
         img.src = e.target.result;
         img.alt = file.name;
+
+        // Create the close button
+        const closeButton = document.createElement("span");
+        closeButton.classList.add("span-dele");
+        closeButton.innerHTML = "×";
+
+        // Click event for removing the image
+        closeButton.onclick = function () {
+          imgContainer.remove(); // Remove the image container
+        };
 
         // Click event for the image
         img.addEventListener("click", function () {
           openModal(e.target.result, file.name);
         });
 
-        gallery.appendChild(img);
+        imgContainer.appendChild(img);
+        imgContainer.appendChild(closeButton);
+        gallery.appendChild(imgContainer);
       };
       reader.readAsDataURL(file);
     }
@@ -29,13 +42,12 @@ document
 function openModal(src, name) {
   const modal = document.getElementById("image-modal");
   const modalImg = document.getElementById("modal-img");
-  const captionText = document.getElementById("caption");
-  const downloadBtn = document.getElementById("download-btn");
+
+  const downloadBtn = document.querySelector(".download-button");
 
   modal.style.display = "flex";
   modalImg.src = src;
   captionText.innerHTML = name;
-  downloadBtn.style.display = "block";
   downloadBtn.onclick = function () {
     const a = document.createElement("a");
     a.href = src;

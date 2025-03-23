@@ -1486,19 +1486,31 @@ input[type="file"] {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
+}
+
+.gallery div {
+  position: relative; /* Set the parent div to relative to position children absolute */
+  margin: 10px; /* Margin for spacing */
 }
 
 .gallery img {
   width: 150px;
-  margin: 10px;
-  cursor: pointer;
   border-radius: 5px;
-  transition: transform 0.3s;
 }
 
-.gallery img:hover {
-  transform: scale(1.1);
+.span-dele {
+  position: absolute; /* Position it absolutely within the relative parent */
+  top: 5px; /* Distance from the top */
+  right: 5px; /* Distance from the right */
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px; /* Centering the "X" */
 }
 
 .modal {
@@ -1518,7 +1530,6 @@ input[type="file"] {
 
 .modal-content {
   max-width: 40%;
-  /* max-height: 80%; */
 }
 
 .close {
@@ -1531,25 +1542,19 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.btn-dl {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  top: 0px;
-  position: absolute;
-}
 .download-button {
-  background-color: transparent; /* Transparent background */
-  border: none; /* No border */
-  cursor: pointer; /* Change cursor to pointer */
-  padding: 10px; /* Add some padding */
-  font-size: 24px; /* Icon size */
-  color: #fff; /* Icon color, you can change this */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 24px;
+  color: #fff;
   transition: color 0.3s;
   top: 0px;
   position: absolute;
   right: 80px;
 }
+
 .download-button:hover {
-  color: #e0e0e0; /* Change color on hover */
+  color: #e0e0e0;
 }

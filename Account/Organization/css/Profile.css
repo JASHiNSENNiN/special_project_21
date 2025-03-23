@@ -1497,6 +1497,31 @@ input[type="file"] {
   transition: transform 0.3s;
 }
 
+.gallery div {
+  position: relative; /* Set the parent div to relative to position children absolute */
+  margin: 10px; /* Margin for spacing */
+}
+
+.gallery img {
+  width: 150px;
+  border-radius: 5px;
+}
+
+.span-dele {
+  position: absolute; /* Position it absolutely within the relative parent */
+  top: 5px; /* Distance from the top */
+  right: 5px; /* Distance from the right */
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px; /* Centering the "X" */
+}
+
 .gallery img:hover {
   transform: scale(1.1);
 }
@@ -1546,13 +1571,14 @@ input[type="file"] {
   font-size: 24px; /* Icon size */
   color: #fff; /* Icon color, you can change this */
   transition: color 0.3s;
-  top: 20px;
+  top: 0px;
   position: absolute;
   right: 80px;
 }
 .download-button:hover {
   color: #e0e0e0; /* Change color on hover */
 }
+
 /* //////////////////////////////////////textarea/////////////////////////// */
 .editable-container {
   position: relative;
@@ -1565,7 +1591,7 @@ input[type="file"] {
   right: 10px;
 }
 textarea {
-  /* width: 20vh;
+  /* width: 20vh; 
   height: auto;
   resize: none; */
   width: 150vh;
