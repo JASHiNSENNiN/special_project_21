@@ -254,7 +254,7 @@ if (isset($_GET['document_name'])) {
     $document_url = $stmt->fetchColumn();
 
     if ($document_url) {
-        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
 
         echo $file_path;
         if (file_exists($file_path)) {
@@ -490,77 +490,7 @@ $document_name_mapping = [
             </main>
         </div> -->
 
-        <?php if (
-            isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Student' || $_SESSION['account_type'] === '	
-Organization' || $_SESSION['account_type'] === '	
-School'
-        ): ?>
-        <div class="dashboard-body docu">
-            <main class="dashboard__main app-content">
-                <article class="app-content__widget app-content__widget--primary">
-                    <hr>
-                    <h2 class="title-resume">Application Document</h2>
-                    <div id="content-cover">
-                        <table class="table" id="sortableTable-docu">
-                            <thead>
-                                <tr>
-                                    <th class="th-name">Document Name</th>
-                                    <th class="th-date">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($unique_documents as $document_name): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                                // Check for the document URL and existence of file
-                                                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
-                                                $stmt = $pdo->prepare($sql);
-                                                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                                                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
-                                                $stmt->execute();
-                                                $document_url = $stmt->fetchColumn();
-                                       
-                                                if ($document_url) {
-                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
-                                                    if (file_exists($file_path)): ?>
-                                        <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
-                                            Download
-                                        </a>
-                                        <!-- Uncomment the button below to enable viewing functionality -->
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                        <?php else: ?>
-                                        <button disabled>File Not Available</button>
-                                        <?php endif;
-                                                } else { ?>
-                                        <button disabled>No Document Found</button>
-                                        <?php } ?>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                        </table>
-                    </div>
-                    <hr>
-                    <h2 class="title-resume">Insight</h2>
-                    <span class="description-resume">The line chart analyzes student daily performance in work
-                        immersion, and the pie chart displays the distribution of performance levels.</span>
-
-                    <div class="container-grap">
-                        <div class="dp-graph" id="piechart_3d"></div>
-                    </div>
-                    <div class="container-grap">
-                        <div class="dp-graph" id="dp_chart_div"></div>
-                    </div>
-                </article>
-            </main>
-        </div>
-        <?php endif; ?>
+        
 
         <div class="dashboard-body">
 
@@ -722,12 +652,41 @@ School'
                     <div id="content-cover">
                         <table class="table" id="sortableTable-docu">
                             <thead>
-                                <tr>
-                                    <th class="th-name">Document Name</th>
-                                    <th class="th-date">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+    <tr>
+        <th class="th-name">Document Name</th>
+        <th class="th-date">Actions</th>
+    </tr>
+</thead>
+<tbody>
+   <?php foreach ($unique_documents as $document_name): ?>
+    <?php
+    // Start by checking for URL and existence of the document
+    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+    $stmt->execute();
+    $document_url = $stmt->fetchColumn();
+
+    // Only render a row if a valid document exists
+    if ($document_url) { 
+        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
+        ?>
+        <tr>
+            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?></td>
+            <td>
+                <?php if (file_exists($file_path)): ?>
+                    <a class="btn btn-download btn-success" href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
+                        Download
+                    </a>
+                <?php else: ?>
+                    <button disabled>File Not Available</button>
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php } ?> <!-- Only create a row if document_url exists -->
+<?php endforeach; ?>
+</tbody>
 
                                 <tr>
                                     <td>
@@ -759,14 +718,14 @@ School'
                                             $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
                                             if (file_exists($file_path)): ?>
                                         <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
                                             Download
                                         </a>
                                         <!-- Uncomment the button below to enable viewing functionality -->
                                         <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
                                         <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
                                         <?php else: ?>
-                                        <button disabled>File Not Available</button>
+                                        
                                         <?php endif;
                                         } else { ?>
                                         <button disabled>No Document Found</button>
@@ -791,7 +750,7 @@ School'
         <div class="dashboard-body">
 
             <main class="dashboard__main app-content">
-                <article class="app-content__widget app-content__widget--primary">
+                <!-- <article class="app-content__widget app-content__widget--primary">
 
                     <hr>
                     <h2 class="title-resume">Event Highlights</h2>
@@ -819,7 +778,7 @@ School'
 
 
                     </div>
-                    <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                 
                     <hr>
 
                     <span class="description-resume">Upload a clear, well-oriented photo for your profile to ensure
@@ -836,8 +795,7 @@ School'
                                 Upload Photo
                             </span></label>
                     </div>
-
-                    <?php endif; ?>
+>-->
 
 
 

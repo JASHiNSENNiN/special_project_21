@@ -734,8 +734,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
                                             href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
                                             Download
                                         </a>
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                      
                                         <?php else: ?>
                                         <button disabled>File Not Available</button>
                                         <?php endif;

@@ -204,6 +204,115 @@ $profile_divv = '<header class="nav-header">
     $cover_image_path = '/Account/Organization/uploads/' . $profile_data['cover_image'];
 
 
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+if (isset($_GET['document_name'])) {
+    $document_name = $_GET['document_name'];
+
+    $acceptable_documents = [
+        'resume',
+        'application_letter',
+        'parents_consent',
+        'barangay_clearance',
+        'mayors_permit',
+        'police_clearance',
+        'medical_certificate',
+        'insurance_policy',
+        'business_permit',
+        'memorandum_of_agreement'
+    ];
+
+    // Check if the document name is valid
+    if (!in_array($document_name, $acceptable_documents)) {
+        die("Invalid document name!");
+    }
+
+    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+    $stmt = $pdo->prepare($sql);
+
+    // Bind parameters and execute
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $document_url = $stmt->fetchColumn();
+
+    if ($document_url) {
+        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
+
+        echo $file_path;
+        if (file_exists($file_path)) {
+
+            $file_extension = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+
+            $mime_types = [
+                'pdf' => 'application/pdf',
+                'doc' => 'application/msword',
+                'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'txt' => 'text/plain',
+                'png' => 'image/png',
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+
+            ];
+
+            $content_type = isset($mime_types[$file_extension]) ? $mime_types[$file_extension] : 'application/octet-stream';
+
+            header('Content-Description: File Transfer');
+            header('Content-Type: ' . $content_type);
+            header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file_path));
+
+            flush();
+            readfile($file_path);
+            exit;
+        } else {
+            die("File not found!");
+        }
+    } else {
+        die("Document URL not found in the database!");
+    }
+}
+
+$sql = "SELECT document_name FROM uploaded_documents WHERE user_id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$documents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$unique_documents = [];
+foreach ($documents as $doc) {
+    if (!empty($doc['document_name']) && !isset($unique_documents[$doc['document_name']])) {
+        $unique_documents[$doc['document_name']] = $doc['document_name'];
+    }
+}
+
+$document_name_mapping = [
+    'resume' => 'Resume',
+    'application_letter' => 'Application Letter',
+    'parents_consent' => 'Parents Consent',
+    'barangay_clearance' => 'Barangay Clearance',
+    'mayors_permit' => 'Mayor\'s Permit',
+    'police_clearance' => 'Police Clearance',
+    'medical_certificate' => 'Medical Certificate',
+    'insurance_policy' => 'Insurance Policy',
+    'business_permit' => 'Business Permit',
+    'memorandum_of_agreement' => 'Memorandum of Agreement'
+];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -291,15 +400,7 @@ $profile_divv = '<header class="nav-header">
                         </div>
 
                     </div>
-                    <a style=" text-decoration: none; display:contents ;" href="Settings.php">
-                        <button class="edit-button">
-                            <svg class="edit-svgIcon" viewBox="0 0 512 512">
-                                <path
-                                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
-                                </path>
-                            </svg>
-                        </button>
-                    </a>
+                    
                 </div>
 
 
@@ -380,71 +481,7 @@ $profile_divv = '<header class="nav-header">
 Organization' || $_SESSION['account_type'] === '	
 School'
         ): ?>
-            <div class="dashboard-body docu">
-                <main class="dashboard__main app-content">
-                    <article class="app-content__widget app-content__widget--primary">
-                        <hr>
-                        <h2 class="title-resume">Application Documents</h2>
-                        <div id="content-cover">
-                            <table class="table" id="sortableTable-docu">
-                                <thead>
-                                    <tr>
-                                        <th class="th-name">Document Name</th>
-                                        <th class="th-date">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($unique_documents as $document_name): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                // Check for the document URL and existence of file
-                                                $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
-                                                $stmt = $pdo->prepare($sql);
-                                                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                                                $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
-                                                $stmt->execute();
-                                                $document_url = $stmt->fetchColumn();
-
-                                                if ($document_url) {
-                                                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
-                                                    if (file_exists($file_path)): ?>
-                                                        <a class="btn btn-download btn-success"
-                                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
-                                                            Download
-                                                        </a>
-                                                        <!-- Uncomment the button below to enable viewing functionality -->
-                                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                                    <?php else: ?>
-                                                        <button disabled>File Not Available</button>
-                                                    <?php endif;
-                                                } else { ?>
-                                                    <button disabled>No Document Found</button>
-                                                <?php } ?>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            </table>
-                        </div>
-                        <hr>
-                        <h2 class="title-resume">Insight</h2>
-                        <span class="description-resume">The line chart analyzes student daily performance in work
-                            immersion, and the pie chart displays the distribution of performance levels.</span>
-
-                        <div class="container-grap">
-                            <div class="dp-graph" id="piechart_3d"></div>
-                        </div>
-                        <div class="container-grap">
-                            <div class="dp-graph" id="dp_chart_div"></div>
-                        </div>
-                    </article>
-                </main>
-            </div>
+            
         <?php endif; ?>
 
         <div class="dashboard-body">
@@ -613,12 +650,54 @@ School'
                                 </tr>
                             </thead>
                             <tbody>
+   <?php foreach ($unique_documents as $document_name): ?>
+    <?php
+    // Start by checking for URL and existence of the document
+    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+    $stmt->execute();
+    $document_url = $stmt->fetchColumn();
+
+    // Only render a row if a valid document exists
+    if ($document_url) { 
+        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
+        ?>
+        <tr>
+            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?></td>
+            <td>
+                <?php if (file_exists($file_path)): ?>
+                    <a class="btn btn-download btn-success" href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
+                        Download
+                    </a>
+                <?php else: ?>
+                    <button disabled>File Not Available</button>
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php } ?> <!-- Only create a row if document_url exists -->
+<?php endforeach; ?>
+</tbody>
 
                                 <tr>
                                     <td>
                                     </td>
                                     <td>
                                         <?php
+
+                                            if (!$conn) {
+    try {
+        $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+        $conn = new PDO($dsn, $username, $password, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
+    } catch (PDOException $e) {
+        die("Database connection failed: " . $e->getMessage());
+    }
+}
+
                                         // Check for the document URL and existence of file
                                         $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
                                         $stmt = $pdo->prepare($sql);
@@ -628,20 +707,20 @@ School'
                                         $document_url = $stmt->fetchColumn();
 
                                         if ($document_url) {
-                                            $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Student/documents/' . basename($document_url);
+                                            $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
                                             if (file_exists($file_path)): ?>
-                                                <a class="btn btn-download btn-success"
-                                                    href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&student_id=' . $IdParam; ?>">
-                                                    Download
-                                                </a>
-                                                <!-- Uncomment the button below to enable viewing functionality -->
-                                                <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                                <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                            <?php else: ?>
-                                                <button disabled>File Not Available</button>
-                                            <?php endif;
+                                        <a class="btn btn-download btn-success"
+                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
+                                            Download
+                                        </a>
+                                        <!-- Uncomment the button below to enable viewing functionality -->
+                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                        <?php else: ?>
+                                        
+                                        <?php endif;
                                         } else { ?>
-                                            <button disabled>No Document Found</button>
+                                        <button disabled>No Document Found</button>
                                         <?php } ?>
                                     </td>
                                 </tr>
@@ -663,7 +742,7 @@ School'
         <div class="dashboard-body">
 
             <main class="dashboard__main app-content">
-                <article class="app-content__widget app-content__widget--primary">
+                <!-- <article class="app-content__widget app-content__widget--primary">
 
                     <hr>
                     <h2 class="title-resume">Event Highlights</h2>
@@ -691,7 +770,7 @@ School'
 
 
                     </div>
-                    <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
+                  
                         <hr>
 
                         <span class="description-resume">Upload a clear, well-oriented photo for your profile to ensure
@@ -709,10 +788,10 @@ School'
                                 </span></label>
                         </div>
 
-                    <?php endif; ?>
+                    
 
 
-                </article>
+                </article> -->
 
             </main>
         </div>

@@ -109,7 +109,7 @@ $profile_divv = '<header class="nav-header">
         <i class="fas fa-exclamation-triangle"></i>
       </div>
       <h1 class="wait">Account Verification</h1>
-      <div class="message">Please upload all requirements to verify your account <a href="Upload.php">here</a>.
+      <div class="message">Please upload all requirements <a href="Upload.php">here</a> and wait for the school to verify your account.
       </div>
       <!-- <a href="Upload.php"><button class="button-10">Upload file</button></a> -->
     </div>

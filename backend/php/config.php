@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS partner_profiles (
   corporate_mission TEXT,
   corporate_philosophy TEXT,
   corporate_principles TEXT,
+  verified_status BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 

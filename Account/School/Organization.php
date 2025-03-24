@@ -11,7 +11,7 @@ $ProfileViewURL = "../../ProfileView.php";
 function get_students_by_strand($strand)
 {
 
-    $host = "localhost";
+    $host = "localhost"; 
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
     $database = $_ENV['MYSQL_DBNAME'];
@@ -56,10 +56,7 @@ function get_students_by_strand($strand)
     return $students;
 }
 
-// function verify_student($student_id)
-// {
-// }
-function verify_student($student_id)
+function verify_org($org_id)
 {
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
@@ -72,17 +69,14 @@ function verify_student($student_id)
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $stmt = $conn->prepare("UPDATE student_profiles SET verified_status = TRUE WHERE user_id = ?");
-    $stmt->bind_param("i", $student_id);
+    $stmt = $conn->prepare("UPDATE partner_profiles SET verified_status = TRUE WHERE user_id = ?");
+    $stmt->bind_param("i", $org_id);
     $stmt->execute();
     $stmt->close();
     $conn->close();
 }
 
-// function unverify_student($student_id)
-// {}
-
-function unverify_student($student_id)
+function unverify_org($org_id)
 {
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
@@ -95,28 +89,27 @@ function unverify_student($student_id)
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $stmt = $conn->prepare("UPDATE student_profiles SET verified_status = FALSE WHERE user_id = ?");
-    $stmt->bind_param("i", $student_id);
+    $stmt = $conn->prepare("UPDATE partner_profiles SET verified_status = FALSE WHERE user_id = ?");
+    $stmt->bind_param("i", $org_id);
     $stmt->execute();
     $stmt->close();
     $conn->close();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['student_id'])) {
-    $student_id = intval($_POST['student_id']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['org_id'])) {
+    $org_id = intval($_POST['org_id']);
     $action = $_POST['action'];
 
     if ($action === 'verify') {
-        verify_student($student_id);
+        verify_org($org_id);
     } elseif ($action === 'unverify') {
-        unverify_student($student_id);
+        unverify_org($org_id);
     }
 
-    // header("Location: " . $_SERVER['PHP_SELF']); 
-    // exit();
+    // Redirect back to the same page after verification
+    header("Location: " . $_SERVER['PHP_SELF']); 
+    exit();
 }
-
-$list_organization = get_students_by_strand('list');
 
 function displayPartnerOrganizations()
 {
@@ -132,8 +125,8 @@ function displayPartnerOrganizations()
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Fetch all partner organizations
-    $sql = "SELECT pp.user_id, pp.organization_name, u.profile_image 
+    // Fetch all partner organizations with their verification status
+    $sql = "SELECT pp.user_id, pp.organization_name, u.profile_image, pp.verified_status 
             FROM partner_profiles pp
             JOIN users u ON pp.user_id = u.id
             WHERE u.account_type = 'Organization'";
@@ -147,6 +140,7 @@ function displayPartnerOrganizations()
                         <th>#</th>
                         <th>Profile Photo</th>
                         <th>Organization Name</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>';
 
@@ -155,17 +149,26 @@ function displayPartnerOrganizations()
             $encoded_id = base64_encode(encrypt_url_parameter((string) $row['user_id']));
             $profile_image = !empty($row['profile_image']) ? "/Account/Organization/uploads/" . $row['profile_image'] : "Account/Organization/uploads/default.png";
 
-            echo "<tr>
-                    <td data-th='#'>{$count}</td>
-                    <td data-th='ID Picture'><img class='idpic' src='{$profile_image}' alt='Profile Photo'></td>
-                    <td data-th='Organization Name'>{$row['organization_name']}</td>
-                    <td data-th='Action'>
-                        <button class='button-9' role='button' 
-                            onclick=\"window.location.href='../../ProfileOrgView.php?organization_id={$encoded_id}'\">
-                            View Profile
-                        </button>
-                    </td>
-                  </tr>";
+            echo "<tr>";
+            echo "<td data-th='#'>" . $count . "</td>";
+            echo "<td data-th='ID Picture'><img class='idpic' src='" . $profile_image . "' alt='Organization Photo'></td>";
+            echo "<td data-th='Organization Name'>" . $row['organization_name'] . "</td>";
+            echo "<td data-th='Status'>" . ($row['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+
+            echo "<td data-th='Action'>";
+            // Action form for verification and unverification
+            echo "<form method='post' style='display: inline;'>";
+            echo "<input type='hidden' name='org_id' value='" . $row['user_id'] . "'>";
+            if ($row['verified_status']) {
+                echo "<button class='button-11' type='submit' name='action' value='unverify' autofocus>Unverify</button><br>";
+            } else {
+                echo "<button class='button-10' type='submit' name='action' value='verify' autofocus>Verify</button><br>";
+            }
+            echo "</form>";
+            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileOrgView.php?organization_id=" . $encoded_id . "'\">View Profile</button>";
+            echo "</td>";
+            echo "</tr>";
+            
             $count++;
         }
 
@@ -176,6 +179,8 @@ function displayPartnerOrganizations()
 
     $conn->close();
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

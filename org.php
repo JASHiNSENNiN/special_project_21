@@ -156,9 +156,16 @@ function generateJobCard()
     echo '<div class="container">';
     echo '<div class="eleven columns">';
 
-    echo '<span class="job-category"><a href="#">Organization</a></span>';
-    // echo '<h1>' . htmlspecialchars($job['work_title']);
-    echo '<h1> ' .  htmlspecialchars($job['organization_name']);
+    $encoded_id = base64_encode(encrypt_url_parameter((string) $job['user_id']));
+
+echo '<span class="job-category"><a href="#">Organization</a></span>';
+echo '<h1>';
+echo '<a href="../../ProfileOrgView.php?organization_id=' . $encoded_id . '" 
+        onclick="window.location.href=\'../../ProfileOrgView.php?organization_id=' . $encoded_id . '\'; return false;"
+        style="text-decoration: underline !important; color: inherit !important; display: inline-block;">'
+    . htmlspecialchars($job['organization_name']) .
+    '</a>';
+echo '</h1>';
 
     // foreach ($strands as $strand) {
     //     echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';

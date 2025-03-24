@@ -91,22 +91,47 @@ $has_evaluation_today = $result['eval_count'] > 0;
             <input class="inp" type="date" id="date" name="date" value="" required>
         </div>
 
-        <div class="form-group">
-            <label class="Jor" for="day">Select Day (1-10)</label>
-            <select class="inp" id="day" name="day" required>
-                <option value="" disabled selected>Select a day</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-        </div>
+        <?php
+
+
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
+
+$conn = new mysqli($host, $username, $password, $database);
+$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+
+// Get evaluator ID
+$evaluator_id = $_SESSION['user_id'];
+
+// Get student ID from the decoded parameter
+$user_id = decrypt_url_parameter(base64_decode($IdParam));
+
+// Fetch evaluated days for this evaluator & student
+$evaluated_days = [];
+$sql = "SELECT day FROM Student_Evaluation WHERE evaluator_id = :evaluator_id AND student_id = :student_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':evaluator_id', $evaluator_id, PDO::PARAM_INT);
+$stmt->bindParam(':student_id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$evaluated_days = $stmt->fetchAll(PDO::FETCH_COLUMN);
+?>
+
+<div class="form-group">
+    <label class="Jor" for="day">Select Day (1-10)</label>
+    <select class="inp" id="day" name="day" required>
+        <option value="" disabled selected>Select a day</option>
+        <?php for ($i = 1; $i <= 10; $i++): ?>
+            <option value="<?= $i ?>">
+                <?= $i ?> <?= in_array((string)$i, $evaluated_days) ? '✔️ (Completed)' : '' ?>
+            </option>
+        <?php endfor; ?>
+    </select>
+</div>
+
+
+        
     </div>
     <div class="wrapper">
         <div class="header1">
