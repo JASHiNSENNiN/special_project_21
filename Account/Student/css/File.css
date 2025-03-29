@@ -8,6 +8,7 @@ body {
   /* background-image: url("/Account/Student/image/DrRamonv2.svg");
   background-size: cover;
   background-repeat: no-repeat; */
+  overflow-x: hidden;
 }
 
 #background {
@@ -124,7 +125,7 @@ body {
   justify-content: space-around;
   align-items: center;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-  position: fixed;
+  /* position: fixed; */
   gap: 30rem;
 }
 
@@ -520,6 +521,10 @@ body {
   content: "";
   display: table;
   clear: both;
+}
+
+.row {
+  margin-top: 3rem;
 }
 
 /* Container for the circle */
