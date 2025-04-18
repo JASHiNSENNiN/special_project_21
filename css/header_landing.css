@@ -44,7 +44,8 @@ h3 {
 nav {
     text-align: center;
     display: flex;
-    gap: 178px;
+    /* gap: 178px; */
+    justify-content: space-between;
 }
 
 nav a {

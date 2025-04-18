@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 (Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . '/'))->load();
 
@@ -111,7 +110,7 @@ function getSchoolList($conn)
 
 <head>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/backend/php/ajax/checkAccType.php', true);
             xhr.send();
@@ -229,11 +228,11 @@ function getSchoolList($conn)
                                     <option value="GAS">GAS</option>
                                     <option value="TVL">TVL</option>
                                 </select>
-                                        
+
                                 <input type="text" id="numberInput" name="phone_number" placeholder="Enter phone number">
                                 <input type="text" id="zipcodenum" name="zip_code" placeholder="ZIP CODE">
                                 <input type="text" id="inputAddressInput" name="address" placeholder="Street Name, House No., Barangay">
-                                <input type="text" id="cityInput" name="city" placeholder="Enter city/town" >
+                                <input type="text" id="cityInput" name="city" placeholder="Enter city/town">
 
                                 <select class="form-control" id="provinces" name="provinces"
                                     style="margin-bottom: 10px;">
@@ -325,7 +324,7 @@ function getSchoolList($conn)
                                 <textarea id="corporatePhilosophy" name="corporate_philosophy" placeholder="Write the corporate philosophy..."></textarea>
                                 <textarea id="corporatePrinciples" name="corporate_principles" placeholder="Write the corporate principles..."></textarea>
                             </div>
-                            <nav>
+                            <nav class="nav-gt">
                                 <a style="text-decoration: none" href="login.php">
                                     <button class="btn-login" id="switch-to-login">
 
@@ -641,9 +640,9 @@ function uploadImages() {
         });
 
         fetch('YOUR_SERVER_URL_HERE', {
-            method: 'POST',
-            body: formData
-        })
+                method: 'POST',
+                body: formData
+            })
             .then(response => response.json())
             .then(data => {
                 alert('Documents uploaded successfully!');
@@ -694,9 +693,9 @@ function uploadImages() {
         });
 
         fetch('YOUR_SERVER_URL_HERE', {
-            method: 'POST',
-            body: formData
-        })
+                method: 'POST',
+                body: formData
+            })
             .then(response => response.json())
             .then(data => {
                 alert('Images uploaded successfully!');

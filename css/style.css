@@ -234,9 +234,15 @@ header {
     padding-left: 100px;
     text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between !important;
     align-items: center;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 500px) {
+    header {
+        padding: 0px !important;
+    }
 }
 
 .logo {
@@ -260,6 +266,7 @@ header {
 nav {
     text-align: center;
     display: flex;
+    place-items: center;
 }
 
 nav a {
@@ -418,7 +425,7 @@ nav a:hover::after {
         font-size: 14px !important;
     }
     .login-btn {
-        /* width: 10% !important; */
+        width: 100% !important;
         height: 10% !important;
     }
 }
@@ -1301,16 +1308,23 @@ html {
     }
 }
 
+/* @media screen and (max-width: 400px) {
+    header {
+        padding: 0px !important;
+    }
+} */
+
 @media screen and (max-width: 393px) {
     header {
         padding-top: 5px;
         padding-right: 5px;
         padding-left: 25px;
     }
-    nav a {
-        /* padding: 5px 10px !important;
-        margin: 0 10px !important; */
-        font-size: 3px !important;
+    .frontend-txt-xl {
+        font-size: 0.8rem !important;
+    }
+    .bg-search {
+        height: 140px;
     }
     .logo img {
         width: 70px;

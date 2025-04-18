@@ -251,12 +251,13 @@ nav {
   text-align: center;
   display: flex;
   margin-right: 180px;
+  place-items: center;
 }
 
 nav a {
   color: #000000;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 15px 15px;
   margin: 0 10px;
   border-radius: 5px;
   position: relative;
@@ -280,7 +281,6 @@ nav .login-btn:hover {
   color: #000;
   /* background-color: rgb(37, 216, 180); */
   background-color: rgba(27, 188, 155, 0.3);
-
   font-weight: bold;
 }
 
@@ -322,7 +322,7 @@ nav .login-btn:hover {
 .dropdown {
   position: relative;
   display: inline-block;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .dropdown-content {
@@ -509,8 +509,9 @@ nav a:hover::after {
   }
   nav a {
     /* padding: 5px 10px !important; */
-    margin: 0 10px !important;
-    font-size: 14px !important;
+    /* margin: 0 10px !important; */
+    display: grid;
+    font-size: 12px !important;
   }
   .login-btn {
     /* width: 10% !important; */
@@ -539,7 +540,8 @@ nav a:hover::after {
   /* border-radius: 10px; */
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -1209,7 +1211,8 @@ html {
 
 .menu-dot {
   background-color: var(--placeholder-color);
-  box-shadow: -6px 0 0 0 var(--placeholder-color),
+  box-shadow:
+    -6px 0 0 0 var(--placeholder-color),
     6px 0 0 0 var(--placeholder-color);
   width: 4px;
   height: 4px;
@@ -1651,7 +1654,8 @@ html {
   outline: 0;
 }
 
-.fa {
+.fa,
+.fas {
   margin: 6px;
 }
 
@@ -1668,7 +1672,8 @@ input[type="file"] {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -1679,8 +1684,10 @@ input[type="file"] {
 }
 
 .button-12:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow:
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 
@@ -1703,27 +1710,28 @@ input[type="file"] {
   /* background-color: #555; */
   /* color: white; */
   text-decoration: none;
-  padding: 15px 26px;
+  padding: 15px 15px;
   position: relative;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   display: inline-block;
   border-radius: 2px;
 }
 
 /* ---------------------------------Uploadfile-------------------------------- */
+
 .container {
   height: 350px;
   width: 100%;
   align-items: center;
   display: flex;
   justify-content: center;
-  background-color: #fcfcfc;
+  /* background-color: #01643609; */
 }
 
 .card {
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-  width: 600px;
+  width: 500px;
   height: auto;
   background-color: #ffffff;
   padding: 10px 30px 40px;
@@ -1776,6 +1784,7 @@ input[type="file"] {
   border: none;
   outline: 1px solid #010101;
 }
+
 .form input {
   margin: 10px 0;
   width: 100%;
@@ -1796,6 +1805,7 @@ input[type="file"] {
 }
 
 /* Create two equal columns that floats next to each other */
+
 .column {
   text-align: center;
   justify-content: center;
@@ -1803,10 +1813,12 @@ input[type="file"] {
   width: 50%;
   margin-top: 50px;
   /* padding: 10px; */
-  height: auto; /* Should be removed. Only for demonstration */
+  height: auto;
+  /* Should be removed. Only for demonstration */
 }
 
 /* Clear floats after the columns */
+
 .row:after {
   content: "";
   display: table;
@@ -1814,6 +1826,7 @@ input[type="file"] {
 }
 
 /* Container for the circle */
+
 .check-icon {
   width: 30px;
   height: 30px;
@@ -1828,6 +1841,7 @@ input[type="file"] {
 }
 
 /* Checkmark style */
+
 .check-icon::before {
   content: "";
   width: 10px;
@@ -1836,4 +1850,37 @@ input[type="file"] {
   border-bottom: 4px solid white;
   transform: rotate(-45deg);
   position: absolute;
+}
+
+.row-uqld-crd {
+  padding: 65px 0px;
+  background-color: #01643609;
+}
+
+/* --------nav resqonsive------------- */
+
+@media (max-width: 500px) {
+  .nav-header {
+    padding: 0px !important;
+    justify-content: space-around;
+  }
+  .row-uqld-crd {
+    display: grid !important;
+    /* padding-bottom: 50px; */
+    padding: 65px 0px;
+    place-items: center;
+  }
+  .bt a {
+    padding: 5px !important;
+    display: grid;
+    max-width: 55px;
+    font-size: 20px !important;
+  }
+  .bt span {
+    display: none;
+  }
+  .card {
+    position: absolute;
+    width: 350px;
+  }
 }

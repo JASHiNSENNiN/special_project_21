@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
-}
-;
+};
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
@@ -961,7 +960,7 @@ require_once 'show_profile.php';
           input.click();
         };
 
-        input.addEventListener("change", function (e) {
+        input.addEventListener("change", function(e) {
           const files = e.target.files;
           fileListElement.innerHTML = '';
 

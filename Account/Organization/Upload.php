@@ -1,8 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-;
+};
 require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/php/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -252,18 +251,18 @@ require_once 'show_profile.php';
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
-            <a href="Job_request.php"><i class="fa fa-user-plus"></i> Job Request</a>
-            <a href="Faculty_report.php"><i class='fas fa-tasks'></i> Student Evaluation</a>
-            <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
-            <a class="active" id="#area" href="Upload.php"> File Upload</a>
+            <a href="Job_ads.php" title="Creating Job Ads"><i class="fa fa-calendar-plus-o"></i> <span>Job Ads</span> </a>
+            <a href="Job_request.php" title="Job Request"><i class="fa fa-user-plus"></i><span>Job Request</span> </a>
+            <a href="Faculty_report.php" title="Student Evaluation"><i class='fas fa-tasks'></i><span>Student Evaluation</span> </a>
+            <a href="Details.php" title="Analytics"><i class="fa fa-bar-chart"></i><span>Analytics</span></a>
+            <a class="active" id="#area" href="Upload.php" title="File Upload"><i class="fa fa-upload" aria-hidden="true"></i><span>File Upload</span> </a>
 
         </nav>
     </div>
     <hr class="line_bottom">
 
 
-    <div class="row">
+    <div class="row row-uqld-crd">
         <div class="column">
             <div class="container">
                 <div class="card">
@@ -324,10 +323,10 @@ require_once 'show_profile.php';
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function () {
+        window.onscroll = function() {
             myFunction();
         };
-        window.onscroll = function () {
+        window.onscroll = function() {
             myFunction();
         };
 
@@ -373,7 +372,7 @@ require_once 'show_profile.php';
                     input.click();
                 };
 
-                input.addEventListener("change", function (e) {
+                input.addEventListener("change", function(e) {
                     const files = e.target.files; // Get the selected files
                     fileListElement.innerHTML = ''; // Clear the previous file list
 

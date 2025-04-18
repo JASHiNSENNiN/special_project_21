@@ -19,6 +19,25 @@ body {
     display: flex;
 }
 
+@media (max-width: 500px) {
+    .section-yj7db7 {
+        margin: 0px !important;
+        padding: 10px !important;
+    }
+    .sfa {
+        font-size: 2rem !important;
+    }
+    .nav-hd-txt {
+        display: none !important;
+    }
+    header {
+        padding: 0px !important;
+    }
+    .partner-logo {
+        width: 50% !important;
+    }
+}
+
 .partner-logo {
     position: static;
 }
@@ -203,6 +222,7 @@ header {
 nav {
     text-align: center;
     display: flex;
+    place-items: center;
 }
 
 nav a {
@@ -357,13 +377,16 @@ nav a:hover::after {
         margin-right: 15px !important;
     }
     nav a {
-        padding: 5px 10px !important;
+        padding: 10px 10px !important;
         margin: 0 10px !important;
         font-size: 14px !important;
     }
     .login-btn {
-        /* width: 10% !important; */
+        width: 100% !important;
         height: 10% !important;
+    }
+    nav a {
+        font-size: 0.8rem !important;
     }
 }
 
@@ -371,7 +394,6 @@ nav a:hover::after {
 
 .css-1ld7x2h {
     background-color: #d4d2d0;
-    margin: 0.75rem 0 0;
 }
 
 .css-1ld7x2h {
@@ -386,7 +408,7 @@ nav a:hover::after {
 .stickyhead {
     position: fixed;
     top: 0;
-    width: 97%;
+    width: 100%;
 }
 
 .stickyhead + .content-sticky {
