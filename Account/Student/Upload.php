@@ -700,7 +700,7 @@ require_once 'show_profile.php';
     <div class="logo">
 
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
-            <a id="#area" href="Company_area.php"> Company Area</a>
+            <a id="#area" href="Company_Area.php"> Company Area</a>
             <a class="active" id="#area" href="Upload.php"> File Upload</a>
             <!-- <a class="link" id="#review" href="Company_Review.php">Company review</a>
             <a class="link" id="#narrative" href="Narrative_Report.php">Narrative Report</a> -->
