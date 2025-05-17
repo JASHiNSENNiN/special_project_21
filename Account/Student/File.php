@@ -676,7 +676,7 @@ $profile_divv = '<header class="nav-header">
  <div class="menu">
   <div class="item">
     <a class="link">
-      <span class="firstname"> <span class="username">Welcome </span> ' . $firstName . ' </span>
+      <span class="firstname"> <span class="username">Welcome </span> ' .$_SESSION['first_name'] . ' </span>
       <svg viewBox="0 0 360 360" xml:space="preserve">
         <g id="SVGRepo_iconCarrier">
           <path
