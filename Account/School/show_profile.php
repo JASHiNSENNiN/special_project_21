@@ -171,7 +171,7 @@ $profile_div = '<header class="nav-header">
                 <div class="email">' . $email . '</div>
                 
                 <a href="../../weather_page.php"><i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i> Weather Update</a>
-                <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Settings</a>
+                <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px"></i> Account Management</a>
                 <hr>
                 <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px"></i> Log out</a>
             </div>
@@ -227,7 +227,7 @@ $navbar_div = '<header class="nav-header">
                         FIle Upload</a>
       </div>
       <div class="submenu-item active-text-setting">
-        <a href="Settings.php"> Settings & privacy</a>
+        <a href="Settings.php"> Account Management</a>
       </div>
       <hr>
       <a class="logout"  href="' . '/backend/php/logout.php' . '">

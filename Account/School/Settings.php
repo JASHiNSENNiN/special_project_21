@@ -144,7 +144,7 @@ $conn->close();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/Settings.css">
-    <title>Settings</title>
+    <title>Account Management</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
 
@@ -183,7 +183,7 @@ $conn->close();
 
         <div class="home-content">
             <div class="container light-style flex-grow-1 container-p-y">
-                <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+                <h4 class="font-weight-bold py-3 mb-4">Account Management</h4>
                 <div class="card overflow-hidden">
                     <div class="row no-gutters row-bordered row-border-light">
 
@@ -266,7 +266,7 @@ $conn->close();
 
                                     if (file) {
                                         const reader = new FileReader();
-                                        reader.onload = function(e) {
+                                        reader.onload = function (e) {
                                             img.src = e.target.result;
                                         };
                                         reader.readAsDataURL(file);
