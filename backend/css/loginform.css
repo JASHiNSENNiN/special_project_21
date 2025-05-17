@@ -1,0 +1,522 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  /* ////////DR RAMON COLOR //// */
+  background-color: #ffe77d;
+  /* background-color: #f2f2f2; */
+  color: #1c1e21;
+}
+
+main {
+  height: 90vh;
+  width: 100vw;
+  position: relative;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.colm-logo {
+  flex: 0 0 50%;
+  text-align: left;
+}
+
+.colm-form {
+  flex: 0 0 40%;
+  /* text-align: center; */
+}
+
+/* .br-text {
+  display: none;
+} */
+
+/* Media Query for devices with a max width of 768px (tablets and smaller devices) */
+
+@media (max-width: 768px) {
+  .colm-form {
+    flex: 0 0 60%;
+  }
+  .chek {
+    width: 12% !important;
+  }
+  .br-text {
+    display: block;
+  }
+}
+
+/* Media Query for devices with a max width of 480px (mobile devices) */
+
+@media (max-width: 480px) {
+  .colm-form {
+    flex: 0 0 85%;
+    /* On very small screens, it takes full width */
+  }
+}
+
+.colm-logo h2 {
+  font: 26px;
+  font-weight: 400;
+  padding: 0 40px;
+  line-height: 32px;
+}
+
+.colm-logo h1 {
+  font-size: 60px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font: 26px;
+  padding: 0 30px 30px;
+  line-height: 32px;
+}
+
+.colm-form .form-container {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); */
+  margin-bottom: 30px;
+  padding: 20px;
+  max-width: 400px;
+  border: 1px solid;
+  border-color: rgb(212, 210, 208);
+}
+
+/* Media Query for devices with a max width of 768px (tablets and smaller devices) */
+
+@media (max-width: 768px) {
+  .colm-form .form-container {
+    max-width: 100%;
+    /* Allow the form container to take full width */
+    padding: 15px;
+    /* Adjust padding for smaller screens */
+  }
+}
+
+/* Media Query for devices with a max width of 480px (mobile devices) */
+
+@media (max-width: 480px) {
+  .colm-form .form-container {
+    padding: 10px;
+    /* Further reduce padding for very small screens */
+  }
+}
+
+.css-ddheu4 {
+  font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto,
+    sans-serif;
+  opacity: 1;
+  transition:
+    opacity 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s,
+    color 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  color: rgb(45, 45, 45);
+  font-weight: 700;
+  display: inline-block;
+  padding-block: 0px;
+  padding-inline: 0px;
+  margin-block-end: 0.25rem;
+  margin-bottom: 0px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.css-ers2ar {
+  box-sizing: border-box;
+  margin-block: 0px;
+  margin-inline: 0px;
+  min-inline-size: 0px;
+  color: rgb(169, 37, 43);
+}
+
+.css-e1gwqt {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  text-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: rgb(89, 89, 89);
+  inline-size: 100%;
+  margin-block: 0.5rem;
+}
+
+.css-1lfd96m {
+  font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto,
+    sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.css-e1gwqt::before,
+.css-e1gwqt::after {
+  content: "";
+  flex: 1 1 auto;
+  background-color: rgb(212, 210, 208);
+  block-size: 1px;
+}
+
+.css-e1gwqt .e15p7aqh0 {
+  padding-block: 0.5rem;
+  padding-inline: 0.5rem;
+}
+
+.btn-login span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+}
+
+.btn-login svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover svg {
+  transform: translateX(0);
+}
+
+.btn-login:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: #ffffff;
+  padding-bottom: 20px;
+}
+
+.colm-form .form-container select,
+.colm-form .form-container input,
+.colm-form .form-container .btn-login {
+  width: 100%;
+  margin: 5px 0;
+  height: 45px;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.colm-form .form-container select,
+.colm-form .form-container input {
+  border: 1px solid #dddfe2;
+  color: #1d2129;
+  padding: 0 8px;
+  outline: none;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .colm-form .form-container select,
+  .colm-form .form-container input {
+    padding: 0 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .colm-form .form-container select,
+  .colm-form .form-container input {
+    padding: 0 12px;
+    font-size: 16px;
+  }
+}
+
+.colm-form .form-container a:hover {
+  text-decoration: underline;
+}
+
+/* /////////////////////////WORKIFY CSS //////////////// */
+
+/* .colm-form .form-container input:focus {
+  border-color: #1bbc9b;
+  box-shadow: 0 0 0 2px #e7f3ff;
+}
+
+.colm-form .form-container .btn-login {
+  background-color: #16a387;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  padding: 0 16px;
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.colm-form .form-container .btn-login:hover {
+  background-color: #12836c;
+}
+
+.colm-form .form-container a {
+  display: block;
+  color: #12836c;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 0 20px;
+}
+
+.colm-form .form-container .btn-new {
+  background-color: #16a387;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  line-height: 48px;
+  padding: 0 16px;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.colm-form .form-container .btn-new:hover {
+  background-color: #12836c;
+} */
+
+/* /////////////////////////////END ///////////////////// */
+
+/* //////////DR RAMON COLOR //////// */
+
+.colm-form .form-container input:focus {
+  border-color: #016435;
+  box-shadow: 0 0 0 2px #e7f3ff;
+}
+
+.colm-form .form-container .btn-login {
+  background-color: #016435;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  padding: 0 16px;
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.colm-form .form-container .btn-login:hover {
+  background-color: #044e2c;
+}
+
+.colm-form .form-container a {
+  display: block;
+  color: #016435;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 0 20px;
+}
+
+.colm-form .form-container .btn-new {
+  background-color: #016435;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  line-height: 48px;
+  padding: 0 16px;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.colm-form .form-container .btn-new:hover {
+  background-color: #044e2c;
+}
+
+/* //////////////////////END/////////////////////// */
+
+.colm-form p {
+  font-size: 14px;
+}
+
+.colm-form p a {
+  text-decoration: none;
+  color: #1c1e21;
+  font-weight: 600;
+}
+
+.colm-form p a:hover {
+  text-decoration: underline;
+}
+
+.colm-form select option.null-type {
+  color: #999;
+}
+
+/* ----------------------------------------Google button style------------------------ */
+
+.login-with-google-btn {
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+  padding: 12px 16px 12px 42px;
+  border: none;
+  border-radius: 3px;
+  box-shadow:
+    0 -1px 0 rgba(0, 0, 0, 0.04),
+    0 1px 1px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  color: #757575;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 12px 11px;
+  &:hover {
+    box-shadow:
+      0 -1px 0 rgba(0, 0, 0, 0.04),
+      0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+  &:active {
+    background-color: #eeeeee;
+  }
+  &:focus {
+    outline: none;
+    box-shadow:
+      0 -1px 0 rgba(0, 0, 0, 0.04),
+      0 2px 4px rgba(0, 0, 0, 0.25),
+      0 0 0 3px #c8dafc;
+  }
+  &:disabled {
+    filter: grayscale(100%);
+    background-color: #ebebeb;
+    box-shadow:
+      0 -1px 0 rgba(0, 0, 0, 0.04),
+      0 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
+}
+
+.bottom-login,
+.link-terms-pp {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+.link-terms-pp {
+  /* padding: 10px 0 20px; */
+  color: #999 !important;
+  font-size: 11px !important;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: ruby;
+}
+
+.link-terms-pp a {
+  font-size: 11px !important;
+  padding: 0px !important;
+}
+
+.bottom-login p {
+  padding: 10px 0 20px;
+  color: #999;
+}
+
+/* .logo-login {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  margin-top: 100px;
+  margin-bottom: 20px;
+} */
+
+/* ///////DR RAMON CSS/// */
+
+.logo-login {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin-top: 100px;
+}
+
+/* --------------------------------------------footer--------------------------------------------- */
+
+/* footer {
+  position: fixed;
+  color: #172738;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+} */
+
+/* ////////DR RAMON COLOR //////// */
+
+footer {
+  position: fixed;
+  background-color: #016435;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.chek {
+  width: 10%;
+  font-size: 12px;
+  margin: -10px;
+  margin-bottom: -20px;
+  margin-left: 2px;
+  padding: 10px;
+}
+
+.chek input {
+  height: auto !important;
+}
+
+.show {
+  position: relative;
+  top: -9px;
+  left: 35px;
+  margin: 0;
+}
+
+/* @media (max-width: 768px) {
+  .chek {
+    width: 20%;
+    font-size: 14px;
+    margin: 0 5px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chek {
+    width: 30%;
+    font-size: 16px;
+    padding: 15px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .show {
+    left: 25px;
+    top: -5px;
+  }
+} */

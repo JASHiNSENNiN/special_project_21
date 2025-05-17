@@ -156,7 +156,7 @@ function generateJobCard()
     echo '<div class="container">';
     echo '<div class="eleven columns">';
 
-    $encoded_id = base64_encode(encrypt_url_parameter((string) $job['user_id']));
+    $encoded_id = base64_encode(encrypt_url_parameter((string) $job['partner_id']));
 
 echo '<span class="job-category"><a href="#">Organization</a></span>';
 echo '<h1>';
