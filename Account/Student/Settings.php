@@ -257,7 +257,8 @@ $conn->close();
                                                         src="<?php echo $profile_data['cover_image'] ? 'uploads/' . $profile_data['cover_image'] : 'uploads/cover.png'; ?>"
                                                         alt="Cover Image Preview" style="width: 100%; height: auto;">
                                                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than
-                                                        5 MB</div>
+                                                        5 MB
+                                                    </div>
                                                     <input type="file" id="image-upload-cover" accept="image/jpeg,image/png"
                                                         style="display: none;"
                                                         onchange="previewImage('image-upload-cover', 'profile-image-cover')"
@@ -277,7 +278,9 @@ $conn->close();
                                                         alt="Profile Image Preview"
                                                         style="width: 200px; height: 200px; object-fit: cover;">
                                                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than
-                                                        5 MB</div>
+                                                        5 MB <br>
+                                                        <div style="color: red;">*Wear Formal Attire or Uniform</div>
+                                                    </div>
                                                     <input type="file" id="image-upload" name="profile_image"
                                                         accept="image/jpeg,image/png" style="display: none;"
                                                         onchange="previewImage('image-upload', 'profile-image')">
@@ -294,7 +297,7 @@ $conn->close();
 
                                                 if (file) {
                                                     const reader = new FileReader();
-                                                    reader.onload = function (e) {
+                                                    reader.onload = function(e) {
                                                         img.src = e.target.result;
                                                     }
                                                     reader.readAsDataURL(file);
