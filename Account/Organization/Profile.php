@@ -78,7 +78,6 @@ try {
         $profile_image = !empty($_SESSION['profile_image']) && $_SESSION['profile_image'] !== './uploads/'
             ? $_SESSION['profile_image']
             : './image/default.png';
-
     } catch (PDOException $e) {
         // Handle PDO exceptions
         echo 'Database error: ' . $e->getMessage();
@@ -352,7 +351,8 @@ $document_name_mapping = [
         <ul>
 
             <li>
-                <a href="<?php //echo $_SERVER['HTTP_REFERER']; ?>" onclick="window.location.href = document.referrer;">
+                <a href="<?php //echo $_SERVER['HTTP_REFERER']; 
+                            ?>" onclick="window.location.href = document.referrer;">
                     <i class=" fa fa-sign-out-alt fa-2x"></i>
                 </a>
             </li>
@@ -490,7 +490,7 @@ $document_name_mapping = [
             </main>
         </div> -->
 
-        
+
 
         <div class="dashboard-body">
 
@@ -502,15 +502,15 @@ $document_name_mapping = [
 
                     <div class="DailyJournal">
                         <div class="editable-container">
-                            <textarea class="textarea-com-details" id="about-us-edit-textarea"
+                            <textarea class="textarea-com-details " id="about-us-edit-textarea"
                                 placeholder="Tell us about your company"
                                 readonly><?= htmlspecialchars($aboutUs) ?></textarea>
                             <?php if (
                                 isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'
                             ): ?>
-                            <span class="edit-icon" onclick="toggleEdit('about-us-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('about-us-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -536,9 +536,9 @@ $document_name_mapping = [
                                 readonly><?= htmlspecialchars($corporateMission) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
 
-                            <span class="edit-icon" onclick="toggleEdit('mission-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('mission-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
 
@@ -566,9 +566,9 @@ $document_name_mapping = [
                                 placeholder="State your vision"
                                 readonly><?= htmlspecialchars($corporateVision) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
-                            <span class="edit-icon" onclick="toggleEdit('vision-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('vision-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
 
@@ -597,9 +597,9 @@ $document_name_mapping = [
                                 placeholder="State your principles"
                                 readonly><?= htmlspecialchars($corporatePrinciples) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
-                            <span class="edit-icon" onclick="toggleEdit('principles-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('principles-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
 
@@ -629,9 +629,9 @@ $document_name_mapping = [
                                 placeholder="State your philosophy"
                                 readonly><?= htmlspecialchars($corporatePhilosophy) ?></textarea>
                             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] === 'Organization'): ?>
-                            <span class="edit-icon" onclick="toggleEdit('philosophy-edit-textarea')">
-                                <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
-                            </span>
+                                <span class="edit-icon" onclick="toggleEdit('philosophy-edit-textarea')">
+                                    <i class="fa fa-pencil" aria-hidden="true" style="color: #08203a;"></i>
+                                </span>
                             <?php endif; ?>
                         </div>
 
@@ -652,86 +652,86 @@ $document_name_mapping = [
                     <div id="content-cover">
                         <table class="table" id="sortableTable-docu">
                             <thead>
-    <tr>
-        <th class="th-name">Document Name</th>
-        <th class="th-date">Actions</th>
-    </tr>
-</thead>
-<tbody>
-   <?php foreach ($unique_documents as $document_name): ?>
-    <?php
-    // Start by checking for URL and existence of the document
-    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
-    $stmt->execute();
-    $document_url = $stmt->fetchColumn();
-
-    // Only render a row if a valid document exists
-    if ($document_url) { 
-        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
-        ?>
-        <tr>
-            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?></td>
-            <td>
-                <?php if (file_exists($file_path)): ?>
-                    <a class="btn btn-download btn-success" href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
-                        Download
-                    </a>
-                <?php else: ?>
-                    <button disabled>File Not Available</button>
-                <?php endif; ?>
-            </td>
-        </tr>
-    <?php } ?> <!-- Only create a row if document_url exists -->
-<?php endforeach; ?>
-</tbody>
-
                                 <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        <?php
-
-                                            if (!$conn) {
-    try {
-        $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
-        $conn = new PDO($dsn, $username, $password, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
-    } catch (PDOException $e) {
-        die("Database connection failed: " . $e->getMessage());
-    }
-}
-
-                                        // Check for the document URL and existence of file
-                                        $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
-                                        $stmt = $pdo->prepare($sql);
-                                        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                                        $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
-                                        $stmt->execute();
-                                        $document_url = $stmt->fetchColumn();
-
-                                        if ($document_url) {
-                                            $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
-                                            if (file_exists($file_path)): ?>
-                                        <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
-                                            Download
-                                        </a>
-                                        <!-- Uncomment the button below to enable viewing functionality -->
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
-                                        <?php else: ?>
-                                        
-                                        <?php endif;
-                                        } else { ?>
-                                        <button disabled>No Document Found</button>
-                                        <?php } ?>
-                                    </td>
+                                    <th class="th-name">Document Name</th>
+                                    <th class="th-date">Actions</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($unique_documents as $document_name): ?>
+                                    <?php
+                                    // Start by checking for URL and existence of the document
+                                    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $document_url = $stmt->fetchColumn();
+
+                                    // Only render a row if a valid document exists
+                                    if ($document_url) {
+                                        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
+                                    ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?></td>
+                                            <td>
+                                                <?php if (file_exists($file_path)): ?>
+                                                    <a class="btn btn-download btn-success" href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
+                                                        Download
+                                                    </a>
+                                                <?php else: ?>
+                                                    <button disabled>File Not Available</button>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?> <!-- Only create a row if document_url exists -->
+                                <?php endforeach; ?>
+                            </tbody>
+
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <?php
+
+                                    if (!$conn) {
+                                        try {
+                                            $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+                                            $conn = new PDO($dsn, $username, $password, [
+                                                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                                                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                                            ]);
+                                        } catch (PDOException $e) {
+                                            die("Database connection failed: " . $e->getMessage());
+                                        }
+                                    }
+
+                                    // Check for the document URL and existence of file
+                                    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $document_url = $stmt->fetchColumn();
+
+                                    if ($document_url) {
+                                        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
+                                        if (file_exists($file_path)): ?>
+                                            <a class="btn btn-download btn-success"
+                                                href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
+                                                Download
+                                            </a>
+                                            <!-- Uncomment the button below to enable viewing functionality -->
+                                            <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                            <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                        <?php else: ?>
+
+                                        <?php endif;
+                                    } else { ?>
+                                        <button disabled>No Document Found</button>
+                                    <?php } ?>
+                                </td>
+                            </tr>
 
                             </tbody>
                         </table>
@@ -809,6 +809,17 @@ $document_name_mapping = [
 
 
     </div>
+
+    <script>
+        const textareaa = document.getElementById("about-us-edit-textarea");
+
+        textareaa.addEventListener('input', function() {
+
+            this.style.height = 'auto';
+
+            this.style.height = this.scrollHeight + 'px';
+        });
+    </script>
 
 
 

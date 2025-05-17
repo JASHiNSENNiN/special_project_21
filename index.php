@@ -107,11 +107,7 @@ function generateJobCards($jobOffers)
                 <!-- <img src="img/DrRamonLOGO.svg" alt="Logo"> -->
                 <img src="img/drdsnhs.svg" alt="Logo">
             </a>
-            <nav class="dash-middle">
-                <!-- <a class="active-header" href="index.php">Home</a>
-                <a href="job_list.php">Company review</a>
-                <a href="contact.php">Contact</a> -->
-            </nav>
+
         </div>
         <nav>
             <a class="login-btn" href="login.php" style="margin-left: 20px;">Sign in</a>
@@ -160,7 +156,7 @@ function generateJobCards($jobOffers)
 
 
                 <nav style="position:relative; margin-left:auto; margin-right:auto;">
-                    <a class="active" href="index.php">Work Immersion feed</a>
+                    <a class="active frontend-txt-xl" href="index.php">Work Immersion feed</a>
                     <!-- <a href="recent-search.php">Recent search</a> -->
 
 
@@ -168,7 +164,7 @@ function generateJobCards($jobOffers)
                 </nav>
             </div>
         </div>
-        <hr class="line_bottom">
+        <!-- <hr class="line_bottom"> -->
         <!-- ------------------------------------------------------Job list------------------------------>
         <div class="main-container">
 

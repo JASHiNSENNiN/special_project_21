@@ -23,7 +23,7 @@
                 <img src="./img/drpartnerlog.svg" alt="Logo">
                 <!-- <img src="./img/companylogo.jpg" alt="Logo"> -->
             </a>
-            <nav>
+            <nav class="nav-hd-txt">
                 <a href="post_work_immersion.php">Post Work Immersion</a>
 
             </nav>
@@ -131,9 +131,9 @@
             <!-- <p>Your Website. All rights reserved. | Dr Ramon de Santos National High School</p> -->
         </div>
     </footer>
-    <script>
+    <!-- <script>
         document.getElementById("currentDate").innerHTML = new Date().getFullYear();
-    </script>
+    </script> -->
     <script>
         window.onscroll = function() {
             myFunction()

@@ -41,12 +41,21 @@ main {
   /* text-align: center; */
 }
 
+/* .br-text {
+  display: none;
+} */
+
 /* Media Query for devices with a max width of 768px (tablets and smaller devices) */
 
 @media (max-width: 768px) {
   .colm-form {
     flex: 0 0 60%;
-    /* On smaller screens, it takes 60% of the space */
+  }
+  .chek {
+    width: 12% !important;
+  }
+  .br-text {
+    display: block;
   }
 }
 
@@ -54,7 +63,7 @@ main {
 
 @media (max-width: 480px) {
   .colm-form {
-    flex: 0 0 100%;
+    flex: 0 0 85%;
     /* On very small screens, it takes full width */
   }
 }
@@ -410,6 +419,7 @@ main {
   font-size: 11px !important;
   margin-bottom: 10px;
   margin-top: 10px;
+  display: ruby;
 }
 
 .link-terms-pp a {

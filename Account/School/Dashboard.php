@@ -515,8 +515,21 @@ if (isset($_SESSION['school_name'])) {
 
     <div class="container2">
 
-        <main>
-            <div class="dashboard-container">
+        <!-- <main> -->
+        <div class="dashboard-container">
+
+
+            <div class="c1">
+                <div class="card-5">
+                    <h4 class="chart-lbl">
+                        Top Student Work Immersion
+                    </h4>
+                    <div class="divider">
+                    </div>
+                    <div class="bar-chart-container">
+                        <div id="top_x_div_tp"></div>
+                    </div>
+                </div>
                 <div class="card-3">
                     <h4 class="chart-lbl">
                         List Work Immersion
@@ -558,6 +571,10 @@ if (isset($_SESSION['school_name'])) {
                         </div>
                     </div>
                 </div>
+            </div>
+
+
+            <div class="c2">
                 <div class="card-4">
                     <h4 class="chart-lbl">
                         Top Student in Work habits
@@ -568,20 +585,11 @@ if (isset($_SESSION['school_name'])) {
 
                         <div id="top_x_div_wh"></div>
                     </div>
-
-
                 </div>
 
-                <div class="card-5">
-                    <h4 class="chart-lbl">
-                        Top Student Work Immersion
-                    </h4>
-                    <div class="divider">
-                    </div>
-                    <div class="bar-chart-container">
-                        <div id="top_x_div_tp"></div>
-                    </div>
-                </div>
+
+
+
 
                 <div class="card-6">
                     <h4 class="chart-lbl">
@@ -602,13 +610,16 @@ if (isset($_SESSION['school_name'])) {
                     <div class="mixed-chart-container-tp">
                         <div id="top_x_div_ss"></div>
 
-
-
-
                     </div>
                 </div>
             </div>
-        </main>
+
+
+
+
+
+        </div>
+        <!-- </main> -->
     </div>
 
 
@@ -659,7 +670,7 @@ if (isset($_SESSION['school_name'])) {
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
+        inputFile2.onchange = function() {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
@@ -675,17 +686,17 @@ if (isset($_SESSION['school_name'])) {
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal 
-        btn.onclick = function () {
+        btn.onclick = function() {
             modal.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
+        span.onclick = function() {
             modal.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
+        window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
