@@ -183,11 +183,11 @@ $profile_div = '<header class="nav-header">
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px; color:#fff;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
-                    <a href="Profile.php?organization_id=' . base64_encode(encrypt_url_parameter($organizationId)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My Profile</a>
+                    <a href="Profile.php?organization_id=' . base64_encode(encrypt_url_parameter($organizationId)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> Company Profile </a>
                     <a href="My_Jobs.php"><i class="fas fa-bookmark" style="font-size:24px; margin-right:10px;"></i> My Jobs</a>
                     <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i>Weather Update</a>
                     <a href="Upload.php"><i class="fa fa-file-text" style="font-size:24px; margin-right:10px;"></i> File Upload</a>
-                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;"></i> Settings</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;"></i> Account Management</a>
                     <hr>
                     <a class="logout" href="' . '/backend/php/logout.php' . '"> <i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>
                 </div>
@@ -233,7 +233,8 @@ $navbar_div = '<header class="nav-header">
                             <a href="Upload.php">File Upload</a>
                         </div>
                         <div class="submenu-item active-text-setting">
-                            <a href="Settings.php">Settings & privacy</a>
+                            <a href="Settings.php">Account Management
+</a>
                         </div>
                         <hr>
                         <a class="logout" href="' . '/backend/php/logout.php' . '">
