@@ -10,9 +10,5 @@
 Options +Indexes
 IndexOptions FancyIndexing
 
-# DO NOT REMOVE THIS LINE AND THE LINES BELOW HOTLINKID:M9zyI7ZIMG
-RewriteEngine on
-RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?wishs.online/.*$      [NC]
-RewriteRule .*\.(.*|jpg|jpeg|gif|png|bmp|tiff|avi|mpeg|mpg|wma|mov|zip|rar|exe|mp3|pdf|swf|psd|txt|html|htm|php)$ https://wishs.online [R,NC]
-# DO NOT REMOVE THIS LINE AND THE LINES ABOVE M9zyI7ZIMG:HOTLINKID
+
 
