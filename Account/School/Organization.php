@@ -160,9 +160,9 @@ function displayPartnerOrganizations()
             echo "<form method='post' style='display: inline;'>";
             echo "<input type='hidden' name='org_id' value='" . $row['user_id'] . "'>";
             if ($row['verified_status']) {
-                echo "<button class='button-11' type='submit' name='action' value='unverify' autofocus>Unverify</button><br>";
+                echo "<button class='button-11' type='submit' name='action' value='Disapprove' autofocus>Disapprove</button><br>";
             } else {
-                echo "<button class='button-10' type='submit' name='action' value='verify' autofocus>Verify</button><br>";
+                echo "<button class='button-10' type='submit' name='action' value='Approve' autofocus>Approve</button><br>";
             }
             echo "</form>";
             echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileOrgView.php?organization_id=" . $encoded_id . "'\">View Profile</button>";
