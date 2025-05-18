@@ -467,14 +467,10 @@ if (isset($_SESSION['school_name'])) {
     <br><br>
     <hr>
     <div class="logo">
-
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
             <a href="Organization.php"><i class="fas fa-building"></i>Organization</a>
             <a class="active" href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
-
-
-
         </nav>
     </div>
     <hr class="line_bottom">

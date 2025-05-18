@@ -156,7 +156,7 @@ $applicants = getApplicants($conn, $org_id);
             <a href="Job_ads.php"><i class="fa fa-calendar-plus-o"></i> Job Ads</a>
             <a href="Job_request.php"><i class="fa fa-user-plus"></i>Job Request</a>
             <a class="active1" href="Faculty_report.php"><i class='fas fa-tasks'></i>Student Evaluation</a>
-            <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <!-- <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a> -->
         </nav>
     </div>
     <hr class="line_bottom">

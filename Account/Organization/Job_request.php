@@ -66,7 +66,7 @@ function isOrganizationVerified()
 function checkRequiredDocuments()
 {
     $requiredDocuments = ['business_permit', 'memorandum_of_agreement'];
-    
+
     foreach ($requiredDocuments as $document) {
         if (!isDocumentUploaded($document)) {
             header("Location: Verify.php");
@@ -74,7 +74,7 @@ function checkRequiredDocuments()
         }
     }
 
-     if (!isOrganizationVerified()) {
+    if (!isOrganizationVerified()) {
         header("Location: Verify.php");
         exit();
     }
@@ -235,7 +235,6 @@ function acceptApplicant($applicant_id, $work)
 
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
-
     } catch (Exception $e) {
         // Rollback the transaction if any error occurs
         $conn->rollback();
@@ -380,9 +379,7 @@ function revertToOngoing($applicant_id, $work)
             <a class="active" href="Job_request.php"><i class="fa fa-user-plus"></i> Job Request</a>
             <a href="Faculty_report.php"><i class='fas fa-tasks'></i> Student Evaluation</a>
             <!-- <a href="Question.php">Questions</a> -->
-            <a href="Details.php"><i class="fa fa-bar-chart"></i> Analytics</a>
-
-
+            <!-- <a href="Details.php"><i class="fa fa-bar-chart"></i> Analytics</a> -->
         </nav>
     </div>
     <hr class="line_bottom">
@@ -410,8 +407,8 @@ function revertToOngoing($applicant_id, $work)
                     <th>Action</th>
                 </tr>
                 <?php foreach ($applicants as $job_id => $applicant_list) { ?>
-                <?php foreach ($applicant_list as $applicant) { ?>
-                <?php
+                    <?php foreach ($applicant_list as $applicant) { ?>
+                        <?php
                         $student_id = $applicant['student_id'];
                         $sql = "SELECT * FROM student_profiles WHERE user_id = '$student_id'";
                         $student_row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
@@ -420,13 +417,13 @@ function revertToOngoing($applicant_id, $work)
                         $job_row = mysqli_fetch_assoc(mysqli_query($conn, $job_title_query));
                         $job_title = $job_row['work_title'] ?? 'N/A'; // Use 'N/A' if no job title found
                         ?>
-                <tr>
-                    <td><?= $applicant['id'] ?></td>
-                    <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
-                    <td><?= $student_row['strand'] ?></td>
-                    <td><?= $job_title ?></td>
-                    <td>
-                        <?php
+                        <tr>
+                            <td><?= $applicant['id'] ?></td>
+                            <td><?= $student_row['first_name'] . ' ' . $student_row['last_name'] ?></td>
+                            <td><?= $student_row['strand'] ?></td>
+                            <td><?= $job_title ?></td>
+                            <td>
+                                <?php
                                 switch ($applicant['status']) {
                                     case 'applied':
                                         echo '<input type="text" value="Requesting.." readonly>
@@ -444,35 +441,35 @@ function revertToOngoing($applicant_id, $work)
                                         echo '<input type="text" value="Applying" readonly>';
                                 }
                                 ?>
-                    </td>
+                            </td>
 
 
-                    <td>
-                        <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
-                            <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
-                            <?php if ($applicant['status'] === 'completed') { ?>
-                            <!-- Do not show any buttons if the status is 'completed' -->
-                            <!-- <input type="text" value="Completed!" readonly> -->
-                            <?php } elseif ($applicant['status'] === 'accepted') { ?>
-                            <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button><br>
-                            <?php } else { ?>
-                            <button type="submit" class="button-9" name="accept_applicant" onclick="updateStatus(this)"
-                                autofocus>Accept</button>
-                            <?php } ?>
-                        </form>
-                        <a
-                            href="<?php echo $ProfileViewURL; ?>?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
-                            <button type="button" class="button-4">Details</button> <br>
-                        </a>
-                        <?php
+                            <td>
+                                <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
+                                    <input type="hidden" name="applicant_id" value="<?= $applicant['id'] ?>">
+                                    <?php if ($applicant['status'] === 'completed') { ?>
+                                        <!-- Do not show any buttons if the status is 'completed' -->
+                                        <!-- <input type="text" value="Completed!" readonly> -->
+                                    <?php } elseif ($applicant['status'] === 'accepted') { ?>
+                                        <button type="submit" class="button-5" name="remove_applicant" autofocus>Remove</button><br>
+                                    <?php } else { ?>
+                                        <button type="submit" class="button-9" name="accept_applicant" onclick="updateStatus(this)"
+                                            autofocus>Accept</button>
+                                    <?php } ?>
+                                </form>
+                                <a
+                                    href="<?php echo $ProfileViewURL; ?>?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])); ?>">
+                                    <button type="button" class="button-4">Details</button> <br>
+                                </a>
+                                <?php
                                 switch ($applicant['status']) {
-                                        //     case 'applied':
-                                        //         echo '
-                                        //   <form method="POST" style="display:inline;">
-                                        //       <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
-                                        //       <button type="submit" class="button-9" name="accept_applicant" style="padding: 0 13px;">Accept</button>
-                                        //   </form>';
-                                        // break;
+                                    //     case 'applied':
+                                    //         echo '
+                                    //   <form method="POST" style="display:inline;">
+                                    //       <input type="hidden" name="applicant_id" value="' . $applicant['id'] . '">
+                                    //       <button type="submit" class="button-9" name="accept_applicant" style="padding: 0 13px;">Accept</button>
+                                    //   </form>';
+                                    // break;
                                     case 'accepted':
                                         echo '
                                   <form method="POST" style="display:inline;">
@@ -491,9 +488,9 @@ function revertToOngoing($applicant_id, $work)
                                         break;
                                 }
                                 ?>
-                    </td>
-                </tr>
-                <?php } ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 <?php } ?>
             </table>
 
@@ -505,32 +502,32 @@ function revertToOngoing($applicant_id, $work)
 
     <!-- JavaScript for table search -->
     <script>
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        var searchValue = this.value.toLowerCase();
-        var rows = document.querySelectorAll('#tbl tr:not(:first-child)');
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            var searchValue = this.value.toLowerCase();
+            var rows = document.querySelectorAll('#tbl tr:not(:first-child)');
 
-        Ramws.forEach(function(row) {
-            var cells = row.getElementsByTagName('td');
-            var nameCell = cells[1];
-            var jobCell = cells[3];
-            var found = false;
+            Ramws.forEach(function(row) {
+                var cells = row.getElementsByTagName('td');
+                var nameCell = cells[1];
+                var jobCell = cells[3];
+                var found = false;
 
-            if (
-                nameCell.textContent.toLowerCase().indexOf(searchValue) > -1 ||
-                jobCell.textContent.toLowerCase().indexOf(searchValue) > -1
-            ) {
-                found = true;
-            }
-            if (
-                nameCell.textContent.toLowerCase().indexOf(searchValue) > -1 ||
-                jobCell.textContent.toLowerCase().indexOf(searchValue) > -1
-            ) {
-                found = true;
-            }
+                if (
+                    nameCell.textContent.toLowerCase().indexOf(searchValue) > -1 ||
+                    jobCell.textContent.toLowerCase().indexOf(searchValue) > -1
+                ) {
+                    found = true;
+                }
+                if (
+                    nameCell.textContent.toLowerCase().indexOf(searchValue) > -1 ||
+                    jobCell.textContent.toLowerCase().indexOf(searchValue) > -1
+                ) {
+                    found = true;
+                }
 
-            row.style.display = found ? '' : 'none';
+                row.style.display = found ? '' : 'none';
+            });
         });
-    });
     </script>
 
 
@@ -542,33 +539,41 @@ function revertToOngoing($applicant_id, $work)
     </footer>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
+        inputFile1.onchange = function() {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
+        }
     </script>
 
     <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
 
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
+        inputFile2.onchange = function() {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
     </script>
 
 
     <script type="text/javascript">
-    function toggleNotifications() {
-        const extraNotifications = document.querySelector('.extra-notifications');
-        const seeMoreLink = document.querySelector('.see-more');
-
         function toggleNotifications() {
             const extraNotifications = document.querySelector('.extra-notifications');
             const seeMoreLink = document.querySelector('.see-more');
 
+            function toggleNotifications() {
+                const extraNotifications = document.querySelector('.extra-notifications');
+                const seeMoreLink = document.querySelector('.see-more');
+
+                if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+                    extraNotifications.style.display = 'block';
+                    seeMoreLink.textContent = 'See Less';
+                } else {
+                    extraNotifications.style.display = 'none';
+                    seeMoreLink.textContent = 'See More';
+                }
+            }
             if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
                 extraNotifications.style.display = 'block';
                 seeMoreLink.textContent = 'See Less';
@@ -577,14 +582,6 @@ function revertToOngoing($applicant_id, $work)
                 seeMoreLink.textContent = 'See More';
             }
         }
-        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
-            extraNotifications.style.display = 'block';
-            seeMoreLink.textContent = 'See Less';
-        } else {
-            extraNotifications.style.display = 'none';
-            seeMoreLink.textContent = 'See More';
-        }
-    }
     </script>
 
 
