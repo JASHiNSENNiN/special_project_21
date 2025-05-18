@@ -227,6 +227,8 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>ID Picture</th>
                             <th>Student Name</th>
                             <th>Organization</th>
+                            <th>Date Start </th>
+                            <th>Date End </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -238,6 +240,8 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -278,6 +282,8 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>ID Picture</th>
                             <th>Student Name</th>
                             <th>Organization</th>
+                            <th>Date Start </th>
+                            <th>Date End </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -289,6 +295,8 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -328,6 +336,8 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>ID Picture</th>
                             <th>Student Name</th>
                             <th>Organization</th>
+                            <th>Date Start </th>
+                            <th>Date End </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -339,6 +349,8 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -377,6 +389,8 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>ID Picture</th>
                             <th>Student Name</th>
                             <th>Organization</th>
+                            <th>Date Start </th>
+                            <th>Date End </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -388,6 +402,8 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -426,6 +442,8 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>ID Picture</th>
                             <th>Student Name</th>
                             <th>Organization</th>
+                            <th>Date Start </th>
+                            <th>Date End </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -437,6 +455,8 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
+                            echo "<td data-th='Organization'>unknown</td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -490,7 +510,7 @@ $tvl_students = get_students_by_strand('tvl');
 
 
     <script>
-        $(".box").click(function(e) {
+        $(".box").click(function (e) {
             e.preventDefault();
             $(".content").removeClass("active");
             var content_id = $(this).attr("id");
@@ -507,7 +527,7 @@ $tvl_students = get_students_by_strand('tvl');
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function() {
+        inputFile1.onchange = function () {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -516,7 +536,7 @@ $tvl_students = get_students_by_strand('tvl');
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function() {
+        inputFile2.onchange = function () {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
