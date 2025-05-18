@@ -145,3 +145,66 @@ function drawStuffss() {
   });
 }
 // ////////////////////////////////// total skills student ////////////////////////////////////
+/////////////////////////////////AVERAGE COMPANY AND STRAND //////////////////////////////////
+google.charts.load("current", {
+  packages: ["corechart"],
+});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ["Company", "Overall Average"],
+    ["Pico bank", 5],
+    ["LTO", 10],
+    ["NEECO II Area I", 7],
+    ["Municipal", 9],
+    ["Telex", 8],
+  ]);
+
+  var options = {
+    title: "Company overall average",
+  };
+
+  var chart = new google.visualization.PieChart(
+    document.getElementById("piechart-ave")
+  );
+
+  chart.draw(data, options);
+}
+
+//////////////////////////////////////////////////////////////////
+google.charts.load("current", {
+  packages: ["corechart"],
+});
+google.charts.setOnLoadCallback(drawVisualization);
+
+function drawVisualization() {
+  // Some raw data (not necessarily accurate)
+  var data = google.visualization.arrayToDataTable([
+    ["Category", "HUMSS", "STEM", "GAS", "TECHVOC", "ABM", "Average"],
+    ["Work Habits ", 165, 938, 522, 998, 450, 614.6],
+    ["Work Skills", 135, 1120, 599, 1268, 288, 682],
+    ["Social Skills", 157, 1167, 587, 807, 397, 623],
+  ]);
+
+  var options = {
+    title: "Total Average per strand with overall average",
+    vAxis: {
+      title: "Rating",
+    },
+    hAxis: {
+      title: "Strand",
+    },
+    seriesType: "bars",
+    series: {
+      5: {
+        type: "line",
+      },
+    },
+  };
+
+  var chart = new google.visualization.ComboChart(
+    document.getElementById("chart_div_ave")
+  );
+  chart.draw(data, options);
+}
