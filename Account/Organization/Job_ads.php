@@ -67,7 +67,7 @@ function isOrganizationVerified()
 function checkRequiredDocuments()
 {
     $requiredDocuments = ['business_permit', 'memorandum_of_agreement'];
-    
+
     foreach ($requiredDocuments as $document) {
         if (!isDocumentUploaded($document)) {
             header("Location: Verify.php");
@@ -75,7 +75,7 @@ function checkRequiredDocuments()
         }
     }
 
-     if (!isOrganizationVerified()) {
+    if (!isOrganizationVerified()) {
         header("Location: Verify.php");
         exit();
     }
@@ -133,7 +133,7 @@ checkRequiredDocuments();
             <a href="Job_request.php"><i class="fa fa-user-plus"></i> Job Request</a>
             <a href="Faculty_report.php"><i class='fas fa-tasks'></i> Student Evaluation</a>
             <!-- <a href="Question.php">Questions</a> -->
-            <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <!-- <a href="Details.php"><i class="fa fa-bar-chart"></i>Analytics</a> -->
 
 
         </nav>
@@ -311,7 +311,7 @@ checkRequiredDocuments();
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
+        inputFile1.onchange = function() {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -320,7 +320,7 @@ checkRequiredDocuments();
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
+        inputFile2.onchange = function() {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
