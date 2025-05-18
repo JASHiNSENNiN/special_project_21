@@ -174,34 +174,34 @@ $profile_divv = '<header class="nav-header">
     ';
 
 
-    $host = "localhost";
-    $username = $_ENV['MYSQL_USERNAME'];
-    $password = $_ENV['MYSQL_PASSWORD'];
-    $database = $_ENV['MYSQL_DBNAME'];
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
 
-    $conn = new mysqli($host, $username, $password, $database);
-    $profile_image_path = './uploads/' . $user['profile_image'];
+$conn = new mysqli($host, $username, $password, $database);
+$profile_image_path = './uploads/' . $user['profile_image'];
 
-    $get_profile_image = file_exists($profile_image_path) ? $profile_image_path : './image/default.png';
+$get_profile_image = file_exists($profile_image_path) ? $profile_image_path : './image/default.png';
 
-    $profile_data = null;
-    if (isset($user_id)) {
-        $sql = "SELECT sp.*, u.profile_image, u.cover_image
+$profile_data = null;
+if (isset($user_id)) {
+    $sql = "SELECT sp.*, u.profile_image, u.cover_image
     FROM partner_profiles sp
     JOIN users u ON sp.user_id = u.id
     WHERE sp.user_id = ?";
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $profile_data = $result->fetch_assoc();
-    }
-    $stmt->close();
-    $conn->close();
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $profile_data = $result->fetch_assoc();
+}
+$stmt->close();
+$conn->close();
 
-    $profile_image_path = '/Account/Organization/uploads/' . $profile_data['profile_image'];
-    $cover_image_path = '/Account/Organization/uploads/' . $profile_data['cover_image'];
+$profile_image_path = '/Account/Organization/uploads/' . $profile_data['profile_image'];
+$cover_image_path = '/Account/Organization/uploads/' . $profile_data['cover_image'];
 
 
 $host = "localhost";
@@ -332,7 +332,7 @@ $document_name_mapping = [
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 
 </head>
 
@@ -400,7 +400,7 @@ $document_name_mapping = [
                         </div>
 
                     </div>
-                    
+
                 </div>
 
 
@@ -481,7 +481,7 @@ $document_name_mapping = [
 Organization' || $_SESSION['account_type'] === '	
 School'
         ): ?>
-            
+
         <?php endif; ?>
 
         <div class="dashboard-body">
@@ -650,80 +650,83 @@ School'
                                 </tr>
                             </thead>
                             <tbody>
-   <?php foreach ($unique_documents as $document_name): ?>
-    <?php
-    // Start by checking for URL and existence of the document
-    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
-    $stmt->execute();
-    $document_url = $stmt->fetchColumn();
+                                <?php foreach ($unique_documents as $document_name): ?>
+                                    <?php
+                                    // Start by checking for URL and existence of the document
+                                    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $document_url = $stmt->fetchColumn();
 
-    // Only render a row if a valid document exists
-    if ($document_url) { 
-        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
-        ?>
-        <tr>
-            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?></td>
-            <td>
-                <?php if (file_exists($file_path)): ?>
-                    <a class="btn btn-download btn-success" href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
-                        Download
-                    </a>
-                <?php else: ?>
-                    <button disabled>File Not Available</button>
-                <?php endif; ?>
-            </td>
-        </tr>
-    <?php } ?> <!-- Only create a row if document_url exists -->
-<?php endforeach; ?>
-</tbody>
+                                    // Only render a row if a valid document exists
+                                    if ($document_url) {
+                                        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/documents/' . basename($document_url);
+                                        ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($document_name_mapping[$document_name] ?? $document_name); ?>
+                                            </td>
+                                            <td>
+                                                <?php if (file_exists($file_path)): ?>
+                                                    <a class="btn btn-download btn-success"
+                                                        href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
+                                                        Download
+                                                    </a>
+                                                <?php else: ?>
+                                                    <button disabled>File Not Available</button>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                    <!-- Only create a row if document_url exists -->
+                                <?php endforeach; ?>
+                            </tbody>
 
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        <?php
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <?php
 
-                                            if (!$conn) {
-    try {
-        $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
-        $conn = new PDO($dsn, $username, $password, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
-    } catch (PDOException $e) {
-        die("Database connection failed: " . $e->getMessage());
-    }
-}
+                                    if (!$conn) {
+                                        try {
+                                            $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+                                            $conn = new PDO($dsn, $username, $password, [
+                                                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                                                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                                            ]);
+                                        } catch (PDOException $e) {
+                                            die("Database connection failed: " . $e->getMessage());
+                                        }
+                                    }
 
-                                        // Check for the document URL and existence of file
-                                        $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
-                                        $stmt = $pdo->prepare($sql);
-                                        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                                        $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
-                                        $stmt->execute();
-                                        $document_url = $stmt->fetchColumn();
+                                    // Check for the document URL and existence of file
+                                    $sql = "SELECT document_url FROM uploaded_documents WHERE user_id = :user_id AND document_name = :document_name";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                                    $stmt->bindParam(':document_name', $document_name, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $document_url = $stmt->fetchColumn();
 
-                                        if ($document_url) {
-                                            $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
-                                            if (file_exists($file_path)): ?>
-                                        <a class="btn btn-download btn-success"
-                                            href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
-                                            Download
-                                        </a>
-                                        <!-- Uncomment the button below to enable viewing functionality -->
-                                        <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
-                                        <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
+                                    if ($document_url) {
+                                        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/Account/Organization/' . basename($document_url);
+                                        if (file_exists($file_path)): ?>
+                                            <a class="btn btn-download btn-success"
+                                                href="<?php echo $_SERVER['PHP_SELF'] . '?document_name=' . htmlspecialchars($document_name) . '&organization_id=' . $IdParam; ?>">
+                                                Download
+                                            </a>
+                                            <!-- Uncomment the button below to enable viewing functionality -->
+                                            <!-- <a class="btn btn-view btn-info" href="view_document.php?document_name=<?php echo urlencode($document_name); ?>" target="_blank">View</a> -->
+                                            <!-- <a class="btn btn-delete btn-danger button-delete">Delete</a> -->
                                         <?php else: ?>
-                                        
+
                                         <?php endif;
-                                        } else { ?>
+                                    } else { ?>
                                         <button disabled>No Document Found</button>
-                                        <?php } ?>
-                                    </td>
-                                </tr>
+                                    <?php } ?>
+                                </td>
+                            </tr>
 
                             </tbody>
                         </table>
@@ -796,9 +799,55 @@ School'
             </main>
         </div>
 
+        <div class="btn-apr-dis"> <span class="frontend-text">Do you approve or disapprove of this company's
+                account?</span><button class='button-10' type='submit' name='action' value='Approve'
+                autofocus>Approve</button> <button class='button-11' type='submit' name='action' value='Disapprove'
+                autofocus>Disapprove</button></div>
+
+        <div class="container-alert-mssg">
+
+            <!-- Danger Message -->
+            <div class="xd-message msg-danger">
+                <div class="xd-message-icon">
+                    <!-- <i class="ion-close-round"></i> -->
+                    <span class="label-remarks">Remarks</span>
+                </div>
+                <div class="xd-message-content">
+                    <p>After careful review of the submitted background and documentation, we regret to inform you that
+                        your
+                        company account has not been approved at this time.</p>
+                </div>
+                <!--     <a href="#" class="xd-message-close">
+<i class="close-icon ion-close-round"></i>
+</a>   -->
+            </div>
+
+            <!-- Danger Success -->
+            <div class="xd-message msg-success">
+                <div class="xd-message-icon">
+                    <!-- <i class="ion-checkmark"></i> -->
+                    <span class="label-remarks">Remarks</span>
+                </div>
+                <div class="xd-message-content">
+                    <p>Your company account has been approved after successfully reviewing the background information
+                        and
+                        verifying the complete document uploads.</p>
+                </div>
+                <!--     <a href="#" class="xd-message-close">
+<i class="close-icon ion-close-round"></i>
+</a>   -->
+            </div>
+
+
+
+        </div>
+
 
 
     </div>
+
+
+
 
 
 
