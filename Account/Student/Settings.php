@@ -198,7 +198,7 @@ $conn->close();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/Settings.css">
-    <title>Settings</title>
+    <title>Account Management</title>
     <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
 
@@ -237,7 +237,7 @@ $conn->close();
 
         <div class="home-content">
             <div class="container light-style flex-grow-1 container-p-y">
-                <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+                <h4 class="font-weight-bold py-3 mb-4">Account Management</h4>
                 <div class="card overflow-hidden">
                     <div class="row no-gutters row-bordered row-border-light">
 
@@ -278,8 +278,8 @@ $conn->close();
                                                         alt="Profile Image Preview"
                                                         style="width: 200px; height: 200px; object-fit: cover;">
                                                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than
-                                                        5 MB <br>
-                                                        <div style="color: red;">*Wear Formal Attire or Uniform</div>
+                                                        5 MB <br> *Upload pictures with either formal or business attire
+                                                        <!-- <div style="color: red;">*Wear Formal Attire or Uniform</div> -->
                                                     </div>
                                                     <input type="file" id="image-upload" name="profile_image"
                                                         accept="image/jpeg,image/png" style="display: none;"
@@ -297,7 +297,7 @@ $conn->close();
 
                                                 if (file) {
                                                     const reader = new FileReader();
-                                                    reader.onload = function(e) {
+                                                    reader.onload = function (e) {
                                                         img.src = e.target.result;
                                                     }
                                                     reader.readAsDataURL(file);

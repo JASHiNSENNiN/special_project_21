@@ -51,7 +51,7 @@ $profile_divv = '<header class="nav-header">
     </a>
     <div class="submenu">
       <div class="submenu-item active-text-profile">
-         <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"> My
+         <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '">Student
                         Profile</a>
       </div>
       <div class="submenu-item">
@@ -63,7 +63,7 @@ $profile_divv = '<header class="nav-header">
                         FIle Upload</a>
       </div>
       <div class="submenu-item active-text-setting">
-        <a href="Settings.php"> Settings & privacy</a>
+        <a href="Settings.php">Account Management</a>
       </div>
       <hr>
       <a class="logout"  href="' . '/backend/php/logout.php' . '">
