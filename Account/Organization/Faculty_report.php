@@ -75,7 +75,7 @@ function isOrganizationVerified()
 function checkRequiredDocuments()
 {
     $requiredDocuments = ['business_permit', 'memorandum_of_agreement'];
-    
+
     foreach ($requiredDocuments as $document) {
         if (!isDocumentUploaded($document)) {
             header("Location: Verify.php");
@@ -83,7 +83,7 @@ function checkRequiredDocuments()
         }
     }
 
-     if (!isOrganizationVerified()) {
+    if (!isOrganizationVerified()) {
         header("Location: Verify.php");
         exit();
     }
@@ -170,7 +170,16 @@ $applicants = getApplicants($conn, $org_id);
                     <th>#</th>
                     <th>ID Picture</th>
                     <th>Student Name</th>
-                    <!-- <th>Result</th> -->
+                    <th>Day 1</th>
+                    <th>Day 2</th>
+                    <th>Day 3</th>
+                    <th>Day 4</th>
+                    <th>Day 5</th>
+                    <th>Day 6</th>
+                    <th>Day 7</th>
+                    <th>Day 8</th>
+                    <th>Day 9</th>
+                    <th>Day 10</th>
                     <th>Action</th>
                 </tr>
                 <?php foreach ($applicants as $index => $applicant) {
@@ -188,76 +197,120 @@ $applicants = getApplicants($conn, $org_id);
 
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     $has_evaluation_today = $result['eval_count'] > 0;
-                    ?>
-                <tr>
-                    <td data-th="#"><?= $index + 1 ?></td>
-                    <td data-th="ID Picture">
-                        <img class="idpic"
-                            src="<?= !empty($applicant['profile_image']) ? $profile_image : '../Student/image/Default.png' ?>"
-                            alt="Profile Picture">
-                    </td>
-                    <td data-th="Student Name"><?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
-                    <!-- <td data-th="Result">
-                        <div class="container3">
-                            <div class="circular-progress">
-                                <span class="progress-value">9%</span>
+                ?>
+                    <tr>
+                        <td data-th="#"><?= $index + 1 ?></td>
+                        <td data-th="ID Picture">
+                            <img class="idpic"
+                                src="<?= !empty($applicant['profile_image']) ? $profile_image : '../Student/image/Default.png' ?>"
+                                alt="Profile Picture">
+                        </td>
+                        <td data-th="Student Name">
+                            <?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
+                        <td data-th="Day 1">
+                            <div>
+                                <!-- Date here -->
                             </div>
-                        </div>
-                    </td> -->
-                    <td data-th="Action">
-                        <a
-                            href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
+                        </td>
+                        <td data-th="Day 2">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Day 3">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Day 4">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Day 5">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Day 6">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Day 7">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Day 8">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Day 9">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Day 10">
+                            <div>
+                                <!-- Date here -->
+                            </div>
+                        </td>
+                        <td data-th="Action">
+                            <a
+                                href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
 
-                            <button class="button-9" role="button">Evaluate</button>
+                                <button class="button-9" role="button">Evaluate</button>
 
-                        </a>
-                    </td>
-                </tr>
+                            </a>
+                        </td>
+                    </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
 
     <script>
-    // Function to set progress value
-    function setProgress(progress) {
-        // Limit progress between 0 and 100
-        progress = Math.max(0, Math.min(100, progress));
+        // Function to set progress value
+        function setProgress(progress) {
+            // Limit progress between 0 and 100
+            progress = Math.max(0, Math.min(100, progress));
 
-        // Update the progress value in the span
-        const progressValue = document.querySelector('.progress-value');
-        progressValue.textContent = `${progress}%`;
+            // Update the progress value in the span
+            const progressValue = document.querySelector('.progress-value');
+            progressValue.textContent = `${progress}%`;
 
-        // Update the CSS variable for the circular progress
-        const circularProgress = document.querySelector('.circular-progress');
-        circularProgress.style.setProperty('--progress', progress);
-    }
-
-    // Example of animating the progress from 0 to 100
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += 1;
-        setProgress(progress);
-        if (progress >= 100) {
-            clearInterval(interval);
+            // Update the CSS variable for the circular progress
+            const circularProgress = document.querySelector('.circular-progress');
+            circularProgress.style.setProperty('--progress', progress);
         }
-    }, 50); // Update every 50ms
+
+        // Example of animating the progress from 0 to 100
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 1;
+            setProgress(progress);
+            if (progress >= 100) {
+                clearInterval(interval);
+            }
+        }, 50); // Update every 50ms
     </script>
 
 
     <script type="text/javascript">
-    function toggleNotifications() {
-        const extraNotifications = document.querySelector('.extra-notifications');
-        const seeMoreLink = document.querySelector('.see-more');
+        function toggleNotifications() {
+            const extraNotifications = document.querySelector('.extra-notifications');
+            const seeMoreLink = document.querySelector('.see-more');
 
-        if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
-            extraNotifications.style.display = 'block';
-            seeMoreLink.textContent = 'See Less';
-        } else {
-            extraNotifications.style.display = 'none';
-            seeMoreLink.textContent = 'See More';
+            if (extraNotifications.style.display === 'none' || extraNotifications.style.display === '') {
+                extraNotifications.style.display = 'block';
+                seeMoreLink.textContent = 'See Less';
+            } else {
+                extraNotifications.style.display = 'none';
+                seeMoreLink.textContent = 'See More';
+            }
         }
-    }
     </script>
 
     <footer>

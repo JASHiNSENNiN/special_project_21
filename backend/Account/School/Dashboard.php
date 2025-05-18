@@ -471,7 +471,7 @@ if (isset($_SESSION['school_name'])) {
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
             <a href="Organization.php"><i class="fas fa-building"></i>Organization</a>
-            <a class="active" href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a class="active" href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
 
 
 

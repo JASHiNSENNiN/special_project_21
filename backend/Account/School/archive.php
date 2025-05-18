@@ -33,7 +33,7 @@ require_once 'show_profile.php';
             <!-- <a href="Company.php">Work Immersion List</a> -->
             <!-- <a href="#.php">Company</a> -->
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
-            <a href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
             <!-- <a href="Reports.php"><i class="fa fa-file-text-o"></i>Reports</a> -->
             <a class="active" href="Archive.php"><i class="fa fa-archive"></i>Archive</a>
             <!-- <a href="Details.php">Details</a> -->
@@ -138,52 +138,52 @@ require_once 'show_profile.php';
     </script> -->
 
     <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
             modal.style.display = "none";
         }
-    }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-    $('.expander').click(function(e) {
-        e.preventDefault();
-        $(this)
-            .parent()
-            .toggleClass('expanded')
-            .find('>ol')
-            .slideToggle();
-    });
+        $('.expander').click(function(e) {
+            e.preventDefault();
+            $(this)
+                .parent()
+                .toggleClass('expanded')
+                .find('>ol')
+                .slideToggle();
+        });
     </script>
 
     <script type="text/javascript">
-    // Get the current year
-    const currentYear = new Date().getFullYear();
+        // Get the current year
+        const currentYear = new Date().getFullYear();
 
-    // Find the element with id 'current-year' and set its text
-    document.getElementById("current-year").textContent = currentYear;
+        // Find the element with id 'current-year' and set its text
+        document.getElementById("current-year").textContent = currentYear;
     </script>
 
 </body>

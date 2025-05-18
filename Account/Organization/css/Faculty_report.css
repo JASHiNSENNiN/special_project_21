@@ -2,9 +2,7 @@
 
 /* -------------Text container-----------*/
 
-
 /* --------------------joblisting container ---------------------- */
-
 
 /* --------------------Line  ---------------------- */
 
@@ -60,9 +58,7 @@ hr {
     width: 75%;
 }
 
-
 /* ///////////////////////////////////Search Bar //////////////////////////////// */
-
 
 /* -------------------------line button----------------------------- */
 
@@ -78,9 +74,7 @@ hr {
     width: 0.0625rem;
 }
 
-
 /* ----------------------------company review---------------- */
-
 
 /* ------------end---------------- */
 
@@ -88,9 +82,7 @@ hr {
 
 /* -------------Text container-----------*/
 
-
 /* --------------------joblisting container ---------------------- */
-
 
 /* ----------------Slider---------------------*/
 
@@ -106,7 +98,9 @@ img {
     object-fit: cover;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    box-shadow:
+        rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .Settings {
@@ -145,9 +139,7 @@ hr {
     width: 75%;
 }
 
-
 /* ///////////////////////////////////Search Bar //////////////////////////////// */
-
 
 /* -------------------------line button----------------------------- */
 
@@ -163,9 +155,7 @@ hr {
     width: 0.0625rem;
 }
 
-
 /* ----------------------------company review---------------- */
-
 
 /* button,
 .button {
@@ -192,7 +182,6 @@ footer {
     bottom: 0;
 }
 
-
 /* --------------------------------end----------------------------- */
 
 .sales-boxes {
@@ -200,7 +189,6 @@ footer {
     justify-content: space-between;
     /* padding: 0 20px; */
 }
-
 
 /* left box */
 
@@ -213,7 +201,9 @@ footer {
     margin-bottom: 50px;
     border-radius: 12px;
     /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .sales-boxes .sales-details {
@@ -265,7 +255,6 @@ footer {
 .sales-boxes .box .button a:hover {
     background: #0d3073;
 }
-
 
 /* Right box */
 
@@ -319,7 +308,10 @@ input[type="date"] {
     border-radius: 6px;
     line-height: 1.5;
     padding: 20px 29px;
-    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    transition:
+        box-shadow 100ms ease-in,
+        border 100ms ease-in,
+        background-color 100ms ease-in;
     border: 2px solid #dee1e2;
     color: rgb(14, 14, 16);
     background: #dee1e2;
@@ -360,7 +352,6 @@ input[type="number"]:hover {
     width: 100%;
     padding: 16px;
 }
-
 
 /* table,
 th,
@@ -423,7 +414,6 @@ div .search-box .bx-search {
     background-color: #f2f2f2;
 }
 
-
 /* #tbl td,
 #tbl th {
   border: 1px solid #ddd;
@@ -450,13 +440,11 @@ div .search-box .bx-search {
     padding: 29px;
 }
 
-
 /* .row:after {
   content: "";
   display: table;
   clear: both;
 } */
-
 
 /* ---header--- */
 
@@ -816,7 +804,6 @@ nav a:hover::after {
     }
 }
 
-
 /* -------------------------line button----------------------------- */
 
 .css-1ld7x2h {
@@ -831,7 +818,6 @@ nav a:hover::after {
     width: 0.0625rem;
 }
 
-
 /* ---end header--- */
 
 .button-9 {
@@ -845,8 +831,9 @@ nav a:hover::after {
     /* Remove border */
     border-radius: 8px;
     /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), /* Outer shadow for depth */
-    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.15),
+        /* Outer shadow for depth */ inset 0 1px 2px rgba(255, 255, 255, 0.2);
     /* Inner highlight */
     box-sizing: border-box;
     cursor: pointer;
@@ -863,7 +850,9 @@ nav a:hover::after {
     /* Padding for button */
     position: relative;
     /* Positioning context for shadows */
-    transition: background-color 0.3s ease, transform 0.1s ease;
+    transition:
+        background-color 0.3s ease,
+        transform 0.1s ease;
     /* Smooth transitions */
     user-select: none;
     /* Prevent text selection */
@@ -879,8 +868,9 @@ nav a:hover::after {
 
 .button-9:hover {
     background: linear-gradient(145deg, rgb(56, 103, 141), rgb(66, 122, 168));
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), /* Deeper shadow on hover */
-    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.2),
+        /* Deeper shadow on hover */ inset 0 1px 2px rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }
 
@@ -909,7 +899,6 @@ nav a:hover::after {
 .button-9:-webkit-details-marker {
     display: none;
 }
-
 
 /* --edit-- */
 
@@ -967,7 +956,10 @@ input[type="file"] {
     border-radius: 6px;
     border: none;
     background: #6e6d70;
-    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+    box-shadow:
+        0px 0.5px 1px rgba(0, 0, 0, 0.1),
+        inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
+        0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
     color: #dfdedf;
     user-select: none;
     -webkit-user-select: none;
@@ -976,7 +968,10 @@ input[type="file"] {
 }
 
 .button-12:focus {
-    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    box-shadow:
+        inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+        0px 0.5px 1px rgba(0, 0, 0, 0.1),
+        0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
     outline: 0;
 }
 
@@ -1014,7 +1009,6 @@ input[type="file"] {
     margin-top: 50px;
 }
 
-
 /* ------table------- */
 
 .rwd-table {
@@ -1030,13 +1024,11 @@ input[type="file"] {
     color: #fff;
 }
 
-
 /* .rwd-table tr {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   background-color: #f5f9fc;
 } */
-
 
 /* .rwd-table tr:nth-child(odd):not(:first-child) {
   background-color: #ebf3f9;
@@ -1075,7 +1067,7 @@ input[type="file"] {
     color: #333;
     border-radius: 0.4em;
     overflow: hidden;
-    width: 75%;
+    width: 95%;
 }
 
 .rwd-table tr {
@@ -1173,7 +1165,11 @@ input[type="file"] {
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
-    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family:
+        "Akzidenz Grotesk BQ Medium",
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
     font-size: 100%;
     font-weight: 400;
     outline: none;
@@ -1181,7 +1177,9 @@ input[type="file"] {
     padding: 10px 25px;
     text-align: center;
     transform: translateY(0);
-    transition: transform 150ms, box-shadow 150ms;
+    transition:
+        transform 150ms,
+        box-shadow 150ms;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
@@ -1205,7 +1203,9 @@ a {
     background: linear-gradient(145deg, rgb(66, 122, 168), rgb(56, 103, 141));
     border: none;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.15),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
     box-sizing: border-box;
     cursor: pointer;
     display: inline-block;
@@ -1214,10 +1214,11 @@ a {
     line-height: 1.5;
     padding: 12px 25px;
     position: relative;
-    transition: background-color 0.3s ease, transform 0.1s ease;
+    transition:
+        background-color 0.3s ease,
+        transform 0.1s ease;
     font-weight: 600;
 }
-
 
 /* .button-4 {
   appearance: none;
@@ -1248,7 +1249,6 @@ a {
   margin-top: 10px;
   font-weight: 500;
 } */
-
 
 /* .button-4:hover {
   color: #fff;

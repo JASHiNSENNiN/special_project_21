@@ -217,7 +217,7 @@ function displayPartnerOrganizations()
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
             <a class="active1" href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
-            <a href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
 
 
 
