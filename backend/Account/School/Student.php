@@ -159,7 +159,7 @@ $tvl_students = get_students_by_strand('tvl');
             <!-- <a href="#.php">Company</a> -->
             <a class="active1" href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
             <a href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
-            <a href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
             <!-- <a href="Reports.php"><i class="fa fa-file-text-o"></i>Reports</a> -->
             <!-- <a href="Details.php">Details</a> -->
 
@@ -490,7 +490,7 @@ $tvl_students = get_students_by_strand('tvl');
 
 
     <script>
-        $(".box").click(function (e) {
+        $(".box").click(function(e) {
             e.preventDefault();
             $(".content").removeClass("active");
             var content_id = $(this).attr("id");
@@ -507,7 +507,7 @@ $tvl_students = get_students_by_strand('tvl');
         let profilePic1 = document.getElementById("cover-pic");
         let inputFile1 = document.getElementById("input-file1");
 
-        inputFile1.onchange = function () {
+        inputFile1.onchange = function() {
             profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
     </script>
@@ -516,7 +516,7 @@ $tvl_students = get_students_by_strand('tvl');
         let profilePic2 = document.getElementById("profile-pic");
         let inputFile2 = document.getElementById("input-file2");
 
-        inputFile2.onchange = function () {
+        inputFile2.onchange = function() {
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>

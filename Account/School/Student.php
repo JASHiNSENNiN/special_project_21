@@ -159,7 +159,7 @@ $tvl_students = get_students_by_strand('tvl');
             <!-- <a href="#.php">Company</a> -->
             <a class="active1" href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
             <a href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
-            <a href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
             <!-- <a href="Reports.php"><i class="fa fa-file-text-o"></i>Reports</a> -->
             <!-- <a href="Details.php">Details</a> -->
 

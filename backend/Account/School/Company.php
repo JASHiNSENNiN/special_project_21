@@ -33,7 +33,7 @@ require_once 'show_profile.php';
             <a class="active" href="Company.php">Work Immersion List</a>
             <!-- <a href="#.php">Company</a> -->
             <a href="Student.php">Student</a>
-            <a href="Dashboard.php">Analytics</a>
+            <a href="Analytics.php">Analytics</a>
             <a href="Reports.php">Reports</a>
             <!-- <a href="Details.php">Details</a> -->
 

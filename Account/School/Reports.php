@@ -38,7 +38,7 @@ require_once 'show_profile.php';
             <!-- <a href="Company.php">Work Immersion List</a> -->
             <!-- <a href="#.php">Company</a> -->
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
-            <a href="Dashboard.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
             <!-- <a class="active" href="Reports.php"><i class="fa fa-file-text-o"></i>Reports</a> -->
             <!-- <a href="Details.php">Details</a> -->
         </nav>
@@ -85,62 +85,62 @@ require_once 'show_profile.php';
                     </td>
                 </tr>
                 <script>
-                google.charts.load("current", {
-                    packages: ["bar"]
-                });
-                google.charts.setOnLoadCallback(drawStufftsw);
+                    google.charts.load("current", {
+                        packages: ["bar"]
+                    });
+                    google.charts.setOnLoadCallback(drawStufftsw);
 
-                function drawStufftsw() {
-                    var datatsw = new google.visualization.arrayToDataTable([
-                        ["Opening", "Percentage"],
-                        ["Work habit's", 15],
-                        ["Work skills'", 20],
-                        ["Social skills", 12],
-                    ]);
+                    function drawStufftsw() {
+                        var datatsw = new google.visualization.arrayToDataTable([
+                            ["Opening", "Percentage"],
+                            ["Work habit's", 15],
+                            ["Work skills'", 20],
+                            ["Social skills", 12],
+                        ]);
 
-                    var options = {
-                        title: "Chess opening moves",
-                        legend: {
-                            position: "none"
-                        },
-                        chart: {
-                            title: "Overall rating",
-                            subtitle: "Work habit, Work skills, Social skills",
-                        },
-                        bars: "horizontal", // Required for Material Bar Charts.
-                        axes: {
-                            x: {
-                                0: {
-                                    side: "top",
-                                    label: "Percentage"
-                                }, // Top x-axis.
+                        var options = {
+                            title: "Chess opening moves",
+                            legend: {
+                                position: "none"
                             },
-                        },
-                        bar: {
-                            groupWidth: "50%"
-                        },
-                    };
+                            chart: {
+                                title: "Overall rating",
+                                subtitle: "Work habit, Work skills, Social skills",
+                            },
+                            bars: "horizontal", // Required for Material Bar Charts.
+                            axes: {
+                                x: {
+                                    0: {
+                                        side: "top",
+                                        label: "Percentage"
+                                    }, // Top x-axis.
+                                },
+                            },
+                            bar: {
+                                groupWidth: "50%"
+                            },
+                        };
 
-                    var chart = new google.charts.Bar(document.getElementById("top_x_div_tsw"));
-                    chart.draw(datatsw, options);
-                }
+                        var chart = new google.charts.Bar(document.getElementById("top_x_div_tsw"));
+                        chart.draw(datatsw, options);
+                    }
 
-                function printStudentGraph(studentName) {
-                    // Create a new window for printing
-                    var printWindow = window.open('', '_blank');
-                    printWindow.document.write('<html><head><title>Print</title>');
-                    printWindow.document.write('</head><body>');
-                    printWindow.document.write('<h2>' + studentName + '</h2>'); // Print student name
+                    function printStudentGraph(studentName) {
+                        // Create a new window for printing
+                        var printWindow = window.open('', '_blank');
+                        printWindow.document.write('<html><head><title>Print</title>');
+                        printWindow.document.write('</head><body>');
+                        printWindow.document.write('<h2>' + studentName + '</h2>'); // Print student name
 
-                    // Print the graph
-                    printWindow.document.write('</body></html>');
-                    printWindow.document.close();
-                    // printWindow.print();
-                    // printWindow.close(); 
-                }
+                        // Print the graph
+                        printWindow.document.write('</body></html>');
+                        printWindow.document.close();
+                        // printWindow.print();
+                        // printWindow.close(); 
+                    }
 
-                // Handle window resize to redraw the chart
-                window.addEventListener("resize", drawStufftsw);
+                    // Handle window resize to redraw the chart
+                    window.addEventListener("resize", drawStufftsw);
                 </script>
                 <!-- <tr id="expander-row-1">
                     <td colspan="4">
@@ -167,61 +167,61 @@ require_once 'show_profile.php';
     </footer>
 
     <script>
-    function searchTable() {
-        var input, filter, table, tr, td, i, j, txtValue;
-        input = document.querySelector(".search-input");
-        filter = input.value.toUpperCase();
-        table = document.querySelector(".rwd-table");
-        tr = table.getElementsByTagName("tr");
+        function searchTable() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.querySelector(".search-input");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".rwd-table");
+            tr = table.getElementsByTagName("tr");
 
-        // Loop through all table rows, starting from index 1 (skipping the header row)
-        for (i = 1; i < tr.length; i++) {
-            tr[i].style.display = "none"; // Initially hide all rows
-            td = tr[i].getElementsByTagName("td");
+            // Loop through all table rows, starting from index 1 (skipping the header row)
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none"; // Initially hide all rows
+                td = tr[i].getElementsByTagName("td");
 
-            // Check each cell in the row
-            for (j = 0; j < td.length; j++) {
-                if (td[j]) {
-                    txtValue = td[j].textContent || td[j].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = ""; // Show row if it matches the search
-                        break; // No need to check further cells in this row
+                // Check each cell in the row
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = ""; // Show row if it matches the search
+                            break; // No need to check further cells in this row
+                        }
                     }
                 }
             }
         }
-    }
     </script>
 
     <script>
-    let profilePic1 = document.getElementById("cover-pic");
-    let inputFile1 = document.getElementById("input-file1");
+        let profilePic1 = document.getElementById("cover-pic");
+        let inputFile1 = document.getElementById("input-file1");
 
-    inputFile1.onchange = function() {
-        profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
-    }
-    </script>
-
-    <script>
-    let profilePic2 = document.getElementById("profile-pic");
-    let inputFile2 = document.getElementById("input-file2");
-
-    inputFile2.onchange = function() {
-        profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
-    }
-    </script>
-
-    <script>
-    // Toggle the display of the expanded content row
-    function toggleExpand(rowId) {
-        var expanderRow = document.getElementById('expander-row-' + rowId);
-        // Check the current display status and toggle it
-        if (expanderRow.style.display === "none" || expanderRow.style.display === "") {
-            expanderRow.style.display = "table-row";
-        } else {
-            expanderRow.style.display = "none";
+        inputFile1.onchange = function() {
+            profilePic1.src = URL.createObjectURL(inputFile1.files[0]);
         }
-    }
+    </script>
+
+    <script>
+        let profilePic2 = document.getElementById("profile-pic");
+        let inputFile2 = document.getElementById("input-file2");
+
+        inputFile2.onchange = function() {
+            profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
+        }
+    </script>
+
+    <script>
+        // Toggle the display of the expanded content row
+        function toggleExpand(rowId) {
+            var expanderRow = document.getElementById('expander-row-' + rowId);
+            // Check the current display status and toggle it
+            if (expanderRow.style.display === "none" || expanderRow.style.display === "") {
+                expanderRow.style.display = "table-row";
+            } else {
+                expanderRow.style.display = "none";
+            }
+        }
     </script>
 
 
