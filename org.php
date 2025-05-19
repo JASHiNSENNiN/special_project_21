@@ -242,82 +242,12 @@ echo '</h1>';
             </div>
 
 
-            <div class="eleven columns ">
-                <div class="padding-right">
-                
-                    <div class="single_job_listing">
-                    
-                     <h4 class="font-weight-bold py-3 mb-4"
-            style="background-color:#172738; color:#fff; padding-left: 20px; padding-right: 10px;margin: 0px !important; "> <i class="fa fa-pie-chart" aria-hidden="true"></i>Rating</h4>
-                        <div class="flex-container">
-                        
-  <div class="flex-left">
-    <div id="top_x_div_rating"></div>
-    <div class="rating-users">
-      <i class="fa fa-user" aria-hidden="true"></i><span>' . $totalApplicants  . '</span> total students
-    </div>
-  </div>
-  <div class="flex-right">
-      
-<div id="total-student" style="width: 90%; height: 100%;"></div>
-  </div>
-</div> 
-                        
-
-                    </div>
-                </div>
-
-            </div>
+  
+    
 
 
 
-             
-            <div class="container-org light-style flex-grow-1 container-p-y" style="padding-left: 0px; padding-right: 0px;">
-            <h4 class="font-weight-bold py-3 mb-4">  <i class="fa fa-bar-chart" aria-hidden="true"></i>Insights</h4>
-        <div class="container-btm-rating">
-        
-		<div class="row clearfix">
-			<div class="col-3">
-				<div class="common">
-					 <div class="wp-graph" id="wp-top-x-div" style="width: 100%; height: 100%;"></div>
-				</div> <!-- end:common -->
-			</div> <!-- end:col-3 -->
-
-			<div class="col-3">
-				<div class="common">
-					<div class="pro-graph" id="pro-top-x-div" style="width: 100%; height: 100%;"></div>
-				</div> <!-- end:common -->
-			</div> <!-- end:col-3 -->
-
-		</div><!-- end:row -->
-        
-
-        <div class="row clearfix">
-			
-			 
-
-			<div class="col-3">
-				<div class="common">
-					 <div class="ld-graph" id="ld-top-x-div" style="width: 100%; height: 100%;"></div>
-				</div> <!-- end:common -->
-			</div> <!-- end:col-3 -->
-
-			<div class="col-3">
-				<div class="common">
-					<div class="tc-graph" id="tc-top-x-div" style="width: 100%; height: 100%;"></div>
-				</div> <!-- end:common -->
-				
-			</div> <!-- end:col-3 -->
-		
-		</div><!-- end:row -->
-
-        <div class="row clearfix">
-			<div class="col-3 col-3-last ">
-				<div class="common">
-					 <div class="am-graph" id="am-top-x-div" style="width: 100%; height: 100%;"></div>
-				</div> <!-- end:common -->
-			</div> <!-- end:col-3 -->
-		</div><!-- end:row -->
+         
 
 	</div> <!-- end:container -->
 
@@ -541,12 +471,12 @@ if (isset($_SESSION['account_type'])) {
     </div>
 
     <!-- ----------------------------------------------footer ------------------------------------------------------- -->
-    <footer class="new_footer_area bg_color">
+    <!-- <footer class="new_footer_area bg_color">
         <div class="new_footer_top">
             <div class="container">
                 <div class="row" style=" gap: 120px !important;">
                     <a href="index.php">
-                        <!-- <img src="img/WORKIFY-LOGO.svg" alt="Logo">/ -->
+                       
                         <img src="img/DrRamonLOGO.svg" alt="Logo">
                     </a>
 
@@ -561,17 +491,14 @@ if (isset($_SESSION['account_type'])) {
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-sm-7">
-                        <!-- <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Junior Philippines Computer
-                            Society Students</p> -->
+                        
                         <p class="mb-0 f_400">© 2024 Your Website. All rights reserved. | Dr Ramon De Santos National High School</p>
                     </div>
-                    <!-- <div class="col-lg-6 col-sm-5 text-right">
-                        <p>Made with <i class="icon_heart"></i> in <a href="#" target="_blank">JPCS</a></p>
-                    </div> -->
+                  
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
 
     <!-- -------------------------------------header stick js ------------------------------ -->
