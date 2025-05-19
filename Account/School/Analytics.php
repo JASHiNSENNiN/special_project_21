@@ -471,6 +471,7 @@ if (isset($_SESSION['school_name'])) {
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
             <a href="Organization.php"><i class="fas fa-building"></i>Organization</a>
             <a class="active" href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a href="Notification-logs.php"><i class="fa fa-list"></i>Logs</a>
         </nav>
     </div>
     <hr class="line_bottom">
