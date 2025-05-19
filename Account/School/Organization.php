@@ -165,7 +165,7 @@ function displayPartnerOrganizations()
             //     echo "<button class='button-10' type='submit' name='action' value='Approve' autofocus>Approve</button><br>";
             // }
             echo "</form>";
-            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileOrgView.php?organization_id=" . $encoded_id . "'\">View Profile</button>";
+            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileOrgView.php?organization_id=" . $encoded_id . "'\">Review Profile</button>";
             echo "</td>";
             echo "</tr>";
 
