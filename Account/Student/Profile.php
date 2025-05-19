@@ -685,7 +685,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                         </table>
                     </div>
                     <hr>
-                    <h2 class="title-resume">Insight</h2>
+                    <!-- <h2 class="title-resume">Insight</h2>
                     <span class="description-resume">The line chart analyzes student daily performance in work
                         immersion, and the pie chart displays the distribution of performance levels.</span>
 
@@ -694,7 +694,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                     </div>
                     <div class="container-grap">
                         <div class="dp-graph" id="dp_chart_div"></div>
-                    </div>
+                    </div> -->
                 </article>
             </main>
         </div>
@@ -840,7 +840,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
         <div class="dashboard-body">
 
             <main class="dashboard__main app-content">
-                <article class="app-content__widget app-content__widget--primary">
+                <!-- <article class="app-content__widget app-content__widget--primary">
 
                     <hr>
                     <h2 class="title-resume">Evaluation Insight</h2>
@@ -853,7 +853,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
 
 
-                </article>
+                </article> -->
                 <!-- <article class="app-content__widget app-content__widget--secondary">
                     
                 </article>
@@ -920,7 +920,7 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
         <div class="dashboard-body">
 
-            <main class="dashboard__main app-content">
+            <!-- <main class="dashboard__main app-content">
                 <article class="app-content__widget app-content__widget--primary">
 
                     <hr>
@@ -940,25 +940,25 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
                         <option value="Day 8">Day 8</option>
                         <option value="Day 9">Day 9</option>
                         <option value="Day 10">Day 10</option>
-                    </select>
+                    </select> -->
 
                     <!-- <div class="daily-graph eval-graph" id="chart_div_daily" style="width: 100%; height: 400px;"></div> -->
 
-                    <div class="daily-graph eval-graph" id="chart_div_daily1" style="height: 400px; width: 100%;"></div>
+                    <!-- <div class="daily-graph eval-graph" id="chart_div_daily1" style="height: 400px; width: 100%;"></div>
                     <div class="daily-graph eval-graph" id="chart_div_daily2" style="height: 400px; width: 100%;"></div>
                     <div class="daily-graph eval-graph" id="chart_div_daily3" style="height: 400px; width: 100%;"></div>
 
 
 
 
-                </article>
+                </article> -->
                 <!-- <article class="app-content__widget app-content__widget--secondary">
                     
                 </article>
                 <article class="app-content__widget app-content__widget--tertiary">
                    
                 </article> -->
-            </main>
+            <!-- </main> -->
         </div>
 
 
