@@ -8,180 +8,62 @@ $dotenv->load();
 
 $ProfileViewURL = "../../ProfileView.php";
 
-function get_students_by_strand($strand)
-{
+$host = "localhost";
+$username = $_ENV['MYSQL_USERNAME'];
+$password = $_ENV['MYSQL_PASSWORD'];
+$database = $_ENV['MYSQL_DBNAME'];
 
-    $host = "localhost";
-    $username = $_ENV['MYSQL_USERNAME'];
-    $password = $_ENV['MYSQL_PASSWORD'];
-    $database = $_ENV['MYSQL_DBNAME'];
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Enable exceptions
+} catch (PDOException $e) {
+    die("Could not connect to the database: " . $e->getMessage());
+}
 
-    $conn = new mysqli($host, $username, $password, $database);
+// Get notifications with user information
+$query = "
+    SELECT n.notification_id, n.message, n.created_at, n.is_read, 
+           u.id as user_id, u.email, u.account_type
+    FROM notifications n
+    JOIN users u ON n.user_id = u.id
+    ORDER BY n.created_at DESC
+";
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    if (!isset($_SESSION['school_name'])) {
-        die("Error: School name is not set in the session.");
-    }
-    $schoolName = $_SESSION['school_name'];
-
-    $stmt = $conn->prepare("
-        SELECT sp.*, 
-               u.*, 
-               COALESCE(jo.organization_name, 'N/A') AS organization_name 
-        FROM student_profiles AS sp 
-        JOIN users AS u ON sp.user_id = u.id 
-        LEFT JOIN job_offers AS jo ON sp.current_work = jo.id 
-        WHERE sp.strand = ? AND sp.school = ?
-    ");
-
-    $stmt->bind_param("ss", $strand, $schoolName);
-
+try {
+    $stmt = $pdo->prepare($query);
     $stmt->execute();
+    $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error fetching notifications: " . $e->getMessage());
+}
 
-    $result = $stmt->get_result();
+// Function to calculate time elapsed
+function timeElapsed($datetime) {
+    $now = new DateTime();
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
 
-    $students = [];
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $students[] = $row;
+    if ($diff->d == 0) {
+        if ($diff->h == 0) {
+            if ($diff->i == 0) {
+                return "just now";
+            } else {
+                return $diff->i . " minute" . ($diff->i > 1 ? "s" : "") . " ago";
+            }
+        } else {
+            return $diff->h . " hour" . ($diff->h > 1 ? "s" : "") . " ago";
         }
-    }
-
-    $stmt->close();
-    $conn->close();
-
-    return $students;
-}
-
-function verify_org($org_id)
-{
-    $host = "localhost";
-    $username = $_ENV['MYSQL_USERNAME'];
-    $password = $_ENV['MYSQL_PASSWORD'];
-    $database = $_ENV['MYSQL_DBNAME'];
-
-    $conn = new mysqli($host, $username, $password, $database);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $stmt = $conn->prepare("UPDATE partner_profiles SET verified_status = TRUE WHERE user_id = ?");
-    $stmt->bind_param("i", $org_id);
-    $stmt->execute();
-    $stmt->close();
-    $conn->close();
-}
-
-function unverify_org($org_id)
-{
-    $host = "localhost";
-    $username = $_ENV['MYSQL_USERNAME'];
-    $password = $_ENV['MYSQL_PASSWORD'];
-    $database = $_ENV['MYSQL_DBNAME'];
-
-    $conn = new mysqli($host, $username, $password, $database);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $stmt = $conn->prepare("UPDATE partner_profiles SET verified_status = FALSE WHERE user_id = ?");
-    $stmt->bind_param("i", $org_id);
-    $stmt->execute();
-    $stmt->close();
-    $conn->close();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['org_id'])) {
-    $org_id = intval($_POST['org_id']);
-    $action = $_POST['action'];
-
-    if ($action === 'verify') {
-        verify_org($org_id);
-    } elseif ($action === 'unverify') {
-        unverify_org($org_id);
-    }
-
-    // Redirect back to the same page after verification
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
-}
-
-function displayPartnerOrganizations()
-{
-    $host = "localhost";
-    $username = $_ENV['MYSQL_USERNAME'];
-    $password = $_ENV['MYSQL_PASSWORD'];
-    $database = $_ENV['MYSQL_DBNAME'];
-
-    $conn = new mysqli($host, $username, $password, $database);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Fetch all partner organizations with their verification status
-    $sql = "SELECT pp.user_id, pp.organization_name, u.profile_image, pp.verified_status 
-            FROM partner_profiles pp
-            JOIN users u ON pp.user_id = u.id
-            WHERE u.account_type = 'Organization'";
-
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        echo '<table class="rwd-table" id="searchHumss">
-                <tbody>
-                    <tr>
-                        <th>#</th>
-                        <th>Profile Photo</th>
-                        <th>Organization Name</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>';
-
-        $count = 1;
-        while ($row = $result->fetch_assoc()) {
-            $encoded_id = base64_encode(encrypt_url_parameter((string) $row['user_id']));
-            $profile_image = !empty($row['profile_image']) ? "/Account/Organization/uploads/" . $row['profile_image'] : "Account/Organization/uploads/default.png";
-
-            echo "<tr>";
-            echo "<td data-th='#'>" . $count . "</td>";
-            echo "<td data-th='ID Picture' style='justify-content: center;'><img class='idpic' src='" . $profile_image . "' alt='Organization Photo'></td>";
-            echo "<td data-th='Organization Name'>" . $row['organization_name'] . "</td>";
-            echo "<td data-th='Status'>" . ($row['verified_status'] ? "Verified" : "Not Verified") . "</td>";
-
-            echo "<td data-th='Action'>";
-            // Action form for verification and unverification
-            echo "<form method='post' style='display: inline;'>";
-            echo "<input type='hidden' name='org_id' value='" . $row['user_id'] . "'>";
-            // if ($row['verified_status']) {
-            //     echo "<button class='button-11' type='submit' name='action' value='Disapprove' autofocus>Disapprove</button><br>";
-            // } else {
-            //     echo "<button class='button-10' type='submit' name='action' value='Approve' autofocus>Approve</button><br>";
-            // }
-            echo "</form>";
-            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileOrgView.php?organization_id=" . $encoded_id . "'\">Review Profile</button>";
-            echo "</td>";
-            echo "</tr>";
-
-            $count++;
-        }
-
-        echo '</tbody></table>';
+    } else if ($diff->d < 7) {
+        return $diff->d . " day" . ($diff->d > 1 ? "s" : "") . " ago";
     } else {
-        echo "<p>No partner organizations found.</p>";
+        return date("M j, Y", strtotime($datetime));
     }
-
-    $conn->close();
 }
 
-
+// Get current filter (if any)
+$dateFilter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -206,13 +88,9 @@ function displayPartnerOrganizations()
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-
 </head>
 
 <body>
-
-
     <?php echo $profile_div; ?>
     <br><br>
     <hr class="line_top">
@@ -222,27 +100,19 @@ function displayPartnerOrganizations()
             <a href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
             <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
             <a class="active1" href="Notification-logs.php"><i class="fa fa-list"></i>Logs</a>
-
-
-
         </nav>
     </div>
     <hr class="line_bottom">
-
-
     <br>
-
 
     <div id="content_container">
         <div id="list" class="content active">
             <h1 style="margin-bottom: 3.125rem; margin-top:3.125rem">Notification logs</h1>
-            <div class="d-flex justify-content-center ">
-
+            <div class="d-flex justify-content-center">
                 <div class="tab-pane w-70 p-3 active show" id="messages" role="tabpanel">
-
                     <div class="filter-container mb-3">
                         <label for="dateFilter">Filter by Date:</label>
-                        <select id="dateFilter" class="form-control w-25">
+                        <select id="dateFilter" class="form-control w-25" onchange="filterNotifications()">
                             <option value="all">Whole Month</option>
                             <option value="today">Today</option>
                             <option value="thisWeek">This Week</option>
@@ -250,98 +120,50 @@ function displayPartnerOrganizations()
                         </select>
                     </div>
 
-                    <div class="message" data-date="2025-05-01">
-                        <div class="py-3 pb-5 mr-3 float-left">
-                            <div class="avatar">
-                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
+                    <?php if (empty($notifications)): ?>
+                        <div class="alert alert-info">No notifications found.</div>
+                    <?php else: ?>
+                        <?php foreach ($notifications as $notification): 
+                            $date = date("Y-m-d", strtotime($notification['created_at']));
+                            $timeAgo = timeElapsed($notification['created_at']);
+                            
+                            // Format the name based on account type
+                            if ($notification['account_type'] === 'Student') {
+                                $name = "Student: " . htmlspecialchars($notification['email']);
+                            } elseif ($notification['account_type'] === 'Organization') {
+                                $name = "Organization: " . htmlspecialchars($notification['email']);
+                            } else {
+                                $name = htmlspecialchars($notification['email']);
+                            }
+                        ?>
+                        <div class="message" data-date="<?php echo $date; ?>">
+                            <div class="py-3 pb-5 mr-3 float-left">
+                                <div class="avatar">
+                                    <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <small class="text-muted">name of Company </small>
-                            <small class="text-muted float-right mt-1">minutes</small>
-
-
-                        </div>
-                        <div class="text-truncate"> message</div>
-                        <small class="text-muted">2025-05-05</small>
-                        <hr>
-                    </div>
-
-                    <div class="message" data-date="2025-05-07">
-                        <div class="py-3 pb-5 mr-3 float-left">
-                            <div class="avatar">
-                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
+                            <div>
+                                <small class="text-muted"><?php echo $name; ?></small>
+                                <small class="text-muted float-right mt-1"><?php echo $timeAgo; ?></small>
                             </div>
+                            <div class="text-truncate"><?php echo htmlspecialchars($notification['message']); ?></div>
+                            <small class="text-muted"><?php echo $date; ?></small>
+                            <hr>
                         </div>
-                        <div>
-                            <small class="text-muted"> Name of Company</small>
-                            <small class="text-muted float-right mt-1">minutes (example 1 minutes ago)</small>
-                        </div>
-                        <div class="text-truncate">Accept message dialog </div>
-                        <small class="text-muted">2025-05-07</small>
-                        <hr>
-                    </div>
-
-                    <div class="message" data-date="2025-05-14">
-                        <div class="py-3 pb-5 mr-3 float-left">
-                            <div class="avatar">
-                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <small class="text-muted">name of company</small>
-                            <small class="text-muted float-right mt-1">minutes</small>
-                        </div>
-                        <div class="text-truncate">disapprove message dialog </div>
-                        <small class="text-muted">2025-05-14</small>
-                        <hr>
-                    </div>
-
-                    <div class="message" data-date="2025-05-15">
-                        <div class="py-3 pb-5 mr-3 float-left">
-                            <div class="avatar">
-                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <small class="text-muted">name of Student</small>
-                            <small class="text-muted float-right mt-1">2 days ago</small>
-                        </div>
-                        <div class="text-truncate">A new student has registered at your school: </div>
-                        <small class="text-muted">2025-05-15</small>
-                        <hr>
-                    </div>
-
-                    <div class="message" data-date="2025-05-19">
-                        <div class="py-3 pb-5 mr-3 float-left">
-                            <div class="avatar">
-                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <small class="text-muted">name of Student</small>
-                            <small class="text-muted float-right mt-1">2 days ago</small>
-                        </div>
-                        <div class="text-truncate">A new student has registered at your school: </div>
-                        <small class="text-muted">2025-05-19</small>
-                        <hr>
-                    </div>
-
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
-
             </div>
-
-
-
         </div>
-
     </div>
 
     <script>
-        document.getElementById('dateFilter').addEventListener('change', function () {
-            const filterValue = this.value;
-            const messages = document.querySelectorAll('.tab-pane .message');
+        // Filter notifications function
+        function filterNotifications() {
+            const filterValue = document.getElementById('dateFilter').value;
+            const messages = document.querySelectorAll('.message');
             const today = new Date();
+            
             // Helper functions
             function getStartOfWeek(date) {
                 const day = date.getDay();
@@ -361,6 +183,7 @@ function displayPartnerOrganizations()
                     msg.style.display = '';
                     return;
                 }
+                
                 const msgDate = new Date(msgDateStr);
                 let show = true;
 
@@ -369,7 +192,9 @@ function displayPartnerOrganizations()
                         show = true;
                         break;
                     case 'today':
-                        show = msgDate.toDateString() === today.toDateString();
+                        const todayStr = today.toISOString().split('T')[0];
+                        const msgDateFormatted = msgDateStr;
+                        show = msgDateFormatted === todayStr;
                         break;
                     case 'thisWeek':
                         const startOfWeek = getStartOfWeek(today);
@@ -387,6 +212,12 @@ function displayPartnerOrganizations()
 
                 msg.style.display = show ? '' : 'none';
             });
+        }
+
+        // Run filter on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial filtering with default option
+            filterNotifications();
         });
     </script>
 
@@ -398,7 +229,7 @@ function displayPartnerOrganizations()
 
             // Select the table within the active content section
             let table = document.getElementById(`search${section.charAt(0).toUpperCase() + section.slice(1)}`);
-            let tr = table.getElementsByTagName('tr'); // Get all row   s in the table
+            let tr = table.getElementsByTagName('tr'); // Get all rows in the table
 
             // Loop through the rows (skip the header row)
             for (let i = 1; i < tr.length; i++) {
@@ -416,7 +247,6 @@ function displayPartnerOrganizations()
         }
     </script>
 
-
     <script>
         $(".box").click(function (e) {
             e.preventDefault();
@@ -425,10 +255,10 @@ function displayPartnerOrganizations()
             $(content_id).addClass("active");
         });
     </script>
+    
     <br>
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved. | Dr. Ramon De Santos National High School</p>
-        <!-- <p>&copy;2024 Your Website. All rights reserved. | Junior Philippines Computer</p> -->
     </footer>
 
     <script>
@@ -448,8 +278,6 @@ function displayPartnerOrganizations()
             profilePic2.src = URL.createObjectURL(inputFile2.files[0]);
         }
     </script>
-
-
 
     <script type="text/javascript">
         // Get DOM Elements
@@ -494,7 +322,5 @@ function displayPartnerOrganizations()
             }
         }
     </script>
-
 </body>
-
 </html>
