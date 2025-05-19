@@ -192,7 +192,7 @@ function displayPartnerOrganizations()
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
-    <link rel="stylesheet" type="text/css" href="css/Organization.css">
+    <link rel="stylesheet" type="text/css" href="css/Notification-logs.css">
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
     <link rel="stylesheet"
@@ -204,6 +204,9 @@ function displayPartnerOrganizations()
     <!-- -------------font--------- -->
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 
 </head>
 
@@ -212,13 +215,13 @@ function displayPartnerOrganizations()
 
     <?php echo $profile_div; ?>
     <br><br>
-    <hr>
+    <hr class="line_top">
     <div class="logo">
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
-            <a class="active1" href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
+            <a href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
             <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
-            <a href="Notification-logs.php"><i class="fa fa-list"></i>Logs</a>
+            <a class="active1" href="Notification-logs.php"><i class="fa fa-list"></i>Logs</a>
 
 
 
@@ -232,20 +235,160 @@ function displayPartnerOrganizations()
 
     <div id="content_container">
         <div id="list" class="content active">
-            <h1 style="margin-bottom: 50px; margin-top:50px">Organization List</h1>
+            <h1 style="margin-bottom: 3.125rem; margin-top:3.125rem">Notification logs</h1>
+            <div class="d-flex justify-content-center ">
+
+                <div class="tab-pane w-70 p-3 active show" id="messages" role="tabpanel">
+
+                    <div class="filter-container mb-3">
+                        <label for="dateFilter">Filter by Date:</label>
+                        <select id="dateFilter" class="form-control w-25">
+                            <option value="all">Whole Month</option>
+                            <option value="today">Today</option>
+                            <option value="thisWeek">This Week</option>
+                            <option value="lastWeek">Last Week</option>
+                        </select>
+                    </div>
+
+                    <div class="message" data-date="2025-05-01">
+                        <div class="py-3 pb-5 mr-3 float-left">
+                            <div class="avatar">
+                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <small class="text-muted">name of Company </small>
+                            <small class="text-muted float-right mt-1">minutes</small>
 
 
-            <div class="container2">
-                <div class="search-bar">
-                    <input type="text" class="search-input" id="searchOrg" onkeyup="searchTable('list')"
-                        placeholder="Search..." />
-                    <button class="search-button">Search</button>
+                        </div>
+                        <div class="text-truncate"> message</div>
+                        <small class="text-muted">2025-05-05</small>
+                        <hr>
+                    </div>
+
+                    <div class="message" data-date="2025-05-07">
+                        <div class="py-3 pb-5 mr-3 float-left">
+                            <div class="avatar">
+                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <small class="text-muted"> Name of Company</small>
+                            <small class="text-muted float-right mt-1">minutes (example 1 minutes ago)</small>
+                        </div>
+                        <div class="text-truncate">Accept message dialog </div>
+                        <small class="text-muted">2025-05-07</small>
+                        <hr>
+                    </div>
+
+                    <div class="message" data-date="2025-05-14">
+                        <div class="py-3 pb-5 mr-3 float-left">
+                            <div class="avatar">
+                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <small class="text-muted">name of company</small>
+                            <small class="text-muted float-right mt-1">minutes</small>
+                        </div>
+                        <div class="text-truncate">disapprove message dialog </div>
+                        <small class="text-muted">2025-05-14</small>
+                        <hr>
+                    </div>
+
+                    <div class="message" data-date="2025-05-15">
+                        <div class="py-3 pb-5 mr-3 float-left">
+                            <div class="avatar">
+                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <small class="text-muted">name of Student</small>
+                            <small class="text-muted float-right mt-1">2 days ago</small>
+                        </div>
+                        <div class="text-truncate">A new student has registered at your school: </div>
+                        <small class="text-muted">2025-05-15</small>
+                        <hr>
+                    </div>
+
+                    <div class="message" data-date="2025-05-19">
+                        <div class="py-3 pb-5 mr-3 float-left">
+                            <div class="avatar">
+                                <i class="fa fa-bell text-muted" style="font-size: 24px;"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <small class="text-muted">name of Student</small>
+                            <small class="text-muted float-right mt-1">2 days ago</small>
+                        </div>
+                        <div class="text-truncate">A new student has registered at your school: </div>
+                        <small class="text-muted">2025-05-19</small>
+                        <hr>
+                    </div>
+
                 </div>
-                <?php displayPartnerOrganizations(); ?>
+
             </div>
+
+
+
         </div>
 
     </div>
+
+    <script>
+        document.getElementById('dateFilter').addEventListener('change', function () {
+            const filterValue = this.value;
+            const messages = document.querySelectorAll('.tab-pane .message');
+            const today = new Date();
+            // Helper functions
+            function getStartOfWeek(date) {
+                const day = date.getDay();
+                const diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is Sunday
+                return new Date(date.getFullYear(), date.getMonth(), diff);
+            }
+
+            function getEndOfWeek(date) {
+                const start = getStartOfWeek(date);
+                return new Date(start.getFullYear(), start.getMonth(), start.getDate() + 6);
+            }
+
+            messages.forEach(msg => {
+                const msgDateStr = msg.getAttribute('data-date');
+                if (!msgDateStr) {
+                    // If no date data, show by default
+                    msg.style.display = '';
+                    return;
+                }
+                const msgDate = new Date(msgDateStr);
+                let show = true;
+
+                switch (filterValue) {
+                    case 'all':
+                        show = true;
+                        break;
+                    case 'today':
+                        show = msgDate.toDateString() === today.toDateString();
+                        break;
+                    case 'thisWeek':
+                        const startOfWeek = getStartOfWeek(today);
+                        const endOfWeek = getEndOfWeek(today);
+                        show = msgDate >= startOfWeek && msgDate <= endOfWeek;
+                        break;
+                    case 'lastWeek':
+                        const lastWeekStart = new Date(getStartOfWeek(today));
+                        lastWeekStart.setDate(lastWeekStart.getDate() - 7);
+                        const lastWeekEnd = new Date(lastWeekStart);
+                        lastWeekEnd.setDate(lastWeekStart.getDate() + 6);
+                        show = msgDate >= lastWeekStart && msgDate <= lastWeekEnd;
+                        break;
+                }
+
+                msg.style.display = show ? '' : 'none';
+            });
+        });
+    </script>
 
     <script>
         function searchTable(section) {
