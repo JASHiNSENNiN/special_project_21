@@ -540,7 +540,8 @@ if (isset($_SESSION['school_name'])) {
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Company</th>
+                                            <th>Position</th>
                                             <th>Total Students</th>
                                         </tr>
                                     </thead>
@@ -552,7 +553,8 @@ if (isset($_SESSION['school_name'])) {
                                         if (!empty($jobOffersData)) {
                                             foreach ($jobOffersData as $offer) {
                                                 echo '<tr>';
-                                                echo '<td data-label="Name"><a href="#">' . htmlspecialchars($offer['work_title']) . '</a></td>';
+                                                echo '<td data-label="Name">Company Name</td>';
+                                                echo '<td data-label="Name">' . htmlspecialchars($offer['work_title']) . '</td>';
                                                 echo '<td data-label="TotalStudent">' . htmlspecialchars($offer['student_count']) . '</td>';
                                                 echo '</tr>';
                                             }

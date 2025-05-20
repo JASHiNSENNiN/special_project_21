@@ -177,14 +177,13 @@
   background-color: #405cf5;
   border-radius: 6px;
   border-width: 0;
-  box-shadow:
-    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.1) 0 2px 5px 0,
-    rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -196,9 +195,7 @@
   text-align: center;
   text-transform: none;
   transform: translateZ(0);
-  transition:
-    all 0.2s,
-    box-shadow 0.08s ease-in;
+  transition: all 0.2s, box-shadow 0.08s ease-in;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -215,10 +212,8 @@
 }
 
 .button-9:focus {
-  box-shadow:
-    rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
-    rgba(50, 50, 93, 0.2) 0 6px 15px 0,
-    rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
 }
 
@@ -232,10 +227,7 @@
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family:
-    "Akzidenz Grotesk BQ Medium",
-    -apple-system,
-    BlinkMacSystemFont,
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
     sans-serif;
   font-size: 100%;
   font-weight: 400;
@@ -244,9 +236,7 @@
   padding: 10px 25px;
   text-align: center;
   transform: translateY(0);
-  transition:
-    transform 150ms,
-    box-shadow 150ms;
+  transition: transform 150ms, box-shadow 150ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -423,8 +413,7 @@ canvas {
   border-radius: 10px;
   font-size: 18px;
   /*            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-  box-shadow:
-    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -955,5 +944,97 @@ td a {
     grid-template-columns: 1fr;
   }
 }
+@media only screen and (max-width: 500px) {
+  .ave-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
 
+@media print {
+  .ave-container {
+    display: block; /* stack children vertically for print */
+    width: 100%;
+  }
+  .nav-header,
+  .logoimg,
+  .logo {
+    display: none;
+  }
+  .card-5,
+  .card-pie,
+  .card-chart {
+    width: 100%;
+    min-height: auto;
+    margin-bottom: 20px; /* optional spacing between charts */
+    /* place-items: center; */
+  }
+
+  /* Ensure the chart containers fill their parent and have appropriate height */
+  #piechart-ave,
+  #chart_div_ave {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 300px; /* or adjust as needed */
+  }
+
+  /* Make sure the main container takes full width */
+  .c1 {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .polar-chart-container {
+    width: 100%;
+  }
+
+  /* Make cards stack vertically and occupy full width */
+  .card-5,
+  .card-3 {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    page-break-inside: avoid; /* Prevent breaking inside cards */
+  }
+
+  /* Adjust headings for print */
+  .chart-lbl {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  /* Remove dividers if unnecessary for print; or style them appropriately */
+  .view-details,
+  .divider {
+    display: none;
+  }
+
+  /* Style the table for better print readability */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd; /* Make borders visible */
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #172738 !important;
+    color: #fff !important;
+  }
+  #piechart-ave,
+  .card-pie,
+  .card-3 {
+    page-break-after: always;
+  }
+  .profile {
+    margin-top: 100px;
+  }
+}
 /* --------------------------------------end bottom analytics--------------------------------- */

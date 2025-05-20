@@ -1333,11 +1333,12 @@ span .subtitle-resume {
 }
 
 .content-box .date {
-  position: absolute;
+  /* position: absolute; */
   font-size: 14px;
   color: #777;
   margin-bottom: 10px;
-  right: 32rem;
+  /* right: 32rem; */
+  text-align: end;
 }
 
 .content-box .titleW {
@@ -1350,6 +1351,7 @@ span .subtitle-resume {
 .content-box .description {
   font-size: 14px;
   color: #555;
+  margin-bottom: 20px;
 }
 
 .DailyJournal {
