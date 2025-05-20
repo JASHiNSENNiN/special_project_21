@@ -209,52 +209,61 @@ $applicants = getApplicants($conn, $org_id);
                             <?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
                         <td data-th="Day 1">
                             <div>
-                                <!-- Date here -->
+                                <div>5/19/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 2">
                             <div>
                                 <!-- Date here -->
+                                <div>5/20/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 3">
                             <div>
                                 <!-- Date here -->
+                                <div>5/21/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 4">
                             <div>
                                 <!-- Date here -->
+                                <div>5/22/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 5">
                             <div>
                                 <!-- Date here -->
+                                <div>5/23/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 6">
                             <div>
                                 <!-- Date here -->
+                                <div>5/26/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 7">
                             <div>
                                 <!-- Date here -->
+                                <div>5/27/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 8">
                             <div>
                                 <!-- Date here -->
+                                <div>5/28/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 9">
                             <div>
                                 <!-- Date here -->
+                                <div>5/29/2025</div>
                             </div>
                         </td>
                         <td data-th="Day 10">
                             <div>
                                 <!-- Date here -->
+                                <div>5/30/2025</div>
                             </div>
                         </td>
                         <td data-th="Action">
