@@ -113,9 +113,10 @@ $dateFilter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
                     <div class="filter-container mb-3">
                         <label for="dateFilter">Filter by Date:</label>
                         <select id="dateFilter" class="form-control w-25" onchange="filterNotifications()">
-                            <option value="all">Whole Month</option>
+                            <option value="all">All Notifications</option>
+                            <option value="month">Current Month</option>
                             <option value="today">Today</option>
-                            <option value="thisWeek">This Week</option>
+                            <option value="week">This Week</option>
                             <option value="lastWeek">Last Week</option>
                         </select>
                     </div>
@@ -158,67 +159,105 @@ $dateFilter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
     </div>
 
     <script>
-        // Filter notifications function
         function filterNotifications() {
             const filterValue = document.getElementById('dateFilter').value;
             const messages = document.querySelectorAll('.message');
             const today = new Date();
-            
-            // Helper functions
+            today.setHours(0, 0, 0, 0);
+
             function getStartOfWeek(date) {
-                const day = date.getDay();
-                const diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is Sunday
-                return new Date(date.getFullYear(), date.getMonth(), diff);
+                const newDate = new Date(date);
+                const day = newDate.getDay();
+                const diff = newDate.getDate() - day + (day === 0 ? -6 : 1);
+                newDate.setDate(diff);
+                newDate.setHours(0, 0, 0, 0);
+                return newDate;
             }
 
             function getEndOfWeek(date) {
                 const start = getStartOfWeek(date);
-                return new Date(start.getFullYear(), start.getMonth(), start.getDate() + 6);
+                const end = new Date(start);
+                end.setDate(start.getDate() + 6);
+                end.setHours(23, 59, 59, 999);
+                return end;
+            }
+
+            function isInCurrentMonth(date) {
+                return date.getMonth() === today.getMonth() && 
+                       date.getFullYear() === today.getFullYear();
+            }
+
+            function isToday(date) {
+                return date.getTime() === today.getTime();
+            }
+
+            function isInDateRange(date, start, end) {
+                return date >= start && date <= end;
             }
 
             messages.forEach(msg => {
                 const msgDateStr = msg.getAttribute('data-date');
                 if (!msgDateStr) {
-                    // If no date data, show by default
                     msg.style.display = '';
                     return;
                 }
                 
                 const msgDate = new Date(msgDateStr);
+                msgDate.setHours(0, 0, 0, 0);
                 let show = true;
 
                 switch (filterValue) {
                     case 'all':
                         show = true;
                         break;
-                    case 'today':
-                        const todayStr = today.toISOString().split('T')[0];
-                        const msgDateFormatted = msgDateStr;
-                        show = msgDateFormatted === todayStr;
+                    case 'month':
+                        show = isInCurrentMonth(msgDate);
                         break;
-                    case 'thisWeek':
-                        const startOfWeek = getStartOfWeek(today);
-                        const endOfWeek = getEndOfWeek(today);
-                        show = msgDate >= startOfWeek && msgDate <= endOfWeek;
+                    case 'today':
+                        show = isToday(msgDate);
+                        break;
+                    case 'week':
+                        const thisWeekStart = getStartOfWeek(today);
+                        const thisWeekEnd = getEndOfWeek(today);
+                        show = isInDateRange(msgDate, thisWeekStart, thisWeekEnd);
                         break;
                     case 'lastWeek':
-                        const lastWeekStart = new Date(getStartOfWeek(today));
-                        lastWeekStart.setDate(lastWeekStart.getDate() - 7);
-                        const lastWeekEnd = new Date(lastWeekStart);
-                        lastWeekEnd.setDate(lastWeekStart.getDate() + 6);
-                        show = msgDate >= lastWeekStart && msgDate <= lastWeekEnd;
+                        const lastWeekToday = new Date(today);
+                        lastWeekToday.setDate(today.getDate() - 7);
+                        const lastWeekStart = getStartOfWeek(lastWeekToday);
+                        const lastWeekEnd = getEndOfWeek(lastWeekToday);
+                        show = isInDateRange(msgDate, lastWeekStart, lastWeekEnd);
                         break;
                 }
 
                 msg.style.display = show ? '' : 'none';
             });
+
+            updateNoResultsMessage();
         }
 
-        // Run filter on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initial filtering with default option
-            filterNotifications();
-        });
+        function updateNoResultsMessage() {
+            const messages = document.querySelectorAll('.message');
+            const visibleMessages = Array.from(messages).filter(msg => msg.style.display !== 'none');
+            const noResultsMsg = document.getElementById('no-results-message');
+            
+            if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+
+            if (visibleMessages.length === 0) {
+                const messageContainer = document.querySelector('.tab-pane');
+                const noResults = document.createElement('div');
+                noResults.id = 'no-results-message';
+                noResults.className = 'alert alert-info mt-3';
+                noResults.textContent = 'No notifications found for the selected time period.';
+                messageContainer.appendChild(noResults);
+            }
+        }
+
+        // Initialize filtering on page load
+        document.addEventListener('DOMContentLoaded', filterNotifications);
+        document.getElementById('dateFilter').addEventListener('change', filterNotifications);
     </script>
 
     <script>
