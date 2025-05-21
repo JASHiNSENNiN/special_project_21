@@ -250,7 +250,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {
-                                echo "<button class='button-11' type='submit' name='action' value='unverify' autofocus>Unverify</button><br>";
+                                echo "<button class='button-11' type='submit' name='action' value='unverify' autofocus>Disapprove</button><br>";
                             } else {
                                 echo "<button class='button-10' type='submit' name='action' value='verify' autofocus>Verify</button><br>";
                             }
@@ -305,9 +305,9 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {
-                                echo "<button class='button-11' type='submit' name='action' value='Disapprove'>Disapprove</button><br>";
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Disapprove</button><br>";
                             } else {
-                                echo "<button class='button-10' type='submit' name='action' value='Approve'>Approve</button> <br>";
+                                echo "<button class='button-10' type='submit' name='action' value='verify'>Approve</button> <br>";
                             }
                             echo "</form>";
                             echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileView.php?student_id=" . base64_encode(encrypt_url_parameter((string) $student['id'])) . "'\">View Profile</button>";
@@ -359,7 +359,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {
-                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button><br>";
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Disapprove</button><br>";
                             } else {
                                 echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
                             }
@@ -412,7 +412,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {
-                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button><br>";
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Disapprove</button><br>";
                             } else {
                                 echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
                             }
@@ -465,7 +465,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {
-                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Unverify</button><br>";
+                                echo "<button class='button-11' type='submit' name='action' value='unverify'>Disapprove</button><br>";
                             } else {
                                 echo "<button class='button-10' type='submit' name='action' value='verify'>Verify</button><br>";
                             }
