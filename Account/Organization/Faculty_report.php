@@ -163,7 +163,10 @@ $applicants = getApplicants($conn, $org_id);
 
     <div class="container2">
         <h1>Student List</h1>
+        <i class="txt-des">To print the table, press Ctrl + P.</i>
         <br>
+        <br>
+
         <table class="rwd-table">
             <tbody>
                 <tr>
@@ -180,7 +183,7 @@ $applicants = getApplicants($conn, $org_id);
                     <th>Day 8</th>
                     <th>Day 9</th>
                     <th>Day 10</th>
-                    <th>Action</th>
+                    <th class="action-tb">Action</th>
                 </tr>
                 <?php foreach ($applicants as $index => $applicant) {
                     $profile_image = '../Student/uploads/' . $applicant['profile_image'];
@@ -197,7 +200,7 @@ $applicants = getApplicants($conn, $org_id);
 
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     $has_evaluation_today = $result['eval_count'] > 0;
-                ?>
+                    ?>
                     <tr>
                         <td data-th="#"><?= $index + 1 ?></td>
                         <td data-th="ID Picture">
@@ -206,7 +209,8 @@ $applicants = getApplicants($conn, $org_id);
                                 alt="Profile Picture">
                         </td>
                         <td data-th="Student Name">
-                            <?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?></td>
+                            <?= $applicant['first_name'] . ' ' . $applicant['last_name'] ?>
+                        </td>
                         <td data-th="Day 1">
                             <div>
                                 <div>5/19/2025</div>
@@ -266,7 +270,7 @@ $applicants = getApplicants($conn, $org_id);
                                 <div>5/30/2025</div>
                             </div>
                         </td>
-                        <td data-th="Action">
+                        <td class="action-tb" data-th="Action">
                             <a
                                 href="EvaluationForm.php?student_id=<?= base64_encode(encrypt_url_parameter($applicant['student_id'])) ?>">
 

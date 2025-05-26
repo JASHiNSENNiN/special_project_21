@@ -1010,6 +1010,10 @@ td a {
   .divider {
     display: none;
   }
+  .txt-des {
+    padding: 20px;
+    color: gray;
+  }
 
   /* Style the table for better print readability */
   table {
