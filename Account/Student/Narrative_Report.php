@@ -167,7 +167,7 @@ if ($is_completed) {
                 }
                 ?>
             </div>
-            <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"></form>
+            <!-- <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"></form> -->
             <div class="form-group">
                 <label class="Jor" for="date">Date</label>
                 <input class="inp" type="date" id="date" name="date" value="" required>
@@ -245,10 +245,7 @@ if ($is_completed) {
             <div class="form_1 data_info">
                 <div class="form_container">
                     <div class="questioner">
-
                         <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-
-
                             <div class="st">
                                 <h3>1. How would you rate the overall quality of your work immersion experience?</h3>
                                 <div class="sr">
@@ -318,11 +315,9 @@ if ($is_completed) {
                                     <label class="star empty"><input type="radio" name="question5" value="5"><i
                                             class="fa fa-star"></i></label>
                                 </div>
-
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
 
