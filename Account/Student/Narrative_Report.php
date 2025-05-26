@@ -167,7 +167,7 @@ if ($is_completed) {
                 }
                 ?>
             </div>
-            <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"></form>
+            <!-- <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"></form> -->
             <div class="form-group">
                 <label class="Jor" for="date">Date</label>
                 <input class="inp" type="date" id="date" name="date" value="" required>
@@ -245,82 +245,79 @@ if ($is_completed) {
             <div class="form_1 data_info">
                 <div class="form_container">
                     <div class="questioner">
-
-
-                        <div class="st">
-                            <h3>1. How would you rate the overall quality of your work immersion experience?</h3>
-                            <div class="sr">
-                                <label class="star empty green"><input type="radio" name="question1" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question1" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question1" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question1" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question1" value="5"><i
-                                        class="fa fa-star"></i></label>
+                        <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <div class="st">
+                                <h3>1. How would you rate the overall quality of your work immersion experience?</h3>
+                                <div class="sr">
+                                    <label class="star empty green"><input type="radio" name="question1" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question1" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question1" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question1" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question1" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>2. How effectively were the tasks assigned to you managed during the immersion?</h3>
+                                <div class="sr">
+                                    <label class="star empty green" green><input type="radio" name="question2" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question2" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question2" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question2" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question2" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>3. How well did the immersion provide opportunities for you to solve real
+                                    challenges? </h3>
+                                <div class="sr">
+                                    <label class="star empty green" green><input type="radio" name="question3" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question3" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question3" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question3" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question3" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>4. How thorough was the guidance you received in ensuring high-quality work?</h3>
+                                <div class="sr">
+                                    <label class="star empty green"><input type="radio" name="question4" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question4" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question4" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question4" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question4" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>5. How proactive did the immersion encourage you to take on additional tasks or
+                                    responsibilities?
+                                </h3>
+                                <div class="sr">
+                                    <label class="star empty green"><input type="radio" name="question5" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question5" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question5" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question5" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question5" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
                             </div>
-                            <h3>2. How effectively were the tasks assigned to you managed during the immersion?</h3>
-                            <div class="sr">
-                                <label class="star empty green" green><input type="radio" name="question2" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question2" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question2" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question2" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question2" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
-                            <h3>3. How well did the immersion provide opportunities for you to solve real
-                                challenges? </h3>
-                            <div class="sr">
-                                <label class="star empty green" green><input type="radio" name="question3" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question3" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question3" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question3" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question3" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
-                            <h3>4. How thorough was the guidance you received in ensuring high-quality work?</h3>
-                            <div class="sr">
-                                <label class="star empty green"><input type="radio" name="question4" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question4" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question4" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question4" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question4" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
-                            <h3>5. How proactive did the immersion encourage you to take on additional tasks or
-                                responsibilities?
-                            </h3>
-                            <div class="sr">
-                                <label class="star empty green"><input type="radio" name="question5" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question5" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question5" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question5" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question5" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
-
-                        </div>
                         </form>
                     </div>
-
                 </div>
             </div>
 
