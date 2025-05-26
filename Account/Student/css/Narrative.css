@@ -307,7 +307,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
 }
 
 /* h1,
@@ -1151,12 +1151,12 @@ input[type="radio"] {
 } */
 
 .wrapper {
-  width: 60%;
+  width: 50%;
   max-width: 100%;
   background: var(--white);
-  margin: 0px auto 0;
+  margin: 0px auto 30px;
   padding: 50px;
-  border-radius: 5px;
+  border-radius: 20px;
   border: 1px solid gray;
 }
 
@@ -1257,11 +1257,11 @@ input[type="radio"] {
   border-color: var(--primary);
 }
 
-.wrapper .btns_wrap {
+/* .wrapper .btns_wrap {
   width: 350px;
   max-width: 100%;
   margin: 0 auto;
-}
+} */
 
 .wrapper .btns_wrap .common_btns {
   display: flex;
@@ -1419,7 +1419,7 @@ input[type="radio"] {
 
 .questioner {
   text-align: left;
-  margin: 60px;
+  margin: 2rem 3rem;
 }
 
 .st {
