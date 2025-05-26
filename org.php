@@ -24,7 +24,7 @@ $urlParts = parse_url($currentUrl);
 if (isset($urlParts['query'])) {
     parse_str($urlParts['query'], $queryParameters);
     if (isset($queryParameters['job_id'])) {
-        $jobIdParam =  $queryParameters['job_id'];
+        $jobIdParam = $queryParameters['job_id'];
     }
 } else {
     echo "Query string parameter not found.";
@@ -158,14 +158,14 @@ function generateJobCard()
 
     $encoded_id = base64_encode(encrypt_url_parameter((string) $job['partner_id']));
 
-echo '<span class="job-category"><a href="#">Organization</a></span>';
-echo '<h1>';
-echo '<a href="../../ProfileOrgView.php?organization_id=' . $encoded_id . '" 
+    echo '<span class="job-category"><a href="#">Organization</a></span>';
+    echo '<h1>';
+    echo '<a href="../../ProfileOrgView.php?organization_id=' . $encoded_id . '" 
         onclick="window.location.href=\'../../ProfileOrgView.php?organization_id=' . $encoded_id . '\'; return false;"
         style="text-decoration: underline !important; color: inherit !important; display: inline-block;">'
-    . htmlspecialchars($job['organization_name']) .
-    '</a>';
-echo '</h1>';
+        . htmlspecialchars($job['organization_name']) .
+        '</a>';
+    echo '</h1>';
 
     // foreach ($strands as $strand) {
     //     echo '<span class="job-type full-time">' . htmlspecialchars($strand) . '</span>';
@@ -278,7 +278,7 @@ function getApplicantsCountByStrand($jobId, $pdo)
 
     foreach ($results as $row) {
         if (isset($strandCounts[$row['strand']])) {
-            $strandCounts[$row['strand']] = (int)$row['count'];
+            $strandCounts[$row['strand']] = (int) $row['count'];
         }
     }
 
@@ -454,7 +454,8 @@ if (isset($_SESSION['account_type'])) {
             ?>
 
             <div class="css-1ld7x2h eu4oa1w0"></div>
-            <a class="com-btn" href="<?php echo htmlspecialchars($link, ENT_QUOTES, 'UTF-8'); ?>">Back</a>
+
+            <a class="com-btn" href="index.php">Back</a>
 
         </nav>
 
@@ -503,7 +504,7 @@ if (isset($_SESSION['account_type'])) {
 
     <!-- -------------------------------------header stick js ------------------------------ -->
     <script>
-        window.onscroll = function() {
+        window.onscroll = function () {
             myFunction();
         };
 
@@ -519,7 +520,7 @@ if (isset($_SESSION['account_type'])) {
         }
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.bar span').hide();
             $('#bar-five').animate({
                 width: '85%'
@@ -537,7 +538,7 @@ if (isset($_SESSION['account_type'])) {
                 width: '30%'
             }, 1000);
 
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.bar span').fadeIn('slow');
             }, 1000);
 
