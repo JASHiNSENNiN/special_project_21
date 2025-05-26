@@ -703,7 +703,9 @@ if (isset($_SESSION['school_name'])) {
     <hr class="line_bottom">
     </div>
 
+
     <div class="container">
+
         <div class="card blue">
             <h2>0</h2>
             <p>Total HUMSS</p>
@@ -855,6 +857,7 @@ if (isset($_SESSION['school_name'])) {
                 <div id="chart_div_ave" style="width: 100%; height: 100%; min-height: 300px;"></div>
             </div>
         </div>
+        <i class="txt-des">*To print the analytics, press Ctrl + P.</i>
         <!-- </main> -->
     </div>
 
