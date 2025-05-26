@@ -81,24 +81,6 @@ function checkRequiredDocuments()
 
 checkRequiredDocuments();
 
-// Function to get working days (excluding weekends)
-function getWorkingDays($startDate, $numberOfDays) {
-    $workingDays = [];
-    $currentDate = new DateTime($startDate);
-    $daysAdded = 0;
-    
-    while ($daysAdded < $numberOfDays) {
-        // Skip weekends (Saturday = 6, Sunday = 0)
-        if ($currentDate->format('w') != 0 && $currentDate->format('w') != 6) {
-            $workingDays[] = $currentDate->format('n/j/Y');
-            $daysAdded++;
-        }
-        $currentDate->add(new DateInterval('P1D'));
-    }
-    
-    return $workingDays;
-}
-
 // Function to get currently working students for the organization
 function getCurrentlyWorkingStudents($conn, $currentOrgId)
 {
@@ -139,10 +121,11 @@ function getCurrentlyWorkingStudents($conn, $currentOrgId)
     return $students;
 }
 
-// Function to get evaluation status for each day
-function getEvaluationStatus($conn, $studentId, $evaluatorId, $day) {
-    $sql = "SELECT COUNT(*) as count FROM Student_Evaluation 
-            WHERE student_id = ? AND evaluator_id = ? AND day = ?";
+// Function to get evaluation status and date for each day
+function getEvaluationStatusAndDate($conn, $studentId, $evaluatorId, $day) {
+    $sql = "SELECT evaluation_date FROM Student_Evaluation 
+            WHERE student_id = ? AND evaluator_id = ? AND day = ?
+            ORDER BY evaluation_date DESC LIMIT 1";
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("iis", $studentId, $evaluatorId, $day);
@@ -151,31 +134,11 @@ function getEvaluationStatus($conn, $studentId, $evaluatorId, $day) {
     $row = $result->fetch_assoc();
     $stmt->close();
     
-    return $row['count'] > 0;
-}
-
-// Function to get the internship start date (you may need to adjust this based on your system)
-function getInternshipStartDate($conn, $studentId) {
-    // This assumes you have a way to track when internship started
-    // You might need to adjust this query based on your actual data structure
-    $sql = "SELECT MIN(evaluation_date) as start_date FROM Student_Evaluation WHERE student_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $studentId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $stmt->close();
-    
-    // If no evaluations exist yet, use a default start date or current date
-    // You should replace this with your actual internship start date logic
-    return $row['start_date'] ?? date('Y-m-d', strtotime('-10 weekdays'));
+    return $row ? $row['evaluation_date'] : null;
 }
 
 $org_id = $_SESSION['user_id'];
 $currentlyWorkingStudents = getCurrentlyWorkingStudents($conn, $org_id);
-
-// Generate working days (10 working days starting from internship start)
-$workingDays = getWorkingDays(date('Y-m-d'), 10);
 ?>
 
 <!DOCTYPE html>
@@ -266,16 +229,17 @@ $workingDays = getWorkingDays(date('Y-m-d'), 10);
                                 <?= htmlspecialchars($student['work_title']) ?>
                             </td>
                             <?php for ($day = 1; $day <= 10; $day++): 
-                                $isEvaluated = getEvaluationStatus($conn, $student['student_id'], $org_id, $day);
-                                $dateIndex = $day - 1;
-                                $workDate = isset($workingDays[$dateIndex]) ? $workingDays[$dateIndex] : '';
+                                $evaluationDate = getEvaluationStatusAndDate($conn, $student['student_id'], $org_id, $day);
+                                $isEvaluated = !is_null($evaluationDate);
                             ?>
                                 <td data-th="Day <?= $day ?>">
                                     <div class="evaluation-status <?= $isEvaluated ? 'evaluated' : 'not-evaluated' ?>">
-                                        <div><?= $workDate ?></div>
-                                        <div style="font-size: 12px; margin-top: 3px;">
-                                            <?= $isEvaluated ? '✓ Done' : '✗ Pending' ?>
-                                        </div>
+                                        <?php if ($isEvaluated): ?>
+                                            <div><?= date('n/j/Y', strtotime($evaluationDate)) ?></div>
+                                            <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
+                                        <?php else: ?>
+                                            <div style="font-size: 12px;">✗ Pending</div>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             <?php endfor; ?>
