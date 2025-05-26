@@ -27,6 +27,123 @@ global $password;
 global $database;
 global $conn;
 
+function get_verification_status($org_id) {
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("SELECT verified_status FROM partner_profiles WHERE user_id = ?");
+    $stmt->bind_param("i", $org_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+    $conn->close();
+
+    return $row ? (bool)$row['verified_status'] : false;
+}
+
+$current_status = get_verification_status($user_id);
+
+// Functions for organization approval/disapproval
+function approve_org($org_id, $remarks = "Your company account has been approved after successfully reviewing the background information and verifying the complete document uploads.")
+{
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Update verification status in partner_profiles
+    $stmt = $conn->prepare("UPDATE partner_profiles SET verified_status = TRUE WHERE user_id = ?");
+    $stmt->bind_param("i", $org_id);
+    $stmt->execute();
+    $stmt->close();
+
+    // Send notification to organization (using user_id which references users table)
+    $message = "Your organization account has been approved. " . $remarks;
+    $notificationQuery = "INSERT INTO notifications (user_id, message, is_read, created_at) VALUES (?, ?, FALSE, NOW())";
+    $notificationStmt = $conn->prepare($notificationQuery);
+    $notificationStmt->bind_param("is", $org_id, $message);
+    $notificationStmt->execute();
+    $notificationStmt->close();
+
+    $conn->close();
+}
+
+function disapprove_org($org_id, $remarks = "After careful review of the submitted background and documentation, we regret to inform you that your company account has not been approved at this time.")
+{
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Update verification status in partner_profiles
+    $stmt = $conn->prepare("UPDATE partner_profiles SET verified_status = FALSE WHERE user_id = ?");
+    $stmt->bind_param("i", $org_id);
+    $stmt->execute();
+    $stmt->close();
+
+    // Send notification to organization (using user_id which references users table)
+    $message = "Your organization account has been disapproved. " . $remarks;
+    $notificationQuery = "INSERT INTO notifications (user_id, message, is_read, created_at) VALUES (?, ?, FALSE, NOW())";
+    $notificationStmt = $conn->prepare($notificationQuery);
+    $notificationStmt->bind_param("is", $org_id, $message);
+    $notificationStmt->execute();
+    $notificationStmt->close();
+
+    $conn->close();
+}
+
+// Initialize variables for UI state
+$success_message = '';
+$error_message = '';
+$action_taken = '';
+
+// Handle POST requests for approval/disapproval
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['org_id']) && isset($_POST['action'])) {
+    $org_id = intval($_POST['org_id']);
+    $action = $_POST['action'];
+
+    if ($action === 'Approve') {
+        approve_org($org_id);
+        $success_message = "Organization has been approved successfully.";
+        $action_taken = 'approved';
+    } elseif ($action === 'Disapprove') {
+        disapprove_org($org_id);
+        $success_message = "Organization has been disapproved.";
+        $action_taken = 'disapproved';
+    }
+
+    // Redirect to prevent form resubmission
+    header("Location: " . $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'] . "&message=" . urlencode($success_message) . "&action=" . urlencode($action_taken));
+    exit();
+}
+
+// Get messages from URL parameters (after redirect)
+if (isset($_GET['message'])) {
+    $success_message = $_GET['message'];
+    $action_taken = isset($_GET['action']) ? $_GET['action'] : '';
+}
+
 try {
     try {
         $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
@@ -333,7 +450,79 @@ $document_name_mapping = [
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" /> -->
-
+    <style>
+        .container-alert-mssg {
+            margin: 20px 0;
+        }
+        .xd-message {
+            display: none;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid;
+        }
+        .xd-message.show {
+            display: block;
+        }
+        .msg-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .msg-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .xd-message-icon {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .label-remarks {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .xd-message-content p {
+            margin: 0;
+            line-height: 1.4;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        .button-10, .button-11 {
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .button-10 {
+            background-color: #28a745;
+            color: white;
+        }
+        .button-11 {
+            background-color: #dc3545;
+            color: white;
+        }
+        .frontend-text {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>
@@ -799,48 +988,47 @@ School'
             </main>
         </div>
 
-        <div class="btn-apr-dis"> <span class="frontend-text">Do you approve or disapprove of this company's
-                account?</span><button class='button-10' type='submit' name='action' value='Approve'
-                autofocus>Approve</button> <button class='button-11' type='submit' name='action' value='Disapprove'
-                autofocus>Disapprove</button></div>
+      <?php if ($success_message): ?>
+    <div class="success-notification" style="background-color: #d4edda; color: #155724; padding: 10px; margin: 10px 0; border-radius: 4px;">
+        <?= htmlspecialchars($success_message) ?>
+    </div>
+<?php endif; ?>
 
-        <div class="container-alert-mssg">
+<form method="POST" action="">
+    <input type="hidden" name="org_id" value="<?= htmlspecialchars($user_id) ?>">
+    <span class="frontend-text">Do you approve or disapprove of this company's account?</span>
+    
+    <?php if (!$current_status): ?>
+        <!-- Show Approve button if not approved -->
+        <button class='button-10' type='submit' name='action' value='Approve'>Approve</button>
+    <?php else: ?>
+        <!-- Show Disapprove button if approved -->
+        <button class='button-11' type='submit' name='action' value='Disapprove'>Disapprove</button>
+    <?php endif; ?>
+</form>
 
-            <!-- Danger Message -->
-            <div class="xd-message msg-danger">
-                <div class="xd-message-icon">
-                    <!-- <i class="ion-close-round"></i> -->
-                    <span class="label-remarks">Remarks</span>
-                </div>
-                <div class="xd-message-content">
-                    <p>After careful review of the submitted background and documentation, we regret to inform you that
-                        your
-                        company account has not been approved at this time.</p>
-                </div>
-                <!--     <a href="#" class="xd-message-close">
-<i class="close-icon ion-close-round"></i>
-</a>   -->
-            </div>
-
-            <!-- Danger Success -->
-            <div class="xd-message msg-success">
-                <div class="xd-message-icon">
-                    <!-- <i class="ion-checkmark"></i> -->
-                    <span class="label-remarks">Remarks</span>
-                </div>
-                <div class="xd-message-content">
-                    <p>Your company account has been approved after successfully reviewing the background information
-                        and
-                        verifying the complete document uploads.</p>
-                </div>
-                <!--     <a href="#" class="xd-message-close">
-<i class="close-icon ion-close-round"></i>
-</a>   -->
-            </div>
-
-
-
+<div class="container-alert-mssg">
+    <!-- Always show Disapprove Message -->
+    <div class="xd-message msg-danger show">
+        <div class="xd-message-icon">
+            <span class="label-remarks">Remarks to be sent</span>
         </div>
+        <div class="xd-message-content">
+            <p>After careful review of the submitted background and documentation, we regret to inform you that your company account has not been approved at this time.</p>
+        </div>
+    </div>
+
+    <!-- Always show Approve Message -->
+    <div class="xd-message msg-success show">
+        <div class="xd-message-icon">
+            <span class="label-remarks">Remarks to be sent</span>
+        </div>
+        <div class="xd-message-content">
+            <p>Your company account has been approved after successfully reviewing the background information and verifying the complete document uploads.</p>
+        </div>
+    </div>
+</div>
+
 
 
 

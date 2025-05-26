@@ -359,6 +359,232 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+function fetchCompanyAverages($conn)
+{
+    $school_name = $_SESSION['school_name'];
+
+    $query = "
+    SELECT 
+        pp.organization_name,
+        ROUND(AVG(
+            punctual + 
+            reports_regularly + 
+            performs_tasks_independently + 
+            self_discipline + 
+            dedication_commitment + 
+            ability_to_operate_machines + 
+            handles_details + 
+            shows_flexibility + 
+            thoroughness_attention_to_detail + 
+            understands_task_linkages + 
+            offers_suggestions + 
+            tact_in_dealing_with_people + 
+            respect_and_courtesy + 
+            helps_others + 
+            learns_from_co_workers + 
+            shows_gratitude + 
+            poise_and_self_confidence + 
+            emotional_maturity
+        ), 2) AS company_average
+    FROM 
+        Student_Evaluation se
+    JOIN 
+        student_profiles sp ON se.student_id = sp.user_id
+    JOIN 
+        applicants a ON sp.user_id = a.student_id
+    JOIN 
+        job_offers jo ON a.job_id = jo.id
+    JOIN 
+        partner_profiles pp ON jo.partner_id = pp.user_id
+    WHERE 
+        sp.school = ?
+        AND a.status = 'accepted'
+    GROUP BY 
+        pp.organization_name
+    ORDER BY 
+        company_average DESC
+    ";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $school_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result) {
+        $companyData = [];
+        
+        while ($row = $result->fetch_assoc()) {
+            $companyData[] = [
+                'company' => $row['organization_name'],
+                'average' => $row['company_average']
+            ];
+        }
+
+        return $companyData;
+    } else {
+        error_log("Error fetching company averages: " . $conn->error);
+        return [];
+    }
+}
+
+// Function to fetch strand comparison data
+function fetchStrandComparisonData($conn)
+{
+    $school_name = $_SESSION['school_name'];
+
+    $query = "
+    SELECT 
+        sp.strand,
+        -- Work Habits Average
+        ROUND(AVG(
+            punctual + 
+            reports_regularly + 
+            performs_tasks_independently + 
+            self_discipline + 
+            dedication_commitment
+        ), 2) AS work_habits_avg,
+        -- Work Skills Average  
+        ROUND(AVG(
+            ability_to_operate_machines + 
+            handles_details + 
+            shows_flexibility + 
+            thoroughness_attention_to_detail + 
+            understands_task_linkages + 
+            offers_suggestions
+        ), 2) AS work_skills_avg,
+        -- Social Skills Average
+        ROUND(AVG(
+            tact_in_dealing_with_people + 
+            respect_and_courtesy + 
+            helps_others + 
+            learns_from_co_workers + 
+            shows_gratitude + 
+            poise_and_self_confidence + 
+            emotional_maturity
+        ), 2) AS social_skills_avg
+    FROM 
+        Student_Evaluation se
+    JOIN 
+        student_profiles sp ON se.student_id = sp.user_id
+    WHERE 
+        sp.school = ?
+    GROUP BY 
+        sp.strand
+    ORDER BY 
+        sp.strand
+    ";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $school_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result) {
+        $strandData = [];
+        $overallTotals = [
+            'work_habits' => 0,
+            'work_skills' => 0, 
+            'social_skills' => 0,
+            'count' => 0
+        ];
+        
+        while ($row = $result->fetch_assoc()) {
+            $strandData[] = [
+                'strand' => strtoupper($row['strand']),
+                'work_habits' => $row['work_habits_avg'],
+                'work_skills' => $row['work_skills_avg'],
+                'social_skills' => $row['social_skills_avg']
+            ];
+            
+            // Calculate overall totals for average line
+            $overallTotals['work_habits'] += $row['work_habits_avg'];
+            $overallTotals['work_skills'] += $row['work_skills_avg'];
+            $overallTotals['social_skills'] += $row['social_skills_avg'];
+            $overallTotals['count']++;
+        }
+
+        // Calculate overall averages
+        if ($overallTotals['count'] > 0) {
+            $overallAverages = [
+                'work_habits' => round($overallTotals['work_habits'] / $overallTotals['count'], 2),
+                'work_skills' => round($overallTotals['work_skills'] / $overallTotals['count'], 2),
+                'social_skills' => round($overallTotals['social_skills'] / $overallTotals['count'], 2)
+            ];
+        } else {
+            $overallAverages = [
+                'work_habits' => 0,
+                'work_skills' => 0,
+                'social_skills' => 0
+            ];
+        }
+
+        return [
+            'strand_data' => $strandData,
+            'overall_averages' => $overallAverages
+        ];
+    } else {
+        error_log("Error fetching strand comparison data: " . $conn->error);
+        return [
+            'strand_data' => [],
+            'overall_averages' => []
+        ];
+    }
+}
+
+// Function to generate JavaScript data for company pie chart
+function generateCompanyChartJS($companyData)
+{
+    $jsData = "var companyAverageData = [\n";
+    $jsData .= "    ['Company', 'Overall Average'],\n";
+    
+    foreach ($companyData as $company) {
+        $jsData .= "    ['" . addslashes($company['company']) . "', " . $company['average'] . "],\n";
+    }
+    
+    $jsData .= "];\n";
+    return $jsData;
+}
+
+// Function to generate JavaScript data for strand comparison chart
+function generateStrandChartJS($strandComparisonData)
+{
+    $strandData = $strandComparisonData['strand_data'];
+    $overallAvg = $strandComparisonData['overall_averages'];
+    
+    $jsData = "var strandComparisonData = [\n";
+    
+    // Header row
+    $jsData .= "    ['Category'";
+    foreach ($strandData as $strand) {
+        $jsData .= ", '" . $strand['strand'] . "'";
+    }
+    $jsData .= ", 'Average'],\n";
+    
+    // Work Habits row
+    $jsData .= "    ['Work Habits'";
+    foreach ($strandData as $strand) {
+        $jsData .= ", " . $strand['work_habits'];
+    }
+    $jsData .= ", " . $overallAvg['work_habits'] . "],\n";
+    
+    // Work Skills row
+    $jsData .= "    ['Work Skills'";
+    foreach ($strandData as $strand) {
+        $jsData .= ", " . $strand['work_skills'];
+    }
+    $jsData .= ", " . $overallAvg['work_skills'] . "],\n";
+    
+    // Social Skills row
+    $jsData .= "    ['Social Skills'";
+    foreach ($strandData as $strand) {
+        $jsData .= ", " . $strand['social_skills'];
+    }
+    $jsData .= ", " . $overallAvg['social_skills'] . "]\n";
+    
+    $jsData .= "];\n";
+    return $jsData;
+}
+
 
 if (isset($_SESSION['school_name'])) {
     $schoolName = $_SESSION['school_name'];
@@ -743,9 +969,40 @@ if (isset($_SESSION['school_name'])) {
 
 </html>
 <script>
-    var topStudentsData = <?php echo $topStudentsDataJson; ?>;
-    var topStudentsDataWorkHabits = <?php echo $topStudentsDataJsonWorkHabits; ?>;
-    var topStudentsDataWorkSkills = <?php echo $topStudentsDataJsonWorkSkills; ?>;
-    var topStudentsDataJsonSocialSkills = <?php echo $topStudentsDataJsonSocialSkills; ?>
+<?php
+    // Prepare company data for chart
+    $companyData = fetchCompanyAverages($conn);
+    echo generateCompanyChartJS($companyData); // outputs: var companyAverageData = [...];
+    echo "var topStudentsData = $topStudentsDataJson;\n";
+    echo "var topStudentsDataWorkHabits = $topStudentsDataJsonWorkHabits;\n";
+    echo "var topStudentsDataWorkSkills = $topStudentsDataJsonWorkSkills;\n";
+    echo "var topStudentsDataSocialSkills = $topStudentsDataJsonSocialSkills;\n";
+    // Prepare strand comparison data for chart
+    $strandData = fetchStrandComparisonData($conn);
+    $chartArray = [['Category']];
+    foreach($strandData['strand_data'] as $strand) {
+        $chartArray[0][] = $strand['strand'];
+    }
+    $chartArray[0][] = 'Average';
+    $workHabitsRow = ['Work Habits'];
+    foreach($strandData['strand_data'] as $strand) {
+        $workHabitsRow[] = (float)$strand['work_habits'];
+    }
+    $workHabitsRow[] = (float)$strandData['overall_averages']['work_habits'];
+    $chartArray[] = $workHabitsRow;
+    $workSkillsRow = ['Work Skills'];
+    foreach($strandData['strand_data'] as $strand) {
+        $workSkillsRow[] = (float)$strand['work_skills'];
+    }
+    $workSkillsRow[] = (float)$strandData['overall_averages']['work_skills'];
+    $chartArray[] = $workSkillsRow;
+    $socialSkillsRow = ['Social Skills'];
+    foreach($strandData['strand_data'] as $strand) {
+        $socialSkillsRow[] = (float)$strand['social_skills'];
+    }
+    $socialSkillsRow[] = (float)$strandData['overall_averages']['social_skills'];
+    $chartArray[] = $socialSkillsRow;
+    echo "var strandComparisonData = " . json_encode($chartArray) . ";\n";
+?>
 </script>
 <script type="text/javascript" src="js/Dashboard.js"></script>

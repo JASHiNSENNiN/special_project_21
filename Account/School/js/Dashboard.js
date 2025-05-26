@@ -152,14 +152,7 @@ google.charts.load("current", {
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-    ["Company", "Overall Average"],
-    ["Pico bank", 5],
-    ["LTO", 10],
-    ["NEECO II Area I", 7],
-    ["Municipal", 9],
-    ["Telex", 8],
-  ]);
+  var data = google.visualization.arrayToDataTable(companyAverageData);
 
   var options = {
     title: "Company overall average",
@@ -179,13 +172,7 @@ google.charts.load("current", {
 google.charts.setOnLoadCallback(drawVisualization);
 
 function drawVisualization() {
-  // Some raw data (not necessarily accurate)
-  var data = google.visualization.arrayToDataTable([
-    ["Category", "HUMSS", "STEM", "GAS", "TECHVOC", "ABM", "Average"],
-    ["Work Habits ", 165, 938, 522, 998, 450, 614.6],
-    ["Work Skills", 135, 1120, 599, 1268, 288, 682],
-    ["Social Skills", 157, 1167, 587, 807, 397, 623],
-  ]);
+  var data = google.visualization.arrayToDataTable(strandComparisonData);
 
   var options = {
     title: "Total Average per strand with overall average",
@@ -197,7 +184,7 @@ function drawVisualization() {
     },
     seriesType: "bars",
     series: {
-      5: {
+      [strandComparisonData[0].length - 2]: {
         type: "line",
       },
     },
