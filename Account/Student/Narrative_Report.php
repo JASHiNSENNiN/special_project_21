@@ -202,7 +202,7 @@ if ($is_completed) {
                     <option value="" disabled selected>Select a day</option>
                     <?php for ($i = 1; $i <= 10; $i++): ?>
                         <option value="<?= $i ?>">
-                            <?= $i ?> <?= in_array((string)$i, $evaluated_days) ? '✔️ (Completed)' : '' ?>
+                            <?= $i ?>     <?= in_array((string) $i, $evaluated_days) ? '✔️ (Completed)' : '' ?>
                         </option>
                     <?php endfor; ?>
                 </select>
@@ -246,78 +246,80 @@ if ($is_completed) {
                 <div class="form_container">
                     <div class="questioner">
 
+                        <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
-                        <div class="st">
-                            <h3>1. How would you rate the overall quality of your work immersion experience?</h3>
-                            <div class="sr">
-                                <label class="star empty green"><input type="radio" name="question1" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question1" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question1" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question1" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question1" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
-                            <h3>2. How effectively were the tasks assigned to you managed during the immersion?</h3>
-                            <div class="sr">
-                                <label class="star empty green" green><input type="radio" name="question2" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question2" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question2" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question2" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question2" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
-                            <h3>3. How well did the immersion provide opportunities for you to solve real
-                                challenges? </h3>
-                            <div class="sr">
-                                <label class="star empty green" green><input type="radio" name="question3" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question3" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question3" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question3" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question3" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
-                            <h3>4. How thorough was the guidance you received in ensuring high-quality work?</h3>
-                            <div class="sr">
-                                <label class="star empty green"><input type="radio" name="question4" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question4" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question4" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question4" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question4" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
-                            <h3>5. How proactive did the immersion encourage you to take on additional tasks or
-                                responsibilities?
-                            </h3>
-                            <div class="sr">
-                                <label class="star empty green"><input type="radio" name="question5" value="1"
-                                        checked><i class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question5" value="2"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question5" value="3"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question5" value="4"><i
-                                        class="fa fa-star"></i></label>
-                                <label class="star empty"><input type="radio" name="question5" value="5"><i
-                                        class="fa fa-star"></i></label>
-                            </div>
 
-                        </div>
+                            <div class="st">
+                                <h3>1. How would you rate the overall quality of your work immersion experience?</h3>
+                                <div class="sr">
+                                    <label class="star empty green"><input type="radio" name="question1" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question1" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question1" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question1" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question1" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>2. How effectively were the tasks assigned to you managed during the immersion?</h3>
+                                <div class="sr">
+                                    <label class="star empty green" green><input type="radio" name="question2" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question2" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question2" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question2" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question2" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>3. How well did the immersion provide opportunities for you to solve real
+                                    challenges? </h3>
+                                <div class="sr">
+                                    <label class="star empty green" green><input type="radio" name="question3" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question3" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question3" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question3" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question3" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>4. How thorough was the guidance you received in ensuring high-quality work?</h3>
+                                <div class="sr">
+                                    <label class="star empty green"><input type="radio" name="question4" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question4" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question4" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question4" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question4" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+                                <h3>5. How proactive did the immersion encourage you to take on additional tasks or
+                                    responsibilities?
+                                </h3>
+                                <div class="sr">
+                                    <label class="star empty green"><input type="radio" name="question5" value="1"
+                                            checked><i class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question5" value="2"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question5" value="3"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question5" value="4"><i
+                                            class="fa fa-star"></i></label>
+                                    <label class="star empty"><input type="radio" name="question5" value="5"><i
+                                            class="fa fa-star"></i></label>
+                                </div>
+
+                            </div>
                         </form>
                     </div>
 
@@ -425,6 +427,9 @@ if ($is_completed) {
                         </div> -->
                 </div>
             </div>
+
+
+
             <div class="form_3 data_info" style="display: none;">
                 <h2>Learning and Development</h2>
                 <div class="form_container">
@@ -831,7 +836,7 @@ if ($is_completed) {
     </script>
 
     <script>
-        $("input:checkbox").on('click', function() {
+        $("input:checkbox").on('click', function () {
 
             var $box = $(this);
             if ($box.is(":checked")) {
@@ -896,7 +901,7 @@ if ($is_completed) {
         var modal_wrapper = document.querySelector(".modal_wrapper");
         var shadow = document.querySelector(".shadow");
 
-        form_1_next_btn.addEventListener("click", function() {
+        form_1_next_btn.addEventListener("click", function () {
             form_1.style.display = "none";
             form_2.style.display = "block";
 
@@ -906,7 +911,7 @@ if ($is_completed) {
             form_2_progessbar.classList.add("active");
         });
 
-        form_2_back_btn.addEventListener("click", function() {
+        form_2_back_btn.addEventListener("click", function () {
             form_1.style.display = "block";
             form_2.style.display = "none";
 
@@ -916,7 +921,7 @@ if ($is_completed) {
             form_2_progessbar.classList.remove("active");
         });
 
-        form_2_next_btn.addEventListener("click", function() {
+        form_2_next_btn.addEventListener("click", function () {
             form_2.style.display = "none";
             form_3.style.display = "block";
 
@@ -926,7 +931,7 @@ if ($is_completed) {
             form_3_progessbar.classList.add("active");
         });
 
-        form_3_back_btn.addEventListener("click", function() {
+        form_3_back_btn.addEventListener("click", function () {
             form_2.style.display = "block";
             form_3.style.display = "none";
 
@@ -936,7 +941,7 @@ if ($is_completed) {
             form_3_progessbar.classList.remove("active");
         });
 
-        form_3_next_btn.addEventListener("click", function() {
+        form_3_next_btn.addEventListener("click", function () {
             form_3.style.display = "none";
             form_4.style.display = "block";
 
@@ -946,7 +951,7 @@ if ($is_completed) {
             form_4_progessbar.classList.add("active");
         });
 
-        form_4_back_btn.addEventListener("click", function() {
+        form_4_back_btn.addEventListener("click", function () {
             form_3.style.display = "block";
             form_4.style.display = "none";
 
@@ -956,7 +961,7 @@ if ($is_completed) {
             form_4_progessbar.classList.remove("active");
         });
 
-        form_4_next_btn.addEventListener("click", function() {
+        form_4_next_btn.addEventListener("click", function () {
             form_4.style.display = "none";
             form_5.style.display = "block";
 
@@ -966,7 +971,7 @@ if ($is_completed) {
             form_5_progessbar.classList.add("active");
         });
 
-        form_5_back_btn.addEventListener("click", function() {
+        form_5_back_btn.addEventListener("click", function () {
             form_4.style.display = "block";
             form_5.style.display = "none";
 
@@ -982,7 +987,7 @@ if ($is_completed) {
         var form4 = document.getElementById('inputs3');
         var form5 = document.getElementById('inputs4');
 
-        btn_done.addEventListener("click", function() {
+        btn_done.addEventListener("click", function () {
             // Get the radio button values
             const dateInput = document.getElementById('date');
             const dayInput = document.getElementById('day');
@@ -1050,12 +1055,12 @@ if ($is_completed) {
 
             const url = '../../backend/php/add_student_report.php';
             fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(jsonData)
-                })
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
                 .then(response => {
                     // Check if response is OK (status in the range 200-299)
                     if (!response.ok) {
@@ -1093,7 +1098,7 @@ if ($is_completed) {
                 });
         });
 
-        shadow.addEventListener("click", function() {
+        shadow.addEventListener("click", function () {
             modal_wrapper.classList.remove("active");
         });
     </script>
@@ -1110,7 +1115,7 @@ if ($is_completed) {
 
     <script>
         var inputsForm = document.querySelector("#inputs");
-        inputsForm.onchange = function(e) {
+        inputsForm.onchange = function (e) {
             if (e.target.type = "radio") {
                 var stars = document.querySelectorAll(`[name='${e.target.name}']`);
                 for (var i = 0; i < stars.length; i++) {
@@ -1126,7 +1131,7 @@ if ($is_completed) {
 
     <script>
         var inputsForm = document.querySelector("#inputs1");
-        inputsForm.onchange = function(e) {
+        inputsForm.onchange = function (e) {
             if (e.target.type = "radio") {
                 var stars = document.querySelectorAll(`[name='${e.target.name}']`);
                 for (var i = 0; i < stars.length; i++) {
@@ -1139,7 +1144,7 @@ if ($is_completed) {
             }
         }
 
-        inputsForm.onsubmit = function() {
+        inputsForm.onsubmit = function () {
             console.log(
                 ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
             );
@@ -1149,7 +1154,7 @@ if ($is_completed) {
 
     <script>
         var inputsForm = document.querySelector("#inputs2");
-        inputsForm.onchange = function(e) {
+        inputsForm.onchange = function (e) {
             if (e.target.type = "radio") {
                 var stars = document.querySelectorAll(`[name='${e.target.name}']`);
                 for (var i = 0; i < stars.length; i++) {
@@ -1163,7 +1168,7 @@ if ($is_completed) {
         }
 
         // just for showing the values (not required only for testing)
-        inputsForm.onsubmit = function() {
+        inputsForm.onsubmit = function () {
             console.log(
                 ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
             );
@@ -1173,7 +1178,7 @@ if ($is_completed) {
 
     <script>
         var inputsForm = document.querySelector("#inputs3");
-        inputsForm.onchange = function(e) {
+        inputsForm.onchange = function (e) {
             if (e.target.type = "radio") {
                 var stars = document.querySelectorAll(`[name='${e.target.name}']`);
                 for (var i = 0; i < stars.length; i++) {
@@ -1187,7 +1192,7 @@ if ($is_completed) {
         }
 
         // just for showing the values (not required only for testing)
-        inputsForm.onsubmit = function() {
+        inputsForm.onsubmit = function () {
             console.log(
                 ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
             );
@@ -1197,7 +1202,7 @@ if ($is_completed) {
 
     <script>
         var inputsForm = document.querySelector("#inputs4");
-        inputsForm.onchange = function(e) {
+        inputsForm.onchange = function (e) {
             if (e.target.type = "radio") {
                 var stars = document.querySelectorAll(`[name='${e.target.name}']`);
                 for (var i = 0; i < stars.length; i++) {
@@ -1211,7 +1216,7 @@ if ($is_completed) {
         }
 
         // just for showing the values (not required only for testing)
-        inputsForm.onsubmit = function() {
+        inputsForm.onsubmit = function () {
             console.log(
                 ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
             );
