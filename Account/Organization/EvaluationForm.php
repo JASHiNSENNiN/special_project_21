@@ -151,9 +151,8 @@ $position = $student_details['position'];
 
         // Fetch evaluated days for this evaluator & student
         $evaluated_days = [];
-        $sql = "SELECT day FROM Student_Evaluation WHERE evaluator_id = :evaluator_id AND student_id = :student_id";
+        $sql = "SELECT day FROM Student_Evaluation WHERE student_id = :student_id";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':evaluator_id', $evaluator_id, PDO::PARAM_INT);
         $stmt->bindParam(':student_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
         $evaluated_days = $stmt->fetchAll(PDO::FETCH_COLUMN);
