@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notification_id'])) {
     $updateStmt->bind_param("i", $notificationId);
     $updateStmt->execute();
     $updateStmt->close();
-    
+
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -96,13 +96,14 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 $profile_image = (isset($profile_data['profile_image']) && file_exists($profile_image_path)) ? $profile_image_path : 'uploads/default.png';
 $cover_image = (isset($profile_data['cover_image']) && file_exists($cover_image_path)) ? $cover_image_path : 'uploads/cover.png';
 
-$unreadCount = count(array_filter($notifications, function($n) { return !$n['is_read']; }));
+$unreadCount = count(array_filter($notifications, function ($n) {
+    return !$n['is_read']; }));
 $badgeHTML = $unreadCount > 0 ? '<span class="badge">' . $unreadCount . '</span>' : '';
 
 $profile_div = '<header class="nav-header">
     <div class="logo">
         <a href="Company_Area.php">
-            <img src="image/logov3.jpg" alt="Logo">
+            <img src="image/drdsnhs.svg" alt="Logo">
         </a>
     </div>
     <nav class="by">
@@ -116,11 +117,12 @@ $profile_div = '<header class="nav-header">
                 <hr style="width: 100%;">
                 ';
 
-$unreadNotifications = array_filter($notifications, function($n) { return !$n['is_read']; });
+$unreadNotifications = array_filter($notifications, function ($n) {
+    return !$n['is_read']; });
 if (!empty($unreadNotifications)) {
-  $profile_div .= '';
-  foreach ($unreadNotifications as $notif) {
-      $profile_div .= '
+    $profile_div .= '';
+    foreach ($unreadNotifications as $notif) {
+        $profile_div .= '
           <form method="POST" style="margin: 0;">
               <input type="hidden" name="notification_id" value="' . $notif['id'] . '">
               <button type="submit" style="width: 100%; text-align: left; border: none; background: #e8f4ff; cursor: pointer; padding: 10px; margin-bottom: 2px;" title="Click to mark as read">
@@ -134,10 +136,11 @@ if (!empty($unreadNotifications)) {
                   </div>
               </button>
           </form>';
-  }
+    }
 }
 
-$readNotifications = array_filter($notifications, function($n) { return $n['is_read']; });
+$readNotifications = array_filter($notifications, function ($n) {
+    return $n['is_read']; });
 if (!empty($readNotifications)) {
     $profile_div .= '';
     foreach ($readNotifications as $notif) {
@@ -166,11 +169,11 @@ $profile_div .= '
                 <a href=""><i class="fas fa-user-alt" style="font-size:24px;  margin-top:5px;"></i></a>
                 <div class="dropdown-content">
                     <div class="email">' . $email . '</div>
-                    <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> My Profile</a>
+                    <a href="Profile.php?student_id=' . base64_encode(encrypt_url_parameter($student_id)) . '"><i class="fas fa-user-alt" style="font-size:24px; margin-right:10px;"></i> Student Profile</a>
                     <a href="../../weather_page.php"> <i class="fas fa-cloud-sun-rain" style="font-size:24px;margin-right:10px;"></i> Weather Update</a>
                     <a href="Journal.php"><i class="fa fa-newspaper-o" style="font-size:24px; margin-right:10px;"></i> Journal</a>
                     <a href="Upload.php"><i class="fa fa-file-text" style="font-size:24px; margin-right:10px;"></i> File Upload</a>
-                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Settings</a>
+                    <a href="Settings.php"><i class="fa fa-gear" style="font-size:24px;margin-right:10px;"></i> Account Management</a>
                     <hr>
                     <a class="logout" href="' . '/backend/php/logout.php' . '"><i class="fa fa-sign-out" style="font-size:24px; margin-right:10px;"></i>Log out</a>
                 </div>
@@ -196,7 +199,7 @@ $profile_div .= '
 </head>
 
 <body>
-    <?php echo $profile_div;?>
+    <?php echo $profile_div; ?>
 
     <div class="js-container container">
         <div class="wame">
@@ -218,48 +221,48 @@ $profile_div .= '
 
 
     <script>
-    const Confettiful = function(el) {
-        this.el = el;
-        this.containerEl = null;
-        this.confettiFrequency = 3;
-        this.confettiColors = ['#EF2964', '#00C09D', '#2D87B0', '#48485E', '#EFFF1D'];
-        this.confettiAnimations = ['slow', 'medium', 'fast'];
+        const Confettiful = function (el) {
+            this.el = el;
+            this.containerEl = null;
+            this.confettiFrequency = 3;
+            this.confettiColors = ['#EF2964', '#00C09D', '#2D87B0', '#48485E', '#EFFF1D'];
+            this.confettiAnimations = ['slow', 'medium', 'fast'];
 
-        this._setupElements();
-        this._renderConfetti();
-    };
+            this._setupElements();
+            this._renderConfetti();
+        };
 
-    Confettiful.prototype._setupElements = function() {
-        const containerEl = document.createElement('div');
-        containerEl.classList.add('confetti-container');
-        this.el.appendChild(containerEl);
-        this.containerEl = containerEl;
-    };
+        Confettiful.prototype._setupElements = function () {
+            const containerEl = document.createElement('div');
+            containerEl.classList.add('confetti-container');
+            this.el.appendChild(containerEl);
+            this.containerEl = containerEl;
+        };
 
-    Confettiful.prototype._renderConfetti = function() {
-        this.confettiInterval = setInterval(() => {
-            const confettiEl = document.createElement('div');
-            const confettiSize = (Math.floor(Math.random() * 3) + 7) + 'px';
-            const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors
-                .length)];
-            const confettiLeft = (Math.floor(Math.random() * this.el.offsetWidth)) + 'px';
-            const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this
-                .confettiAnimations.length)];
+        Confettiful.prototype._renderConfetti = function () {
+            this.confettiInterval = setInterval(() => {
+                const confettiEl = document.createElement('div');
+                const confettiSize = (Math.floor(Math.random() * 3) + 7) + 'px';
+                const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors
+                    .length)];
+                const confettiLeft = (Math.floor(Math.random() * this.el.offsetWidth)) + 'px';
+                const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this
+                    .confettiAnimations.length)];
 
-            confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation);
-            confettiEl.style.left = confettiLeft;
-            confettiEl.style.width = confettiSize;
-            confettiEl.style.height = confettiSize;
-            confettiEl.style.backgroundColor = confettiBackground;
+                confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation);
+                confettiEl.style.left = confettiLeft;
+                confettiEl.style.width = confettiSize;
+                confettiEl.style.height = confettiSize;
+                confettiEl.style.backgroundColor = confettiBackground;
 
-            confettiEl.removeTimeout = setTimeout(function() {
-                confettiEl.parentNode.removeChild(confettiEl);
-            }, 3000);
-            this.containerEl.appendChild(confettiEl);
-        }, 25);
-    };
+                confettiEl.removeTimeout = setTimeout(function () {
+                    confettiEl.parentNode.removeChild(confettiEl);
+                }, 3000);
+                this.containerEl.appendChild(confettiEl);
+            }, 25);
+        };
 
-    window.confettiful = new Confettiful(document.querySelector('.js-container'));
+        window.confettiful = new Confettiful(document.querySelector('.js-container'));
     </script>
 </body>
 
