@@ -27,7 +27,8 @@ global $password;
 global $database;
 global $conn;
 
-function get_verification_status($org_id) {
+function get_verification_status($org_id)
+{
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -47,7 +48,7 @@ function get_verification_status($org_id) {
     $stmt->close();
     $conn->close();
 
-    return $row ? (bool)$row['verified_status'] : false;
+    return $row ? (bool) $row['verified_status'] : false;
 }
 
 $current_status = get_verification_status($user_id);
@@ -454,6 +455,7 @@ $document_name_mapping = [
         .container-alert-mssg {
             margin: 20px 0;
         }
+
         .xd-message {
             display: none;
             padding: 15px;
@@ -461,39 +463,48 @@ $document_name_mapping = [
             border-radius: 5px;
             border: 1px solid;
         }
+
         .xd-message.show {
             display: block;
         }
+
         .msg-success {
             background-color: #d4edda;
             border-color: #c3e6cb;
             color: #155724;
         }
+
         .msg-danger {
             background-color: #f8d7da;
             border-color: #f5c6cb;
             color: #721c24;
         }
+
         .xd-message-icon {
             font-weight: bold;
             margin-bottom: 5px;
         }
+
         .label-remarks {
             font-size: 14px;
             text-transform: uppercase;
         }
+
         .xd-message-content p {
             margin: 0;
             line-height: 1.4;
         }
+
         .form-group {
             margin: 15px 0;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
+
         .form-group textarea {
             width: 100%;
             min-height: 80px;
@@ -502,21 +513,26 @@ $document_name_mapping = [
             border-radius: 4px;
             resize: vertical;
         }
-        .button-10, .button-11 {
+
+        .button-10,
+        .button-11 {
             margin: 5px;
             padding: 10px 20px;
             cursor: pointer;
             border: none;
             border-radius: 4px;
         }
+
         .button-10 {
             background-color: #28a745;
             color: white;
         }
+
         .button-11 {
             background-color: #dc3545;
             color: white;
         }
+
         .frontend-text {
             display: block;
             margin-bottom: 15px;
@@ -988,46 +1004,59 @@ School'
             </main>
         </div>
 
-      <?php if ($success_message): ?>
-    <div class="success-notification" style="background-color: #d4edda; color: #155724; padding: 10px; margin: 10px 0; border-radius: 4px;">
-        <?= htmlspecialchars($success_message) ?>
-    </div>
-<?php endif; ?>
+        <?php if ($success_message): ?>
+            <div class="success-notification"
+                style="background-color: #d4edda; color: #155724; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                <?= htmlspecialchars($success_message) ?>
+            </div>
+        <?php endif; ?>
 
-<form method="POST" action="">
-    <input type="hidden" name="org_id" value="<?= htmlspecialchars($user_id) ?>">
-    <span class="frontend-text">Do you approve or disapprove of this company's account?</span>
-    
-    <?php if (!$current_status): ?>
-        <!-- Show Approve button if not approved -->
-        <button class='button-10' type='submit' name='action' value='Approve'>Approve</button>
-    <?php else: ?>
-        <!-- Show Disapprove button if approved -->
-        <button class='button-11' type='submit' name='action' value='Disapprove'>Disapprove</button>
-    <?php endif; ?>
-</form>
+        <?php if (
+            isset($_SESSION['account_type']) &&
+            ($_SESSION['account_type'] === 'Organization' || $_SESSION['account_type'] === 'School')
+        ): ?>
 
-<div class="container-alert-mssg">
-    <!-- Always show Disapprove Message -->
-    <div class="xd-message msg-danger show">
-        <div class="xd-message-icon">
-            <span class="label-remarks">Remarks to be sent</span>
-        </div>
-        <div class="xd-message-content">
-            <p>After careful review of the submitted background and documentation, we regret to inform you that your company account has not been approved at this time.</p>
-        </div>
-    </div>
+            <form method="POST" action="">
+                <input type="hidden" name="org_id" value="<?= htmlspecialchars($user_id) ?>">
+                <span class="frontend-text">Do you approve or disapprove of this company's account?</span>
 
-    <!-- Always show Approve Message -->
-    <div class="xd-message msg-success show">
-        <div class="xd-message-icon">
-            <span class="label-remarks">Remarks to be sent</span>
-        </div>
-        <div class="xd-message-content">
-            <p>Your company account has been approved after successfully reviewing the background information and verifying the complete document uploads.</p>
-        </div>
-    </div>
-</div>
+                <?php if (!$current_status): ?>
+                    <!-- Show Approve button if not approved -->
+                    <button class='button-10' type='submit' name='action' value='Approve'>Approve</button>
+                <?php else: ?>
+                    <!-- Show Disapprove button if approved -->
+                    <button class='button-11' type='submit' name='action' value='Disapprove'>Disapprove</button>
+                <?php endif; ?>
+            </form>
+
+            <div class="container-alert-mssg">
+                <!-- Always show Disapprove Message -->
+                <div class="xd-message msg-danger show">
+                    <div class="xd-message-icon">
+                        <span class="label-remarks">Remarks to be sent</span>
+                    </div>
+                    <div class="xd-message-content">
+                        <p>After careful review of the submitted background and documentation, we regret to inform you that
+                            your
+                            company account has not been approved at this time.</p>
+                    </div>
+                </div>
+
+                <!-- Always show Approve Message -->
+                <div class="xd-message msg-success show">
+                    <div class="xd-message-icon">
+                        <span class="label-remarks">Remarks to be sent</span>
+                    </div>
+                    <div class="xd-message-content">
+                        <p>Your company account has been approved after successfully reviewing the background information
+                            and
+                            verifying the complete document uploads.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        <?php endif; ?>
 
 
 

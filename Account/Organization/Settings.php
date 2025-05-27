@@ -503,7 +503,7 @@ $conn->close();
                                                         </div>
                                                         <div ss="col-md-12">
                                                             <label class="small mb-1"
-                                                                for="inputOrganizationName">Corporate Pholosophy</label>
+                                                                for="inputOrganizationName">Corporate Philosophy</label>
                                                             <input class="form-control" id="inputAddressInput"
                                                                 name="corporate_philosophy" type="text"
                                                                 placeholder="Corporate Vision"
