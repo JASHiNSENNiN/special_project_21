@@ -303,9 +303,7 @@ input[type="text"] {
   border-radius: 6px;
   line-height: 1.5;
   padding: 20px 29px;
-  transition:
-    box-shadow 100ms ease-in,
-    border 100ms ease-in,
+  transition: box-shadow 100ms ease-in, border 100ms ease-in,
     background-color 100ms ease-in;
   border: 2px solid #dee1e2;
   color: rgb(14, 14, 16);
@@ -326,7 +324,7 @@ input {
 }
 
 .navbar-top {
-  background-color: #172738;
+  background-color: #016435;
   color: #333;
   box-shadow: 0px 0px 5px 1px grey;
   height: 70px;
@@ -389,4 +387,32 @@ input {
   .container-rating {
     width: 80%;
   }
+}
+.grp-com-details {
+  display: grid;
+  text-align: left;
+  margin: 0px auto 30px;
+  font-weight: bold;
+}
+.grp-com-details span {
+  padding: 5px 0px;
+}
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  /* display: inline-block; */
+  /* margin-right: 14rem;
+  margin-left: 14rem; */
+  /* width: 50%;
+  margin: 0px auto 30px; */
+  margin-bottom: 1rem;
+  gap: 200px;
+  padding: 10px 0px;
+}
+.label-flow {
+  display: flex;
+}
+.Jor {
+  font-weight: bold;
+  margin-right: 10px;
 }

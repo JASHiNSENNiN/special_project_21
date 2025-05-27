@@ -984,9 +984,7 @@ nav .login-btn:hover {
   padding: 0 30px 30px;
   color: #333;
   visibility: hidden;
-  transition:
-    transform 0.4s,
-    top 0.4s;
+  transition: transform 0.4s, top 0.4s;
 }
 
 .open-popup {
@@ -1085,8 +1083,7 @@ input[type="radio"] {
   border-radius: 6px;
   border: none;
   background: #6e6d70;
-  box-shadow:
-    0px 0.5px 1px rgba(0, 0, 0, 0.1),
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
     inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
     0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #dfdedf;
@@ -1097,10 +1094,8 @@ input[type="radio"] {
 }
 
 .button-12:focus {
-  box-shadow:
-    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
-    0px 0.5px 1px rgba(0, 0, 0, 0.1),
-    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 
@@ -1462,10 +1457,15 @@ input[type="radio"] {
 }
 
 .form-group {
-  display: inline-block;
+  display: flex;
+  justify-content: space-around;
+  /* display: inline-block; */
   margin-right: 14rem;
   margin-left: 14rem;
+  /* width: 50%;
+  margin: 0px auto 30px; */
   margin-bottom: 1rem;
+  gap: 200px;
 }
 
 .inp {
@@ -1584,4 +1584,16 @@ label {
   .dropdowntf-content {
     right: -3rem;
   }
+}
+.grp-com-details {
+  display: grid;
+  text-align: left;
+  width: 60%;
+  margin: 0px auto 30px;
+}
+.grp-com-details span {
+  padding: 5px 0px;
+}
+.box-topic {
+  margin: 20px 0px;
 }

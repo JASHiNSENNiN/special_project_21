@@ -51,10 +51,10 @@ $has_evaluation_today = $result['eval_count'] > 0;
 <body>
     <!-- Navbar top -->
     <style>
-    /* NavbarTop */
+        /* NavbarTop */
 
 
-    /* End */
+        /* End */
     </style>
     <div class="navbar-top">
         <div class="title">
@@ -70,6 +70,9 @@ $has_evaluation_today = $result['eval_count'] > 0;
     </div>
     <!-- End -->
     <div class="container-rating">
+        <div class="grp-com-details"><span>Student Name: </span>
+            <span>Position: </span>
+        </div>
 
 
         <h3>Star rating:</h3>
@@ -86,52 +89,58 @@ $has_evaluation_today = $result['eval_count'] > 0;
                 expected in this position.</li>
 
         </ol>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label class="Jor" for="date">Date</label>
             <input class="inp" type="date" id="date" name="date" value="" required>
-        </div>
+        </div> -->
 
         <?php
 
 
-$host = "localhost";
-$username = $_ENV['MYSQL_USERNAME'];
-$password = $_ENV['MYSQL_PASSWORD'];
-$database = $_ENV['MYSQL_DBNAME'];
+        $host = "localhost";
+        $username = $_ENV['MYSQL_USERNAME'];
+        $password = $_ENV['MYSQL_PASSWORD'];
+        $database = $_ENV['MYSQL_DBNAME'];
 
-$conn = new mysqli($host, $username, $password, $database);
-$pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        $conn = new mysqli($host, $username, $password, $database);
+        $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
 
-// Get evaluator ID
-$evaluator_id = $_SESSION['user_id'];
+        // Get evaluator ID
+        $evaluator_id = $_SESSION['user_id'];
 
-// Get student ID from the decoded parameter
-$user_id = decrypt_url_parameter(base64_decode($IdParam));
+        // Get student ID from the decoded parameter
+        $user_id = decrypt_url_parameter(base64_decode($IdParam));
 
-// Fetch evaluated days for this evaluator & student
-$evaluated_days = [];
-$sql = "SELECT day FROM Student_Evaluation WHERE evaluator_id = :evaluator_id AND student_id = :student_id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':evaluator_id', $evaluator_id, PDO::PARAM_INT);
-$stmt->bindParam(':student_id', $user_id, PDO::PARAM_INT);
-$stmt->execute();
-$evaluated_days = $stmt->fetchAll(PDO::FETCH_COLUMN);
-?>
+        // Fetch evaluated days for this evaluator & student
+        $evaluated_days = [];
+        $sql = "SELECT day FROM Student_Evaluation WHERE evaluator_id = :evaluator_id AND student_id = :student_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':evaluator_id', $evaluator_id, PDO::PARAM_INT);
+        $stmt->bindParam(':student_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $evaluated_days = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        ?>
 
-<div class="form-group">
-    <label class="Jor" for="day">Select Day (1-10)</label>
-    <select class="inp" id="day" name="day" required>
-        <option value="" disabled selected>Select a day</option>
-        <?php for ($i = 1; $i <= 10; $i++): ?>
-            <option value="<?= $i ?>">
-                <?= $i ?> <?= in_array((string)$i, $evaluated_days) ? '✔️ (Completed)' : '' ?>
-            </option>
-        <?php endfor; ?>
-    </select>
-</div>
+        <div class="form-group">
+            <div class="label-flow"> <label class="Jor" for="date">Date</label>
+                <input class="inp" type="date" id="date" name="date" value="" required>
+            </div>
+
+            <div class="label-flow"><label class="Jor" for="day">Select Day (1-10)</label>
+                <select class="inp" id="day" name="day" required>
+                    <option value="" disabled selected>Select a day</option>
+                    <?php for ($i = 1; $i <= 10; $i++): ?>
+                        <option value="<?= $i ?>">
+                            <?= $i ?>     <?= in_array((string) $i, $evaluated_days) ? '✔️ (Completed)' : '' ?>
+                        </option>
+                    <?php endfor; ?>
+                </select>
+            </div>
+
+        </div>
 
 
-        
+
     </div>
     <div class="wrapper">
         <div class="header1">
@@ -474,276 +483,276 @@ $evaluated_days = $stmt->fetchAll(PDO::FETCH_COLUMN);
     </div>
 
     <script>
-    // console.log("id: <?php echo decrypt_url_parameter(base64_decode($IdParam)); ?>");
-    <?php if ($has_evaluation_today): ?>
+        // console.log("id: <?php echo decrypt_url_parameter(base64_decode($IdParam)); ?>");
+        <?php if ($has_evaluation_today): ?>
 
-    const now = new Date();
-    const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-    let countdown = Math.floor((midnight - now) / 1000);
+            const now = new Date();
+            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            let countdown = Math.floor((midnight - now) / 1000);
 
-    let countdownElement = document.querySelector('.time-remaining');
+            let countdownElement = document.querySelector('.time-remaining');
 
-    function updateCountdown() {
-        let hours = Math.floor(countdown / 3600);
-        let minutes = Math.floor((countdown % 3600) / 60);
-        let seconds = countdown % 60;
-        countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
-        countdown--;
+            function updateCountdown() {
+                let hours = Math.floor(countdown / 3600);
+                let minutes = Math.floor((countdown % 3600) / 60);
+                let seconds = countdown % 60;
+                countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                countdown--;
 
-        if (countdown < 0) {
+                if (countdown < 0) {
 
-            location.reload();
-        }
-    }
+                    location.reload();
+                }
+            }
 
-    setInterval(updateCountdown, 1000);
-    <?php endif; ?>
+            setInterval(updateCountdown, 1000);
+        <?php endif; ?>
     </script>
 
     <script>
-    var form_1 = document.querySelector(".form_1");
-    var form_2 = document.querySelector(".form_2");
-    var form_3 = document.querySelector(".form_3");
+        var form_1 = document.querySelector(".form_1");
+        var form_2 = document.querySelector(".form_2");
+        var form_3 = document.querySelector(".form_3");
 
-    var form_1_btns = document.querySelector(".form_1_btns");
-    var form_2_btns = document.querySelector(".form_2_btns");
-    var form_3_btns = document.querySelector(".form_3_btns");
+        var form_1_btns = document.querySelector(".form_1_btns");
+        var form_2_btns = document.querySelector(".form_2_btns");
+        var form_3_btns = document.querySelector(".form_3_btns");
 
-    var form_1_next_btn = document.querySelector(".form_1_btns .btn_next");
-    var form_2_back_btn = document.querySelector(".form_2_btns .btn_back");
-    var form_2_next_btn = document.querySelector(".form_2_btns .btn_next");
-    var form_3_back_btn = document.querySelector(".form_3_btns .btn_back");
+        var form_1_next_btn = document.querySelector(".form_1_btns .btn_next");
+        var form_2_back_btn = document.querySelector(".form_2_btns .btn_back");
+        var form_2_next_btn = document.querySelector(".form_2_btns .btn_next");
+        var form_3_back_btn = document.querySelector(".form_3_btns .btn_back");
 
-    var btn_done = document.querySelector(".btn_done");
-    var modal_wrapper = document.querySelector(".modal_wrapper");
-    var shadow = document.querySelector(".shadow");
+        var btn_done = document.querySelector(".btn_done");
+        var modal_wrapper = document.querySelector(".modal_wrapper");
+        var shadow = document.querySelector(".shadow");
 
-    form_1_next_btn.addEventListener("click", function() {
-        form_1.style.display = "none";
-        form_2.style.display = "block";
-        form_1_btns.style.display = "none";
-        form_2_btns.style.display = "flex";
-    });
+        form_1_next_btn.addEventListener("click", function () {
+            form_1.style.display = "none";
+            form_2.style.display = "block";
+            form_1_btns.style.display = "none";
+            form_2_btns.style.display = "flex";
+        });
 
-    form_2_back_btn.addEventListener("click", function() {
-        form_1.style.display = "block";
-        form_2.style.display = "none";
-        form_1_btns.style.display = "flex";
-        form_2_btns.style.display = "none";
-    });
+        form_2_back_btn.addEventListener("click", function () {
+            form_1.style.display = "block";
+            form_2.style.display = "none";
+            form_1_btns.style.display = "flex";
+            form_2_btns.style.display = "none";
+        });
 
-    form_2_next_btn.addEventListener("click", function() {
-        form_2.style.display = "none";
-        form_3.style.display = "block";
-        form_2_btns.style.display = "none";
-        form_3_btns.style.display = "flex";
-    });
+        form_2_next_btn.addEventListener("click", function () {
+            form_2.style.display = "none";
+            form_3.style.display = "block";
+            form_2_btns.style.display = "none";
+            form_3_btns.style.display = "flex";
+        });
 
-    form_3_back_btn.addEventListener("click", function() {
-        form_2.style.display = "block";
-        form_3.style.display = "none";
-        form_2_btns.style.display = "flex";
-        form_3_btns.style.display = "none";
-    });
+        form_3_back_btn.addEventListener("click", function () {
+            form_2.style.display = "block";
+            form_3.style.display = "none";
+            form_2_btns.style.display = "flex";
+            form_3_btns.style.display = "none";
+        });
 
-    btn_done.addEventListener("click", function() {
+        btn_done.addEventListener("click", function () {
 
-        const answers = [];
+            const answers = [];
 
-        function collectAnswers(form, startIndex, questionCount) {
-            for (let i = 0; i < questionCount; i++) {
-                const questionIndex = startIndex + i;
-                const radioButtons = form.querySelectorAll(`[name="question${questionIndex}"]`);
-                let selectedValue = "1"; // Default value
+            function collectAnswers(form, startIndex, questionCount) {
+                for (let i = 0; i < questionCount; i++) {
+                    const questionIndex = startIndex + i;
+                    const radioButtons = form.querySelectorAll(`[name="question${questionIndex}"]`);
+                    let selectedValue = "1"; // Default value
 
-                radioButtons.forEach((radioButton) => {
-                    if (radioButton.checked) {
-                        selectedValue = radioButton.value;
-                    }
-                });
-                answers.push(selectedValue);
+                    radioButtons.forEach((radioButton) => {
+                        if (radioButton.checked) {
+                            selectedValue = radioButton.value;
+                        }
+                    });
+                    answers.push(selectedValue);
+                }
             }
-        }
-        const dateInput = document.getElementById('date');
-        const dayInput = document.getElementById('day');
+            const dateInput = document.getElementById('date');
+            const dayInput = document.getElementById('day');
 
-        if (!dateInput.value || !dayInput.value) {
-            alert("Please select an entry for the date and day");
-            return;
-        }
+            if (!dateInput.value || !dayInput.value) {
+                alert("Please select an entry for the date and day");
+                return;
+            }
 
-        // Collecting answers
-        collectAnswers(document.getElementById('inputs'), 1, 5); // Work Habits: 5 questions
-        collectAnswers(document.getElementById('inputs1'), 6, 6); // Work Skills: 6 questions
-        collectAnswers(document.getElementById('inputs2'), 12, 7); // Social Skills: 7 questions
+            // Collecting answers
+            collectAnswers(document.getElementById('inputs'), 1, 5); // Work Habits: 5 questions
+            collectAnswers(document.getElementById('inputs1'), 6, 6); // Work Skills: 6 questions
+            collectAnswers(document.getElementById('inputs2'), 12, 7); // Social Skills: 7 questions
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const studentId = urlParams.get('student_id');
+            const urlParams = new URLSearchParams(window.location.search);
+            const studentId = urlParams.get('student_id');
 
-        const jsonData = {};
-        for (let i = 0; i < answers.length; i++) {
-            jsonData[`question${i + 1}`] = answers[i];
-        }
+            const jsonData = {};
+            for (let i = 0; i < answers.length; i++) {
+                jsonData[`question${i + 1}`] = answers[i];
+            }
 
-        jsonData.date = dateInput.value;
-        jsonData.day = dayInput.value;
-        jsonData.student_id = studentId;
+            jsonData.date = dateInput.value;
+            jsonData.day = dayInput.value;
+            jsonData.student_id = studentId;
 
-        // console.log(jsonData);
+            // console.log(jsonData);
 
-        const url = '../../backend/php/add_organization_report.php';
-        fetch(url, {
+            const url = '../../backend/php/add_organization_report.php';
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(jsonData)
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
-                }
-                return response.text();
-            })
-            .then(data => {
-                try {
-                    const jsonData = JSON.parse(data);
-                    if (jsonData.status === 'success') {
-                        window.location.reload();
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
                     }
-                } catch (e) {
-                    console.error('Parsing error:', e, 'Response data:', data);
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    });
+                    return response.text();
+                })
+                .then(data => {
+                    try {
+                        const jsonData = JSON.parse(data);
+                        if (jsonData.status === 'success') {
+                            window.location.reload();
+                        }
+                    } catch (e) {
+                        console.error('Parsing error:', e, 'Response data:', data);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
 
-    shadow.addEventListener("click", function() {
-        modal_wrapper.classList.remove("active");
-    });
+        shadow.addEventListener("click", function () {
+            modal_wrapper.classList.remove("active");
+        });
     </script>
 
     <script>
-    const form = document.querySelector('form');
-    form.addEventListener('submit', event => {
-        const formData = new FormData(event.target);
-        const rating = formData.get('rating');
-        // console.log(rating);
-        event.preventDefault();
-    });
+        const form = document.querySelector('form');
+        form.addEventListener('submit', event => {
+            const formData = new FormData(event.target);
+            const rating = formData.get('rating');
+            // console.log(rating);
+            event.preventDefault();
+        });
     </script>
 
     <script>
-    var inputsForm = document.querySelector("#inputs");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    inputsForm.onsubmit = function() {
-        // console.log(
-        //     ` ${this.question1.value}\n ${this.question2.value}\n${this.question3.value}\n${this.question4.value}\n${this.question5.value}`
-        // );
-        return false;
-    }
+        inputsForm.onsubmit = function () {
+            // console.log(
+            //     ` ${this.question1.value}\n ${this.question2.value}\n${this.question3.value}\n${this.question4.value}\n${this.question5.value}`
+            // );
+            return false;
+        }
     </script>
 
     <script>
-    var inputsForm = document.querySelector("#inputs1");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs1");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    inputsForm.onsubmit = function() {
-        // console.log(
-        //     ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
-        // );
-        return false;
-    }
+        inputsForm.onsubmit = function () {
+            // console.log(
+            //     ` ${this.question6.value}\n ${this.question7.value}\n${this.question8.value}\n${this.question9.value}\n${this.question0.value}`
+            // );
+            return false;
+        }
     </script>
     <script>
-    var inputsForm = document.querySelector("#inputs2");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs2");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    inputsForm.onsubmit = function() {
-        // console.log(
-        //     ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
-        // );
-        return false;
-    }
+        inputsForm.onsubmit = function () {
+            // console.log(
+            //     ` ${this.question11.value}\n ${this.question12.value}\n${this.question13.value}\n${this.question14.value}\n${this.question15.value}`
+            // );
+            return false;
+        }
 
-    var inputsForm = document.querySelector("#inputs3");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs3");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    // just for showing the values (not required only for testing)
-    inputsForm.onsubmit = function() {
-        // console.log(
-        //     ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
-        // );
-        return false;
-    }
+        // just for showing the values (not required only for testing)
+        inputsForm.onsubmit = function () {
+            // console.log(
+            //     ` ${this.question16.value}\n ${this.question17.value}\n${this.question18.value}\n${this.question19.value}\n${this.question20.value}`
+            // );
+            return false;
+        }
     </script>
     <script>
-    var inputsForm = document.querySelector("#inputs4");
-    inputsForm.onchange = function(e) {
-        if (e.target.type = "radio") {
-            var stars = document.querySelectorAll(`[name='${e.target.name}']`);
-            for (var i = 0; i < stars.length; i++) {
-                if (i < e.target.value) {
-                    stars[i].parentElement.classList.replace("empty", "green");
-                } else {
-                    stars[i].parentElement.classList.replace("green", "empty");
+        var inputsForm = document.querySelector("#inputs4");
+        inputsForm.onchange = function (e) {
+            if (e.target.type = "radio") {
+                var stars = document.querySelectorAll(`[name='${e.target.name}']`);
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < e.target.value) {
+                        stars[i].parentElement.classList.replace("empty", "green");
+                    } else {
+                        stars[i].parentElement.classList.replace("green", "empty");
+                    }
                 }
             }
         }
-    }
 
-    // just for showing the values (not required only for testing)
-    inputsForm.onsubmit = function() {
-        // console.log(
-        //     ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
-        // );
-        return false;
-    }
+        // just for showing the values (not required only for testing)
+        inputsForm.onsubmit = function () {
+            // console.log(
+            //     ` ${this.question21.value}\n ${this.question22.value}\n${this.question23.value}\n${this.question24.value}\n${this.question25.value}`
+            // );
+            return false;
+        }
     </script>
 
 </body>

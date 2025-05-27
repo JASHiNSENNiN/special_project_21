@@ -157,6 +157,11 @@ if ($is_completed) {
     <div class="titleEF">
         <b>
             <h1 class="sfa">Evaluation Form</h1>
+
+            <div class="grp-com-details ">
+                <span>Company Name: </span>
+                <span>Address: </span>
+            </div>
             <div class="box-topic">
                 <?php
 
@@ -168,10 +173,11 @@ if ($is_completed) {
                 ?>
             </div>
             <!-- <form id="inputs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"></form> -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="Jor" for="date">Date</label>
                 <input class="inp" type="date" id="date" name="date" value="" required>
-            </div>
+                
+            </div> -->
 
             <?php
 
@@ -197,15 +203,21 @@ if ($is_completed) {
             ?>
 
             <div class="form-group">
-                <label class="Jor" for="day">Select Day (1-10)</label>
-                <select class="inp" id="day" name="day" required>
-                    <option value="" disabled selected>Select a day</option>
-                    <?php for ($i = 1; $i <= 10; $i++): ?>
-                        <option value="<?= $i ?>">
-                            <?= $i ?>     <?= in_array((string) $i, $evaluated_days) ? '✔️ (Completed)' : '' ?>
-                        </option>
-                    <?php endfor; ?>
-                </select>
+                <div> <label class="Jor" for="date">Date</label>
+                    <input class="inp" type="date" id="date" name="date" value="" required>
+                </div>
+                <div> <label class="Jor" for="day">Select Day (1-10)</label>
+                    <select class="inp" id="day" name="day" required>
+                        <option value="" disabled selected>Select a day</option>
+                        <?php for ($i = 1; $i <= 10; $i++): ?>
+                            <option value="<?= $i ?>">
+                                <?= $i ?>     <?= in_array((string) $i, $evaluated_days) ? '✔️ (Completed)' : '' ?>
+                            </option>
+                        <?php endfor; ?>
+                    </select>
+                </div>
+
+
             </div>
         </b>
     </div>

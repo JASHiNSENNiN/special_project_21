@@ -2036,3 +2036,10 @@ input[type="file"] {
     margin-left: 24%;
   }
 }
+.container-outside {
+  padding: 40px 60px;
+}
+.logoimg,
+.profile {
+  display: none;
+}
