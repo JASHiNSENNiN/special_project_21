@@ -501,17 +501,27 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
                             <br>
 
-                            <i class="fa fa-graduation-cap" aria-hidden="true"></i><span
+                            <i class="fa fa-graduation-cap" aria-hidden="true" title="Strand"></i><span
                                 class="other-info"><?= $strand ?></span>
                             <br>
-                            <i class="fa fa-envelope" aria-hidden="true"></i><span
+                            <i class="fa fa-envelope" aria-hidden="true" title="Email Address"></i><span
                                 class="other-info"><?= $email ?></span>
 
                             <br>
-                            <i class="fa fa-home" aria-hidden="true"></i><span class="other-info"><?= $school ?></span>
+                            <i class="fa fa-home" aria-hidden="true" title="School"></i><span
+                                class="other-info"><?= $school ?></span>
                             <br>
-                            <i class="fa fa-briefcase" aria-hidden="true"></i><span
+                            <i class="fa fa-briefcase" aria-hidden="true" title="Position"></i><span
                                 class="other-info"><?= $currentWork ?></span>
+
+                            <br>
+                            <i class="fa fa-calendar" aria-hidden="true" title="Date Start"></i><span
+                                class="other-info">Date Start</span>
+
+                            <br>
+                            <i class="fa fa-calendar" aria-hidden="true" title="Date End "></i><span
+                                class="other-info">Date
+                                End</span>
 
 
 

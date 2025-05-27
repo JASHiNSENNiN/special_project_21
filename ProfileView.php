@@ -527,6 +527,15 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
                             <i class="fa fa-briefcase" aria-hidden="true"></i><span
                                 class="other-info"><?= $currentWork ?></span>
 
+                            <br>
+                            <i class="fa fa-calendar" aria-hidden="true" title="Date Start"></i><span
+                                class="other-info">Date Start</span>
+
+                            <br>
+                            <i class="fa fa-calendar" aria-hidden="true" title="Date End "></i><span
+                                class="other-info">Date
+                                End</span>
+
 
 
                             <a href="Account/Student/print_profile.php?student_id=<?php echo $IdParam ?>"

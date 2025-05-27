@@ -70,7 +70,8 @@ $has_evaluation_today = $result['eval_count'] > 0;
     </div>
     <!-- End -->
     <div class="container-rating">
-        <div class="grp-com-details"><span>Student Name: </span>
+        <div class="grp-com-details">
+            <span>Student Name: </span>
             <span>Position: </span>
         </div>
 
