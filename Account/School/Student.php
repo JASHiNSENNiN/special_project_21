@@ -10,7 +10,6 @@ $ProfileViewURL = "../../ProfileView.php";
 
 function get_students_by_strand($strand)
 {
-
     $host = "localhost";
     $username = $_ENV['MYSQL_USERNAME'];
     $password = $_ENV['MYSQL_PASSWORD'];
@@ -27,20 +26,24 @@ function get_students_by_strand($strand)
     }
     $schoolName = $_SESSION['school_name'];
 
+    // Updated query to get start and end dates from Student_Evaluation table
     $stmt = $conn->prepare("
         SELECT sp.*, 
                u.*, 
-               COALESCE(jo.organization_name, 'N/A') AS organization_name 
+               COALESCE(jo.organization_name, 'N/A') AS organization_name,
+               se_start.evaluation_date as date_start,
+               se_end.evaluation_date as date_end
         FROM student_profiles AS sp 
         JOIN users AS u ON sp.user_id = u.id 
         LEFT JOIN job_offers AS jo ON sp.current_work = jo.id 
+        LEFT JOIN Student_Evaluation AS se_start ON sp.user_id = se_start.student_id AND se_start.day = '1'
+        LEFT JOIN Student_Evaluation AS se_end ON sp.user_id = se_end.student_id AND se_end.day = '10'
         WHERE sp.strand = ? AND sp.school = ?
+        ORDER BY sp.id
     ");
 
     $stmt->bind_param("ss", $strand, $schoolName);
-
     $stmt->execute();
-
     $result = $stmt->get_result();
 
     $students = [];
@@ -55,6 +58,15 @@ function get_students_by_strand($strand)
 
     return $students;
 }
+
+// Function to format date for display
+function formatDateForDisplay($date) {
+    if (empty($date) || $date === '0000-00-00' || $date === null) {
+        return 'No Entry';
+    }
+    return date('M d, Y', strtotime($date));
+}
+
 
 // function verify_student($student_id)
 // {
@@ -241,8 +253,11 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
+                            
+                            // Updated date fields using evaluation dates
+                            echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
+                            echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
+                            
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -296,12 +311,14 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
+                            
+                            // Updated date fields using evaluation dates
+                            echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
+                            echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
+                            
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
-                            // Action form for verification and unverification
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {
@@ -350,12 +367,14 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
+                            
+                            // Updated date fields using evaluation dates
+                            echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
+                            echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
+                            
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
-                            // Action form for verification and unverification
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {
@@ -396,19 +415,21 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Action</th>
                         </tr>
                         <?php
-                        $count = 1;
+                       $count = 1;
                         foreach ($tvl_students as $student) {
                             echo "<tr>";
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
+                            
+                            // Updated date fields using evaluation dates
+                            echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
+                            echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
+                            
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
-                            // Action form for verification and unverification
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {
@@ -456,12 +477,14 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
-                            echo "<td data-th='Organization'>unknown</td>";
+                            
+                            // Updated date fields using evaluation dates
+                            echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
+                            echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
+                            
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
-                            // Action form for verification and unverification
                             echo "<form method='post' style='display: inline;'>";
                             echo "<input type='hidden' name='student_id' value='" . $student['id'] . "'>";
                             if ($student['verified_status']) {

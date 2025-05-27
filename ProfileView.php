@@ -120,6 +120,23 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
+$sql = "SELECT 
+            MIN(CASE WHEN day = '1' THEN evaluation_date END) AS date_start,
+            MAX(CASE WHEN day = '10' THEN evaluation_date END) AS date_end
+        FROM Student_Evaluation 
+        WHERE student_id = :student_id 
+        AND day IN ('1', '10')";
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':student_id', $user_id);
+$stmt->execute();
+$evaluation_dates = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Set the dates with fallbacks
+$dateStart = $evaluation_dates['date_start'] ? date('M d, Y', strtotime($evaluation_dates['date_start'])) : 'Not Available';
+$dateEnd = $evaluation_dates['date_end'] ? date('M d, Y', strtotime($evaluation_dates['date_end'])) : 'Not Available';
+
+
 function getStudentEvaluationsByDay($conn, $user_id)
 {
     $evaluations = array_fill(1, 10, null); // Initialize array for all 10 days
@@ -529,12 +546,11 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
                             <br>
                             <i class="fa fa-calendar" aria-hidden="true" title="Date Start"></i><span
-                                class="other-info">Date Start</span>
+                                class="other-info"><?= $dateStart ?></span>
 
                             <br>
                             <i class="fa fa-calendar" aria-hidden="true" title="Date End "></i><span
-                                class="other-info">Date
-                                End</span>
+                                class="other-info"><?= $dateEnd ?></span> 
 
 
 
