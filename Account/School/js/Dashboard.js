@@ -122,7 +122,7 @@ google.charts.setOnLoadCallback(drawStuffss);
 
 function drawStuffss() {
   var datass = new google.visualization.arrayToDataTable(
-    topStudentsDataJsonSocialSkills
+    topStudentsDataSocialSkills
   );
 
   var options = {
