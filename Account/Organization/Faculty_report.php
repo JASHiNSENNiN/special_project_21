@@ -124,11 +124,11 @@ function getCurrentlyWorkingStudents($conn, $currentOrgId)
 // Function to get evaluation status and date for each day
 function getEvaluationStatusAndDate($conn, $studentId, $evaluatorId, $day) {
     $sql = "SELECT evaluation_date FROM Student_Evaluation 
-            WHERE student_id = ? AND evaluator_id = ? AND day = ?
+            WHERE student_id = ? AND day = ?
             ORDER BY evaluation_date DESC LIMIT 1";
     
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iis", $studentId, $evaluatorId, $day);
+    $stmt->bind_param("is", $studentId,  $day);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
