@@ -250,6 +250,7 @@ function fetchJobOffersWithStudentCount($conn)
     $query = "
     SELECT 
         jo.work_title, 
+        pp.organization_name,
         COUNT(DISTINCT a.student_id) AS student_count
     FROM 
         job_offers jo
@@ -264,10 +265,10 @@ function fetchJobOffersWithStudentCount($conn)
     AND 
         jo.is_archived = FALSE
     GROUP BY 
-        jo.id, jo.work_title
+        jo.id, jo.work_title, pp.organization_name
     ORDER BY 
         student_count DESC
-";
+    ";
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $school_name);
@@ -280,6 +281,7 @@ function fetchJobOffersWithStudentCount($conn)
         while ($row = $result->fetch_assoc()) {
             $jobOffers[] = [
                 'work_title' => $row['work_title'],
+                'organization_name' => $row['organization_name'],
                 'student_count' => $row['student_count']
             ];
         }
@@ -290,6 +292,7 @@ function fetchJobOffersWithStudentCount($conn)
         return [];
     }
 }
+
 
 function fetchTopStudents($conn)
 {
@@ -781,7 +784,7 @@ if (isset($_SESSION['school_name'])) {
                                         if (!empty($jobOffersData)) {
                                             foreach ($jobOffersData as $offer) {
                                                 echo '<tr>';
-                                                echo '<td data-label="Name">Company Name</td>';
+                                                echo '<td data-label="Name">' . htmlspecialchars($offer['organization_name']) . '</td>';
                                                 echo '<td data-label="Name">' . htmlspecialchars($offer['work_title']) . '</td>';
                                                 echo '<td data-label="TotalStudent">' . htmlspecialchars($offer['student_count']) . '</td>';
                                                 echo '</tr>';

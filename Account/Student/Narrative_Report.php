@@ -73,6 +73,32 @@ function isApplicantCompleted($pdo, $student_id, $job_id)
     return false;
 }
 
+function fetchCompanyDetails($pdo, $student_id) {
+    $sql = "SELECT pp.organization_name, pp.address 
+            FROM partner_profiles pp
+            INNER JOIN job_offers jo ON pp.user_id = jo.partner_id
+            INNER JOIN student_profiles sp ON sp.current_work = jo.id
+            WHERE sp.user_id = :student_id";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result) {
+        return [
+            'company_name' => $result['organization_name'],
+            'address' => $result['address']
+        ];
+    }
+    
+    return [
+        'company_name' => 'Not Available',
+        'address' => 'Not Available'
+    ];
+}
+
 function isStudentProfileVerified($pdo)
 {
     $sql = "SELECT verified_status FROM student_profiles WHERE user_id = :user_id";
@@ -106,7 +132,7 @@ if ($is_completed) {
     exit();
 }
 
-
+$company_details = fetchCompanyDetails($pdo, $_SESSION['user_id'])
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -159,8 +185,8 @@ if ($is_completed) {
             <h1 class="sfa">Evaluation Form</h1>
 
             <div class="grp-com-details ">
-                <span>Company Name: </span>
-                <span>Address: </span>
+                <span>Company Name: <?= $company_details['company_name'] ?></span>
+                <span>Address: <?= $company_details['address'] ?></span>
             </div>
             <div class="box-topic">
                 <?php

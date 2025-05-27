@@ -120,6 +120,58 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
+function fetchEvaluationDates($pdo, $student_id) {
+    $sql = "SELECT 
+                MIN(CASE WHEN day = '1' THEN evaluation_date END) AS date_start,
+                MAX(CASE WHEN day = '10' THEN evaluation_date END) AS date_end
+            FROM Student_Evaluation 
+            WHERE student_id = :student_id";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result) {
+        return [
+            'date_start' => $result['date_start'] ? date('M d, Y', strtotime($result['date_start'])) : 'Not Available',
+            'date_end' => $result['date_end'] ? date('M d, Y', strtotime($result['date_end'])) : 'Not Available'
+        ];
+    }
+    
+    return [
+        'date_start' => 'Not Available',
+        'date_end' => 'Not Available'
+    ];
+}
+
+function fetchEvaluationDateRange($pdo, $student_id) {
+    $sql = "SELECT 
+                MIN(evaluation_date) AS date_start,
+                MAX(evaluation_date) AS date_end
+            FROM Student_Evaluation 
+            WHERE student_id = :student_id";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result && $result['date_start']) {
+        return [
+            'date_start' => date('M d, Y', strtotime($result['date_start'])),
+            'date_end' => date('M d, Y', strtotime($result['date_end']))
+        ];
+    }
+    
+    return [
+        'date_start' => 'Not Available',
+        'date_end' => 'Not Available'
+    ];
+}
+
 function getStudentEvaluationsByDay($conn, $user_id)
 {
     $evaluations = array_fill(1, 10, null); // Initialize array for all 10 days
@@ -381,7 +433,9 @@ $profile_image_path = 'uploads/' . $profile_data['profile_image'];
 $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
 
-
+$evaluation_dates = fetchEvaluationDates($pdo, $user_id);
+$date_start = $evaluation_dates['date_start'];
+$date_end = $evaluation_dates['date_end'];
 
 ?>
 
@@ -516,12 +570,11 @@ $cover_image_path = 'uploads/' . $profile_data['cover_image'];
 
                             <br>
                             <i class="fa fa-calendar" aria-hidden="true" title="Date Start"></i><span
-                                class="other-info">Date Start</span>
+                                class="other-info"><?= $date_start ?></span>
 
                             <br>
                             <i class="fa fa-calendar" aria-hidden="true" title="Date End "></i><span
-                                class="other-info">Date
-                                End</span>
+                                class="other-info"><?= $date_end ?></span>
 
 
 

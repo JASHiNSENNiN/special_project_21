@@ -33,8 +33,46 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':student_id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
 
+function fetchStudentDetails($pdo, $student_id) {
+    $sql = "SELECT 
+                CONCAT(sp.first_name, 
+                       CASE 
+                           WHEN sp.middle_name IS NOT NULL AND sp.middle_name != '' 
+                           THEN CONCAT(' ', sp.middle_name, ' ') 
+                           ELSE ' ' 
+                       END, 
+                       sp.last_name) AS full_name,
+                jo.work_title AS position
+            FROM student_profiles sp
+            INNER JOIN job_offers jo ON sp.current_work = jo.id
+            WHERE sp.user_id = :student_id";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result) {
+        return [
+            'student_name' => $result['full_name'],
+            'position' => $result['position']
+        ];
+    }
+    
+    return [
+        'student_name' => 'Not Available',
+        'position' => 'Not Available'
+    ];
+}
+
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $has_evaluation_today = $result['eval_count'] > 0;
+
+$student_details = fetchStudentDetails($pdo, $user_id);
+$student_name = $student_details['student_name'];
+$position = $student_details['position'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -71,10 +109,9 @@ $has_evaluation_today = $result['eval_count'] > 0;
     <!-- End -->
     <div class="container-rating">
         <div class="grp-com-details">
-            <span>Student Name: </span>
-            <span>Position: </span>
+            <span>Student Name: <?= $student_name ?></span>
+            <span>Position: <?= $position ?></span>
         </div>
-
 
         <h3>Star rating:</h3>
         <ol>

@@ -1020,13 +1020,13 @@ School'
                 <input type="hidden" name="org_id" value="<?= htmlspecialchars($user_id) ?>">
                 <span class="frontend-text">Do you approve or disapprove of this company's account?</span>
 
-                <?php if (!$current_status): ?>
+               
                     <!-- Show Approve button if not approved -->
                     <button class='button-10' type='submit' name='action' value='Approve'>Approve</button>
-                <?php else: ?>
+               
                     <!-- Show Disapprove button if approved -->
                     <button class='button-11' type='submit' name='action' value='Disapprove'>Disapprove</button>
-                <?php endif; ?>
+                
             </form>
 
             <div class="container-alert-mssg">
