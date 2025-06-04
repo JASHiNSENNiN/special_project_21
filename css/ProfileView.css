@@ -882,8 +882,18 @@ img {
 .card-strong-profile {
   --main-color: #172738;
   --bg-color: #fff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   width: 100%;
   padding: 25px;
   background: var(--bg-color);
@@ -991,8 +1001,18 @@ img {
 }
 
 .form-control {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   min-height: 254px;
   max-height: 254px;
   margin-bottom: 20px;
@@ -1359,7 +1379,9 @@ span .subtitle-resume {
   font-size: 16px;
   background-color: #f9f9f9;
   color: #333;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
   margin-top: 20px;
 }
 
@@ -1375,4 +1397,204 @@ span .subtitle-resume {
 
 #dayDropdown option:hover {
   background-color: #eee;
+}
+
+/* ------table------- */
+
+.rwd-table {
+  padding: 20px 0px;
+  margin: auto;
+  min-width: 300px;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.rwd-table tr:first-child {
+  border-top: none;
+  background: #428bca;
+  color: #fff;
+}
+
+/* .rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f5f9fc;
+} */
+
+/* .rwd-table tr:nth-child(odd):not(:first-child) {
+  background-color: #ebf3f9;
+} */
+
+.rwd-table th {
+  display: none;
+}
+
+.rwd-table td {
+  display: block;
+}
+
+.rwd-table td:first-child {
+  margin-top: 0.5em;
+}
+
+.rwd-table td:last-child {
+  margin-bottom: 0.5em;
+}
+
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+  color: #000;
+}
+
+.rwd-table th,
+.rwd-table td {
+  text-align: center;
+}
+
+.rwd-table {
+  color: #333;
+  border-radius: 0.4em;
+  overflow: hidden;
+  width: 95%;
+}
+
+.rwd-table tr {
+  border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+  padding: 0.5em 1em;
+}
+
+@media screen and (max-width: 601px) {
+  .rwd-table tr:nth-child(2) {
+    border-top: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .rwd-table tr:hover:not(:first-child) {
+    background-color: #fff;
+  }
+  .rwd-table td:before {
+    display: none;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    display: table-cell;
+    padding: 0.25em 0.5em;
+  }
+  .rwd-table th:first-child,
+  .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child,
+  .rwd-table td:last-child {
+    padding-right: 0;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    padding: 1em !important;
+  }
+}
+
+/* Make the table scrollable on small screens */
+
+.rwd-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  /* Allow horizontal scroll */
+  /* display: block; */
+  /* Make container block for responsiveness */
+}
+
+.rwd-table thead {
+  display: table-header-group;
+  /* Keep header visible */
+}
+
+.rwd-table tbody {
+  display: table-row-group;
+}
+
+/* Style for table cells */
+
+.rwd-table th,
+.rwd-table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+/* Responsive styles for small screens */
+
+@media (max-width: 768px) {
+  .rwd-table {
+    display: block;
+  }
+  /* Hide the header row */
+  .rwd-table thead {
+    display: none;
+  }
+  /* Make tbody behave like block to stack rows */
+  .rwd-table tbody {
+    display: block;
+  }
+  /* Make each row a block */
+  .rwd-table tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  /* Style for cells to look like labels */
+  .rwd-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+  /* Add labels before each data cell */
+  .rwd-table td::before {
+    content: attr(data-th);
+    font-weight: bold;
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  /* Remove the last border */
+  .rwd-table tr:last-child {
+    border-bottom: 2px solid #000;
+  }
+}
+
+.stars {
+  font-size: 1em;
+  cursor: pointer;
+  color: gray;
+}
+
+.star {
+  color: gray;
+}
+
+.star.filled {
+  color: gold;
+}
+
+#average {
+  margin-top: 5px;
+  font-size: 3rem;
+}
+
+.rating-student {
+  display: grid;
+  /* gap: 10px; */
+  place-items: center;
 }

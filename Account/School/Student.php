@@ -60,7 +60,8 @@ function get_students_by_strand($strand)
 }
 
 // Function to format date for display
-function formatDateForDisplay($date) {
+function formatDateForDisplay($date)
+{
     if (empty($date) || $date === '0000-00-00' || $date === null) {
         return 'No Entry';
     }
@@ -172,6 +173,7 @@ $tvl_students = get_students_by_strand('tvl');
             <a class="active1" href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
             <a href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
             <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <!-- <a href="Results.php"><i class="fas fa-file-alt"></i>Results</a> -->
             <a href="Notification-logs.php"><i class="fa fa-list"></i>Logs</a>
             <!-- <a href="Reports.php"><i class="fa fa-file-text-o"></i>Reports</a> -->
             <!-- <a href="Details.php">Details</a> -->
@@ -242,6 +244,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Date Start </th>
                             <th>Date End </th>
+                            <th>Rating </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -253,11 +256,22 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            
+
                             // Updated date fields using evaluation dates
                             echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
-                            
+
+
+                            echo "<td data-th='Rating Student'><div class='rating-student'>
+                            <div id='average'>0</div>
+                            <div id='starContainer' class='stars'>
+                                <span class='star' data-index='1'>&#9733;</span>
+                                <span class='star' data-index='2'>&#9733;</span>
+                                <span class='star' data-index='3'>&#9733;</span>
+                                <span class='star' data-index='4'>&#9733;</span>
+                                <span class='star' data-index='5'>&#9733;</span>
+                            </div>
+                        </div></td>";
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -300,6 +314,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Date Start </th>
                             <th>Date End </th>
+                            <th>Rating </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -311,11 +326,21 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            
+
                             // Updated date fields using evaluation dates
                             echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
-                            
+                            echo "<td data-th='Rating Student'><div class='rating-student'>
+    <div id='average'>0</div>
+    <div id='starContainer' class='stars'>
+        <span class='star' data-index='1'>&#9733;</span>
+        <span class='star' data-index='2'>&#9733;</span>
+        <span class='star' data-index='3'>&#9733;</span>
+        <span class='star' data-index='4'>&#9733;</span>
+        <span class='star' data-index='5'>&#9733;</span>
+    </div>
+</div></td>";
+
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -356,6 +381,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Date Start </th>
                             <th>Date End </th>
+                            <th>Rating </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -367,11 +393,22 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            
+
                             // Updated date fields using evaluation dates
                             echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
-                            
+
+                            echo "<td data-th='Rating Student'><div class='rating-student'>
+                            <div id='average'>0</div>
+                            <div id='starContainer' class='stars'>
+                                <span class='star' data-index='1'>&#9733;</span>
+                                <span class='star' data-index='2'>&#9733;</span>
+                                <span class='star' data-index='3'>&#9733;</span>
+                                <span class='star' data-index='4'>&#9733;</span>
+                                <span class='star' data-index='5'>&#9733;</span>
+                            </div>
+                        </div></td>";
+
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -411,22 +448,33 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Date Start </th>
                             <th>Date End </th>
+                            <th>Rating </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                         <?php
-                       $count = 1;
+                        $count = 1;
                         foreach ($tvl_students as $student) {
                             echo "<tr>";
                             echo "<td data-th='#'>" . $count . "</td>";
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            
+
                             // Updated date fields using evaluation dates
                             echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
-                            
+                            echo "<td data-th='Rating Student'><div class='rating-student'>
+                            <div id='average'>0</div>
+                            <div id='starContainer' class='stars'>
+                                <span class='star' data-index='1'>&#9733;</span>
+                                <span class='star' data-index='2'>&#9733;</span>
+                                <span class='star' data-index='3'>&#9733;</span>
+                                <span class='star' data-index='4'>&#9733;</span>
+                                <span class='star' data-index='5'>&#9733;</span>
+                            </div>
+                        </div></td>";
+
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -466,6 +514,7 @@ $tvl_students = get_students_by_strand('tvl');
                             <th>Organization</th>
                             <th>Date Start </th>
                             <th>Date End </th>
+                            <th>Rating </th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -477,11 +526,21 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='ID Picture'><img class='idpic' src='../Student/uploads/" . $student['profile_image'] . "' alt='me'></td>";
                             echo "<td data-th='Student Name'>" . $student['first_name'] . " " . $student['middle_name'] . " " . $student['last_name'] . "</td>";
                             echo "<td data-th='Organization'>" . $student['organization_name'] . "</td>";
-                            
+
                             // Updated date fields using evaluation dates
                             echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
-                            
+                            echo "<td data-th='Rating Student'><div class='rating-student'>
+    <div id='average'>0</div>
+    <div id='starContainer' class='stars'>
+        <span class='star' data-index='1'>&#9733;</span>
+        <span class='star' data-index='2'>&#9733;</span>
+        <span class='star' data-index='3'>&#9733;</span>
+        <span class='star' data-index='4'>&#9733;</span>
+        <span class='star' data-index='5'>&#9733;</span>
+    </div>
+</div></td>";
+
                             echo "<td data-th='Status'>" . ($student['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
                             echo "<td data-th='Action'>";
@@ -682,6 +741,51 @@ $tvl_students = get_students_by_strand('tvl');
                 seeMoreLink.textContent = 'See More';
             }
         }
+    </script>
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const averageDisplay = document.getElementById('average');
+
+
+        let totalRatings = 0;
+        let ratingsCount = 0;
+        let ratingsSum = 0;
+
+
+        function fillStars(rating) {
+            stars.forEach(star => {
+                const index = parseInt(star.dataset.index);
+                if (index <= rating) {
+                    star.classList.add('filled');
+                } else {
+                    star.classList.remove('filled');
+                }
+            });
+        }
+
+        function updateAverage() {
+            const average = ratingsCount === 0 ? 0 : (ratingsSum / ratingsCount).toFixed(1);
+            averageDisplay.textContent = `${average}`;
+        }
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.dataset.index);
+
+                totalRatings += rating;
+                ratingsCount += 1;
+                ratingsSum += rating;
+
+                const average = ratingsSum / ratingsCount;
+
+                fillStars(rating);
+
+                updateAverage();
+            });
+        });
+
+
+        fillStars(0);
     </script>
 
 </body>

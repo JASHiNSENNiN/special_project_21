@@ -550,7 +550,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
                             <br>
                             <i class="fa fa-calendar" aria-hidden="true" title="Date End "></i><span
-                                class="other-info"><?= $dateEnd ?></span> 
+                                class="other-info"><?= $dateEnd ?></span>
 
 
 
@@ -835,6 +835,114 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
                             </div>
 
                             <hr>
+                            <h2 class="title-resume">Evaluation</h2>
+                            <span class="description-resume">From Day 1 to Day 10, the evaluation of the company on the students revealed a steady improvement in work habits, work skills, and social skills, demonstrating their ability to adapt and grow in a professional environment. <br> <br> </span>
+
+                            <table class="rwd-table">
+                                <tbody>
+                                    <tr>
+                                        <th>Day 1</th>
+                                        <th>Day 2</th>
+                                        <th>Day 3</th>
+                                        <th>Day 4</th>
+                                        <th>Day 5</th>
+                                        <th>Day 6</th>
+                                        <th>Day 7</th>
+                                        <th>Day 8</th>
+                                        <th>Day 9</th>
+                                        <th>Day 10</th>
+                                    </tr>
+                                    <!-- First Student Row -->
+                                    <tr>
+                                        <td data-th="Day 1">
+                                            <div class="evaluation-status not-evaluated">
+                                                <div>9/15/2023</div>
+                                                <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
+                                                <div class="rating-student">
+                                                    <div id="average">0</div>
+                                                    <div id="starContainer" class="stars">
+                                                        <span class="star" data-index="1">&#9733;</span>
+                                                        <span class="star" data-index="2">&#9733;</span>
+                                                        <span class="star" data-index="3">&#9733;</span>
+                                                        <span class="star" data-index="4">&#9733;</span>
+                                                        <span class="star" data-index="5">&#9733;</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 2">
+                                            <div class="evaluation-status evaluated">
+                                                <div>9/15/2023</div>
+                                                <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
+
+                                                <div class="rating-student">
+                                                    <div id="average">0</div>
+                                                    <div id="starContainer" class="stars">
+                                                        <span class="star" data-index="1">&#9733;</span>
+                                                        <span class="star" data-index="2">&#9733;</span>
+                                                        <span class="star" data-index="3">&#9733;</span>
+                                                        <span class="star" data-index="4">&#9733;</span>
+                                                        <span class="star" data-index="5">&#9733;</span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 3">
+                                            <div class="evaluation-status evaluated">
+                                                <div>9/15/2023</div>
+                                                <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
+                                                <div class="rating-student">
+                                                    <div id="average">0</div>
+                                                    <div id="starContainer" class="stars">
+                                                        <span class="star" data-index="1">&#9733;</span>
+                                                        <span class="star" data-index="2">&#9733;</span>
+                                                        <span class="star" data-index="3">&#9733;</span>
+                                                        <span class="star" data-index="4">&#9733;</span>
+                                                        <span class="star" data-index="5">&#9733;</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 4">
+                                            <div class="evaluation-status not-evaluated">
+                                                <div style="font-size: 12px;">✗ Pending</div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 5">
+                                            <div class="evaluation-status evaluated">
+                                                <div style="font-size: 12px;">✗ Pending</div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 6">
+                                            <div class="evaluation-status not-evaluated">
+                                                <div style="font-size: 12px;">✗ Pending</div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 7">
+                                            <div class="evaluation-status evaluated">
+                                                <div style="font-size: 12px;">✗ Pending</div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 8">
+                                            <div class="evaluation-status not-evaluated">
+                                                <div style="font-size: 12px;">✗ Pending</div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 9">
+                                            <div class="evaluation-status not-evaluated">
+                                                <div style="font-size: 12px;">✗ Pending</div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Day 10">
+                                            <div class="evaluation-status evaluated">
+                                                <div style="font-size: 12px;">✗ Pending</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
                         <?php endif; ?>
 
 
@@ -996,7 +1104,52 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
     </div>
     <!-- -------------------------------------END ------------------------------------------------- -->
-    <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const averageDisplay = document.getElementById('average');
+
+
+        let totalRatings = 0;
+        let ratingsCount = 0;
+        let ratingsSum = 0;
+
+
+        function fillStars(rating) {
+            stars.forEach(star => {
+                const index = parseInt(star.dataset.index);
+                if (index <= rating) {
+                    star.classList.add('filled');
+                } else {
+                    star.classList.remove('filled');
+                }
+            });
+        }
+
+        function updateAverage() {
+            const average = ratingsCount === 0 ? 0 : (ratingsSum / ratingsCount).toFixed(1);
+            averageDisplay.textContent = `${average}`;
+        }
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.dataset.index);
+
+                totalRatings += rating;
+                ratingsCount += 1;
+                ratingsSum += rating;
+
+                const average = ratingsSum / ratingsCount;
+
+                fillStars(rating);
+
+                updateAverage();
+            });
+        });
+
+
+        fillStars(0);
+    </script>
+
 
 
 
@@ -1009,7 +1162,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function () {
+        document.getElementById('refreshButton').addEventListener('click', function() {
             location.reload("card-graph");
         });
     </script>

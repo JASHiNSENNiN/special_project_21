@@ -139,9 +139,9 @@ function displayPartnerOrganizations()
                     <tr>
                         <th>#</th>
                         <th>Profile Photo</th>
-                        <th>Organization Name</th>
-                        <th>Rating</th>
-                        <th>Status</th>
+                        <th>Student Name</th>
+                        <th>Organization</th>
+                          <th>Score</th>
                         <th>Action</th>
                     </tr>';
 
@@ -153,21 +153,16 @@ function displayPartnerOrganizations()
             echo "<tr>";
             echo "<td data-th='#'>" . $count . "</td>";
             echo "<td data-th='ID Picture' style='justify-content: center;'><img class='idpic' src='" . $profile_image . "' alt='Organization Photo'></td>";
-            echo "<td data-th='Organization Name'>" . $row['organization_name'] . "</td>";
-            echo "<td data-th='Rating'> 4.5 <i class='fa fa-star fa-2x'></i> </td>";
-            echo "<td data-th='Status'>" . ($row['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+            echo "<td data-th='Student Name'>" . $row['organization_name'] . "</td>";
+            echo "<td data-th='Organization'>" . ($row['verified_status'] ? "Verified" : "Not Verified") . "</td>";
+            echo "<td data-th='Score'>" . $row['organization_name'] . "</td>";
+            // echo "<td data-th='Status'>" . ($row['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
             echo "<td data-th='Action'>";
-            // Action form for verification and unverification
             echo "<form method='post' style='display: inline;'>";
             echo "<input type='hidden' name='org_id' value='" . $row['user_id'] . "'>";
-            // if ($row['verified_status']) {
-            //     echo "<button class='button-11' type='submit' name='action' value='Disapprove' autofocus>Disapprove</button><br>";
-            // } else {
-            //     echo "<button class='button-10' type='submit' name='action' value='Approve' autofocus>Approve</button><br>";
-            // }
             echo "</form>";
-            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileOrgView.php?organization_id=" . $encoded_id . "'\">Review Profile</button>";
+            echo "<button class='button-9' role='button' onclick=\"window.location.href='../../ProfileOrgView.php?organization_id=" . $encoded_id . "'\">View Results</button>";
             echo "</td>";
             echo "</tr>";
 
@@ -194,7 +189,7 @@ function displayPartnerOrganizations()
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/1Rgn7KSY/Dr-Ramon.png">
     <!-- <link rel="shortcut icon" type="x-icon" href="image/W.png"> -->
-    <link rel="stylesheet" type="text/css" href="css/Organization.css">
+    <link rel="stylesheet" type="text/css" href="css/Results.css">
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
     <link rel="stylesheet"
@@ -218,8 +213,9 @@ function displayPartnerOrganizations()
     <div class="logo">
         <nav class="bt" style="position:relative; margin-left:auto; margin-right:auto;">
             <a href="Student.php"><i class="fas fa-user-graduate"></i>Student</a>
-            <a class="active1" href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
+            <a href="Organization.php"><i class="	fas fa-building"></i>Organization</a>
             <a href="Analytics.php"><i class="fa fa-bar-chart"></i>Analytics</a>
+            <a class="active1" href="Results.php"><i class="fas fa-file-alt"></i>Results</a>
             <a href="Notification-logs.php"><i class="fa fa-list"></i>Logs</a>
 
 
@@ -234,7 +230,7 @@ function displayPartnerOrganizations()
 
     <div id="content_container">
         <div id="list" class="content active">
-            <h1 style="margin-bottom: 50px; margin-top:50px">Organization List</h1>
+            <h1 style="margin-bottom: 50px; margin-top:50px">Evaluation Results</h1>
 
 
             <div class="container2">
@@ -248,105 +244,6 @@ function displayPartnerOrganizations()
         </div>
 
     </div>
-    <script>
-        function starRating(element, option, clickCallback, moveCallback) {
-            if (option === undefined || option.hasOwnProperty("readyOnly")) {
-                option = {
-                    readOnly: false,
-                    width: 146,
-                    starCount: 5
-                };
-            } else {
-                // Ensure starCount does not exceed 5
-                if (option.starCount > 5) {
-                    option.starCount = 5;
-                }
-            }
-            // Rest of your function remains unchanged
-            $(element).each(function() {
-                let _this = $(this);
-                let defaultRatingValue = 0;
-                let selectedRatingValue = 0;
-                let dataCount = _this.data("count");
-                console.log(dataCount);
-
-                if (dataCount === undefined || dataCount === null || dataCount === "") {
-                    defaultRatingValue = (parseFloat(0) * 100) / option.starCount;
-                    selectedRatingValue = defaultRatingValue;
-                } else {
-                    defaultRatingValue = (parseFloat(dataCount) * 100) / option.starCount;
-                    selectedRatingValue = defaultRatingValue;
-                }
-
-                function changedPosition($this, position) {
-                    $this.find(".percent").css("width", position + "%");
-                }
-
-                // Default rating value
-                changedPosition(_this, defaultRatingValue);
-
-                if (option.readOnly === false) {
-                    _this.on("mousemove", function(e) {
-                        let cX = getPosition(e);
-                        if (cX < 100) {
-                            changedPosition(_this, cX);
-
-                            if (moveCallback && typeof moveCallback !== undefined) {
-                                moveCallback(_this, round((cX / 100) * option.starCount));
-                            }
-                        }
-                    });
-
-                    _this.on("mouseleave", function(e) {
-                        changedPosition(_this, defaultRatingValue);
-
-                        if (moveCallback && typeof moveCallback !== undefined) {
-                            moveCallback(
-                                _this,
-                                round((defaultRatingValue / 100) * option.starCount)
-                            );
-                        }
-                    });
-
-                    _this.on("click", function(e) {
-                        selectedRatingValue = getPosition(e);
-                        defaultRatingValue = selectedRatingValue;
-                        changedPosition(_this, selectedRatingValue);
-
-                        if (clickCallback && typeof clickCallback !== undefined) {
-                            clickCallback(
-                                _this,
-                                round((selectedRatingValue / 100) * option.starCount)
-                            );
-                        }
-                    });
-                }
-            });
-
-            function round(v) {
-                return Math.round(v * 100) / 100;
-            }
-
-            function getPosition(e) {
-                return (e.originalEvent.layerX / option.width) * 100;
-            }
-        }
-
-        // Usage example with enforced max 5 stars
-        starRating(
-            ".star-rating", {
-                readOnly: false,
-                width: 146,
-                starCount: 10 // even if 10 is passed, it will be capped to 5
-            },
-            // function clickRating(e, rateCount) {
-            //   $(e).parent().find(".rating-number").text(rateCount);
-            // },
-            function leaveRating(e, rateCount) {
-                $(e).parent().find(".rating-number").text(rateCount);
-            }
-        );
-    </script>
 
     <script>
         function searchTable(section) {
