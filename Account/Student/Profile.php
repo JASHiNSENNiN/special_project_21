@@ -120,52 +120,54 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-function fetchEvaluationDates($pdo, $student_id) {
+function fetchEvaluationDates($pdo, $student_id)
+{
     $sql = "SELECT 
                 MIN(CASE WHEN day = '1' THEN evaluation_date END) AS date_start,
                 MAX(CASE WHEN day = '10' THEN evaluation_date END) AS date_end
             FROM Student_Evaluation 
             WHERE student_id = :student_id";
-    
+
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
     $stmt->execute();
-    
+
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     if ($result) {
         return [
             'date_start' => $result['date_start'] ? date('M d, Y', strtotime($result['date_start'])) : 'Not Available',
             'date_end' => $result['date_end'] ? date('M d, Y', strtotime($result['date_end'])) : 'Not Available'
         ];
     }
-    
+
     return [
         'date_start' => 'Not Available',
         'date_end' => 'Not Available'
     ];
 }
 
-function fetchEvaluationDateRange($pdo, $student_id) {
+function fetchEvaluationDateRange($pdo, $student_id)
+{
     $sql = "SELECT 
                 MIN(evaluation_date) AS date_start,
                 MAX(evaluation_date) AS date_end
             FROM Student_Evaluation 
             WHERE student_id = :student_id";
-    
+
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
     $stmt->execute();
-    
+
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     if ($result && $result['date_start']) {
         return [
             'date_start' => date('M d, Y', strtotime($result['date_start'])),
             'date_end' => date('M d, Y', strtotime($result['date_end']))
         ];
     }
-    
+
     return [
         'date_start' => 'Not Available',
         'date_end' => 'Not Available'
@@ -875,7 +877,7 @@ $date_end = $evaluation_dates['date_end'];
                             </span></label>
                     </div>
 
-                    <!-- <a href="">
+                  <a href="">
                         <button class="btn-create">
                             <span>
                                 <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -894,6 +896,117 @@ $date_end = $evaluation_dates['date_end'];
                 <article class="app-content__widget app-content__widget--tertiary">
                     
                 </article> -->
+                <hr>
+
+                <h2 class="title-resume">Evaluation</h2>
+                <span class="description-resume">From Day 1 to Day 10, the evaluation of the company on the students revealed a steady improvement in work habits, work skills, and social skills, demonstrating their ability to adapt and grow in a professional environment. <br> <br> </span>
+
+                <table class="rwd-table">
+                    <tbody>
+                        <tr>
+                            <th>Day 1</th>
+                            <th>Day 2</th>
+                            <th>Day 3</th>
+                            <th>Day 4</th>
+                            <th>Day 5</th>
+                            <th>Day 6</th>
+                            <th>Day 7</th>
+                            <th>Day 8</th>
+                            <th>Day 9</th>
+                            <th>Day 10</th>
+                        </tr>
+                        <!-- First Student Row -->
+                        <tr>
+                            <td data-th="Day 1">
+                                <div class="evaluation-status not-evaluated">
+                                    <div>9/15/2023</div>
+                                    <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
+                                    <div class="rating-student">
+                                        <div id="average">0</div>
+                                        <div id="starContainer" class="stars">
+                                            <span class="star" data-index="1">&#9733;</span>
+                                            <span class="star" data-index="2">&#9733;</span>
+                                            <span class="star" data-index="3">&#9733;</span>
+                                            <span class="star" data-index="4">&#9733;</span>
+                                            <span class="star" data-index="5">&#9733;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Day 2">
+                                <div class="evaluation-status evaluated">
+                                    <div>9/15/2023</div>
+                                    <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
+
+                                    <div class="rating-student">
+                                        <div id="average">0</div>
+                                        <div id="starContainer" class="stars">
+                                            <span class="star" data-index="1">&#9733;</span>
+                                            <span class="star" data-index="2">&#9733;</span>
+                                            <span class="star" data-index="3">&#9733;</span>
+                                            <span class="star" data-index="4">&#9733;</span>
+                                            <span class="star" data-index="5">&#9733;</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                            <td data-th="Day 3">
+                                <div class="evaluation-status evaluated">
+                                    <div>9/15/2023</div>
+                                    <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
+                                    <div class="rating-student">
+                                        <div id="average">0</div>
+                                        <div id="starContainer" class="stars">
+                                            <span class="star" data-index="1">&#9733;</span>
+                                            <span class="star" data-index="2">&#9733;</span>
+                                            <span class="star" data-index="3">&#9733;</span>
+                                            <span class="star" data-index="4">&#9733;</span>
+                                            <span class="star" data-index="5">&#9733;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Day 4">
+                                <div class="evaluation-status not-evaluated">
+                                    <div style="font-size: 12px;">✗ Pending</div>
+                                </div>
+                            </td>
+                            <td data-th="Day 5">
+                                <div class="evaluation-status evaluated">
+                                    <div style="font-size: 12px;">✗ Pending</div>
+                                </div>
+                            </td>
+                            <td data-th="Day 6">
+                                <div class="evaluation-status not-evaluated">
+                                    <div style="font-size: 12px;">✗ Pending</div>
+                                </div>
+                            </td>
+                            <td data-th="Day 7">
+                                <div class="evaluation-status evaluated">
+                                    <div style="font-size: 12px;">✗ Pending</div>
+                                </div>
+                            </td>
+                            <td data-th="Day 8">
+                                <div class="evaluation-status not-evaluated">
+                                    <div style="font-size: 12px;">✗ Pending</div>
+                                </div>
+                            </td>
+                            <td data-th="Day 9">
+                                <div class="evaluation-status not-evaluated">
+                                    <div style="font-size: 12px;">✗ Pending</div>
+                                </div>
+                            </td>
+                            <td data-th="Day 10">
+                                <div class="evaluation-status evaluated">
+                                    <div style="font-size: 12px;">✗ Pending</div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
             </main>
         </div>
 
@@ -1037,7 +1150,7 @@ $date_end = $evaluation_dates['date_end'];
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function () {
+        document.getElementById('refreshButton').addEventListener('click', function() {
             location.reload("card-graph");
         });
     </script>

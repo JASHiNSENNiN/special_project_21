@@ -243,3 +243,45 @@ function openModal(src, name) {
 document.getElementById("close-modal").onclick = function () {
   document.getElementById("image-modal").style.display = "none";
 };
+// --------------------------------------ratings table -------------------------------------
+const stars = document.querySelectorAll(".star");
+const averageDisplay = document.getElementById("average");
+
+let totalRatings = 0;
+let ratingsCount = 0;
+let ratingsSum = 0;
+
+function fillStars(rating) {
+  stars.forEach((star) => {
+    const index = parseInt(star.dataset.index);
+    if (index <= rating) {
+      star.classList.add("filled");
+    } else {
+      star.classList.remove("filled");
+    }
+  });
+}
+
+function updateAverage() {
+  const average =
+    ratingsCount === 0 ? 0 : (ratingsSum / ratingsCount).toFixed(1);
+  averageDisplay.textContent = `${average}`;
+}
+
+stars.forEach((star) => {
+  star.addEventListener("click", () => {
+    const rating = parseInt(star.dataset.index);
+
+    totalRatings += rating;
+    ratingsCount += 1;
+    ratingsSum += rating;
+
+    const average = ratingsSum / ratingsCount;
+
+    fillStars(rating);
+
+    updateAverage();
+  });
+});
+
+fillStars(0);
