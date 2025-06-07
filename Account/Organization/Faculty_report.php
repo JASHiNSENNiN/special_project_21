@@ -121,20 +121,30 @@ function getCurrentlyWorkingStudents($conn, $currentOrgId)
     return $students;
 }
 
-// Function to get evaluation status and date for each day
-function getEvaluationStatusAndDate($conn, $studentId, $evaluatorId, $day) {
-    $sql = "SELECT evaluation_date FROM Student_Evaluation 
+// Updated function to get evaluation status, date, and average score for each day
+function getEvaluationStatusAndScore($conn, $studentId, $day) {
+    $sql = "SELECT 
+                evaluation_date,
+                ROUND(
+                    (punctual + reports_regularly + performs_tasks_independently + 
+                     self_discipline + dedication_commitment + ability_to_operate_machines + 
+                     handles_details + shows_flexibility + thoroughness_attention_to_detail + 
+                     understands_task_linkages + offers_suggestions + tact_in_dealing_with_people + 
+                     respect_and_courtesy + helps_others + learns_from_co_workers + 
+                     shows_gratitude + poise_and_self_confidence + emotional_maturity) / 18, 1
+                ) AS daily_average
+            FROM Student_Evaluation 
             WHERE student_id = ? AND day = ?
             ORDER BY evaluation_date DESC LIMIT 1";
     
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("is", $studentId,  $day);
+    $stmt->bind_param("is", $studentId, $day);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
     $stmt->close();
     
-    return $row ? $row['evaluation_date'] : null;
+    return $row;
 }
 
 $org_id = $_SESSION['user_id'];
@@ -156,20 +166,30 @@ $currentlyWorkingStudents = getCurrentlyWorkingStudents($conn, $org_id);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
     <style>
-        .evaluated {
-            background-color: #d4edda;
-            color: #155724;
-            font-weight: bold;
-        }
-        .not-evaluated {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
+        
         .evaluation-status {
-            padding: 5px;
+            padding: 8px 5px;
             border-radius: 3px;
             text-align: center;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
+        .score-display {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 2px 0;
+        }
+        .date-display {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        .status-text {
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        
     </style>
 </head>
 
@@ -229,16 +249,28 @@ $currentlyWorkingStudents = getCurrentlyWorkingStudents($conn, $org_id);
                                 <?= htmlspecialchars($student['work_title']) ?>
                             </td>
                             <?php for ($day = 1; $day <= 10; $day++): 
-                                $evaluationDate = getEvaluationStatusAndDate($conn, $student['student_id'], $org_id, $day);
-                                $isEvaluated = !is_null($evaluationDate);
+                                $evaluationData = getEvaluationStatusAndScore($conn, $student['student_id'], $day);
+                                $isEvaluated = !is_null($evaluationData);
+                                
+                                $scoreClass = '';
+                                if ($isEvaluated) {
+                                    $score = $evaluationData['daily_average'];
+                                    if ($score >= 4.5) $scoreClass = 'score-excellent';
+                                    elseif ($score >= 3.5) $scoreClass = 'score-good';
+                                    elseif ($score >= 2.5) $scoreClass = 'score-average';
+                                    else $scoreClass = 'score-poor';
+                                }
                             ?>
                                 <td data-th="Day <?= $day ?>">
                                     <div class="evaluation-status <?= $isEvaluated ? 'evaluated' : 'not-evaluated' ?>">
                                         <?php if ($isEvaluated): ?>
-                                            <div><?= date('n/j/Y', strtotime($evaluationDate)) ?></div>
-                                            <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
+                                            <div class="date-display"><?= date('n/j/Y', strtotime($evaluationData['evaluation_date'])) ?></div>
+                                            <div class="score-display <?= $scoreClass ?>">
+                                                <?= number_format($evaluationData['daily_average'], 1) ?>
+                                            </div>
+                                            
                                         <?php else: ?>
-                                            <div style="font-size: 12px;">✗ Pending</div>
+                                            <div class="status-text">✗ Pending</div>
                                         <?php endif; ?>
                                     </div>
                                 </td>
@@ -252,6 +284,8 @@ $currentlyWorkingStudents = getCurrentlyWorkingStudents($conn, $org_id);
                     <?php endforeach; ?>
                 </tbody>
             </table>
+
+            
         <?php endif; ?>
     </div>
 
