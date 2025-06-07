@@ -26,20 +26,47 @@ function get_students_by_strand($strand)
     }
     $schoolName = $_SESSION['school_name'];
 
-    // Updated query to get start and end dates from Student_Evaluation table
     $stmt = $conn->prepare("
         SELECT sp.*, 
                u.*, 
                COALESCE(jo.organization_name, 'N/A') AS organization_name,
                se_start.evaluation_date as date_start,
-               se_end.evaluation_date as date_end
+               se_end.evaluation_date as date_end,
+               COALESCE(
+                   ROUND(
+                       (AVG(se_all.punctual) + 
+                        AVG(se_all.reports_regularly) + 
+                        AVG(se_all.performs_tasks_independently) + 
+                        AVG(se_all.self_discipline) + 
+                        AVG(se_all.dedication_commitment) + 
+                        AVG(se_all.ability_to_operate_machines) + 
+                        AVG(se_all.handles_details) + 
+                        AVG(se_all.shows_flexibility) + 
+                        AVG(se_all.thoroughness_attention_to_detail) + 
+                        AVG(se_all.understands_task_linkages) + 
+                        AVG(se_all.offers_suggestions) + 
+                        AVG(se_all.tact_in_dealing_with_people) + 
+                        AVG(se_all.respect_and_courtesy) + 
+                        AVG(se_all.helps_others) + 
+                        AVG(se_all.learns_from_co_workers) + 
+                        AVG(se_all.shows_gratitude) + 
+                        AVG(se_all.poise_and_self_confidence) + 
+                        AVG(se_all.emotional_maturity)) / 18, 1
+                   ), 0
+               ) AS avg_rating,
+               COUNT(DISTINCT se_all.evaluation_id) as total_evaluations
         FROM student_profiles AS sp 
         JOIN users AS u ON sp.user_id = u.id 
         LEFT JOIN job_offers AS jo ON sp.current_work = jo.id 
         LEFT JOIN Student_Evaluation AS se_start ON sp.user_id = se_start.student_id AND se_start.day = '1'
         LEFT JOIN Student_Evaluation AS se_end ON sp.user_id = se_end.student_id AND se_end.day = '10'
+        LEFT JOIN Student_Evaluation AS se_all ON sp.user_id = se_all.student_id
         WHERE sp.strand = ? AND sp.school = ?
-        ORDER BY sp.id
+        GROUP BY sp.user_id, sp.id, sp.first_name, sp.middle_name, sp.last_name, sp.lrn, 
+                 sp.school, sp.grade_level, sp.strand, sp.current_work, sp.verified_status,
+                 u.id, u.email, u.password, u.account_type, u.profile_image, u.cover_image,
+                 jo.organization_name, se_start.evaluation_date, se_end.evaluation_date
+        ORDER BY avg_rating DESC, sp.id
     ");
 
     $stmt->bind_param("ss", $strand, $schoolName);
@@ -49,6 +76,13 @@ function get_students_by_strand($strand)
     $students = [];
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            
+            $row['rating_display'] = $row['avg_rating'] > 0 ? number_format($row['avg_rating'], 1) : "No ratings";
+            $row['star_class'] = $row['avg_rating'] > 0 ? "fa-star" : "fa-star-o";
+            $row['evaluation_count_text'] = $row['total_evaluations'] > 0 ? 
+                "(" . $row['total_evaluations'] . " evaluation" . ($row['total_evaluations'] > 1 ? "s" : "") . ")" : 
+                "(No evaluations)";
+            
             $students[] = $row;
         }
     }
@@ -263,7 +297,7 @@ $tvl_students = get_students_by_strand('tvl');
 
 
                             echo "<td data-th='Rating Student'><div class='rating-student'>
-                            <div id='average'>0</div>
+                            <div id='average'>". $student['avg_rating'] ."</div>
                             <div id='starContainer' class='stars'>
                                 <span class='star' data-index='1'>&#9733;</span>
                                 <span class='star' data-index='2'>&#9733;</span>
@@ -331,7 +365,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
                             echo "<td data-th='Rating Student'><div class='rating-student'>
-    <div id='average'>0</div>
+    <div id='average'>". $student['avg_rating'] ."</div>
     <div id='starContainer' class='stars'>
         <span class='star' data-index='1'>&#9733;</span>
         <span class='star' data-index='2'>&#9733;</span>
@@ -399,7 +433,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
 
                             echo "<td data-th='Rating Student'><div class='rating-student'>
-                            <div id='average'>0</div>
+                            <div id='average'>". $student['avg_rating'] ."</div>
                             <div id='starContainer' class='stars'>
                                 <span class='star' data-index='1'>&#9733;</span>
                                 <span class='star' data-index='2'>&#9733;</span>
@@ -465,7 +499,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
                             echo "<td data-th='Rating Student'><div class='rating-student'>
-                            <div id='average'>0</div>
+                            <div id='average'>". $student['avg_rating'] ."</div>
                             <div id='starContainer' class='stars'>
                                 <span class='star' data-index='1'>&#9733;</span>
                                 <span class='star' data-index='2'>&#9733;</span>
@@ -531,7 +565,7 @@ $tvl_students = get_students_by_strand('tvl');
                             echo "<td data-th='Date Start'>" . formatDateForDisplay($student['date_start']) . "</td>";
                             echo "<td data-th='Date End'>" . formatDateForDisplay($student['date_end']) . "</td>";
                             echo "<td data-th='Rating Student'><div class='rating-student'>
-    <div id='average'>0</div>
+    <div id='average'>". $student['avg_rating'] ."</div>
     <div id='starContainer' class='stars'>
         <span class='star' data-index='1'>&#9733;</span>
         <span class='star' data-index='2'>&#9733;</span>

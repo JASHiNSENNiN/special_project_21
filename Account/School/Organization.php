@@ -125,11 +125,48 @@ function displayPartnerOrganizations()
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Fetch all partner organizations with their verification status
-    $sql = "SELECT pp.user_id, pp.organization_name, u.profile_image, pp.verified_status 
+    // Fetch all partner organizations with their verification status and calculated rating
+    $sql = "SELECT 
+                pp.user_id, 
+                pp.organization_name, 
+                u.profile_image, 
+                pp.verified_status,
+                COALESCE(
+                    ROUND(
+                        (AVG(oe.quality_of_experience) + 
+                         AVG(oe.productivity_of_tasks) + 
+                         AVG(oe.problem_solving_opportunities) + 
+                         AVG(oe.attention_to_detail_in_guidance) + 
+                         AVG(oe.initiative_encouragement) + 
+                         AVG(oe.punctuality_expectations) + 
+                         AVG(oe.professional_appearance_standards) + 
+                         AVG(oe.communication_training) + 
+                         AVG(oe.respectfulness_environment) + 
+                         AVG(oe.adaptability_challenges) + 
+                         AVG(oe.willingness_to_learn_encouragement) + 
+                         AVG(oe.feedback_application_opportunities) + 
+                         AVG(oe.self_improvement_support) + 
+                         AVG(oe.skill_development_assessment) + 
+                         AVG(oe.knowledge_application_in_practice) + 
+                         AVG(oe.team_participation_opportunities) + 
+                         AVG(oe.cooperation_among_peers) + 
+                         AVG(oe.conflict_resolution_guidance) + 
+                         AVG(oe.supportiveness_among_peers) + 
+                         AVG(oe.contribution_to_team_success) + 
+                         AVG(oe.enthusiasm_for_tasks) + 
+                         AVG(oe.drive_to_achieve_goals) + 
+                         AVG(oe.resilience_to_challenges) + 
+                         AVG(oe.commitment_to_experience) + 
+                         AVG(oe.self_motivation_levels)) / 25, 1
+                    ), 0
+                ) AS avg_rating,
+                COUNT(oe.evaluation_id) as total_evaluations
             FROM partner_profiles pp
             JOIN users u ON pp.user_id = u.id
-            WHERE u.account_type = 'Organization'";
+            LEFT JOIN Organization_Evaluation oe ON pp.id = oe.organization_id
+            WHERE u.account_type = 'Organization'
+            GROUP BY pp.user_id, pp.organization_name, u.profile_image, pp.verified_status
+            ORDER BY avg_rating DESC, pp.organization_name ASC";
 
     $result = $conn->query($sql);
 
@@ -149,12 +186,22 @@ function displayPartnerOrganizations()
         while ($row = $result->fetch_assoc()) {
             $encoded_id = base64_encode(encrypt_url_parameter((string) $row['user_id']));
             $profile_image = !empty($row['profile_image']) ? "/Account/Organization/uploads/" . $row['profile_image'] : "Account/Organization/uploads/default.png";
+            
+            // Format rating display
+            $rating = $row['avg_rating'];
+            $total_evaluations = $row['total_evaluations'];
+            $rating_display = $rating > 0 ? number_format($rating, 1) : "No ratings";
+            $star_icon = $rating > 0 ? "<i class='fa fa-star fa-2x'></i>" : "<i class='fa fa-star-o fa-2x'></i>";
 
             echo "<tr>";
             echo "<td data-th='#'>" . $count . "</td>";
             echo "<td data-th='ID Picture' style='justify-content: center;'><img class='idpic' src='" . $profile_image . "' alt='Organization Photo'></td>";
-            echo "<td data-th='Organization Name'>" . $row['organization_name'] . "</td>";
-            echo "<td data-th='Rating'> 4.5 <i class='fa fa-star fa-2x'></i> </td>";
+            echo "<td data-th='Organization Name'>" . htmlspecialchars($row['organization_name']) . "</td>";
+            echo "<td data-th='Rating'>" . $rating_display . " " . $star_icon;
+            if ($total_evaluations > 0) {
+                echo "<br><small>(" . $total_evaluations . " evaluation" . ($total_evaluations > 1 ? "s" : "") . ")</small>";
+            }
+            echo "</td>";
             echo "<td data-th='Status'>" . ($row['verified_status'] ? "Verified" : "Not Verified") . "</td>";
 
             echo "<td data-th='Action'>";

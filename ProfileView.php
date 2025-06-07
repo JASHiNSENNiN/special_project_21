@@ -401,7 +401,178 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
 
 
+function displayStudentEvaluationTable($student_id)
+{
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
 
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("
+        SELECT 
+            day,
+            evaluation_date,
+            ROUND(
+                (punctual + reports_regularly + performs_tasks_independently + 
+                 self_discipline + dedication_commitment + ability_to_operate_machines + 
+                 handles_details + shows_flexibility + thoroughness_attention_to_detail + 
+                 understands_task_linkages + offers_suggestions + tact_in_dealing_with_people + 
+                 respect_and_courtesy + helps_others + learns_from_co_workers + 
+                 shows_gratitude + poise_and_self_confidence + emotional_maturity) / 18, 1
+            ) AS daily_average,
+            evaluation_id
+        FROM Student_Evaluation 
+        WHERE student_id = ? 
+        ORDER BY CAST(day AS UNSIGNED)
+    ");
+
+    $stmt->bind_param("i", $student_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $evaluations = [];
+    while ($row = $result->fetch_assoc()) {
+        $evaluations[$row['day']] = $row;
+    }
+
+    $stmt->close();
+    $conn->close();
+
+
+    echo '<h2 class="title-resume">Evaluation</h2>';
+    echo '<span class="description-resume">From Day 1 to Day 10, the evaluation of the company on the students revealed a steady improvement in work habits, work skills, and social skills, demonstrating their ability to adapt and grow in a professional environment. <br> <br> </span>';
+
+    echo '<table class="rwd-table">';
+    echo '<tbody>';
+    echo '<tr>';
+    for ($day = 1; $day <= 10; $day++) {
+        echo '<th>Day ' . $day . '</th>';
+    }
+    echo '</tr>';
+
+    echo '<tr>';
+    for ($day = 1; $day <= 10; $day++) {
+        echo '<td data-th="Day ' . $day . '">';
+        
+        if (isset($evaluations[$day])) {
+            // Evaluation exists for this day
+            $evaluation = $evaluations[$day];
+            $rating = $evaluation['daily_average'];
+            $date = date('n/j/Y', strtotime($evaluation['evaluation_date']));
+            
+            echo '<div class="evaluation-status evaluated">';
+            echo '<div>' . $date . '</div>';
+            
+            echo '<div class="rating-student">';
+            echo '<div class="average">' . $rating . '</div>';
+            echo '<div class="starContainer stars">';
+            
+            // Generate stars based on rating
+            for ($star = 1; $star <= 5; $star++) {
+                $starClass = ($star <= $rating) ? 'star filled' : 'star';
+                echo '<span class="' . $starClass . '" data-index="' . $star . '">&#9733;</span>';
+            }
+            
+            echo '</div>'; // Close stars div
+            echo '</div>'; // Close rating-student div
+            echo '</div>'; // Close evaluation-status div
+        } else {
+            // No evaluation for this day
+            echo '<div class="evaluation-status not-evaluated">';
+            echo '<div style="font-size: 12px;">✗ Pending</div>';
+            echo '</div>';
+        }
+        
+        echo '</td>';
+    }
+    echo '</tr>';
+
+    echo '</tbody>';
+    echo '</table>';
+}
+
+// Helper function to get student evaluation summary
+function getStudentEvaluationSummary($student_id)
+{
+    $host = "localhost";
+    $username = $_ENV['MYSQL_USERNAME'];
+    $password = $_ENV['MYSQL_PASSWORD'];
+    $database = $_ENV['MYSQL_DBNAME'];
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("
+        SELECT 
+            COUNT(*) as total_evaluations,
+            COUNT(DISTINCT day) as days_evaluated,
+            ROUND(AVG(
+                (punctual + reports_regularly + performs_tasks_independently + 
+                 self_discipline + dedication_commitment + ability_to_operate_machines + 
+                 handles_details + shows_flexibility + thoroughness_attention_to_detail + 
+                 understands_task_linkages + offers_suggestions + tact_in_dealing_with_people + 
+                 respect_and_courtesy + helps_others + learns_from_co_workers + 
+                 shows_gratitude + poise_and_self_confidence + emotional_maturity) / 18
+            ), 1) as overall_average,
+            MIN(evaluation_date) as start_date,
+            MAX(evaluation_date) as end_date
+        FROM Student_Evaluation 
+        WHERE student_id = ?
+    ");
+
+    $stmt->bind_param("i", $student_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $summary = $result->fetch_assoc();
+
+    $stmt->close();
+    $conn->close();
+
+    return $summary;
+}
+
+// Enhanced function with progress tracking
+function displayStudentEvaluationTableWithProgress($student_id)
+{
+displayStudentEvaluationTable($student_id);
+
+    $summary = getStudentEvaluationSummary($student_id);
+    $progress_percentage = ($summary['days_evaluated'] / 10) * 100;
+
+    
+    // Add progress information
+    if ($summary['total_evaluations'] > 0) {
+        echo '<div class="evaluation-summary" style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">';
+        echo '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">';
+        echo '<span><strong>Overall Rating:</strong> ' . ($summary['overall_average'] ?: 'N/A') . '/5 ⭐</span>';
+        echo '<span><strong>Progress:</strong> ' . $summary['days_evaluated'] . '/10 days completed (' . round($progress_percentage) . '%)</span>';
+        echo '</div>';
+        
+        // Progress bar
+        echo '<div style="width: 100%; background-color: #e0e0e0; border-radius: 10px; height: 8px;">';
+        echo '<div style="width: ' . $progress_percentage . '%; background-color: #4CAF50; height: 8px; border-radius: 10px; transition: width 0.3s ease;"></div>';
+        echo '</div>';
+        
+        if ($summary['start_date'] && $summary['end_date']) {
+            echo '<div style="margin-top: 10px; font-size: 14px; color: #666;">';
+            echo '<strong>Period:</strong> ' . date('M j, Y', strtotime($summary['start_date'])) . ' - ' . date('M j, Y', strtotime($summary['end_date']));
+            echo '</div>';
+        }
+        echo '</div>';
+    }
+
+    
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -550,7 +721,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
                             <br>
                             <i class="fa fa-calendar" aria-hidden="true" title="Date End "></i><span
-                                class="other-info"><?= $dateEnd ?></span>
+                                class="other-info"><?= $dateEnd ?></span> 
 
 
 
@@ -835,119 +1006,15 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
                             </div>
 
                             <hr>
-                            <h2 class="title-resume">Evaluation</h2>
-                            <span class="description-resume">From Day 1 to Day 10, the evaluation of the company on the students revealed a steady improvement in work habits, work skills, and social skills, demonstrating their ability to adapt and grow in a professional environment. <br> <br> </span>
-
-                            <table class="rwd-table">
-                                <tbody>
-                                    <tr>
-                                        <th>Day 1</th>
-                                        <th>Day 2</th>
-                                        <th>Day 3</th>
-                                        <th>Day 4</th>
-                                        <th>Day 5</th>
-                                        <th>Day 6</th>
-                                        <th>Day 7</th>
-                                        <th>Day 8</th>
-                                        <th>Day 9</th>
-                                        <th>Day 10</th>
-                                    </tr>
-                                    <!-- First Student Row -->
-                                    <tr>
-                                        <td data-th="Day 1">
-                                            <div class="evaluation-status not-evaluated">
-                                                <div>9/15/2023</div>
-                                                <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
-                                                <div class="rating-student">
-                                                    <div id="average">0</div>
-                                                    <div id="starContainer" class="stars">
-                                                        <span class="star" data-index="1">&#9733;</span>
-                                                        <span class="star" data-index="2">&#9733;</span>
-                                                        <span class="star" data-index="3">&#9733;</span>
-                                                        <span class="star" data-index="4">&#9733;</span>
-                                                        <span class="star" data-index="5">&#9733;</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 2">
-                                            <div class="evaluation-status evaluated">
-                                                <div>9/15/2023</div>
-                                                <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
-
-                                                <div class="rating-student">
-                                                    <div id="average">0</div>
-                                                    <div id="starContainer" class="stars">
-                                                        <span class="star" data-index="1">&#9733;</span>
-                                                        <span class="star" data-index="2">&#9733;</span>
-                                                        <span class="star" data-index="3">&#9733;</span>
-                                                        <span class="star" data-index="4">&#9733;</span>
-                                                        <span class="star" data-index="5">&#9733;</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 3">
-                                            <div class="evaluation-status evaluated">
-                                                <div>9/15/2023</div>
-                                                <div style="font-size: 12px; margin-top: 3px;">✓ Done</div>
-                                                <div class="rating-student">
-                                                    <div id="average">0</div>
-                                                    <div id="starContainer" class="stars">
-                                                        <span class="star" data-index="1">&#9733;</span>
-                                                        <span class="star" data-index="2">&#9733;</span>
-                                                        <span class="star" data-index="3">&#9733;</span>
-                                                        <span class="star" data-index="4">&#9733;</span>
-                                                        <span class="star" data-index="5">&#9733;</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 4">
-                                            <div class="evaluation-status not-evaluated">
-                                                <div style="font-size: 12px;">✗ Pending</div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 5">
-                                            <div class="evaluation-status evaluated">
-                                                <div style="font-size: 12px;">✗ Pending</div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 6">
-                                            <div class="evaluation-status not-evaluated">
-                                                <div style="font-size: 12px;">✗ Pending</div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 7">
-                                            <div class="evaluation-status evaluated">
-                                                <div style="font-size: 12px;">✗ Pending</div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 8">
-                                            <div class="evaluation-status not-evaluated">
-                                                <div style="font-size: 12px;">✗ Pending</div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 9">
-                                            <div class="evaluation-status not-evaluated">
-                                                <div style="font-size: 12px;">✗ Pending</div>
-                                            </div>
-                                        </td>
-                                        <td data-th="Day 10">
-                                            <div class="evaluation-status evaluated">
-                                                <div style="font-size: 12px;">✗ Pending</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
                         <?php endif; ?>
 
 
 
+                        <hr>
 
+                            <?php 
+                            displayStudentEvaluationTableWithProgress($user_id);
+                            ?>
 
                         <hr>
                         <h2 class="title-resume">Daily Insight</h2>
@@ -1104,52 +1171,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
     </div>
     <!-- -------------------------------------END ------------------------------------------------- -->
-    <script>
-        const stars = document.querySelectorAll('.star');
-        const averageDisplay = document.getElementById('average');
-
-
-        let totalRatings = 0;
-        let ratingsCount = 0;
-        let ratingsSum = 0;
-
-
-        function fillStars(rating) {
-            stars.forEach(star => {
-                const index = parseInt(star.dataset.index);
-                if (index <= rating) {
-                    star.classList.add('filled');
-                } else {
-                    star.classList.remove('filled');
-                }
-            });
-        }
-
-        function updateAverage() {
-            const average = ratingsCount === 0 ? 0 : (ratingsSum / ratingsCount).toFixed(1);
-            averageDisplay.textContent = `${average}`;
-        }
-
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                const rating = parseInt(star.dataset.index);
-
-                totalRatings += rating;
-                ratingsCount += 1;
-                ratingsSum += rating;
-
-                const average = ratingsSum / ratingsCount;
-
-                fillStars(rating);
-
-                updateAverage();
-            });
-        });
-
-
-        fillStars(0);
-    </script>
-
+    <!-- ----------------------------------------EVALUATION GRAPH----------------------------------- -->
 
 
 
@@ -1162,7 +1184,7 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $cover_image_path)) {
 
     <!-- -------------------------------------------------END ------------------------------------------------------ -->
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
+        document.getElementById('refreshButton').addEventListener('click', function () {
             location.reload("card-graph");
         });
     </script>
